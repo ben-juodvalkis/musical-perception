@@ -135,17 +135,13 @@ def test_merge_preserves_raw_word_from_whisper():
 
 
 def test_quality_profile():
-    """QualityProfile stores six numeric dimensions."""
+    """QualityProfile stores three numeric dimensions."""
     q = QualityProfile(
-        smoothness=0.7, energy=0.4, groundedness=0.8,
-        attack=0.4, weight=0.5, sustain=0.7,
+        articulation=0.7, weight=0.5, energy=0.4,
     )
-    assert q.smoothness == 0.7
-    assert q.energy == 0.4
-    assert q.groundedness == 0.8
-    assert q.attack == 0.4
+    assert q.articulation == 0.7
     assert q.weight == 0.5
-    assert q.sustain == 0.7
+    assert q.energy == 0.4
 
 
 def test_meter():
@@ -170,14 +166,13 @@ def test_gemini_result_carries_typed_fields():
         counting_structure=None,
         meter=Meter(beats_per_measure=4, beat_unit=4),
         quality=QualityProfile(
-            smoothness=0.5, energy=0.5, groundedness=0.5,
-            attack=0.5, weight=0.5, sustain=0.5,
+            articulation=0.5, weight=0.5, energy=0.5,
         ),
         structure=PhraseStructure(counts=16, sides=1),
         model="test",
     )
     assert result.meter.beats_per_measure == 4
-    assert result.quality.smoothness == 0.5
+    assert result.quality.articulation == 0.5
     assert result.structure.counts == 16
 
 
@@ -192,8 +187,7 @@ def test_merge_with_typed_fields():
         counting_structure=None,
         meter=Meter(beats_per_measure=4, beat_unit=4),
         quality=QualityProfile(
-            smoothness=0.7, energy=0.4, groundedness=0.8,
-            attack=0.4, weight=0.5, sustain=0.7,
+            articulation=0.7, weight=0.5, energy=0.4,
         ),
         structure=PhraseStructure(counts=16, sides=2),
         model="test",

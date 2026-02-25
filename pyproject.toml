@@ -28,8 +28,12 @@ gemini = [
     "google-genai>=1.0",
     "python-dotenv>=1.0",
 ]
+pose = [
+    "mediapipe>=0.10",
+    "opencv-python>=4.8",
+]
 all = [
-    "musical-perception[whisper,prosody,gemini]",
+    "musical-perception[whisper,prosody,gemini,pose]",
 ]
 dev = [
     "pytest>=7.0",

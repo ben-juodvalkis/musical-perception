@@ -5,13 +5,14 @@ import sys
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python -m musical_perception <audio_file> [--signature] [--stress] [--gemini]")
+        print("Usage: python -m musical_perception <audio_file> [--signature] [--stress] [--gemini] [--pose]")
         sys.exit(1)
 
     audio_file = sys.argv[1]
     extract_sig = "--signature" in sys.argv
     detect_stress = "--stress" in sys.argv
     use_gemini = "--gemini" in sys.argv
+    use_pose = "--pose" in sys.argv
 
     from musical_perception.analyze import analyze
 
@@ -24,6 +25,7 @@ def main():
         extract_signature=extract_sig,
         detect_stress=detect_stress,
         use_gemini=use_gemini,
+        use_pose=use_pose,
     )
 
     print("\n--- Tempo ---")
@@ -50,12 +52,9 @@ def main():
     if result.quality:
         print(f"\n--- Quality ---")
         q = result.quality
-        print(f"  smoothness:   {q.smoothness:.2f}")
-        print(f"  energy:       {q.energy:.2f}")
-        print(f"  groundedness: {q.groundedness:.2f}")
-        print(f"  attack:       {q.attack:.2f}")
-        print(f"  weight:       {q.weight:.2f}")
-        print(f"  sustain:      {q.sustain:.2f}")
+        print(f"  articulation: {q.articulation:.2f}  (staccato \u2192 legato)")
+        print(f"  weight:       {q.weight:.2f}  (light \u2192 heavy)")
+        print(f"  energy:       {q.energy:.2f}  (calm \u2192 energetic)")
 
     if result.structure:
         print(f"\n--- Structure ---")

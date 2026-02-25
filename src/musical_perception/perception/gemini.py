@@ -151,52 +151,31 @@ _RESPONSE_SCHEMA = {
         },
         "quality": {
             "type": "OBJECT",
-            "description": "Six numeric dimensions (0.0-1.0) describing movement and musical quality",
+            "description": "Three numeric dimensions (0.0-1.0) describing movement character",
             "properties": {
-                "smoothness": {
+                "articulation": {
                     "type": "NUMBER",
                     "description": (
-                        "0.0 = sharp/staccato, 1.0 = flowing/legato. "
+                        "0.0 = staccato/sharp/detached, 1.0 = legato/smooth/flowing. "
                         "Calibration: frappé ~0.1, tendu ~0.5, port de bras ~0.9"
-                    ),
-                },
-                "energy": {
-                    "type": "NUMBER",
-                    "description": (
-                        "0.0 = gentle/soft, 1.0 = explosive/powerful. "
-                        "Calibration: relevé balance ~0.2, grand allegro ~1.0"
-                    ),
-                },
-                "groundedness": {
-                    "type": "NUMBER",
-                    "description": (
-                        "0.0 = aerial/elevated, 1.0 = earth-connected. "
-                        "Calibration: sauté ~0.1, tendu ~0.6, grand plié ~1.0"
-                    ),
-                },
-                "attack": {
-                    "type": "NUMBER",
-                    "description": (
-                        "0.0 = soft onset, 1.0 = percussive onset. "
-                        "Calibration: adagio ~0.1, frappé ~0.9"
                     ),
                 },
                 "weight": {
                     "type": "NUMBER",
                     "description": (
-                        "0.0 = light/buoyant, 1.0 = heavy/pressing. "
-                        "Calibration: balancé ~0.2, grand plié ~0.9"
+                        "0.0 = light/buoyant/airy, 1.0 = heavy/grounded/pressing. "
+                        "Calibration: petit allegro ~0.2, tendu ~0.5, grand plié ~0.9"
                     ),
                 },
-                "sustain": {
+                "energy": {
                     "type": "NUMBER",
                     "description": (
-                        "0.0 = quick movements, 1.0 = held positions. "
-                        "Calibration: petit allegro ~0.1, adagio ~0.9"
+                        "0.0 = calm/controlled/gentle, 1.0 = energetic/active/explosive. "
+                        "Calibration: adagio ~0.2, tendu ~0.5, grand allegro ~0.9"
                     ),
                 },
             },
-            "required": ["smoothness", "energy", "groundedness", "attack", "weight", "sustain"],
+            "required": ["articulation", "weight", "energy"],
         },
         "structure": {
             "type": "OBJECT",
@@ -237,12 +216,11 @@ For counting_structure, report what you observe about the counting pattern.
 For meter, determine the time signature from the counting pattern and movement quality \
 (e.g. waltz = 3/4, most barre work = 4/4).
 
-For quality, rate the movement on six numeric dimensions (0.0–1.0). \
+For quality, rate the movement on three numeric dimensions (0.0–1.0). \
 Rate what you actually observe, not what the exercise should ideally look like. \
-Use these calibration points: smoothness (frappé=0.1, tendu=0.5, port de bras=0.9), \
-energy (relevé balance=0.2, grand allegro=1.0), groundedness (sauté=0.1, tendu=0.6, \
-grand plié=1.0), attack (adagio=0.1, frappé=0.9), weight (balancé=0.2, grand plié=0.9), \
-sustain (petit allegro=0.1, adagio=0.9).
+Use these calibration points: articulation (frappé=0.1, tendu=0.5, port de bras=0.9), \
+weight (petit allegro=0.2, tendu=0.5, grand plié=0.9), \
+energy (adagio=0.2, tendu=0.5, grand allegro=0.9).
 
 For structure, report the phrase length in counts and whether the exercise \
 is performed on one side or both sides."""
@@ -399,12 +377,9 @@ def _parse_response(raw: dict, model: str) -> GeminiAnalysisResult:
     quality = None
     if quality_raw:
         quality = QualityProfile(
-            smoothness=quality_raw.get("smoothness", 0.5),
-            energy=quality_raw.get("energy", 0.5),
-            groundedness=quality_raw.get("groundedness", 0.5),
-            attack=quality_raw.get("attack", 0.5),
+            articulation=quality_raw.get("articulation", 0.5),
             weight=quality_raw.get("weight", 0.5),
-            sustain=quality_raw.get("sustain", 0.5),
+            energy=quality_raw.get("energy", 0.5),
         )
 
     structure_raw = raw.get("structure", {})

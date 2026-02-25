@@ -8,6 +8,8 @@ the standard library and numpy.
 from dataclasses import dataclass, field
 from enum import Enum
 
+import numpy as np
+
 
 class MarkerType(Enum):
     """Type of rhythmic marker detected in speech."""
@@ -94,18 +96,30 @@ class PhraseStructure:
 @dataclass
 class QualityProfile:
     """
-    Six numeric dimensions describing movement and musical quality.
+    Three numeric dimensions describing movement character.
 
-    Each dimension is a float from 0.0 to 1.0. These map to concrete
-    musical decisions: articulation (smoothness, attack), dynamics
-    (energy, weight), pedaling (sustain), and register/voicing (groundedness).
+    Each dimension is a float from 0.0 to 1.0. These are generic musical
+    terms — any music generator (pianist, DJ, generative AI) can interpret
+    them. They describe movement quality, not instrument-specific decisions.
     """
-    smoothness: float    # 0 = sharp/staccato, 1 = flowing/legato
-    energy: float        # 0 = gentle/soft, 1 = explosive/powerful
-    groundedness: float  # 0 = aerial/elevated, 1 = earth-connected
-    attack: float        # 0 = soft onset, 1 = percussive onset
-    weight: float        # 0 = light/buoyant, 1 = heavy/pressing
-    sustain: float       # 0 = quick movements, 1 = held positions
+    articulation: float  # 0 = staccato (sharp, detached), 1 = legato (smooth, flowing)
+    weight: float        # 0 = light (buoyant, airy), 1 = heavy (grounded, pressing)
+    energy: float        # 0 = calm (controlled, gentle), 1 = energetic (active, explosive)
+
+
+@dataclass
+class LandmarkTimeSeries:
+    """
+    Pose landmark positions over time.
+
+    Source-agnostic container — works with any pose model that produces
+    33 keypoints (MediaPipe indexing). The precision layer consumes this
+    type without knowing which model produced it.
+    """
+    timestamps: np.ndarray   # (N,) seconds from video start
+    landmarks: np.ndarray    # (N, 33, 3) x/y/z normalized coords per frame
+    fps: float               # Source video frame rate
+    detection_rate: float    # Fraction of frames with successful pose detection
 
 
 @dataclass
