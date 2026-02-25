@@ -5,6 +5,7 @@ KEEP (gray zone) — signal processing, but future audio models might
 expose internal pitch/energy representations.
 """
 
+import os
 import tempfile
 
 import numpy as np
@@ -35,8 +36,13 @@ def extract_prosody_contours(
 
     # Save to temp WAV for Praat (parselmouth can't read compressed AIFF)
     with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as f:
-        sf.write(f.name, y, sr)
-        sound = parselmouth.Sound(f.name)
+        tmp_path = f.name
+        sf.write(tmp_path, y, sr)
+
+    try:
+        sound = parselmouth.Sound(tmp_path)
+    finally:
+        os.unlink(tmp_path)
 
     # Extract pitch (F0)
     pitch = sound.to_pitch(time_step=0.01, pitch_floor=50, pitch_ceiling=300)

@@ -135,3 +135,4 @@ class MusicalParameters:
     structure: dict | None = None  # {counts: int, sides: int}
     words: list[TimestampedWord] = field(default_factory=list)
     markers: list[TimedMarker] = field(default_factory=list)
+    stress_labels: list[tuple[str, int]] | None = None  # (word, 0|1) from WhiStress
