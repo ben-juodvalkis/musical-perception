@@ -48,7 +48,6 @@ def _merge_gemini_with_timestamps(
 
         # Look ahead for the next matching word in whisper output
         # without consuming non-matching words (they may match later Gemini words)
-        found = False
         for i in range(whisper_idx, len(whisper_words)):
             ww_norm = _normalize_word(whisper_words[i].word)
             if ww_norm == gw_norm:
@@ -59,9 +58,7 @@ def _merge_gemini_with_timestamps(
                     raw_word=whisper_words[i].word,
                 ))
                 whisper_idx = i + 1
-                found = True
                 break
-
         # If no match found, skip this Gemini word (no timestamp available)
 
     return markers

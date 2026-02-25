@@ -272,7 +272,7 @@ def _extract_audio(video_path: str) -> str | None:
         tmp.close()
 
         result = subprocess.run(
-            ["ffmpeg", "-i", video_path, "-vn", "-acodec", "copy", tmp.name, "-y"],
+            ["ffmpeg", "-i", video_path, "-vn", "-acodec", "aac", tmp.name, "-y"],
             capture_output=True,
             timeout=30,
         )
@@ -286,15 +286,20 @@ def _extract_audio(video_path: str) -> str | None:
         return None
 
 
-def _upload_and_wait(client, file_path: str, timeout: float = 120.0):
+def _upload_and_wait(client, file_path: str, uploaded_files: list, timeout: float = 120.0):
     """
     Upload a file to Gemini and wait for it to become ACTIVE.
+
+    The file is appended to uploaded_files immediately after upload
+    (before waiting), so the caller's finally block can clean it up
+    even if waiting raises.
 
     Raises:
         TimeoutError: If file doesn't become ACTIVE within timeout.
         RuntimeError: If file enters FAILED state.
     """
     uploaded = client.files.upload(file=file_path)
+    uploaded_files.append(uploaded)
 
     start = time.time()
     while uploaded.state.name == "PROCESSING":
@@ -402,15 +407,13 @@ def analyze_media(
 
     try:
         # Upload main media file
-        main_file = _upload_and_wait(client.client, media_path)
-        uploaded_files.append(main_file)
+        main_file = _upload_and_wait(client.client, media_path, uploaded_files)
 
         # For video, extract and upload audio separately
         if is_video:
             audio_tmp_path = _extract_audio(media_path)
             if audio_tmp_path:
-                audio_file = _upload_and_wait(client.client, audio_tmp_path)
-                uploaded_files.append(audio_file)
+                audio_file = _upload_and_wait(client.client, audio_tmp_path, uploaded_files)
 
         # Build content parts
         parts = []
