@@ -24,8 +24,12 @@ prosody = [
     "praat-parselmouth>=0.4",
     "soundfile>=0.12",
 ]
+gemini = [
+    "google-genai>=1.0",
+    "python-dotenv>=1.0",
+]
 all = [
-    "musical-perception[whisper,prosody]",
+    "musical-perception[whisper,prosody,gemini]",
 ]
 dev = [
     "pytest>=7.0",

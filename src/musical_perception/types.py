@@ -115,6 +115,34 @@ class ExerciseDetectionResult:
     all_matches: list[ExerciseMatch]
 
 
+# === Gemini bridge types (no timestamps) ===
+
+@dataclass
+class GeminiWord:
+    """A word classified by Gemini, without timestamps."""
+    word: str
+    marker_type: MarkerType | None  # None for non-rhythmic words
+    beat_number: int | None
+
+
+@dataclass
+class GeminiCountingStructure:
+    """Gemini's qualitative observation of counting structure."""
+    total_counts: int | None
+    prep_counts: str | None  # e.g. "5, 6, 7, 8"
+    subdivision_type: str | None  # "none", "duple", "triplet"
+    estimated_bpm: float | None  # Unreliable — logged but not used
+
+
+@dataclass
+class GeminiAnalysisResult:
+    """Raw result from Gemini API call. Bridge type before merging with timestamps."""
+    words: list[GeminiWord]
+    exercise: ExerciseDetectionResult | None
+    counting_structure: GeminiCountingStructure | None
+    model: str  # Which model was used
+
+
 # === The stable interface ===
 
 @dataclass

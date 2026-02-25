@@ -127,11 +127,11 @@ From the audio and video, extract:
 
 Listen carefully to the audio for all spoken words and counting. Watch the video for the type of movement."""
 
-print("Sending to Gemini 2.5 Flash (structured output)...")
+print("Sending to Gemini 3.1 Pro (structured output)...")
 print("=" * 60)
 
 response = client.models.generate_content(
-    model="gemini-2.5-flash",
+    model="gemini-3.1-pro-preview",
     contents=[
         types.Content(
             role="user",
