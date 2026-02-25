@@ -9,6 +9,7 @@ without any playback.
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -e ".[all,dev]"
+export GEMINI_API_KEY=your-key-here
 python -m musical_perception audio/your-file.aif
 ```
 
@@ -21,15 +22,14 @@ src/musical_perception/
 ├── precision/            # KEEP — pure math, rarely changes
 │   ├── tempo.py          # BPM from timestamps
 │   ├── subdivision.py    # Duple/triplet classification
-│   └── signature.py      # Counting signature computation
-├── perception/           # DISPOSABLE — thin model wrappers
-│   ├── whisper.py        # Whisper transcription
-│   ├── prosody.py        # Praat pitch/intensity extraction
-│   ├── whistress.py      # WhiStress stress detection
-│   └── gemini.py         # Gemini multimodal analysis (exercise, meter, quality, structure)
-└── scaffolding/          # SCAFFOLDING — replaced by gemini.py, kept as fallback
-    ├── markers.py        # Word classification (beat/and/ah)
-    └── exercise.py       # Exercise type detection
+│   ├── signature.py      # Counting signature computation
+│   └── dynamics.py       # Movement quality from pose landmarks
+└── perception/           # DISPOSABLE — thin model wrappers
+    ├── whisper.py        # Whisper transcription (word timestamps)
+    ├── prosody.py        # Praat pitch/intensity extraction
+    ├── whistress.py      # WhiStress stress detection
+    ├── gemini.py         # Gemini multimodal analysis (words, exercise, meter, quality, structure)
+    └── pose.py           # MediaPipe pose estimation
 ```
 
 ## Architecture Labels
@@ -37,8 +37,13 @@ src/musical_perception/
 - **KEEP**: Precision math and signal processing. Pure functions. Test thoroughly.
 - **DISPOSABLE**: Perception wrappers around AI models. Will be swapped.
   Don't build elaborate abstractions.
-- **SCAFFOLDING**: Hand-built analysis that multimodal AI will replace.
-  Good enough for now. Don't invest further.
+
+## How It Works
+
+Whisper owns word **timestamps**. Gemini owns word **classification** (beat/and/ah)
+and qualitative analysis (exercise, meter, quality, structure). The merge step
+in `analyze.py` pairs Gemini classifications with Whisper timestamps to produce
+`TimedMarker` objects, which feed the precision layer for tempo and subdivision.
 
 ## Key Types
 
@@ -58,16 +63,12 @@ pytest
 
 Tests for precision code use hardcoded data (no audio files, no models needed).
 
-## Adding New Word Patterns
-
-When Whisper transcribes subdivision words unexpectedly, add them
-to the word lists in `scaffolding/markers.py`:
-- `AND_WORDS` — for "and" sounds
-- `AH_WORDS` — for "ah" sounds (Whisper often hears "the", "da", "ta")
-
 ## Dependencies
 
 Core (always installed): numpy
+
+Required:
+- `GEMINI_API_KEY` environment variable (get one at https://aistudio.google.com/apikey)
 
 Optional groups:
 - `pip install -e .`            — precision math only
@@ -76,16 +77,14 @@ Optional groups:
 - `pip install -e ".[gemini]"`  — add Gemini multimodal analysis
 - `pip install -e ".[all]"`     — everything
 
-## Using Gemini
-
-Requires a `GEMINI_API_KEY` (get one at https://aistudio.google.com/apikey).
-Set it in your environment or in a `.env` file.
+## Usage
 
 ```bash
-python -m musical_perception video/your-file.mov --gemini
+python -m musical_perception video/your-file.mov
+python -m musical_perception audio/your-file.aif --signature --pose
 ```
 
-Gemini replaces the scaffolding layer with a single multimodal API call,
-providing exercise detection, meter, quality descriptors, and structure.
-Whisper still runs for word timestamps; the precision layer still computes
-tempo and subdivision from those timestamps.
+Flags:
+- `--signature` — extract counting signature (requires prosody deps)
+- `--stress` — detect stress labels (requires WhiStress)
+- `--pose` — estimate pose from video (requires pose deps, video only)

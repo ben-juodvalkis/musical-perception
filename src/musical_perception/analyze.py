@@ -1,7 +1,7 @@
 """
 Main analysis pipeline.
 
-Orchestrates perception, scaffolding, and precision layers
+Orchestrates perception and precision layers
 to produce MusicalParameters from audio input.
 """
 
@@ -73,9 +73,7 @@ def analyze(
     model=None,
     model_name: str = "base.en",
     extract_signature: bool = False,
-    detect_exercise_type: bool = True,
     detect_stress: bool = False,
-    use_gemini: bool = False,
     gemini_client=None,
     gemini_model: str = "gemini-2.5-flash",
     use_pose: bool = False,
@@ -83,16 +81,15 @@ def analyze(
     """
     Analyze an audio or video file and return structured musical parameters.
 
-    This is the primary entry point for the package.
+    This is the primary entry point for the package. Requires a Gemini API key
+    (set GEMINI_API_KEY env var or pass a pre-loaded gemini_client).
 
     Args:
         audio_path: Path to audio file (wav, mp3, aif, etc.) or video file (mov, mp4)
         model: Pre-loaded Whisper/WhisperX model (optional, avoids reloading)
         model_name: Model to load if model not provided
         extract_signature: Whether to extract counting signature (requires prosody deps)
-        detect_exercise_type: Whether to run exercise detection
         detect_stress: Whether to run WhiStress stress detection (requires WhiStress)
-        use_gemini: Whether to use Gemini for word classification and exercise detection
         gemini_client: Pre-loaded Gemini client (optional, avoids re-init)
         gemini_model: Gemini model to use if gemini_client not provided
         use_pose: Whether to run pose estimation for movement quality (requires pose deps, video only)
@@ -102,36 +99,26 @@ def analyze(
     """
     from musical_perception.precision.tempo import calculate_tempo
     from musical_perception.precision.subdivision import analyze_subdivisions
-
     from musical_perception.perception.whisper import load_model, transcribe
-    from musical_perception.scaffolding.markers import extract_markers
+    from musical_perception.perception.gemini import load_client, analyze_media
 
     if model is None:
         model = load_model(model_name)
 
-    # Whisper + scaffolding markers always own timestamps and tempo
+    # Whisper owns timestamps, Gemini owns word classification
     words = transcribe(model, audio_path)
-    markers = extract_markers(words)
 
-    # Exercise detection + qualitative analysis:
-    # Gemini (multimodal) or scaffolding (pattern matching)
-    exercise = None
-    meter = None
-    quality = None
-    structure = None
-    if use_gemini:
-        from musical_perception.perception.gemini import load_client, analyze_media
+    if gemini_client is None:
+        gemini_client = load_client(model=gemini_model)
+    gemini_result = analyze_media(gemini_client, audio_path)
 
-        if gemini_client is None:
-            gemini_client = load_client(model=gemini_model)
-        gemini_result = analyze_media(gemini_client, audio_path)
-        exercise = gemini_result.exercise
-        meter = gemini_result.meter
-        quality = gemini_result.quality
-        structure = gemini_result.structure
-    elif detect_exercise_type:
-        from musical_perception.scaffolding.exercise import detect_exercise
-        exercise = detect_exercise(words)
+    # Merge Gemini classifications with Whisper timestamps
+    markers = _merge_gemini_with_timestamps(gemini_result, words)
+
+    exercise = gemini_result.exercise
+    meter = gemini_result.meter
+    quality = gemini_result.quality
+    structure = gemini_result.structure
 
     # Pose estimation + dynamics (optional — requires pose deps, video only)
     is_video = Path(audio_path).suffix.lower() in _VIDEO_EXTENSIONS
@@ -157,13 +144,14 @@ def analyze(
     # Extract counting signature (optional — requires prosody deps)
     signature = None
     if extract_signature:
-        from musical_perception.scaffolding.markers import classify_marker
         from musical_perception.perception.prosody import extract_prosody_contours, extract_word_features
         from musical_perception.precision.signature import compute_signature
 
         pitch_times, pitch_values, intensity_times, intensity_values = extract_prosody_contours(audio_path)
 
-        marker_types = [classify_marker(w.word.strip().lower().strip(".,!?;:")) for w in words]
+        # Derive marker types from Gemini merge (keyed by word start time)
+        marker_lookup = {m.timestamp: m.marker_type for m in markers}
+        marker_types = [marker_lookup.get(w.start) for w in words]
 
         features = extract_word_features(
             words, marker_types,
