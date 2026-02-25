@@ -14,6 +14,7 @@ def analyze(
     model_name: str = "base.en",
     extract_signature: bool = False,
     detect_exercise_type: bool = True,
+    detect_stress: bool = False,
 ) -> MusicalParameters:
     """
     Analyze an audio file and return structured musical parameters.
@@ -22,10 +23,11 @@ def analyze(
 
     Args:
         audio_path: Path to audio file (wav, mp3, aif, etc.)
-        model: Pre-loaded Whisper model (optional, avoids reloading)
-        model_name: Whisper model to load if model not provided
+        model: Pre-loaded Whisper/WhisperX model (optional, avoids reloading)
+        model_name: Model to load if model not provided
         extract_signature: Whether to extract counting signature (requires prosody deps)
         detect_exercise_type: Whether to run exercise detection
+        detect_stress: Whether to run WhiStress stress detection (requires WhiStress)
 
     Returns:
         MusicalParameters with extracted musical information
@@ -75,6 +77,13 @@ def analyze(
         )
         signature = compute_signature(features)
 
+    # Detect stress labels (optional — requires WhiStress)
+    stress_labels = None
+    if detect_stress:
+        from musical_perception.perception.whistress import load_model as load_whistress, predict_stress
+        whistress_client = load_whistress()
+        stress_labels = predict_stress(whistress_client, audio_path, words)
+
     return MusicalParameters(
         tempo=tempo,
         subdivision=subdivision,
@@ -82,4 +91,5 @@ def analyze(
         counting_signature=signature,
         words=words,
         markers=markers,
+        stress_labels=stress_labels,
     )

@@ -5,16 +5,17 @@ import sys
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python -m musical_perception <audio_file> [--signature]")
+        print("Usage: python -m musical_perception <audio_file> [--signature] [--stress]")
         sys.exit(1)
 
     audio_file = sys.argv[1]
     extract_sig = "--signature" in sys.argv
+    detect_stress = "--stress" in sys.argv
 
     from musical_perception.analyze import analyze
 
     print("Loading model...")
-    result = analyze(audio_file, extract_signature=extract_sig)
+    result = analyze(audio_file, extract_signature=extract_sig, detect_stress=detect_stress)
 
     print("\n--- Tempo ---")
     if result.tempo:
@@ -46,6 +47,11 @@ def main():
         if sig.beat_vs_and_intensity_db is not None:
             sign = "+" if sig.beat_vs_and_intensity_db >= 0 else ""
             print(f"Beat vs And intensity: {sign}{sig.beat_vs_and_intensity_db:.1f} dB")
+
+    if result.stress_labels:
+        print(f"\n--- Stress (WhiStress) ---")
+        stressed = [w for w, s in result.stress_labels if s == 1]
+        print(f"Stressed words: {', '.join(stressed) if stressed else '(none)'}")
 
 
 if __name__ == "__main__":
