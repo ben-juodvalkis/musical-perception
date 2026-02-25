@@ -127,8 +127,61 @@ _RESPONSE_SCHEMA = {
             },
             "required": ["total_counts", "prep_counts", "subdivision_type", "estimated_bpm"],
         },
+        "meter": {
+            "type": "OBJECT",
+            "description": "The meter/time signature of the exercise",
+            "properties": {
+                "beats_per_measure": {
+                    "type": "INTEGER",
+                    "description": (
+                        "Beats per measure: 2, 3, 4, or 6. "
+                        "3 for waltz/balancé, 4 for most exercises, "
+                        "6 for 6/8 compound time."
+                    ),
+                },
+                "beat_unit": {
+                    "type": "INTEGER",
+                    "description": "Note value that gets one beat: 4 for quarter note, 8 for eighth note",
+                },
+            },
+            "required": ["beats_per_measure", "beat_unit"],
+        },
+        "quality": {
+            "type": "OBJECT",
+            "description": "The movement and musical quality/style",
+            "properties": {
+                "descriptors": {
+                    "type": "ARRAY",
+                    "description": (
+                        "2-5 musical/movement quality words that describe how the exercise "
+                        "should be performed. Examples: legato, staccato, sharp, flowing, "
+                        "sustained, marcato, bouncy, smooth, lyrical, crisp, grounded, airy"
+                    ),
+                    "items": {"type": "STRING"},
+                },
+            },
+            "required": ["descriptors"],
+        },
+        "structure": {
+            "type": "OBJECT",
+            "description": "The phrase structure of the exercise",
+            "properties": {
+                "counts": {
+                    "type": "INTEGER",
+                    "description": "Total counts in one full phrase (e.g. 16, 32)",
+                },
+                "sides": {
+                    "type": "INTEGER",
+                    "description": (
+                        "Number of sides/repetitions (1 if one-sided, "
+                        "2 if the exercise repeats left and right)"
+                    ),
+                },
+            },
+            "required": ["counts", "sides"],
+        },
     },
-    "required": ["words", "exercise", "counting_structure"],
+    "required": ["words", "exercise", "counting_structure", "meter", "quality", "structure"],
 }
 
 _PROMPT = """\
@@ -143,7 +196,16 @@ For each spoken word, classify it:
 
 Identify the ballet exercise type from speech and/or movement.
 
-For counting_structure, report what you observe about the counting pattern."""
+For counting_structure, report what you observe about the counting pattern.
+
+For meter, determine the time signature from the counting pattern and movement quality \
+(e.g. waltz = 3/4, most barre work = 4/4).
+
+For quality, describe the movement/musical style with 2-5 descriptors \
+(e.g. legato, sharp, flowing, sustained, marcato, bouncy, lyrical, crisp).
+
+For structure, report the phrase length in counts and whether the exercise \
+is performed on one side or both sides."""
 
 
 @dataclass
@@ -280,10 +342,34 @@ def _parse_response(raw: dict, model: str) -> GeminiAnalysisResult:
         estimated_bpm=cs_raw.get("estimated_bpm"),
     )
 
+    meter_raw = raw.get("meter", {})
+    meter = None
+    if meter_raw:
+        meter = {
+            "beats_per_measure": meter_raw.get("beats_per_measure"),
+            "beat_unit": meter_raw.get("beat_unit"),
+        }
+
+    quality_raw = raw.get("quality", {})
+    quality = None
+    if quality_raw.get("descriptors"):
+        quality = {"descriptors": quality_raw["descriptors"]}
+
+    structure_raw = raw.get("structure", {})
+    structure = None
+    if structure_raw:
+        structure = {
+            "counts": structure_raw.get("counts"),
+            "sides": structure_raw.get("sides"),
+        }
+
     return GeminiAnalysisResult(
         words=words,
         exercise=exercise,
         counting_structure=counting_structure,
+        meter=meter,
+        quality=quality,
+        structure=structure,
         model=model,
     )
 

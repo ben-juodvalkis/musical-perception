@@ -43,6 +43,18 @@ def main():
         print(f"Type: {result.exercise.display_name}")
         print(f"Confidence: {result.exercise.confidence:.0%}")
 
+    if result.meter:
+        print(f"\n--- Meter ---")
+        print(f"{result.meter['beats_per_measure']}/{result.meter['beat_unit']}")
+
+    if result.quality and result.quality.get("descriptors"):
+        print(f"\n--- Quality ---")
+        print(f"{', '.join(result.quality['descriptors'])}")
+
+    if result.structure:
+        print(f"\n--- Structure ---")
+        print(f"{result.structure['counts']} counts, {result.structure['sides']} side(s)")
+
     if result.counting_signature:
         print(f"\n--- Counting Signature ---")
         sig = result.counting_signature

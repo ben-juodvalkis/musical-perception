@@ -140,6 +140,9 @@ class GeminiAnalysisResult:
     words: list[GeminiWord]
     exercise: ExerciseDetectionResult | None
     counting_structure: GeminiCountingStructure | None
+    meter: dict | None  # {beats_per_measure: int, beat_unit: int}
+    quality: dict | None  # {descriptors: list[str]}
+    structure: dict | None  # {counts: int, sides: int}
     model: str  # Which model was used
 
 

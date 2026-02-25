@@ -26,7 +26,7 @@ src/musical_perception/
 │   ├── whisper.py        # Whisper transcription
 │   ├── prosody.py        # Praat pitch/intensity extraction
 │   ├── whistress.py      # WhiStress stress detection
-│   └── gemini.py         # Gemini multimodal analysis (exercise + word classification)
+│   └── gemini.py         # Gemini multimodal analysis (exercise, meter, quality, structure)
 └── scaffolding/          # SCAFFOLDING — replaced by gemini.py, kept as fallback
     ├── markers.py        # Word classification (beat/and/ah)
     └── exercise.py       # Exercise type detection
@@ -48,7 +48,7 @@ src/musical_perception/
 - `CountingSignature` — prosodic weight profile
 - `TimestampedWord` — word + start/end time (from transcription)
 - `TimedMarker` — classified rhythmic marker with beat association
-- `GeminiAnalysisResult` — bridge type from Gemini (words + exercise, no timestamps)
+- `GeminiAnalysisResult` — bridge type from Gemini (words + exercise + meter + quality + structure, no timestamps)
 
 ## Running Tests
 
@@ -85,6 +85,7 @@ Set it in your environment or in a `.env` file.
 python -m musical_perception video/your-file.mov --gemini
 ```
 
-Gemini replaces the scaffolding layer (word classification + exercise detection)
-with a single multimodal API call. Whisper still runs for word timestamps;
-the precision layer still computes tempo and subdivision from those timestamps.
+Gemini replaces the scaffolding layer with a single multimodal API call,
+providing exercise detection, meter, quality descriptors, and structure.
+Whisper still runs for word timestamps; the precision layer still computes
+tempo and subdivision from those timestamps.

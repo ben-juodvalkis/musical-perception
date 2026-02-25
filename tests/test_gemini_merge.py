@@ -15,6 +15,9 @@ def _make_result(words):
         words=words,
         exercise=None,
         counting_structure=None,
+        meter=None,
+        quality=None,
+        structure=None,
         model="test",
     )
 

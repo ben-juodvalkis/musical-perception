@@ -110,8 +110,12 @@ def analyze(
     words = transcribe(model, audio_path)
     markers = extract_markers(words)
 
-    # Exercise detection: Gemini (multimodal) or scaffolding (pattern matching)
+    # Exercise detection + qualitative analysis:
+    # Gemini (multimodal) or scaffolding (pattern matching)
     exercise = None
+    meter = None
+    quality = None
+    structure = None
     if use_gemini:
         from musical_perception.perception.gemini import load_client, analyze_media
 
@@ -119,6 +123,9 @@ def analyze(
             gemini_client = load_client(model=gemini_model)
         gemini_result = analyze_media(gemini_client, audio_path)
         exercise = gemini_result.exercise
+        meter = gemini_result.meter
+        quality = gemini_result.quality
+        structure = gemini_result.structure
     elif detect_exercise_type:
         from musical_perception.scaffolding.exercise import detect_exercise
         exercise = detect_exercise(words)
@@ -158,8 +165,11 @@ def analyze(
     return MusicalParameters(
         tempo=tempo,
         subdivision=subdivision,
+        meter=meter,
         exercise=exercise,
+        quality=quality,
         counting_signature=signature,
+        structure=structure,
         words=words,
         markers=markers,
         stress_labels=stress_labels,

@@ -46,16 +46,24 @@ Key findings:
 Thin module: upload media, send structured prompt, parse JSON response.
 Same load/analyze pattern as `whisper.py`.
 
-### 2. Gemini classifies, Whisper timestamps, merge by alignment
+### 2. Whisper owns timestamps and tempo; Gemini owns qualitative analysis
 
 Gemini cannot provide word-level timestamps. The precision layer needs
-timestamps for tempo and subdivision. Solution: run both Gemini and Whisper,
-merge Gemini's classifications with Whisper's timestamps using sequential
-word alignment.
+timestamps for BPM and subdivision. Whisper + scaffolding markers always run
+to produce `TimedMarker` list with timestamps — this feeds the precision layer
+for tempo and subdivision.
 
-This means `--gemini` does NOT eliminate the Whisper dependency. It eliminates
-the scaffolding layer (`markers.py`, `exercise.py`) and adds better exercise
-detection via multimodal understanding.
+Gemini provides:
+- **Exercise detection** — exercise type identified from audio + video context
+- **Meter** — time signature (e.g. 3/4, 4/4, 6/8)
+- **Quality** — 2–5 musical/movement style descriptors (e.g. "sustained",
+  "flowing", "marcato")
+- **Structure** — phrase length in counts and number of sides
+- **Word classifications** — rhythmic role of each word (beat/and/ah/none)
+- **Counting structure** — qualitative observation of counting pattern
+
+This means `--gemini` does NOT eliminate the Whisper dependency. Whisper
+timestamps remain the source of truth for the precision layer.
 
 ### 3. Always extract and send audio separately from video
 
@@ -68,8 +76,12 @@ ensures reliable audio processing across model versions. Even for 2.5 Flash
 
 `TimedMarker` requires a `timestamp: float`. Forcing 0.0 or NaN would corrupt
 downstream precision math. A separate `GeminiWord` type makes the "no
-timestamps" constraint visible at the type level. The merge step in
-`analyze.py` attaches timestamps from Whisper.
+timestamps" constraint visible at the type level.
+
+`GeminiAnalysisResult` carries all Gemini output: word classifications,
+exercise detection, counting structure, meter, quality, and structure. The
+`analyze()` function unpacks the qualitative fields directly into
+`MusicalParameters`.
 
 ### 5. Gemini's BPM and subdivision estimates are logged, not used
 
@@ -87,12 +99,21 @@ Despite 3.1 Pro being newer, 2.5 Flash is the better default:
 
 The `gemini_model` parameter allows overriding for experimentation.
 
+### 7. Merge logic preserved for future use
+
+`_merge_gemini_with_timestamps()` in `analyze.py` implements sequential word
+alignment between Gemini classifications and Whisper timestamps. It is not
+used in the current flow (Whisper + scaffolding markers own the `TimedMarker`
+list), but is retained and tested for a potential future where Gemini's word
+classifications replace scaffolding markers entirely.
+
 ## Consequences
 
 - **Exercise detection improves** — Gemini understands dance exercises from
   audio + video context, not just pattern matching against a word list
-- **Word classification improves** — Gemini uses audio context, not just
-  text matching
+- **New qualitative fields** — meter, quality descriptors, and structure are
+  now populated when using `--gemini`, filling in previously stubbed fields
+  in `MusicalParameters`
 - **Whisper still required** for timestamps when precision math is needed
 - **New dependency** — `google-genai` SDK + API key. Optional via `[gemini]`
   dependency group.
@@ -104,8 +125,11 @@ The `gemini_model` parameter allows overriding for experimentation.
 
 - `perception/gemini.py` — new module (DISPOSABLE)
 - `types.py` — added `GeminiWord`, `GeminiCountingStructure`,
-  `GeminiAnalysisResult`
-- `analyze.py` — added `use_gemini` parameter, merge logic
-- `__main__.py` — added `--gemini` CLI flag
+  `GeminiAnalysisResult` bridge types; added `meter`, `quality`, `structure`
+  fields to `MusicalParameters`
+- `analyze.py` — added `use_gemini` parameter, Gemini qualitative path,
+  merge logic (retained but unused)
+- `__main__.py` — added `--gemini` CLI flag, display for meter/quality/structure
 - `pyproject.toml` — added `[gemini]` dependency group
 - `tests/test_gemini_merge.py` — unit tests for merge logic
+- `scripts/try_gemini*.py` — experiment scripts used during evaluation
