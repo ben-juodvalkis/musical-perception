@@ -45,15 +45,21 @@ def main():
 
     if result.meter:
         print(f"\n--- Meter ---")
-        print(f"{result.meter['beats_per_measure']}/{result.meter['beat_unit']}")
+        print(f"{result.meter.beats_per_measure}/{result.meter.beat_unit}")
 
-    if result.quality and result.quality.get("descriptors"):
+    if result.quality:
         print(f"\n--- Quality ---")
-        print(f"{', '.join(result.quality['descriptors'])}")
+        q = result.quality
+        print(f"  smoothness:   {q.smoothness:.2f}")
+        print(f"  energy:       {q.energy:.2f}")
+        print(f"  groundedness: {q.groundedness:.2f}")
+        print(f"  attack:       {q.attack:.2f}")
+        print(f"  weight:       {q.weight:.2f}")
+        print(f"  sustain:      {q.sustain:.2f}")
 
     if result.structure:
         print(f"\n--- Structure ---")
-        print(f"{result.structure['counts']} counts, {result.structure['sides']} side(s)")
+        print(f"{result.structure.counts} counts, {result.structure.sides} side(s)")
 
     if result.counting_signature:
         print(f"\n--- Counting Signature ---")

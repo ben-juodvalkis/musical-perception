@@ -78,6 +78,37 @@ class CategoryStats:
 
 
 @dataclass
+class Meter:
+    """Time signature of the exercise."""
+    beats_per_measure: int   # 2, 3, 4, or 6
+    beat_unit: int           # 4 (quarter note) or 8 (eighth note)
+
+
+@dataclass
+class PhraseStructure:
+    """Phrase structure of the exercise."""
+    counts: int              # Total counts in one full phrase (16, 32)
+    sides: int               # 1 (one-sided) or 2 (both sides)
+
+
+@dataclass
+class QualityProfile:
+    """
+    Six numeric dimensions describing movement and musical quality.
+
+    Each dimension is a float from 0.0 to 1.0. These map to concrete
+    musical decisions: articulation (smoothness, attack), dynamics
+    (energy, weight), pedaling (sustain), and register/voicing (groundedness).
+    """
+    smoothness: float    # 0 = sharp/staccato, 1 = flowing/legato
+    energy: float        # 0 = gentle/soft, 1 = explosive/powerful
+    groundedness: float  # 0 = aerial/elevated, 1 = earth-connected
+    attack: float        # 0 = soft onset, 1 = percussive onset
+    weight: float        # 0 = light/buoyant, 1 = heavy/pressing
+    sustain: float       # 0 = quick movements, 1 = held positions
+
+
+@dataclass
 class CountingSignature:
     """
     The complete prosodic signature extracted from a counting sample.
@@ -140,9 +171,9 @@ class GeminiAnalysisResult:
     words: list[GeminiWord]
     exercise: ExerciseDetectionResult | None
     counting_structure: GeminiCountingStructure | None
-    meter: dict | None  # {beats_per_measure: int, beat_unit: int}
-    quality: dict | None  # {descriptors: list[str]}
-    structure: dict | None  # {counts: int, sides: int}
+    meter: Meter | None
+    quality: QualityProfile | None
+    structure: PhraseStructure | None
     model: str  # Which model was used
 
 
@@ -159,11 +190,11 @@ class MusicalParameters:
     """
     tempo: TempoResult | None = None
     subdivision: SubdivisionResult | None = None
-    meter: dict | None = None  # {beats_per_measure: int, beat_unit: int}
+    meter: Meter | None = None
     exercise: ExerciseDetectionResult | None = None
-    quality: dict | None = None  # {descriptors: list[str]}
+    quality: QualityProfile | None = None
     counting_signature: CountingSignature | None = None
-    structure: dict | None = None  # {counts: int, sides: int}
+    structure: PhraseStructure | None = None
     words: list[TimestampedWord] = field(default_factory=list)
     markers: list[TimedMarker] = field(default_factory=list)
     stress_labels: list[tuple[str, int]] | None = None  # (word, 0|1) from WhiStress
