@@ -41,7 +41,7 @@ _KEY_LANDMARKS = [
 # Synthesis weights (Gemini-privileged). Provisional — needs refinement
 # with more video samples. See ADR-004.
 _GEMINI_WEIGHT = 0.7
-_POSE_WEIGHT = 0.3
+_POSE_WEIGHT = 1.0 - _GEMINI_WEIGHT
 
 
 def _clamp(value: float, lo: float = 0.0, hi: float = 1.0) -> float:
@@ -70,8 +70,8 @@ def _compute_jerk(positions: np.ndarray, dt: float) -> np.ndarray:
     """
     Compute jerk (rate of acceleration change) from position time series.
 
-    Uses finite differences: jerk = d³x/dt³, approximated as the third
-    central difference.
+    Uses finite differences: jerk = d³x/dt³, approximated via three
+    successive forward differences.
 
     Args:
         positions: (N,) or (N, D) array of positions.
@@ -144,8 +144,8 @@ def compute_quality(landmarks: LandmarkTimeSeries) -> QualityProfile:
     # Lower hip position (higher y value) = heavier/more grounded.
     hip_y = (valid_lm[:, _LEFT_HIP, 1] + valid_lm[:, _RIGHT_HIP, 1]) / 2.0
     mean_hip_y = np.mean(hip_y)
-    # Empirical: hip y around 0.45–0.65 in typical dance video.
-    # Map so 0.45 → light (0.2), 0.55 → mid (0.5), 0.65 → heavy (0.8).
+    # Empirical: hip y around 0.35–0.65 in typical dance video.
+    # Map so 0.35 → 0.0 (light), 0.50 → 0.5 (mid), 0.65 → 1.0 (heavy).
     weight = _clamp((mean_hip_y - 0.35) / 0.30)
 
     # --- Energy from velocity ---

@@ -1,7 +1,7 @@
 # ADR-003: Typed Quality Model (Phase 3a)
 
 **Date:** 2026-02-25
-**Status:** Accepted
+**Status:** Superseded by ADR-004 (QualityProfile reduced from 6 dimensions to 3)
 
 ## Context
 

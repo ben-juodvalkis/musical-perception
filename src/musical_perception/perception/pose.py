@@ -36,17 +36,14 @@ def load_model():
         mediapipe.tasks.vision.PoseLandmarker ready for extract_landmarks().
     """
     try:
-        from mediapipe.tasks import python as mp_tasks
-        from mediapipe.tasks.python import vision
+        from mediapipe.tasks.python.vision import PoseLandmarker, PoseLandmarkerOptions
+        from mediapipe.tasks.python.vision import RunningMode
+        from mediapipe.tasks.python import BaseOptions
     except ImportError as e:
         raise ImportError(
             "mediapipe is not installed. Install with:\n"
             "  pip install -e '.[pose]'"
         ) from e
-
-    # Download model asset if not cached
-    from mediapipe.tasks.python.vision import PoseLandmarker, PoseLandmarkerOptions
-    from mediapipe.tasks.python import BaseOptions
     import urllib.request
     import os
     import tempfile
@@ -61,7 +58,7 @@ def load_model():
 
     options = PoseLandmarkerOptions(
         base_options=BaseOptions(model_asset_path=model_path),
-        running_mode=vision.RunningMode.VIDEO,
+        running_mode=RunningMode.VIDEO,
     )
     return PoseLandmarker.create_from_options(options)
 
@@ -87,11 +84,9 @@ def extract_landmarks(
     if not cap.isOpened():
         raise RuntimeError(f"Cannot open video: {video_path}")
 
-    from mediapipe.tasks.python.vision import PoseLandmarker
     import mediapipe as mp
 
     fps = cap.get(cv2.CAP_PROP_FPS)
-    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
     all_landmarks = []
     all_timestamps = []

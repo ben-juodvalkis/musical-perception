@@ -135,6 +135,9 @@ def analyze(
 
     # Pose estimation + dynamics (optional — requires pose deps, video only)
     is_video = Path(audio_path).suffix.lower() in _VIDEO_EXTENSIONS
+    if use_pose and not is_video:
+        import warnings
+        warnings.warn("--pose requires video input; skipping pose estimation for audio file")
     if use_pose and is_video:
         from musical_perception.perception.pose import load_model as load_pose, extract_landmarks
         from musical_perception.precision.dynamics import compute_quality, synthesize
