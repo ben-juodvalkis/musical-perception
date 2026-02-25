@@ -5,17 +5,26 @@ import sys
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python -m musical_perception <audio_file> [--signature] [--stress]")
+        print("Usage: python -m musical_perception <audio_file> [--signature] [--stress] [--gemini]")
         sys.exit(1)
 
     audio_file = sys.argv[1]
     extract_sig = "--signature" in sys.argv
     detect_stress = "--stress" in sys.argv
+    use_gemini = "--gemini" in sys.argv
 
     from musical_perception.analyze import analyze
 
-    print("Loading model...")
-    result = analyze(audio_file, extract_signature=extract_sig, detect_stress=detect_stress)
+    if use_gemini:
+        print("Analyzing with Gemini...")
+    else:
+        print("Loading model...")
+    result = analyze(
+        audio_file,
+        extract_signature=extract_sig,
+        detect_stress=detect_stress,
+        use_gemini=use_gemini,
+    )
 
     print("\n--- Tempo ---")
     if result.tempo:
@@ -33,6 +42,18 @@ def main():
         print(f"\n--- Exercise ---")
         print(f"Type: {result.exercise.display_name}")
         print(f"Confidence: {result.exercise.confidence:.0%}")
+
+    if result.meter:
+        print(f"\n--- Meter ---")
+        print(f"{result.meter['beats_per_measure']}/{result.meter['beat_unit']}")
+
+    if result.quality and result.quality.get("descriptors"):
+        print(f"\n--- Quality ---")
+        print(f"{', '.join(result.quality['descriptors'])}")
+
+    if result.structure:
+        print(f"\n--- Structure ---")
+        print(f"{result.structure['counts']} counts, {result.structure['sides']} side(s)")
 
     if result.counting_signature:
         print(f"\n--- Counting Signature ---")
