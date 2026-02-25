@@ -8,6 +8,8 @@ the standard library and numpy.
 from dataclasses import dataclass, field
 from enum import Enum
 
+import numpy as np
+
 
 class MarkerType(Enum):
     """Type of rhythmic marker detected in speech."""
@@ -78,6 +80,49 @@ class CategoryStats:
 
 
 @dataclass
+class Meter:
+    """Time signature of the exercise."""
+    beats_per_measure: int   # 2, 3, 4, or 6
+    beat_unit: int           # 4 (quarter note) or 8 (eighth note)
+
+
+@dataclass
+class PhraseStructure:
+    """Phrase structure of the exercise."""
+    counts: int              # Total counts in one full phrase (16, 32)
+    sides: int               # 1 (one-sided) or 2 (both sides)
+
+
+@dataclass
+class QualityProfile:
+    """
+    Three numeric dimensions describing movement character.
+
+    Each dimension is a float from 0.0 to 1.0. These are generic musical
+    terms — any music generator (pianist, DJ, generative AI) can interpret
+    them. They describe movement quality, not instrument-specific decisions.
+    """
+    articulation: float  # 0 = staccato (sharp, detached), 1 = legato (smooth, flowing)
+    weight: float        # 0 = light (buoyant, airy), 1 = heavy (grounded, pressing)
+    energy: float        # 0 = calm (controlled, gentle), 1 = energetic (active, explosive)
+
+
+@dataclass
+class LandmarkTimeSeries:
+    """
+    Pose landmark positions over time.
+
+    Source-agnostic container — works with any pose model that produces
+    33 keypoints (MediaPipe indexing). The precision layer consumes this
+    type without knowing which model produced it.
+    """
+    timestamps: np.ndarray   # (N,) seconds from video start
+    landmarks: np.ndarray    # (N, 33, 3) x/y/z normalized coords per frame
+    fps: float               # Source video frame rate
+    detection_rate: float    # Fraction of frames with successful pose detection
+
+
+@dataclass
 class CountingSignature:
     """
     The complete prosodic signature extracted from a counting sample.
@@ -140,9 +185,9 @@ class GeminiAnalysisResult:
     words: list[GeminiWord]
     exercise: ExerciseDetectionResult | None
     counting_structure: GeminiCountingStructure | None
-    meter: dict | None  # {beats_per_measure: int, beat_unit: int}
-    quality: dict | None  # {descriptors: list[str]}
-    structure: dict | None  # {counts: int, sides: int}
+    meter: Meter | None
+    quality: QualityProfile | None
+    structure: PhraseStructure | None
     model: str  # Which model was used
 
 
@@ -159,11 +204,11 @@ class MusicalParameters:
     """
     tempo: TempoResult | None = None
     subdivision: SubdivisionResult | None = None
-    meter: dict | None = None  # {beats_per_measure: int, beat_unit: int}
+    meter: Meter | None = None
     exercise: ExerciseDetectionResult | None = None
-    quality: dict | None = None  # {descriptors: list[str]}
+    quality: QualityProfile | None = None
     counting_signature: CountingSignature | None = None
-    structure: dict | None = None  # {counts: int, sides: int}
+    structure: PhraseStructure | None = None
     words: list[TimestampedWord] = field(default_factory=list)
     markers: list[TimedMarker] = field(default_factory=list)
     stress_labels: list[tuple[str, int]] | None = None  # (word, 0|1) from WhiStress

@@ -26,6 +26,9 @@ from musical_perception.types import (
     GeminiCountingStructure,
     GeminiWord,
     MarkerType,
+    Meter,
+    PhraseStructure,
+    QualityProfile,
 )
 
 _VIDEO_EXTENSIONS = {".mov", ".mp4", ".avi", ".mkv", ".webm"}
@@ -148,19 +151,31 @@ _RESPONSE_SCHEMA = {
         },
         "quality": {
             "type": "OBJECT",
-            "description": "The movement and musical quality/style",
+            "description": "Three numeric dimensions (0.0-1.0) describing movement character",
             "properties": {
-                "descriptors": {
-                    "type": "ARRAY",
+                "articulation": {
+                    "type": "NUMBER",
                     "description": (
-                        "2-5 musical/movement quality words that describe how the exercise "
-                        "should be performed. Examples: legato, staccato, sharp, flowing, "
-                        "sustained, marcato, bouncy, smooth, lyrical, crisp, grounded, airy"
+                        "0.0 = staccato/sharp/detached, 1.0 = legato/smooth/flowing. "
+                        "Calibration: frappé ~0.1, tendu ~0.5, port de bras ~0.9"
                     ),
-                    "items": {"type": "STRING"},
+                },
+                "weight": {
+                    "type": "NUMBER",
+                    "description": (
+                        "0.0 = light/buoyant/airy, 1.0 = heavy/grounded/pressing. "
+                        "Calibration: petit allegro ~0.2, tendu ~0.5, grand plié ~0.9"
+                    ),
+                },
+                "energy": {
+                    "type": "NUMBER",
+                    "description": (
+                        "0.0 = calm/controlled/gentle, 1.0 = energetic/active/explosive. "
+                        "Calibration: adagio ~0.2, tendu ~0.5, grand allegro ~0.9"
+                    ),
                 },
             },
-            "required": ["descriptors"],
+            "required": ["articulation", "weight", "energy"],
         },
         "structure": {
             "type": "OBJECT",
@@ -201,8 +216,11 @@ For counting_structure, report what you observe about the counting pattern.
 For meter, determine the time signature from the counting pattern and movement quality \
 (e.g. waltz = 3/4, most barre work = 4/4).
 
-For quality, describe the movement/musical style with 2-5 descriptors \
-(e.g. legato, sharp, flowing, sustained, marcato, bouncy, lyrical, crisp).
+For quality, rate the movement on three numeric dimensions (0.0–1.0). \
+Rate what you actually observe, not what the exercise should ideally look like. \
+Use these calibration points: articulation (frappé=0.1, tendu=0.5, port de bras=0.9), \
+weight (petit allegro=0.2, tendu=0.5, grand plié=0.9), \
+energy (adagio=0.2, tendu=0.5, grand allegro=0.9).
 
 For structure, report the phrase length in counts and whether the exercise \
 is performed on one side or both sides."""
@@ -350,23 +368,27 @@ def _parse_response(raw: dict, model: str) -> GeminiAnalysisResult:
     meter_raw = raw.get("meter", {})
     meter = None
     if meter_raw:
-        meter = {
-            "beats_per_measure": meter_raw.get("beats_per_measure"),
-            "beat_unit": meter_raw.get("beat_unit"),
-        }
+        meter = Meter(
+            beats_per_measure=meter_raw.get("beats_per_measure", 4),
+            beat_unit=meter_raw.get("beat_unit", 4),
+        )
 
     quality_raw = raw.get("quality", {})
     quality = None
-    if quality_raw.get("descriptors"):
-        quality = {"descriptors": quality_raw["descriptors"]}
+    if quality_raw:
+        quality = QualityProfile(
+            articulation=quality_raw.get("articulation", 0.5),
+            weight=quality_raw.get("weight", 0.5),
+            energy=quality_raw.get("energy", 0.5),
+        )
 
     structure_raw = raw.get("structure", {})
     structure = None
     if structure_raw:
-        structure = {
-            "counts": structure_raw.get("counts"),
-            "sides": structure_raw.get("sides"),
-        }
+        structure = PhraseStructure(
+            counts=structure_raw.get("counts", 16),
+            sides=structure_raw.get("sides", 1),
+        )
 
     return GeminiAnalysisResult(
         words=words,

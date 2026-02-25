@@ -5,6 +5,8 @@ Orchestrates perception, scaffolding, and precision layers
 to produce MusicalParameters from audio input.
 """
 
+from pathlib import Path
+
 from musical_perception.types import (
     GeminiAnalysisResult,
     MarkerType,
@@ -12,6 +14,8 @@ from musical_perception.types import (
     TimedMarker,
     TimestampedWord,
 )
+
+_VIDEO_EXTENSIONS = {".mov", ".mp4", ".avi", ".mkv", ".webm"}
 
 
 def _normalize_word(word: str) -> str:
@@ -74,6 +78,7 @@ def analyze(
     use_gemini: bool = False,
     gemini_client=None,
     gemini_model: str = "gemini-2.5-flash",
+    use_pose: bool = False,
 ) -> MusicalParameters:
     """
     Analyze an audio or video file and return structured musical parameters.
@@ -90,6 +95,7 @@ def analyze(
         use_gemini: Whether to use Gemini for word classification and exercise detection
         gemini_client: Pre-loaded Gemini client (optional, avoids re-init)
         gemini_model: Gemini model to use if gemini_client not provided
+        use_pose: Whether to run pose estimation for movement quality (requires pose deps, video only)
 
     Returns:
         MusicalParameters with extracted musical information
@@ -126,6 +132,20 @@ def analyze(
     elif detect_exercise_type:
         from musical_perception.scaffolding.exercise import detect_exercise
         exercise = detect_exercise(words)
+
+    # Pose estimation + dynamics (optional — requires pose deps, video only)
+    is_video = Path(audio_path).suffix.lower() in _VIDEO_EXTENSIONS
+    if use_pose and not is_video:
+        import warnings
+        warnings.warn("--pose requires video input; skipping pose estimation for audio file")
+    if use_pose and is_video:
+        from musical_perception.perception.pose import load_model as load_pose, extract_landmarks
+        from musical_perception.precision.dynamics import compute_quality, synthesize
+
+        landmarker = load_pose()
+        landmark_series = extract_landmarks(landmarker, audio_path)
+        pose_quality = compute_quality(landmark_series)
+        quality = synthesize(gemini=quality, pose=pose_quality)
 
     # Calculate tempo from beat timestamps
     beat_timestamps = [m.timestamp for m in markers if m.marker_type == MarkerType.BEAT]
