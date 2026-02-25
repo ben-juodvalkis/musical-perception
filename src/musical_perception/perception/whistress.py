@@ -24,7 +24,15 @@ def load_model(device: str | None = None):
     Args:
         device: "cuda" or "cpu". Auto-detected if None.
     """
-    from whistress import WhiStressInferenceClient
+    try:
+        from whistress import WhiStressInferenceClient
+    except ImportError as e:
+        raise ImportError(
+            "WhiStress is not installed. Setup:\n"
+            "  git clone https://github.com/slp-rl/WhiStress.git\n"
+            "  cd WhiStress && pip install -r requirements.txt\n"
+            "  python download_weights.py"
+        ) from e
 
     if device is None:
         try:
@@ -55,11 +63,15 @@ def predict_stress(
         List of (word, stress_label) tuples where stress_label is
         1 (stressed) or 0 (unstressed).
     """
-    import librosa
-    import numpy as np
+    try:
+        import librosa
+    except ImportError as e:
+        raise ImportError(
+            "whistress requires librosa: pip install -e '.[prosody]'"
+        ) from e
 
     y, sr = librosa.load(audio_path, sr=16000)
-    audio = {"array": np.array(y, dtype=np.float32), "sampling_rate": 16000}
+    audio = {"array": y, "sampling_rate": 16000}
 
     transcription = None
     if words:

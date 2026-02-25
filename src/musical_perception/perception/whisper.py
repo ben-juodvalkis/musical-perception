@@ -8,7 +8,17 @@ Uses WhisperX when available (tighter word boundaries via forced alignment),
 falls back to plain Whisper otherwise.
 """
 
+from dataclasses import dataclass
+
 from musical_perception.types import TimestampedWord
+
+
+@dataclass
+class _LoadedModel:
+    """Wrapper to track which backend loaded the model."""
+    model: object
+    backend: str  # "whisperx" or "whisper"
+    device: str | None = None
 
 
 def _detect_device() -> tuple[str, str]:
@@ -24,7 +34,7 @@ def _detect_device() -> tuple[str, str]:
     return "cpu", "int8"
 
 
-def load_model(model_name: str = "base.en"):
+def load_model(model_name: str = "base.en") -> _LoadedModel:
     """
     Load a transcription model.
 
@@ -39,17 +49,14 @@ def load_model(model_name: str = "base.en"):
         import whisperx
         device, compute_type = _detect_device()
         model = whisperx.load_model(model_name, device, compute_type=compute_type)
-        model._whisperx = True
-        model._device = device
-        return model
+        return _LoadedModel(model=model, backend="whisperx", device=device)
     except ImportError:
         import whisper
         model = whisper.load_model(model_name)
-        model._whisperx = False
-        return model
+        return _LoadedModel(model=model, backend="whisper")
 
 
-def transcribe(model, audio_path: str) -> list[TimestampedWord]:
+def transcribe(loaded: _LoadedModel, audio_path: str) -> list[TimestampedWord]:
     """
     Transcribe audio and extract word-level timestamps.
 
@@ -58,26 +65,29 @@ def transcribe(model, audio_path: str) -> list[TimestampedWord]:
     word timestamps.
 
     Args:
-        model: Loaded model (WhisperX or Whisper)
+        loaded: Loaded model wrapper from load_model()
         audio_path: Path to audio file (wav, mp3, aif, etc.)
 
     Returns:
         List of words with timestamps
     """
-    if getattr(model, "_whisperx", False):
-        return _transcribe_whisperx(model, audio_path)
-    return _transcribe_whisper(model, audio_path)
+    if loaded.backend == "whisperx":
+        return _transcribe_whisperx(loaded, audio_path)
+    return _transcribe_whisper(loaded, audio_path)
 
 
-def _transcribe_whisperx(model, audio_path: str) -> list[TimestampedWord]:
+def _transcribe_whisperx(loaded: _LoadedModel, audio_path: str) -> list[TimestampedWord]:
     """Transcribe with WhisperX (forced alignment for tighter word boundaries)."""
     import whisperx
 
-    device = model._device
+    device = loaded.device
     audio = whisperx.load_audio(audio_path)
-    result = model.transcribe(audio, batch_size=16)
+    batch_size = 16 if device == "cuda" else 4
+    result = loaded.model.transcribe(audio, batch_size=batch_size)
 
-    # Forced alignment via wav2vec2
+    # Forced alignment via wav2vec2.
+    # NOTE: load_align_model reloads on each call. For batch use, consider
+    # loading once and passing the align model through.
     align_model, metadata = whisperx.load_align_model(
         language_code=result.get("language", "en"),
         device=device,
@@ -105,9 +115,9 @@ def _transcribe_whisperx(model, audio_path: str) -> list[TimestampedWord]:
     return words
 
 
-def _transcribe_whisper(model, audio_path: str) -> list[TimestampedWord]:
+def _transcribe_whisper(loaded: _LoadedModel, audio_path: str) -> list[TimestampedWord]:
     """Transcribe with plain Whisper (fallback)."""
-    result = model.transcribe(
+    result = loaded.model.transcribe(
         audio_path,
         word_timestamps=True,
         language="en",
