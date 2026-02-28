@@ -16,6 +16,8 @@ __version__ = "0.1.0"
 from musical_perception.types import (
     MusicalParameters,
     TempoResult,
+    OnsetTempoResult,
+    RhythmicSection,
     SubdivisionResult,
     CountingSignature,
     MarkerType,
@@ -28,6 +30,8 @@ __all__ = [
     "analyze",
     "MusicalParameters",
     "TempoResult",
+    "OnsetTempoResult",
+    "RhythmicSection",
     "SubdivisionResult",
     "CountingSignature",
     "MarkerType",

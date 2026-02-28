@@ -1,6 +1,6 @@
 """Tests for precision tempo calculation. No audio or models needed."""
 
-from musical_perception.precision.tempo import calculate_tempo
+from musical_perception.precision.tempo import calculate_tempo, normalize_tempo
 
 
 def test_steady_120bpm():
@@ -53,3 +53,53 @@ def test_intervals_returned():
     assert result is not None
     assert len(result.intervals) == 3
     assert all(abs(i - 0.5) < 0.001 for i in result.intervals)
+
+
+# --- normalize_tempo tests ---
+
+def test_normalize_already_in_range():
+    """BPM already in 70-140 stays unchanged."""
+    bpm, mult = normalize_tempo(120.0)
+    assert bpm == 120.0
+    assert mult == 1
+
+def test_normalize_already_in_range_boundaries():
+    """Boundary values are in range."""
+    assert normalize_tempo(70.0) == (70.0, 1)
+    assert normalize_tempo(140.0) == (140.0, 1)
+
+def test_normalize_double_up():
+    """40 BPM (measure level) doubles to 80 BPM."""
+    bpm, mult = normalize_tempo(40.0)
+    assert bpm == 80.0
+    assert mult == 2
+
+def test_normalize_triple_up():
+    """30 BPM triples to 90 BPM (triple meter measure level)."""
+    bpm, mult = normalize_tempo(30.0)
+    assert bpm == 90.0
+    assert mult == 3
+
+def test_normalize_halve_down():
+    """240 BPM (subdivision level) halves to 120 BPM."""
+    bpm, mult = normalize_tempo(240.0)
+    assert bpm == 120.0
+    assert mult == -2
+
+def test_normalize_third_down():
+    """360 BPM (triplet subdivision) divides by 3 to 120 BPM."""
+    bpm, mult = normalize_tempo(360.0)
+    assert bpm == 120.0
+    assert mult == -3
+
+def test_normalize_gemini_40bpm_case():
+    """The actual Exercise 1 Demo case: Gemini said 40.5 BPM."""
+    bpm, mult = normalize_tempo(40.5)
+    assert bpm == 81.0
+    assert mult == 2  # doubled from measure to beat level
+
+def test_normalize_prefers_double_over_triple():
+    """60 BPM: *2=120 (in range) and *3=180 (out). Should double."""
+    bpm, mult = normalize_tempo(60.0)
+    assert bpm == 120.0
+    assert mult == 2

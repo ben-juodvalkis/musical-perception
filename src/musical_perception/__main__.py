@@ -23,12 +23,39 @@ def main():
         use_pose=use_pose,
     )
 
-    print("\n--- Tempo ---")
+    if result.normalized_bpm is not None:
+        mult = result.tempo_multiplier
+        if mult == 1:
+            note = ""
+        elif mult == 2:
+            note = " (raw doubled from measure level)"
+        elif mult == 3:
+            note = " (raw tripled from triple-meter measure level)"
+        elif mult == -2:
+            note = " (raw halved from subdivision level)"
+        elif mult == -3:
+            note = " (raw divided by 3 from triplet subdivision)"
+        else:
+            note = f" (multiplier={mult})"
+        print(f"\n--- Tempo (normalized) ---")
+        print(f"BPM: {result.normalized_bpm}{note}")
+
+    print("\n--- Tempo (raw signals) ---")
     if result.tempo:
-        print(f"BPM: {result.tempo.bpm} ({result.tempo.confidence:.0%} confidence)")
-        print(f"Beats detected: {result.tempo.beat_count}")
+        print(f"Gemini-based: {result.tempo.bpm} BPM ({result.tempo.confidence:.0%} confidence, {result.tempo.beat_count} beats)")
     else:
-        print("Could not detect tempo")
+        print("Gemini-based: no beats detected")
+
+    if result.onset_tempo:
+        ot = result.onset_tempo
+        print(f"Onset-based:  {ot.bpm} BPM ({ot.confidence:.0%} confidence, {ot.rhythmic_coverage:.0%} coverage)")
+        if ot.ioi_histogram_peak_bpm:
+            print(f"  Histogram cross-check: {ot.ioi_histogram_peak_bpm} BPM")
+        for section in ot.rhythmic_sections:
+            print(f"  {section.start:.1f}-{section.end:.1f}s: {section.bpm:.0f} BPM "
+                  f"(CV={section.cv:.2f}) [{' '.join(section.words)}]")
+    else:
+        print("Onset-based:  no rhythmic sections detected")
 
     print("\n--- Subdivision ---")
     if result.subdivision:

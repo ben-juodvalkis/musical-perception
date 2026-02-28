@@ -10,6 +10,58 @@ import numpy as np
 from musical_perception.types import TempoResult
 
 
+def normalize_tempo(
+    bpm: float,
+    low: float = 70.0,
+    high: float = 140.0,
+) -> tuple[float, int]:
+    """
+    Snap a BPM value into the target range by multiplying or dividing by 2 or 3.
+
+    Ballet class tempos almost always fall in the 70-140 BPM range at the beat
+    level. Values outside this range usually indicate the detector locked onto
+    a subdivision level (too fast) or a measure level (too slow).
+
+    The multiplier tracks how the original pulse relates to the normalized beat:
+    - multiplier=1: already at beat level
+    - multiplier=2: original was at measure level (doubled to reach beat)
+    - multiplier=3: original was at measure level in triple meter
+    - multiplier=-2: original was at subdivision level (halved to reach beat)
+    - multiplier=-3: original was at triplet subdivision level
+
+    Args:
+        bpm: Raw BPM value to normalize.
+        low: Lower bound of the target range (inclusive).
+        high: Upper bound of the target range (inclusive).
+
+    Returns:
+        (normalized_bpm, multiplier) tuple.
+    """
+    if low <= bpm <= high:
+        return round(bpm, 1), 1
+
+    # Try multiplying up (measure → beat)
+    for factor in (2, 3):
+        candidate = bpm * factor
+        if low <= candidate <= high:
+            return round(candidate, 1), factor
+
+    # Try dividing down (subdivision → beat)
+    for factor in (2, 3):
+        candidate = bpm / factor
+        if low <= candidate <= high:
+            return round(candidate, 1), -factor
+
+    # If nothing fits, return the closest attempt
+    # (prefer doubling/halving over tripling)
+    candidates = [
+        (bpm * 2, 2), (bpm * 3, 3),
+        (bpm / 2, -2), (bpm / 3, -3),
+    ]
+    best = min(candidates, key=lambda c: min(abs(c[0] - low), abs(c[0] - high)))
+    return round(best[0], 1), best[1]
+
+
 def calculate_tempo(timestamps: list[float]) -> TempoResult | None:
     """
     Calculate tempo from a list of beat timestamps.
