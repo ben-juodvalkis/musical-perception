@@ -204,6 +204,24 @@ class RhythmicSection:
 
 
 @dataclass
+class NormalizedTempo:
+    """
+    Coherent metric interpretation: BPM, meter, and subdivision as one answer.
+
+    The normalization step picks a metric level for the raw BPM and derives
+    meter and subdivision that are consistent with that choice. This prevents
+    contradictions like "4/4 triplet at 40 BPM" when the pulse is actually
+    at 120 BPM in 3/4.
+    """
+    bpm: float                  # Beat-level BPM in 70-140 range
+    meter: Meter                # Derived from how raw BPM was scaled
+    subdivision: str            # "none", "duple", "triplet"
+    confidence: float           # 0-1
+    raw_bpm: float              # Original BPM before normalization
+    tempo_multiplier: int       # How raw was scaled (×2, ×3, ÷2, etc.)
+
+
+@dataclass
 class OnsetTempoResult:
     """
     Tempo estimated from word onset regularity, without word classification.
@@ -232,8 +250,10 @@ class MusicalParameters:
     """
     tempo: TempoResult | None = None
     onset_tempo: OnsetTempoResult | None = None
-    normalized_bpm: float | None = None  # Best BPM snapped to 70-140 range
-    tempo_multiplier: int | None = None  # How raw BPM was scaled (2=doubled, -2=halved, etc.)
+    normalized_tempo: NormalizedTempo | None = None  # Coherent BPM + meter + subdivision
+    # Deprecated — use normalized_tempo instead:
+    normalized_bpm: float | None = None
+    tempo_multiplier: int | None = None
     subdivision: SubdivisionResult | None = None
     meter: Meter | None = None
     exercise: ExerciseDetectionResult | None = None

@@ -7,7 +7,12 @@ Pure functions: timestamps in, BPM out. No I/O, no models.
 
 import numpy as np
 
-from musical_perception.types import TempoResult
+from musical_perception.types import (
+    Meter,
+    NormalizedTempo,
+    OnsetTempoResult,
+    TempoResult,
+)
 
 
 def normalize_tempo(
@@ -94,4 +99,97 @@ def calculate_tempo(timestamps: list[float]) -> TempoResult | None:
         confidence=round(confidence, 2),
         beat_count=len(timestamps),
         intervals=intervals,
+    )
+
+
+def interpret_meter(
+    onset_tempo: OnsetTempoResult | None,
+    gemini_tempo: TempoResult | None,
+    gemini_meter: Meter | None,
+    gemini_subdivision: str | None,
+) -> NormalizedTempo | None:
+    """
+    Produce a coherent metric interpretation from raw tempo signals.
+
+    Picks the best raw BPM, normalizes it to 70-140, and derives meter
+    and subdivision from how the BPM was scaled. The multiplier encodes
+    the metric level of the raw pulse:
+
+    - multiplier=1: raw was already at beat level → trust Gemini meter/subdivision
+    - multiplier=2: raw was at measure level, doubled → 4/4, no subdivision
+    - multiplier=3: raw was at measure level, tripled → 3/4, no subdivision
+    - multiplier=-2: raw was at subdivision level, halved → duple subdivision
+    - multiplier=-3: raw was at subdivision level, divided by 3 → triplet subdivision
+
+    Args:
+        onset_tempo: Classification-free tempo from word onsets.
+        gemini_tempo: Tempo from Gemini-classified beat markers.
+        gemini_meter: Gemini's meter guess (used as fallback).
+        gemini_subdivision: Gemini's subdivision observation (used as fallback).
+
+    Returns:
+        NormalizedTempo with coherent BPM + meter + subdivision, or None
+        if no usable tempo signal exists.
+    """
+    # Pick best raw BPM (same priority as before)
+    raw_bpm = None
+    confidence = 0.0
+    if onset_tempo is not None and onset_tempo.confidence >= 0.3:
+        raw_bpm = onset_tempo.bpm
+        confidence = onset_tempo.confidence
+    elif gemini_tempo is not None:
+        raw_bpm = gemini_tempo.bpm
+        confidence = gemini_tempo.confidence
+    elif onset_tempo is not None:
+        raw_bpm = onset_tempo.bpm
+        confidence = onset_tempo.confidence
+
+    if raw_bpm is None:
+        return None
+
+    normalized_bpm, multiplier = normalize_tempo(raw_bpm)
+
+    if multiplier == 0:
+        return None
+
+    # Cross-signal check: when onset is in range but Gemini BPM is much
+    # lower, the ratio tells us about meter. onset/gemini ≈ 3 → triple meter.
+    if multiplier == 1 and onset_tempo is not None and gemini_tempo is not None:
+        ratio = raw_bpm / gemini_tempo.bpm if gemini_tempo.bpm > 0 else 1.0
+        if 2.5 <= ratio <= 3.5:
+            # Onset at beat level, Gemini at measure level of triple meter
+            multiplier = 3  # record that Gemini was at measure level
+
+    # Derive meter and subdivision from the multiplier
+    if multiplier == 1:
+        # BPM was already at beat level — trust Gemini's observations
+        meter = gemini_meter or Meter(beats_per_measure=4, beat_unit=4)
+        subdivision = gemini_subdivision or "none"
+    elif multiplier == 2:
+        # Raw was at measure level, doubled → duple meter, no subdivision
+        meter = Meter(beats_per_measure=4, beat_unit=4)
+        subdivision = "none"
+    elif multiplier == 3:
+        # Raw was at measure level, tripled → triple meter, no subdivision
+        meter = Meter(beats_per_measure=3, beat_unit=4)
+        subdivision = "none"
+    elif multiplier == -2:
+        # Raw was at subdivision level, halved → duple subdivision
+        meter = gemini_meter or Meter(beats_per_measure=4, beat_unit=4)
+        subdivision = "duple"
+    elif multiplier == -3:
+        # Raw was at subdivision level, divided by 3 → triplet subdivision
+        meter = gemini_meter or Meter(beats_per_measure=4, beat_unit=4)
+        subdivision = "triplet"
+    else:
+        meter = gemini_meter or Meter(beats_per_measure=4, beat_unit=4)
+        subdivision = gemini_subdivision or "none"
+
+    return NormalizedTempo(
+        bpm=normalized_bpm,
+        meter=meter,
+        subdivision=subdivision,
+        confidence=round(confidence, 2),
+        raw_bpm=round(raw_bpm, 1),
+        tempo_multiplier=multiplier,
     )
