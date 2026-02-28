@@ -250,7 +250,6 @@ class TriggerState(Enum):
     """State of the analysis trigger pipeline."""
     IDLE = "idle"            # Only wake word detector runs
     LISTENING = "listening"  # Wake word detected, Whisper running on buffered audio
-    TRIGGERED = "triggered"  # Rhythm confirmed, ready for Gemini analysis
 
 
 @dataclass

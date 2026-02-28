@@ -1,11 +1,12 @@
 """
 Analysis trigger: wake word + rhythm detection state machine.
 
-KEEP — pure logic, no I/O. Decides when audio is worth sending to Gemini
-by progressing through: IDLE → LISTENING → TRIGGERED.
+KEEP — pure logic, no I/O. Decides when audio is worth sending to Gemini.
+Two states: IDLE (wake word listening) and LISTENING (buffering + rhythm check).
+When rhythm is confirmed, emits a TriggerEvent and returns to IDLE.
 
-The caller feeds audio chunks and timestamps; this module manages state
-transitions and emits TriggerEvents when analysis should begin.
+Not thread-safe — callers must synchronize externally if feeding audio
+from a background capture thread.
 """
 
 from __future__ import annotations
@@ -43,7 +44,7 @@ class AnalysisTrigger:
     Streaming trigger that gates Gemini analysis behind wake word + rhythm detection.
 
     State machine:
-        IDLE  →  (wake word)  →  LISTENING  →  (rhythm confirmed)  →  TRIGGERED → IDLE
+        IDLE  →  (wake word)  →  LISTENING  →  (rhythm confirmed)  →  emit TriggerEvent → IDLE
           ↑                          |
           +←── (timeout, no rhythm) ←+
 
@@ -110,11 +111,15 @@ class AnalysisTrigger:
 
         Returns a TriggerEvent when analysis should begin, None otherwise.
         """
+        if audio_chunk.dtype != np.int16:
+            raise ValueError(
+                f"audio_chunk must be int16, got {audio_chunk.dtype}. "
+                "OpenWakeWord expects 16-bit PCM, not normalized float32."
+            )
         if self._state == TriggerState.IDLE:
             return self._handle_idle(audio_chunk, timestamp)
-        elif self._state == TriggerState.LISTENING:
+        else:
             return self._handle_listening(audio_chunk, timestamp)
-        return None
 
     def _handle_idle(
         self, audio_chunk: np.ndarray, timestamp: float

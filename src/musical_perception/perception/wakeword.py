@@ -48,4 +48,5 @@ def detect(model: object, audio_chunk: np.ndarray) -> dict[str, float]:
         Dict mapping model name to confidence (0.0-1.0).
     """
     prediction = model.predict(audio_chunk)
-    return prediction
+    # Coerce np.float32 → Python float to match the declared return type
+    return {k: float(v) for k, v in prediction.items()}

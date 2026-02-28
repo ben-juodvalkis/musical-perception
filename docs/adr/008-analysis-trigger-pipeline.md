@@ -38,19 +38,26 @@ confirmed.
 ### State machine
 
 ```
-IDLE  →  (wake word)  →  LISTENING  →  (rhythm confirmed)  →  TRIGGERED → IDLE
+IDLE  →  (wake word)  →  LISTENING  →  (rhythm confirmed)  →  emit TriggerEvent → IDLE
   ↑                          |
   +←── (timeout/overflow) ←──+
 ```
 
+Two states only (IDLE and LISTENING). When rhythm is confirmed, a `TriggerEvent`
+is emitted and the machine returns to IDLE — there is no separate TRIGGERED
+state because the trigger is an event, not a durable condition.
+
 - **IDLE:** Only wake word detector runs. Minimal CPU.
 - **LISTENING:** Wake word detected. Whisper transcribes buffered audio.
-  `detect_onset_tempo()` checks for rhythmic speech periodically.
-- **TRIGGERED:** Rhythm confirmed. Emits a `TriggerEvent` containing the audio
-  segment, Whisper transcription, and onset tempo — all pre-computed so
-  downstream `analyze()` doesn't redo the work.
+  `detect_onset_tempo()` checks for rhythmic speech periodically. On rhythm
+  confirmation, emits a `TriggerEvent` containing the audio segment, Whisper
+  transcription, and onset tempo — all pre-computed so downstream `analyze()`
+  doesn't redo the work.
 - **Timeout/overflow:** If no rhythm within `post_wake_timeout` seconds or
   audio buffer exceeds `buffer_seconds`, returns to IDLE.
+
+Not thread-safe — callers must synchronize externally if feeding audio from a
+background capture thread.
 
 ### Wake word choice
 

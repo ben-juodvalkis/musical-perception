@@ -296,6 +296,6 @@ def test_trigger_event_contains_audio():
     event = trigger.feed(chunk, 1.0)
 
     assert event is not None
-    # Should contain 2 chunks worth of audio (the LISTENING chunks)
+    # Should contain 1 chunk (the LISTENING chunk; wake word chunk is not buffered)
     expected_bytes = CHUNK_SAMPLES * np.dtype(np.int16).itemsize
     assert len(event.audio_segment) == expected_bytes
