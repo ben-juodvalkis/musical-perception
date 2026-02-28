@@ -28,6 +28,7 @@ def normalize_tempo(
     - multiplier=3: original was at measure level in triple meter
     - multiplier=-2: original was at subdivision level (halved to reach beat)
     - multiplier=-3: original was at triplet subdivision level
+    - multiplier=0: could not normalize (BPM too extreme for any ×2/×3 transform)
 
     Args:
         bpm: Raw BPM value to normalize.
@@ -35,7 +36,8 @@ def normalize_tempo(
         high: Upper bound of the target range (inclusive).
 
     Returns:
-        (normalized_bpm, multiplier) tuple.
+        (normalized_bpm, multiplier) tuple. When multiplier=0, the raw BPM is
+        returned unchanged — the caller should treat it as unreliable.
     """
     if low <= bpm <= high:
         return round(bpm, 1), 1
@@ -52,14 +54,8 @@ def normalize_tempo(
         if low <= candidate <= high:
             return round(candidate, 1), -factor
 
-    # If nothing fits, return the closest attempt
-    # (prefer doubling/halving over tripling)
-    candidates = [
-        (bpm * 2, 2), (bpm * 3, 3),
-        (bpm / 2, -2), (bpm / 3, -3),
-    ]
-    best = min(candidates, key=lambda c: min(abs(c[0] - low), abs(c[0] - high)))
-    return round(best[0], 1), best[1]
+    # Nothing fits — BPM is too extreme to normalize
+    return round(bpm, 1), 0
 
 
 def calculate_tempo(timestamps: list[float]) -> TempoResult | None:

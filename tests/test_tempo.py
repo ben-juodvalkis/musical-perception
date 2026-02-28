@@ -103,3 +103,13 @@ def test_normalize_prefers_double_over_triple():
     bpm, mult = normalize_tempo(60.0)
     assert bpm == 120.0
     assert mult == 2
+
+def test_normalize_extreme_bpm_returns_sentinel():
+    """BPM too extreme for any ×2/×3 transform returns multiplier=0."""
+    bpm, mult = normalize_tempo(5.0)
+    assert bpm == 5.0
+    assert mult == 0
+
+    bpm, mult = normalize_tempo(1000.0)
+    assert bpm == 1000.0
+    assert mult == 0

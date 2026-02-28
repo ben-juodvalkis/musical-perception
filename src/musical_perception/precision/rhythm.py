@@ -65,6 +65,7 @@ def detect_onset_tempo(
     # Primary: sliding window analysis
     sections = _compute_window_sections(
         onsets, word_texts, window_sec, step_sec, cv_threshold, min_words_per_window,
+        min_ioi,
     )
 
     if not sections:
@@ -104,6 +105,7 @@ def _compute_window_sections(
     step_sec: float,
     cv_threshold: float,
     min_words_per_window: int,
+    min_ioi: float = 0.15,
 ) -> list[RhythmicSection]:
     """Slide windows over onsets and identify rhythmic sections."""
     sections = []
@@ -119,7 +121,7 @@ def _compute_window_sections(
             window_iois = np.diff(window_onsets)
 
             # Filter sub-word artifacts within the window
-            window_iois = window_iois[window_iois >= 0.1]
+            window_iois = window_iois[window_iois >= min_ioi]
 
             if len(window_iois) >= 2:
                 mean_ioi = float(np.mean(window_iois))
@@ -156,6 +158,10 @@ def _merge_overlapping_sections(
         if section.start <= prev.end:
             # Overlapping: keep BPM from the more regular window (lower CV)
             best = section if section.cv < prev.cv else prev
+            # Deduplicate by text — overlapping windows will contain the same
+            # word strings from the same onset indices. Repeated step names
+            # (e.g. two "tendu"s) are collapsed, which slightly understates
+            # word_count but keeps the display list readable.
             all_words = list(dict.fromkeys(prev.words + section.words))
             merged[-1] = RhythmicSection(
                 start=prev.start,
@@ -177,8 +183,13 @@ def _ioi_histogram_peak(iois: np.ndarray) -> float | None:
     if len(iois) < 3:
         return None
 
+    ioi_min, ioi_max = float(iois.min()), float(iois.max())
+    if ioi_min == ioi_max:
+        # All IOIs identical — perfectly regular, no histogram needed
+        return round(60.0 / ioi_min, 1) if ioi_min > 0 else None
+
     n_bins = max(10, min(50, len(iois) // 2))
-    hist, bin_edges = np.histogram(iois, bins=n_bins, range=(float(iois.min()), float(iois.max())))
+    hist, bin_edges = np.histogram(iois, bins=n_bins, range=(ioi_min, ioi_max))
     bin_centers = (bin_edges[:-1] + bin_edges[1:]) / 2
     peak_idx = int(np.argmax(hist))
 

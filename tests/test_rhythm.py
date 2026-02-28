@@ -154,3 +154,16 @@ def test_histogram_populated():
     assert result is not None
     assert result.ioi_histogram_peak_bpm is not None
     assert abs(result.ioi_histogram_peak_bpm - result.bpm) < 20.0
+
+
+# --- Test 9: Histogram handles identical IOIs ---
+
+def test_histogram_identical_iois():
+    """Perfectly regular input (all IOIs identical) should not crash."""
+    # 10 words at exactly 0.5s intervals — all IOIs are 0.5
+    words = [_word(str(i + 1), i * 0.5, i * 0.5 + 0.2) for i in range(10)]
+    result = detect_onset_tempo(words)
+    assert result is not None
+    # Histogram should handle the degenerate case gracefully
+    assert result.ioi_histogram_peak_bpm is not None
+    assert abs(result.ioi_histogram_peak_bpm - 120.0) < 1.0

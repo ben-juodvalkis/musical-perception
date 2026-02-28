@@ -99,6 +99,7 @@ def analyze(
     """
     from musical_perception.precision.tempo import calculate_tempo, normalize_tempo
     from musical_perception.precision.subdivision import analyze_subdivisions
+    from musical_perception.precision.rhythm import detect_onset_tempo
     from musical_perception.perception.whisper import load_model, transcribe
     from musical_perception.perception.gemini import load_client, analyze_media
 
@@ -109,7 +110,6 @@ def analyze(
     words = transcribe(model, audio_path)
 
     # Onset-based tempo (Gemini-independent, runs on Whisper timestamps alone)
-    from musical_perception.precision.rhythm import detect_onset_tempo
     onset_tempo = detect_onset_tempo(words)
 
     # Pass onset BPM to Gemini as a calibration hint
@@ -188,6 +188,10 @@ def analyze(
         raw_bpm = onset_tempo.bpm
     if raw_bpm is not None:
         normalized_bpm, tempo_multiplier = normalize_tempo(raw_bpm)
+        if tempo_multiplier == 0:
+            # Normalization failed — BPM too extreme, don't present as reliable
+            normalized_bpm = None
+            tempo_multiplier = None
 
     return MusicalParameters(
         tempo=tempo,
