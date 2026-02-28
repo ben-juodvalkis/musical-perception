@@ -97,7 +97,7 @@ def analyze(
     Returns:
         MusicalParameters with extracted musical information
     """
-    from musical_perception.precision.tempo import calculate_tempo, normalize_tempo
+    from musical_perception.precision.tempo import calculate_tempo, interpret_meter
     from musical_perception.precision.subdivision import analyze_subdivisions
     from musical_perception.precision.rhythm import detect_onset_tempo
     from musical_perception.perception.whisper import load_model, transcribe
@@ -174,28 +174,28 @@ def analyze(
         whistress_client = load_whistress()
         stress_labels = predict_stress(whistress_client, audio_path, words)
 
-    # Normalize tempo: pick best raw BPM, snap to 70-140 range
-    # Prefer onset tempo (classification-free) when confident enough,
-    # otherwise fall back to Gemini-based tempo
-    normalized_bpm = None
-    tempo_multiplier = None
-    raw_bpm = None
-    if onset_tempo is not None and onset_tempo.confidence >= 0.3:
-        raw_bpm = onset_tempo.bpm
-    elif tempo is not None:
-        raw_bpm = tempo.bpm
-    elif onset_tempo is not None:
-        raw_bpm = onset_tempo.bpm
-    if raw_bpm is not None:
-        normalized_bpm, tempo_multiplier = normalize_tempo(raw_bpm)
-        if tempo_multiplier == 0:
-            # Normalization failed — BPM too extreme, don't present as reliable
-            normalized_bpm = None
-            tempo_multiplier = None
+    # Coherent metric interpretation: BPM + meter + subdivision as one answer
+    gemini_subdivision = (
+        gemini_result.counting_structure.subdivision_type
+        if gemini_result.counting_structure else None
+    )
+    normalized_tempo = interpret_meter(
+        onset_tempo=onset_tempo,
+        gemini_tempo=tempo,
+        gemini_meter=gemini_result.meter,
+        gemini_subdivision=gemini_subdivision,
+    )
+
+    # Backward compat: populate old fields from normalized_tempo
+    normalized_bpm = normalized_tempo.bpm if normalized_tempo else None
+    tempo_multiplier = normalized_tempo.tempo_multiplier if normalized_tempo else None
+    if normalized_tempo:
+        meter = normalized_tempo.meter
 
     return MusicalParameters(
         tempo=tempo,
         onset_tempo=onset_tempo,
+        normalized_tempo=normalized_tempo,
         normalized_bpm=normalized_bpm,
         tempo_multiplier=tempo_multiplier,
         subdivision=subdivision,

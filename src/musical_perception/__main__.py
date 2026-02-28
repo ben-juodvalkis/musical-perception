@@ -23,22 +23,14 @@ def main():
         use_pose=use_pose,
     )
 
-    if result.normalized_bpm is not None:
-        mult = result.tempo_multiplier
-        if mult == 1:
-            note = ""
-        elif mult == 2:
-            note = " (raw doubled from measure level)"
-        elif mult == 3:
-            note = " (raw tripled from triple-meter measure level)"
-        elif mult == -2:
-            note = " (raw halved from subdivision level)"
-        elif mult == -3:
-            note = " (raw divided by 3 from triplet subdivision)"
-        else:
-            note = f" (multiplier={mult})"
-        print(f"\n--- Tempo (normalized) ---")
-        print(f"BPM: {result.normalized_bpm}{note}")
+    if result.normalized_tempo is not None:
+        nt = result.normalized_tempo
+        m = nt.meter
+        sub = f", {nt.subdivision} subdivision" if nt.subdivision != "none" else ""
+        print(f"\n--- Tempo ---")
+        print(f"BPM: {nt.bpm} ({m.beats_per_measure}/{m.beat_unit}{sub})")
+        if nt.tempo_multiplier != 1:
+            print(f"  (raw {nt.raw_bpm} BPM, multiplier={nt.tempo_multiplier})")
 
     print("\n--- Tempo (raw signals) ---")
     if result.tempo:
@@ -57,8 +49,8 @@ def main():
     else:
         print("Onset-based:  no rhythmic sections detected")
 
-    print("\n--- Subdivision ---")
     if result.subdivision:
+        print(f"\n--- Subdivision (raw) ---")
         print(f"Type: {result.subdivision.subdivision_type}")
         print(f"Confidence: {result.subdivision.confidence:.0%}")
 
@@ -66,10 +58,6 @@ def main():
         print(f"\n--- Exercise ---")
         print(f"Type: {result.exercise.display_name}")
         print(f"Confidence: {result.exercise.confidence:.0%}")
-
-    if result.meter:
-        print(f"\n--- Meter ---")
-        print(f"{result.meter.beats_per_measure}/{result.meter.beat_unit}")
 
     if result.quality:
         print(f"\n--- Quality ---")
