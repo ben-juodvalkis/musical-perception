@@ -32,8 +32,11 @@ pose = [
     "mediapipe>=0.10",
     "opencv-python>=4.8",
 ]
+trigger = [
+    "openwakeword>=0.6",
+]
 all = [
-    "musical-perception[whisper,prosody,gemini,pose]",
+    "musical-perception[whisper,prosody,gemini,pose,trigger]",
 ]
 dev = [
     "pytest>=7.0",
