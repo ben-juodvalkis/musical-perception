@@ -243,6 +243,25 @@ class OnsetTempoResult:
     ioi_histogram_peak_bpm: float | None = None  # Secondary estimate for cross-check
 
 
+# === Trigger types (streaming mode) ===
+
+
+class TriggerState(Enum):
+    """State of the analysis trigger pipeline."""
+    IDLE = "idle"            # Only wake word detector runs
+    LISTENING = "listening"  # Wake word detected, Whisper running on buffered audio
+    TRIGGERED = "triggered"  # Rhythm confirmed, ready for Gemini analysis
+
+
+@dataclass
+class TriggerEvent:
+    """Emitted when the trigger pipeline decides analysis is warranted."""
+    audio_segment: bytes              # Raw audio to send to Gemini
+    words: list[TimestampedWord]      # Already transcribed by Whisper
+    onset_tempo: OnsetTempoResult     # Already computed from word onsets
+    timestamp: float                  # Wall clock time of trigger
+
+
 # === The stable interface ===
 
 @dataclass
