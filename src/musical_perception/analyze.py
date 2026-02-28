@@ -97,8 +97,9 @@ def analyze(
     Returns:
         MusicalParameters with extracted musical information
     """
-    from musical_perception.precision.tempo import calculate_tempo
+    from musical_perception.precision.tempo import calculate_tempo, normalize_tempo
     from musical_perception.precision.subdivision import analyze_subdivisions
+    from musical_perception.precision.rhythm import detect_onset_tempo
     from musical_perception.perception.whisper import load_model, transcribe
     from musical_perception.perception.gemini import load_client, analyze_media
 
@@ -108,9 +109,15 @@ def analyze(
     # Whisper owns timestamps, Gemini owns word classification
     words = transcribe(model, audio_path)
 
+    # Onset-based tempo (Gemini-independent, runs on Whisper timestamps alone)
+    onset_tempo = detect_onset_tempo(words)
+
+    # Pass onset BPM to Gemini as a calibration hint
+    onset_bpm = onset_tempo.bpm if onset_tempo is not None else None
+
     if gemini_client is None:
         gemini_client = load_client(model=gemini_model)
-    gemini_result = analyze_media(gemini_client, audio_path)
+    gemini_result = analyze_media(gemini_client, audio_path, onset_bpm=onset_bpm)
 
     # Merge Gemini classifications with Whisper timestamps
     markers = _merge_gemini_with_timestamps(gemini_result, words)
@@ -167,8 +174,30 @@ def analyze(
         whistress_client = load_whistress()
         stress_labels = predict_stress(whistress_client, audio_path, words)
 
+    # Normalize tempo: pick best raw BPM, snap to 70-140 range
+    # Prefer onset tempo (classification-free) when confident enough,
+    # otherwise fall back to Gemini-based tempo
+    normalized_bpm = None
+    tempo_multiplier = None
+    raw_bpm = None
+    if onset_tempo is not None and onset_tempo.confidence >= 0.3:
+        raw_bpm = onset_tempo.bpm
+    elif tempo is not None:
+        raw_bpm = tempo.bpm
+    elif onset_tempo is not None:
+        raw_bpm = onset_tempo.bpm
+    if raw_bpm is not None:
+        normalized_bpm, tempo_multiplier = normalize_tempo(raw_bpm)
+        if tempo_multiplier == 0:
+            # Normalization failed — BPM too extreme, don't present as reliable
+            normalized_bpm = None
+            tempo_multiplier = None
+
     return MusicalParameters(
         tempo=tempo,
+        onset_tempo=onset_tempo,
+        normalized_bpm=normalized_bpm,
+        tempo_multiplier=tempo_multiplier,
         subdivision=subdivision,
         meter=meter,
         exercise=exercise,

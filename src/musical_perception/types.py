@@ -191,6 +191,34 @@ class GeminiAnalysisResult:
     model: str  # Which model was used
 
 
+@dataclass
+class RhythmicSection:
+    """A section of regularly-spaced speech detected from word onset timing."""
+    start: float              # Window start time in seconds
+    end: float                # Window end time in seconds
+    bpm: float                # Tempo estimated from mean IOI in this section
+    mean_ioi: float           # Mean inter-onset interval in seconds
+    cv: float                 # Coefficient of variation of IOIs (lower = more regular)
+    word_count: int           # Number of word onsets in this section
+    words: list[str] = field(default_factory=list)  # Actual words (for display/debug)
+
+
+@dataclass
+class OnsetTempoResult:
+    """
+    Tempo estimated from word onset regularity, without word classification.
+
+    Complementary to TempoResult (which requires Gemini classification).
+    Works with step names, numbers, or any rhythmic speech.
+    """
+    bpm: float                # Estimated tempo from rhythmic sections
+    confidence: float         # 0-1, based on consistency and coverage
+    rhythmic_sections: list[RhythmicSection]  # Detected rhythmic windows
+    total_duration: float     # Total audio duration (onset span) in seconds
+    rhythmic_coverage: float  # Fraction of total duration covered by rhythmic sections
+    ioi_histogram_peak_bpm: float | None = None  # Secondary estimate for cross-check
+
+
 # === The stable interface ===
 
 @dataclass
@@ -203,6 +231,9 @@ class MusicalParameters:
     these parameters are extracted will change; this schema should not.
     """
     tempo: TempoResult | None = None
+    onset_tempo: OnsetTempoResult | None = None
+    normalized_bpm: float | None = None  # Best BPM snapped to 70-140 range
+    tempo_multiplier: int | None = None  # How raw BPM was scaled (2=doubled, -2=halved, etc.)
     subdivision: SubdivisionResult | None = None
     meter: Meter | None = None
     exercise: ExerciseDetectionResult | None = None

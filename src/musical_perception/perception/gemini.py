@@ -199,22 +199,32 @@ _RESPONSE_SCHEMA = {
     "required": ["words", "exercise", "counting_structure", "meter", "quality", "structure"],
 }
 
-_PROMPT = """\
-Analyze this dance class audio/video. A teacher is counting aloud to \
-demonstrate rhythm for a ballet exercise.
+_PROMPT_TEMPLATE = """\
+Analyze this dance class audio/video. A teacher is marking rhythm for a \
+ballet exercise — they may count with numbers OR with step names spoken \
+in rhythm (e.g. "tendu front brush through" at a steady pulse).
 
 For each spoken word, classify it:
-- "beat": counted numbers (1, 2, 3... 8) — assign beat_number
+- "beat": any word spoken ON a rhythmic beat — this includes counted numbers \
+(1, 2, 3…8) AND step names / directions spoken in steady rhythm \
+(e.g. "tendu", "front", "side", "close", "brush", "through", "plié"). \
+Assign beat_number sequentially (1, 2, 3…).
 - "and": subdivision words ("and", "&") — assign the beat_number of the preceding beat
 - "ah": subdivision words ("ah", "a", "uh") — assign the beat_number of the preceding beat
-- "none": non-rhythmic speech (instructions, exercise names, etc.) — beat_number is null
+- "none": non-rhythmic speech (explanations, corrections, setup talk that is \
+NOT part of the rhythmic counting) — beat_number is null
 
+IMPORTANT: Many ballet teachers never say numbers — they mark the rhythm \
+entirely with step names. If words are spoken at a regular rhythmic pulse, \
+they ARE beats, even if they are not numbers.
+{onset_context}
 Identify the ballet exercise type from speech and/or movement.
 
 For counting_structure, report what you observe about the counting pattern.
 
 For meter, determine the time signature from the counting pattern and movement quality \
-(e.g. waltz = 3/4, most barre work = 4/4).
+(e.g. waltz/balancé = 3/4, most barre work = 4/4). \
+Listen for groups of 3 vs groups of 4 in the rhythmic feel.
 
 For quality, rate the movement on three numeric dimensions (0.0–1.0). \
 Rate what you actually observe, not what the exercise should ideally look like. \
@@ -404,6 +414,7 @@ def _parse_response(raw: dict, model: str) -> GeminiAnalysisResult:
 def analyze_media(
     client: _GeminiClient,
     media_path: str,
+    onset_bpm: float | None = None,
 ) -> GeminiAnalysisResult:
     """
     Analyze a media file (video or audio) using Gemini.
@@ -414,6 +425,8 @@ def analyze_media(
     Args:
         client: Initialized _GeminiClient from load_client().
         media_path: Path to video (.mov, .mp4) or audio (.wav, .mp3, .aif) file.
+        onset_bpm: Optional BPM hint from onset-based tempo detection.
+            Included in the prompt to help Gemini calibrate its analysis.
 
     Returns:
         GeminiAnalysisResult with word classifications, exercise detection,
@@ -437,6 +450,19 @@ def analyze_media(
             if audio_tmp_path:
                 audio_file = _upload_and_wait(client.client, audio_tmp_path, uploaded_files)
 
+        # Build prompt with optional onset context
+        if onset_bpm is not None:
+            onset_context = (
+                f"\nContext: An independent rhythm detector estimated the speech pulse "
+                f"at approximately {onset_bpm:.0f} BPM. Use this as a rough guide — "
+                f"the true beat rate should be in the 70–140 BPM range typical for "
+                f"ballet class. If your estimate is outside that range, consider whether "
+                f"you are counting at a subdivision or measure level instead of the beat level.\n"
+            )
+        else:
+            onset_context = ""
+        prompt = _PROMPT_TEMPLATE.format(onset_context=onset_context)
+
         # Build content parts
         parts = []
         for f in uploaded_files:
@@ -444,7 +470,7 @@ def analyze_media(
                 file_uri=f.uri,
                 mime_type=f.mime_type,
             ))
-        parts.append(types.Part.from_text(text=_PROMPT))
+        parts.append(types.Part.from_text(text=prompt))
 
         # Call Gemini with structured output
         response = client.client.models.generate_content(
