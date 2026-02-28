@@ -275,3 +275,19 @@ def test_interpret_falls_back_to_gemini():
     assert result is not None
     assert result.bpm == 100.0
     assert result.raw_bpm == 100.0
+    assert result.subdivision == "duple"  # Gemini subdivision passed through
+
+
+def test_interpret_gemini_zero_bpm():
+    """Gemini BPM=0 should not cause divide-by-zero in cross-signal check."""
+    zero_tempo = TempoResult(bpm=0.0, confidence=0.5, beat_count=0, intervals=[])
+    result = interpret_meter(
+        onset_tempo=_onset(100.0),
+        gemini_tempo=zero_tempo,
+        gemini_meter=Meter(beats_per_measure=4, beat_unit=4),
+        gemini_subdivision="none",
+    )
+    assert result is not None
+    assert result.bpm == 100.0
+    # ratio guard produces 1.0, so no cross-signal override
+    assert result.tempo_multiplier == 1

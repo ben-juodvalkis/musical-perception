@@ -218,7 +218,13 @@ class NormalizedTempo:
     subdivision: str            # "none", "duple", "triplet"
     confidence: float           # 0-1
     raw_bpm: float              # Original BPM before normalization
-    tempo_multiplier: int       # How raw was scaled (×2, ×3, ÷2, etc.)
+    tempo_multiplier: int       # Metric level of raw pulse:
+    #   1 = raw was at beat level (bpm ≈ raw_bpm)
+    #   2 = raw was at duple measure level (bpm ≈ raw_bpm × 2)
+    #   3 = triple meter — either raw was tripled, OR cross-signal
+    #       detection found onset/gemini ratio ≈ 3 (bpm ≈ raw_bpm)
+    #  -2 = raw was at duple subdivision level (bpm ≈ raw_bpm / 2)
+    #  -3 = raw was at triplet subdivision level (bpm ≈ raw_bpm / 3)
 
 
 @dataclass
@@ -255,7 +261,7 @@ class MusicalParameters:
     normalized_bpm: float | None = None
     tempo_multiplier: int | None = None
     subdivision: SubdivisionResult | None = None
-    meter: Meter | None = None
+    meter: Meter | None = None  # Always set when normalized_tempo is set (overrides Gemini)
     exercise: ExerciseDetectionResult | None = None
     quality: QualityProfile | None = None
     counting_signature: CountingSignature | None = None

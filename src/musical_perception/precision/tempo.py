@@ -157,8 +157,11 @@ def interpret_meter(
     if multiplier == 1 and onset_tempo is not None and gemini_tempo is not None:
         ratio = raw_bpm / gemini_tempo.bpm if gemini_tempo.bpm > 0 else 1.0
         if 2.5 <= ratio <= 3.5:
-            # Onset at beat level, Gemini at measure level of triple meter
-            multiplier = 3  # record that Gemini was at measure level
+            # Onset at beat level, Gemini at measure level of triple meter.
+            # Note: this overloads multiplier=3 — here raw_bpm was NOT tripled
+            # (it was already in range), but we use 3 to signal triple meter.
+            # raw_bpm is stored separately so consumers don't need to reverse it.
+            multiplier = 3
 
     # Derive meter and subdivision from the multiplier
     if multiplier == 1:
@@ -182,8 +185,9 @@ def interpret_meter(
         meter = gemini_meter or Meter(beats_per_measure=4, beat_unit=4)
         subdivision = "triplet"
     else:
-        meter = gemini_meter or Meter(beats_per_measure=4, beat_unit=4)
-        subdivision = gemini_subdivision or "none"
+        # Unreachable: normalize_tempo() returns only {1,2,3,-2,-3,0}
+        # and multiplier==0 triggers early return above.
+        raise ValueError(f"unexpected multiplier {multiplier}")
 
     return NormalizedTempo(
         bpm=normalized_bpm,
