@@ -446,9 +446,9 @@ def _parse_response(raw: dict, model: str) -> GeminiAnalysisResult:
         # Compute aggregate from primary phrases only
         primary = [p for p in phrases if p.primary] or phrases
         quality = QualityProfile(
-            articulation=sum(p.articulation for p in primary) / len(primary),
-            weight=sum(p.weight for p in primary) / len(primary),
-            energy=sum(p.energy for p in primary) / len(primary),
+            articulation=round(sum(p.articulation for p in primary) / len(primary), 2),
+            weight=round(sum(p.weight for p in primary) / len(primary), 2),
+            energy=round(sum(p.energy for p in primary) / len(primary), 2),
             phrases=phrases,
         )
 
