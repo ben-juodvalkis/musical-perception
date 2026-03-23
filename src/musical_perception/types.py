@@ -94,6 +94,17 @@ class PhraseStructure:
 
 
 @dataclass
+class PhraseQuality:
+    """Quality ratings for a single phrase/section of a combination."""
+    phrase_number: int
+    description: str
+    articulation: float  # 0 = staccato (sharp, detached), 1 = legato (smooth, flowing)
+    weight: float        # 0 = light (buoyant, airy), 1 = heavy (grounded, pressing)
+    energy: float        # 0 = calm (controlled, gentle), 1 = energetic (active, explosive)
+    primary: bool        # True = core movement, False = transition/preparation
+
+
+@dataclass
 class QualityProfile:
     """
     Three numeric dimensions describing movement character.
@@ -101,10 +112,14 @@ class QualityProfile:
     Each dimension is a float from 0.0 to 1.0. These are generic musical
     terms — any music generator (pianist, DJ, generative AI) can interpret
     them. They describe movement quality, not instrument-specific decisions.
+
+    When per-phrase data is available, these values are computed from
+    primary phrases only (filtering out transitions and preparations).
     """
     articulation: float  # 0 = staccato (sharp, detached), 1 = legato (smooth, flowing)
     weight: float        # 0 = light (buoyant, airy), 1 = heavy (grounded, pressing)
     energy: float        # 0 = calm (controlled, gentle), 1 = energetic (active, explosive)
+    phrases: list[PhraseQuality] = field(default_factory=list)  # Per-phrase breakdown
 
 
 @dataclass

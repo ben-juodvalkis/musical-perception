@@ -23,6 +23,8 @@ from musical_perception.types import (
     MarkerType,
     TimestampedWord,
     TimedMarker,
+    QualityProfile,
+    PhraseQuality,
 )
 from musical_perception.analyze import analyze
 
@@ -37,4 +39,6 @@ __all__ = [
     "MarkerType",
     "TimestampedWord",
     "TimedMarker",
+    "QualityProfile",
+    "PhraseQuality",
 ]
