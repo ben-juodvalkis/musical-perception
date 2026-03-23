@@ -27,6 +27,7 @@ from musical_perception.types import (
     GeminiWord,
     MarkerType,
     Meter,
+    PhraseQuality,
     PhraseStructure,
     QualityProfile,
 )
@@ -150,32 +151,64 @@ _RESPONSE_SCHEMA = {
             "required": ["beats_per_measure", "beat_unit"],
         },
         "quality": {
-            "type": "OBJECT",
-            "description": "Three numeric dimensions (0.0-1.0) describing movement character",
-            "properties": {
-                "articulation": {
-                    "type": "NUMBER",
-                    "description": (
-                        "0.0 = staccato/sharp/detached, 1.0 = legato/smooth/flowing. "
-                        "Calibration: frappé ~0.1, tendu ~0.5, port de bras ~0.9"
-                    ),
+            "type": "ARRAY",
+            "description": (
+                "Per-phrase quality ratings. Break the combination into distinct phrases "
+                "(typically 8-count sections or sections with consistent movement character). "
+                "Return at least 2 phrases if the video is long enough."
+            ),
+            "items": {
+                "type": "OBJECT",
+                "properties": {
+                    "phrase_number": {
+                        "type": "INTEGER",
+                        "description": "Sequential phrase number starting at 1",
+                    },
+                    "description": {
+                        "type": "STRING",
+                        "description": "Brief description of what happens in this phrase (1 sentence)",
+                    },
+                    "articulation": {
+                        "type": "NUMBER",
+                        "description": (
+                            "0.0 = staccato/sharp/detached, 1.0 = legato/smooth/flowing. "
+                            "Calibration: frappé/batterie ~0.1, grand battement/dégagé ~0.25, "
+                            "tendu/waltz ~0.5, rond de jambe/développé ~0.7, "
+                            "adagio/port de bras/contemporary floorwork ~0.9"
+                        ),
+                    },
+                    "weight": {
+                        "type": "NUMBER",
+                        "description": (
+                            "0.0 = light/buoyant/airy, 1.0 = heavy/grounded/pressing. "
+                            "Calibration: petit allegro/sautés ~0.1, "
+                            "assemblé/glissade ~0.3, tendu/dégagé ~0.45, "
+                            "fondu/contemporary release ~0.65, "
+                            "grand plié/modern floorwork/character stamps ~0.9"
+                        ),
+                    },
+                    "energy": {
+                        "type": "NUMBER",
+                        "description": (
+                            "0.0 = calm/controlled/gentle, 1.0 = energetic/active/explosive. "
+                            "Calibration: port de bras/balance ~0.1, "
+                            "adagio/slow développé ~0.25, tendu/plié ~0.4, "
+                            "grand battement/turns ~0.65, "
+                            "grand allegro/manège/jumps ~0.9"
+                        ),
+                    },
+                    "primary": {
+                        "type": "BOOLEAN",
+                        "description": (
+                            "True if this phrase represents the core/defining movement of the exercise. "
+                            "False for transitions, preparations, port de bras breaks, or connecting phrases. "
+                            "Example: in a grand battement combination, the battement phrases are primary; "
+                            "the port de bras between sets is not."
+                        ),
+                    },
                 },
-                "weight": {
-                    "type": "NUMBER",
-                    "description": (
-                        "0.0 = light/buoyant/airy, 1.0 = heavy/grounded/pressing. "
-                        "Calibration: petit allegro ~0.2, tendu ~0.5, grand plié ~0.9"
-                    ),
-                },
-                "energy": {
-                    "type": "NUMBER",
-                    "description": (
-                        "0.0 = calm/controlled/gentle, 1.0 = energetic/active/explosive. "
-                        "Calibration: adagio ~0.2, tendu ~0.5, grand allegro ~0.9"
-                    ),
-                },
+                "required": ["phrase_number", "description", "articulation", "weight", "energy", "primary"],
             },
-            "required": ["articulation", "weight", "energy"],
         },
         "structure": {
             "type": "OBJECT",
@@ -226,11 +259,23 @@ For meter, determine the time signature from the counting pattern and movement q
 (e.g. waltz/balancé = 3/4, most barre work = 4/4). \
 Listen for groups of 3 vs groups of 4 in the rhythmic feel.
 
-For quality, rate the movement on three numeric dimensions (0.0–1.0). \
-Rate what you actually observe, not what the exercise should ideally look like. \
-Use these calibration points: articulation (frappé=0.1, tendu=0.5, port de bras=0.9), \
-weight (petit allegro=0.2, tendu=0.5, grand plié=0.9), \
-energy (adagio=0.2, tendu=0.5, grand allegro=0.9).
+For quality, break the combination into distinct phrases and rate each one on \
+three numeric dimensions (0.0–1.0). Rate what you actually observe, not what \
+the exercise should ideally look like. Look for CHANGES in quality between \
+phrases — a combination that goes from slow port de bras into sharp frappés \
+should have very different ratings per phrase.
+
+Calibration:
+- articulation: frappé/batterie ~0.1, grand battement/dégagé ~0.25, \
+tendu/waltz ~0.5, rond de jambe/développé ~0.7, adagio/port de bras ~0.9
+- weight: petit allegro/sautés ~0.1, assemblé/glissade ~0.3, tendu ~0.45, \
+fondu/release ~0.65, grand plié/floorwork/stamps ~0.9
+- energy: port de bras/balance ~0.1, adagio ~0.25, tendu/plié ~0.4, \
+grand battement/turns ~0.65, grand allegro/manège/jumps ~0.9
+
+Mark each phrase as "primary" (true/false). Primary phrases are the core/defining \
+movements of the exercise. Transitions, preparations, and port de bras breaks \
+between sets are NOT primary.
 
 For structure, report the phrase length in counts and whether the exercise \
 is performed on one side or both sides."""
@@ -383,13 +428,28 @@ def _parse_response(raw: dict, model: str) -> GeminiAnalysisResult:
             beat_unit=meter_raw.get("beat_unit", 4),
         )
 
-    quality_raw = raw.get("quality", {})
+    quality_raw = raw.get("quality", [])
     quality = None
     if quality_raw:
+        # Parse per-phrase quality
+        phrases = []
+        for p in quality_raw:
+            phrases.append(PhraseQuality(
+                phrase_number=p.get("phrase_number", 0),
+                description=p.get("description", ""),
+                articulation=p.get("articulation", 0.5),
+                weight=p.get("weight", 0.5),
+                energy=p.get("energy", 0.5),
+                primary=p.get("primary", True),
+            ))
+
+        # Compute aggregate from primary phrases only
+        primary = [p for p in phrases if p.primary] or phrases
         quality = QualityProfile(
-            articulation=quality_raw.get("articulation", 0.5),
-            weight=quality_raw.get("weight", 0.5),
-            energy=quality_raw.get("energy", 0.5),
+            articulation=round(sum(p.articulation for p in primary) / len(primary), 2),
+            weight=round(sum(p.weight for p in primary) / len(primary), 2),
+            energy=round(sum(p.energy for p in primary) / len(primary), 2),
+            phrases=phrases,
         )
 
     structure_raw = raw.get("structure", {})

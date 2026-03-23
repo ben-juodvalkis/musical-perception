@@ -45,6 +45,11 @@ and qualitative analysis (exercise, meter, quality, structure). The merge step
 in `analyze.py` pairs Gemini classifications with Whisper timestamps to produce
 `TimedMarker` objects, which feed the precision layer for tempo and subdivision.
 
+Gemini also provides **per-phrase quality** — each phrase in a combination is rated
+on articulation, weight, and energy, and flagged as primary or transitional. The
+aggregate `QualityProfile` is computed from primary phrases only, filtering out
+port de bras breaks and transitions that would skew the overall character.
+
 ## Key Types
 
 - `MusicalParameters` — the stable output schema (the contract)
@@ -53,6 +58,8 @@ in `analyze.py` pairs Gemini classifications with Whisper timestamps to produce
 - `CountingSignature` — prosodic weight profile
 - `TimestampedWord` — word + start/end time (from transcription)
 - `TimedMarker` — classified rhythmic marker with beat association
+- `PhraseQuality` — per-phrase quality ratings (articulation, weight, energy, primary flag)
+- `QualityProfile` — aggregate quality dimensions + optional per-phrase breakdown
 - `GeminiAnalysisResult` — bridge type from Gemini (words + exercise + meter + quality + structure, no timestamps)
 
 ## Running Tests

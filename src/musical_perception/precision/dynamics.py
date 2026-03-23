@@ -213,4 +213,5 @@ def synthesize(
         energy=round(
             _GEMINI_WEIGHT * gemini.energy + _POSE_WEIGHT * pose.energy, 2
         ),
+        phrases=gemini.phrases,  # Preserve per-phrase data from Gemini
     )
