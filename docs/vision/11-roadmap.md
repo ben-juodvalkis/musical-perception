@@ -66,9 +66,13 @@ zero-shot→calibrated delta quantifying Reframe 3.
 4. **Syllabus mode** ([10 · Pivots](10-pivots.md) P1): set-exercise packs with
    certainty-priors; ship to exam-prep users as the first public rung.
 
-**Gate B:** one full calibrated class at rung 1 with zero false starts and
-exercise-success ≥ 85%; ≥1 pilot teacher *chooses* the system over their old
-workflow unprompted for a full week.
+**Gate B:** one full calibrated class run live at rung 1 with zero false
+starts and **live** exercise-success ≥ 85%; ≥1 pilot teacher *chooses* the
+system over their old workflow unprompted for a full week. (Promotion to
+rung 1 itself still requires the *shadow* bar of
+[08](08-benchmark-and-shadow-mode.md) §8.6 — ≥ 90% shadow exercise-success;
+the live gate is deliberately looser because live rooms are harder than
+replayed ones.)
 
 ## Phase C · Product (beyond)
 

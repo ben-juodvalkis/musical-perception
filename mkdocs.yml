@@ -2,6 +2,7 @@ site_name: The AI Accompanist
 site_description: >-
   An automated ballet-class accompanist from camera and audio — perception,
   precision, and the path to the full system.
+site_url: https://ben-juodvalkis.github.io/musical-perception/
 repo_url: https://github.com/ben-juodvalkis/musical-perception
 docs_dir: docs
 
@@ -44,6 +45,7 @@ nav:
       - 09 · Risk Register: vision/09-risk-register.md
       - 10 · Pivot Menu: vision/10-pivots.md
       - 11 · Roadmap: vision/11-roadmap.md
+      - 12 · Collaborators & Ecosystem: vision/12-collaborators.md
   - Perception Roadmaps:
       - ROADMAP v2 (current): ROADMAP-v2.md
       - ROADMAP (historical): ROADMAP.md

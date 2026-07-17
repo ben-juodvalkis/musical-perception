@@ -70,7 +70,7 @@ novel research result: nobody has quantified the marking-tempo gap.
 |---|---|---|
 | **False starts** | would-play events outside a valid cue | **0 per class** |
 | Exercise success | meter ∧ tempo ∧ length all correct with ≤1 question | ≥ 85% of exercises |
-| Question rate | one-word questions per class | ≤ 4 falling with calibration |
+| Question rate | one-word questions per class | ≤ 4, falling with calibration |
 | Start latency | cue → first note | ≤ 500 ms |
 | Stop latency | teacher speech → silence | ≤ 300 ms |
 
