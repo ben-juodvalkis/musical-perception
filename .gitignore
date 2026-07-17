@@ -24,3 +24,6 @@ video/
 *.avi
 *.mkv
 .DS_Store
+
+# mkdocs build output
+site/
