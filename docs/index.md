@@ -29,11 +29,12 @@ Read in order for the full argument, or jump by role below.
 | 09 | [Risk Register](vision/09-risk-register.md) | Eight named risks with mitigations, residuals, and tripwires; the closed non-risks |
 | 10 | [Pivot Menu](vision/10-pivots.md) | P0 hands-free player · P1 syllabus mode · P2 dataset · P3 copilot · P4 adjacent domains |
 | 11 | [Roadmap](vision/11-roadmap.md) | 90-day tracks and gates, live-room phase, product phase, the deferred list |
+| 12 | [Collaborators & Ecosystem](vision/12-collaborators.md) | Verified people and institutions bridging ballet and technology, with suggested first asks |
 
 **By role:**
 
 - *Builder:* 04 → 05 → 06 → 07 → 11
-- *Strategist:* 01 → 02 → 10 → 11
+- *Strategist:* 01 → 02 → 10 → 11 → 12
 - *Skeptic:* [Feasibility Study](FEASIBILITY-2026-07.md) → 03 → 09 → 08
 
 ## Engineering Record
