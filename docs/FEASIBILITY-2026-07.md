@@ -5,6 +5,9 @@
 camera and audio — no manual interaction from the teacher, just like a human
 pianist — actually feasible and reasonable given today's technology?
 
+> **Expanded:** this study seeded the full vision suite — start at the
+> [documentation index](index.md) or [01 · North Star](vision/01-north-star.md).
+
 ---
 
 ## Verdict

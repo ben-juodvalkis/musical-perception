@@ -1,0 +1,69 @@
+# The AI Accompanist — Documentation
+
+Documentation site for the **musical-perception** project and the system it
+serves: an automated ballet-class accompanist that works from camera and
+audio alone — the teacher teaches, the room simply works.
+
+**Status (2026-07):** perception + precision layers exist in this repo
+(tempo proven on clean counting; meter identified as the crux); the vision
+suite below defines the path to the full system. Founding analysis:
+[Feasibility Study 2026-07](FEASIBILITY-2026-07.md) — verdict: *feasible now,
+under three reframes.*
+
+---
+
+## The Vision Suite
+
+Read in order for the full argument, or jump by role below.
+
+| # | Document | One line |
+|---|---|---|
+| 01 | [North Star](vision/01-north-star.md) | The magic moment, what "seamless" means (human parity), product principles, success criteria |
+| 02 | [The Three Reframes](vision/02-reframes.md) | Voice is the interface · beat the playlist, delete the form · priors and memory over zero-shot |
+| 03 | [Landscape (July 2026)](vision/03-landscape.md) | Empty niche, converged manual apps, component stack status, academic whitespace, watch-triggers |
+| 04 | [System Architecture](vision/04-system-architecture.md) | Reflex/deliberation tiers, the exercise lifecycle, latency budgets, where existing code lands |
+| 05 | [Perception Strategy](vision/05-perception-strategy.md) | Prosody-first channels, the meter plan, the exercise-prior table, class-state tracker, calibration profile |
+| 06 | [Performance Engine](vision/06-performance-engine.md) | The missing half: MIDI library + schema, plan compiler, runtime verbs, rendering |
+| 07 | [Interaction Design](vision/07-interaction-design.md) | Cue detection, voice grammar, asymmetric error policy, question budget, the degradation ladder, privacy |
+| 08 | [Benchmark & Shadow Mode](vision/08-benchmark-and-shadow-mode.md) | The corpus, metrics and gates, the replayer, shadow-before-sound, the data moat |
+| 09 | [Risk Register](vision/09-risk-register.md) | Eight named risks with mitigations, residuals, and tripwires; the closed non-risks |
+| 10 | [Pivot Menu](vision/10-pivots.md) | P0 hands-free player · P1 syllabus mode · P2 dataset · P3 copilot · P4 adjacent domains |
+| 11 | [Roadmap](vision/11-roadmap.md) | 90-day tracks and gates, live-room phase, product phase, the deferred list |
+
+**By role:**
+
+- *Builder:* 04 → 05 → 06 → 07 → 11
+- *Strategist:* 01 → 02 → 10 → 11
+- *Skeptic:* [Feasibility Study](FEASIBILITY-2026-07.md) → 03 → 09 → 08
+
+## Engineering Record
+
+- [Feasibility Study 2026-07](FEASIBILITY-2026-07.md) — the founding analysis
+  (question → verdict → evidence)
+- [ROADMAP](ROADMAP.md) — original perception roadmap (Phases 1–2 historical
+  record)
+- [ROADMAP-v2](ROADMAP-v2.md) — perception implementation plan
+  (Learn/Accompany model, quality model); still current for the perception
+  layer, now nested under [Vision 11 · Roadmap](vision/11-roadmap.md)
+
+### Architecture Decision Records
+
+| ADR | Decision |
+|---|---|
+| [001](adr/001-upgrade-audio-perception.md) | Upgrade audio perception (WhisperX, WhiStress, Praat) |
+| [002](adr/002-gemini-integration.md) | Gemini multimodal integration |
+| [003](adr/003-typed-quality-model.md) | Typed quality model |
+| [004](adr/004-quality-model-redesign.md) | Quality model redesign |
+| [005](adr/005-remove-scaffolding.md) | Remove scaffolding layer |
+| [006](adr/006-onset-tempo-and-normalization.md) | Onset tempo detection + BPM normalization |
+| [007](adr/007-coherent-metric-interpretation.md) | Coherent metric interpretation (BPM+meter+subdivision) |
+| [008](adr/008-analysis-trigger-pipeline.md) | Analysis trigger pipeline (wake word — *superseded by cue detection, see [Vision 07](vision/07-interaction-design.md) §7.2*) |
+
+## Serving this site
+
+```bash
+pip install mkdocs-material
+mkdocs serve        # from the repo root → http://127.0.0.1:8000
+```
+
+(The docs are plain Markdown and read equally well on GitHub.)

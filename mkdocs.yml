@@ -1,0 +1,58 @@
+site_name: The AI Accompanist
+site_description: >-
+  An automated ballet-class accompanist from camera and audio — perception,
+  precision, and the path to the full system.
+repo_url: https://github.com/ben-juodvalkis/musical-perception
+docs_dir: docs
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.sections
+    - navigation.footer
+    - toc.integrate
+
+markdown_extensions:
+  - tables
+  - admonition
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Feasibility Study (2026-07): FEASIBILITY-2026-07.md
+  - Vision:
+      - 01 · North Star: vision/01-north-star.md
+      - 02 · The Three Reframes: vision/02-reframes.md
+      - 03 · Landscape: vision/03-landscape.md
+      - 04 · System Architecture: vision/04-system-architecture.md
+      - 05 · Perception Strategy: vision/05-perception-strategy.md
+      - 06 · Performance Engine: vision/06-performance-engine.md
+      - 07 · Interaction Design: vision/07-interaction-design.md
+      - 08 · Benchmark & Shadow Mode: vision/08-benchmark-and-shadow-mode.md
+      - 09 · Risk Register: vision/09-risk-register.md
+      - 10 · Pivot Menu: vision/10-pivots.md
+      - 11 · Roadmap: vision/11-roadmap.md
+  - Perception Roadmaps:
+      - ROADMAP v2 (current): ROADMAP-v2.md
+      - ROADMAP (historical): ROADMAP.md
+  - ADRs:
+      - 001 · Upgrade Audio Perception: adr/001-upgrade-audio-perception.md
+      - 002 · Gemini Integration: adr/002-gemini-integration.md
+      - 003 · Typed Quality Model: adr/003-typed-quality-model.md
+      - 004 · Quality Model Redesign: adr/004-quality-model-redesign.md
+      - 005 · Remove Scaffolding: adr/005-remove-scaffolding.md
+      - 006 · Onset Tempo & Normalization: adr/006-onset-tempo-and-normalization.md
+      - 007 · Coherent Metric Interpretation: adr/007-coherent-metric-interpretation.md
+      - 008 · Analysis Trigger Pipeline: adr/008-analysis-trigger-pipeline.md
