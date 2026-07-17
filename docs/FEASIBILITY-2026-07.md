@@ -18,6 +18,15 @@ risk (robust marking comprehension across idiosyncratic teachers) — and that
 risk can be measured, bounded, and fenced with fallbacks rather than solved
 outright.
 
+A July 2026 landscape scan (§3) sharpens the verdict from both sides: **the
+niche is empty** — no product, startup, or academic paper perceives a teacher's
+marking and plays automatically — while **every required component now exists**
+(sub-500 ms streaming ASR with word timestamps, live multimodal APIs, 30 FPS
+on-device pose, full-duplex turn-taking research, commodity symbolic playback).
+Most telling: the manual apps ballet teachers actually use already make them
+hand-enter *tempo and bar count per exercise*. The market has converged on
+exactly this system's output schema. The entire project is deleting that form.
+
 The three reframes:
 
 1. **"No manual interaction" should mean "nothing a human accompanist wouldn't
@@ -113,7 +122,102 @@ missing signal for meter but hasn't built it yet.
 
 ---
 
-## 3. The three reframes, in full
+## 3. The external landscape (July 2026)
+
+Findings from a fresh product/academic/technology scan.
+
+### 3.1 The niche is empty — and the adjacent market validates the schema
+
+No product, startup, or paper perceives a teacher's marking and plays
+automatically. What exists instead is a converged category of **manual ballet
+music players**: Ballegro Player ("your virtual ballet pianist" — search by
+exercise/length/rhythm, mid-exercise tempo change), Ballet Class app
+(balletclass.eu — teacher sets **speed and number of bars per exercise**),
+BalletBox (music by step, tempo/structure changes mid-playback), Cadence and
+Cadance (pitch-preserving 0.5–2.0× stretch, per-class playlists). Two
+conclusions:
+
+- **Willingness to pay is proven** for parameterized class music. These are
+  monetized products with real users.
+- **The output contract is validated.** Teachers already hand-enter tempo +
+  bars + character per exercise, between exercises, on a touchscreen. The
+  `MusicalParameters` schema is precisely that form; the perception layer's
+  job is to fill it in automatically. "Delete the form" is the crispest
+  possible statement of the product.
+
+### 3.2 The nearest AI accompanists solve a *different* problem
+
+Metronaut (Antescofo SAS, the IRCAM score-following spinoff), Cadenza,
+MyPianist, and Yamaha's AI Music Ensemble (which drove a Disklavier alongside
+human players in its 2016 demo) all **follow an instrumentalist through a known
+score**. Twenty-five years of score-following research (Raphael's Music Plus
+One: HMM listening + Bayesian onset prediction; Cont's Antescofo, used by major
+orchestras) is mature — but structurally inverted from the ballet problem.
+Ballet accompaniment is **perception-then-metronomic-performance**: infer the
+parameters up front from a demonstration, then hold steady. Nobody has built
+the perception half. That is simultaneously the opportunity and the honest
+warning: there is no prior art to lean on for row 2 of §1.
+
+### 3.3 The component stack exists
+
+- **Streaming ASR with word timestamps:** AssemblyAI Universal-3 Pro at
+  ~150–240 ms, Deepgram Nova-3 at ~450 ms median; local Whisper-lineage
+  streaming (SimulStreaming, WhisperFlow) reaches ~1 s on laptop hardware.
+- **Live multimodal:** Gemini Live handles continuous audio with built-in VAD
+  and interruption, but video at 1 FPS with a 2-minute uncompressed
+  audio+video session limit — enough to watch a 30–60 s *marking*, not a whole
+  class, and useless for fine movement timing. This external constraint
+  independently validates the repo's architecture: timestamps and pose stay
+  local, cloud models do semantics.
+- **Pose:** 30+ FPS on-device is commodity (MediaPipe/MoveNet class).
+- **Turn-taking:** full-duplex voice is the 2026 frontier (Moshi lineage,
+  NVIDIA PersonaPlex, ByteDance Seeduplex in production, OpenAI's GPT-Live now
+  the consumer default). Benchmarks formalize a ~200 ms turn-arbitration
+  budget and document the persistent failure mode: premature interruption
+  during pauses. The closest named research problem to "when do I start
+  playing?" is **device-directed speech detection** (Apple, Amazon's
+  wake-word-free Conversation Mode using audiovisual directedness) — deployed,
+  but only in constrained settings. The ballet variant is inverted (act on
+  domain-recognizable content *not* addressed to you) and remains the hardest
+  unsolved piece in a noisy studio — consistent with this study's risk
+  register, and mitigated the same ways (§4.2, §4.5).
+- **Always-on classroom audio has commercial precedent:** Merlyn Mind's
+  far-field teacher assistant and TeachFX's whole-lesson recording analytics
+  hold district contracts — the privacy/acceptance path is navigable.
+
+### 3.4 Playback: the generative-audio route is confirmed dead for this job
+
+Lyria RealTime streams BPM-conditioned music but has **no bar-count, phrase,
+or ending control** (tempo changes even require a context reset — a structural
+break); Magenta RealTime 2 adds local deployment and MIDI/text controls but no
+structural guarantees; Suno/Udio hold tempo only to ±2–5 BPM and ignore their
+own time-signature pickers. None can promise "exactly 32 counts of 3/4 at 138
+with a cadence on 32." Meanwhile **symbolic MIDI enforces structure by
+construction** (REMI-style tokenizations carry explicit bar/position/tempo
+tokens; controllable models like MIDI-GPT, text2midi, NotaGen exist when
+generation is eventually wanted), and Pianoteq-class physical-modeling renders
+MIDI at any tempo with commodity-grade realism. Pitch-preserving time-stretch
+of recordings (élastique/SoundTouch; the engine inside the ballet apps above)
+is artifact-free in roughly the 0.8–1.3× band — a legitimate MVP path for
+*tempo*, though recordings can never re-phrase to a different count structure.
+Symbolic-first, stretch as fallback.
+
+### 3.5 Academic whitespace — twice over
+
+Machine comprehension of ballet marking: **nothing found**. Beat tracking from
+spoken counting: **nothing found** — the onset-tempo approach in this repo
+appears to be academically unclaimed territory. Supporting evidence that the
+problem is well-posed: Kirsh's cognitive-science work establishes marking as
+structured, recoverable representation; the accompanist practice literature
+tells teachers to "mark the first 8 counts in the exact tempo you want"
+(i.e., the signal is *designed* to be readable); and conducting-gesture
+research extracts real-time BPM from movement at >86% recognition — precedent
+for the vision side. A recorded-class benchmark (§6) would be the first of its
+kind and is publishable on its own.
+
+---
+
+## 4. The three reframes, in full
 
 ### Reframe 1 — Voice is the interface, not a failure of automation
 
@@ -133,7 +237,7 @@ legitimate output. Concretely:
   imposing one.
 
 This reframe dissolves the tyranny of zero-shot perfection. The system needs to
-be a *good listener that takes correction graccefully* — not an oracle.
+be a *good listener that takes correction gracefully* — not an oracle.
 
 ### Reframe 2 — Beat the playlist, not the pianist
 
@@ -142,7 +246,8 @@ schools, companies, conservatoires). Everyone else runs class on recorded
 albums and a phone: fixed tempi, fixed 32/64-count tracks, the teacher walking
 to the speaker between every exercise — and, most tellingly, **teachers design
 combinations to fit the recordings they own**. The recording constrains the
-pedagogy, not the reverse.
+pedagogy, not the reverse. The manual-player apps of §3.1 monetize exactly this
+pain while still requiring hands.
 
 So the honest product claim for v1 is not "a virtual pianist." It is: **the
 studio speaker that plays the right thing by itself** — any length, any tempo,
@@ -177,9 +282,9 @@ Three layers of structure that current zero-shot perception ignores:
 
 ---
 
-## 4. Architecture consequences
+## 5. Architecture consequences
 
-### 4.1 Two-tier runtime: reflex and deliberation
+### 5.1 Two-tier runtime: reflex and deliberation
 
 The Learn/Accompany split (ROADMAP-v2) is right; sharpen it into two latency
 domains:
@@ -190,12 +295,12 @@ domains:
   instant stop when the teacher speaks over the music.
 - **Deliberation layer — cloud or local LLM, seconds:** streaming marking
   analysis. Hypotheses form *while the teacher marks* (incremental, not batch);
-  the cue commits the current best hypothesis. The 3–15 s a teacher naturally
-  takes between finishing the marking and cueing ("walk to your spot… ready?
-  aaand—") absorbs API latency — but only if analysis is eager, not
-  triggered-after-the-fact.
+  the cue commits the current best hypothesis. The system has the full
+  duration of the marking (~20–60 s) plus the teacher's natural 3–15 s
+  walk-to-position gap to absorb model latency — but only if analysis is
+  eager, not triggered-after-the-fact.
 
-### 4.2 Asymmetric error policy (the social contract)
+### 5.2 Asymmetric error policy (the social contract)
 
 The two failure modes are wildly asymmetric:
 
@@ -208,9 +313,12 @@ The two failure modes are wildly asymmetric:
 Therefore: bias hard toward silence, make verbal recovery first-class, and
 count false starts as the primary reliability metric (target: zero per class).
 This single policy decision is what makes full autonomy socially viable while
-the perception layer matures.
+the perception layer matures. (The full-duplex literature's persistent failure
+mode — premature interruption during pauses — is exactly this asymmetry,
+unresolved in the general case; a silence-biased policy sidesteps rather than
+solves it.)
 
-### 4.3 Prosody-first perception (demote ASR)
+### 5.3 Prosody-first perception (demote ASR)
 
 Move the primary rhythm channel from Whisper word timestamps to the raw audio:
 energy/spectral-flux onsets for pulse, and intensity + F0 + duration
@@ -226,27 +334,23 @@ peak at lag 3 in the accent series, no words required). Benefits:
 - The counting-signature work (Praat, prosodic weight) already points here;
   this is a promotion of an existing direction, not a new bet.
 
-### 4.4 Playback: symbolic MIDI, not recordings, not generative audio
+### 5.4 Playback: symbolic MIDI, not recordings, not generative audio
 
 The accompanist's musical obligations — exact counts, square phrases, arbitrary
 tempo, instant tempo change, vamp-till-ready, first/second endings, a two-bar
-button, an instant clean stop — are trivial in symbolic MIDI and unavailable
-in the alternatives. Time-stretched recordings artifact badly beyond ±10% and
-can't change length; generative-audio models (Suno/Udio/Lyria class) cannot
-*guarantee* "exactly 32 counts of 3/4 at 138 with a cadence on count 32," and
-an accompanist that is right only most of the time about structure is unusable.
-
-A working accompanist needs roughly what a human carries: an active repertoire
-of ~100–200 pieces, tagged by meter, tempo range, character, genre, and
-phrase structure. Public-domain ballet-class piano literature is abundant;
-modern modeled/sampled pianos (e.g., physical-modeling engines) render with
-real-time tempo and dynamics control at fully acceptable quality. Constrained
+button, an instant clean stop — are trivial in symbolic MIDI and unavailable in
+the alternatives (§3.4). A working accompanist needs roughly what a human
+carries: an active repertoire of ~100–200 pieces, tagged by meter, tempo range,
+character, genre, and phrase structure. Public-domain ballet-class piano
+literature is abundant; physical-modeling piano rendering is commodity.
+Time-stretched recordings (0.8–1.3× artifact-free) are a legitimate stopgap
+for tempo but can never re-phrase to a different count structure. Constrained
 symbolic generation can add variety later behind the same interface. This is
 the **missing half of the system** — `MusicalParameters` is a contract with no
 consumer yet, and several key perception questions (how good is good enough?)
 are unanswerable until something plays.
 
-### 4.5 Accept the teacher mic
+### 5.5 Accept the teacher mic
 
 Far-field audio in a reverberant studio with 20 dancers is a research problem;
 a $150 wireless lapel/headset mic on the teacher — already common in large
@@ -256,7 +360,7 @@ available and a completely reasonable constraint for v1. (Human parity again:
 the human accompanist also positions themselves where they can hear the
 teacher.)
 
-### 4.6 Shadow mode (the trust path)
+### 5.6 Shadow mode (the trust path)
 
 Before the system ever makes a sound in a real class, it rides along silently:
 teacher mic + wide camera in, and after class it produces a report — "for the
@@ -266,14 +370,14 @@ played), this yields:
 
 - a measured **hit-rate** instead of a feasibility opinion,
 - the per-teacher calibration profile,
-- the benchmark corpus (see §6),
+- the benchmark corpus (see §7),
 - and teacher trust before the first live note.
 
 Go live per-teacher when shadow metrics clear a bar (suggested: ≥90% correct
 meter, ≥95% tempo within ±8%, phrase length exact, zero would-be false
 starts). Shadow mode converts an adoption gamble into a measurement.
 
-### 4.7 The graceful-degradation ladder
+### 5.7 The graceful-degradation ladder
 
 Ship three rungs and let each teacher's reliability data choose the rung:
 
@@ -288,15 +392,15 @@ exists precisely so rungs 1–2 can be attempted without fear in a live room.
 
 ---
 
-## 5. The honest risk register
+## 6. The honest risk register
 
 What remains genuinely hard after all reframes — with mitigations, not
 hand-waving:
 
 | Risk | Severity | Mitigation | Residual |
 |------|----------|------------|----------|
-| Marking segmentation in live rooms (talk vs. count interleaved) | High | Teacher mic; cue detection; eager-hypothesis + commit-on-cue; silence-biased policy | Real. The #1 thing shadow mode must measure |
-| Meter from ambiguous marking | High | Accent periodicity (§4.3) + exercise priors + one-word confirm | Medium — even humans ask "in three?" |
+| Marking segmentation in live rooms (talk vs. count interleaved) | High | Teacher mic; cue detection; eager-hypothesis + commit-on-cue; silence-biased policy | Real — the closest named research problem (device-directed speech) is deployed only in constrained settings. The #1 thing shadow mode must measure |
+| Meter from ambiguous marking | High | Accent periodicity (§5.3) + exercise priors + one-word confirm | Medium — even humans ask "in three?" |
 | Teacher idiosyncrasy, zero-shot | High | Don't do zero-shot: per-teacher calibration from 2–3 shadowed classes | Low for calibrated teachers; new-teacher onboarding is a feature, not a bug |
 | Marking tempo ≠ intended tempo | Medium | Learned per-teacher offset; live verbal nudges | Low |
 | Musicality ceiling (rubato, breath) | Medium | Accept "excellent rehearsal pianist"; the playlist bar never had it | Accepted, revisit later |
@@ -305,12 +409,13 @@ hand-waving:
 
 And the non-risks worth naming: **compute and cost are solved** (all reflex
 components run on a laptop-class CPU; multimodal analysis is pennies per
-exercise, i.e. under a dollar per class), and **latency budgets fit** the
-natural rhythm of a class as long as the reflex/deliberate split is respected.
+exercise, i.e. under a dollar per class), **latency budgets fit** the natural
+rhythm of a class as long as the reflex/deliberate split is respected, and
+**always-on classroom capture has commercial and social precedent** (§3.3).
 
 ---
 
-## 6. The benchmark is the project
+## 7. The benchmark is the project
 
 The highest-leverage artifact buildable right now is not a better model wrapper
 — it is a **recorded-class benchmark**: 10–20 full real classes (teacher-mic
@@ -322,14 +427,15 @@ end-to-end, and "is this feasible?" stops being a philosophy question.
 
 The same corpus is simultaneously: the per-teacher calibration source, the
 shadow-mode scorer, the fine-tuning set that eventually beats zero-shot
-prompting, and — if research ambitions exist — a publishable contribution,
-because **no marking-comprehension dataset exists anywhere**. The data moat is
+prompting, and a **first-of-its-kind dataset** — the scan found no prior work
+on marking comprehension *or* on beat tracking from spoken counting, so both
+the corpus and the repo's onset-tempo method are publishable. The data moat is
 the defensible asset; models will keep being swapped (the DISPOSABLE label has
 been right three times already).
 
 ---
 
-## 7. Pivot menu
+## 8. Pivot menu
 
 Ranked options, with a recommendation:
 
@@ -347,8 +453,9 @@ Ranked options, with a recommendation:
   funds and feeds P0. Compatible with P0, not a replacement.
 - **P2 — The dataset as the product/contribution.** If the deeper motivation is
   research: instrument accompanied classes, build the marking→music paired
-  corpus and benchmark (§6), fine-tune small local models against it. This is
-  the piece nobody else has.
+  corpus and benchmark (§7), fine-tune small local models against it. The scan
+  confirms nobody else has this data — it is the piece that cannot be
+  fast-followed.
 - **P3 — Accompanist copilot (fallback posture).** If live-room autonomy stalls:
   the same perception stack drives a display/auto-play assistant with a human
   (teacher or pianist) holding veto. Weaker vision, real utility, keeps the
@@ -356,44 +463,74 @@ Ranked options, with a recommendation:
 - **P4 — Adjacent domains later.** Fitness/barre-fitness, figure skating,
   gymnastics floor: rhythmic-leader-plus-music domains with lower musical
   stakes and bigger markets, but commodity music cultures. Ballet remains the
-  differentiated beachhead; these are expansions, not pivots.
+  differentiated beachhead; these are expansions, not pivots. (A studio
+  Disklavier rendering the MIDI — an acoustic piano visibly playing itself, in
+  the lineage of Yamaha's 2016 AI-ensemble demo — is the memorable flagship
+  embodiment if this ever needs one.)
 
 The strong recommendation is **P0 with P1 inside it** (syllabus mode as the
-first shipped rung) and **§6 as the immediate work**, because it de-risks
+first shipped rung) and **§7 as the immediate work**, because it de-risks
 everything else.
 
 ---
 
-## 8. What I would do next (90 days, three tracks)
+## 9. What I would do next (90 days, three tracks)
 
 1. **Build the missing half: a minimal performance engine.** ~30 tagged MIDI
    pieces, tempo scaling, vamp-till-cue, first/second endings, button, instant
    stop; modeled-piano rendering. Wire `MusicalParameters` → performance plan.
    Without a consumer, the perception layer cannot even define "good enough."
    Target: the magic-moment demo with one cooperative teacher.
-2. **Stand up the benchmark + shadow recorder** (§6). Record real classes,
+2. **Stand up the benchmark + shadow recorder** (§7). Record real classes,
    annotate, replay the existing pipeline, publish the hit-rate dashboard.
    This turns the feasibility question into a weekly-improving number.
 3. **Attack meter with the missing signal.** Accent-periodicity module
    (intensity/F0/duration autocorrelation at beat lags — pure precision math,
    KEEP), the exercise-prior table, and the class-state tracker. Measure the
-   meter hit-rate jump on the benchmark from §6's corpus.
+   meter hit-rate jump on the benchmark from track 2's corpus.
 
 Explicitly deferred: dancer-following, generative music, far-field
 no-mic operation, center-work adaptivity, any UI beyond the ladder.
 
 ---
 
-## 9. Bottom line
+## 10. Bottom line
 
 A camera-and-mic accompanist that a teacher never touches is **feasible to
 prototype now and reasonable as a project** — provided "seamless" is defined as
 *human parity* (voice included) rather than *telepathy*, the first competitor
 is the playlist rather than the pianist, and the system is allowed to know
-what a ballet class is and who its teacher is. The perception bet this repo has
-been making is the right bet, its own ADRs have correctly located the hard
-parts, and the two structural gaps — no playback layer, ASR-first rhythm — are
-both addressable with known technology. The one honest research risk is robust
-marking comprehension in live rooms, and the path through it is not a better
-model but a better process: priors, per-teacher calibration, silence-biased
-turn-taking, and a shadow-mode benchmark that replaces belief with measurement.
+what a ballet class is and who its teacher is. The niche is empty on both the
+product and academic sides while every component has matured; the manual apps
+teachers use today already ask for exactly the parameters this repo extracts.
+The perception bet this codebase has been making is the right bet, its own ADRs
+have correctly located the hard parts, and the two structural gaps — no
+playback layer, ASR-first rhythm — are both addressable with known technology.
+The one honest research risk is robust marking comprehension in live rooms, and
+the path through it is not a better model but a better process: priors,
+per-teacher calibration, silence-biased turn-taking, and a shadow-mode
+benchmark that replaces belief with measurement.
+
+---
+
+## Sources (landscape scan, July 2026)
+
+Products: ballegroplayer.com · balletclass.eu · BalletBox, Cadence, Cadance
+(iOS) · metronautapp.com (Antescofo SAS) · metamusic.ai · mypianist.app ·
+Yamaha AI Music Ensemble (yamaha.com/en/tech-design/research/technologies/muens)
+
+Real-time stack: AssemblyAI Universal-3 Pro / Deepgram Nova-3 streaming docs ·
+Gemini Live API docs (ai.google.dev/gemini-api/docs/live-api) · SimulStreaming,
+WhisperFlow (arXiv 2412.11272) · NVIDIA PersonaPlex · ByteDance Seeduplex ·
+FLEXI full-duplex benchmark (arXiv 2509.22243) · Apple device-directed speech
+(arXiv 2312.03632) · Amazon Alexa Conversation Mode · merlyn.org · teachfx.com
+
+Music: Lyria RealTime (ai.google.dev/gemini-api/docs/realtime-music-generation)
+· Magenta RealTime 2 (huggingface.co/google/magenta-realtime-2, arXiv
+2508.04651) · MIDI-GPT (arXiv 2501.17011) · text2midi (AAAI 2025) · Pianoteq
+(modartt.com) · zplane élastique / SoundTouch
+
+Academic: Kirsh, "How Marking in Dance Constitutes Thinking with the Body" ·
+Raphael, Music Plus One (ISMIR 2004) · Cont, Antescofo (2007) · conducting
+gesture BPM (MDPI Appl. Sci. 2019; arXiv 2604.27957) · dance-music co-creation
+(arXiv 2506.12008, ICCC 2025) · beat tracking surveys (arXiv 2510.14391)
