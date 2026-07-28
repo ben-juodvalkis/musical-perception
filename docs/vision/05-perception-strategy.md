@@ -83,7 +83,9 @@ extended `interpret_meter()`. Then the **decision policy**:
 The floor matters: even human accompanists ask "in three?" A system allowed
 one word when genuinely split does not need superhuman meter perception —
 it needs well-calibrated *uncertainty*, which the benchmark
-([08](08-benchmark-and-shadow-mode.md)) measures directly.
+([08](08-benchmark-and-shadow-mode.md)) measures directly: abstention is scored
+as its own outcome and calibration error is reported per confidence bin
+(§8.3), so these two thresholds are tuned against a curve rather than chosen.
 
 ## 5.4 The exercise-prior table
 

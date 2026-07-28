@@ -29,14 +29,27 @@ length → music on "music please" → stops on speech. Recorded on video.
 
 *Why now: every subsequent claim needs the number.*
 
-1. Capture rig + one-button recorder ([08](08-benchmark-and-shadow-mode.md)
-   §8.1); record 6–10 real classes across ≥3 teachers.
-2. Annotation tooling + schema (§8.2); annotate; replayer harness around
-   `analyze.py`; dashboard with the §8.3 metrics, zero-shot column first.
-3. Shadow-mode reporter (the "would have played" report, §8.5).
+The harness comes first and does not wait for the corpus — the eval ladder
+([08](08-benchmark-and-shadow-mode.md) §8.4, specified in
+[ADR-009](../adr/009-evaluation-harness.md)) climbs in order:
+
+1. **Harness + tiers 0–1 (weeks 1–2).** Case format and scorer library; the
+   `PerceptionBundle` seam in `analyze()` so frozen Whisper/Gemini/pose traces
+   replay offline; a synthetic suite across the style × meter ×
+   interleaved-explanation matrix; ADR-006/007's hand-run tables ported as the
+   first trace cases. Tiers 0–1 gate every PR from then on.
+2. **Tier 2 + capture rig.** Live-vs-trace drift job folding in
+   `scripts/compare_models.py`; one-button recorder (§8.1); record 6–10 real
+   classes across ≥3 teachers, harvesting free `performance_bpm` labels from
+   accompanied classes as they arrive.
+3. **Tier 3.** Annotation tooling + schema (§8.2); annotate; dashboard with the
+   §8.3 metrics and the abstention/calibration columns, zero-shot first.
+4. **Tier 4.** Shadow-mode reporter (the "would have played" report, §8.5).
 
 **Gate A2:** dashboard live; baseline (zero-shot) numbers published for all
-metrics — *whatever they are*. The honest baseline is the deliverable.
+metrics — *whatever they are*. The honest baseline is the deliverable. A
+synthetic-plus-trace baseline lands in week two; the corpus columns follow it
+rather than blocking it.
 
 ### Track 3 — Meter and the priors (the crux, attacked with the missing signal)
 

@@ -70,6 +70,13 @@ pytest
 
 Tests for precision code use hardcoded data (no audio files, no models needed).
 
+Tests answer "is it broken?"; **evals** answer "is it better?" — the harness
+that produces those numbers (case format, scorers, frozen model traces, the
+four tiers) is specified in
+[ADR-009](docs/adr/009-evaluation-harness.md) and
+[Vision 08 §8.3–8.4](docs/vision/08-benchmark-and-shadow-mode.md). Perception
+changes are judged by the eval delta, not by a hand-run on one file.
+
 ## Dependencies
 
 Core (always installed): numpy

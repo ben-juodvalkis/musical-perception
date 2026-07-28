@@ -156,12 +156,13 @@ intelligent gets seconds.
 | `perception/gemini.py` | Keep for semantics (exercise, quality, structure); never for clocks; move to streaming calls in LEARNING |
 | `perception/pose.py` + `precision/dynamics.py` | Keep — quality evidence + cue/gesture features |
 | `trigger.py` + `perception/wakeword.py` | **Retire the wake word**; the state machine generalizes into §4.4's lifecycle. The dependency-injection test pattern carries over |
-| `analyze.py` (batch) | Keep forever — it is the **benchmark replayer** ([08](08-benchmark-and-shadow-mode.md)) |
+| `analyze.py` (batch) | Keep forever — it is the **benchmark replayer** ([08](08-benchmark-and-shadow-mode.md)). Gains an injectable `PerceptionBundle` so frozen model traces replay offline ([ADR-009](../adr/009-evaluation-harness.md)) |
 | `MusicalParameters` | The contract holds; gains a consumer (`PerformancePlan` compiler, [06](06-performance-engine.md)) |
 
 New top-level modules (target): `attend.py` (lifecycle + reflex wiring),
 `engine/` (performance engine), `state/` (class-state + calibration store),
-`shadow.py` (shadow-mode recorder/reporter).
+`shadow.py` (shadow-mode recorder/reporter), `evals/` (case format, scorers,
+run reports — [ADR-009](../adr/009-evaluation-harness.md)).
 
 ## 4.7 Cost and footprint
 

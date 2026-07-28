@@ -9,8 +9,8 @@ input and outputs structured musical information. No playback.
 ## Documentation
 
 The full documentation site — vision, architecture, perception strategy,
-performance engine, benchmark program, risks, and roadmap — lives in
-[`docs/`](docs/index.md). Start with the
+performance engine, benchmark and evaluation program, risks, and roadmap —
+lives in [`docs/`](docs/index.md). Start with the
 [Feasibility Study](docs/FEASIBILITY-2026-07.md) (is the fully automated
 accompanist buildable today? — yes, under three reframes) or the
 [North Star](docs/vision/01-north-star.md). Serve as a site with

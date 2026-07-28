@@ -1,7 +1,8 @@
 # ADR-009: Evaluation Harness
 
 **Date:** 2026-07-28
-**Status:** Proposed
+**Status:** Accepted (harness not yet built — sequenced as
+[11 · Roadmap](../vision/11-roadmap.md) Track 2)
 
 ## Context
 
@@ -27,7 +28,7 @@ machinery:
 | Kind | Example | Correct instrument |
 |---|---|---|
 | Deterministic math (KEEP) | `interpret_meter`, `normalize_tempo` | Assertions — unit + property tests, per-PR |
-| Probabilistic perception (DISPOSABLE) | Gemini meter, Whisper onsets | Aggregate accuracy on labelled cases, with confidence intervals |
+| Probabilistic perception (DISPOSABLE) | Gemini meter, Whisper onsets | Aggregate accuracy on labeled cases, with confidence intervals |
 | System policy | false starts, question rate, latency | Event scoring over replayed/shadowed sessions |
 
 Asserting a single probabilistic case is a flake generator; reporting an
@@ -66,7 +67,7 @@ under a second — and what it exercises is exactly the fusion logic:
 `_merge_gemini_with_timestamps`, `interpret_meter`, `dynamics.synthesize`.
 **Both ADR-006 and ADR-007 were fusion bugs, not model bugs.** This tier is
 where the regressions this project actually suffers get caught, and it makes
-the KEEP/DISPOSABLE boundary a testable seam rather than a labelling
+the KEEP/DISPOSABLE boundary a testable seam rather than a labeling
 convention.
 
 It requires one small refactor: `analyze()` currently imports `transcribe`,
@@ -157,26 +158,26 @@ report all call the same functions.
 **3 · Abstention is a first-class outcome — the most important rule here.**
 The product policy is silence over false starts ([07](../vision/07-interaction-design.md)
 §7.4) and one legitimate question ([05](../vision/05-perception-strategy.md)
-§5.3). A harness that scores "did not commit" as "wrong" therefore optimises
+§5.3). A harness that scores "did not commit" as "wrong" therefore optimizes
 directly against the product. Every metric reports **correct / wrong /
 abstained** with coverage, plus a risk–coverage curve and a calibration error
 (ECE) over confidence bins.
 
-This makes two currently-unfalsifiable claims measurable: that the 0.80/0.55
+This makes two otherwise-unfalsifiable claims measurable: that the 0.80/0.55
 decision thresholds are placed correctly, and that the system has
-"well-calibrated uncertainty" rather than accurate guessing. Doc 08's metric
-table is accuracy-only today and should gain these columns.
+"well-calibrated uncertainty" rather than accurate guessing. Doc 08 §8.3 now
+carries these as scoring discipline alongside the accuracy table.
 
 **4 · Bootstrap gold labels before the corpus exists.** Three sources, cheapest
 first:
 
-- *Synthesised markings.* Metronome-locked counting recorded (or TTS'd) at a
+- *Synthesized markings.* Metronome-locked counting recorded (or TTS'd) at a
   known BPM and meter gives perfect labels at zero annotation cost, and can be
   permuted across the exact matrix that breaks the pipeline: numbers vs step
   names vs vocables vs near-silence × 2/4, 3/4, 4/4, 6/8 × with and without
   interleaved explanation. Twenty of these produce an honest zero-shot meter
   number *this week*. They are not real rooms and must never be the gate — but
-  they localise failures precisely, which real rooms do not.
+  they localize failures precisely, which real rooms do not.
 - *Accompanied class recordings — free `performance_bpm`.* In any class with a
   live pianist, the piano audio **is** the gold label for what the teacher
   wanted; beat-tracking it (librosa) yields `performance_bpm` mechanically,
@@ -255,7 +256,11 @@ tripwire trips automatically instead of being noticed.
   tiers 0–2 remain the fast loop after tier 3 exists.
 - Corpus collection stays on the critical path for *claims*, not for *progress*.
 - Cost: one refactor of `analyze()`, a new package, and the discipline of
-  labelling before building. Doc 08 §8.3 should gain the abstention and
-  calibration columns this ADR introduces.
+  labeling before building.
+- The suite absorbs the consequences: the ladder and the pre-corpus label
+  sources land in [08](../vision/08-benchmark-and-shadow-mode.md) §8.4, the
+  scoring discipline in §8.3, the sequencing in
+  [11](../vision/11-roadmap.md) Track 2, and the tripwire wiring in
+  [09](../vision/09-risk-register.md).
 - Risk: synthetic cases are not real rooms. Mitigated by never gating on tier 0
   and by the unseen-teacher split at tier 3.

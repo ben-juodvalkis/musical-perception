@@ -10,6 +10,11 @@ This is also the moat: the scan ([03 · Landscape](03-landscape.md) §3.5)
 found **no dataset of ballet marking anywhere** — building one is both the
 engineering foundation and a first-of-its-kind research asset.
 
+The corpus below is the *destination* of the measurement program, not its
+entry point. Measurement starts before a single class is recorded — see the
+eval ladder (§8.4), specified in
+[ADR-009 · Evaluation Harness](../adr/009-evaluation-harness.md).
+
 ---
 
 ## 8.1 The corpus
@@ -50,6 +55,11 @@ notes: "teacher marked half-tempo, pianist doubled"   # the gold anomalies
 The `marking_bpm` vs `performance_bpm` pair across a corpus is, by itself, a
 novel research result: nobody has quantified the marking-tempo gap.
 
+This schema is also the **eval case format**. The lower tiers of the ladder
+(§8.4) write cases that are a strict subset of it — an `expect:` block naming
+whichever fields are known — so annotating a real class only *adds cases*;
+nothing about the harness changes as the corpus arrives.
+
 ## 8.3 Metrics
 
 **Per-component:**
@@ -77,18 +87,82 @@ novel research result: nobody has quantified the marking-tempo gap.
 Report **zero-shot vs calibrated** for every metric — the gap between those
 two columns is Reframe 3's entire claim, made falsifiable.
 
-## 8.4 The replayer
+### Scoring discipline
+
+Three rules turn the tables above from headline numbers into decision-grade
+ones (full rationale in [ADR-009](../adr/009-evaluation-harness.md)):
+
+1. **Abstention is a separate outcome, not a wrong answer.** The product's
+   policy is silence over false starts ([07](07-interaction-design.md) §7.4)
+   and one legitimate question when genuinely split
+   ([05](05-perception-strategy.md) §5.3). A scorer that counts "did not
+   commit" as "wrong" optimizes directly against that policy. Every metric
+   reports **correct / wrong / abstained** plus coverage, a risk–coverage
+   curve, and a calibration error (ECE) over confidence bins — which is what
+   makes "well-calibrated uncertainty" and the 0.80 / 0.55 decision thresholds
+   falsifiable rather than asserted.
+2. **Score musically.** Tempo error separates *metric-level* failures (exactly
+   ×2, ×3, ÷2, ÷3 out — the ADR-006/007 subject) from genuine tempo error;
+   meter is scored as the coherent `(meter, bpm, subdivision)` triple with
+   partial credit for musically equivalent readings; quality is scored on
+   ordering (rank correlation) as well as absolute error.
+3. **The gate is the worst slice, above a minimum n.** Report every metric per
+   teacher, count style, exercise slot, language, and accompanied-vs-recorded
+   — a mean hides that meter is strong on numbers-counters and weak on vocable
+   users. Quote intervals: 90% on 30 cases is ±11%, worthless against a 90%
+   gate; ±5% at p≈0.9 needs n≈140 exercises and ±3% needs n≈350. That is the
+   arithmetic behind §8.1's 200–400-exercise target, and until n suffices a
+   gate is explicitly provisional.
+
+## 8.4 The eval ladder (and the replayer)
 
 `analyze.py` batch mode **is** the replayer — this is why it never gets
-deleted. Harness: corpus in → per-exercise `MusicalParameters` (and, once the
+deleted. Harness: cases in → per-exercise `MusicalParameters` (and, once the
 [engine](06-performance-engine.md) exists, `PerformancePlan`) out → scored
-against annotations → dashboard (a static HTML report per run, tracked over
-time). Every PR that touches perception shows its benchmark delta; the
-DISPOSABLE layer finally has an objective swap test.
+against expectations → dashboard (a static HTML report per run, tracked over
+time). Every PR that touches perception shows its delta; the DISPOSABLE layer
+finally has an objective swap test.
+
+The corpus is only the top of that harness. Four tiers share one case format
+and one scorer library, and each is runnable the day it is written:
+
+| Tier | What it measures | Cost | Cadence |
+|---|---|---|---|
+| **0 · Synthetic** | KEEP math on generated timelines from a known (meter, BPM, subdivision) triple, corrupted with jitter, dropped counts, interleaved explanation | free, seconds | every PR |
+| **1 · Frozen traces** | Fusion logic — merge, `interpret_meter`, quality synthesis — replayed from recorded Whisper/Gemini/pose output | free, deterministic | every PR |
+| **2 · Live perception** | The real stack: accuracy vs labels **and** drift vs the frozen trace | API spend | nightly; on any prompt or model change |
+| **3 · Corpus** | Everything above, §8.3 as written | annotation | at gates |
+| **4 · Shadow** | Policy in live rooms — false starts, latency, question rate (§8.5) | a class | per shadowed class |
+
+Tier 1 carries the most weight: ADR-006 and ADR-007 were both *fusion* bugs,
+not model bugs, and frozen traces test exactly that layer offline and for free.
+Tier 2 is where a silent Gemini version bump becomes visible — drift against
+the previous trace is a first-class number, distinct from accuracy.
+
+### Labels before the corpus
+
+Two label sources need no annotation program and can run now:
+
+- **Synthesized markings.** Metronome-locked counting at a known BPM and meter
+  gives perfect labels at zero cost, permuted across the matrix that actually
+  breaks the pipeline: numbers vs step names vs vocables vs near-silence × 2/4,
+  3/4, 4/4, 6/8 × with and without interleaved explanation. Not real rooms, so
+  never a gate — but it localizes failures precisely, which real rooms do not.
+- **Accompanied recordings — free `performance_bpm`.** Where a live pianist
+  plays, the piano audio *is* the ground truth for what the teacher wanted:
+  beat-track it and `performance_bpm` falls out mechanically, while the marking
+  that precedes it gives `marking_bpm`. The novel pair of §8.2 — and the
+  `tempo_offset` prior of [05](05-perception-strategy.md) §5.6 — from public
+  recordings, without a human annotator.
+
+Every run emits one JSON (metrics, per-case rows, and the hashes that make it
+reproducible: git SHA, model ids, prompt hash, trace version) plus the HTML
+diff against baseline. The hand-pasted results tables in ADR-006/007 become
+generated output.
 
 ## 8.5 Shadow mode
 
-Production rig, production pipeline, **zero sound**. During a real class the
+Tier 4 of the ladder: production rig, production pipeline, **zero sound**. During a real class the
 system runs the full lifecycle silently; afterwards it emits the report:
 
 > **10:14 · frappé (slot 6, P=0.93)** — would have started at 10:14:32.1
@@ -104,7 +178,9 @@ live classroom": **you don't — you deploy a silent one.**
 
 ## 8.6 Go-live gates (per teacher)
 
-Advance the [ladder](07-interaction-design.md) §7.6 only on evidence:
+Advance the [ladder](07-interaction-design.md) §7.6 only on evidence. These
+are per-teacher slices by construction — which is the general rule (§8.3):
+**a gate is cleared by the worst slice, not the mean.**
 
 - **→ Rung 3 (tap):** 2 shadowed classes; music/engine quality accepted by
   the teacher; stop-reflex verified live.

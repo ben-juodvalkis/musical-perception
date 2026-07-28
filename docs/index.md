@@ -25,7 +25,7 @@ Read in order for the full argument, or jump by role below.
 | 05 | [Perception Strategy](vision/05-perception-strategy.md) | Prosody-first channels, the meter plan, the exercise-prior table, class-state tracker, calibration profile |
 | 06 | [Performance Engine](vision/06-performance-engine.md) | The missing half: MIDI library + schema, plan compiler, runtime verbs, rendering |
 | 07 | [Interaction Design](vision/07-interaction-design.md) | Cue detection, voice grammar, asymmetric error policy, question budget, the degradation ladder, privacy |
-| 08 | [Benchmark & Shadow Mode](vision/08-benchmark-and-shadow-mode.md) | The corpus, metrics and gates, the replayer, shadow-before-sound, the data moat |
+| 08 | [Benchmark & Shadow Mode](vision/08-benchmark-and-shadow-mode.md) | The corpus, metrics and gates, the eval ladder (measurement before the corpus), shadow-before-sound, the data moat |
 | 09 | [Risk Register](vision/09-risk-register.md) | Eight named risks with mitigations, residuals, and tripwires; the closed non-risks |
 | 10 | [Pivot Menu](vision/10-pivots.md) | P0 hands-free player · P1 syllabus mode · P2 dataset · P3 copilot · P4 adjacent domains |
 | 11 | [Roadmap](vision/11-roadmap.md) | 90-day tracks and gates, live-room phase, product phase, the deferred list |
@@ -35,7 +35,8 @@ Read in order for the full argument, or jump by role below.
 
 - *Builder:* 04 → 05 → 06 → 07 → 11
 - *Strategist:* 01 → 02 → 10 → 11 → 12
-- *Skeptic:* [Feasibility Study](FEASIBILITY-2026-07.md) → 03 → 09 → 08
+- *Skeptic:* [Feasibility Study](FEASIBILITY-2026-07.md) → 03 → 09 → 08 →
+  [ADR-009](adr/009-evaluation-harness.md)
 
 ## Engineering Record
 

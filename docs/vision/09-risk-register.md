@@ -154,7 +154,11 @@ along as opt-in.
 
 ## Review cadence
 
-- After every benchmark run: R1–R4 numbers vs tripwires.
+- After every benchmark run: R1–R4 numbers vs tripwires. The tripwire
+  thresholds above are harness fields, not judgement calls — the run report
+  ([08](08-benchmark-and-shadow-mode.md) §8.4,
+  [ADR-009](../adr/009-evaluation-harness.md)) emits each of them per slice, so
+  a tripwire trips on its own instead of waiting to be noticed.
 - After every pilot week: R5, R7, R8 qualitative check.
 - Quarterly: landscape re-scan ([03](03-landscape.md) §3.6) and register
   refresh; retire risks with evidence, add new ones with names and tripwires.
