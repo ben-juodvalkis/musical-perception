@@ -58,3 +58,4 @@ nav:
       - 006 · Onset Tempo & Normalization: adr/006-onset-tempo-and-normalization.md
       - 007 · Coherent Metric Interpretation: adr/007-coherent-metric-interpretation.md
       - 008 · Analysis Trigger Pipeline: adr/008-analysis-trigger-pipeline.md
+      - 009 · Evaluation Harness: adr/009-evaluation-harness.md
