@@ -41,7 +41,11 @@ The harness comes first and does not wait for the corpus — the eval ladder
 2. **Tier 2 + capture rig.** Live-vs-trace drift job folding in
    `scripts/compare_models.py`; one-button recorder (§8.1); record 6–10 real
    classes across ≥3 teachers, harvesting free `performance_bpm` labels from
-   accompanied classes as they arrive.
+   accompanied classes as they arrive. Sources land in the order of
+   [13 · Corpus & Capture](13-corpus-and-capture.md): the rig matrix (A) and
+   public accompanied classes (C) need no filming and can precede step 1;
+   filming effort goes to the clean-captured class (B), labeled in the room,
+   with the sealed teacher chosen at the first session (§13.7).
 3. **Tier 3.** Annotation tooling + schema (§8.2); annotate; dashboard with the
    §8.3 metrics and the abstention/calibration columns, zero-shot first.
 4. **Tier 4.** Shadow-mode reporter (the "would have played" report, §8.5).

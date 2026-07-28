@@ -26,6 +26,11 @@ segmentation with no cue plays nothing); class-state priors (a marking is
 *expected* in a slot); silence-biased policy caps the blast radius at
 "missed start."
 
+**Diagnostic:** the **capture penalty** — clean-captured vs chaotic accuracy
+([13 · Corpus & Capture](13-corpus-and-capture.md) §13.3) — separates this risk
+from R2. A large gap means mic, VAD, and segmentation; no gap means the model
+is the ceiling and the fix belongs to the meter plan instead.
+
 **Residual:** Real. Some teachers barely vocalize.
 **Tripwire:** if calibrated marking-segmentation IoU < 80% for a teacher after
 3 shadowed classes → that teacher runs at ladder rung 2–3 permanently; if this

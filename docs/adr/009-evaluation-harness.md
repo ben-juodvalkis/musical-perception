@@ -169,7 +169,8 @@ decision thresholds are placed correctly, and that the system has
 carries these as scoring discipline alongside the accuracy table.
 
 **4 · Bootstrap gold labels before the corpus exists.** Three sources, cheapest
-first:
+first (the capture and labeling program that produces them is
+[13 · Corpus & Capture](../vision/13-corpus-and-capture.md)):
 
 - *Synthesized markings.* Metronome-locked counting recorded (or TTS'd) at a
   known BPM and meter gives perfect labels at zero annotation cost, and can be

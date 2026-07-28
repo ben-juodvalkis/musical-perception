@@ -149,7 +149,8 @@ Concrete, low-commitment, value-first:
 | Ask | Who | Doc it serves |
 |---|---|---|
 | Red-pen the exercise-prior table and musical-obligations list | Still, Lishka, Leal | [05](05-perception-strategy.md) §5.4, [06](06-performance-engine.md) §6.1 |
-| Co-design the benchmark corpus + annotation schema (publishable — their currency) | Trajkova; Fdili Alaoui for method | [08](08-benchmark-and-shadow-mode.md) |
+| Co-design the benchmark corpus + annotation schema (publishable — their currency) | Trajkova; Fdili Alaoui for method | [08](08-benchmark-and-shadow-mode.md), [13](13-corpus-and-capture.md) |
+| Host the clean-captured class (source B) — one normal teaching day, proper mic, labels captured in the room | Gill; a Ballet Piano Podcast studio (via Yow) | [13](13-corpus-and-capture.md) §13.4–13.5 |
 | Be shadow-mode class zero | Gill; a Ballet Piano Podcast studio (via Yow) | [08](08-benchmark-and-shadow-mode.md) §8.5, [07](07-interaction-design.md) §7.7 |
 | Formal-model sanity check of the class-state tracker | LaViers | [05](05-perception-strategy.md) §5.5 |
 | Fellowship application | NYU CBA | [10](10-pivots.md) P2, [11](11-roadmap.md) |

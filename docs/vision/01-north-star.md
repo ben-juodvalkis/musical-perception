@@ -112,5 +112,7 @@ star and the calibration standard.)
 This document states the destination. [02 · Reframes](02-reframes.md) explains
 the three framing moves that make it reachable;
 [04](04-system-architecture.md)–[08](08-benchmark-and-shadow-mode.md) specify
-the machine; [09](09-risk-register.md)–[11](11-roadmap.md) manage the journey.
+the machine; [09](09-risk-register.md)–[11](11-roadmap.md) manage the journey;
+[12](12-collaborators.md)–[13](13-corpus-and-capture.md) supply the people and
+the data it runs on.
 The founding analysis is [FEASIBILITY-2026-07](../FEASIBILITY-2026-07.md).

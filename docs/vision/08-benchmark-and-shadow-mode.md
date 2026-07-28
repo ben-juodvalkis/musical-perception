@@ -33,6 +33,24 @@ wide camera (pose + cue), synchronized clocks. One-button start; zero
 workflow intrusion (this is the same rig as production —
 [04](04-system-architecture.md) §4.2).
 
+**Three sources, one corpus.** The target above is source C — real classes,
+chaotic, the only thing a gate may be scored on. Two cheaper sources sit under
+it and do different jobs ([13 · Corpus & Capture](13-corpus-and-capture.md)):
+
+| | What | Job |
+|---|---|---|
+| **A · Rig** | metronome-locked counting, factorial across count style × meter × interleaved explanation × marking tempo; labels exact and free | localize *which module* broke |
+| **B · Clean capture** | a real teacher teaching normally, into a proper mic in a quiet room | the honest ceiling |
+| **C · Chaotic** | real classes as they are — the corpus target above | **the gate** |
+
+The rule that keeps this honest: **the clean sources can fail you but never
+pass you.** A and B block merges as regression suites; only C certifies a
+capability. The B-vs-C gap is itself a diagnostic — the **capture penalty** —
+that separates "segmentation and mic" failures (R1) from "the model is the
+ceiling" failures ([13](13-corpus-and-capture.md) §13.3). Clean means clean
+*capture*, never clean *teaching*: a teacher who counts more neatly for the
+camera measures a system nobody can ship (§13.4).
+
 ## 8.2 Annotation schema (per exercise)
 
 ```yaml
@@ -58,7 +76,10 @@ novel research result: nobody has quantified the marking-tempo gap.
 This schema is also the **eval case format**. The lower tiers of the ladder
 (§8.4) write cases that are a strict subset of it — an `expect:` block naming
 whichever fields are known — so annotating a real class only *adds cases*;
-nothing about the harness changes as the corpus arrives.
+nothing about the harness changes as the corpus arrives. Each case also carries
+the difficulty `tags:` of [13](13-corpus-and-capture.md) §13.6, so "clean vs
+chaotic" is a query rather than a folder — and it is filled in *in the room*,
+not retroactively (§13.5).
 
 ## 8.3 Metrics
 
@@ -112,7 +133,8 @@ ones (full rationale in [ADR-009](../adr/009-evaluation-harness.md)):
    users. Quote intervals: 90% on 30 cases is ±11%, worthless against a 90%
    gate; ±5% at p≈0.9 needs n≈140 exercises and ±3% needs n≈350. That is the
    arithmetic behind §8.1's 200–400-exercise target, and until n suffices a
-   gate is explicitly provisional.
+   gate is explicitly provisional — the full ladder of what each corpus size
+   entitles you to claim is [13](13-corpus-and-capture.md) §13.8.
 
 ## 8.4 The eval ladder (and the replayer)
 
@@ -143,17 +165,19 @@ the previous trace is a first-class number, distinct from accuracy.
 
 Two label sources need no annotation program and can run now:
 
-- **Synthesized markings.** Metronome-locked counting at a known BPM and meter
-  gives perfect labels at zero cost, permuted across the matrix that actually
-  breaks the pipeline: numbers vs step names vs vocables vs near-silence × 2/4,
-  3/4, 4/4, 6/8 × with and without interleaved explanation. Not real rooms, so
-  never a gate — but it localizes failures precisely, which real rooms do not.
+- **Synthesized markings** (source A, [13](13-corpus-and-capture.md) §13.2).
+  Metronome-locked counting at a known BPM and meter gives perfect labels at
+  zero cost, permuted across the matrix that actually breaks the pipeline:
+  numbers vs step names vs vocables vs near-silence × 2/4, 3/4, 4/4, 6/8 × with
+  and without interleaved explanation. Not real rooms, so never a gate — but it
+  localizes failures precisely, which real rooms do not.
 - **Accompanied recordings — free `performance_bpm`.** Where a live pianist
   plays, the piano audio *is* the ground truth for what the teacher wanted:
   beat-track it and `performance_bpm` falls out mechanically, while the marking
   that precedes it gives `marking_bpm`. The novel pair of §8.2 — and the
   `tempo_offset` prior of [05](05-perception-strategy.md) §5.6 — from public
-  recordings, without a human annotator.
+  recordings, without a human annotator. This is why source C can start before
+  any filming does ([13](13-corpus-and-capture.md) §13.5).
 
 Every run emits one JSON (metrics, per-case rows, and the hashes that make it
 reproducible: git SHA, model ids, prompt hash, trace version) plus the HTML
