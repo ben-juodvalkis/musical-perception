@@ -184,9 +184,12 @@ def _ioi_histogram_peak(iois: np.ndarray) -> float | None:
         return None
 
     ioi_min, ioi_max = float(iois.min()), float(iois.max())
-    if ioi_min == ioi_max:
-        # All IOIs identical — perfectly regular, no histogram needed
-        return round(60.0 / ioi_min, 1) if ioi_min > 0 else None
+    if ioi_max - ioi_min < 1e-6:
+        # All IOIs (near-)identical — perfectly regular, no histogram needed.
+        # Strict equality is not enough: float-hair ranges (~1e-15) make
+        # np.histogram raise "too many bins for data range".
+        median = float(np.median(iois))
+        return round(60.0 / median, 1) if median > 0 else None
 
     n_bins = max(10, min(50, len(iois) // 2))
     hist, bin_edges = np.histogram(iois, bins=n_bins, range=(ioi_min, ioi_max))

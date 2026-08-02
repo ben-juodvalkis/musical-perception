@@ -167,3 +167,22 @@ def test_histogram_identical_iois():
     # Histogram should handle the degenerate case gracefully
     assert result.ioi_histogram_peak_bpm is not None
     assert abs(result.ioi_histogram_peak_bpm - 120.0) < 1.0
+
+
+def test_perfectly_regular_iois_do_not_crash_histogram():
+    """Float-hair IOI ranges (~1e-15) must not blow up np.histogram.
+
+    Regression: synthetic perfectly-regular timelines produced an IOI range
+    just above zero, slipping past the exact-equality guard and making
+    np.histogram raise "Too many bins for data range".
+    """
+    period = 60.0 / 100.0  # 0.6s — accumulates float hair over multiples
+    words = [
+        _word(str(i), round(i * period, 3), round(i * period + 0.2, 3))
+        for i in range(8)
+    ]
+    result = detect_onset_tempo(words)
+    assert result is not None
+    assert abs(result.bpm - 100.0) < 2.0
+    assert result.ioi_histogram_peak_bpm is not None
+    assert abs(result.ioi_histogram_peak_bpm - 100.0) < 2.0

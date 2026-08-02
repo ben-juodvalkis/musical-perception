@@ -207,6 +207,9 @@ class GeminiAnalysisResult:
     quality: QualityProfile | None
     structure: PhraseStructure | None
     model: str  # Which model was used
+    # Verbatim JSON the model returned — what trace recording freezes, so
+    # replay exercises the current parser (ADR-009 tier 1).
+    raw_response: dict | None = None
 
 
 @dataclass

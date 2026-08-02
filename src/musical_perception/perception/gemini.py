@@ -485,7 +485,13 @@ def _parse_response(raw: dict, model: str) -> GeminiAnalysisResult:
         quality=quality,
         structure=structure,
         model=model,
+        raw_response=raw,
     )
+
+
+# Public seam for trace replay (ADR-009): frozen raw JSON goes back through
+# the current parser, keeping parsing under test.
+parse_raw_response = _parse_response
 
 
 def analyze_media(
