@@ -111,7 +111,12 @@ def main():
 
     if result.structure:
         print(f"\n--- Structure ---")
-        print(f"{result.structure.counts} counts, {result.structure.sides} side(s)")
+        counts_desc = (
+            f"{result.structure.counts} counts"
+            if result.structure.counts is not None
+            else "counts: undecided (evidence disagreed)"
+        )
+        print(f"{counts_desc}, {result.structure.sides} side(s)")
 
     if result.counting_signature:
         print(f"\n--- Counting Signature ---")

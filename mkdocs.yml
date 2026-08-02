@@ -62,5 +62,6 @@ nav:
       - 009 · Evaluation Harness: adr/009-evaluation-harness.md
       - 010 · Transcript Authority: adr/010-transcript-authority.md
       - 011 · Phrase-Structure Definition: adr/011-phrase-structure-definition.md
+      - 012 · Counts from Evidence Fusion: adr/012-counts-from-evidence-fusion.md
   - Evals:
       - Baseline: evals/baseline.md

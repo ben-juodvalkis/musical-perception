@@ -89,7 +89,10 @@ class Meter:
 @dataclass
 class PhraseStructure:
     """Phrase structure of the exercise."""
-    counts: int              # Total counts in one full phrase (16, 32)
+    # Counts in one full phrase (16, 32). None = the counts estimator
+    # abstained: the evidence disagreed, and a wrong phrase length is
+    # worse than asking (see precision/structure.py).
+    counts: int | None
     sides: int               # 1 (one-sided) or 2 (both sides)
 
 

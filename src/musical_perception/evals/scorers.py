@@ -166,7 +166,7 @@ def score_meter_triple(
 
 
 def score_counts(predicted: PhraseStructure | None, expected_counts: int) -> ScoreResult:
-    if predicted is None:
+    if predicted is None or predicted.counts is None:
         return ScoreResult("counts", ABSTAINED, 0.0, None, expected_counts)
     ok = predicted.counts == expected_counts
     return ScoreResult(

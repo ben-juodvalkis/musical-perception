@@ -67,7 +67,9 @@ def test_analyze_runs_offline_with_stub_bundle():
     assert result.normalized_tempo is not None
     assert abs(result.normalized_tempo.bpm - 100.0) < 2.0
     assert result.meter.beats_per_measure == 4
-    assert result.structure.counts == 16
+    # Counted "one..eight" twice: the counts estimator (ADR-012) reads the
+    # numeric cycle of 8, overriding the stub's structure.counts=16.
+    assert result.structure.counts == 8
     assert len(result.markers) == 16
 
 

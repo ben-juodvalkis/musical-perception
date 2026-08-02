@@ -12,6 +12,7 @@ from musical_perception.types import (
     GeminiAnalysisResult,
     MarkerType,
     MusicalParameters,
+    PhraseStructure,
     TimedMarker,
     TimestampedWord,
 )
@@ -150,6 +151,7 @@ def analyze(
     from musical_perception.precision.tempo import calculate_tempo, interpret_meter
     from musical_perception.precision.subdivision import analyze_subdivisions
     from musical_perception.precision.rhythm import detect_onset_tempo
+    from musical_perception.precision.structure import estimate_counts
 
     if bundle is None:
         bundle = build_default_bundle(
@@ -239,6 +241,22 @@ def analyze(
         gemini_meter=gemini_result.meter,
         gemini_subdivision=gemini_subdivision,
     )
+
+    # Counts from evidence fusion (ADR-012): the estimator owns counts,
+    # Gemini's read becomes one vote; sides stays Gemini's.
+    counting = gemini_result.counting_structure
+    counts_estimate = estimate_counts(
+        markers,
+        bpm=normalized_tempo.bpm if normalized_tempo else None,
+        gemini_bpm=counting.estimated_bpm if counting else None,
+        subdivision=gemini_subdivision,
+        gemini_counts=structure.counts if structure else None,
+        gemini_total_counts=counting.total_counts if counting else None,
+    )
+    if structure is not None:
+        structure = PhraseStructure(counts=counts_estimate.counts, sides=structure.sides)
+    elif counts_estimate.counts is not None:
+        structure = PhraseStructure(counts=counts_estimate.counts, sides=1)
 
     # Backward compat: populate old fields from normalized_tempo
     normalized_bpm = normalized_tempo.bpm if normalized_tempo else None
