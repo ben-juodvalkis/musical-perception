@@ -65,3 +65,4 @@ nav:
       - 012 · Counts from Evidence Fusion: adr/012-counts-from-evidence-fusion.md
   - Evals:
       - Baseline: evals/baseline.md
+      - Capture Checklist: evals/capture-checklist.md

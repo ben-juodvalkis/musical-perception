@@ -41,6 +41,7 @@ Read in order for the full argument, or jump by role below.
 
 ## Engineering Record
 
+- [Rig Capture Checklist](evals/capture-checklist.md) — the 24-clip recording program that grows the benchmark
 - [Eval Baseline](evals/baseline.md) — generated tier 0–1 numbers (`python -m musical_perception.evals run` → `bless`); the honest Gate A2 table
 
 - [Feasibility Study 2026-07](FEASIBILITY-2026-07.md) — the founding analysis
