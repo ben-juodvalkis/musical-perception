@@ -1,0 +1,21 @@
+id: adr006-8-counts-triple
+input:
+  trace: traces/8-counts-triple/
+  media: "audio/counting/8-counts-triple.aif"
+tags:
+  source: rig
+  teacher: ben
+  slot: counting
+  count_style: numbers
+  explanation: none
+  lang: en
+  accompanied: false
+expect:
+  meter: "4/4"
+  subdivision: triplet
+  counts: 8
+notes: >-
+  Triplet counting fixture. ADR-007 recorded the /2-over-/3 normalization
+  defect here (output 82.7 duple) — same defect tier-0 pins as
+  t0-4-4-clean-triplet. Expected to fail until that fix lands. marking_bpm
+  deliberately unpinned: the ADRs never established the true beat rate.

@@ -41,6 +41,8 @@ Read in order for the full argument, or jump by role below.
 
 ## Engineering Record
 
+- [Eval Baseline](evals/baseline.md) — generated tier 0–1 numbers (`python -m musical_perception.evals run` → `bless`); the honest Gate A2 table
+
 - [Feasibility Study 2026-07](FEASIBILITY-2026-07.md) — the founding analysis
   (question → verdict → evidence)
 - [ROADMAP](ROADMAP.md) — original perception roadmap (Phases 1–2 historical
@@ -63,6 +65,7 @@ Read in order for the full argument, or jump by role below.
 | [008](adr/008-analysis-trigger-pipeline.md) | Analysis trigger pipeline (wake word — *superseded by cue detection, see [Vision 07](vision/07-interaction-design.md) §7.2*) |
 | [009](adr/009-evaluation-harness.md) | Evaluation harness — the four-tier eval ladder that implements [Vision 08](vision/08-benchmark-and-shadow-mode.md) |
 | [010](adr/010-transcript-authority.md) | Transcript authority + deterministic classification (index-keyed merge) |
+| [011](adr/011-phrase-structure-definition.md) | Phrase-structure definition — the first eval-gated change (live-check 3/3) |
 
 ## Serving this site
 

@@ -7,6 +7,7 @@ to produce MusicalParameters from audio input.
 
 from pathlib import Path
 
+from musical_perception.bundle import PerceptionBundle, build_default_bundle
 from musical_perception.types import (
     GeminiAnalysisResult,
     MarkerType,
@@ -15,7 +16,7 @@ from musical_perception.types import (
     TimestampedWord,
 )
 
-_VIDEO_EXTENSIONS = {".mov", ".mp4", ".avi", ".mkv", ".webm"}
+_VIDEO_EXTENSIONS = {".mov", ".mp4", ".m4v", ".avi", ".mkv", ".webm"}
 
 
 def _normalize_word(word: str) -> str:
@@ -121,6 +122,7 @@ def analyze(
     gemini_client=None,
     gemini_model: str = "gemini-2.5-flash",
     use_pose: bool = False,
+    bundle: PerceptionBundle | None = None,
 ) -> MusicalParameters:
     """
     Analyze an audio or video file and return structured musical parameters.
@@ -137,6 +139,10 @@ def analyze(
         gemini_client: Pre-loaded Gemini client (optional, avoids re-init)
         gemini_model: Gemini model to use if gemini_client not provided
         use_pose: Whether to run pose estimation for movement quality (requires pose deps, video only)
+        bundle: Perception providers to use. When given, it wins: the
+            model/model_name/gemini_client/gemini_model arguments are ignored.
+            Defaults to the real wrappers; the eval harness passes a replay
+            bundle built from frozen traces.
 
     Returns:
         MusicalParameters with extracted musical information
@@ -144,14 +150,17 @@ def analyze(
     from musical_perception.precision.tempo import calculate_tempo, interpret_meter
     from musical_perception.precision.subdivision import analyze_subdivisions
     from musical_perception.precision.rhythm import detect_onset_tempo
-    from musical_perception.perception.whisper import load_model, transcribe
-    from musical_perception.perception.gemini import load_client, analyze_media
 
-    if model is None:
-        model = load_model(model_name)
+    if bundle is None:
+        bundle = build_default_bundle(
+            model=model,
+            model_name=model_name,
+            gemini_client=gemini_client,
+            gemini_model=gemini_model,
+        )
 
     # Whisper owns timestamps, Gemini owns word classification
-    words = transcribe(model, audio_path)
+    words = bundle.transcribe(audio_path)
 
     # Onset-based tempo (Gemini-independent, runs on Whisper timestamps alone)
     onset_tempo = detect_onset_tempo(words)
@@ -159,10 +168,8 @@ def analyze(
     # Pass onset BPM to Gemini as a calibration hint
     onset_bpm = onset_tempo.bpm if onset_tempo is not None else None
 
-    if gemini_client is None:
-        gemini_client = load_client(model=gemini_model)
-    gemini_result = analyze_media(
-        gemini_client, audio_path,
+    gemini_result = bundle.analyze_media(
+        audio_path,
         onset_bpm=onset_bpm,
         transcript_words=[w.word for w in words],
     )
@@ -177,15 +184,14 @@ def analyze(
 
     # Pose estimation + dynamics (optional — requires pose deps, video only)
     is_video = Path(audio_path).suffix.lower() in _VIDEO_EXTENSIONS
-    if use_pose and not is_video:
+    if use_pose and (not is_video or bundle.extract_landmarks is None):
         import warnings
-        warnings.warn("--pose requires video input; skipping pose estimation for audio file")
-    if use_pose and is_video:
-        from musical_perception.perception.pose import load_model as load_pose, extract_landmarks
+        reason = "video input" if not is_video else "a pose-capable bundle"
+        warnings.warn(f"--pose requires {reason}; skipping pose estimation")
+    if use_pose and is_video and bundle.extract_landmarks is not None:
         from musical_perception.precision.dynamics import compute_quality, synthesize
 
-        landmarker = load_pose()
-        landmark_series = extract_landmarks(landmarker, audio_path)
+        landmark_series = bundle.extract_landmarks(audio_path)
         pose_quality = compute_quality(landmark_series)
         quality = synthesize(gemini=quality, pose=pose_quality)
 

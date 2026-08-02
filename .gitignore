@@ -27,3 +27,6 @@ video/
 
 # mkdocs build output
 site/
+
+# eval run artifacts (bless promotes one to evals/baseline.json)
+evals/runs/
