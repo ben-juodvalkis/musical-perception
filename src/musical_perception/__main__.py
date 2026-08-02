@@ -5,7 +5,7 @@ import sys
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python -m musical_perception <audio_file> [--signature] [--stress] [--pose] [--model NAME]")
+        print("Usage: python -m musical_perception <audio_file> [--signature] [--stress] [--pose] [--model NAME] [--record-traces [DIR]]")
         sys.exit(1)
 
     audio_file = sys.argv[1]
@@ -20,7 +20,31 @@ def main():
             sys.exit(1)
         model_name = sys.argv[idx + 1]
 
+    gemini_model = "gemini-2.5-flash"
+    trace_dir = None
+    if "--record-traces" in sys.argv:
+        from pathlib import Path
+        from musical_perception.evals.traces import slugify
+
+        idx = sys.argv.index("--record-traces")
+        nxt = sys.argv[idx + 1] if idx + 1 < len(sys.argv) else None
+        if nxt and not nxt.startswith("--"):
+            trace_dir = Path(nxt)
+        else:
+            trace_dir = Path("evals/traces") / slugify(Path(audio_file).stem)
+
     from musical_perception.analyze import analyze
+
+    bundle = None
+    if trace_dir is not None:
+        from musical_perception.bundle import build_default_bundle
+        from musical_perception.evals.traces import make_recording_bundle
+
+        bundle = make_recording_bundle(
+            build_default_bundle(model_name=model_name, gemini_model=gemini_model),
+            trace_dir,
+        )
+        print(f"Recording trace to {trace_dir}")
 
     print("Analyzing with Gemini...")
     result = analyze(
@@ -29,7 +53,18 @@ def main():
         extract_signature=extract_sig,
         detect_stress=detect_stress,
         use_pose=use_pose,
+        bundle=bundle,
     )
+
+    if trace_dir is not None:
+        from musical_perception.evals.traces import write_meta
+
+        write_meta(
+            trace_dir, audio_file,
+            use_pose=use_pose,
+            whisper_model_name=model_name,
+            gemini_model=gemini_model,
+        )
 
     if result.normalized_tempo is not None:
         nt = result.normalized_tempo
