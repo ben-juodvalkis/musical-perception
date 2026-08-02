@@ -1,0 +1,25 @@
+id: adr010-grande-battement
+input:
+  trace: traces/grande-battement/
+  media: "video/youtube/grande battement.mov"
+tags:
+  source: youtube
+  teacher: yt01
+  slot: grand_battement
+  count_style: numbers
+  explanation: interleaved
+  lang: en
+  accompanied: false
+  snr_band: high
+expect:
+  slot: grand_battement
+  marking_bpm: 104
+  meter: "4/4"
+  counts: 32
+  sides: both
+  # subdivision omitted — unverified by ear
+notes: >-
+  Ground truth verified by ear 2026-08-01: two 32-count phrases demonstrated
+  at ~104, then the back marked quickly and vaguely (the 260 BPM explanation
+  burst). structure.counts was unstable live (16/24/32) — this is the
+  acceptance case for the ADR-011 counts definition fix.

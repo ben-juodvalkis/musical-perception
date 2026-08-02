@@ -41,6 +41,8 @@ Read in order for the full argument, or jump by role below.
 
 ## Engineering Record
 
+- [Eval Baseline](evals/baseline.md) — generated tier 0–1 numbers (`python -m musical_perception.evals run` → `bless`); the honest Gate A2 table
+
 - [Feasibility Study 2026-07](FEASIBILITY-2026-07.md) — the founding analysis
   (question → verdict → evidence)
 - [ROADMAP](ROADMAP.md) — original perception roadmap (Phases 1–2 historical

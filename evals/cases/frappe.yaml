@@ -1,0 +1,22 @@
+id: frappe
+input:
+  trace: traces/frappe/
+  media: "video/youtube/Frappe.mov"
+tags:
+  source: youtube
+  teacher: yt03
+  slot: frappe
+  count_style: step_names
+  explanation: interleaved
+  lang: en
+  accompanied: false
+expect:
+  slot: frappe
+  marking_bpm: 160
+  counts: 64
+  # meter/sides unpinned — not yet verified by ear
+notes: >-
+  Ground truth from Ben 2026-08-02: 64 counts at about 160 BPM, followed by
+  a balance (the balance is a transitional phrase — a natural
+  primary-vs-transitional test for the quality model once character labels
+  exist).

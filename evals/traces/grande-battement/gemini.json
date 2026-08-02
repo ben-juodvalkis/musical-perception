@@ -1,0 +1,744 @@
+{
+ "model": "gemini-2.5-flash",
+ "raw_response": {
+  "words": [
+   {
+    "word": "all",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 0
+   },
+   {
+    "word": "right,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 1
+   },
+   {
+    "word": "grand",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 2
+   },
+   {
+    "word": "battement,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 3
+   },
+   {
+    "word": "please.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 4
+   },
+   {
+    "word": "we",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 5
+   },
+   {
+    "word": "take",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 6
+   },
+   {
+    "word": "two",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 7
+   },
+   {
+    "word": "grand",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 8
+   },
+   {
+    "word": "battement",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 9
+   },
+   {
+    "word": "front,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 10
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 1,
+    "index": 11
+   },
+   {
+    "word": "two,",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 12
+   },
+   {
+    "word": "grand",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 13
+   },
+   {
+    "word": "battement,",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 14
+   },
+   {
+    "word": "pass\u00e9,",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 15
+   },
+   {
+    "word": "up,",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 16
+   },
+   {
+    "word": "one",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 17
+   },
+   {
+    "word": "more",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 18
+   },
+   {
+    "word": "grand",
+    "marker_type": "beat",
+    "beat_number": 9,
+    "index": 19
+   },
+   {
+    "word": "battement,",
+    "marker_type": "beat",
+    "beat_number": 10,
+    "index": 20
+   },
+   {
+    "word": "two",
+    "marker_type": "beat",
+    "beat_number": 11,
+    "index": 21
+   },
+   {
+    "word": "to",
+    "marker_type": "beat",
+    "beat_number": 12,
+    "index": 22
+   },
+   {
+    "word": "the",
+    "marker_type": "beat",
+    "beat_number": 13,
+    "index": 23
+   },
+   {
+    "word": "side,",
+    "marker_type": "beat",
+    "beat_number": 14,
+    "index": 24
+   },
+   {
+    "word": "grand",
+    "marker_type": "beat",
+    "beat_number": 15,
+    "index": 25
+   },
+   {
+    "word": "battement,",
+    "marker_type": "beat",
+    "beat_number": 16,
+    "index": 26
+   },
+   {
+    "word": "don't",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 27
+   },
+   {
+    "word": "change,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 28
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 29
+   },
+   {
+    "word": "pass\u00e9,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 30
+   },
+   {
+    "word": "one",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 31
+   },
+   {
+    "word": "more",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 32
+   },
+   {
+    "word": "battement.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 33
+   },
+   {
+    "word": "you",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 34
+   },
+   {
+    "word": "brush,",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 35
+   },
+   {
+    "word": "brush,",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 36
+   },
+   {
+    "word": "close,",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 37
+   },
+   {
+    "word": "again,",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 38
+   },
+   {
+    "word": "brush,",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 39
+   },
+   {
+    "word": "brush,",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 40
+   },
+   {
+    "word": "close,",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 41
+   },
+   {
+    "word": "port",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 42
+   },
+   {
+    "word": "de",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 43
+   },
+   {
+    "word": "bras,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 44
+   },
+   {
+    "word": "five,",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 45
+   },
+   {
+    "word": "six,",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 46
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 47
+   },
+   {
+    "word": "all",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 48
+   },
+   {
+    "word": "from",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 49
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 50
+   },
+   {
+    "word": "back.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 51
+   },
+   {
+    "word": "so",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 52
+   },
+   {
+    "word": "it's",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 53
+   },
+   {
+    "word": "two",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 54
+   },
+   {
+    "word": "grand",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 55
+   },
+   {
+    "word": "battement",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 56
+   },
+   {
+    "word": "back,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 57
+   },
+   {
+    "word": "one",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 58
+   },
+   {
+    "word": "pass\u00e9,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 59
+   },
+   {
+    "word": "one",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 60
+   },
+   {
+    "word": "more",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 61
+   },
+   {
+    "word": "battement,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 62
+   },
+   {
+    "word": "two",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 63
+   },
+   {
+    "word": "grand",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 64
+   },
+   {
+    "word": "battement",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 65
+   },
+   {
+    "word": "side,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 66
+   },
+   {
+    "word": "that",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 67
+   },
+   {
+    "word": "pass\u00e9",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 68
+   },
+   {
+    "word": "doesn't",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 69
+   },
+   {
+    "word": "change,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 70
+   },
+   {
+    "word": "one",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 71
+   },
+   {
+    "word": "more",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 72
+   },
+   {
+    "word": "battement,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 73
+   },
+   {
+    "word": "then",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 74
+   },
+   {
+    "word": "you",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 75
+   },
+   {
+    "word": "go",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 76
+   },
+   {
+    "word": "brush",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 77
+   },
+   {
+    "word": "through",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 78
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 79
+   },
+   {
+    "word": "first,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 80
+   },
+   {
+    "word": "again",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 81
+   },
+   {
+    "word": "brush",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 82
+   },
+   {
+    "word": "through",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 83
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 84
+   },
+   {
+    "word": "first,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 85
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 86
+   },
+   {
+    "word": "you",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 87
+   },
+   {
+    "word": "finish",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 88
+   },
+   {
+    "word": "with",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 89
+   },
+   {
+    "word": "a",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 90
+   },
+   {
+    "word": "beautiful",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 91
+   },
+   {
+    "word": "port",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 92
+   },
+   {
+    "word": "de",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 93
+   },
+   {
+    "word": "bras,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 94
+   },
+   {
+    "word": "out",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 95
+   },
+   {
+    "word": "into",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 96
+   },
+   {
+    "word": "fifth.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 97
+   }
+  ],
+  "exercise": {
+   "exercise_type": "grand_battement",
+   "display_name": "Grand Battement",
+   "confidence": 1.0,
+   "reasoning": "The teacher explicitly states 'Grand Battement' and demonstrates the exercise with large, sharp leg swings to the front and side, including a pass\u00e9."
+  },
+  "counting_structure": {
+   "total_counts": 26,
+   "prep_counts": "5, 6",
+   "subdivision_type": "duple",
+   "estimated_bpm": 143
+  },
+  "meter": {
+   "beats_per_measure": 4,
+   "beat_unit": 4
+  },
+  "quality": [
+   {
+    "phrase_number": 1,
+    "description": "The phrase consists of two grand battements to the front, a pass\u00e9, one more grand battement to the front, followed by two grand battements to the side, a pass\u00e9, and one more grand battement to the side.",
+    "articulation": 0.25,
+    "weight": 0.4,
+    "energy": 0.65,
+    "primary": true
+   },
+   {
+    "phrase_number": 2,
+    "description": "This phrase involves two quick brushes to the side, closing in fifth position, repeated once.",
+    "articulation": 0.2,
+    "weight": 0.3,
+    "energy": 0.6,
+    "primary": true
+   },
+   {
+    "phrase_number": 3,
+    "description": "A port de bras movement is demonstrated, followed by prep counts 'five, six' for the next side.",
+    "articulation": 0.9,
+    "weight": 0.2,
+    "energy": 0.2,
+    "primary": false
+   }
+  ],
+  "structure": {
+   "counts": 24,
+   "sides": 2
+  }
+ },
+ "inputs": {
+  "onset_bpm_sent": 104.2,
+  "transcript_words_sent": [
+   "all",
+   "right,",
+   "grand",
+   "battement,",
+   "please.",
+   "we",
+   "take",
+   "two",
+   "grand",
+   "battement",
+   "front,",
+   "and",
+   "two,",
+   "grand",
+   "battement,",
+   "pass\u00e9,",
+   "up,",
+   "one",
+   "more",
+   "grand",
+   "battement,",
+   "two",
+   "to",
+   "the",
+   "side,",
+   "grand",
+   "battement,",
+   "don't",
+   "change,",
+   "the",
+   "pass\u00e9,",
+   "one",
+   "more",
+   "battement.",
+   "you",
+   "brush,",
+   "brush,",
+   "close,",
+   "again,",
+   "brush,",
+   "brush,",
+   "close,",
+   "port",
+   "de",
+   "bras,",
+   "five,",
+   "six,",
+   "and",
+   "all",
+   "from",
+   "the",
+   "back.",
+   "so",
+   "it's",
+   "two",
+   "grand",
+   "battement",
+   "back,",
+   "one",
+   "pass\u00e9,",
+   "one",
+   "more",
+   "battement,",
+   "two",
+   "grand",
+   "battement",
+   "side,",
+   "that",
+   "pass\u00e9",
+   "doesn't",
+   "change,",
+   "one",
+   "more",
+   "battement,",
+   "then",
+   "you",
+   "go",
+   "brush",
+   "through",
+   "the",
+   "first,",
+   "again",
+   "brush",
+   "through",
+   "the",
+   "first,",
+   "and",
+   "you",
+   "finish",
+   "with",
+   "a",
+   "beautiful",
+   "port",
+   "de",
+   "bras,",
+   "out",
+   "into",
+   "fifth."
+  ]
+ }
+}

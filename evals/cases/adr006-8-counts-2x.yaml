@@ -1,0 +1,20 @@
+id: adr006-8-counts-2x
+input:
+  trace: traces/8-counts-2x/
+  media: "audio/counting/8-counts-2x.aif"
+tags:
+  source: rig
+  teacher: ben
+  slot: counting
+  count_style: numbers
+  explanation: none
+  lang: en
+  accompanied: false
+expect:
+  marking_bpm: 130
+  meter: "4/4"
+  subdivision: none
+  counts: 8
+notes: >-
+  Clean counting fixture: eight counts, twice through. ADR-007 recorded
+  129.8 / 4/4 / none as correct.

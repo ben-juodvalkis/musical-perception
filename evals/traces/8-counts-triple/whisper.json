@@ -1,0 +1,124 @@
+{
+ "words": [
+  {
+   "word": "one",
+   "start": 0.031,
+   "end": 0.857
+  },
+  {
+   "word": "and",
+   "start": 1.079,
+   "end": 1.2
+  },
+  {
+   "word": "a",
+   "start": 1.321,
+   "end": 1.401
+  },
+  {
+   "word": "two",
+   "start": 1.542,
+   "end": 1.784
+  },
+  {
+   "word": "and",
+   "start": 1.986,
+   "end": 2.167
+  },
+  {
+   "word": "a",
+   "start": 2.288,
+   "end": 2.368
+  },
+  {
+   "word": "three",
+   "start": 2.449,
+   "end": 2.691
+  },
+  {
+   "word": "and",
+   "start": 2.872,
+   "end": 3.033
+  },
+  {
+   "word": "a",
+   "start": 3.174,
+   "end": 3.235
+  },
+  {
+   "word": "four",
+   "start": 3.316,
+   "end": 3.598
+  },
+  {
+   "word": "and",
+   "start": 3.799,
+   "end": 3.94
+  },
+  {
+   "word": "a",
+   "start": 4.041,
+   "end": 4.101
+  },
+  {
+   "word": "five",
+   "start": 4.222,
+   "end": 4.525
+  },
+  {
+   "word": "and",
+   "start": 4.686,
+   "end": 4.968
+  },
+  {
+   "word": "a",
+   "start": 4.988,
+   "end": 5.069
+  },
+  {
+   "word": "six",
+   "start": 5.169,
+   "end": 5.451
+  },
+  {
+   "word": "and",
+   "start": 5.572,
+   "end": 5.713
+  },
+  {
+   "word": "a",
+   "start": 5.814,
+   "end": 5.895
+  },
+  {
+   "word": "seven",
+   "start": 5.996,
+   "end": 6.338
+  },
+  {
+   "word": "and",
+   "start": 6.499,
+   "end": 6.862
+  },
+  {
+   "word": "a",
+   "start": 7.043,
+   "end": 7.064
+  },
+  {
+   "word": "eight",
+   "start": 7.084,
+   "end": 7.245
+  },
+  {
+   "word": "and",
+   "start": 7.426,
+   "end": 7.809
+  },
+  {
+   "word": "a",
+   "start": 8.333,
+   "end": 8.353
+  }
+ ]
+}

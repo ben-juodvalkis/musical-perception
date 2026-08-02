@@ -32,7 +32,7 @@ from musical_perception.types import (
     QualityProfile,
 )
 
-_VIDEO_EXTENSIONS = {".mov", ".mp4", ".avi", ".mkv", ".webm"}
+_VIDEO_EXTENSIONS = {".mov", ".mp4", ".m4v", ".avi", ".mkv", ".webm"}
 _AUDIO_EXTENSIONS = {".wav", ".mp3", ".aif", ".aiff", ".aac", ".flac", ".ogg", ".m4a"}
 
 _MARKER_TYPE_MAP = {

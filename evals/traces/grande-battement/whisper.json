@@ -1,0 +1,494 @@
+{
+ "words": [
+  {
+   "word": "all",
+   "start": 0.031,
+   "end": 0.632
+  },
+  {
+   "word": "right,",
+   "start": 0.652,
+   "end": 0.912
+  },
+  {
+   "word": "grand",
+   "start": 0.952,
+   "end": 1.112
+  },
+  {
+   "word": "battement,",
+   "start": 1.132,
+   "end": 1.473
+  },
+  {
+   "word": "please.",
+   "start": 1.493,
+   "end": 1.753
+  },
+  {
+   "word": "we",
+   "start": 2.353,
+   "end": 2.474
+  },
+  {
+   "word": "take",
+   "start": 2.494,
+   "end": 2.634
+  },
+  {
+   "word": "two",
+   "start": 2.674,
+   "end": 2.794
+  },
+  {
+   "word": "grand",
+   "start": 2.834,
+   "end": 2.994
+  },
+  {
+   "word": "battement",
+   "start": 3.014,
+   "end": 3.254
+  },
+  {
+   "word": "front,",
+   "start": 3.315,
+   "end": 3.575
+  },
+  {
+   "word": "and",
+   "start": 4.095,
+   "end": 4.276
+  },
+  {
+   "word": "two,",
+   "start": 4.316,
+   "end": 4.416
+  },
+  {
+   "word": "grand",
+   "start": 5.056,
+   "end": 5.517
+  },
+  {
+   "word": "battement,",
+   "start": 5.537,
+   "end": 6.278
+  },
+  {
+   "word": "pass\u00e9,",
+   "start": 6.298,
+   "end": 6.978
+  },
+  {
+   "word": "up,",
+   "start": 7.059,
+   "end": 7.159
+  },
+  {
+   "word": "one",
+   "start": 7.419,
+   "end": 7.539
+  },
+  {
+   "word": "more",
+   "start": 7.559,
+   "end": 7.699
+  },
+  {
+   "word": "grand",
+   "start": 7.719,
+   "end": 7.879
+  },
+  {
+   "word": "battement,",
+   "start": 7.899,
+   "end": 8.62
+  },
+  {
+   "word": "two",
+   "start": 8.64,
+   "end": 8.82
+  },
+  {
+   "word": "to",
+   "start": 8.84,
+   "end": 8.981
+  },
+  {
+   "word": "the",
+   "start": 9.021,
+   "end": 9.201
+  },
+  {
+   "word": "side,",
+   "start": 9.261,
+   "end": 9.521
+  },
+  {
+   "word": "grand",
+   "start": 9.821,
+   "end": 10.182
+  },
+  {
+   "word": "battement,",
+   "start": 10.202,
+   "end": 10.642
+  },
+  {
+   "word": "don't",
+   "start": 10.763,
+   "end": 10.983
+  },
+  {
+   "word": "change,",
+   "start": 11.043,
+   "end": 11.323
+  },
+  {
+   "word": "the",
+   "start": 11.443,
+   "end": 11.563
+  },
+  {
+   "word": "pass\u00e9,",
+   "start": 11.623,
+   "end": 12.124
+  },
+  {
+   "word": "one",
+   "start": 12.264,
+   "end": 12.364
+  },
+  {
+   "word": "more",
+   "start": 12.384,
+   "end": 12.524
+  },
+  {
+   "word": "battement.",
+   "start": 12.544,
+   "end": 13.525
+  },
+  {
+   "word": "you",
+   "start": 13.545,
+   "end": 13.746
+  },
+  {
+   "word": "brush,",
+   "start": 13.786,
+   "end": 14.086
+  },
+  {
+   "word": "brush,",
+   "start": 14.326,
+   "end": 14.887
+  },
+  {
+   "word": "close,",
+   "start": 14.907,
+   "end": 15.488
+  },
+  {
+   "word": "again,",
+   "start": 15.508,
+   "end": 15.828
+  },
+  {
+   "word": "brush,",
+   "start": 15.888,
+   "end": 16.489
+  },
+  {
+   "word": "brush,",
+   "start": 16.629,
+   "end": 17.009
+  },
+  {
+   "word": "close,",
+   "start": 17.169,
+   "end": 17.53
+  },
+  {
+   "word": "port",
+   "start": 17.55,
+   "end": 17.71
+  },
+  {
+   "word": "de",
+   "start": 17.73,
+   "end": 17.81
+  },
+  {
+   "word": "bras,",
+   "start": 17.83,
+   "end": 18.11
+  },
+  {
+   "word": "five,",
+   "start": 18.331,
+   "end": 18.751
+  },
+  {
+   "word": "six,",
+   "start": 19.492,
+   "end": 19.792
+  },
+  {
+   "word": "and",
+   "start": 20.413,
+   "end": 20.533
+  },
+  {
+   "word": "all",
+   "start": 20.573,
+   "end": 20.913
+  },
+  {
+   "word": "from",
+   "start": 21.414,
+   "end": 21.554
+  },
+  {
+   "word": "the",
+   "start": 21.614,
+   "end": 21.674
+  },
+  {
+   "word": "back.",
+   "start": 21.734,
+   "end": 21.955
+  },
+  {
+   "word": "so",
+   "start": 21.975,
+   "end": 22.015
+  },
+  {
+   "word": "it's",
+   "start": 22.035,
+   "end": 22.155
+  },
+  {
+   "word": "two",
+   "start": 22.235,
+   "end": 22.415
+  },
+  {
+   "word": "grand",
+   "start": 22.435,
+   "end": 22.615
+  },
+  {
+   "word": "battement",
+   "start": 22.635,
+   "end": 22.936
+  },
+  {
+   "word": "back,",
+   "start": 22.976,
+   "end": 23.216
+  },
+  {
+   "word": "one",
+   "start": 24.037,
+   "end": 24.137
+  },
+  {
+   "word": "pass\u00e9,",
+   "start": 24.197,
+   "end": 24.577
+  },
+  {
+   "word": "one",
+   "start": 24.597,
+   "end": 24.697
+  },
+  {
+   "word": "more",
+   "start": 24.717,
+   "end": 24.858
+  },
+  {
+   "word": "battement,",
+   "start": 24.878,
+   "end": 25.638
+  },
+  {
+   "word": "two",
+   "start": 25.658,
+   "end": 25.819
+  },
+  {
+   "word": "grand",
+   "start": 25.859,
+   "end": 26.019
+  },
+  {
+   "word": "battement",
+   "start": 26.039,
+   "end": 26.359
+  },
+  {
+   "word": "side,",
+   "start": 26.399,
+   "end": 26.7
+  },
+  {
+   "word": "that",
+   "start": 27.14,
+   "end": 27.3
+  },
+  {
+   "word": "pass\u00e9",
+   "start": 27.36,
+   "end": 27.621
+  },
+  {
+   "word": "doesn't",
+   "start": 27.661,
+   "end": 27.921
+  },
+  {
+   "word": "change,",
+   "start": 28.021,
+   "end": 28.341
+  },
+  {
+   "word": "one",
+   "start": 28.702,
+   "end": 28.782
+  },
+  {
+   "word": "more",
+   "start": 28.802,
+   "end": 28.962
+  },
+  {
+   "word": "battement,",
+   "start": 28.982,
+   "end": 29.903
+  },
+  {
+   "word": "then",
+   "start": 29.883,
+   "end": 30.043
+  },
+  {
+   "word": "you",
+   "start": 30.063,
+   "end": 30.144
+  },
+  {
+   "word": "go",
+   "start": 30.184,
+   "end": 30.304
+  },
+  {
+   "word": "brush",
+   "start": 30.364,
+   "end": 30.685
+  },
+  {
+   "word": "through",
+   "start": 30.866,
+   "end": 31.367
+  },
+  {
+   "word": "the",
+   "start": 31.387,
+   "end": 31.607
+  },
+  {
+   "word": "first,",
+   "start": 31.668,
+   "end": 31.968
+  },
+  {
+   "word": "again",
+   "start": 32.249,
+   "end": 32.55
+  },
+  {
+   "word": "brush",
+   "start": 32.59,
+   "end": 33.212
+  },
+  {
+   "word": "through",
+   "start": 33.432,
+   "end": 33.833
+  },
+  {
+   "word": "the",
+   "start": 33.873,
+   "end": 34.034
+  },
+  {
+   "word": "first,",
+   "start": 34.074,
+   "end": 34.355
+  },
+  {
+   "word": "and",
+   "start": 34.736,
+   "end": 34.796
+  },
+  {
+   "word": "you",
+   "start": 34.816,
+   "end": 34.916
+  },
+  {
+   "word": "finish",
+   "start": 34.936,
+   "end": 35.137
+  },
+  {
+   "word": "with",
+   "start": 35.157,
+   "end": 35.257
+  },
+  {
+   "word": "a",
+   "start": 35.297,
+   "end": 35.337
+  },
+  {
+   "word": "beautiful",
+   "start": 35.397,
+   "end": 35.899
+  },
+  {
+   "word": "port",
+   "start": 35.939,
+   "end": 36.099
+  },
+  {
+   "word": "de",
+   "start": 36.119,
+   "end": 36.179
+  },
+  {
+   "word": "bras,",
+   "start": 36.199,
+   "end": 36.44
+  },
+  {
+   "word": "out",
+   "start": 37.583,
+   "end": 37.723
+  },
+  {
+   "word": "into",
+   "start": 38.465,
+   "end": 38.726
+  },
+  {
+   "word": "fifth.",
+   "start": 38.806,
+   "end": 39.488
+  }
+ ]
+}

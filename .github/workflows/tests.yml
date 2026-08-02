@@ -1,0 +1,20 @@
+name: tests
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      # dev extra = numpy + pytest + pyyaml only. Tiers 0-1 (synthetic
+      # sweep + frozen-trace replay) run dep-free and offline; tests that
+      # need heavy optional deps self-skip.
+      - run: pip install -e ".[dev]"
+      - run: pytest -q

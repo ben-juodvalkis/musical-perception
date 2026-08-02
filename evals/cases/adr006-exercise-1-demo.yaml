@@ -1,0 +1,22 @@
+id: adr006-exercise-1-demo
+input:
+  trace: traces/exercise-1-demo/
+  media: "video/youtube/Exercise 1 Demo.m4v"
+tags:
+  source: youtube
+  teacher: yt02
+  slot: tendu
+  count_style: step_names
+  explanation: interleaved
+  lang: en
+  accompanied: false
+expect:
+  slot: tendu
+  marking_bpm: 117
+  meter: "3/4"
+  subdivision: none
+notes: >-
+  ADR-006's ground truth (3/4 at ~117). The recorded pipeline answer was
+  4/4 duple at ~111 — the meter row is EXPECTED to fail in the baseline;
+  that honest failure is the whole point of porting it (accent-periodicity
+  work, Roadmap Track 3, is what should eventually flip it).

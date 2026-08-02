@@ -1,8 +1,9 @@
 # ADR-009: Evaluation Harness
 
 **Date:** 2026-07-28
-**Status:** Accepted (harness not yet built — sequenced as
-[11 · Roadmap](../vision/11-roadmap.md) Track 2)
+**Status:** Accepted — first increment implemented 2026-08-02 (tiers 0–1:
+synthetic sweep, frozen-trace replay, case/scorer/runner/CLI, baseline
+published at [Eval Baseline](../evals/baseline.md); tiers 2–4 pending)
 
 ## Context
 

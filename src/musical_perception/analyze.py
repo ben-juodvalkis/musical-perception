@@ -16,7 +16,7 @@ from musical_perception.types import (
     TimestampedWord,
 )
 
-_VIDEO_EXTENSIONS = {".mov", ".mp4", ".avi", ".mkv", ".webm"}
+_VIDEO_EXTENSIONS = {".mov", ".mp4", ".m4v", ".avi", ".mkv", ".webm"}
 
 
 def _normalize_word(word: str) -> str:

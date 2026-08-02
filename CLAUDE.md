@@ -74,11 +74,22 @@ pytest
 Tests for precision code use hardcoded data (no audio files, no models needed).
 
 Tests answer "is it broken?"; **evals** answer "is it better?" — the harness
-that produces those numbers (case format, scorers, frozen model traces, the
-four tiers) is specified in
-[ADR-009](docs/adr/009-evaluation-harness.md) and
-[Vision 08 §8.3–8.4](docs/vision/08-benchmark-and-shadow-mode.md). Perception
-changes are judged by the eval delta, not by a hand-run on one file.
+(tiers 0–1: synthetic sweep + frozen-trace replay) lives in
+`src/musical_perception/evals/` per [ADR-009](docs/adr/009-evaluation-harness.md):
+
+```bash
+python -m musical_perception.evals run --suite tier0,tier1   # score everything
+python -m musical_perception.evals bless                     # promote run to baseline
+python -m musical_perception <clip> --record-traces          # freeze a new trace
+```
+
+Cases live in `evals/cases/*.yaml` (field names are a strict subset of
+[Vision 08 §8.2](docs/vision/08-benchmark-and-shadow-mode.md)); traces in
+`evals/traces/`; the blessed baseline is `evals/baseline.json` +
+[docs/evals/baseline.md](docs/evals/baseline.md). The tier-1 pytest gate
+fails on ANY outcome change vs the baseline — improvements too; re-bless
+to carry the delta. Perception changes are judged by the eval delta, not
+by a hand-run on one file.
 
 ## Dependencies
 
