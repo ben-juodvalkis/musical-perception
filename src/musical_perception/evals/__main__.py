@@ -95,7 +95,12 @@ def _cmd_live_check(args) -> int:
     wanted = [f.strip() for f in args.fields.split(",")] if args.fields else None
     failures = 0
     for i in range(args.runs):
-        result = analyze(case.media)
+        try:
+            result = analyze(case.media)
+        except Exception as e:  # transient API/network faults are a run error
+            failures += 1
+            print(f"run {i + 1}/{args.runs}: ERROR  {type(e).__name__}: {e}")
+            continue
         scores = score_parameters(result, case)
         if wanted:
             scores = [s for s in scores if s.field in wanted]

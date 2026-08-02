@@ -61,5 +61,6 @@ nav:
       - 008 · Analysis Trigger Pipeline: adr/008-analysis-trigger-pipeline.md
       - 009 · Evaluation Harness: adr/009-evaluation-harness.md
       - 010 · Transcript Authority: adr/010-transcript-authority.md
+      - 011 · Phrase-Structure Definition: adr/011-phrase-structure-definition.md
   - Evals:
       - Baseline: evals/baseline.md

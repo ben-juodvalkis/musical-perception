@@ -71,223 +71,223 @@
    {
     "word": "and",
     "marker_type": "and",
-    "beat_number": 1,
+    "beat_number": null,
     "index": 11
    },
    {
     "word": "two,",
     "marker_type": "beat",
-    "beat_number": 2,
+    "beat_number": null,
     "index": 12
    },
    {
     "word": "grand",
     "marker_type": "beat",
-    "beat_number": 3,
+    "beat_number": 1,
     "index": 13
    },
    {
     "word": "battement,",
     "marker_type": "beat",
-    "beat_number": 4,
+    "beat_number": 2,
     "index": 14
    },
    {
     "word": "pass\u00e9,",
     "marker_type": "beat",
-    "beat_number": 5,
+    "beat_number": 3,
     "index": 15
    },
    {
     "word": "up,",
     "marker_type": "beat",
-    "beat_number": 6,
+    "beat_number": 4,
     "index": 16
    },
    {
     "word": "one",
     "marker_type": "beat",
-    "beat_number": 7,
+    "beat_number": 5,
     "index": 17
    },
    {
     "word": "more",
     "marker_type": "beat",
-    "beat_number": 8,
+    "beat_number": 6,
     "index": 18
    },
    {
     "word": "grand",
     "marker_type": "beat",
-    "beat_number": 9,
+    "beat_number": 7,
     "index": 19
    },
    {
     "word": "battement,",
     "marker_type": "beat",
-    "beat_number": 10,
+    "beat_number": 8,
     "index": 20
    },
    {
     "word": "two",
     "marker_type": "beat",
-    "beat_number": 11,
+    "beat_number": 9,
     "index": 21
    },
    {
     "word": "to",
     "marker_type": "beat",
-    "beat_number": 12,
+    "beat_number": 10,
     "index": 22
    },
    {
     "word": "the",
     "marker_type": "beat",
-    "beat_number": 13,
+    "beat_number": 11,
     "index": 23
    },
    {
     "word": "side,",
     "marker_type": "beat",
-    "beat_number": 14,
+    "beat_number": 12,
     "index": 24
    },
    {
     "word": "grand",
     "marker_type": "beat",
-    "beat_number": 15,
+    "beat_number": 13,
     "index": 25
    },
    {
     "word": "battement,",
     "marker_type": "beat",
-    "beat_number": 16,
+    "beat_number": 14,
     "index": 26
    },
    {
     "word": "don't",
-    "marker_type": "none",
-    "beat_number": null,
+    "marker_type": "beat",
+    "beat_number": 15,
     "index": 27
    },
    {
     "word": "change,",
-    "marker_type": "none",
-    "beat_number": null,
+    "marker_type": "beat",
+    "beat_number": 16,
     "index": 28
    },
    {
     "word": "the",
-    "marker_type": "none",
-    "beat_number": null,
+    "marker_type": "beat",
+    "beat_number": 17,
     "index": 29
    },
    {
     "word": "pass\u00e9,",
-    "marker_type": "none",
-    "beat_number": null,
+    "marker_type": "beat",
+    "beat_number": 18,
     "index": 30
    },
    {
     "word": "one",
-    "marker_type": "none",
-    "beat_number": null,
+    "marker_type": "beat",
+    "beat_number": 19,
     "index": 31
    },
    {
     "word": "more",
-    "marker_type": "none",
-    "beat_number": null,
+    "marker_type": "beat",
+    "beat_number": 20,
     "index": 32
    },
    {
     "word": "battement.",
-    "marker_type": "none",
-    "beat_number": null,
+    "marker_type": "beat",
+    "beat_number": 21,
     "index": 33
    },
    {
     "word": "you",
     "marker_type": "beat",
-    "beat_number": 1,
+    "beat_number": 22,
     "index": 34
    },
    {
     "word": "brush,",
     "marker_type": "beat",
-    "beat_number": 2,
+    "beat_number": 23,
     "index": 35
    },
    {
     "word": "brush,",
     "marker_type": "beat",
-    "beat_number": 3,
+    "beat_number": 24,
     "index": 36
    },
    {
     "word": "close,",
     "marker_type": "beat",
-    "beat_number": 4,
+    "beat_number": 25,
     "index": 37
    },
    {
     "word": "again,",
     "marker_type": "beat",
-    "beat_number": 5,
+    "beat_number": 26,
     "index": 38
    },
    {
     "word": "brush,",
     "marker_type": "beat",
-    "beat_number": 6,
+    "beat_number": 27,
     "index": 39
    },
    {
     "word": "brush,",
     "marker_type": "beat",
-    "beat_number": 7,
+    "beat_number": 28,
     "index": 40
    },
    {
     "word": "close,",
     "marker_type": "beat",
-    "beat_number": 8,
+    "beat_number": 29,
     "index": 41
    },
    {
     "word": "port",
-    "marker_type": "none",
-    "beat_number": null,
+    "marker_type": "beat",
+    "beat_number": 30,
     "index": 42
    },
    {
     "word": "de",
-    "marker_type": "none",
-    "beat_number": null,
+    "marker_type": "beat",
+    "beat_number": 31,
     "index": 43
    },
    {
     "word": "bras,",
-    "marker_type": "none",
-    "beat_number": null,
+    "marker_type": "beat",
+    "beat_number": 32,
     "index": 44
    },
    {
     "word": "five,",
     "marker_type": "beat",
-    "beat_number": 1,
+    "beat_number": 33,
     "index": 45
    },
    {
     "word": "six,",
     "marker_type": "beat",
-    "beat_number": 2,
+    "beat_number": 34,
     "index": 46
    },
    {
     "word": "and",
-    "marker_type": "none",
-    "beat_number": null,
+    "marker_type": "and",
+    "beat_number": 34,
     "index": 47
    },
    {
@@ -595,13 +595,13 @@
    "exercise_type": "grand_battement",
    "display_name": "Grand Battement",
    "confidence": 1.0,
-   "reasoning": "The teacher explicitly states 'Grand Battement' and demonstrates the exercise with large, sharp leg swings to the front and side, including a pass\u00e9."
+   "reasoning": "The teacher explicitly names the exercise as 'grand battement' and demonstrates the corresponding movements to the front and side, including pass\u00e9s."
   },
   "counting_structure": {
-   "total_counts": 26,
-   "prep_counts": "5, 6",
-   "subdivision_type": "duple",
-   "estimated_bpm": 143
+   "total_counts": 34,
+   "prep_counts": "and two",
+   "subdivision_type": "none",
+   "estimated_bpm": 104
   },
   "meter": {
    "beats_per_measure": 4,
@@ -610,31 +610,39 @@
   "quality": [
    {
     "phrase_number": 1,
-    "description": "The phrase consists of two grand battements to the front, a pass\u00e9, one more grand battement to the front, followed by two grand battements to the side, a pass\u00e9, and one more grand battement to the side.",
+    "description": "Two grand battements to the front, followed by a pass\u00e9 and another grand battement front.",
     "articulation": 0.25,
-    "weight": 0.4,
+    "weight": 0.45,
     "energy": 0.65,
     "primary": true
    },
    {
     "phrase_number": 2,
-    "description": "This phrase involves two quick brushes to the side, closing in fifth position, repeated once.",
-    "articulation": 0.2,
-    "weight": 0.3,
-    "energy": 0.6,
+    "description": "Two grand battements to the side, followed by a pass\u00e9 and another grand battement side.",
+    "articulation": 0.25,
+    "weight": 0.45,
+    "energy": 0.65,
     "primary": true
    },
    {
     "phrase_number": 3,
-    "description": "A port de bras movement is demonstrated, followed by prep counts 'five, six' for the next side.",
-    "articulation": 0.9,
-    "weight": 0.2,
-    "energy": 0.2,
+    "description": "A pass\u00e9, a grand battement, then two quick brush-brush-close movements.",
+    "articulation": 0.2,
+    "weight": 0.3,
+    "energy": 0.7,
+    "primary": true
+   },
+   {
+    "phrase_number": 4,
+    "description": "Two quick brush-brush-close movements, followed by a port de bras.",
+    "articulation": 0.5,
+    "weight": 0.4,
+    "energy": 0.5,
     "primary": false
    }
   ],
   "structure": {
-   "counts": 24,
+   "counts": 32,
    "sides": 2
   }
  },

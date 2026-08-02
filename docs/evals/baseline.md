@@ -1,6 +1,6 @@
 # Eval Baseline
 
-Generated 2026-08-02T06:54:13+00:00 at git `34441ab` by `python -m musical_perception.evals bless`. Do not edit by hand.
+Generated 2026-08-02T10:44:59+00:00 at git `32bc2a3` by `python -m musical_perception.evals bless`. Do not edit by hand.
 
 Outcomes are **correct / wrong / abstained** — abstention is never
 counted as wrong (ADR-009). n is small; intervals are the honest part.
@@ -16,7 +16,7 @@ counted as wrong (ADR-009). n is small; intervals are the honest part.
 
 | field | n | correct | wrong | abstained | accuracy | wilson 95% | failure modes |
 |---|---|---|---|---|---|---|---|
-| counts | 4 | 2 | 2 | 0 | 0.5 | [0.15, 0.85] | counts_wrong×2 |
+| counts | 4 | 3 | 1 | 0 | 0.75 | [0.301, 0.954] | counts_wrong×1 |
 | meter_triple | 5 | 3 | 2 | 0 | 0.6 | [0.231, 0.882] | tempo_wrong×1, subdivision_wrong×1 |
 | sides | 1 | 1 | 0 | 0 | 1.0 | [0.207, 1.0] | — |
 | slot | 4 | 4 | 0 | 0 | 1.0 | [0.51, 1.0] | — |

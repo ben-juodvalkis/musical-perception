@@ -231,13 +231,27 @@ _RESPONSE_SCHEMA = {
             "properties": {
                 "counts": {
                     "type": "INTEGER",
-                    "description": "Total counts in one full phrase (e.g. 16, 32)",
+                    "description": (
+                        "Length of ONE complete phrase in counts, as "
+                        "demonstrated: the core repeating pattern only. "
+                        "Derive it from the counting — the total span of "
+                        "counts before the pattern repeats or the exercise "
+                        "moves on (counting 1..8 four times through "
+                        "different steps = 32 counts, not 8). EXCLUDE "
+                        "preparation counts before one AND any closing "
+                        "port de bras, balance, or finish after the "
+                        "pattern completes. Do NOT multiply by sides — a "
+                        "32-count phrase done both sides is counts=32, "
+                        "sides=2, never 64."
+                    ),
                 },
                 "sides": {
                     "type": "INTEGER",
                     "description": (
-                        "Number of sides/repetitions (1 if one-sided, "
-                        "2 if the exercise repeats left and right)"
+                        "How many times the phrase pattern repeats with a "
+                        "different side, facing, or direction (2 if it "
+                        "repeats left/right or front/back, 1 if performed "
+                        "once). Repetitions belong here, never in counts."
                     ),
                 },
             },
@@ -292,8 +306,16 @@ Mark each phrase as "primary" (true/false). Primary phrases are the core/definin
 movements of the exercise. Transitions, preparations, and port de bras breaks \
 between sets are NOT primary.
 
-For structure, report the phrase length in counts and whether the exercise \
-is performed on one side or both sides."""
+For structure: counts is the length of ONE complete phrase as demonstrated — \
+the core repeating pattern only. Follow the counting and take the full span \
+before the pattern repeats to another side/direction or the exercise ends \
+(a combination counted 1..8 four times over different steps is 32 counts, \
+not 8). EXCLUDE preparation counts before one, and EXCLUDE any closing port \
+de bras, balance, or finishing position after the pattern completes — those \
+are not part of the phrase. sides is how many times the phrase repeats to \
+another side or direction (front/back or left/right). Never multiply counts \
+by sides, and never report just one 8-count as the phrase if the combination \
+continues."""
 
 
 @dataclass
