@@ -183,6 +183,9 @@ class GeminiWord:
     word: str
     marker_type: MarkerType | None  # None for non-rhythmic words
     beat_number: int | None
+    # Position in the ASR transcript Gemini was given (index-keyed
+    # classification). None when Gemini transcribed freely (legacy path).
+    index: int | None = None
 
 
 @dataclass

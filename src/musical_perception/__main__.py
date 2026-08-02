@@ -5,19 +5,27 @@ import sys
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python -m musical_perception <audio_file> [--signature] [--stress] [--pose]")
+        print("Usage: python -m musical_perception <audio_file> [--signature] [--stress] [--pose] [--model NAME]")
         sys.exit(1)
 
     audio_file = sys.argv[1]
     extract_sig = "--signature" in sys.argv
     detect_stress = "--stress" in sys.argv
     use_pose = "--pose" in sys.argv
+    model_name = "large-v3-turbo"
+    if "--model" in sys.argv:
+        idx = sys.argv.index("--model")
+        if idx + 1 >= len(sys.argv):
+            print("--model requires a name (e.g. base.en, small.en, large-v3-turbo)")
+            sys.exit(1)
+        model_name = sys.argv[idx + 1]
 
     from musical_perception.analyze import analyze
 
     print("Analyzing with Gemini...")
     result = analyze(
         audio_file,
+        model_name=model_name,
         extract_signature=extract_sig,
         detect_stress=detect_stress,
         use_pose=use_pose,

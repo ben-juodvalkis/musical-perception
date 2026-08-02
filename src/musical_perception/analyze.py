@@ -68,10 +68,54 @@ def _merge_gemini_with_timestamps(
     return markers
 
 
+def _pair_markers_by_index(
+    gemini_result: GeminiAnalysisResult,
+    whisper_words: list[TimestampedWord],
+) -> list[TimedMarker]:
+    """
+    Pair Gemini classifications with Whisper timestamps by transcript index.
+
+    Used when Gemini classified the Whisper transcript directly (each
+    GeminiWord carries the index of the word it classified). Immune to
+    transcription disagreements — no text matching involved.
+    """
+    markers = []
+    for gw in gemini_result.words:
+        if gw.marker_type is None or gw.index is None:
+            continue
+        if not 0 <= gw.index < len(whisper_words):
+            continue  # hallucinated index — nothing to anchor to
+        ww = whisper_words[gw.index]
+        markers.append(TimedMarker(
+            marker_type=gw.marker_type,
+            beat_number=gw.beat_number,
+            timestamp=ww.start,
+            raw_word=ww.word,
+        ))
+    markers.sort(key=lambda m: m.timestamp)
+    return markers
+
+
+def _markers_from_gemini(
+    gemini_result: GeminiAnalysisResult,
+    whisper_words: list[TimestampedWord],
+) -> list[TimedMarker]:
+    """
+    Produce timed markers from Gemini classifications.
+
+    Prefers index-keyed pairing (exact, used when Gemini was given the
+    transcript); falls back to sequential text matching for legacy
+    free-transcription results.
+    """
+    if any(gw.index is not None for gw in gemini_result.words):
+        return _pair_markers_by_index(gemini_result, whisper_words)
+    return _merge_gemini_with_timestamps(gemini_result, whisper_words)
+
+
 def analyze(
     audio_path: str,
     model=None,
-    model_name: str = "base.en",
+    model_name: str = "large-v3-turbo",
     extract_signature: bool = False,
     detect_stress: bool = False,
     gemini_client=None,
@@ -117,10 +161,14 @@ def analyze(
 
     if gemini_client is None:
         gemini_client = load_client(model=gemini_model)
-    gemini_result = analyze_media(gemini_client, audio_path, onset_bpm=onset_bpm)
+    gemini_result = analyze_media(
+        gemini_client, audio_path,
+        onset_bpm=onset_bpm,
+        transcript_words=[w.word for w in words],
+    )
 
-    # Merge Gemini classifications with Whisper timestamps
-    markers = _merge_gemini_with_timestamps(gemini_result, words)
+    # Pair Gemini classifications with Whisper timestamps
+    markers = _markers_from_gemini(gemini_result, words)
 
     exercise = gemini_result.exercise
     meter = gemini_result.meter

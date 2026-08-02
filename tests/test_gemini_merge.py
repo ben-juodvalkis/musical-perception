@@ -1,6 +1,10 @@
 """Tests for Gemini-Whisper merge logic. No API key needed."""
 
-from musical_perception.analyze import _merge_gemini_with_timestamps
+from musical_perception.analyze import (
+    _markers_from_gemini,
+    _merge_gemini_with_timestamps,
+    _pair_markers_by_index,
+)
 from musical_perception.types import (
     GeminiAnalysisResult,
     GeminiWord,
@@ -129,6 +133,81 @@ def test_merge_preserves_raw_word_from_whisper():
     markers = _merge_gemini_with_timestamps(gemini, whisper)
     assert len(markers) == 1
     assert markers[0].raw_word == "six"
+
+
+# === Tests for index-keyed pairing ===
+
+
+def test_index_pairing_ignores_word_text():
+    """Index pairing works even when Gemini and Whisper disagree on text."""
+    gemini = _make_result([
+        GeminiWord("battement", MarkerType.BEAT, 1, index=1),
+        GeminiWord("two", MarkerType.BEAT, 2, index=2),
+    ])
+    whisper = [
+        TimestampedWord("grand", 0.0, 0.3),
+        TimestampedWord("babma", 0.3, 0.9),  # Whisper misheard "battement"
+        TimestampedWord("two", 1.0, 1.3),
+    ]
+    markers = _pair_markers_by_index(gemini, whisper)
+    assert len(markers) == 2
+    assert markers[0].timestamp == 0.3
+    assert markers[0].raw_word == "babma"  # raw_word still from Whisper
+    assert markers[1].timestamp == 1.0
+
+
+def test_index_pairing_drops_out_of_range():
+    """Hallucinated indices are dropped instead of crashing."""
+    gemini = _make_result([
+        GeminiWord("one", MarkerType.BEAT, 1, index=0),
+        GeminiWord("ghost", MarkerType.BEAT, 2, index=99),
+        GeminiWord("negative", MarkerType.BEAT, 3, index=-1),
+    ])
+    whisper = [TimestampedWord("one", 0.0, 0.4)]
+    markers = _pair_markers_by_index(gemini, whisper)
+    assert len(markers) == 1
+    assert markers[0].timestamp == 0.0
+
+
+def test_index_pairing_skips_non_markers_and_sorts():
+    """Non-markers are skipped; markers come out in timestamp order."""
+    gemini = _make_result([
+        GeminiWord("two", MarkerType.BEAT, 2, index=2),
+        GeminiWord("okay", None, None, index=0),
+        GeminiWord("one", MarkerType.BEAT, 1, index=1),
+    ])
+    whisper = [
+        TimestampedWord("okay", 0.0, 0.2),
+        TimestampedWord("one", 0.5, 0.8),
+        TimestampedWord("two", 1.0, 1.3),
+    ]
+    markers = _pair_markers_by_index(gemini, whisper)
+    assert [m.timestamp for m in markers] == [0.5, 1.0]
+
+
+def test_markers_from_gemini_prefers_index_path():
+    """Dispatch uses index pairing when any word carries an index."""
+    gemini = _make_result([
+        GeminiWord("uno", MarkerType.BEAT, 1, index=0),  # text would never match
+    ])
+    whisper = [TimestampedWord("one", 0.0, 0.4)]
+    markers = _markers_from_gemini(gemini, whisper)
+    assert len(markers) == 1
+    assert markers[0].timestamp == 0.0
+
+
+def test_markers_from_gemini_falls_back_to_text_match():
+    """Dispatch falls back to text matching when no indices present."""
+    gemini = _make_result([
+        GeminiWord("one", MarkerType.BEAT, 1),
+    ])
+    whisper = [
+        TimestampedWord("well", 0.0, 0.2),
+        TimestampedWord("one", 0.5, 0.8),
+    ]
+    markers = _markers_from_gemini(gemini, whisper)
+    assert len(markers) == 1
+    assert markers[0].timestamp == 0.5
 
 
 # === Tests for new typed fields ===

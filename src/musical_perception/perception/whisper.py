@@ -12,6 +12,22 @@ from dataclasses import dataclass
 
 from musical_perception.types import TimestampedWord
 
+# Decoding bias for ballet-class speech. Whisper conditions on this the way it
+# conditions on preceding audio context, so French step names survive instead
+# of degrading into English-ish syllables ("grand babma", "polybra").
+BALLET_VOCABULARY_PROMPT = (
+    "Ballet barre exercise, teacher counting and naming steps: "
+    "one and two and three and four, five six seven eight. "
+    "Grand battement, battement tendu, battement fondu, battement frappé, "
+    "plié, demi-plié, grand plié, relevé, port de bras, passé, retiré, "
+    "développé, rond de jambe, dégagé, piqué, coupé, cou-de-pied, "
+    "arabesque, attitude, sauté, jeté, glissade, chassé, balancé, "
+    "pas de bourrée, pirouette, soutenu, échappé, sissonne, "
+    "en croix, en dehors, en dedans, devant, derrière, à la seconde, "
+    "croisé, effacé, épaulement, adagio, petit allegro, grand allegro, "
+    "first position, fifth position, demi-pointe, en pointe, barre, centre."
+)
+
 
 @dataclass
 class _LoadedModel:
@@ -19,6 +35,7 @@ class _LoadedModel:
     model: object
     backend: str  # "whisperx" or "whisper"
     device: str | None = None
+    initial_prompt: str | None = None  # used at transcribe time by plain-whisper path
 
 
 def _detect_device() -> tuple[str, str]:
@@ -34,7 +51,10 @@ def _detect_device() -> tuple[str, str]:
     return "cpu", "int8"
 
 
-def load_model(model_name: str = "base.en") -> _LoadedModel:
+def load_model(
+    model_name: str = "large-v3-turbo",
+    initial_prompt: str | None = BALLET_VOCABULARY_PROMPT,
+) -> _LoadedModel:
     """
     Load a transcription model.
 
@@ -42,18 +62,33 @@ def load_model(model_name: str = "base.en") -> _LoadedModel:
 
     Recommended models:
     - "tiny.en": Fastest, least accurate
-    - "base.en": Good balance (recommended for experiments)
+    - "base.en": Fast, fine for quick experiments
     - "small.en": More accurate, slower
+    - "large-v3-turbo": Best accuracy, still fast (default; ~1.6 GB download)
+
+    Args:
+        model_name: Whisper model to load.
+        initial_prompt: Vocabulary-bias prompt (defaults to ballet terms);
+            pass None to disable.
     """
     try:
         import whisperx
         device, compute_type = _detect_device()
-        model = whisperx.load_model(model_name, device, compute_type=compute_type)
-        return _LoadedModel(model=model, backend="whisperx", device=device)
+        model = whisperx.load_model(
+            model_name, device, compute_type=compute_type,
+            language="en",  # skip per-chunk detection on multilingual models
+            asr_options={"initial_prompt": initial_prompt},
+        )
+        return _LoadedModel(
+            model=model, backend="whisperx", device=device,
+            initial_prompt=initial_prompt,
+        )
     except ImportError:
         import whisper
         model = whisper.load_model(model_name)
-        return _LoadedModel(model=model, backend="whisper")
+        return _LoadedModel(
+            model=model, backend="whisper", initial_prompt=initial_prompt,
+        )
 
 
 def transcribe(loaded: _LoadedModel, audio_path: str) -> list[TimestampedWord]:
@@ -121,6 +156,7 @@ def _transcribe_whisper(loaded: _LoadedModel, audio_path: str) -> list[Timestamp
         audio_path,
         word_timestamps=True,
         language="en",
+        initial_prompt=loaded.initial_prompt,
     )
 
     words = []

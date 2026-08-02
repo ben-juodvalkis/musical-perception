@@ -42,38 +42,53 @@ _MARKER_TYPE_MAP = {
     "none": None,
 }
 
+def _words_schema(with_index: bool) -> dict:
+    """Schema for the words array; index-keyed when a transcript is provided."""
+    properties = {
+        "word": {"type": "STRING", "description": "The word as spoken"},
+        "marker_type": {
+            "type": "STRING",
+            "description": (
+                "Rhythmic role: 'beat' for counted numbers (1,2,3...), "
+                "'and' for 'and' subdivisions, 'ah' for 'ah' subdivisions, "
+                "or 'none' for non-rhythmic speech"
+            ),
+            "enum": ["beat", "and", "ah", "none"],
+        },
+        "beat_number": {
+            "type": "INTEGER",
+            "description": (
+                "Which beat number this word belongs to (1-16+). "
+                "For 'and'/'ah', the preceding beat number. "
+                "Null for non-rhythmic words."
+            ),
+            "nullable": True,
+        },
+    }
+    required = ["word", "marker_type", "beat_number"]
+    description = "Every word heard in the audio, in order"
+    if with_index:
+        properties["index"] = {
+            "type": "INTEGER",
+            "description": "The [index] of this word in the provided transcript",
+        }
+        required = ["index"] + required
+        description = "One entry per word of the provided indexed transcript, in order"
+    return {
+        "type": "ARRAY",
+        "description": description,
+        "items": {
+            "type": "OBJECT",
+            "properties": properties,
+            "required": required,
+        },
+    }
+
+
 _RESPONSE_SCHEMA = {
     "type": "OBJECT",
     "properties": {
-        "words": {
-            "type": "ARRAY",
-            "description": "Every word heard in the audio, in order",
-            "items": {
-                "type": "OBJECT",
-                "properties": {
-                    "word": {"type": "STRING", "description": "The word as spoken"},
-                    "marker_type": {
-                        "type": "STRING",
-                        "description": (
-                            "Rhythmic role: 'beat' for counted numbers (1,2,3...), "
-                            "'and' for 'and' subdivisions, 'ah' for 'ah' subdivisions, "
-                            "or 'none' for non-rhythmic speech"
-                        ),
-                        "enum": ["beat", "and", "ah", "none"],
-                    },
-                    "beat_number": {
-                        "type": "INTEGER",
-                        "description": (
-                            "Which beat number this word belongs to (1-16+). "
-                            "For 'and'/'ah', the preceding beat number. "
-                            "Null for non-rhythmic words."
-                        ),
-                        "nullable": True,
-                    },
-                },
-                "required": ["word", "marker_type", "beat_number"],
-            },
-        },
+        "words": _words_schema(with_index=False),
         "exercise": {
             "type": "OBJECT",
             "description": "The dance exercise being demonstrated",
@@ -250,7 +265,7 @@ NOT part of the rhythmic counting) — beat_number is null
 IMPORTANT: Many ballet teachers never say numbers — they mark the rhythm \
 entirely with step names. If words are spoken at a regular rhythmic pulse, \
 they ARE beats, even if they are not numbers.
-{onset_context}
+{transcript_block}{onset_context}
 Identify the ballet exercise type from speech and/or movement.
 
 For counting_structure, report what you observe about the counting pattern.
@@ -392,10 +407,12 @@ def _parse_response(raw: dict, model: str) -> GeminiAnalysisResult:
     words = []
     for w in raw.get("words", []):
         marker_type = _MARKER_TYPE_MAP.get(w.get("marker_type", "none"))
+        index = w.get("index")
         words.append(GeminiWord(
             word=w["word"],
             marker_type=marker_type,
             beat_number=w.get("beat_number"),
+            index=index if isinstance(index, int) else None,
         ))
 
     ex_raw = raw.get("exercise", {})
@@ -475,6 +492,7 @@ def analyze_media(
     client: _GeminiClient,
     media_path: str,
     onset_bpm: float | None = None,
+    transcript_words: list[str] | None = None,
 ) -> GeminiAnalysisResult:
     """
     Analyze a media file (video or audio) using Gemini.
@@ -487,6 +505,10 @@ def analyze_media(
         media_path: Path to video (.mov, .mp4) or audio (.wav, .mp3, .aif) file.
         onset_bpm: Optional BPM hint from onset-based tempo detection.
             Included in the prompt to help Gemini calibrate its analysis.
+        transcript_words: Optional ASR transcript (word list, in order).
+            When provided, Gemini classifies these exact tokens and returns
+            each classification keyed by transcript index, so the merge with
+            timestamps is a lookup instead of fragile text matching.
 
     Returns:
         GeminiAnalysisResult with word classifications, exercise detection,
@@ -510,7 +532,20 @@ def analyze_media(
             if audio_tmp_path:
                 audio_file = _upload_and_wait(client.client, audio_tmp_path, uploaded_files)
 
-        # Build prompt with optional onset context
+        # Build prompt with optional transcript and onset context
+        if transcript_words is not None:
+            indexed = " ".join(f"[{i}] {w}" for i, w in enumerate(transcript_words))
+            transcript_block = (
+                f"\nA speech recognizer produced this indexed transcript of the "
+                f"same audio:\n\n{indexed}\n\n"
+                f"Classify EVERY indexed word above, returning each word's index "
+                f"with its classification. Use the audio to judge rhythm and "
+                f"timing; use this list as the definitive tokenization — do not "
+                f"add, remove, or reorder words. If the recognizer misheard a "
+                f"word, classify what was actually spoken at that position.\n"
+            )
+        else:
+            transcript_block = ""
         if onset_bpm is not None:
             onset_context = (
                 f"\nContext: An independent rhythm detector estimated the speech pulse "
@@ -521,7 +556,20 @@ def analyze_media(
             )
         else:
             onset_context = ""
-        prompt = _PROMPT_TEMPLATE.format(onset_context=onset_context)
+        prompt = _PROMPT_TEMPLATE.format(
+            transcript_block=transcript_block, onset_context=onset_context,
+        )
+
+        # Index-keyed words schema when a transcript was provided
+        schema = _RESPONSE_SCHEMA
+        if transcript_words is not None:
+            schema = {
+                **_RESPONSE_SCHEMA,
+                "properties": {
+                    **_RESPONSE_SCHEMA["properties"],
+                    "words": _words_schema(with_index=True),
+                },
+            }
 
         # Build content parts
         parts = []
@@ -532,13 +580,15 @@ def analyze_media(
             ))
         parts.append(types.Part.from_text(text=prompt))
 
-        # Call Gemini with structured output
+        # Call Gemini with structured output. temperature=0: classification
+        # should be reproducible run-to-run, not sampled.
         response = client.client.models.generate_content(
             model=client.model,
             contents=[types.Content(role="user", parts=parts)],
             config=types.GenerateContentConfig(
                 response_mime_type="application/json",
-                response_schema=_RESPONSE_SCHEMA,
+                response_schema=schema,
+                temperature=0.0,
             ),
         )
 

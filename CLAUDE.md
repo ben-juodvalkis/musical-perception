@@ -40,10 +40,13 @@ src/musical_perception/
 
 ## How It Works
 
-Whisper owns word **timestamps**. Gemini owns word **classification** (beat/and/ah)
-and qualitative analysis (exercise, meter, quality, structure). The merge step
-in `analyze.py` pairs Gemini classifications with Whisper timestamps to produce
-`TimedMarker` objects, which feed the precision layer for tempo and subdivision.
+Whisper owns word **timestamps** (and the tokenization: a ballet-vocabulary
+`initial_prompt` is on by default, `large-v3-turbo` is the default model).
+Gemini owns word **classification** (beat/and/ah) and qualitative analysis
+(exercise, meter, quality, structure). `analyze.py` sends Whisper's indexed
+transcript to Gemini, which classifies those exact tokens; the merge is an
+index lookup producing `TimedMarker` objects, which feed the precision layer
+for tempo and subdivision (see ADR-010).
 
 Gemini also provides **per-phrase quality** — each phrase in a combination is rated
 on articulation, weight, and energy, and flagged as primary or transitional. The
