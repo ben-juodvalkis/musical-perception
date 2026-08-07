@@ -1,0 +1,26 @@
+id: rig-numbers-3-4-90-clean
+input:
+  trace: traces/rig-numbers-3-4-90-clean/
+  media: "audio/rig/rig-numbers-3-4-90-clean.mp3"
+tags:
+  source: rig
+  teacher: ben
+  slot: counting
+  count_style: numbers
+  explanation: none
+  lang: en
+  accompanied: false
+  snr_band: high
+expect:
+  marking_bpm: 90
+  meter: "3/4"
+  subdivision: triplet
+  counts: 8
+notes: >-
+  Capture-checklist clip 2 (waltz), recorded 2026-08-07. Ben's formula,
+  verbatim: "ONE-and-ah TWO-and-ah etc, up through 8, four times" with the
+  metronome (90) on the numbers. This is ADR-006's equivalence case in the
+  flesh: acoustically identical to triplet-subdivided beats at 90; the 3/4
+  reading lives in the waltz accent. marking_bpm = the number pulse (his
+  click). Meter row doubles as an accent-periodicity probe alongside
+  rig clip 1.

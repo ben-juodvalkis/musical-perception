@@ -1,0 +1,708 @@
+{
+ "model": "gemini-2.5-flash",
+ "raw_response": {
+  "words": [
+   {
+    "word": "one",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 0
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 1,
+    "index": 1
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 1,
+    "index": 2
+   },
+   {
+    "word": "two",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 3
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 2,
+    "index": 4
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 2,
+    "index": 5
+   },
+   {
+    "word": "three",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 6
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 3,
+    "index": 7
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 3,
+    "index": 8
+   },
+   {
+    "word": "four",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 9
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 4,
+    "index": 10
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 4,
+    "index": 11
+   },
+   {
+    "word": "five",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 12
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 5,
+    "index": 13
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 5,
+    "index": 14
+   },
+   {
+    "word": "six",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 15
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 6,
+    "index": 16
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 6,
+    "index": 17
+   },
+   {
+    "word": "seven",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 18
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 7,
+    "index": 19
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 7,
+    "index": 20
+   },
+   {
+    "word": "eight",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 21
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 8,
+    "index": 22
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 8,
+    "index": 23
+   },
+   {
+    "word": "one",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 24
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 1,
+    "index": 25
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 1,
+    "index": 26
+   },
+   {
+    "word": "two",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 27
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 2,
+    "index": 28
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 2,
+    "index": 29
+   },
+   {
+    "word": "three",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 30
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 3,
+    "index": 31
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 3,
+    "index": 32
+   },
+   {
+    "word": "four",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 33
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 4,
+    "index": 34
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 4,
+    "index": 35
+   },
+   {
+    "word": "five",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 36
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 5,
+    "index": 37
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 5,
+    "index": 38
+   },
+   {
+    "word": "six",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 39
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 6,
+    "index": 40
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 6,
+    "index": 41
+   },
+   {
+    "word": "seven",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 42
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 7,
+    "index": 43
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 7,
+    "index": 44
+   },
+   {
+    "word": "eight",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 45
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 8,
+    "index": 46
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 8,
+    "index": 47
+   },
+   {
+    "word": "one",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 48
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 1,
+    "index": 49
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 1,
+    "index": 50
+   },
+   {
+    "word": "two",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 51
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 2,
+    "index": 52
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 2,
+    "index": 53
+   },
+   {
+    "word": "three",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 54
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 3,
+    "index": 55
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 3,
+    "index": 56
+   },
+   {
+    "word": "four",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 57
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 4,
+    "index": 58
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 4,
+    "index": 59
+   },
+   {
+    "word": "five",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 60
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 5,
+    "index": 61
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 5,
+    "index": 62
+   },
+   {
+    "word": "six",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 63
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 6,
+    "index": 64
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 6,
+    "index": 65
+   },
+   {
+    "word": "seven",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 66
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 7,
+    "index": 67
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 7,
+    "index": 68
+   },
+   {
+    "word": "eight",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 69
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 8,
+    "index": 70
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 8,
+    "index": 71
+   },
+   {
+    "word": "one",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 72
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 1,
+    "index": 73
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 1,
+    "index": 74
+   },
+   {
+    "word": "two",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 75
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 2,
+    "index": 76
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 2,
+    "index": 77
+   },
+   {
+    "word": "three",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 78
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 3,
+    "index": 79
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 3,
+    "index": 80
+   },
+   {
+    "word": "four",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 81
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 4,
+    "index": 82
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 4,
+    "index": 83
+   },
+   {
+    "word": "five",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 84
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 5,
+    "index": 85
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 5,
+    "index": 86
+   },
+   {
+    "word": "six",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 87
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 6,
+    "index": 88
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 6,
+    "index": 89
+   },
+   {
+    "word": "seven",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 90
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 7,
+    "index": 91
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 7,
+    "index": 92
+   },
+   {
+    "word": "eight",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 93
+   }
+  ],
+  "exercise": {
+   "exercise_type": "unknown",
+   "display_name": "Unknown",
+   "confidence": 0.0,
+   "reasoning": "No visual information or descriptive speech provided to identify the exercise type. Only rhythmic counting is present."
+  },
+  "counting_structure": {
+   "total_counts": 32,
+   "prep_counts": null,
+   "subdivision_type": "triplet",
+   "estimated_bpm": 72.0
+  },
+  "meter": {
+   "beats_per_measure": 4,
+   "beat_unit": 4
+  },
+  "quality": [
+   {
+    "phrase_number": 1,
+    "description": "The first 16 counts of rhythmic counting are heard, with no specific movement observed.",
+    "articulation": 0.5,
+    "weight": 0.5,
+    "energy": 0.5,
+    "primary": true
+   },
+   {
+    "phrase_number": 2,
+    "description": "The rhythmic counting continues for the next 16 counts, with no change in observed movement.",
+    "articulation": 0.5,
+    "weight": 0.5,
+    "energy": 0.5,
+    "primary": true
+   }
+  ],
+  "structure": {
+   "counts": 32,
+   "sides": 1
+  }
+ },
+ "inputs": {
+  "onset_bpm_sent": 215.9,
+  "transcript_words_sent": [
+   "one",
+   "and",
+   "a",
+   "two",
+   "and",
+   "a",
+   "three",
+   "and",
+   "a",
+   "four",
+   "and",
+   "a",
+   "five",
+   "and",
+   "a",
+   "six",
+   "and",
+   "a",
+   "seven",
+   "and",
+   "a",
+   "eight",
+   "and",
+   "a",
+   "one",
+   "and",
+   "a",
+   "two",
+   "and",
+   "a",
+   "three",
+   "and",
+   "a",
+   "four",
+   "and",
+   "a",
+   "five",
+   "and",
+   "a",
+   "six",
+   "and",
+   "a",
+   "seven",
+   "and",
+   "a",
+   "eight",
+   "and",
+   "a",
+   "one",
+   "and",
+   "a",
+   "two",
+   "and",
+   "a",
+   "three",
+   "and",
+   "a",
+   "four",
+   "and",
+   "a",
+   "five",
+   "and",
+   "a",
+   "six",
+   "and",
+   "a",
+   "seven",
+   "and",
+   "a",
+   "eight",
+   "and",
+   "a",
+   "one",
+   "and",
+   "a",
+   "two",
+   "and",
+   "a",
+   "three",
+   "and",
+   "a",
+   "four",
+   "and",
+   "a",
+   "five",
+   "and",
+   "a",
+   "six",
+   "and",
+   "a",
+   "seven",
+   "and",
+   "a",
+   "eight"
+  ]
+ }
+}
