@@ -1,0 +1,25 @@
+id: rig-numbers-4-4-104-explained
+input:
+  trace: traces/rig-numbers-4-4-104-explained/
+  media: "audio/rig/rig-numbers-4-4-104-explained.mp3"
+tags:
+  source: rig
+  teacher: ben
+  slot: counting
+  count_style: numbers
+  explanation: interleaved
+  lang: en
+  accompanied: false
+  snr_band: high
+expect:
+  marking_bpm: 104
+  meter: "4/4"
+  subdivision: none
+  counts: 8
+notes: >-
+  Capture-checklist clip 9, recorded 2026-08-07. Metronome 104 confirmed
+  by Ben; clean round 1, then a ~5s in-tempo teaching explanation
+  interrupting round 2 around count 3 ("now make sure you extend your leg
+  and really feel it"), then counting resumes and finishes plus one more
+  clean round. The interruption is the point of this clip (ADR/checklist
+  Part 2 stressor).

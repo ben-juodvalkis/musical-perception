@@ -1,0 +1,310 @@
+{
+ "model": "gemini-2.5-flash",
+ "raw_response": {
+  "words": [
+   {
+    "word": "one,",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 0
+   },
+   {
+    "word": "two,",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 1
+   },
+   {
+    "word": "three,",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 2
+   },
+   {
+    "word": "four,",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 3
+   },
+   {
+    "word": "five,",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 4
+   },
+   {
+    "word": "six,",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 5
+   },
+   {
+    "word": "seven,",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 6
+   },
+   {
+    "word": "eight.",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 7
+   },
+   {
+    "word": "one,",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 8
+   },
+   {
+    "word": "two,",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 9
+   },
+   {
+    "word": "three.",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 10
+   },
+   {
+    "word": "now",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 11
+   },
+   {
+    "word": "make",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 12
+   },
+   {
+    "word": "sure",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 13
+   },
+   {
+    "word": "you",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 14
+   },
+   {
+    "word": "extend",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 15
+   },
+   {
+    "word": "your",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 16
+   },
+   {
+    "word": "leg",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 17
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 18
+   },
+   {
+    "word": "really",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 19
+   },
+   {
+    "word": "feel",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 20
+   },
+   {
+    "word": "it.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 21
+   },
+   {
+    "word": "three,",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 22
+   },
+   {
+    "word": "four,",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 23
+   },
+   {
+    "word": "five,",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 24
+   },
+   {
+    "word": "six,",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 25
+   },
+   {
+    "word": "seven,",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 26
+   },
+   {
+    "word": "eight.",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 27
+   },
+   {
+    "word": "one,",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 28
+   },
+   {
+    "word": "two,",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 29
+   },
+   {
+    "word": "three,",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 30
+   },
+   {
+    "word": "four,",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 31
+   },
+   {
+    "word": "five,",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 32
+   },
+   {
+    "word": "six,",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 33
+   },
+   {
+    "word": "seven,",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 34
+   },
+   {
+    "word": "eight.",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 35
+   }
+  ],
+  "exercise": {
+   "exercise_type": "tendu",
+   "display_name": "Tendu",
+   "confidence": 0.9,
+   "reasoning": "The teacher explicitly instructs to 'extend your leg' during the demonstration, which is a key action in a tendu exercise. The rhythmic counting is consistent with a barre tendu combination."
+  },
+  "counting_structure": {
+   "total_counts": 24,
+   "prep_counts": null,
+   "subdivision_type": "none",
+   "estimated_bpm": 105
+  },
+  "meter": {
+   "beats_per_measure": 4,
+   "beat_unit": 4
+  },
+  "quality": [
+   {
+    "phrase_number": 1,
+    "description": "The first 8 counts of tendus are performed to the front and side.",
+    "articulation": 0.5,
+    "weight": 0.45,
+    "energy": 0.4,
+    "primary": true
+   },
+   {
+    "phrase_number": 2,
+    "description": "The second 8 counts of tendus are performed, interrupted by a brief instruction to 'extend your leg'.",
+    "articulation": 0.5,
+    "weight": 0.45,
+    "energy": 0.4,
+    "primary": true
+   },
+   {
+    "phrase_number": 3,
+    "description": "The third 8 counts of tendus are performed to the front and side.",
+    "articulation": 0.5,
+    "weight": 0.45,
+    "energy": 0.4,
+    "primary": true
+   }
+  ],
+  "structure": {
+   "counts": 8,
+   "sides": 1
+  }
+ },
+ "inputs": {
+  "onset_bpm_sent": 99.7,
+  "transcript_words_sent": [
+   "one,",
+   "two,",
+   "three,",
+   "four,",
+   "five,",
+   "six,",
+   "seven,",
+   "eight.",
+   "one,",
+   "two,",
+   "three.",
+   "now",
+   "make",
+   "sure",
+   "you",
+   "extend",
+   "your",
+   "leg",
+   "and",
+   "really",
+   "feel",
+   "it.",
+   "three,",
+   "four,",
+   "five,",
+   "six,",
+   "seven,",
+   "eight.",
+   "one,",
+   "two,",
+   "three,",
+   "four,",
+   "five,",
+   "six,",
+   "seven,",
+   "eight."
+  ]
+ }
+}
