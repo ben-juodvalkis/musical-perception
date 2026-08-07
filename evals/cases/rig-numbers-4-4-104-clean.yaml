@@ -1,0 +1,24 @@
+id: rig-numbers-4-4-104-clean
+input:
+  trace: traces/rig-numbers-4-4-104-clean/
+  media: "audio/rig/rig-numbers-4-4-104-clean.mp3"
+tags:
+  source: rig
+  teacher: ben
+  slot: counting
+  count_style: numbers
+  explanation: none
+  lang: en
+  accompanied: false
+  snr_band: high
+expect:
+  marking_bpm: 104
+  meter: "4/4"
+  subdivision: none
+  counts: 8
+notes: >-
+  Capture-checklist clip 3, recorded 2026-08-07. Plain unaccented 1-8 at
+  a confirmed 104 click — the deliberate control for clip 4's finding:
+  if tempo lands within ~2% here (as clips 1-2 did), clip 4's 15% onset
+  miss was accent-induced agogics, not speaker drift, pinning the
+  justification for a dominant-cluster IOI change in rhythm.py.
