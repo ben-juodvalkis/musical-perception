@@ -1,0 +1,225 @@
+{
+ "model": "gemini-2.5-flash",
+ "raw_response": {
+  "words": [
+   {
+    "word": "front",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 0
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 1,
+    "index": 1
+   },
+   {
+    "word": "close",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 2
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 2,
+    "index": 3
+   },
+   {
+    "word": "front",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 4
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 3,
+    "index": 5
+   },
+   {
+    "word": "up",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 6
+   },
+   {
+    "word": "front",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 7
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 5,
+    "index": 8
+   },
+   {
+    "word": "close",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 9
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 6,
+    "index": 10
+   },
+   {
+    "word": "up",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 11
+   },
+   {
+    "word": "up",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 12
+   },
+   {
+    "word": "down",
+    "marker_type": "beat",
+    "beat_number": 9,
+    "index": 13
+   },
+   {
+    "word": "front",
+    "marker_type": "beat",
+    "beat_number": 10,
+    "index": 14
+   },
+   {
+    "word": "tendu",
+    "marker_type": "beat",
+    "beat_number": 11,
+    "index": 15
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 11,
+    "index": 16
+   },
+   {
+    "word": "front",
+    "marker_type": "beat",
+    "beat_number": 12,
+    "index": 17
+   },
+   {
+    "word": "brise",
+    "marker_type": "beat",
+    "beat_number": 13,
+    "index": 18
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 13,
+    "index": 19
+   },
+   {
+    "word": "jump",
+    "marker_type": "beat",
+    "beat_number": 14,
+    "index": 20
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 14,
+    "index": 21
+   },
+   {
+    "word": "jump",
+    "marker_type": "beat",
+    "beat_number": 15,
+    "index": 22
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 15,
+    "index": 23
+   },
+   {
+    "word": "jump",
+    "marker_type": "beat",
+    "beat_number": 16,
+    "index": 24
+   }
+  ],
+  "exercise": {
+   "exercise_type": "petit_allegro",
+   "display_name": "Petit Allegro",
+   "confidence": 0.8,
+   "reasoning": "The teacher calls out 'tendu', 'brise', and 'jump' in a rhythmic sequence, indicating a combination of small, quick steps and jumps typical of petit allegro."
+  },
+  "counting_structure": {
+   "total_counts": 16,
+   "prep_counts": null,
+   "subdivision_type": "duple",
+   "estimated_bpm": 78
+  },
+  "meter": {
+   "beats_per_measure": 4,
+   "beat_unit": 4
+  },
+  "quality": [
+   {
+    "phrase_number": 1,
+    "description": "The phrase begins with tendu-like movements to the front and closes, followed by relev\u00e9/pli\u00e9 actions.",
+    "articulation": 0.4,
+    "weight": 0.5,
+    "energy": 0.45,
+    "primary": false
+   },
+   {
+    "phrase_number": 2,
+    "description": "The phrase transitions into a tendu, followed by a bris\u00e9 and a series of jumps.",
+    "articulation": 0.2,
+    "weight": 0.2,
+    "energy": 0.75,
+    "primary": true
+   }
+  ],
+  "structure": {
+   "counts": 16,
+   "sides": 1
+  }
+ },
+ "inputs": {
+  "onset_bpm_sent": 77.8,
+  "transcript_words_sent": [
+   "front",
+   "and",
+   "close,",
+   "and",
+   "front",
+   "and",
+   "up.",
+   "front",
+   "and",
+   "close,",
+   "and",
+   "up,",
+   "up,",
+   "down.",
+   "front",
+   "tendu,",
+   "and",
+   "front",
+   "brise,",
+   "and",
+   "jump,",
+   "and",
+   "jump,",
+   "and",
+   "jump."
+  ]
+ }
+}

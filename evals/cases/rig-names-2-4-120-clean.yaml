@@ -1,0 +1,33 @@
+id: rig-names-2-4-120-clean
+input:
+  trace: traces/rig-names-2-4-120-clean/
+  media: "audio/rig/rig-names-2-4-120-clean.mp3"
+tags:
+  source: rig
+  teacher: ben
+  slot: counting
+  count_style: step_names
+  explanation: none
+  lang: en
+  accompanied: false
+  snr_band: high
+expect:
+  marking_bpm: 120
+  meter: "2/4"
+  subdivision: none
+  counts: 8
+notes: >-
+  Capture-checklist clip 5, recorded 2026-08-07. Metronome 120 confirmed
+  by Ben; step names only (no numbers), four rounds of 8, and — by his
+  own account — some counts left silent (no word landed on every click).
+  First step_names rig clip. Pipeline read 77.8 BPM (4/4, duple) and 16
+  counts, both badly wrong (tempo >35% low) — Gemini's own estimate was
+  62.4 BPM/78 BPM depending on path. Root cause visible in the trace:
+  Gemini numbered every spoken word as a consecutive beat (beat_number
+  1-16) with no notion of skipped counts, so word-to-word spacing reads
+  as the tempo instead of true click spacing, and total spoken words
+  becomes total_counts instead of the true 32 (8 x 4 rounds). This is a
+  distinct failure mode from clip 4's accent-agogics case: here the
+  marker stream itself is sparse relative to the beat grid, not just
+  unevenly timed. Candidate fix: beat-grid inference that tolerates
+  missing counts rather than assuming contiguous beat numbering.
