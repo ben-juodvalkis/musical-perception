@@ -1,0 +1,28 @@
+id: rig-names-4-4-104-explained
+input:
+  trace: traces/rig-names-4-4-104-explained/
+  media: "audio/rig/rig-names-4-4-104-explained.mp3"
+tags:
+  source: rig
+  teacher: ben
+  slot: counting
+  count_style: step_names
+  explanation: interleaved
+  lang: en
+  accompanied: false
+  snr_band: high
+expect:
+  marking_bpm: 104
+  meter: "4/4"
+  subdivision: none
+  counts: 8
+notes: >-
+  Capture-checklist clip 10, recorded 2026-08-07. Metronome 104 confirmed
+  by Ben; step names only, word on every count (no silent-count gaps this
+  time, unlike clips 5-8), interruption mid-second-round ("now make sure
+  when you tendu that..."). Step_names sibling of clip 9 -- isolates the
+  interruption stressor from the sparse-marker defect since markers are
+  dense here. Pipeline: tempo 104.8 (0.8% err) -- GREEN, first
+  interruption clip with tempo this tight. Meter subdivision read duple
+  vs true none. Structure read 12 counts vs true 8 (clip 9 abstained here
+  instead of committing to a wrong number).
