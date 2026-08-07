@@ -1,0 +1,22 @@
+id: rig-numbers-2-4-120-clean
+input:
+  trace: traces/rig-numbers-2-4-120-clean/
+  media: "audio/rig/rig-numbers-2-4-120-clean.mp3"
+tags:
+  source: rig
+  teacher: ben
+  slot: counting
+  count_style: numbers
+  explanation: none
+  lang: en
+  accompanied: false
+  snr_band: high
+expect:
+  marking_bpm: 120
+  meter: "2/4"
+  subdivision: none
+  counts: 8
+notes: >-
+  Capture-checklist clip 1, recorded 2026-08-06 (DAW bounce, 320kbps mp3,
+  metronome-locked at 120 in one earbud). Label card: 8 counts per phrase,
+  four rounds through. First clip of the rig program.
