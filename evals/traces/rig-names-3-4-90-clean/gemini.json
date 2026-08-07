@@ -1,0 +1,296 @@
+{
+ "model": "gemini-2.5-flash",
+ "raw_response": {
+  "words": [
+   {
+    "word": "up",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 0
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 1,
+    "index": 1
+   },
+   {
+    "word": "down",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 2
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 2,
+    "index": 3
+   },
+   {
+    "word": "up",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 4
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 3,
+    "index": 5
+   },
+   {
+    "word": "out",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 6
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 4,
+    "index": 7
+   },
+   {
+    "word": "up",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 8
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 5,
+    "index": 9
+   },
+   {
+    "word": "in",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 10
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 6,
+    "index": 11
+   },
+   {
+    "word": "turn",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 12
+   },
+   {
+    "word": "all",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 13
+   },
+   {
+    "word": "around",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 14
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 8,
+    "index": 15
+   },
+   {
+    "word": "up",
+    "marker_type": "beat",
+    "beat_number": 9,
+    "index": 16
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 9,
+    "index": 17
+   },
+   {
+    "word": "down",
+    "marker_type": "beat",
+    "beat_number": 10,
+    "index": 18
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 10,
+    "index": 19
+   },
+   {
+    "word": "in",
+    "marker_type": "beat",
+    "beat_number": 11,
+    "index": 20
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 11,
+    "index": 21
+   },
+   {
+    "word": "out",
+    "marker_type": "beat",
+    "beat_number": 12,
+    "index": 22
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 12,
+    "index": 23
+   },
+   {
+    "word": "up",
+    "marker_type": "beat",
+    "beat_number": 13,
+    "index": 24
+   },
+   {
+    "word": "up",
+    "marker_type": "beat",
+    "beat_number": 14,
+    "index": 25
+   },
+   {
+    "word": "up",
+    "marker_type": "beat",
+    "beat_number": 15,
+    "index": 26
+   },
+   {
+    "word": "turn",
+    "marker_type": "beat",
+    "beat_number": 16,
+    "index": 27
+   },
+   {
+    "word": "turn",
+    "marker_type": "beat",
+    "beat_number": 17,
+    "index": 28
+   },
+   {
+    "word": "turn",
+    "marker_type": "beat",
+    "beat_number": 18,
+    "index": 29
+   },
+   {
+    "word": "then",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 30
+   },
+   {
+    "word": "we",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 31
+   },
+   {
+    "word": "will",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 32
+   },
+   {
+    "word": "land.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 33
+   }
+  ],
+  "exercise": {
+   "exercise_type": "pirouette",
+   "display_name": "Pirouette",
+   "confidence": 0.8,
+   "reasoning": "The counting includes directions like 'up', 'down', 'in', 'out' which are common for pirouette preparation, followed by 'turn all around' and a rapid 'turn turn turn', strongly indicating a turning exercise."
+  },
+  "counting_structure": {
+   "total_counts": 18,
+   "prep_counts": null,
+   "subdivision_type": "duple",
+   "estimated_bpm": 53.1
+  },
+  "meter": {
+   "beats_per_measure": 4,
+   "beat_unit": 4
+  },
+  "quality": [
+   {
+    "phrase_number": 1,
+    "description": "The first phrase involves controlled movements of 'up and down', 'up and out', 'up and in', culminating in a full turn.",
+    "articulation": 0.7,
+    "weight": 0.5,
+    "energy": 0.4,
+    "primary": true
+   },
+   {
+    "phrase_number": 2,
+    "description": "This phrase continues with controlled 'up and down' and 'in and out' movements.",
+    "articulation": 0.7,
+    "weight": 0.5,
+    "energy": 0.4,
+    "primary": true
+   },
+   {
+    "phrase_number": 3,
+    "description": "The final phrase consists of three quick 'up' movements followed by three rapid 'turn' movements.",
+    "articulation": 0.2,
+    "weight": 0.3,
+    "energy": 0.7,
+    "primary": true
+   }
+  ],
+  "structure": {
+   "counts": 18,
+   "sides": 1
+  }
+ },
+ "inputs": {
+  "onset_bpm_sent": 65.1,
+  "transcript_words_sent": [
+   "up",
+   "and",
+   "down",
+   "and",
+   "up",
+   "and",
+   "out",
+   "and",
+   "up",
+   "and",
+   "in",
+   "and",
+   "turn",
+   "all",
+   "around",
+   "and",
+   "up",
+   "and",
+   "down",
+   "and",
+   "in",
+   "and",
+   "out",
+   "and",
+   "up",
+   "up",
+   "up",
+   "turn",
+   "turn",
+   "turn",
+   "then",
+   "we",
+   "will",
+   "land."
+  ]
+ }
+}

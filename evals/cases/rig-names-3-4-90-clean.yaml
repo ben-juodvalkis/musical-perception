@@ -1,0 +1,36 @@
+id: rig-names-3-4-90-clean
+input:
+  trace: traces/rig-names-3-4-90-clean/
+  media: "audio/rig/rig-names-3-4-90-clean.mp3"
+tags:
+  source: rig
+  teacher: ben
+  slot: counting
+  count_style: step_names
+  explanation: none
+  lang: en
+  accompanied: false
+  snr_band: high
+expect:
+  marking_bpm: 90
+  meter: "3/4"
+  subdivision: none
+  counts: 8
+notes: >-
+  Capture-checklist clip 6, recorded 2026-08-07. Metronome 90 confirmed
+  by Ben; step names only, downbeat-stressed waltz feel, a word on nearly
+  every count (a couple of breath gaps). Pipeline read 130.2 BPM (4/4,
+  duple; raw onset 65.1 x2 multiplier) and 16 counts — wrong on every
+  axis. This is a new variant of clip 2's waltz-precedence finding
+  (ADR-013), not a repeat of it: ADR-013's band-aware arbitration only
+  overrides the onset reading when onsets land OUTSIDE the 70-140 beat
+  band and a dense/confident marker reading sits inside it. Here onset
+  lands at 130.2 (inside the band, just wrong) so arbitration never
+  engages, and the marker path itself under-qualifies: Gemini tagged only
+  18 words as marker_type=beat (the downbeat-stressed word of each bar),
+  folding the other two counts per bar into 'and'/'none', which reads as
+  a near-bar-rate pulse (33.7 BPM, 57% confidence) rather than per-click
+  -- both outside the band and one point under the 60% arbitration gate.
+  Net effect: neither signal path is both correctly-banded and correct.
+  Distinct failure mode worth its own tier-1 case: downbeat-only marker
+  classification on stressed-but-fully-worded phrases.
