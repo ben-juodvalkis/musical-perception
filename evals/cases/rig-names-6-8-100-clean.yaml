@@ -1,0 +1,35 @@
+id: rig-names-6-8-100-clean
+input:
+  trace: traces/rig-names-6-8-100-clean/
+  media: "audio/rig/rig-names-6-8-100-clean.mp3"
+tags:
+  source: rig
+  teacher: ben
+  slot: counting
+  count_style: step_names
+  explanation: none
+  lang: en
+  accompanied: false
+  snr_band: high
+expect:
+  marking_bpm: 100
+  meter: "6/8"
+  subdivision: none
+  counts: 6
+notes: >-
+  Capture-checklist clip 8, recorded 2026-08-07 (take 2 -- take 1 was the
+  wrong exercise, a triplet-over-8 phrase, and was replaced after
+  clarifying the 6/8 assignment in chat). Metronome 100 (eighth-note
+  clicks) confirmed by Ben; "IN-and-[ah] OUT-and-[ah]" per 6-click bar,
+  but only 4 of the 6 syllables per bar actually spoken (the two "ah"
+  clicks silent) -- same silent-count pattern as clips 5-7, now inside a
+  compound-meter bar. Bar-to-bar spacing in the trace (in->up->dump->then
+  at 3.27/3.95/3.57s) sits close to the true 3.6s (6 x 0.6s) bar length,
+  so the underlying timing is basically on-grid despite the gaps. Pipeline
+  read 134.6 BPM (raw onset 67.3 x2 multiplier), meter defaulted to 4/4,
+  and structure counts came back undecided ("evidence disagreed") -- all
+  wrong. Sibling finding to clip 4 (first 6/8 ever recognized, but tempo
+  dragged by accent agogics): here the meter recognition itself fails,
+  plausibly because the sparse/silent-count marker stream (clips 5-7's
+  pattern) is even harder to read as compound meter than it was as
+  simple meter.
