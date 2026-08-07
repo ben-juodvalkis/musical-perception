@@ -1,0 +1,28 @@
+id: rig-names-4-4-104-clean
+input:
+  trace: traces/rig-names-4-4-104-clean/
+  media: "audio/rig/rig-names-4-4-104-clean.mp3"
+tags:
+  source: rig
+  teacher: ben
+  slot: counting
+  count_style: step_names
+  explanation: none
+  lang: en
+  accompanied: false
+  snr_band: high
+expect:
+  marking_bpm: 104
+  meter: "4/4"
+  subdivision: none
+  counts: 8
+notes: >-
+  Capture-checklist clip 7, recorded 2026-08-07. Metronome 104 confirmed
+  by Ben; plie/tendu pattern in step names, 8 counts per phrase, mostly
+  clean but with a stray eighth-note syllable or two and one blank beat
+  (not a consistent subdivision -- left as subdivision: none per the
+  sheet). Pipeline read 111.9 BPM (4/4, duple), within the 8% tolerance
+  (rel_err=0.076) so tempo/meter read as correct. Structure read 16
+  counts vs the true 8 -- likely the same downbeat/marker-density
+  undercount pattern as clips 5-6, worth checking once more rig data
+  accumulates.
