@@ -1,0 +1,94 @@
+{
+ "words": [
+  {
+   "word": "one,",
+   "start": 2.309,
+   "end": 2.671
+  },
+  {
+   "word": "two,",
+   "start": 2.751,
+   "end": 3.293
+  },
+  {
+   "word": "three,",
+   "start": 3.354,
+   "end": 3.916
+  },
+  {
+   "word": "four,",
+   "start": 3.976,
+   "end": 4.619
+  },
+  {
+   "word": "five,",
+   "start": 4.88,
+   "end": 5.162
+  },
+  {
+   "word": "six.",
+   "start": 5.483,
+   "end": 5.845
+  },
+  {
+   "word": "one,",
+   "start": 6.166,
+   "end": 6.287
+  },
+  {
+   "word": "two,",
+   "start": 6.347,
+   "end": 6.889
+  },
+  {
+   "word": "three,",
+   "start": 6.93,
+   "end": 7.512
+  },
+  {
+   "word": "four,",
+   "start": 7.572,
+   "end": 8.175
+  },
+  {
+   "word": "five,",
+   "start": 8.456,
+   "end": 8.778
+  },
+  {
+   "word": "six.",
+   "start": 9.079,
+   "end": 9.401
+  },
+  {
+   "word": "one,",
+   "start": 9.762,
+   "end": 9.883
+  },
+  {
+   "word": "two,",
+   "start": 9.923,
+   "end": 10.485
+  },
+  {
+   "word": "three,",
+   "start": 10.867,
+   "end": 11.088
+  },
+  {
+   "word": "four,",
+   "start": 11.148,
+   "end": 11.711
+  },
+  {
+   "word": "five,",
+   "start": 12.052,
+   "end": 12.977
+  },
+  {
+   "word": "six.",
+   "start": 13.499,
+   "end": 16.673
+  }
+ ]
+}

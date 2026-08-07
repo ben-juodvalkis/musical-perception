@@ -1,0 +1,28 @@
+id: rig-numbers-6-8-100-clean
+input:
+  trace: traces/rig-numbers-6-8-100-clean/
+  media: "audio/rig/rig-numbers-6-8-100-clean.mp3"
+tags:
+  source: rig
+  teacher: ben
+  slot: counting
+  count_style: numbers
+  explanation: none
+  lang: en
+  accompanied: false
+  snr_band: high
+expect:
+  marking_bpm: 100
+  meter: "6/8"
+  subdivision: none
+  counts: 6
+notes: >-
+  Capture-checklist clip 4 (compound meter), recorded 2026-08-07.
+  Metronome 100 confirmed by Ben; spoken median 96.3 words/min (on the
+  click). First 6/8 ever recognized — the ONE/FOUR accents worked for
+  meter. Same accents poisoned onset tempo: agogic long-short IOI pairs
+  at bar boundaries (0.90/0.16s) dragged the median to 84.7 -> tempo row
+  honestly red. Marker path read 96.3 @ 51%, righter than onsets for the
+  third clip running but under the arbitration gate. Onset robustness to
+  expressive timing = candidate next eval-gated change (dominant-cluster
+  IOI instead of global median).
