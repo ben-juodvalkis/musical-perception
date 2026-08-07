@@ -1,0 +1,198 @@
+{
+ "model": "gemini-2.5-flash",
+ "raw_response": {
+  "words": [
+   {
+    "word": "five",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 0
+   },
+   {
+    "word": "six",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 1
+   },
+   {
+    "word": "seven",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 2
+   },
+   {
+    "word": "eight.",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 3
+   },
+   {
+    "word": "one,",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 4
+   },
+   {
+    "word": "two,",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 5
+   },
+   {
+    "word": "three,",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 6
+   },
+   {
+    "word": "four,",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 7
+   },
+   {
+    "word": "five,",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 8
+   },
+   {
+    "word": "six,",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 9
+   },
+   {
+    "word": "seven,",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 10
+   },
+   {
+    "word": "eight.",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 11
+   },
+   {
+    "word": "one,",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 12
+   },
+   {
+    "word": "two,",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 13
+   },
+   {
+    "word": "three,",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 14
+   },
+   {
+    "word": "four,",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 15
+   },
+   {
+    "word": "five,",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 16
+   },
+   {
+    "word": "six,",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 17
+   },
+   {
+    "word": "seven,",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 18
+   },
+   {
+    "word": "eight.",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 19
+   }
+  ],
+  "exercise": {
+   "exercise_type": "unknown",
+   "display_name": "Unknown",
+   "confidence": 0.0,
+   "reasoning": "Only rhythmic counting is provided, with no specific step names or visual information to identify the exercise type."
+  },
+  "counting_structure": {
+   "total_counts": 20,
+   "prep_counts": "5, 6, 7, 8",
+   "subdivision_type": "none",
+   "estimated_bpm": 120
+  },
+  "meter": {
+   "beats_per_measure": 4,
+   "beat_unit": 4
+  },
+  "quality": [
+   {
+    "phrase_number": 1,
+    "description": "Preparatory counts before the main exercise begins.",
+    "articulation": 0.5,
+    "weight": 0.5,
+    "energy": 0.4,
+    "primary": false
+   },
+   {
+    "phrase_number": 2,
+    "description": "The first 8-count phrase of the rhythmic pattern.",
+    "articulation": 0.5,
+    "weight": 0.5,
+    "energy": 0.5,
+    "primary": true
+   },
+   {
+    "phrase_number": 3,
+    "description": "The second 8-count phrase of the rhythmic pattern, likely a repetition or for the other side.",
+    "articulation": 0.5,
+    "weight": 0.5,
+    "energy": 0.5,
+    "primary": true
+   }
+  ],
+  "structure": {
+   "counts": 8,
+   "sides": 2
+  }
+ },
+ "inputs": {
+  "onset_bpm_sent": 103.9,
+  "transcript_words_sent": [
+   "five",
+   "six",
+   "seven",
+   "eight.",
+   "one,",
+   "two,",
+   "three,",
+   "four,",
+   "five,",
+   "six,",
+   "seven,",
+   "eight.",
+   "one,",
+   "two,",
+   "three,",
+   "four,",
+   "five,",
+   "six,",
+   "seven,",
+   "eight."
+  ]
+ }
+}

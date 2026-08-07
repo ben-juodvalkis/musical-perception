@@ -1,0 +1,28 @@
+id: rig-numbers-4-4-104-prep
+input:
+  trace: traces/rig-numbers-4-4-104-prep/
+  media: "audio/rig/rig-numbers-4-4-104-prep.mp3"
+tags:
+  source: rig
+  teacher: ben
+  slot: counting
+  count_style: numbers
+  explanation: none
+  lang: en
+  accompanied: false
+  snr_band: high
+expect:
+  marking_bpm: 104
+  meter: "4/4"
+  subdivision: none
+  counts: 8
+notes: >-
+  Capture-checklist clip 11, recorded 2026-08-07. Metronome 104 confirmed
+  by Ben; in-tempo prep "five, six, seven, eight" then 1-8 counted twice
+  through. Counts per phrase stays 8 -- the prep is deliberately NOT part
+  of the phrase, and that boundary is the test. Pipeline: tempo 103.9
+  (0.1% err), meter 4/4, subdivision none -- all GREEN, and counts also
+  landed on the true 8, meaning the prep-vs-phrase boundary was correctly
+  excluded. Oddity noted but not scored: structure also reported "2
+  side(s)" though this is a one-side exercise (sides not in expect block,
+  consistent with the other one-side rig cases).
