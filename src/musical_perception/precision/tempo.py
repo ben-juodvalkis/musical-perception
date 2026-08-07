@@ -131,10 +131,34 @@ def interpret_meter(
         NormalizedTempo with coherent BPM + meter + subdivision, or None
         if no usable tempo signal exists.
     """
-    # Pick best raw BPM (same priority as before)
+    # Arbitration (ADR-013). ADR-006 made onsets primary because Gemini's
+    # markers were sparse garbage then; ADR-010's index-keyed merge changed
+    # that. Confidence alone cannot arbitrate across metric levels (a
+    # regular measure-level marker stream is also "confident"), so the
+    # discriminator is the beat band itself: when the onset reading sits
+    # OUTSIDE 70-140 (syllable or measure level) and a dense, regular
+    # marker tempo sits INSIDE it, the markers are the beat-level signal
+    # and win. Whenever onsets are already at beat level, ADR-006/007
+    # behavior is preserved unchanged (issue-10 cross-ratio included).
+    onset_at_beat_level = (
+        onset_tempo is not None
+        and onset_tempo.confidence >= 0.3
+        and 70.0 <= onset_tempo.bpm <= 140.0
+    )
+    marker_at_beat_level = (
+        gemini_tempo is not None
+        and gemini_tempo.confidence >= 0.6
+        and gemini_tempo.beat_count >= 8
+        and 70.0 <= gemini_tempo.bpm <= 140.0
+    )
+    marker_is_strong = marker_at_beat_level and not onset_at_beat_level
+
     raw_bpm = None
     confidence = 0.0
-    if onset_tempo is not None and onset_tempo.confidence >= 0.3:
+    if marker_is_strong:
+        raw_bpm = gemini_tempo.bpm
+        confidence = gemini_tempo.confidence
+    elif onset_tempo is not None and onset_tempo.confidence >= 0.3:
         raw_bpm = onset_tempo.bpm
         confidence = onset_tempo.confidence
     elif gemini_tempo is not None:
@@ -154,7 +178,10 @@ def interpret_meter(
 
     # Cross-signal check: when onset is in range but Gemini BPM is much
     # lower, the ratio tells us about meter. onset/gemini ≈ 3 → triple meter.
-    if multiplier == 1 and onset_tempo is not None and gemini_tempo is not None:
+    # Only meaningful when onset was the primary signal — when markers won
+    # the arbitration, Gemini's meter/subdivision already describe their level.
+    if multiplier == 1 and not marker_is_strong \
+            and onset_tempo is not None and gemini_tempo is not None:
         ratio = raw_bpm / gemini_tempo.bpm if gemini_tempo.bpm > 0 else 1.0
         if 2.5 <= ratio <= 3.5:
             # Onset at beat level, Gemini at measure level of triple meter.

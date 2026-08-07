@@ -63,6 +63,7 @@ nav:
       - 010 · Transcript Authority: adr/010-transcript-authority.md
       - 011 · Phrase-Structure Definition: adr/011-phrase-structure-definition.md
       - 012 · Counts from Evidence Fusion: adr/012-counts-from-evidence-fusion.md
+      - 013 · Band-Aware Tempo Arbitration: adr/013-tempo-arbitration.md
   - Evals:
       - Baseline: evals/baseline.md
       - Capture Checklist: evals/capture-checklist.md

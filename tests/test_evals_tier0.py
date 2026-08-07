@@ -9,11 +9,12 @@ from musical_perception.evals.aggregate import aggregate
 from musical_perception.evals.synthetic import SUITE, build_timeline, run_suite
 from musical_perception.types import MarkerType, Meter
 
-# KEEP-layer defects the suite exposed on day one (2026-08-01):
-# - clean-triplet in 4/4: interpret_meter prefers /2 over /3 when both land
-#   in the 70-140 band, even with gemini_subdivision="triplet" → 120 not 80.
-# - half-tempo marking in 3/4: tempo recovers but the meter flips.
-KNOWN_FAILING = {"t0-4-4-clean-triplet", "t0-3-4-half"}
+# KEEP-layer defects the suite exposes (updated per ADR):
+# - half-tempo marking in 3/4: tempo recovers but the meter flips (open).
+# - t0-4-4-clean-triplet was here from day one (the /2-over-/3 defect);
+#   ADR-013's band-aware arbitration fixed it — beat-level markers now
+#   outvote the syllable-level onset reading.
+KNOWN_FAILING = {"t0-3-4-half"}
 
 
 def _failing_ids(results):
@@ -46,11 +47,11 @@ def test_suite_is_deterministic():
 
 
 def test_suite_has_expected_shape():
-    assert len(SUITE) == 24
-    assert len({c.id for c in SUITE}) == 24
+    assert len(SUITE) == 25
+    assert len({c.id for c in SUITE}) == 25
     corruptions = {c.tags["corruption"] for c in SUITE}
     assert {"clean", "jitter", "dropped", "interleaved",
-            "prep", "half_tempo", "stress"} <= corruptions
+            "prep", "half_tempo", "stress", "swing"} <= corruptions
 
 
 # === build_timeline unit checks ===

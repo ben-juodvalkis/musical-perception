@@ -133,9 +133,10 @@ def _onset(bpm, confidence=0.8):
     )
 
 
-def _gemini_tempo(bpm, confidence=0.8):
+def _gemini_tempo(bpm, confidence=0.8, beat_count=8):
     """Helper to create a TempoResult."""
-    return TempoResult(bpm=bpm, confidence=confidence, beat_count=8, intervals=[60.0 / bpm] * 7)
+    return TempoResult(bpm=bpm, confidence=confidence, beat_count=beat_count,
+                       intervals=[60.0 / bpm] * max(1, beat_count - 1))
 
 
 def test_interpret_issue10_waltz():
@@ -291,3 +292,69 @@ def test_interpret_gemini_zero_bpm():
     assert result.bpm == 100.0
     # ratio guard produces 1.0, so no cross-signal override
     assert result.tempo_multiplier == 1
+
+
+# --- ADR-013: marker-vs-onset arbitration ---
+
+
+def test_arbitration_strong_markers_beat_syllable_onset():
+    """The rig-waltz shape: onsets lock onto swung triplet syllables (~216),
+    markers carry the true beat (90.8 @ 0.92, 32 beats) — markers win."""
+    result = interpret_meter(
+        onset_tempo=_onset(215.9, confidence=0.79),
+        gemini_tempo=_gemini_tempo(90.8, confidence=0.92, beat_count=32),
+        gemini_meter=Meter(beats_per_measure=4, beat_unit=4),
+        gemini_subdivision="triplet",
+    )
+    assert result.bpm == 90.8
+    assert result.tempo_multiplier == 1
+    assert result.subdivision == "triplet"
+
+
+def test_arbitration_in_band_onset_stays_primary():
+    """When onsets already read at beat level, ADR-006 behavior is untouched
+    — even against denser, more confident markers."""
+    result = interpret_meter(
+        onset_tempo=_onset(115.0, confidence=0.6),
+        gemini_tempo=_gemini_tempo(90.0, confidence=0.95, beat_count=32),
+        gemini_meter=Meter(beats_per_measure=4, beat_unit=4),
+        gemini_subdivision="none",
+    )
+    assert result.raw_bpm == 115.0
+
+
+def test_arbitration_never_promotes_out_of_band_markers():
+    """Measure-level markers (issue-10 shape) can't win the arbitration no
+    matter how confident — both signals off-level falls back to onset."""
+    result = interpret_meter(
+        onset_tempo=_onset(216.0, confidence=0.79),
+        gemini_tempo=_gemini_tempo(40.0, confidence=0.95, beat_count=32),
+        gemini_meter=None,
+        gemini_subdivision=None,
+    )
+    assert result.raw_bpm == 216.0
+    assert result.bpm == 108.0  # onset primary, halved into band
+
+
+def test_arbitration_needs_dense_markers():
+    """A handful of confident markers is not enough to outvote onsets."""
+    result = interpret_meter(
+        onset_tempo=_onset(215.9, confidence=0.79),
+        gemini_tempo=_gemini_tempo(90.8, confidence=0.92, beat_count=5),
+        gemini_meter=None,
+        gemini_subdivision=None,
+    )
+    assert result.raw_bpm == 215.9
+
+
+def test_arbitration_frappe_shape_keeps_onset():
+    """The frappé shape: the onset reading (74.3) is inside the beat band,
+    so it keeps primacy even though weak in-band markers disagree —
+    explicitly out of ADR-013's scope (needs accent evidence)."""
+    result = interpret_meter(
+        onset_tempo=_onset(74.3, confidence=0.73),
+        gemini_tempo=_gemini_tempo(124.7, confidence=0.54, beat_count=40),
+        gemini_meter=None,
+        gemini_subdivision=None,
+    )
+    assert result.bpm == 74.3

@@ -35,6 +35,7 @@ def build_timeline(
     interleaved_explanation: bool = False,
     prep_counts: int = 0,
     half_tempo_marking: bool = False,
+    swing: float = 0.0,
     seed: int = 0,
 ) -> tuple[list[TimestampedWord], list[TimedMarker]]:
     """
@@ -65,11 +66,17 @@ def build_timeline(
                 t += _EXPLANATION_GAP
         beat_number = i + 1
         events.append((t, _NUMBERS[i % 8], MarkerType.BEAT, beat_number))
+        # swing pushes subdivision syllables late (real "ONE-and-ah" counting
+        # is never even) — beats stay on the grid, syllables drift, and the
+        # onset detector's IOI histogram locks off-level. The rig-waltz shape.
         if subdivision == "duple":
-            events.append((t + spoken_period / 2, "and", MarkerType.AND, beat_number))
+            events.append((t + spoken_period * (0.5 + swing), "and",
+                           MarkerType.AND, beat_number))
         elif subdivision == "triplet":
-            events.append((t + spoken_period / 3, "and", MarkerType.AND, beat_number))
-            events.append((t + 2 * spoken_period / 3, "ah", MarkerType.AH, beat_number))
+            events.append((t + spoken_period * (1 / 3 + swing), "and",
+                           MarkerType.AND, beat_number))
+            events.append((t + spoken_period * (2 / 3 + swing / 2), "ah",
+                           MarkerType.AH, beat_number))
         t += spoken_period
 
     if jitter_sd:
@@ -164,6 +171,9 @@ SUITE: list[SyntheticCase] = [
     # Combined stress
     _case("t0-4-4-stress", 4, 4, 104, "duple", "stress",
           jitter_sd=0.04, drop_rate=0.1, seed=7),
+    # Swung triplet counting (the rig-waltz shape, ADR-013): syllables
+    # drift late so onsets read off-level; beat markers carry the truth.
+    _case("t0-3-4-swing-triplet", 3, 4, 90, "triplet", "swing", swing=0.12),
 ]
 
 
