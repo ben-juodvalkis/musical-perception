@@ -1,0 +1,30 @@
+id: rig-numbers-4-4-80-triplet
+input:
+  trace: traces/rig-numbers-4-4-80-triplet/
+  media: "audio/rig/rig-numbers-4-4-80-triplet.mp3"
+tags:
+  source: rig
+  teacher: ben
+  slot: counting
+  count_style: numbers
+  explanation: none
+  lang: en
+  accompanied: false
+  snr_band: high
+expect:
+  marking_bpm: 80
+  meter: "4/4"
+  subdivision: triplet
+  counts: 8
+notes: >-
+  Capture-checklist clip 15, recorded 2026-08-08. Metronome 80 confirmed
+  by Ben; "ONE-and-a-TWO-and-a..." triplet subdivision, numbers on the
+  clicks, 2 rounds of 8. This is the real-world counterpart to the
+  tier-0 synthetic triplet case (t0-4-4-clean-triplet, the day-one
+  /2-over-/3 defect that ADR-013's band-aware tempo arbitration fixed).
+  Pipeline: ALL GREEN. Marker-based tempo (80.8 BPM, 90% confidence, 16
+  beats) correctly won arbitration over the syllable-level onset reading
+  (186.9 BPM, outside the 70-140 band) -- exactly the mechanism ADR-013
+  was built for, confirmed on real human speech rather than synthetic
+  data. Subdivision (triplet, 100% confidence) and counts (8) also
+  correct. Third all-green rig row after clips 3 and 11.

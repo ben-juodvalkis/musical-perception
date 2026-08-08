@@ -1,7 +1,7 @@
 {
  "schema": 1,
- "created_at": "2026-08-08T18:10:10+00:00",
- "git_sha": "a27343502bdc1ce2a78b7e2984fd1313209fc276",
+ "created_at": "2026-08-08T18:13:41+00:00",
+ "git_sha": "555c92f993ee50faf2c6a5883934ecf3eaf11386",
  "package_version": "0.1.0",
  "suites": {
   "tier0": {
@@ -1247,37 +1247,37 @@
   },
   "tier1": {
    "summary": {
-    "n_cases": 20,
+    "n_cases": 21,
     "errors": [],
     "fields": {
      "counts": {
-      "n": 18,
-      "correct": 9,
+      "n": 19,
+      "correct": 10,
       "wrong": 5,
       "abstained": 4,
-      "coverage": 0.778,
-      "accuracy": 0.643,
+      "coverage": 0.789,
+      "accuracy": 0.667,
       "accuracy_wilson95": [
-       0.388,
-       0.837
+       0.417,
+       0.848
       ],
-      "mean_credit": 0.5,
+      "mean_credit": 0.526,
       "failure_modes": {
        "counts_wrong": 5
       }
      },
      "meter_triple": {
-      "n": 19,
-      "correct": 6,
+      "n": 20,
+      "correct": 7,
       "wrong": 13,
       "abstained": 0,
       "coverage": 1.0,
-      "accuracy": 0.316,
+      "accuracy": 0.35,
       "accuracy_wilson95": [
-       0.154,
-       0.54
+       0.181,
+       0.567
       ],
-      "mean_credit": 0.368,
+      "mean_credit": 0.4,
       "failure_modes": {
        "tempo_wrong": 4,
        "subdivision_wrong": 3,
@@ -1314,17 +1314,17 @@
       "failure_modes": {}
      },
      "tempo": {
-      "n": 19,
-      "correct": 10,
+      "n": 20,
+      "correct": 11,
       "wrong": 9,
       "abstained": 0,
       "coverage": 1.0,
-      "accuracy": 0.526,
+      "accuracy": 0.55,
       "accuracy_wilson95": [
-       0.317,
-       0.727
+       0.342,
+       0.742
       ],
-      "mean_credit": 0.526,
+      "mean_credit": 0.55,
       "failure_modes": {
        "tempo_error": 6,
        "metric_level_div2": 2,
@@ -1333,248 +1333,258 @@
      }
     },
     "quality_spearman": null,
-    "ece": 0.4186,
+    "ece": 0.395,
     "risk_coverage": [
      {
       "threshold": 1.0,
-      "coverage": 0.024,
+      "coverage": 0.023,
       "risk": 0.0
      },
      {
       "threshold": 1.0,
-      "coverage": 0.048,
+      "coverage": 0.045,
       "risk": 0.0
      },
      {
       "threshold": 0.94,
-      "coverage": 0.071,
+      "coverage": 0.068,
       "risk": 0.0
      },
      {
       "threshold": 0.94,
-      "coverage": 0.095,
+      "coverage": 0.091,
       "risk": 0.0
      },
      {
       "threshold": 0.92,
-      "coverage": 0.119,
+      "coverage": 0.114,
       "risk": 0.0
      },
      {
       "threshold": 0.92,
-      "coverage": 0.143,
+      "coverage": 0.136,
       "risk": 0.167
      },
      {
       "threshold": 0.9,
-      "coverage": 0.167,
+      "coverage": 0.159,
       "risk": 0.143
      },
      {
       "threshold": 0.9,
-      "coverage": 0.19,
+      "coverage": 0.182,
       "risk": 0.125
      },
      {
       "threshold": 0.9,
-      "coverage": 0.214,
+      "coverage": 0.205,
       "risk": 0.111
      },
      {
       "threshold": 0.9,
-      "coverage": 0.238,
+      "coverage": 0.227,
       "risk": 0.2
      },
      {
-      "threshold": 0.89,
-      "coverage": 0.262,
-      "risk": 0.273
+      "threshold": 0.9,
+      "coverage": 0.25,
+      "risk": 0.182
+     },
+     {
+      "threshold": 0.9,
+      "coverage": 0.273,
+      "risk": 0.167
      },
      {
       "threshold": 0.89,
-      "coverage": 0.286,
+      "coverage": 0.295,
+      "risk": 0.231
+     },
+     {
+      "threshold": 0.89,
+      "coverage": 0.318,
+      "risk": 0.286
+     },
+     {
+      "threshold": 0.85,
+      "coverage": 0.341,
       "risk": 0.333
      },
      {
       "threshold": 0.85,
-      "coverage": 0.31,
-      "risk": 0.385
-     },
-     {
-      "threshold": 0.85,
-      "coverage": 0.333,
-      "risk": 0.429
-     },
-     {
-      "threshold": 0.84,
-      "coverage": 0.357,
-      "risk": 0.4
-     },
-     {
-      "threshold": 0.84,
-      "coverage": 0.381,
+      "coverage": 0.364,
       "risk": 0.375
      },
      {
       "threshold": 0.84,
-      "coverage": 0.405,
-      "risk": 0.412
+      "coverage": 0.386,
+      "risk": 0.353
      },
      {
       "threshold": 0.84,
-      "coverage": 0.429,
-      "risk": 0.444
+      "coverage": 0.409,
+      "risk": 0.333
+     },
+     {
+      "threshold": 0.84,
+      "coverage": 0.432,
+      "risk": 0.368
+     },
+     {
+      "threshold": 0.84,
+      "coverage": 0.455,
+      "risk": 0.4
      },
      {
       "threshold": 0.83,
-      "coverage": 0.452,
-      "risk": 0.474
-     },
-     {
-      "threshold": 0.83,
-      "coverage": 0.476,
-      "risk": 0.5
+      "coverage": 0.477,
+      "risk": 0.429
      },
      {
       "threshold": 0.83,
       "coverage": 0.5,
-      "risk": 0.476
+      "risk": 0.455
      },
      {
       "threshold": 0.83,
-      "coverage": 0.524,
-      "risk": 0.5
+      "coverage": 0.523,
+      "risk": 0.435
      },
      {
       "threshold": 0.83,
-      "coverage": 0.548,
-      "risk": 0.478
-     },
-     {
-      "threshold": 0.83,
-      "coverage": 0.571,
+      "coverage": 0.545,
       "risk": 0.458
      },
      {
-      "threshold": 0.75,
-      "coverage": 0.595,
-      "risk": 0.48
+      "threshold": 0.83,
+      "coverage": 0.568,
+      "risk": 0.44
+     },
+     {
+      "threshold": 0.83,
+      "coverage": 0.591,
+      "risk": 0.423
      },
      {
       "threshold": 0.75,
-      "coverage": 0.619,
-      "risk": 0.5
+      "coverage": 0.614,
+      "risk": 0.444
+     },
+     {
+      "threshold": 0.75,
+      "coverage": 0.636,
+      "risk": 0.464
      },
      {
       "threshold": 0.73,
-      "coverage": 0.643,
-      "risk": 0.519
+      "coverage": 0.659,
+      "risk": 0.483
      },
      {
       "threshold": 0.71,
-      "coverage": 0.667,
-      "risk": 0.536
+      "coverage": 0.682,
+      "risk": 0.5
      },
      {
       "threshold": 0.71,
-      "coverage": 0.69,
-      "risk": 0.552
+      "coverage": 0.705,
+      "risk": 0.516
      },
      {
       "threshold": 0.69,
-      "coverage": 0.714,
-      "risk": 0.567
+      "coverage": 0.727,
+      "risk": 0.531
      },
      {
       "threshold": 0.69,
-      "coverage": 0.738,
-      "risk": 0.581
+      "coverage": 0.75,
+      "risk": 0.545
      },
      {
       "threshold": 0.69,
-      "coverage": 0.762,
-      "risk": 0.594
+      "coverage": 0.773,
+      "risk": 0.559
      },
      {
       "threshold": 0.66,
-      "coverage": 0.786,
-      "risk": 0.606
+      "coverage": 0.795,
+      "risk": 0.571
      },
      {
       "threshold": 0.66,
-      "coverage": 0.81,
-      "risk": 0.618
-     },
-     {
-      "threshold": 0.6,
-      "coverage": 0.833,
-      "risk": 0.6
-     },
-     {
-      "threshold": 0.6,
-      "coverage": 0.857,
+      "coverage": 0.818,
       "risk": 0.583
      },
      {
-      "threshold": 0.59,
-      "coverage": 0.881,
+      "threshold": 0.6,
+      "coverage": 0.841,
       "risk": 0.568
      },
      {
-      "threshold": 0.59,
-      "coverage": 0.905,
+      "threshold": 0.6,
+      "coverage": 0.864,
       "risk": 0.553
      },
      {
       "threshold": 0.59,
-      "coverage": 0.929,
+      "coverage": 0.886,
       "risk": 0.538
      },
      {
       "threshold": 0.59,
-      "coverage": 0.952,
-      "risk": 0.55
+      "coverage": 0.909,
+      "risk": 0.525
+     },
+     {
+      "threshold": 0.59,
+      "coverage": 0.932,
+      "risk": 0.512
+     },
+     {
+      "threshold": 0.59,
+      "coverage": 0.955,
+      "risk": 0.524
      },
      {
       "threshold": 0.52,
-      "coverage": 0.976,
-      "risk": 0.537
+      "coverage": 0.977,
+      "risk": 0.512
      },
      {
       "threshold": 0.52,
       "coverage": 1.0,
-      "risk": 0.524
+      "risk": 0.5
      }
     ],
     "slices": {
      "count_style": {
       "numbers": {
        "counts": {
-        "n": 10,
-        "correct": 9,
+        "n": 11,
+        "correct": 10,
         "wrong": 0,
         "abstained": 1,
-        "coverage": 0.9,
+        "coverage": 0.909,
         "accuracy": 1.0,
         "accuracy_wilson95": [
-         0.701,
+         0.722,
          1.0
         ],
-        "mean_credit": 0.9,
+        "mean_credit": 0.909,
         "failure_modes": {}
        },
        "meter_triple": {
-        "n": 10,
-        "correct": 4,
+        "n": 11,
+        "correct": 5,
         "wrong": 6,
         "abstained": 0,
         "coverage": 1.0,
-        "accuracy": 0.4,
+        "accuracy": 0.455,
         "accuracy_wilson95": [
-         0.168,
-         0.687
+         0.213,
+         0.72
         ],
-        "mean_credit": 0.45,
+        "mean_credit": 0.5,
         "failure_modes": {
          "tempo_wrong": 3,
          "subdivision_wrong": 1,
@@ -1611,17 +1621,17 @@
         "failure_modes": {}
        },
        "tempo": {
-        "n": 9,
-        "correct": 6,
+        "n": 10,
+        "correct": 7,
         "wrong": 3,
         "abstained": 0,
         "coverage": 1.0,
-        "accuracy": 0.667,
+        "accuracy": 0.7,
         "accuracy_wilson95": [
-         0.354,
-         0.879
+         0.397,
+         0.892
         ],
-        "mean_credit": 0.667,
+        "mean_credit": 0.7,
         "failure_modes": {
          "tempo_error": 2,
          "metric_level_x2": 1
@@ -1700,33 +1710,33 @@
      "source": {
       "rig": {
        "counts": {
-        "n": 16,
-        "correct": 8,
+        "n": 17,
+        "correct": 9,
         "wrong": 5,
         "abstained": 3,
-        "coverage": 0.812,
-        "accuracy": 0.615,
+        "coverage": 0.824,
+        "accuracy": 0.643,
         "accuracy_wilson95": [
-         0.355,
-         0.823
+         0.388,
+         0.837
         ],
-        "mean_credit": 0.5,
+        "mean_credit": 0.529,
         "failure_modes": {
          "counts_wrong": 5
         }
        },
        "meter_triple": {
-        "n": 16,
-        "correct": 3,
+        "n": 17,
+        "correct": 4,
         "wrong": 13,
         "abstained": 0,
         "coverage": 1.0,
-        "accuracy": 0.188,
+        "accuracy": 0.235,
         "accuracy_wilson95": [
-         0.066,
-         0.43
+         0.096,
+         0.473
         ],
-        "mean_credit": 0.25,
+        "mean_credit": 0.294,
         "failure_modes": {
          "tempo_wrong": 4,
          "subdivision_wrong": 3,
@@ -1735,17 +1745,17 @@
         }
        },
        "tempo": {
-        "n": 15,
-        "correct": 7,
+        "n": 16,
+        "correct": 8,
         "wrong": 8,
         "abstained": 0,
         "coverage": 1.0,
-        "accuracy": 0.467,
+        "accuracy": 0.5,
         "accuracy_wilson95": [
-         0.248,
-         0.699
+         0.28,
+         0.72
         ],
-        "mean_credit": 0.467,
+        "mean_credit": 0.5,
         "failure_modes": {
          "tempo_error": 6,
          "metric_level_div2": 1,
@@ -1831,33 +1841,33 @@
      "slot": {
       "counting": {
        "counts": {
-        "n": 16,
-        "correct": 8,
+        "n": 17,
+        "correct": 9,
         "wrong": 5,
         "abstained": 3,
-        "coverage": 0.812,
-        "accuracy": 0.615,
+        "coverage": 0.824,
+        "accuracy": 0.643,
         "accuracy_wilson95": [
-         0.355,
-         0.823
+         0.388,
+         0.837
         ],
-        "mean_credit": 0.5,
+        "mean_credit": 0.529,
         "failure_modes": {
          "counts_wrong": 5
         }
        },
        "meter_triple": {
-        "n": 16,
-        "correct": 3,
+        "n": 17,
+        "correct": 4,
         "wrong": 13,
         "abstained": 0,
         "coverage": 1.0,
-        "accuracy": 0.188,
+        "accuracy": 0.235,
         "accuracy_wilson95": [
-         0.066,
-         0.43
+         0.096,
+         0.473
         ],
-        "mean_credit": 0.25,
+        "mean_credit": 0.294,
         "failure_modes": {
          "tempo_wrong": 4,
          "subdivision_wrong": 3,
@@ -1866,17 +1876,17 @@
         }
        },
        "tempo": {
-        "n": 15,
-        "correct": 7,
+        "n": 16,
+        "correct": 8,
         "wrong": 8,
         "abstained": 0,
         "coverage": 1.0,
-        "accuracy": 0.467,
+        "accuracy": 0.5,
         "accuracy_wilson95": [
-         0.248,
-         0.699
+         0.28,
+         0.72
         ],
-        "mean_credit": 0.467,
+        "mean_credit": 0.5,
         "failure_modes": {
          "tempo_error": 6,
          "metric_level_div2": 1,
@@ -2185,6 +2195,11 @@
     "rig-numbers-4-4-60-halftempo": {
      "tempo": "wrong",
      "meter_triple": "wrong",
+     "counts": "correct"
+    },
+    "rig-numbers-4-4-80-triplet": {
+     "tempo": "correct",
+     "meter_triple": "correct",
      "counts": "correct"
     },
     "rig-numbers-6-8-100-clean": {
@@ -3058,6 +3073,52 @@
        "expected": "4/4 @60 none",
        "confidence": 0.84,
        "failure_mode": "tempo_wrong",
+       "detail": ""
+      },
+      {
+       "field": "counts",
+       "outcome": "correct",
+       "credit": 1.0,
+       "predicted": 8,
+       "expected": 8,
+       "confidence": null,
+       "failure_mode": null,
+       "detail": ""
+      }
+     ],
+     "error": null
+    },
+    {
+     "case_id": "rig-numbers-4-4-80-triplet",
+     "tags": {
+      "source": "rig",
+      "teacher": "ben",
+      "slot": "counting",
+      "count_style": "numbers",
+      "explanation": "none",
+      "lang": "en",
+      "accompanied": false,
+      "snr_band": "high"
+     },
+     "scores": [
+      {
+       "field": "tempo",
+       "outcome": "correct",
+       "credit": 1.0,
+       "predicted": 80.8,
+       "expected": 80.0,
+       "confidence": 0.9,
+       "failure_mode": null,
+       "detail": "rel_err=0.010"
+      },
+      {
+       "field": "meter_triple",
+       "outcome": "correct",
+       "credit": 1.0,
+       "predicted": "4/4 @80.8 triplet",
+       "expected": "4/4 @80 triplet",
+       "confidence": 0.9,
+       "failure_mode": null,
        "detail": ""
       },
       {
