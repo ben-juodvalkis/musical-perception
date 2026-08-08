@@ -1,0 +1,175 @@
+{
+ "model": "gemini-2.5-flash",
+ "raw_response": {
+  "words": [
+   {
+    "word": "rendez-jean",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 0
+   },
+   {
+    "word": "pli\u00e9",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 1
+   },
+   {
+    "word": "all",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 2
+   },
+   {
+    "word": "around",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 3
+   },
+   {
+    "word": "all",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 4
+   },
+   {
+    "word": "we",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 5
+   },
+   {
+    "word": "go",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 6
+   },
+   {
+    "word": "is",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 7
+   },
+   {
+    "word": "up",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 8
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 9
+   },
+   {
+    "word": "down",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 10
+   },
+   {
+    "word": "in",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 11
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 12
+   },
+   {
+    "word": "out",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 13
+   },
+   {
+    "word": "this",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 14
+   },
+   {
+    "word": "is",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 15
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 16
+   },
+   {
+    "word": "whole",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 17
+   },
+   {
+    "word": "world",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 18
+   }
+  ],
+  "exercise": {
+   "exercise_type": "rond_de_jambe_plie",
+   "display_name": "Rond de Jambe Pli\u00e9",
+   "confidence": 0.6,
+   "reasoning": "The words 'Ronde de jambe' and 'pli\u00e9' are spoken, describing a combination of these two ballet steps. The speech is poetic rather than instructional counting."
+  },
+  "counting_structure": {
+   "total_counts": 0,
+   "prep_counts": null,
+   "subdivision_type": "none",
+   "estimated_bpm": null
+  },
+  "meter": {
+   "beats_per_measure": 4,
+   "beat_unit": 4
+  },
+  "quality": [
+   {
+    "phrase_number": 1,
+    "description": "A poetic description of movement involving rond de jambe and pli\u00e9, with themes of 'all around' and 'up and down'. No visual movement is provided, so qualities are inferred from the spoken words.",
+    "articulation": 0.7,
+    "weight": 0.6,
+    "energy": 0.4,
+    "primary": true
+   }
+  ],
+  "structure": {
+   "counts": 0,
+   "sides": 0
+  }
+ },
+ "inputs": {
+  "onset_bpm_sent": 92.2,
+  "transcript_words_sent": [
+   "rendez-jean,",
+   "pli\u00e9,",
+   "all",
+   "around,",
+   "all",
+   "we",
+   "go",
+   "is",
+   "up",
+   "and",
+   "down,",
+   "in",
+   "and",
+   "out,",
+   "this",
+   "is",
+   "the",
+   "whole",
+   "world."
+  ]
+ }
+}

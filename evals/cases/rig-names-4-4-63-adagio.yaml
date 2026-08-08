@@ -1,0 +1,35 @@
+id: rig-names-4-4-63-adagio
+input:
+  trace: traces/rig-names-4-4-63-adagio/
+  media: "audio/rig/rig-names-4-4-63-adagio.mp3"
+tags:
+  source: rig
+  teacher: ben
+  slot: counting
+  count_style: step_names
+  explanation: none
+  lang: en
+  accompanied: false
+  snr_band: high
+expect:
+  marking_bpm: 63
+  meter: "4/4"
+  subdivision: none
+  counts: 8
+notes: >-
+  Capture-checklist clip 14, recorded 2026-08-08. Metronome 63 confirmed
+  by Ben; slow sustained adagio marking, long vowels and connected words
+  ("developpe... aaand carry... fondu down..."), one 8-count phrase, 4
+  rounds through. Pipeline: onset tempo read 92.2 BPM at only 71%
+  confidence / 53% coverage (Gemini found no beats at all -- fully
+  abstained). Unlike clips 12/13, this is NOT the ADR-014 band-snap
+  defect: 92.2 is not a clean x2/x3 ratio of 63 (~1.46x), and 92.2
+  already sits inside 70-140 so normalize_tempo() never touches it. More
+  likely the sustained/legato delivery (long held vowels, connected
+  words with no clear word-boundary gaps) confuses onset segmentation
+  directly -- the three rhythmic sections in the trace show inconsistent
+  local tempo (92, 54, 94 BPM) and CV as high as 0.36, versus the crisp
+  CV=0.00-0.07 seen on clipped/counted takes. Structure abstained
+  entirely (0 sides reported, likely a related symptom). Distinct defect
+  worth its own tag if a "sustained/legato delivery" corruption category
+  gets added to the synthetic suite.
