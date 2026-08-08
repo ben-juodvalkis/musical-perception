@@ -1,0 +1,30 @@
+id: rig-numbers-4-4-104-duple
+input:
+  trace: traces/rig-numbers-4-4-104-duple/
+  media: "audio/rig/rig-numbers-4-4-104-duple.mp3"
+tags:
+  source: rig
+  teacher: ben
+  slot: counting
+  count_style: numbers
+  explanation: none
+  lang: en
+  accompanied: false
+  snr_band: high
+expect:
+  marking_bpm: 104
+  meter: "4/4"
+  subdivision: duple
+  counts: 8
+notes: >-
+  Capture-checklist clip 16, recorded 2026-08-08. Metronome 104 confirmed
+  by Ben; "ONE-and-TWO-and..." eighth-note (duple) subdivision on
+  numbers, 2 rounds of 8. Duple sibling of clip 15's triplet case.
+  Pipeline: coherent tempo answer 102.9 BPM (1.1% err), 4/4, duple
+  subdivision -- correct, marker path (102.9, 92% confidence) again
+  outvoting the syllable-level onset (216.3, well outside band). Counts
+  (8) correct. Note: the separate raw SubdivisionResult (unused by the
+  coherent NormalizedTempo path) misread this as triplet at 100%
+  confidence -- a reminder that the deprecated/raw subdivision detector
+  and the arbitrated interpret_meter() path can disagree; only the
+  latter feeds meter_triple scoring.
