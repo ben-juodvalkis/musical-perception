@@ -1,0 +1,30 @@
+id: rig-numbers-4-4-104-fourx8
+input:
+  trace: traces/rig-numbers-4-4-104-fourx8/
+  media: "audio/rig/rig-numbers-4-4-104-fourx8.mp3"
+tags:
+  source: rig
+  teacher: ben
+  slot: counting
+  count_style: numbers
+  explanation: none
+  lang: en
+  accompanied: false
+  snr_band: high
+expect:
+  marking_bpm: 104
+  meter: "4/4"
+  subdivision: none
+  counts: 32
+notes: >-
+  Capture-checklist clip 18, recorded 2026-08-08. Metronome 104 confirmed
+  by Ben; four rounds of 1-8 with different inflections, meant as ONE
+  32-count combination (not four separate 8-count phrases -- that
+  distinction is the test). Pipeline: tempo 104.9 (0.9% err) and meter
+  4/4 both correct. Structure read 8 counts, not 32 -- the expected
+  finding: the system hears four cycles of eight and has no signal that
+  they form a single longer phrase (varied inflection between rounds
+  wasn't enough of a cue, or isn't used at all). Distinct from the
+  clips 5-8 undercount pattern (sparse/silent markers) -- here every
+  count was spoken cleanly; this is a pure phrase-boundary/grouping
+  miss.
