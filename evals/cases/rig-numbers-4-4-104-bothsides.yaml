@@ -1,0 +1,30 @@
+id: rig-numbers-4-4-104-bothsides
+input:
+  trace: traces/rig-numbers-4-4-104-bothsides/
+  media: "audio/rig/rig-numbers-4-4-104-bothsides.mp3"
+tags:
+  source: rig
+  teacher: ben
+  slot: counting
+  count_style: numbers
+  explanation: none
+  lang: en
+  accompanied: false
+  snr_band: high
+expect:
+  marking_bpm: 104
+  meter: "4/4"
+  subdivision: none
+  counts: 32
+  sides: both
+notes: >-
+  Capture-checklist clip 19, recorded 2026-08-08. Metronome 104 confirmed
+  by Ben; 32 counts, "other side" spoken between count 32 and the second
+  round, then 32 counts again (numbering resets, not 33-64). Pipeline:
+  tempo 104.1 (0.1% err) and meter 4/4 both correct. Structure correctly
+  read 2 sides -- the "other side" verbal cue worked as a signal -- but
+  counts read 8, not 32, the same phrase-boundary miss as clip 18 (four
+  cycles of eight read as four separate 8-count phrases rather than one
+  32-count combination). Interesting split: side-detection succeeded
+  where phrase-length grouping failed, on the same underlying audio
+  shape.

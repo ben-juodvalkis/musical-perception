@@ -1,0 +1,294 @@
+{
+ "words": [
+  {
+   "word": "one,",
+   "start": 2.022,
+   "end": 2.663
+  },
+  {
+   "word": "two,",
+   "start": 2.964,
+   "end": 3.284
+  },
+  {
+   "word": "three,",
+   "start": 3.545,
+   "end": 3.946
+  },
+  {
+   "word": "four,",
+   "start": 4.126,
+   "end": 4.447
+  },
+  {
+   "word": "five,",
+   "start": 4.667,
+   "end": 5.108
+  },
+  {
+   "word": "six,",
+   "start": 5.268,
+   "end": 5.769
+  },
+  {
+   "word": "seven,",
+   "start": 5.789,
+   "end": 6.611
+  },
+  {
+   "word": "eight.",
+   "start": 6.631,
+   "end": 6.831
+  },
+  {
+   "word": "one,",
+   "start": 7.132,
+   "end": 7.352
+  },
+  {
+   "word": "two,",
+   "start": 7.553,
+   "end": 7.953
+  },
+  {
+   "word": "three,",
+   "start": 8.114,
+   "end": 8.534
+  },
+  {
+   "word": "four,",
+   "start": 8.675,
+   "end": 9.116
+  },
+  {
+   "word": "five,",
+   "start": 9.276,
+   "end": 9.857
+  },
+  {
+   "word": "six,",
+   "start": 9.877,
+   "end": 10.238
+  },
+  {
+   "word": "seven,",
+   "start": 10.358,
+   "end": 11.3
+  },
+  {
+   "word": "eight.",
+   "start": 11.32,
+   "end": 11.741
+  },
+  {
+   "word": "one,",
+   "start": 11.761,
+   "end": 11.961
+  },
+  {
+   "word": "two,",
+   "start": 12.141,
+   "end": 12.542
+  },
+  {
+   "word": "three,",
+   "start": 12.722,
+   "end": 12.983
+  },
+  {
+   "word": "four,",
+   "start": 13.324,
+   "end": 13.784
+  },
+  {
+   "word": "five,",
+   "start": 13.925,
+   "end": 14.426
+  },
+  {
+   "word": "six,",
+   "start": 14.506,
+   "end": 15.007
+  },
+  {
+   "word": "seven,",
+   "start": 15.027,
+   "end": 16.57
+  },
+  {
+   "word": "eight.",
+   "start": 17.411,
+   "end": 19.896
+  },
+  {
+   "word": "other",
+   "start": 19.876,
+   "end": 20.297
+  },
+  {
+   "word": "side.",
+   "start": 20.337,
+   "end": 20.678
+  },
+  {
+   "word": "one,",
+   "start": 21.079,
+   "end": 21.239
+  },
+  {
+   "word": "two,",
+   "start": 21.419,
+   "end": 21.78
+  },
+  {
+   "word": "three,",
+   "start": 21.981,
+   "end": 22.402
+  },
+  {
+   "word": "four,",
+   "start": 22.542,
+   "end": 22.963
+  },
+  {
+   "word": "five,",
+   "start": 23.123,
+   "end": 23.624
+  },
+  {
+   "word": "six,",
+   "start": 23.724,
+   "end": 24.226
+  },
+  {
+   "word": "seven,",
+   "start": 24.246,
+   "end": 25.007
+  },
+  {
+   "word": "eight.",
+   "start": 25.027,
+   "end": 25.188
+  },
+  {
+   "word": "one,",
+   "start": 25.569,
+   "end": 25.769
+  },
+  {
+   "word": "two,",
+   "start": 25.849,
+   "end": 26.41
+  },
+  {
+   "word": "three,",
+   "start": 26.571,
+   "end": 26.972
+  },
+  {
+   "word": "four,",
+   "start": 27.132,
+   "end": 27.733
+  },
+  {
+   "word": "five,",
+   "start": 27.753,
+   "end": 28.214
+  },
+  {
+   "word": "six,",
+   "start": 28.315,
+   "end": 28.675
+  },
+  {
+   "word": "seven,",
+   "start": 28.876,
+   "end": 29.417
+  },
+  {
+   "word": "eight.",
+   "start": 29.637,
+   "end": 30.219
+  },
+  {
+   "word": "one,",
+   "start": 30.239,
+   "end": 30.439
+  },
+  {
+   "word": "two,",
+   "start": 30.62,
+   "end": 31.0
+  },
+  {
+   "word": "three,",
+   "start": 31.161,
+   "end": 31.602
+  },
+  {
+   "word": "four,",
+   "start": 31.742,
+   "end": 31.963
+  },
+  {
+   "word": "five,",
+   "start": 32.384,
+   "end": 32.885
+  },
+  {
+   "word": "six,",
+   "start": 32.965,
+   "end": 33.446
+  },
+  {
+   "word": "seven,",
+   "start": 33.466,
+   "end": 34.288
+  },
+  {
+   "word": "eight.",
+   "start": 34.308,
+   "end": 34.488
+  },
+  {
+   "word": "one,",
+   "start": 34.869,
+   "end": 35.069
+  },
+  {
+   "word": "two,",
+   "start": 35.27,
+   "end": 35.671
+  },
+  {
+   "word": "three,",
+   "start": 35.831,
+   "end": 36.192
+  },
+  {
+   "word": "four,",
+   "start": 36.412,
+   "end": 36.813
+  },
+  {
+   "word": "five,",
+   "start": 36.994,
+   "end": 37.475
+  },
+  {
+   "word": "six,",
+   "start": 37.575,
+   "end": 37.936
+  },
+  {
+   "word": "seven,",
+   "start": 38.076,
+   "end": 38.637
+  },
+  {
+   "word": "eight.",
+   "start": 38.858,
+   "end": 38.998
+  }
+ ]
+}
