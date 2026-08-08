@@ -1,0 +1,35 @@
+id: rig-numbers-4-4-60-halftempo
+input:
+  trace: traces/rig-numbers-4-4-60-halftempo/
+  media: "audio/rig/rig-numbers-4-4-60-halftempo.mp3"
+tags:
+  source: rig
+  teacher: ben
+  slot: counting
+  count_style: numbers
+  explanation: none
+  lang: en
+  accompanied: false
+  snr_band: high
+expect:
+  marking_bpm: 60
+  meter: "4/4"
+  subdivision: none
+  counts: 8
+notes: >-
+  Capture-checklist clip 12, recorded 2026-08-08. Metronome 60 confirmed
+  by Ben (the deliberately-slow "quick reminder" voice -- an exercise
+  he'd run at 120, marked at half speed). Two clean rounds of 1-8, no
+  gaps. This is the checklist's purpose-built "half-tempo" known-killer,
+  and it landed exactly as predicted: raw onset tempo read 62.2 BPM at
+  100% coverage and CV=0.00 (near-perfect regularity, essentially exact),
+  but the pipeline's low-tempo x2 normalization -- built to lift readings
+  into the 70-140 beat band (ADR-006) -- fires here too, doubling a
+  genuinely-slow-but-correct reading to 124.4. Same multiplier=2 pattern
+  already seen misfiring on clips 6, 8, and now 12 (three-for-three on
+  step_names/half-tempo material), but this is the cleanest case: the
+  raw signal was already right, the heuristic broke it. Counts (8) and
+  subdivision (none) both correct, isolating the defect to the tempo
+  band-normalization step. Strong candidate for a banded-multiplier fix:
+  don't double when raw confidence is already high and coverage is
+  total, or widen/soften the band's lower edge.
