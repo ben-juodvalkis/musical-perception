@@ -1,0 +1,38 @@
+id: rig-vocables-4-4-100-clean
+input:
+  trace: traces/rig-vocables-4-4-100-clean/
+  media: "audio/rig/rig-vocables-4-4-100-clean.mp3"
+tags:
+  source: rig
+  teacher: ben
+  slot: counting
+  count_style: vocables
+  explanation: none
+  lang: en
+  accompanied: false
+  snr_band: high
+expect:
+  marking_bpm: 100
+  meter: "4/4"
+  subdivision: duple
+  counts: 8
+notes: >-
+  Capture-checklist clip 17, recorded 2026-08-08. Metronome 100 confirmed
+  by Ben; sounds instead of words ("da da DA da..." style), with
+  intentional duple subdivision, 2 rounds of 8. First vocables clip.
+
+  Notable defect, distinct from the rhythm/tempo findings on other rig
+  clips: Whisper's transcript for this entire clip reads as literal
+  English number words -- "one and two three four five six seven eight"
+  repeated twice, clean timing -- despite Ben confirming he spoke only
+  non-lexical vocable sounds. Almost certainly the ballet-vocabulary
+  initial_prompt (perception/whisper.py, BALLET_VOCABULARY_PROMPT)
+  biasing transcription toward plausible counting words when the actual
+  audio is non-lexical. Word-level timing apparently survived intact
+  (tempo/meter/counts all scored correct below), but the literal
+  transcript text is fabricated -- a hallucination defect a downstream
+  consumer displaying "what Whisper heard" would surface as a lie, even
+  though it happens not to break this pipeline's numeric scoring. Worth
+  its own investigation (does this happen on true vocables generally, or
+  only when the vocable rhythm coincidentally resembles a counted
+  pattern?) separate from the tempo/meter defects tracked elsewhere.
