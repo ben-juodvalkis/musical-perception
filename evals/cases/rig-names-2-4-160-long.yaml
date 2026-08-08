@@ -1,0 +1,34 @@
+id: rig-names-2-4-160-long
+input:
+  trace: traces/rig-names-2-4-160-long/
+  media: "audio/rig/rig-names-2-4-160-long.mp3"
+tags:
+  source: rig
+  teacher: ben
+  slot: counting
+  count_style: step_names
+  explanation: none
+  lang: en
+  accompanied: false
+  snr_band: high
+expect:
+  marking_bpm: 160
+  meter: "2/4"
+  subdivision: none
+  counts: 64
+notes: >-
+  Capture-checklist clip 13, recorded 2026-08-08 -- "the most valuable
+  clip on this sheet" per the checklist. Metronome 160 confirmed by Ben;
+  a fast frappe-style combination, step names only, 8 fast sets of 8
+  (64 counts). Pipeline: raw onset tempo read 161.8 BPM at 83% confidence
+  and 100% coverage, CV=0.05 -- essentially exact (1.1% from truth) -- but
+  normalize_tempo()'s hard 70-140 band snap halved it to 80.9 because
+  161.8 sits just above the 140 ceiling, giving 4/4 duple instead of 2/4
+  none. This is the mirror image of clip 12's finding (ADR-014,
+  docs/adr/014-tempo-metric-level-ambiguity.md): there, a genuinely-slow
+  62.2 BPM reading got doubled past the 70 floor; here, a genuinely-fast
+  161.8 BPM reading gets halved past the 140 ceiling. Both are cases where
+  the raw signal was already correct and the band-snap broke it -- second
+  clean confirming instance for ADR-014's proposed candidate-family fix.
+  Structure also undercounted (32 vs true 64), consistent with the halved
+  tempo reading roughly halving the apparent phrase length too.
