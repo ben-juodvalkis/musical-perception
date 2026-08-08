@@ -69,6 +69,7 @@ Read in order for the full argument, or jump by role below.
 | [011](adr/011-phrase-structure-definition.md) | Phrase-structure definition — the first eval-gated change (live-check 3/3) |
 | [012](adr/012-counts-from-evidence-fusion.md) | Counts from evidence fusion — `precision/structure.py` owns counts, abstains on ties |
 | [013](adr/013-tempo-arbitration.md) | Band-aware tempo arbitration — beat-level markers outvote off-level onsets |
+| [014](adr/014-tempo-metric-level-ambiguity.md) | *Proposed* — report the tempo metric-level family instead of collapsing it |
 
 ## Serving this site
 
