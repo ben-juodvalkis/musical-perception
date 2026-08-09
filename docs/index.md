@@ -71,6 +71,7 @@ Read in order for the full argument, or jump by role below.
 | [013](adr/013-tempo-arbitration.md) | Band-aware tempo arbitration — beat-level markers outvote off-level onsets |
 | [014](adr/014-tempo-metric-level-ambiguity.md) | Report the tempo metric-level family instead of collapsing it — `alternates` + non-gating `truth_in_family` |
 | [015](adr/015-onset-measurement-robustness.md) | Onset measurement robustness — grid-fit IOIs; kill criterion tripped, owner override on the record; typed gates for future measurement changes |
+| [016](adr/016-rhythm-core-reset.md) | Rhythm-core reset — the n=30 retrospective and the acoustic-first redesign; research posture (accuracy over cost), six commitments, sequenced kill-tests |
 
 ## Serving this site
 

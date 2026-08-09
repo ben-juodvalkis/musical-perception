@@ -66,6 +66,7 @@ nav:
       - 013 · Band-Aware Tempo Arbitration: adr/013-tempo-arbitration.md
       - 014 · Tempo Metric-Level Ambiguity: adr/014-tempo-metric-level-ambiguity.md
       - 015 · Onset Measurement Robustness: adr/015-onset-measurement-robustness.md
+      - 016 · Rhythm-Core Reset: adr/016-rhythm-core-reset.md
   - Evals:
       - Baseline: evals/baseline.md
       - Capture Checklist: evals/capture-checklist.md
