@@ -1,7 +1,9 @@
 """Tests for onset-based rhythmic section detection."""
 
+import numpy as np
+
 from musical_perception.types import TimestampedWord
-from musical_perception.precision.rhythm import detect_onset_tempo
+from musical_perception.precision.rhythm import _grid_period, detect_onset_tempo
 
 
 def _word(text, start, end):
@@ -167,6 +169,95 @@ def test_histogram_identical_iois():
     # Histogram should handle the degenerate case gracefully
     assert result.ioi_histogram_peak_bpm is not None
     assert abs(result.ioi_histogram_peak_bpm - 120.0) < 1.0
+
+
+# --- Grid fitting (ADR-015) ---
+
+def test_grid_period_ignores_an_agogic_gap():
+    """A bar-boundary stretch must not drag the period — the clip-4 defect.
+
+    Nine intervals on a 0.6s pulse plus four expressive gaps at ~0.9s: the
+    mean reads 84.7 BPM, the pulse is 100.
+    """
+    iois = np.array([0.6, 0.6, 0.62, 0.9, 0.58, 0.6, 0.64, 0.9, 0.6, 0.62, 0.9, 0.6, 0.9])
+    period, support, _ = _grid_period(iois)
+    assert abs(60.0 / period - 100.0) < 5.0
+    assert abs(60.0 / float(np.mean(iois)) - 100.0) > 10.0  # what the mean would say
+    assert support < 1.0  # the gaps are unexplained, and the fit says so
+
+
+def test_grid_period_folds_integer_multiples_of_a_sparse_pulse():
+    """Words on some beats only: a 1x/2x mixture must recover the base."""
+    iois = np.array([0.667, 0.667, 1.334, 0.667, 1.334, 0.667, 0.667, 1.334])
+    period, support, _ = _grid_period(iois)
+    assert abs(60.0 / period - 90.0) < 3.0
+    assert support == 1.0  # every interval is a whole number of beats
+
+
+def test_grid_period_leaves_a_clean_window_alone():
+    """No gaps, no multiples: the grid must agree with the mean it replaces."""
+    iois = np.array([0.58, 0.6, 0.62, 0.6, 0.59, 0.61])
+    period, support, _ = _grid_period(iois)
+    assert abs(period - float(np.mean(iois))) < 0.005
+    assert support == 1.0
+
+
+def test_grid_period_keeps_the_mean_below_the_identifiability_floor():
+    """Two or three intervals cannot falsify a grid, so they keep the mean."""
+    iois = np.array([0.5, 0.9, 0.55])
+    period, support, _ = _grid_period(iois)
+    assert period == float(np.mean(iois))
+    assert support < 1.0
+
+
+def test_agogic_gaps_do_not_drag_reported_tempo():
+    """End to end: 100 BPM counting with a lengthened beat every fourth word."""
+    onsets, t = [], 0.0
+    for i in range(20):
+        onsets.append(t)
+        t += 0.9 if i % 4 == 3 else 0.6
+    words = [_word(str(i), round(o, 3), round(o + 0.2, 3)) for i, o in enumerate(onsets)]
+    result = detect_onset_tempo(words)
+    assert result is not None
+    assert abs(result.bpm - 100.0) < 6.0
+
+
+def test_sparse_marking_recovers_the_beat_not_the_word_rate():
+    """Step names on beats 1, 2 and 4 of each bar at 90 BPM."""
+    period = 60.0 / 90
+    onsets = [
+        (bar * 4 + beat) * period
+        for bar in range(8)
+        for beat in (0, 1, 3)
+    ]
+    words = [_word("tendu", round(o, 3), round(o + 0.2, 3)) for o in onsets]
+    result = detect_onset_tempo(words)
+    assert result is not None
+    assert abs(result.bpm - 90.0) < 5.0
+
+
+def test_partly_explained_reading_is_less_confident_than_a_fully_explained_one():
+    """Grid support, not regularity alone, separates these two (ADR-015).
+
+    Both land on 100 BPM and both are internally tidy, but the second only
+    gets there by discarding intervals that fit no whole number of beats.
+    Confidence has to notice the difference; CV alone does not.
+    """
+    period = 60.0 / 100
+    clean = [_word(str(i), round(i * period, 3), round(i * period + 0.2, 3))
+             for i in range(24)]
+
+    onsets, t = [], 0.0
+    for i in range(24):
+        onsets.append(t)
+        t += 0.85 if i % 3 == 2 else period  # 0.85s fits neither 1 nor 2 beats
+    ragged = [_word(str(i), round(o, 3), round(o + 0.2, 3)) for i, o in enumerate(onsets)]
+
+    clean_result = detect_onset_tempo(clean)
+    ragged_result = detect_onset_tempo(ragged)
+    assert clean_result is not None and ragged_result is not None
+    assert abs(ragged_result.bpm - 100.0) < 6.0
+    assert clean_result.confidence > ragged_result.confidence
 
 
 def test_perfectly_regular_iois_do_not_crash_histogram():
