@@ -1,7 +1,9 @@
 # ADR-015: Onset Measurement Robustness — Grid-Fitting the Inter-Onset Intervals
 
 **Date:** 2026-08-09
-**Status:** Proposed
+**Status:** Accepted — the pre-registered kill criterion tripped, and the
+owner overrode it; the override and its reasons are on the record below
+(2026-08-09)
 
 ## Context
 
@@ -270,3 +272,54 @@ Left for Ben to decide: whether the trade is worth taking, or whether the
 onset path needs the phase-aware grid inference (fit onset *positions* to a
 grid with a penalty for unused beats, rather than fitting intervals) that
 clip 5's notes have been asking for since the capture programme started.
+
+## Resolution — override, on the record
+
+Ben accepted the trade (2026-08-09), after the diagnoses were verified
+independently of the implementing session (suites re-run; the plies-demo
+section spread re-derived from its frozen trace; one additional adverse
+flip found that the summary totals had absorbed). The kill criterion
+above stands exactly as written and as tripped — this section is an
+owner override, not a retroactive edit of the gate.
+
+**The verified ledger.** Gains: clip 4 tempo *and* its 6/8 meter triple
+(the pre-registered flip, for the pre-registered reason); allegro tempo
++ counts; quiet tempo (both flagged luck, below). Losses: plies-demo
+tempo + meter triple — a **fake green lost**: its eight "rhythmic"
+sections read 59.5 / 64.6 / 70.1 / 127.4 / 176.1 / 207.1 / 255.3 /
+262.8 BPM at 47% coverage, so no measurement ever existed and the old
+correct was a dart landing in the 8% window; waltz-lilt tempo — a
+**genuine trade**: its gap evidence is truly mixed (some gaps ≈2.0× the
+base period, some ≈1.4×), and interval data alone cannot distinguish a
+stretched beat from two beats. Also named here because the totals hid
+it: `rig-numbers-4-4-104-explained.counts` went abstained→wrong (the
+grid-shifted BPM moved a span vote and the estimator now commits where
+it held back) — an adverse flip; and waltz-lilt counts went
+wrong→abstained, which the abstention policy counts as an improvement.
+Calibration improved substantially: tier-1 ECE 0.401 → 0.291.
+
+**Prediction scorecard, honestly:** 1 of 3 pre-registered flips landed
+(clips 6 and 22 did not move); 2 unpredicted greens were disclaimed as
+luck by the implementing session itself.
+
+**Luck annotations:** clips 21 and 23 are marked in their case notes.
+When improved word recovery someday flips them back to red, that flip
+is the luck draining out — it must not be treated as a regression.
+
+**Gate amendment for future work (typed gates).** Zero-regression
+remains the gate for *logic* changes (ADR-013-class, fully analyzable).
+*Measurement* changes on this small corpus get the diagnosed-regression
+gate instead: (a) net improvement on the primary metric AND on
+calibration (ECE); (b) zero **undiagnosed** regressions; (c) every
+regression classified fake-green-lost / genuine-trade / knife-edge;
+(d) rows within a few points of the 8% tolerance cannot gate anything
+until the corpus grows — at n = 29 they are decided by noise (finding
+3 above), which is rule 8 of ADR-009 applied to acceptance gates, the
+same lesson ADR-011 recorded for prompt-change gates.
+
+**Follow-ons logged, deliberately not bundled:** phase-aware grid
+inference (fit onset positions with an unused-beat penalty — clip 5's
+standing request); a marker-anchored grid using word identity to split
+lilt from sparsity (the waltz discriminator — beat words and "and"s are
+already distinguished by the marker path); the counts estimator's
+sensitivity to bpm-vote drift (the explained flip).
