@@ -1,0 +1,126 @@
+{
+ "model": "gemini-2.5-flash",
+ "raw_response": {
+  "words": [
+   {
+    "word": "reverence",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 0
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 1,
+    "index": 1
+   },
+   {
+    "word": "then",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 2
+   },
+   {
+    "word": "we",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 3
+   },
+   {
+    "word": "close",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 4
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 5,
+    "index": 5
+   },
+   {
+    "word": "reverence",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 6
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 8,
+    "index": 7
+   },
+   {
+    "word": "now",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 8
+   },
+   {
+    "word": "we're",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 9
+   },
+   {
+    "word": "done",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 10
+   },
+   {
+    "word": "yeah",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 11
+   }
+  ],
+  "exercise": {
+   "exercise_type": "reverence",
+   "display_name": "Reverence",
+   "confidence": 1.0,
+   "reasoning": "The speaker explicitly says 'reverence' and describes closing, which is characteristic of the end-of-class reverence."
+  },
+  "counting_structure": {
+   "total_counts": 8,
+   "prep_counts": null,
+   "subdivision_type": "duple",
+   "estimated_bpm": 77
+  },
+  "meter": {
+   "beats_per_measure": 4,
+   "beat_unit": 4
+  },
+  "quality": [
+   {
+    "phrase_number": 1,
+    "description": "The dancer performs a reverence, moving through a closing sequence with a deep bow.",
+    "articulation": 0.9,
+    "weight": 0.7,
+    "energy": 0.2,
+    "primary": true
+   }
+  ],
+  "structure": {
+   "counts": 8,
+   "sides": 1
+  }
+ },
+ "inputs": {
+  "onset_bpm_sent": 119.3,
+  "transcript_words_sent": [
+   "reverence,",
+   "and",
+   "then",
+   "we",
+   "close,",
+   "and",
+   "reverence,",
+   "and",
+   "now",
+   "we're",
+   "done,",
+   "yeah."
+  ]
+ }
+}

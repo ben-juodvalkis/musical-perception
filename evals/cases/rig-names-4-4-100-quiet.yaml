@@ -1,0 +1,35 @@
+id: rig-names-4-4-100-quiet
+input:
+  trace: traces/rig-names-4-4-100-quiet/
+  media: "audio/rig/rig-names-4-4-100-quiet.mp3"
+tags:
+  source: rig
+  teacher: ben
+  slot: counting
+  count_style: step_names
+  explanation: none
+  lang: en
+  accompanied: false
+  snr_band: high
+expect:
+  marking_bpm: 100
+  meter: "4/4"
+  subdivision: none
+  counts: 16
+notes: >-
+  Capture-checklist clip 23, recorded 2026-08-08 (bounce filename saved
+  truncated as "g-names-4-4-100-quiet.mp3" in the source Bounces folder,
+  copied into the repo under the correct name). Metronome 100 confirmed
+  by Ben; end-of-day voice, quiet/low-energy/mumbled marking, 16 counts.
+
+  Whisper's transcript for the whole 11.95s clip is only 12 tokens:
+  "reverence, and then we close, and reverence, and now we're done,
+  yeah." -- far short of a 16-count phrase's worth of words. Reads as
+  wholesale word loss from the quiet/mumbled delivery, not just
+  occasional silent counts (distinct from clips 5-8's pattern, which was
+  a deliberate delivery choice with a few skipped counts, not physical
+  inaudibility). Gemini found only 3 usable beats at 48% confidence.
+  Onset tempo, working off the few surviving irregular words, read 119.3
+  BPM (19.3% miss from true 100). Structure read 8 counts vs true 16 --
+  roughly half, consistent with about half the phrase's words being lost
+  to the quiet delivery entirely.
