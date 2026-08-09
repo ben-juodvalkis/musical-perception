@@ -1,0 +1,37 @@
+id: rig-mixed-4-4-104-quantities
+input:
+  trace: traces/rig-mixed-4-4-104-quantities/
+  media: "audio/rig/rig-mixed-4-4-104-quantities.mp3"
+tags:
+  source: rig
+  teacher: ben
+  slot: counting
+  count_style: mixed
+  explanation: none
+  lang: en
+  accompanied: false
+  snr_band: high
+expect:
+  marking_bpm: 104
+  meter: "4/4"
+  subdivision: none
+  counts: 32
+notes: >-
+  Capture-checklist clip 22, recorded 2026-08-08 -- "the trap clip."
+  Metronome 104 confirmed by Ben; numbers used only as quantities inside
+  natural step-name phrasing ("we take two tendus to the front, then one
+  to the back, three quick chatés, and then we do four more, right
+  quick, and then we do six counts to turn around..."), never as actual
+  beat counts, spoken in tempo. True phrase length 32 counts.
+
+  The trap worked exactly as designed. Gemini found ZERO beat markers --
+  no coherent beat/and classification at all, since none of the spoken
+  numbers line up with the real count. The onset detector, with nothing
+  else to go on, locked onto the irregular word-to-word spacing of the
+  free-form phrase and read 170 BPM (halved by normalize_tempo's band
+  snap to 85, still an 18.3% miss from the true 104). Structure abstained
+  on counts (evidence disagreed) -- correctly declining rather than
+  guessing. Also reported 2 sides, which appears to be a bare artifact:
+  no "other side" cue exists anywhere in the transcript, so `sides` is
+  left out of `expect` here rather than scored, consistent with the
+  other one-side rig cases.
