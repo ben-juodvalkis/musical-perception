@@ -71,3 +71,9 @@ nav:
       - Baseline: evals/baseline.md
       - Capture Checklist: evals/capture-checklist.md
       - Teacher Letter: evals/teacher-letter.md
+  - Research:
+      - "Voice-as-Drum: Literature Review": research/voice-as-drum-review.md
+      - "Review 1 · Onsets & P-Centers": research/review-1-onsets-pcenters.md
+      - "Review 2 · Tempo & Periodicity": research/review-2-tempo-periodicity.md
+      - "Review 3 · Beat & Meter Models": research/review-3-beat-meter-models.md
+      - "Review 4 · Tools & Baselines": research/review-4-tools-baselines.md
