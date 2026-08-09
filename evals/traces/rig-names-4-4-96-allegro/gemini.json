@@ -1,0 +1,224 @@
+{
+ "model": "gemini-2.5-flash",
+ "raw_response": {
+  "words": [
+   {
+    "word": "grand",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 0
+   },
+   {
+    "word": "chate",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 1
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 2,
+    "index": 2
+   },
+   {
+    "word": "assombe",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 3
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 3,
+    "index": 4
+   },
+   {
+    "word": "up",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 5
+   },
+   {
+    "word": "two",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 6
+   },
+   {
+    "word": "three",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 7
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 6,
+    "index": 8
+   },
+   {
+    "word": "down",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 9
+   },
+   {
+    "word": "two",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 10
+   },
+   {
+    "word": "three",
+    "marker_type": "beat",
+    "beat_number": 9,
+    "index": 11
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 9,
+    "index": 12
+   },
+   {
+    "word": "grand",
+    "marker_type": "beat",
+    "beat_number": 10,
+    "index": 13
+   },
+   {
+    "word": "chate",
+    "marker_type": "beat",
+    "beat_number": 11,
+    "index": 14
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 11,
+    "index": 15
+   },
+   {
+    "word": "assombe",
+    "marker_type": "beat",
+    "beat_number": 12,
+    "index": 16
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 12,
+    "index": 17
+   },
+   {
+    "word": "jump",
+    "marker_type": "beat",
+    "beat_number": 13,
+    "index": 18
+   },
+   {
+    "word": "jump",
+    "marker_type": "beat",
+    "beat_number": 14,
+    "index": 19
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 14,
+    "index": 20
+   },
+   {
+    "word": "jump",
+    "marker_type": "beat",
+    "beat_number": 15,
+    "index": 21
+   },
+   {
+    "word": "two",
+    "marker_type": "beat",
+    "beat_number": 16,
+    "index": 22
+   },
+   {
+    "word": "here",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 23
+   },
+   {
+    "word": "we",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 24
+   },
+   {
+    "word": "go",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 25
+   }
+  ],
+  "exercise": {
+   "exercise_type": "grand_allegro",
+   "display_name": "Grand Allegro",
+   "confidence": 0.9,
+   "reasoning": "The teacher explicitly calls out 'grand jet\u00e9', 'assembl\u00e9', and 'jump' in a rhythmic sequence, indicating a combination of large jumps."
+  },
+  "counting_structure": {
+   "total_counts": 16,
+   "prep_counts": null,
+   "subdivision_type": "duple",
+   "estimated_bpm": 115
+  },
+  "meter": {
+   "beats_per_measure": 4,
+   "beat_unit": 4
+  },
+  "quality": [
+   {
+    "phrase_number": 1,
+    "description": "This phrase consists of a sequence of grand jet\u00e9s, assembl\u00e9s, and other jumps.",
+    "articulation": 0.2,
+    "weight": 0.2,
+    "energy": 0.85,
+    "primary": true
+   }
+  ],
+  "structure": {
+   "counts": 16,
+   "sides": 1
+  }
+ },
+ "inputs": {
+  "onset_bpm_sent": 115.1,
+  "transcript_words_sent": [
+   "grand,",
+   "chate,",
+   "and",
+   "assombe,",
+   "and",
+   "up,",
+   "two,",
+   "three,",
+   "and",
+   "down,",
+   "two,",
+   "three,",
+   "and",
+   "grand,",
+   "chate,",
+   "and",
+   "assombe,",
+   "and",
+   "jump,",
+   "jump,",
+   "and",
+   "jump,",
+   "two,",
+   "here",
+   "we",
+   "go."
+  ]
+ }
+}

@@ -1,0 +1,37 @@
+id: rig-names-4-4-96-allegro
+input:
+  trace: traces/rig-names-4-4-96-allegro/
+  media: "audio/rig/rig-names-4-4-96-allegro.mp3"
+tags:
+  source: rig
+  teacher: ben
+  slot: counting
+  count_style: step_names
+  explanation: none
+  lang: en
+  accompanied: false
+  snr_band: high
+expect:
+  marking_bpm: 96
+  meter: "4/4"
+  subdivision: none
+  counts: 32
+notes: >-
+  Capture-checklist clip 21, recorded 2026-08-08. Metronome 96 confirmed
+  by Ben; grand-allegro energy, big/sharp full-voice accents on the
+  jumps ("grand jete, and assemble... up two three down two three...
+  jump jump and jump"), 32 counts.
+
+  Pipeline: tempo read 115.1 BPM, a 19.9% miss -- not a clean x2/x3
+  metric-level ratio like the ADR-014 band-snap cases, and the first
+  onset section is nearly perfectly steady (CV=0.00) at that faster
+  115 BPM. Reads as real tempo drift rather than a detection artifact:
+  energetic, full-voice marking rushing ahead of the click, a plausible
+  and pedagogically real phenomenon (excitement pulls tempo forward) that
+  the ADR-006/007 onset detector has no way to distinguish from "the
+  metronome actually was faster." Meter/subdivision follow the wrong
+  tempo. Counts abstained (evidence disagreed) -- consistent with clips
+  9/14/17's pattern of the estimator declining rather than committing
+  when the marker stream is irregular, here because the phrase mixes
+  dense step-name bursts ("grand chate and assombe") with counted
+  numbers ("up two three down two three") rather than one uniform style.
