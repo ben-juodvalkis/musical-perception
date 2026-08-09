@@ -108,6 +108,11 @@ def summarize_field(rows: list[ScoreResult]) -> dict:
         if r.failure_mode:
             modes[r.failure_mode] += 1
     lo, hi = wilson_interval(correct, committed)
+    # ADR-014: of the wrong answers we could check, how many still carried
+    # the truth somewhere in their reported family? Informational — it does
+    # not enter accuracy, credit, or any gate.
+    family_checked = sum(1 for r in rows if r.truth_in_family is not None)
+    family_hits = sum(1 for r in rows if r.truth_in_family)
     return {
         "n": n,
         "correct": correct,
@@ -117,6 +122,8 @@ def summarize_field(rows: list[ScoreResult]) -> dict:
         "accuracy": round(correct / committed, 3) if committed else None,
         "accuracy_wilson95": [round(lo, 3), round(hi, 3)] if committed else None,
         "mean_credit": round(sum(r.credit for r in rows) / n, 3) if n else None,
+        "truth_in_family": family_hits if family_checked else None,
+        "truth_in_family_n": family_checked or None,
         "failure_modes": dict(modes),
     }
 

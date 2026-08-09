@@ -228,6 +228,23 @@ class RhythmicSection:
 
 
 @dataclass
+class TempoCandidate:
+    """
+    One member of the metric-level family for a raw tempo reading (ADR-014).
+
+    A raw pulse of N BPM is equally consistent with N, N×2, N×3, N/2 and N/3
+    at the beat level — from onset regularity alone the levels are
+    indistinguishable. Each candidate carries the meter/subdivision its
+    multiplier implies, using the same derivation table as the primary.
+    """
+    bpm: float              # Candidate beat-level BPM
+    meter: Meter            # Implied by this candidate's multiplier
+    subdivision: str        # "none", "duple", "triplet"
+    multiplier: int         # Relation to raw_bpm — same encoding as NormalizedTempo
+    in_comfort_band: bool   # True when bpm sits in the 70-140 ballet-class range
+
+
+@dataclass
 class NormalizedTempo:
     """
     Coherent metric interpretation: BPM, meter, and subdivision as one answer.
@@ -249,6 +266,9 @@ class NormalizedTempo:
     #       detection found onset/gemini ratio ≈ 3 (bpm ≈ raw_bpm)
     #  -2 = raw was at duple subdivision level (bpm ≈ raw_bpm / 2)
     #  -3 = raw was at triplet subdivision level (bpm ≈ raw_bpm / 3)
+    # The other musically-sane readings of the same raw pulse (ADR-014).
+    # Additive and informational: primary selection ignores this field.
+    alternates: list[TempoCandidate] = field(default_factory=list)
 
 
 @dataclass

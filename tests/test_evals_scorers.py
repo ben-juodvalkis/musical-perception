@@ -25,6 +25,7 @@ from musical_perception.types import (
     NormalizedTempo,
     PhraseStructure,
     QualityProfile,
+    TempoCandidate,
 )
 
 
@@ -69,6 +70,47 @@ def test_tempo_half_and_third_metric_levels():
 def test_tempo_generic_error():
     r = score_tempo(131.0, 104.0)
     assert r.outcome == "wrong" and r.failure_mode == "tempo_error"
+
+
+# === truth in family (ADR-014, informational) ===
+
+def _family(*bpms):
+    return [
+        TempoCandidate(bpm=b, meter=Meter(4, 4), subdivision="none",
+                       multiplier=1, in_comfort_band=70 <= b <= 140)
+        for b in bpms
+    ]
+
+
+def test_tempo_family_not_measured_without_alternates():
+    assert score_tempo(208.0, 104.0).truth_in_family is None
+    assert score_tempo(104.0, 104.0).truth_in_family is None
+
+
+def test_tempo_truth_found_in_alternates():
+    """Clip 12: primary 124.4 is wrong, but 62.2 is in the family."""
+    r = score_tempo(124.4, 60.0, alternates=_family(62.2, 186.6, 31.1))
+    assert r.outcome == "wrong" and r.credit == 0.0   # outcome unchanged
+    assert r.truth_in_family is True
+
+
+def test_tempo_truth_absent_from_family():
+    r = score_tempo(124.4, 97.0, alternates=_family(62.2, 186.6, 31.1))
+    assert r.outcome == "wrong"
+    assert r.truth_in_family is False
+
+
+def test_tempo_family_never_rescues_an_outcome():
+    """A family containing the truth is reported, never scored as correct."""
+    r = score_tempo(80.9, 160.0, alternates=_family(161.8, 323.6, 53.9))
+    assert r.outcome == "wrong"
+    assert r.failure_mode == "metric_level_div2"
+    assert r.truth_in_family is True
+
+
+def test_tempo_correct_answer_is_not_family_annotated():
+    r = score_tempo(104.0, 104.0, alternates=_family(208.0, 52.0))
+    assert r.outcome == "correct" and r.truth_in_family is None
 
 
 # === meter triple ===
@@ -168,6 +210,19 @@ def test_summarize_field_abstention_not_wrong():
     assert s["n"] == 3 and s["abstained"] == 1
     assert s["accuracy"] == 0.5  # of the two committed
     assert s["failure_modes"] == {"metric_level_x2": 1}
+    assert s["truth_in_family"] is None and s["truth_in_family_n"] is None
+
+
+def test_summarize_field_counts_family_recall_without_touching_accuracy():
+    rows = [
+        ScoreResult("tempo", "correct", 1.0, 100, 100),
+        ScoreResult("tempo", "wrong", 0.0, 200, 100, truth_in_family=True),
+        ScoreResult("tempo", "wrong", 0.0, 131, 100, truth_in_family=False),
+    ]
+    s = summarize_field(rows)
+    assert s["truth_in_family"] == 1 and s["truth_in_family_n"] == 2
+    assert s["accuracy"] == round(1 / 3, 3)  # unchanged by the family measure
+    assert s["mean_credit"] == round(1 / 3, 3)
 
 
 def test_ece_none_without_confidence():

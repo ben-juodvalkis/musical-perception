@@ -1,7 +1,7 @@
 # ADR-014: Report the Tempo Metric-Level Family Instead of Collapsing It
 
 **Date:** 2026-08-08
-**Status:** Proposed — design only, not yet implemented or eval-verified
+**Status:** Accepted — implemented 2026-08-09
 
 ## Context
 
@@ -167,3 +167,54 @@ hand-run:
   existing octave-ambiguity failures (clips 6, 8, 12; `t0-3-4-half`)
   legible instead of silent, and creates the hook (`alternates`) that the
   exercise-prior and scoring-policy follow-ons need to land.
+
+## Measured results (2026-08-09)
+
+**What shipped.** `tempo_family()` (`precision/tempo.py`) generates the
+family over 20–400 BPM at multipliers 1/2/3/−2/−3, each member built by
+`_derive_metric_reading()` — the derivation table extracted from
+`interpret_meter()`, so primary and candidates cannot drift apart.
+`NormalizedTempo.alternates` (`types.py`) carries the family minus the
+member that *is* the primary. The eval harness gained a non-gating
+`truth_in_family` measure: when a tempo scores wrong, it records whether
+the expected BPM sits within the same 8% tolerance anywhere in
+primary+alternates. Outcomes keep their old semantics — a wrong answer
+whose family holds the truth is still wrong.
+
+**Primary unchanged, as required.** `pytest -q`: 167 passed, 3 skipped.
+Tier-0's known-failure set is still exactly `{t0-3-4-half}`. The
+`tier0,tier1` sweep prints *no outcome changes vs baseline*, and a
+field-by-field diff of the re-blessed `evals/baseline.json` against the
+previous one shows the outcome maps byte-identical in both suites, with
+`truth_in_family` / `truth_in_family_n` the only added keys.
+
+**Family recall — the number this ADR bought.** Tier-1 tempo: 15 correct,
+13 wrong, 1 abstained (unchanged); of the 13 wrong, **3 carried the truth
+in their family**:
+
+| case | truth | primary | recovered as |
+|---|---|---|---|
+| `rig-numbers-4-4-60-halftempo` (clip 12) | 60 | 124.4 | **62.2** (×1, out of band) |
+| `rig-names-2-4-160-long` (clip 13) | 160 | 80.9 | **161.8** (×1, out of band) |
+| `frappe` | 160 | 74.3 | 148.6 (×2) |
+
+Both pre-registered acceptance cases land exactly as predicted. Tier-0
+reports `—` for the column: its tempo accuracy is 1.0, so no row was
+eligible to be checked.
+
+**The split is the finding.** 3 of 13 tempo failures are *selection*
+failures — the measurement was right and the band prior discarded it, and
+an exercise-type prior over `alternates` could plausibly fix them. The
+other 10 are *measurement* failures: the truth is nowhere in the family
+(e.g. `rig-names-3-4-90-clean`, truth 90, family
+`[130.2, 65.1, 195.3, 32.5, 21.7]`), so no amount of smarter selection
+helps them. That bounds the follow-on work honestly — the exercise-prior
+direction addresses at most a quarter of the current tempo reds.
+
+**One limit worth recording.** `t0-3-4-half` stays failing for the reason
+the ADR predicted, but the family does not even make its defect
+discoverable: its primary tempo (96.0) is already correct, and the
+correct *triple* (3/4 @96) is not among the alternates, because meter is
+still derived one-answer-per-level (×2 always implies 4/4). The family
+resolves tempo-level ambiguity only; meter-derivation ambiguity is a
+separate, still-collapsed decision.

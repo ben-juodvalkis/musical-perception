@@ -1,6 +1,11 @@
 """Tests for precision tempo calculation. No audio or models needed."""
 
-from musical_perception.precision.tempo import calculate_tempo, interpret_meter, normalize_tempo
+from musical_perception.precision.tempo import (
+    calculate_tempo,
+    interpret_meter,
+    normalize_tempo,
+    tempo_family,
+)
 from musical_perception.types import Meter, OnsetTempoResult, RhythmicSection, TempoResult
 
 
@@ -358,3 +363,139 @@ def test_arbitration_frappe_shape_keeps_onset():
         gemini_subdivision=None,
     )
     assert result.bpm == 74.3
+
+
+# --- ADR-014: the metric-level family ---
+
+
+def _by_multiplier(candidates):
+    return {c.multiplier: c for c in candidates}
+
+
+def test_family_in_band_reading_keeps_every_level():
+    """A comfortable 104 BPM still has a family: only ×1 is in band, but
+    the measure and subdivision levels stay plausible readings."""
+    family = tempo_family(104.0)
+    assert [c.multiplier for c in family] == [1, 2, 3, -2, -3]
+    assert [c.bpm for c in family] == [104.0, 208.0, 312.0, 52.0, 34.7]
+    assert [c.in_comfort_band for c in family] == [True, False, False, False, False]
+
+
+def test_family_sub_70_reading_carries_the_slow_truth():
+    """Clip 12's shape: a genuinely-slow 62.2 BPM marking. The band prior
+    picks 124.4, but 62.2 itself remains in the family (ADR-014)."""
+    family = _by_multiplier(tempo_family(62.2))
+    assert family[1].bpm == 62.2
+    assert family[1].in_comfort_band is False
+    assert family[2].bpm == 124.4
+    assert family[2].in_comfort_band is True
+
+
+def test_family_over_140_reading_carries_the_fast_truth():
+    """Clip 13's mirror shape: a genuinely-fast 161.8 BPM marking. ×3 (485.4)
+    falls outside the plausibility range and is not offered."""
+    family = tempo_family(161.8)
+    assert [c.multiplier for c in family] == [1, 2, -2, -3]
+    assert [c.bpm for c in family] == [161.8, 323.6, 80.9, 53.9]
+    assert _by_multiplier(family)[1].in_comfort_band is False
+    assert _by_multiplier(family)[-2].in_comfort_band is True
+
+
+def test_family_members_carry_their_implied_reading():
+    """Each candidate uses the same derivation table as the primary."""
+    family = _by_multiplier(tempo_family(
+        104.0, Meter(beats_per_measure=2, beat_unit=4), "none"
+    ))
+    assert family[1].meter.beats_per_measure == 2      # beat level → trust Gemini
+    assert family[2].meter.beats_per_measure == 4 and family[2].subdivision == "none"
+    assert family[3].meter.beats_per_measure == 3 and family[3].subdivision == "none"
+    assert family[-2].subdivision == "duple"
+    assert family[-3].subdivision == "triplet"
+
+
+def test_family_drops_implausible_levels():
+    """20-400 BPM bounds the family; nothing outside it is offered."""
+    assert [c.bpm for c in tempo_family(30.0)] == [30.0, 60.0, 90.0]  # /2, /3 too slow
+    assert [c.bpm for c in tempo_family(380.0)] == [380.0, 190.0, 126.7]  # ×2, ×3 too fast
+    assert tempo_family(0.0) == []
+
+
+# The primary answer is frozen: ADR-014 is additive, so every raw reading
+# must produce exactly the (bpm, multiplier, meter, subdivision) it did
+# before the family existed.
+PRIMARY_SWEEP = [
+    # raw,    bpm,    multiplier, beats, subdivision
+    (62.2,   124.4,   2,  4, "none"),    # clip 12: genuinely slow, still doubled
+    (161.8,   80.9,  -2,  4, "duple"),   # clip 13: genuinely fast, still halved
+    (104.0,  104.0,   1,  4, "none"),
+    (70.0,    70.0,   1,  4, "none"),
+    (140.0,  140.0,   1,  4, "none"),
+    (40.5,    81.0,   2,  4, "none"),
+    (30.0,    90.0,   3,  3, "none"),
+    (240.0,  120.0,  -2,  4, "duple"),
+    (360.0,  120.0,  -3,  4, "triplet"),
+]
+
+
+def test_primary_selection_unchanged_across_sweep():
+    for raw, bpm, multiplier, beats, subdivision in PRIMARY_SWEEP:
+        result = interpret_meter(
+            onset_tempo=_onset(raw),
+            gemini_tempo=None,
+            gemini_meter=Meter(beats_per_measure=4, beat_unit=4),
+            gemini_subdivision="none",
+        )
+        assert result is not None, raw
+        assert (result.bpm, result.tempo_multiplier) == (bpm, multiplier), raw
+        assert result.meter.beats_per_measure == beats, raw
+        assert result.subdivision == subdivision, raw
+
+
+def test_interpret_reports_alternates_without_the_primary():
+    """`alternates` holds the rest of the family — the primary is not
+    repeated in it."""
+    result = interpret_meter(
+        onset_tempo=_onset(104.0),
+        gemini_tempo=None,
+        gemini_meter=Meter(beats_per_measure=4, beat_unit=4),
+        gemini_subdivision="none",
+    )
+    assert result.bpm == 104.0
+    assert [c.bpm for c in result.alternates] == [208.0, 312.0, 52.0, 34.7]
+
+
+def test_interpret_alternates_surface_the_slow_truth():
+    """Clip 12 end to end: primary unchanged at 124.4, truth discoverable."""
+    result = interpret_meter(
+        onset_tempo=_onset(62.2),
+        gemini_tempo=None,
+        gemini_meter=Meter(beats_per_measure=4, beat_unit=4),
+        gemini_subdivision="none",
+    )
+    assert result.bpm == 124.4          # unchanged by design
+    assert 62.2 in [c.bpm for c in result.alternates]
+
+
+def test_interpret_alternates_surface_the_fast_truth():
+    """Clip 13 end to end: primary unchanged at 80.9, truth discoverable."""
+    result = interpret_meter(
+        onset_tempo=_onset(161.8),
+        gemini_tempo=None,
+        gemini_meter=Meter(beats_per_measure=4, beat_unit=4),
+        gemini_subdivision="none",
+    )
+    assert result.bpm == 80.9           # unchanged by design
+    assert 161.8 in [c.bpm for c in result.alternates]
+
+
+def test_interpret_cross_signal_triple_has_no_duplicate_primary():
+    """The issue-10 waltz overloads multiplier=3 (BPM not actually tripled);
+    the same-BPM family member must not reappear as an alternate."""
+    result = interpret_meter(
+        onset_tempo=_onset(115.0),
+        gemini_tempo=_gemini_tempo(40.0),
+        gemini_meter=Meter(beats_per_measure=4, beat_unit=4),
+        gemini_subdivision="triplet",
+    )
+    assert result.tempo_multiplier == 3
+    assert result.bpm not in [c.bpm for c in result.alternates]

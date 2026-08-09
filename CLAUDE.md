@@ -58,6 +58,8 @@ port de bras breaks and transitions that would skew the overall character.
 - `MusicalParameters` — the stable output schema (the contract)
 - `TempoResult` — BPM + confidence + raw intervals
 - `SubdivisionResult` — duple/triplet/none + confidence
+- `TempoCandidate` — one member of a raw pulse's metric-level family
+  (`NormalizedTempo.alternates`; primary selection ignores it — ADR-014)
 - `CountingSignature` — prosodic weight profile
 - `TimestampedWord` — word + start/end time (from transcription)
 - `TimedMarker` — classified rhythmic marker with beat association

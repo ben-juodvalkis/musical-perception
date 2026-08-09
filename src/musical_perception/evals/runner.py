@@ -29,6 +29,7 @@ def score_parameters(result, case: Case) -> list:
             normalized.bpm if normalized else None,
             case.expected_bpm,
             confidence=normalized.confidence if normalized else None,
+            alternates=normalized.alternates if normalized else None,
         ))
     if "meter" in expect:
         scores.append(score_meter_triple(

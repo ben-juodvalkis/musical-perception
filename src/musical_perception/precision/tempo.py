@@ -11,8 +11,20 @@ from musical_perception.types import (
     Meter,
     NormalizedTempo,
     OnsetTempoResult,
+    TempoCandidate,
     TempoResult,
 )
+
+# Metric levels a raw pulse can plausibly sit at, in the order the family
+# is reported: beat level first, then measure levels, then subdivisions.
+_METRIC_LEVELS = (1, 2, 3, -2, -3)
+
+# The family is generated over a broad absolute range, not the 70-140
+# comfort band — a genuinely slow (60 BPM marking) or genuinely fast
+# (160 BPM frappé) true tempo must still show up as a candidate even
+# though the band prior won't pick it as primary (ADR-014).
+FAMILY_LOW = 20.0
+FAMILY_HIGH = 400.0
 
 
 def normalize_tempo(
@@ -61,6 +73,101 @@ def normalize_tempo(
 
     # Nothing fits — BPM is too extreme to normalize
     return round(bpm, 1), 0
+
+
+def _apply_multiplier(bpm: float, multiplier: int) -> float:
+    """The BPM a metric-level multiplier implies for a raw pulse."""
+    return bpm * multiplier if multiplier > 0 else bpm / -multiplier
+
+
+def _derive_metric_reading(
+    multiplier: int,
+    gemini_meter: Meter | None,
+    gemini_subdivision: str | None,
+) -> tuple[Meter, str]:
+    """Meter + subdivision implied by a metric-level multiplier.
+
+    The single derivation table (ADR-006/007) shared by the primary answer
+    and every candidate in its family:
+
+    - multiplier=1: pulse is already at beat level → trust Gemini
+    - multiplier=2: pulse was at measure level, doubled → 4/4, no subdivision
+    - multiplier=3: pulse was at measure level, tripled → 3/4, no subdivision
+    - multiplier=-2: pulse was at subdivision level, halved → duple
+    - multiplier=-3: pulse was at subdivision level, divided by 3 → triplet
+    """
+    if multiplier == 1:
+        # BPM was already at beat level — trust Gemini's observations
+        return (
+            gemini_meter or Meter(beats_per_measure=4, beat_unit=4),
+            gemini_subdivision or "none",
+        )
+    if multiplier == 2:
+        # Raw was at measure level, doubled → duple meter, no subdivision
+        return Meter(beats_per_measure=4, beat_unit=4), "none"
+    if multiplier == 3:
+        # Raw was at measure level, tripled → triple meter, no subdivision
+        return Meter(beats_per_measure=3, beat_unit=4), "none"
+    if multiplier == -2:
+        # Raw was at subdivision level, halved → duple subdivision
+        return gemini_meter or Meter(beats_per_measure=4, beat_unit=4), "duple"
+    if multiplier == -3:
+        # Raw was at subdivision level, divided by 3 → triplet subdivision
+        return gemini_meter or Meter(beats_per_measure=4, beat_unit=4), "triplet"
+    raise ValueError(f"unexpected multiplier {multiplier}")
+
+
+def tempo_family(
+    raw_bpm: float,
+    gemini_meter: Meter | None = None,
+    gemini_subdivision: str | None = None,
+    low: float = 70.0,
+    high: float = 140.0,
+) -> list[TempoCandidate]:
+    """
+    All musically-sane readings of one raw pulse (ADR-014).
+
+    From onset regularity alone, a raw reading of N BPM is indistinguishable
+    from N×2, N×3, N/2 or N/3 at the beat level: a teacher marking every
+    other beat of a 124 BPM exercise and a teacher marking a genuinely slow
+    62 BPM exercise produce identical audio. `normalize_tempo()` resolves
+    that with a fixed prior (the 70-140 band); this function reports the
+    whole family instead of collapsing it, so a true tempo outside the band
+    stays discoverable.
+
+    Members are generated over FAMILY_LOW-FAMILY_HIGH (a broad absolute
+    plausibility range), ordered beat level → measure levels → subdivisions,
+    each carrying the meter/subdivision its multiplier implies.
+
+    Args:
+        raw_bpm: The measured pulse, before any normalization.
+        gemini_meter: Meter observation, used for beat-level candidates.
+        gemini_subdivision: Subdivision observation, same.
+        low: Lower bound of the comfort band (for `in_comfort_band`).
+        high: Upper bound of the comfort band.
+
+    Returns:
+        List of TempoCandidate, possibly empty when no level is plausible.
+    """
+    if raw_bpm <= 0:
+        return []
+
+    candidates = []
+    for multiplier in _METRIC_LEVELS:
+        bpm = round(_apply_multiplier(raw_bpm, multiplier), 1)
+        if not FAMILY_LOW <= bpm <= FAMILY_HIGH:
+            continue
+        meter, subdivision = _derive_metric_reading(
+            multiplier, gemini_meter, gemini_subdivision
+        )
+        candidates.append(TempoCandidate(
+            bpm=bpm,
+            meter=meter,
+            subdivision=subdivision,
+            multiplier=multiplier,
+            in_comfort_band=low <= bpm <= high,
+        ))
+    return candidates
 
 
 def calculate_tempo(timestamps: list[float]) -> TempoResult | None:
@@ -190,31 +297,20 @@ def interpret_meter(
             # raw_bpm is stored separately so consumers don't need to reverse it.
             multiplier = 3
 
-    # Derive meter and subdivision from the multiplier
-    if multiplier == 1:
-        # BPM was already at beat level — trust Gemini's observations
-        meter = gemini_meter or Meter(beats_per_measure=4, beat_unit=4)
-        subdivision = gemini_subdivision or "none"
-    elif multiplier == 2:
-        # Raw was at measure level, doubled → duple meter, no subdivision
-        meter = Meter(beats_per_measure=4, beat_unit=4)
-        subdivision = "none"
-    elif multiplier == 3:
-        # Raw was at measure level, tripled → triple meter, no subdivision
-        meter = Meter(beats_per_measure=3, beat_unit=4)
-        subdivision = "none"
-    elif multiplier == -2:
-        # Raw was at subdivision level, halved → duple subdivision
-        meter = gemini_meter or Meter(beats_per_measure=4, beat_unit=4)
-        subdivision = "duple"
-    elif multiplier == -3:
-        # Raw was at subdivision level, divided by 3 → triplet subdivision
-        meter = gemini_meter or Meter(beats_per_measure=4, beat_unit=4)
-        subdivision = "triplet"
-    else:
-        # Unreachable: normalize_tempo() returns only {1,2,3,-2,-3,0}
-        # and multiplier==0 triggers early return above.
-        raise ValueError(f"unexpected multiplier {multiplier}")
+    # Derive meter and subdivision from the multiplier. Unreachable else:
+    # normalize_tempo() returns only {1,2,3,-2,-3,0}, and multiplier==0
+    # triggers the early return above.
+    meter, subdivision = _derive_metric_reading(
+        multiplier, gemini_meter, gemini_subdivision
+    )
+
+    # The rest of the metric-level family (ADR-014). Purely additive: the
+    # primary answer above is unaffected. The member matching the primary
+    # BPM is dropped — it IS the primary, under a different narrative.
+    alternates = [
+        c for c in tempo_family(raw_bpm, gemini_meter, gemini_subdivision)
+        if c.bpm != normalized_bpm
+    ]
 
     return NormalizedTempo(
         bpm=normalized_bpm,
@@ -223,4 +319,5 @@ def interpret_meter(
         confidence=round(confidence, 2),
         raw_bpm=round(raw_bpm, 1),
         tempo_multiplier=multiplier,
+        alternates=alternates,
     )

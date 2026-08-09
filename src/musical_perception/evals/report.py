@@ -77,6 +77,15 @@ def write_run(report: dict, runs_dir: Path) -> Path:
 _OUTCOME_COLOR = {"correct": "#2e7d32", "wrong": "#c62828", "abstained": "#8d6e63"}
 
 
+def family_cell(summary_field: dict) -> str:
+    """`hits/checked` for the ADR-014 truth-in-family measure, or — when
+    the field never reported a metric-level family."""
+    checked = summary_field.get("truth_in_family_n")
+    if not checked:
+        return "—"
+    return f"{summary_field.get('truth_in_family') or 0}/{checked}"
+
+
 def _field_rows(summary: dict) -> str:
     rows = []
     for name, s in summary["fields"].items():
@@ -87,6 +96,7 @@ def _field_rows(summary: dict) -> str:
             f"<td>{s['accuracy'] if s['accuracy'] is not None else '—'}</td>"
             f"<td>{interval if interval else '—'}</td>"
             f"<td>{s['mean_credit']}</td>"
+            f"<td>{family_cell(s)}</td>"
             f"<td>{', '.join(f'{k}×{v}' for k, v in s['failure_modes'].items()) or '—'}</td></tr>"
         )
     return "\n".join(rows)
@@ -120,7 +130,8 @@ def render_html(report: dict) -> str:
 <h2>{suite} — {summary['n_cases']} cases</h2>
 <table>
 <tr><th>field</th><th>n</th><th>correct</th><th>wrong</th><th>abstained</th>
-<th>accuracy</th><th>wilson 95%</th><th>credit</th><th>failure modes</th></tr>
+<th>accuracy</th><th>wilson 95%</th><th>credit</th><th>truth in family</th>
+<th>failure modes</th></tr>
 {_field_rows(summary)}
 </table>
 <p>ECE: {summary['ece'] if summary['ece'] is not None else 'n/a'}
@@ -156,13 +167,19 @@ def render_markdown_baseline(report: dict) -> str:
         "Outcomes are **correct / wrong / abstained** — abstention is never",
         "counted as wrong (ADR-009). n is small; intervals are the honest part.",
         "",
+        "**truth in family** (ADR-014) counts wrong answers whose reported",
+        "metric-level family still contained the expected tempo — a selection",
+        "failure rather than a measurement failure. It is informational and",
+        "gates nothing; outcomes above are unaffected by it.",
+        "",
     ]
     for suite, data in report["suites"].items():
         summary = data["summary"]
         lines += [f"## {suite} ({summary['n_cases']} cases)", ""]
         lines += [
-            "| field | n | correct | wrong | abstained | accuracy | wilson 95% | failure modes |",
-            "|---|---|---|---|---|---|---|---|",
+            "| field | n | correct | wrong | abstained | accuracy | wilson 95% "
+            "| truth in family | failure modes |",
+            "|---|---|---|---|---|---|---|---|---|",
         ]
         for name, s in summary["fields"].items():
             acc = s["accuracy"] if s["accuracy"] is not None else "—"
@@ -170,7 +187,7 @@ def render_markdown_baseline(report: dict) -> str:
             modes = ", ".join(f"{k}×{v}" for k, v in s["failure_modes"].items()) or "—"
             lines.append(
                 f"| {name} | {s['n']} | {s['correct']} | {s['wrong']} | "
-                f"{s['abstained']} | {acc} | {wil} | {modes} |"
+                f"{s['abstained']} | {acc} | {wil} | {family_cell(s)} | {modes} |"
             )
         lines.append("")
         if data["summary"]["errors"]:

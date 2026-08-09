@@ -18,6 +18,7 @@ from musical_perception.types import (
     NormalizedTempo,
     PhraseStructure,
     QualityProfile,
+    TempoCandidate,
 )
 
 CORRECT = "correct"
@@ -36,6 +37,10 @@ class ScoreResult:
     confidence: float | None = None   # None → excluded from calibration metrics
     failure_mode: str | None = None
     detail: str = ""
+    # ADR-014, informational only (never gates, never changes `outcome`):
+    # on a wrong tempo, did the expected answer appear anywhere in the
+    # reported metric-level family? None → not measured for this row.
+    truth_in_family: bool | None = None
 
 
 @dataclass
@@ -51,18 +56,49 @@ _METRIC_LEVELS = [(2.0, "metric_level_x2"), (3.0, "metric_level_x3"),
                   (0.5, "metric_level_div2"), (1 / 3, "metric_level_div3")]
 
 
+def _truth_in_family(
+    predicted_bpm: float,
+    expected_bpm: float,
+    alternates: list[TempoCandidate] | None,
+    rel_tol: float,
+) -> tuple[bool | None, str]:
+    """Did the expected BPM survive anywhere in the reported family?
+
+    ADR-014 measure, deliberately non-gating: a wrong primary whose family
+    still contains the truth is a *selection* failure, a wrong primary
+    whose family does not is a *measurement* failure. Returns (flag, note);
+    flag is None when the caller reported no family to check.
+    """
+    if alternates is None:
+        return None, ""
+    family = [predicted_bpm] + [c.bpm for c in alternates]
+    hit = next(
+        (b for b in family if abs(b - expected_bpm) / expected_bpm <= rel_tol),
+        None,
+    )
+    if hit is None:
+        return False, f"truth absent from family {[round(b, 1) for b in family]}"
+    return True, f"truth in family as {hit:g}"
+
+
 def score_tempo(
     predicted_bpm: float | None,
     expected_bpm: float,
     *,
     rel_tol: float = 0.08,
     confidence: float | None = None,
+    alternates: list[TempoCandidate] | None = None,
 ) -> ScoreResult:
     """Relative-error tempo score with explicit metric-level classification.
 
     An answer that is exactly ×2/×3/÷2/÷3 off (within tolerance) is a
     metric_level failure, not a generic tempo error — that distinction is
     the subject of ADR-006/007 and tells you which module to fix.
+
+    `alternates` (the primary's metric-level family, ADR-014) only annotates
+    wrong answers with `truth_in_family`. It never changes an outcome:
+    scoring policy stays a Vision 08 §8.3 question, not a side effect of
+    reporting the family.
     """
     if predicted_bpm is None:
         return ScoreResult("tempo", ABSTAINED, 0.0, None, expected_bpm)
@@ -74,19 +110,26 @@ def score_tempo(
             confidence=confidence, detail=f"rel_err={rel_err:.3f}",
         )
 
+    in_family, note = _truth_in_family(
+        predicted_bpm, expected_bpm, alternates, rel_tol
+    )
+
     for ratio, mode in _METRIC_LEVELS:
         target = expected_bpm * ratio
         if abs(predicted_bpm - target) / target <= rel_tol:
             return ScoreResult(
                 "tempo", WRONG, 0.0, predicted_bpm, expected_bpm,
                 confidence=confidence, failure_mode=mode,
-                detail=f"answer sits at {ratio:g}× the expected tempo",
+                detail=f"answer sits at {ratio:g}× the expected tempo"
+                       + (f"; {note}" if note else ""),
+                truth_in_family=in_family,
             )
 
     return ScoreResult(
         "tempo", WRONG, 0.0, predicted_bpm, expected_bpm,
         confidence=confidence, failure_mode="tempo_error",
-        detail=f"rel_err={rel_err:.3f}",
+        detail=f"rel_err={rel_err:.3f}" + (f"; {note}" if note else ""),
+        truth_in_family=in_family,
     )
 
 

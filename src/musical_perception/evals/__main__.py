@@ -18,7 +18,7 @@ BASELINE_MD = Path("docs/evals/baseline.md")
 
 
 def _cmd_run(args) -> int:
-    from musical_perception.evals.report import build_report, write_run
+    from musical_perception.evals.report import build_report, family_cell, write_run
     from musical_perception.evals.runner import compare_outcomes, run_suites
 
     root = Path(args.evals_root)
@@ -31,7 +31,7 @@ def _cmd_run(args) -> int:
         for name, s in data["summary"]["fields"].items():
             print(f"  {suite:6s} {name:22s} n={s['n']:3d} correct={s['correct']:3d} "
                   f"wrong={s['wrong']:3d} abstained={s['abstained']:3d} "
-                  f"accuracy={s['accuracy']}")
+                  f"accuracy={s['accuracy']} truth_in_family={family_cell(s)}")
 
     baseline_path = root / BASELINE_NAME
     if baseline_path.is_file():

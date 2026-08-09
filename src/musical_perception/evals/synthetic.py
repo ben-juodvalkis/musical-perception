@@ -207,6 +207,7 @@ def run_synthetic_case(case: SyntheticCase) -> CaseResult:
         score_tempo(
             normalized.bpm if normalized else None, case.bpm,
             confidence=normalized.confidence if normalized else None,
+            alternates=normalized.alternates if normalized else None,
         ),
         score_meter_triple(normalized, case.meter, case.bpm, case.subdivision),
     ]

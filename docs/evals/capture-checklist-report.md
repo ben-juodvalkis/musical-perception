@@ -9,8 +9,8 @@ blessed into `evals/baseline.json`. `pytest` green throughout.
 
 The most important thing to come out of this corpus isn't a single bug —
 it's a new architecture-level finding, written up as
-**[ADR-014](../adr/014-tempo-metric-level-ambiguity.md)** (proposed, not yet
-implemented).
+**[ADR-014](../adr/014-tempo-metric-level-ambiguity.md)** (proposed at the time
+of this report; implemented 2026-08-09 — see the ADR's measured results).
 
 `normalize_tempo()` snaps any raw BPM reading into a 70–140 "ballet class"
 band by multiplying or dividing by 2 or 3 (ADR-006/007). It's a hard,
@@ -104,9 +104,10 @@ process notes worth knowing about:
 
 ## Suggested next steps
 
-1. Implement ADR-014's candidate-family reporting — the design is written,
-   verification plan is in the doc, and clips 12/13 are ready-made
-   acceptance cases.
+1. ~~Implement ADR-014's candidate-family reporting~~ — **done 2026-08-09**;
+   clips 12/13 were the acceptance cases and both now surface their true
+   tempo in `alternates` (62.2 and 161.8), with primary selection and every
+   eval outcome unchanged.
 2. Revisit ADR-013's 60%/8-beat arbitration thresholds using clip 20's
    near-miss as a data point.
 3. A phrase-grouping fix (clips 18/19/24) and a sparse-marker/beat-grid
