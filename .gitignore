@@ -30,3 +30,13 @@ site/
 
 # eval run artifacts (bless promotes one to evals/baseline.json)
 evals/runs/
+
+# DEV-split eval audio IS committed (cloud agent sessions clone fresh and
+# need to hear it — docs/research/agent-environment.md). SEALED clips must
+# never be committed: owner's machine only. Order matters: these negations
+# override the media ignores above for audio/rig/*.mp3 and nothing else.
+!audio/
+audio/*
+!audio/rig/
+audio/rig/*
+!audio/rig/*.mp3

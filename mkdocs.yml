@@ -72,6 +72,9 @@ nav:
       - Capture Checklist: evals/capture-checklist.md
       - Teacher Letter: evals/teacher-letter.md
   - Research:
+      - Agent Charter: research/agent-charter.md
+      - Research Log: research/RESEARCH-LOG.md
+      - Agent Environment: research/agent-environment.md
       - "Voice-as-Drum: Literature Review": research/voice-as-drum-review.md
       - "Review 1 · Onsets & P-Centers": research/review-1-onsets-pcenters.md
       - "Review 2 · Tempo & Periodicity": research/review-2-tempo-periodicity.md

@@ -44,6 +44,7 @@ Read in order for the full argument, or jump by role below.
 - [Rig Capture Checklist](evals/capture-checklist.md) — the 24-clip recording program that grows the benchmark
 - [Eval Baseline](evals/baseline.md) — generated tier 0–1 numbers (`python -m musical_perception.evals run` → `bless`); the honest Gate A2 table
 - [Voice-as-Drum Literature Review](research/voice-as-drum-review.md) — what the beat-tracking / speech-rhythm / evaluation literature already knows (2026-08, companion to [ADR-016](adr/016-rhythm-core-reset.md))
+- [Agent Charter](research/agent-charter.md) · [Research Log](research/RESEARCH-LOG.md) · [Agent Environment](research/agent-environment.md) — the autonomous research loop: goal ladder, rules of engagement, ledger, and cloud setup for the ADR-016 reset
 
 - [Feasibility Study 2026-07](FEASIBILITY-2026-07.md) — the founding analysis
   (question → verdict → evidence)
