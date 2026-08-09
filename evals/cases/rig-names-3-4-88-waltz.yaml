@@ -1,0 +1,34 @@
+id: rig-names-3-4-88-waltz
+input:
+  trace: traces/rig-names-3-4-88-waltz/
+  media: "audio/rig/rig-names-3-4-88-waltz.mp3"
+tags:
+  source: rig
+  teacher: ben
+  slot: counting
+  count_style: step_names
+  explanation: none
+  lang: en
+  accompanied: false
+  snr_band: high
+expect:
+  marking_bpm: 88
+  meter: "3/4"
+  subdivision: none
+  counts: 8
+notes: >-
+  Capture-checklist clip 20, recorded 2026-08-08. Metronome 88 confirmed
+  by Ben; step names with real lilt on the downbeat ("DOWN two three,
+  LIFT two three..."), one word per click (no subdivision), 8 counts.
+
+  Tempo landed correct (91.6, 4.1% err, within tolerance). Meter read
+  4/4 duple instead of 3/4 none -- another instance of the waltz-
+  precedence finding from clips 6/13 (ADR-014-adjacent, see also
+  ADR-013). Notably close this time: the Gemini marker path read 90.6
+  BPM at 59% confidence with 24 beats -- just ONE POINT under ADR-013's
+  60% arbitration-gate threshold. Had it cleared 60%, band-aware
+  arbitration would have made the (correct, in-band) marker reading
+  primary instead of the onset path. A near-miss worth flagging if the
+  arbitration threshold is ever revisited (ADR-013 already calls its
+  0.6/8-beat thresholds "conservative and untuned"). Counts read 24 vs
+  true 8, consistent with the wrong meter.

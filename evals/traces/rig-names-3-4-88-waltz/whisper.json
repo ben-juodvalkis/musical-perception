@@ -1,0 +1,134 @@
+{
+ "words": [
+  {
+   "word": "jump,",
+   "start": 0.031,
+   "end": 1.436
+  },
+  {
+   "word": "two,",
+   "start": 1.456,
+   "end": 1.716
+  },
+  {
+   "word": "three,",
+   "start": 2.218,
+   "end": 2.579
+  },
+  {
+   "word": "down,",
+   "start": 2.72,
+   "end": 3.322
+  },
+  {
+   "word": "two,",
+   "start": 3.522,
+   "end": 3.783
+  },
+  {
+   "word": "three,",
+   "start": 4.184,
+   "end": 4.586
+  },
+  {
+   "word": "and",
+   "start": 4.766,
+   "end": 4.887
+  },
+  {
+   "word": "up,",
+   "start": 4.987,
+   "end": 5.127
+  },
+  {
+   "word": "two,",
+   "start": 5.589,
+   "end": 5.87
+  },
+  {
+   "word": "three,",
+   "start": 6.251,
+   "end": 6.672
+  },
+  {
+   "word": "and",
+   "start": 6.833,
+   "end": 6.973
+  },
+  {
+   "word": "in,",
+   "start": 7.074,
+   "end": 7.274
+  },
+  {
+   "word": "two,",
+   "start": 7.575,
+   "end": 7.836
+  },
+  {
+   "word": "three,",
+   "start": 8.278,
+   "end": 8.619
+  },
+  {
+   "word": "up,",
+   "start": 8.659,
+   "end": 9.261
+  },
+  {
+   "word": "two,",
+   "start": 9.642,
+   "end": 9.923
+  },
+  {
+   "word": "three,",
+   "start": 9.963,
+   "end": 10.685
+  },
+  {
+   "word": "down,",
+   "start": 10.926,
+   "end": 11.488
+  },
+  {
+   "word": "two,",
+   "start": 11.689,
+   "end": 11.989
+  },
+  {
+   "word": "three,",
+   "start": 12.03,
+   "end": 12.612
+  },
+  {
+   "word": "out,",
+   "start": 13.173,
+   "end": 13.414
+  },
+  {
+   "word": "two,",
+   "start": 13.715,
+   "end": 14.116
+  },
+  {
+   "word": "three,",
+   "start": 14.177,
+   "end": 14.698
+  },
+  {
+   "word": "in,",
+   "start": 15.28,
+   "end": 15.521
+  },
+  {
+   "word": "two,",
+   "start": 15.842,
+   "end": 16.083
+  },
+  {
+   "word": "three.",
+   "start": 16.424,
+   "end": 16.825
+  }
+ ]
+}
