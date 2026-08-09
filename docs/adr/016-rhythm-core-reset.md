@@ -281,3 +281,29 @@ Steps 1–5 run entirely on recordings already on hand.
   meter signal unbuilt, 0.077 on the counting style real teachers actually use
   — and that the replacement is the one the project's own vision documents
   specified, now sequenced behind kill-tests so it is measured, not believed.
+
+## Addendum (2026-08-09) — the literature check
+
+A four-track survey of the beat-tracking / meter-induction / speech-rhythm /
+evaluation literature was run the day this ADR was accepted:
+[docs/research/voice-as-drum-review.md](../research/voice-as-drum-review.md).
+Nothing in it contradicts the six commitments; five things sharpen them:
+
+- **Commitment 1** gets a validated event definition: the perceptual beat of
+  a syllable is the peak of the envelope's rate of change ("peakRate" ≈
+  vowel onset ≈ P-center), and ASR word starts carry a 0–150 ms
+  word-dependent early bias — so step 1's beat grids must be annotated at
+  vowel onsets, not word starts.
+- **Commitment 3**'s joint posterior has a direct ancestor family
+  (bar-pointer models, Whiteley 2006 → Krebs 2015) with exact sub-second
+  inference at our clip lengths and published meter-discrimination results;
+  the recommended implementation is specified in the review's Review 3 §(a).
+- The 70–140 replacement is parameterized by the resonance literature:
+  log-Gaussian prior, T₀ ≈ 100–110 BPM, σ ≈ 1.2–1.4 octaves, applied at
+  level selection only.
+- `truth_in_family` is the field's **Accuracy-2** metric; adopting it plus
+  the continuous octave-error **OE2** sharpens the eval gates and makes
+  results comparable to twenty years of published numbers.
+- No published system and no public dataset does beat/meter on rhythmic
+  speech — the corpus (commitment 6) is a first-of-kind contribution, which
+  strengthens the Vision 10 P2 posture.
