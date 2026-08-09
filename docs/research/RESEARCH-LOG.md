@@ -71,3 +71,30 @@ Regressions and classifications: n/a.
 Lesson (durable): The loop's constraints are downstream of documented
 incidents, not hypotheticals — see Standing Lessons 1–10.
 Status: PROPOSED (awaiting rung 0 — owner data logistics).
+
+## 2026-08-09 · rung — · (infrastructure decision) · cloud
+
+Attempted: Runner architecture decided with the owner; docs updated
+(agent-environment.md rewritten, charter rung 0 / rung 5 / ladder intro
+amended, scripts/air-nightly.sh added).
+Pre-registered expectations: n/a (decision, not experiment).
+Result: Three-machine architecture — the always-on 16 GB MacBook Air is
+the PRIMARY runner (data locality, persistent model weights and tool
+venvs, free compute); cloud sessions are OVERFLOW (burst parallelism,
+clean-room checks) behind Path B; the owner's main machine is the SEALED
+vault and blessing desk, so DEV/SEALED separation stays physical on every
+runner. Scheduled runs use one never-changing standing contract that
+delegates to the charter's CURRENT RUNG pointer. Local-model policy:
+specialized nets in now (Whisper, WavLM/DistilHuBERT SSL front-ends,
+Silero VAD, MediaPipe); general local LLMs (7–27B) deferred as a
+premature cost-for-accuracy trade under the research posture — and a 27B
+at 4-bit (~14–16 GB) does not fit the 16 GB Air regardless; audio-native
+small model logged as a rung-5 ensemble backlog note; graduation
+condition for fine-tuning a small model on the corpus: ~140+ annotated
+clips.
+Regressions and classifications: n/a.
+Lesson (durable): The runner is the hands, not the brain — plan usage is
+identical on the Air and in the cloud; what the Air buys is state
+(weights, venvs, recordings) surviving between runs, which is exactly
+the tax ephemeral containers keep re-paying.
+Status: BLESSED (owner decision in session, 2026-08-09).

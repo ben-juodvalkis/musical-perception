@@ -51,8 +51,10 @@ flags, classified regressions).
   is the honest label, not a choice.
 - **SEALED is built only from future capture:** at least one third of every
   new batch, including at least one entire recording session/teacher, held
-  **off-repo on the owner's machine**. Sealed clips have no case files, no
-  traces, no filenames in this repository. An agent session must never
+  **off-repo on the owner's main machine — never on the Air runner, never
+  in this repository** (see [agent-environment.md](agent-environment.md)).
+  Sealed clips have no case files, no traces, no filenames in this
+  repository. An agent session must never
   request, reconstruct, or reason about sealed content; encountering a
   reference to it is a reason to stop and flag.
 - **Ingestion protocol for new capture:** freeze traces → agent
@@ -96,19 +98,25 @@ flags, classified regressions).
 
 Each rung below has prerequisites, deliverables, and a ready-to-paste
 `/goal` condition (for interactive or `claude -p` sessions). Scheduled
-cloud sessions get the same condition via the routine prompt template in
-[agent-environment.md](agent-environment.md). Conditions are contracts:
+runs — the Air's nightly `scripts/air-nightly.sh` or a cloud overflow
+routine — use the runner-agnostic standing contract in
+[agent-environment.md](agent-environment.md), which delegates to the
+CURRENT RUNG's condition here. Conditions are contracts:
 measurable end state + stated proof in the transcript + constraints +
 turn bound. The evaluator judges only what the session surfaces, so the
 proof clauses are mandatory, not decorative.
 
-### Rung 0 — owner: data logistics *(no /goal — checklist)*
+### Rung 0 — owner: runner setup + data logistics *(no /goal — checklist)*
 
-Repo privacy verified before any recording is committed; DEV audio
-committed under `audio/rig/` (the `.gitignore` exception exists); video
-clips staged per [agent-environment.md](agent-environment.md); cloud
-environment configured (secrets, network, setup script); one supervised
-dry-run session completed.
+Per [agent-environment.md](agent-environment.md): the **Air** configured
+as primary runner (dedicated account, persistent env via
+`scripts/cloud-setup.sh --live`, DEV recordings synced, power settings,
+`scripts/air-nightly.sh` schedule staged); SEALED vault on the owner's
+main machine; repo privacy verified before any recording is committed;
+one supervised dry-run of rung 1 completed before the schedule is
+enabled. Cloud overflow (DEV audio committed via the `.gitignore`
+exception, environment secrets/network, overflow routine) is Path B —
+optional, later.
 
 ### Rung 1 — annotation tooling + stage-level scoring (EVAL-CHANGE rung)
 
@@ -217,8 +225,11 @@ entry including the prediction scorecard. Or stop after 60 turns.
 N ≥ 5 draws across ≥ 2 model families; per-draw frozen traces;
 distributions consumed downstream (Cemgil-style: marker labels as observed
 grid-assignment switches). Also re-runs the Feb-2026 model comparison.
-Condition to be finalized when rung 4's shape is known — the meta-rung
-drafts it.
+Backlog note (2026-08-09): include an audio-native small local model
+(Qwen2-Audio class) as a cheap third ensemble vote — measure it, don't
+prioritize it (see [agent-environment.md](agent-environment.md) local
+models policy). Condition to be finalized when rung 4's shape is known —
+the meta-rung drafts it.
 
 ### Rung 6 — baselines benchmark *(independent; can run parallel any time after rung 1)*
 
