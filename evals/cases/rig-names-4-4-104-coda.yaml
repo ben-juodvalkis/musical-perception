@@ -1,0 +1,42 @@
+id: rig-names-4-4-104-coda
+input:
+  trace: traces/rig-names-4-4-104-coda/
+  media: "audio/rig/rig-names-4-4-104-coda.mp3"
+tags:
+  source: rig
+  teacher: ben
+  slot: counting
+  count_style: step_names
+  explanation: none
+  lang: en
+  accompanied: false
+  snr_band: high
+expect:
+  marking_bpm: 104
+  meter: "4/4"
+  subdivision: none
+  counts: 32
+notes: >-
+  Capture-checklist clip 24 (final clip), recorded 2026-08-08 (bounce
+  saved as "rig-names-4-4-104-coda .mp3" with a trailing space in the
+  source Bounces folder, corrected on copy). Metronome 104 confirmed by
+  Ben; 32-count phrase ("turning around and then we drop... turning
+  around and up we go... flip and jump and jump and jump and port de
+  bras"), then a genuinely free, out-of-tempo coda ("the other way...
+  and balance... and stop") with irregular pauses -- audibly not locked
+  to the click.
+
+  Interesting partial success: the onset detector's rhythmic section
+  boundary (2.3-20.8s) lines up almost exactly with the true 32-count
+  phrase length at 104 BPM (32 beats = 18.46s, i.e. 2.3+18.46=20.76s) --
+  it correctly excluded the free coda from the metered section, which is
+  exactly the boundary this clip was designed to test. But tempo within
+  that correctly-bounded section still read low (72.2 BPM, 30.6% miss,
+  CV=0.01 -- very internally regular, just at the wrong rate): natural
+  descriptive step-name phrasing ("turning around and then we drop and
+  turning around...") doesn't put one word on every click the way
+  strict counting does, so word-onset spacing reads slower than the
+  true click. Meter/subdivision follow the wrong tempo. Counts abstained
+  (evidence disagreed). Also reported 2 sides with no "other side" cue
+  in the transcript -- the same likely-artifact seen on clips 22-23, not
+  scored.
