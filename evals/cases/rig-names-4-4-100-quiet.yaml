@@ -33,3 +33,7 @@ notes: >-
   BPM (19.3% miss from true 100). Structure read 8 counts vs true 16 --
   roughly half, consistent with about half the phrase's words being lost
   to the quiet delivery entirely.
+  ADR-015 luck flag: this row went green under grid-fitting while the
+  clip still loses words to Whisper — surviving intervals happened to
+  fit. If better word recovery flips it back red, that is the luck
+  draining out, not a regression.

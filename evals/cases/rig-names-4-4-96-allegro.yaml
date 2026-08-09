@@ -35,3 +35,7 @@ notes: >-
   when the marker stream is irregular, here because the phrase mixes
   dense step-name bursts ("grand chate and assombe") with counted
   numbers ("up two three down two three") rather than one uniform style.
+  ADR-015 luck flag: this row went green under grid-fitting while the
+  clip still loses words to Whisper — surviving intervals happened to
+  fit. If better word recovery flips it back red, that is the luck
+  draining out, not a regression.

@@ -9,7 +9,8 @@ step names, numbers, or any rhythmic speech.
 
 Algorithm: sliding-window analysis of inter-onset interval regularity.
 Windows with low coefficient of variation (CV < 0.4) are classified as
-rhythmic. BPM is estimated from the mean IOI within rhythmic sections.
+rhythmic. Each section's beat period is then recovered by grid-fitting all
+of its inter-onset intervals (ADR-015) rather than averaging them.
 """
 
 import numpy as np
@@ -19,6 +20,23 @@ from musical_perception.types import (
     RhythmicSection,
     TimestampedWord,
 )
+
+# Grid-fit parameters (ADR-015). Chosen on principle, not tuned:
+#
+# GRID_TOL 0.20 is the widest tolerance that keeps the 1x acceptance band
+#   [0.8m, 1.2m] disjoint from the 2x band [1.6m, 2.4m] with margin, and is
+#   about the size of real expressive timing deviation. An IOI landing in
+#   the dead zone between bands is an agogic gap, and gets dropped rather
+#   than averaged in.
+# GRID_MAX_SPAN 3 is the same integer set ADR-014's metric-level family
+#   uses; a teacher who speaks on every 4th beat is out of scope.
+# GRID_MIN_IOIS 4 is the identifiability floor: the grid hypothesis spends
+#   one free integer per interval, so on two or three intervals it can fit
+#   anything and falsify nothing. Below the floor the window keeps its mean.
+GRID_TOL = 0.20
+GRID_MAX_SPAN = 3
+GRID_MIN_IOIS = 4
+_GRID_PASSES = 2
 
 
 def detect_onset_tempo(
@@ -30,13 +48,16 @@ def detect_onset_tempo(
     min_words_per_window: int = 3,
     min_ioi: float = 0.15,
     max_ioi: float = 2.0,
+    grid_tol: float = GRID_TOL,
 ) -> OnsetTempoResult | None:
     """
     Detect tempo from word onset timing without word classification.
 
     Slides overlapping windows over word onsets and identifies sections
-    where words are regularly spaced (low CV). Estimates BPM from the
-    mean inter-onset interval in those sections.
+    where words are regularly spaced (low CV). Within each section the beat
+    period is recovered by grid-fitting the IOIs (see `_grid_period`), which
+    is what keeps expressive bar-boundary gaps and sparse marking from
+    dragging the estimate off the pulse (ADR-015).
 
     Args:
         words: Timestamped words from transcription.
@@ -46,6 +67,7 @@ def detect_onset_tempo(
         min_words_per_window: Minimum word onsets per window.
         min_ioi: Minimum inter-onset interval (filters sub-word artifacts).
         max_ioi: Maximum inter-onset interval (filters long pauses).
+        grid_tol: Relative tolerance for an IOI to count as k beats.
 
     Returns:
         OnsetTempoResult with BPM and rhythmic sections, or None if
@@ -71,7 +93,9 @@ def detect_onset_tempo(
     if not sections:
         return None
 
-    merged = _merge_overlapping_sections(sections)
+    merged, supports = _refit_sections(
+        _merge_overlapping_sections(sections), onsets, min_ioi, max_ioi, grid_tol
+    )
 
     # Compute final BPM via duration-weighted median
     bpms = np.array([s.bpm for s in merged])
@@ -86,7 +110,9 @@ def detect_onset_tempo(
     rhythmic_duration = sum(s.end - s.start for s in merged)
     coverage = round(min(1.0, rhythmic_duration / total_duration), 3) if total_duration > 0 else 0.0
 
-    confidence = _compute_confidence(merged, total_duration, histogram_bpm)
+    confidence = _compute_confidence(
+        merged, total_duration, histogram_bpm, float(np.mean(supports))
+    )
 
     return OnsetTempoResult(
         bpm=bpm,
@@ -98,6 +124,63 @@ def detect_onset_tempo(
     )
 
 
+def _grid_period(
+    iois: np.ndarray,
+    tol: float = GRID_TOL,
+    max_span: int = GRID_MAX_SPAN,
+) -> tuple[float, float, float]:
+    """Beat period of a run of onsets, fitted as an integer grid over its IOIs.
+
+    The mean IOI assumes every interval spans exactly one beat and that all
+    of them are drawn from one distribution. Marking violates both: a
+    bar-boundary gap is one long interval among steady ones, and step-name
+    marking speaks on some beats only, mixing 1x, 2x and 3x the period.
+    Averaging those lands between metric levels (ADR-015).
+
+    So: anchor on the median (the mean is the quantity being corrected, so
+    it cannot also be the reference), ask how many beats each interval
+    spans, drop the ones that fit no whole number of beats, and divide
+    elapsed time by beats spanned.
+
+    Below `GRID_MIN_IOIS` intervals the fit is not identifiable and the
+    caller keeps the plain mean — today's answer, unchanged.
+
+    Returns:
+        (period, support, cv) — the fitted period in seconds, the fraction
+        of IOIs the grid explains, and the dispersion of the grid-folded
+        IOIs around it.
+    """
+    if len(iois) < GRID_MIN_IOIS:
+        mean_ioi = float(np.mean(iois))
+        if mean_ioi <= 0:
+            return 0.0, 0.0, 1.0
+        # Discounted in proportion to how far below the floor it sits. Three
+        # intervals that happen to agree are not better evidence than a fitted
+        # window that explains four of five — which is what full support here
+        # would claim, and it is the spurious confidence this measure exists
+        # to prevent.
+        return mean_ioi, len(iois) / GRID_MIN_IOIS, float(np.std(iois) / mean_ioi)
+
+    period = float(np.median(iois))
+    kept, spans = iois, np.ones(len(iois))
+
+    for _ in range(_GRID_PASSES):
+        if period <= 0:
+            break
+        candidate_spans = np.clip(np.round(iois / period), 1, max_span)
+        fits = np.abs(iois - candidate_spans * period) <= tol * candidate_spans * period
+        if not fits.any():
+            break
+        kept, spans = iois[fits], candidate_spans[fits]
+        period = float(kept.sum() / spans.sum())
+
+    if period <= 0:
+        return 0.0, 0.0, 1.0
+
+    folded = kept / spans
+    return period, len(kept) / len(iois), float(np.std(folded) / period)
+
+
 def _compute_window_sections(
     onsets: np.ndarray,
     word_texts: list[str],
@@ -107,7 +190,13 @@ def _compute_window_sections(
     min_words_per_window: int,
     min_ioi: float = 0.15,
 ) -> list[RhythmicSection]:
-    """Slide windows over onsets and identify rhythmic sections."""
+    """Slide windows over onsets and identify rhythmic sections.
+
+    Unchanged by ADR-015: the sweep decides *where* speech is rhythmic, and
+    that boundary is not what was wrong. The tempo each window reports here
+    is provisional — `_refit_sections` measures it again over the whole
+    merged section.
+    """
     sections = []
     t = float(onsets[0])
     end_time = float(onsets[-1])
@@ -141,6 +230,48 @@ def _compute_window_sections(
         t += step_sec
 
     return sections
+
+
+def _refit_sections(
+    sections: list[RhythmicSection],
+    onsets: np.ndarray,
+    min_ioi: float,
+    max_ioi: float,
+    grid_tol: float,
+) -> tuple[list[RhythmicSection], list[float]]:
+    """Re-measure each merged section's tempo from all of its own onsets.
+
+    The window sweep is what decides *where* speech is rhythmic; it is a poor
+    instrument for deciding *how fast*, because a 3-second window holds only
+    4-6 intervals and the merge then elects one of them to speak for the
+    whole section. Refitting over the section's full onset run puts every
+    interval it contains behind one estimate (ADR-015).
+    """
+    refit, supports = [], []
+    for section in sections:
+        selected = onsets[(onsets >= section.start) & (onsets <= section.end)]
+        iois = np.diff(selected)
+        iois = iois[(iois >= min_ioi) & (iois <= max_ioi)]
+        if len(iois) < 2:
+            refit.append(section)
+            supports.append(0.0)
+            continue
+        period, support, cv = _grid_period(iois, grid_tol)
+        if period <= 0:
+            refit.append(section)
+            supports.append(0.0)
+            continue
+        refit.append(RhythmicSection(
+            start=section.start,
+            end=section.end,
+            bpm=round(60.0 / period, 1),
+            mean_ioi=round(period, 4),
+            cv=round(cv, 3),
+            word_count=section.word_count,
+            words=section.words,
+        ))
+        supports.append(support)
+    return refit, supports
 
 
 def _merge_overlapping_sections(
@@ -206,8 +337,16 @@ def _compute_confidence(
     sections: list[RhythmicSection],
     total_duration: float,
     histogram_bpm: float | None,
+    grid_support: float = 1.0,
 ) -> float:
-    """Compute overall confidence from section consistency, coverage, and histogram agreement."""
+    """Overall confidence: coverage, cross-section agreement, grid fit, support.
+
+    `grid_support` (ADR-015) is the share of IOIs the fitted grid actually
+    explains. Without it a sparse reading scores as confidently as a dense
+    one — three surviving intervals fit any grid perfectly — which is
+    exactly the reading the arbitration in `interpret_meter()` should
+    trust least.
+    """
     if not sections:
         return 0.0
 
@@ -223,7 +362,7 @@ def _compute_confidence(
     else:
         consistency = 0.5
 
-    # Factor 3: Mean regularity (inverse of mean CV across sections)
+    # Factor 3: Mean grid fit (inverse of mean folded-IOI dispersion)
     mean_cv = float(np.mean([s.cv for s in sections]))
     regularity = max(0.0, 1.0 - mean_cv)
 
@@ -235,12 +374,16 @@ def _compute_confidence(
     else:
         agreement = 0.5
 
+    # Factor 5: How much of the evidence the fitted grid explains
+    support = max(0.0, min(1.0, grid_support))
+
     # Weighted combination
     confidence = (
         0.30 * coverage
-        + 0.30 * consistency
-        + 0.25 * regularity
-        + 0.15 * agreement
+        + 0.25 * consistency
+        + 0.15 * regularity
+        + 0.10 * agreement
+        + 0.20 * support
     )
 
     return round(max(0.0, min(1.0, confidence)), 2)
