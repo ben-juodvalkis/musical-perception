@@ -38,6 +38,17 @@ src/musical_perception/
 - **DISPOSABLE**: Perception wrappers around AI models. Will be swapped.
   Don't build elaborate abstractions.
 
+## Autonomous Research Loop
+
+Agent sessions working on the rhythm-core reset (ADR-016) MUST read
+[docs/research/agent-charter.md](docs/research/agent-charter.md) before
+doing anything: it defines the CURRENT RUNG, the rules (agent/* branches
+only; `evals/cases/`, `evals/traces/`, `evals/baseline.json`, and the
+scorer code are untouchable in pipeline rungs; never run `evals bless`),
+and the goal ladder. Every session appends a dated entry to
+[docs/research/RESEARCH-LOG.md](docs/research/RESEARCH-LOG.md) before
+finishing — including negative results and blocked states.
+
 ## How It Works
 
 Whisper owns word **timestamps** (and the tokenization: a ballet-vocabulary
