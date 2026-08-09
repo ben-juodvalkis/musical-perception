@@ -17,22 +17,31 @@ expect:
   subdivision: duple
   counts: 8
 notes: >-
-  Capture-checklist clip 17, recorded 2026-08-08. Metronome 100 confirmed
-  by Ben; sounds instead of words ("da da DA da..." style), with
-  intentional duple subdivision, 2 rounds of 8. First vocables clip.
+  Capture-checklist clip 17, recorded 2026-08-08, re-exported same day
+  after Ben found the original bounce had two overlapping tracks (label
+  card unchanged: metronome 100 confirmed, sounds instead of words --
+  "da da DA da..." style -- intentional duple subdivision, 2 rounds of
+  8). This entry supersedes the first export's trace/result.
 
-  Notable defect, distinct from the rhythm/tempo findings on other rig
-  clips: Whisper's transcript for this entire clip reads as literal
-  English number words -- "one and two three four five six seven eight"
-  repeated twice, clean timing -- despite Ben confirming he spoke only
-  non-lexical vocable sounds. Almost certainly the ballet-vocabulary
-  initial_prompt (perception/whisper.py, BALLET_VOCABULARY_PROMPT)
-  biasing transcription toward plausible counting words when the actual
-  audio is non-lexical. Word-level timing apparently survived intact
-  (tempo/meter/counts all scored correct below), but the literal
-  transcript text is fabricated -- a hallucination defect a downstream
-  consumer displaying "what Whisper heard" would surface as a lie, even
-  though it happens not to break this pipeline's numeric scoring. Worth
-  its own investigation (does this happen on true vocables generally, or
-  only when the vocable rhythm coincidentally resembles a counted
-  pattern?) separate from the tempo/meter defects tracked elsewhere.
+  The re-export flipped the finding entirely, and the flip is the real
+  story. The FIRST (overlapping) export had Whisper hallucinate a
+  literal, cleanly-timestamped "one and two three four five six seven
+  eight" transcript onto the vocable sounds -- wrong text, but per-word
+  timing survived, so tempo/meter/counts all scored correct (see git
+  history for that trace/analysis). This CORRECTED, non-overlapping
+  export shows what genuine vocable bursts actually do to Whisper:
+  the entire ~9.5s phrase collapses into a single un-timestamped token,
+  "da-da-da-hoo-ha-hee-ha-ho-ha-hee-ha-ha-ha-hee-beep-beep-beep-beep."
+  -- one word, one start/end span, zero per-syllable timing. No beats
+  detected (Gemini), no rhythmic sections (onset detector); tempo, meter,
+  and counts all abstain outright.
+
+  This is a more fundamental defect than the original hallucination
+  finding: fixing the overlap didn't just clean up audio quality, it
+  unmasked Whisper's word-segmentation failing completely on non-lexical
+  speech -- it doesn't just mistranscribe vocables as words, it doesn't
+  even attempt to break them into separate timed tokens the way it does
+  for real words or numbers. The earlier all-green result was an
+  artifact of the overlap (or of the ballet-vocabulary prompt reacting
+  differently to the overlapping audio) rather than a sign the pipeline
+  handles vocables correctly.
