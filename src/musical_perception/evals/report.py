@@ -53,14 +53,21 @@ def build_report(suite_results: dict[str, list[CaseResult]]) -> dict:
         "git_sha": _git_sha(),
         "package_version": version,
         "suites": {
-            name: {
-                "summary": aggregate(results),
-                "outcomes": outcomes_map(results),
-                "cases": results,
-            }
-            for name, results in suite_results.items()
+            name: _suite_block(results) for name, results in suite_results.items()
         },
     })
+
+
+def _suite_block(results) -> dict:
+    """CaseResult suites aggregate as before; dict suites (stage1) carry
+    their own summary and pin no outcomes — provisional grids never gate."""
+    if isinstance(results, dict):
+        return {"summary": results, "outcomes": {}, "cases": []}
+    return {
+        "summary": aggregate(results),
+        "outcomes": outcomes_map(results),
+        "cases": results,
+    }
 
 
 def write_run(report: dict, runs_dir: Path) -> Path:
@@ -122,10 +129,61 @@ def _case_rows(cases: list[dict]) -> str:
     return "\n".join(rows)
 
 
+def tempo_metrics_line(summary: dict) -> str | None:
+    """One-line Acc1/Acc2 + OE1/OE2 readout (Review 2 §4.2), or None."""
+    tm = summary.get("tempo_metrics")
+    if not tm:
+        return None
+    return (
+        f"tempo n={tm['n_committed']}: "
+        f"Acc1 {tm['acc1']['tol_04']}@4% {tm['acc1']['tol_08']}@8% · "
+        f"Acc2 {tm['acc2']['tol_04']}@4% {tm['acc2']['tol_08']}@8% · "
+        f"OE1 median {tm['oe1']['median']} · |OE2| median {tm['oe2']['abs_median']} "
+        f"(max {tm['oe2']['max_abs']}) · between-levels rows {tm['between_levels']}"
+    )
+
+
+def _stage1_rows(summary: dict) -> str:
+    rows = []
+    for c in summary["clips"]:
+        rows.append(
+            f"<tr><td>{c['case_id']}</td><td>{'yes' if c['provisional'] else 'no'}</td>"
+            f"<td>{c['n_ref']}</td><td>{c['n_pred']}</td><td>{c['matched']}</td>"
+            f"<td>{c['precision']}</td><td>{c['recall']}</td><td>{c['f_measure']}</td>"
+            f"<td>{c['asynchrony_mean_ms']} ± {c['asynchrony_sd_ms']}</td></tr>"
+        )
+    return "\n".join(rows)
+
+
+def _stage1_section(suite: str, summary: dict) -> str:
+    agg = summary.get("aggregate_provisional")
+    agg_line = (
+        f"provisional pooled: P {agg['precision']} R {agg['recall']} "
+        f"F {agg['f_measure']} (macro {agg['f_measure_macro']}) · asynchrony "
+        f"mean {agg['asynchrony_mean_ms']} ms median {agg['asynchrony_median_ms']} ms"
+        if agg else "no scored clips"
+    )
+    missing = ", ".join(summary["missing_grids"]) or "none"
+    return f"""
+<h2>{suite} — pulse vs beat grids ({summary['pulse_source']}, ±{summary['tolerance_s']}s)</h2>
+<p><strong>PROVISIONAL slice — gates nothing until grids are owner-verified.</strong><br>
+{agg_line}</p>
+<table>
+<tr><th>clip</th><th>provisional</th><th>n_ref</th><th>n_pred</th><th>matched</th>
+<th>P</th><th>R</th><th>F</th><th>asynchrony ms</th></tr>
+{_stage1_rows(summary)}
+</table>
+<p>missing grids: {missing}</p>"""
+
+
 def render_html(report: dict) -> str:
     sections = []
     for suite, data in report["suites"].items():
         summary = data["summary"]
+        if "clips" in summary:  # stage1-style suite
+            sections.append(_stage1_section(suite, summary))
+            continue
+        tm_line = tempo_metrics_line(summary)
         sections.append(f"""
 <h2>{suite} — {summary['n_cases']} cases</h2>
 <table>
@@ -134,7 +192,8 @@ def render_html(report: dict) -> str:
 <th>failure modes</th></tr>
 {_field_rows(summary)}
 </table>
-<p>ECE: {summary['ece'] if summary['ece'] is not None else 'n/a'}
+<p>{tm_line + '<br>' if tm_line else ''}
+ECE: {summary['ece'] if summary['ece'] is not None else 'n/a'}
 &nbsp; errors: {', '.join(summary['errors']) or 'none'}</p>
 <details><summary>per-case rows</summary>
 <table>
@@ -175,6 +234,20 @@ def render_markdown_baseline(report: dict) -> str:
     ]
     for suite, data in report["suites"].items():
         summary = data["summary"]
+        if "clips" in summary:  # stage1-style suite — provisional, non-gating
+            agg = summary.get("aggregate_provisional")
+            lines += [f"## {suite} (pulse vs beat grids — PROVISIONAL, gates nothing)", ""]
+            if agg:
+                lines.append(
+                    f"{summary['pulse_source']} ±{summary['tolerance_s']}s: "
+                    f"P {agg['precision']} R {agg['recall']} F {agg['f_measure']} "
+                    f"over {agg['n_clips']} clips; asynchrony mean "
+                    f"{agg['asynchrony_mean_ms']} ms"
+                )
+            if summary["missing_grids"]:
+                lines.append(f"Missing grids: {', '.join(summary['missing_grids'])}")
+            lines.append("")
+            continue
         lines += [f"## {suite} ({summary['n_cases']} cases)", ""]
         lines += [
             "| field | n | correct | wrong | abstained | accuracy | wilson 95% "
@@ -190,6 +263,9 @@ def render_markdown_baseline(report: dict) -> str:
                 f"{s['abstained']} | {acc} | {wil} | {family_cell(s)} | {modes} |"
             )
         lines.append("")
+        tm_line = tempo_metrics_line(summary)
+        if tm_line:
+            lines += [tm_line, ""]
         if data["summary"]["errors"]:
             lines.append(f"Case errors: {', '.join(summary['errors'])}")
             lines.append("")

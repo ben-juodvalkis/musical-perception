@@ -1,0 +1,71 @@
+format: 1
+clip: rig-names-6-8-100-clean
+provisional: true
+media: audio/rig/rig-names-6-8-100-clean.mp3
+media_sha256: 76601e51c74ba5cef35ae40a57e9a35d77366a975a10dfdbed6de51b924c54b8
+annotator: peakrate-tap-assist/1
+created_at: '2026-08-11T22:42:27+00:00'
+params:
+  sr: 16000
+  band_lo_hz: 300.0
+  band_hi_hz: 3000.0
+  lowpass_hz: 10.0
+  butter_order: 4
+  prominence_mad_k: 3.0
+  mad_degenerate_frac: 0.0005
+  prominence_rel_floor: 0.05
+  min_distance_s: 0.12
+  voiced_gate: true
+  voiced_window_s: 0.03
+  pitch_floor_hz: 75.0
+  pitch_ceiling_hz: 450.0
+beats:
+- 2.4073
+- 3.0265
+- 3.4226
+- 3.678
+- 4.2764
+- 4.3979
+- 4.8469
+- 5.4998
+- 6.0948
+- 6.6683
+- 7.2545
+- 7.8787
+- 8.025
+- 8.4627
+- 9.6167
+- 10.2942
+- 10.9028
+- 11.4554
+- 12.0738
+- 12.7733
+- 13.8832
+- 14.4256
+- 15.0844
+onsets:
+- 2.4073
+- 3.0265
+- 3.4226
+- 3.678
+- 4.2764
+- 4.3979
+- 4.8469
+- 5.4998
+- 6.0948
+- 6.6683
+- 7.2545
+- 7.8787
+- 8.025
+- 8.4627
+- 9.6167
+- 10.2942
+- 10.9028
+- 11.4554
+- 12.0738
+- 12.7733
+- 13.8832
+- 14.4256
+- 15.0844
+notes: "peakRate suggestions \u2014 unverified; may include subdivisions and spurious\
+  \ events"

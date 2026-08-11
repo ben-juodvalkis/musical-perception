@@ -13,9 +13,21 @@ try:
 except ImportError:
     HAS_OPENWAKEWORD = False
 
+# openwakeword's default models are .tflite: without a tflite interpreter
+# (tflite-runtime has no macOS arm64 wheel) load_model() cannot run at all.
+try:
+    from tflite_runtime import interpreter as _tflite  # noqa: F401
+    HAS_TFLITE = True
+except ImportError:
+    try:
+        from tensorflow import lite as _tflite  # noqa: F401
+        HAS_TFLITE = True
+    except ImportError:
+        HAS_TFLITE = False
+
 pytestmark = pytest.mark.skipif(
-    not HAS_OPENWAKEWORD,
-    reason="openwakeword not installed",
+    not (HAS_OPENWAKEWORD and HAS_TFLITE),
+    reason="openwakeword or its tflite runtime not installed",
 )
 
 

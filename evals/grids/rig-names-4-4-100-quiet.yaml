@@ -1,0 +1,61 @@
+format: 1
+clip: rig-names-4-4-100-quiet
+provisional: true
+media: audio/rig/rig-names-4-4-100-quiet.mp3
+media_sha256: cacfbef07beb916b8afede020cf590b5abc978f6faadebe33382d7370fd1e26a
+annotator: peakrate-tap-assist/1
+created_at: '2026-08-11T22:42:27+00:00'
+params:
+  sr: 16000
+  band_lo_hz: 300.0
+  band_hi_hz: 3000.0
+  lowpass_hz: 10.0
+  butter_order: 4
+  prominence_mad_k: 3.0
+  mad_degenerate_frac: 0.0005
+  prominence_rel_floor: 0.05
+  min_distance_s: 0.12
+  voiced_gate: true
+  voiced_window_s: 0.03
+  pitch_floor_hz: 75.0
+  pitch_ceiling_hz: 450.0
+beats:
+- 2.3152
+- 2.4587
+- 3.1123
+- 3.3245
+- 3.5972
+- 3.9264
+- 4.3008
+- 6.1466
+- 6.5013
+- 6.7412
+- 7.1488
+- 7.4668
+- 9.0772
+- 9.6885
+- 10.2867
+- 10.4975
+- 11.4738
+- 11.694
+onsets:
+- 2.3152
+- 2.4587
+- 3.1123
+- 3.3245
+- 3.5972
+- 3.9264
+- 4.3008
+- 6.1466
+- 6.5013
+- 6.7412
+- 7.1488
+- 7.4668
+- 9.0772
+- 9.6885
+- 10.2867
+- 10.4975
+- 11.4738
+- 11.694
+notes: "peakRate suggestions \u2014 unverified; may include subdivisions and spurious\
+  \ events"

@@ -1,7 +1,7 @@
 """
 Eval CLI:
 
-    python -m musical_perception.evals run [--suite tier0,tier1]
+    python -m musical_perception.evals run [--suite tier0,tier1,stage1]
     python -m musical_perception.evals bless [--run PATH]
     python -m musical_perception.evals live-check --case ID [--runs 3]
 """
@@ -17,8 +17,37 @@ BASELINE_NAME = "baseline.json"
 BASELINE_MD = Path("docs/evals/baseline.md")
 
 
+def _print_stage1(suite: str, summary: dict) -> None:
+    print(f"  {suite}: {summary['pulse_source']} vs beat grids, "
+          f"±{summary['tolerance_s']}s — PROVISIONAL slice, gates nothing")
+    for c in summary["clips"]:
+        prov = "prov" if c["provisional"] else "VERIFIED"
+        print(f"    {c['case_id']:34s} {prov:8s} ref={c['n_ref']:3d} "
+              f"pred={c['n_pred']:3d} P={c['precision']} R={c['recall']} "
+              f"F={c['f_measure']} async={c['asynchrony_mean_ms']}"
+              f"±{c['asynchrony_sd_ms']}ms")
+    for label in ("aggregate_provisional", "aggregate_verified"):
+        agg = summary.get(label)
+        if agg:
+            print(f"    {label}: clips={agg['n_clips']} P={agg['precision']} "
+                  f"R={agg['recall']} F={agg['f_measure']} "
+                  f"(macro {agg['f_measure_macro']}) asynchrony mean="
+                  f"{agg['asynchrony_mean_ms']}ms median={agg['asynchrony_median_ms']}ms "
+                  f"sd={agg['asynchrony_sd_ms']}ms")
+    for style, agg in (summary.get("slices") or {}).items():
+        print(f"    slice {style}: F={agg['f_measure']} "
+              f"asynchrony mean={agg['asynchrony_mean_ms']}ms (n={agg['n_clips']})")
+    if summary["missing_grids"]:
+        print(f"    missing grids ({len(summary['missing_grids'])}): "
+              f"{', '.join(summary['missing_grids'])}")
+    for err in summary["errors"]:
+        print(f"    ERROR {err}")
+
+
 def _cmd_run(args) -> int:
-    from musical_perception.evals.report import build_report, family_cell, write_run
+    from musical_perception.evals.report import (
+        build_report, family_cell, tempo_metrics_line, write_run,
+    )
     from musical_perception.evals.runner import compare_outcomes, run_suites
 
     root = Path(args.evals_root)
@@ -28,10 +57,17 @@ def _cmd_run(args) -> int:
     path = write_run(report, root / "runs")
     print(f"wrote {path}")
     for suite, data in report["suites"].items():
-        for name, s in data["summary"]["fields"].items():
+        summary = data["summary"]
+        if "clips" in summary:  # stage1-style suite
+            _print_stage1(suite, summary)
+            continue
+        for name, s in summary["fields"].items():
             print(f"  {suite:6s} {name:22s} n={s['n']:3d} correct={s['correct']:3d} "
                   f"wrong={s['wrong']:3d} abstained={s['abstained']:3d} "
                   f"accuracy={s['accuracy']} truth_in_family={family_cell(s)}")
+        tm_line = tempo_metrics_line(summary)
+        if tm_line:
+            print(f"  {suite:6s} {tm_line}")
 
     baseline_path = root / BASELINE_NAME
     if baseline_path.is_file():

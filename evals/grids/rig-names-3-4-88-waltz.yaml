@@ -1,0 +1,75 @@
+format: 1
+clip: rig-names-3-4-88-waltz
+provisional: true
+media: audio/rig/rig-names-3-4-88-waltz.mp3
+media_sha256: 36207a1cfd620b8ffe173aea3034658c8698931db03e358ffcdd3d9459378b4f
+annotator: peakrate-tap-assist/1
+created_at: '2026-08-11T22:42:27+00:00'
+params:
+  sr: 16000
+  band_lo_hz: 300.0
+  band_hi_hz: 3000.0
+  lowpass_hz: 10.0
+  butter_order: 4
+  prominence_mad_k: 3.0
+  mad_degenerate_frac: 0.0005
+  prominence_rel_floor: 0.05
+  min_distance_s: 0.12
+  voiced_gate: true
+  voiced_window_s: 0.03
+  pitch_floor_hz: 75.0
+  pitch_ceiling_hz: 450.0
+beats:
+- 0.7427
+- 1.5262
+- 2.2412
+- 2.6712
+- 2.886
+- 4.1787
+- 4.9117
+- 5.6239
+- 5.8063
+- 6.286
+- 6.6367
+- 6.9344
+- 8.9285
+- 9.0485
+- 9.6786
+- 10.3425
+- 10.9082
+- 11.2982
+- 11.7191
+- 12.9827
+- 13.7527
+- 14.4478
+- 15.0712
+- 15.8712
+- 16.4191
+onsets:
+- 0.7427
+- 1.5262
+- 2.2412
+- 2.6712
+- 2.886
+- 4.1787
+- 4.9117
+- 5.6239
+- 5.8063
+- 6.286
+- 6.6367
+- 6.9344
+- 8.9285
+- 9.0485
+- 9.6786
+- 10.3425
+- 10.9082
+- 11.2982
+- 11.7191
+- 12.9827
+- 13.7527
+- 14.4478
+- 15.0712
+- 15.8712
+- 16.4191
+notes: "peakRate suggestions \u2014 unverified; may include subdivisions and spurious\
+  \ events"

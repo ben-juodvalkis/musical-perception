@@ -119,3 +119,72 @@ rung 2 ends at a strategic fork. Autonomy is earned at exactly the
 point where the work becomes parallel and the foundations are verified.
 Status: PROPOSED (awaiting owner confirmation of staged-autonomy mode +
 the supervised rung-1 session).
+
+## 2026-08-11 · rung 1 · agent/rung-1-stage-scoring · local
+
+Attempted: The full rung-1 EVAL-CHANGE deliverable set. (1) Beat-grid
+format `evals/grids/<case-id>.yaml` — editable `beats` + frozen peakRate
+`onsets`, mandatory explicit `provisional` flag, media sha256 provenance,
+frozen detector params recorded per grid ([docs/evals/beat-grids.md](../evals/beat-grids.md)).
+(2) Tap-assist annotator `python -m musical_perception.annotation`
+(peakRate per review-1 recipe #1: 300–3000 Hz band, 10 Hz zero-phase
+envelope, derivative, 3·MAD prominence, 120 ms spacing, Praat voiced gate
+±30 ms) with Audacity label round trip for owner correction; `--verified`
+is owner-only. (3) `stage1` eval suite: pulse P/R/F at ±70 ms + signed
+asynchrony per clip vs grids, provisional/verified aggregates split,
+count_style slices, wired into `evals run --suite tier0,tier1,stage1`.
+(4) Acc1/Acc2 (±4% standard + ±8% house, fixed family {⅓,½,1,2,3}) and
+OE1/OE2 distributions added to tier-0/1 reporting (informational, never
+gating). (5) Onset-vs-token guard on trace load (warn when tokens >
+1.5×onsets+8 or onsets=0). Provisional grids generated for 24/30 DEV
+clips (all with media on this machine), `provisional: true` everywhere.
+Pre-registered expectations: written before implementation — P1 pooled
+matched-pair asynchrony in [−120,−20] ms; P2 pooled F@70ms in
+[0.35,0.65]; P3 |mean asynchrony| numbers < step_names; P4 Acc1@4%
+0.35–0.55, Acc2@4% 0.45–0.65, ≥2 rows |OE2|∈[0.30,0.585]; P5 zero guard
+triggers; P6 zero tier-0/1 outcome changes.
+Result: Scorecard 3 full hits, 1 partial, 2 misses — both misses are
+findings. P2 ✓ pooled F=0.391 (macro 0.373; P 0.425, R 0.362, 24 clips).
+P4 ✓ Acc1@4% 0.393, Acc2@4% 0.500 (@8%: 0.571/0.679), OE1 median 0.0009,
+|OE2| median 0.053, 6 rows with |OE2|∈[0.30,0.585] — the between-levels
+mass ADR-016 predicted, now visible. P6 ✓ "no outcome changes vs
+baseline". P1 partial: sign right, magnitude wrong — mean −12.7 ms
+(median −16.4, sd 31.1): ±70 ms matching censors the strongly-early words
+into non-matches (recall 0.362), so matched-pair asynchrony
+under-measures the ASR lead; rung 2 must read recall AND asynchrony
+together, not asynchrony alone. P3 ✗ reversed: numbers −15.9 ms vs
+step_names −8.6 ms (n=11/11). P5 ✗ one trigger, classified benign:
+rig-numbers-3-4-90-clean, 94 tokens vs 52 voiced onsets = dense triplet
+counting ("one-and-a-…": 31 "and" + 31 "a"; unstressed schwas don't each
+earn a voiced envelope rise) — threshold calibration data point, kept
+sensitive on purpose (false positive costs one listen; false negative is
+a silent green). The totals hid one headline: the vocables clip collapsed
+to a single Whisper token (pred=1 vs 24 grid onsets, R=0.042) — the
+strongest per-clip evidence yet that rung 2's acoustic channel is not
+optional for vocables. pytest 193 passed / 3 skipped / 0 failed.
+Regressions and classifications: none — tier-0/tier-1 outcomes byte-
+identical to the blessed baseline; every addition is reporting-only.
+Two disclosed non-eval accommodations: (a) tests/test_wakeword.py gained
+a skipif for the missing tflite runtime (no macOS arm64 wheel — tests
+errored on this machine before this branch; the trigger path is the
+rung-7 RETIRED target); (b) the peakRate detector gained a conditional
+degenerate-silence prominence floor, verified bit-identical on all 24
+real clips vs the pure recipe (it exists so synthetic-silence tests can't
+pass on filter ringing).
+Lesson (durable, one paragraph): The instrument censors what it
+measures — a ±70 ms matched-pair asynchrony can only ever report the
+survivors, so a channel that is *very* early looks *mildly* early with
+low recall; and provisional peakRate grids measure words-vs-peakRate,
+not words-vs-truth, until rung 1.5 flips them. Separately, Whisper does
+not merely mistime vocables, it deletes them (1 token for 24 voiced
+onsets), and legitimate dense triplet counting reaches 1.8× tokens per
+voiced onset — both now pinned as data, not anecdote.
+Status: PROPOSED (owner: bless rung 1, then rung 1.5 — verify/correct
+the 24 provisional grids via to-labels/from-labels). BLOCKED (needs):
+6 DEV clips have no media on this machine, so no grids yet —
+audio/counting/8-counts-2x.aif, audio/counting/8-counts-triple.aif,
+video/youtube/Exercise 1 Demo.m4v, video/youtube/Frappe.mov,
+video/youtube/plies demo.m4v, video/youtube/grande battement.mov; stage
+them and re-run `python -m musical_perception.annotation generate`
+(word-start-derived grids are forbidden by Standing Lesson 1, so this
+gap is owner-only).

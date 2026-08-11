@@ -1,0 +1,101 @@
+format: 1
+clip: rig-mixed-4-4-104-quantities
+provisional: true
+media: audio/rig/rig-mixed-4-4-104-quantities.mp3
+media_sha256: f01e52302badebe362d4d52268cd02033076aca123ecbf774daf78ea2b250e94
+annotator: peakrate-tap-assist/1
+created_at: '2026-08-11T22:42:27+00:00'
+params:
+  sr: 16000
+  band_lo_hz: 300.0
+  band_hi_hz: 3000.0
+  lowpass_hz: 10.0
+  butter_order: 4
+  prominence_mad_k: 3.0
+  mad_degenerate_frac: 0.0005
+  prominence_rel_floor: 0.05
+  min_distance_s: 0.12
+  voiced_gate: true
+  voiced_window_s: 0.03
+  pitch_floor_hz: 75.0
+  pitch_ceiling_hz: 450.0
+beats:
+- 2.1302
+- 2.4961
+- 2.7313
+- 3.0492
+- 3.338
+- 3.7064
+- 4.4621
+- 4.7748
+- 5.3555
+- 5.9675
+- 7.0281
+- 7.614
+- 7.9283
+- 8.2322
+- 9.3046
+- 9.5889
+- 9.8937
+- 10.4447
+- 10.7669
+- 11.1407
+- 11.4186
+- 11.7132
+- 12.1617
+- 12.8348
+- 13.3653
+- 13.9417
+- 14.2175
+- 14.5595
+- 15.0619
+- 15.6573
+- 16.3004
+- 16.8898
+- 17.4074
+- 18.3158
+- 19.2182
+- 19.5067
+- 19.7642
+- 20.2881
+onsets:
+- 2.1302
+- 2.4961
+- 2.7313
+- 3.0492
+- 3.338
+- 3.7064
+- 4.4621
+- 4.7748
+- 5.3555
+- 5.9675
+- 7.0281
+- 7.614
+- 7.9283
+- 8.2322
+- 9.3046
+- 9.5889
+- 9.8937
+- 10.4447
+- 10.7669
+- 11.1407
+- 11.4186
+- 11.7132
+- 12.1617
+- 12.8348
+- 13.3653
+- 13.9417
+- 14.2175
+- 14.5595
+- 15.0619
+- 15.6573
+- 16.3004
+- 16.8898
+- 17.4074
+- 18.3158
+- 19.2182
+- 19.5067
+- 19.7642
+- 20.2881
+notes: "peakRate suggestions \u2014 unverified; may include subdivisions and spurious\
+  \ events"
