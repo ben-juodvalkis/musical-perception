@@ -188,3 +188,29 @@ video/youtube/plies demo.m4v, video/youtube/grande battement.mov; stage
 them and re-run `python -m musical_perception.annotation generate`
 (word-start-derived grids are forbidden by Standing Lesson 1, so this
 gap is owner-only).
+
+## 2026-08-11 · rung 1 · agent/rung-1-stage-scoring · local (addendum: media search)
+
+Attempted: Exhaustive search for the 6 missing DEV media files after the
+goal check flagged 24/30 grid coverage.
+Pre-registered expectations: n/a (search, not experiment).
+Result: The files are not on this machine within this account's reach:
+absent from the repo checkout, the full git history (every branch),
+Spotlight-indexed paths (exact names and fragments), ~/Movies ~/Music
+~/Downloads ~/Documents, /Users/Shared, and all three mounted backup
+volumes (Backup A, Backup B, Misc Backup BH Maestro);
+/Users/ben.juodvalkis is permission-denied to the agent account by
+design. Re-downloading the four YouTube sources was considered and
+rejected: a fresh download cannot reproduce the traces' pinned
+media_sha256 and may shift the timeline the frozen word timestamps are
+anchored to, which would corrupt stage-1 comparisons rather than enable
+them.
+Regressions and classifications: n/a.
+Lesson (durable, one paragraph): When media provenance is pinned by hash,
+"find the bytes" is the only honest recovery path — re-acquisition from
+the public source is not equivalent, because the grid and the trace must
+be anchored to the same timeline.
+Status: BLOCKED (needs owner: copy the 6 files from the main machine to
+audio/counting/ and video/youtube/, then run
+`python -m musical_perception.annotation generate` — completes in about
+a minute and closes rung 1's last gap).
