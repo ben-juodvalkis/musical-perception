@@ -24,12 +24,16 @@ src/musical_perception/
 │   ├── subdivision.py    # Duple/triplet classification
 │   ├── signature.py      # Counting signature computation
 │   └── dynamics.py       # Movement quality from pose landmarks
-└── perception/           # DISPOSABLE — thin model wrappers
-    ├── whisper.py        # Whisper transcription (word timestamps)
-    ├── prosody.py        # Praat pitch/intensity extraction
-    ├── whistress.py      # WhiStress stress detection
-    ├── gemini.py         # Gemini multimodal analysis (words, exercise, meter, quality, structure)
-    └── pose.py           # MediaPipe pose estimation
+├── perception/           # DISPOSABLE — thin model wrappers
+│   ├── whisper.py        # Whisper transcription (word timestamps)
+│   ├── prosody.py        # Praat pitch/intensity extraction
+│   ├── whistress.py      # WhiStress stress detection
+│   ├── gemini.py         # Gemini multimodal analysis (words, exercise, meter, quality, structure)
+│   └── pose.py           # MediaPipe pose estimation
+└── annotation/           # Beat-grid tooling (rung 1)
+    ├── peakrate.py       # peakRate vowel-onset detector (Oganian & Chang)
+    ├── grids.py          # beat-grid YAML format + Audacity label round trip
+    └── __main__.py       # tap-assist CLI (generate / to-labels / from-labels)
 ```
 
 ## Architecture Labels
@@ -91,18 +95,23 @@ Tests answer "is it broken?"; **evals** answer "is it better?" — the harness
 `src/musical_perception/evals/` per [ADR-009](docs/adr/009-evaluation-harness.md):
 
 ```bash
-python -m musical_perception.evals run --suite tier0,tier1   # score everything
+python -m musical_perception.evals run --suite tier0,tier1,stage1  # score everything
 python -m musical_perception.evals bless                     # promote run to baseline
 python -m musical_perception <clip> --record-traces          # freeze a new trace
+python -m musical_perception.annotation generate             # provisional beat grids
 ```
 
 Cases live in `evals/cases/*.yaml` (field names are a strict subset of
 [Vision 08 §8.2](docs/vision/08-benchmark-and-shadow-mode.md)); traces in
-`evals/traces/`; the blessed baseline is `evals/baseline.json` +
+`evals/traces/`; beat grids in `evals/grids/` (see
+[docs/evals/beat-grids.md](docs/evals/beat-grids.md) — provisional grids
+never gate anything); the blessed baseline is `evals/baseline.json` +
 [docs/evals/baseline.md](docs/evals/baseline.md). The tier-1 pytest gate
 fails on ANY outcome change vs the baseline — improvements too; re-bless
-to carry the delta. Perception changes are judged by the eval delta, not
-by a hand-run on one file.
+to carry the delta. The stage1 suite (pulse P/R/F + signed asynchrony vs
+grids) pins no outcomes; tier-1 reporting also carries Acc1/Acc2 and
+OE1/OE2 tempo metrics (informational). Perception changes are judged by
+the eval delta, not by a hand-run on one file.
 
 ## Dependencies
 

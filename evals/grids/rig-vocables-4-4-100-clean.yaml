@@ -1,0 +1,73 @@
+format: 1
+clip: rig-vocables-4-4-100-clean
+provisional: true
+media: audio/rig/rig-vocables-4-4-100-clean.mp3
+media_sha256: d866a660dafba0f156e5f34767ec2e51cd5ec95d5b2a7d2ee5015a9aa92a418f
+annotator: peakrate-tap-assist/1
+created_at: '2026-08-11T22:42:28+00:00'
+params:
+  sr: 16000
+  band_lo_hz: 300.0
+  band_hi_hz: 3000.0
+  lowpass_hz: 10.0
+  butter_order: 4
+  prominence_mad_k: 3.0
+  mad_degenerate_frac: 0.0005
+  prominence_rel_floor: 0.05
+  min_distance_s: 0.12
+  voiced_gate: true
+  voiced_window_s: 0.03
+  pitch_floor_hz: 75.0
+  pitch_ceiling_hz: 450.0
+beats:
+- 2.4685
+- 2.8213
+- 2.944
+- 3.1372
+- 3.7106
+- 3.9741
+- 4.3041
+- 4.8581
+- 5.1581
+- 5.4813
+- 5.782
+- 6.1137
+- 6.4041
+- 6.6797
+- 7.8682
+- 8.4598
+- 8.7634
+- 9.0625
+- 9.3822
+- 9.9745
+- 10.2792
+- 10.8412
+- 11.3997
+- 11.7787
+onsets:
+- 2.4685
+- 2.8213
+- 2.944
+- 3.1372
+- 3.7106
+- 3.9741
+- 4.3041
+- 4.8581
+- 5.1581
+- 5.4813
+- 5.782
+- 6.1137
+- 6.4041
+- 6.6797
+- 7.8682
+- 8.4598
+- 8.7634
+- 9.0625
+- 9.3822
+- 9.9745
+- 10.2792
+- 10.8412
+- 11.3997
+- 11.7787
+notes: "peakRate suggestions \u2014 unverified; may include subdivisions and spurious\
+  \ events"

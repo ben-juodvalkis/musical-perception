@@ -128,6 +128,88 @@ def summarize_field(rows: list[ScoreResult]) -> dict:
     }
 
 
+# Tempo-literature metrics (Review 2 §4.2, adopted at rung 1). Acc1/Acc2
+# at the field-standard ±4% (Gouyon et al. 2006) plus the house ±8%;
+# OE1 = log₂(est/ref), OE2 = OE1 minus the best factor in the metric-level
+# family — the only standard metric that sees the "landed between levels"
+# failure (|OE2| mass in (0, log₂1.5]).
+ACC_TOL_STANDARD = 0.04
+ACC_TOL_HOUSE = 0.08
+ACC2_FAMILY = (1 / 3, 1 / 2, 1.0, 2.0, 3.0)
+
+
+def octave_errors(predicted_bpm: float, expected_bpm: float) -> tuple[float, float]:
+    """(OE1, OE2) in octaves for one committed tempo estimate."""
+    oe1 = math.log2(predicted_bpm / expected_bpm)
+    best = min((abs(oe1 - math.log2(f)), math.log2(f)) for f in ACC2_FAMILY)
+    return oe1, oe1 - best[1]
+
+
+def _within(predicted: float, target: float, tol: float) -> bool:
+    return abs(predicted - target) / target <= tol
+
+
+def acc1(predicted_bpm: float, expected_bpm: float, tol: float) -> bool:
+    return _within(predicted_bpm, expected_bpm, tol)
+
+
+def acc2(predicted_bpm: float, expected_bpm: float, tol: float) -> bool:
+    """Within tol of any {⅓,½,1,2,3}× the annotation — `truth_in_family`
+    with the literature's fixed family and name (Review 2 §4.2)."""
+    return any(_within(predicted_bpm, expected_bpm * f, tol) for f in ACC2_FAMILY)
+
+
+def tempo_metrics(case_results: list[CaseResult]) -> dict | None:
+    """Acc1/Acc2 + OE1/OE2 over committed tempo rows. Informational:
+    never enters outcomes, credit, or any gate."""
+    rows = [
+        (c.case_id, s.predicted, s.expected)
+        for c in case_results for s in c.scores
+        if s.field == "tempo" and s.outcome != ABSTAINED
+        and isinstance(s.predicted, (int, float))
+        and isinstance(s.expected, (int, float))
+    ]
+    if not rows:
+        return None
+    per_case = []
+    for case_id, pred, exp in rows:
+        oe1, oe2 = octave_errors(pred, exp)
+        per_case.append({
+            "case": case_id,
+            "predicted": round(float(pred), 2),
+            "expected": round(float(exp), 2),
+            "oe1": round(oe1, 4),
+            "oe2": round(oe2, 4),
+        })
+    n = len(rows)
+    oe1s = np.array([r["oe1"] for r in per_case])
+    oe2s = np.array([r["oe2"] for r in per_case])
+
+    def _dist(arr: np.ndarray) -> dict:
+        return {
+            "mean": round(float(arr.mean()), 4),
+            "median": round(float(np.median(arr)), 4),
+            "abs_median": round(float(np.median(np.abs(arr))), 4),
+            "max_abs": round(float(np.abs(arr).max()), 4),
+        }
+
+    return {
+        "n_committed": n,
+        "acc1": {
+            "tol_04": round(sum(acc1(p, e, ACC_TOL_STANDARD) for _, p, e in rows) / n, 3),
+            "tol_08": round(sum(acc1(p, e, ACC_TOL_HOUSE) for _, p, e in rows) / n, 3),
+        },
+        "acc2": {
+            "tol_04": round(sum(acc2(p, e, ACC_TOL_STANDARD) for _, p, e in rows) / n, 3),
+            "tol_08": round(sum(acc2(p, e, ACC_TOL_HOUSE) for _, p, e in rows) / n, 3),
+        },
+        "oe1": _dist(oe1s),
+        "oe2": _dist(oe2s),
+        "between_levels": int(((np.abs(oe2s) > 0.08) & (np.abs(oe2s) <= 0.585)).sum()),
+        "per_case": per_case,
+    }
+
+
 def aggregate(
     case_results: list[CaseResult],
     slice_keys: tuple[str, ...] = ("count_style", "source", "slot"),
@@ -167,6 +249,7 @@ def aggregate(
         "n_cases": len(case_results),
         "errors": [c.case_id for c in case_results if c.error],
         "fields": fields,
+        "tempo_metrics": tempo_metrics(case_results),
         "quality_spearman": quality_rank or None,
         "ece": expected_calibration_error(all_rows),
         "risk_coverage": risk_coverage(all_rows),

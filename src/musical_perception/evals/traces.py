@@ -149,18 +149,66 @@ def write_meta(
     (Path(out_dir) / "meta.json").write_text(json.dumps(meta, indent=1))
 
 
+# ADR-016 clip-17 guard: a fluent transcript over audio with little or no
+# voiced acoustic support is the hallucination signature that once scored
+# all-green. Thresholds are generous — real speech has at least as many
+# voiced onsets as tokens (words have ≥1 syllable each).
+GUARD_TOKEN_RATIO = 1.5
+GUARD_TOKEN_SLACK = 8
+
+
+def onset_token_mismatch(n_onsets: int, n_tokens: int) -> str | None:
+    """Human-readable mismatch description, or None when consistent."""
+    if n_tokens == 0:
+        return None
+    if n_onsets == 0:
+        return f"{n_tokens} transcript tokens but 0 voiced acoustic onsets"
+    if n_tokens > GUARD_TOKEN_RATIO * n_onsets + GUARD_TOKEN_SLACK:
+        return (
+            f"{n_tokens} transcript tokens vs {n_onsets} voiced acoustic "
+            f"onsets (> {GUARD_TOKEN_RATIO}× + {GUARD_TOKEN_SLACK})"
+        )
+    return None
+
+
+def _onset_guard(trace_dir: Path, n_tokens: int) -> None:
+    """Run the onset-vs-token sanity check when a beat grid exists.
+
+    Grids live at <evals_root>/grids/<trace-name>.yaml; their `onsets`
+    list is the frozen peakRate evidence (annotation/grids.py). No grid,
+    or no yaml available → the guard silently has nothing to check.
+    """
+    grid_path = trace_dir.parent.parent / "grids" / f"{trace_dir.name}.yaml"
+    if not grid_path.is_file():
+        return
+    try:
+        from musical_perception.annotation.grids import load_grid
+        onsets = load_grid(grid_path).onsets
+    except ImportError:  # pyyaml not installed — guard is best-effort
+        return
+    msg = onset_token_mismatch(len(onsets), n_tokens)
+    if msg:
+        warnings.warn(
+            f"trace {trace_dir.name}: {msg} — transcription-hallucination "
+            f"guard (ADR-016 clip-17); treat greens on this clip as "
+            f"provisional until a human confirms the audio"
+        )
+
+
 def replay_bundle(trace_dir: Path) -> tuple[PerceptionBundle, dict]:
     """Build a PerceptionBundle that replays a frozen trace, plus its meta.
 
     Offline, deterministic, dependency-free: the raw Gemini JSON goes back
     through the current parser (parse_raw_response), and pose lands as the
-    saved arrays.
+    saved arrays. Loading also runs the onset-vs-token sanity guard against
+    the clip's beat grid when one exists.
     """
     trace_dir = Path(trace_dir)
     meta = json.loads((trace_dir / "meta.json").read_text())
     whisper_payload = json.loads((trace_dir / "whisper.json").read_text())
     words = [TimestampedWord(**w) for w in whisper_payload["words"]]
     gemini_payload = json.loads((trace_dir / "gemini.json").read_text())
+    _onset_guard(trace_dir, len(words))
 
     def transcribe(audio_path: str):
         return list(words)

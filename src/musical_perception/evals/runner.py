@@ -80,9 +80,11 @@ def run_tier1(evals_root: Path) -> list[CaseResult]:
     return [run_case(c, evals_root) for c in load_cases(Path(evals_root) / "cases")]
 
 
-def run_suites(suites: list[str], evals_root: Path) -> dict[str, list[CaseResult]]:
-    """Run the named suites. tier0 = synthetic sweep; tier1 = frozen traces."""
-    from musical_perception.evals import synthetic
+def run_suites(suites: list[str], evals_root: Path) -> dict:
+    """Run the named suites. tier0 = synthetic sweep; tier1 = frozen traces;
+    stage1 = pulse scoring against beat grids (returns its own summary dict
+    — provisional grids gate nothing)."""
+    from musical_perception.evals import stage1, synthetic
 
     results = {}
     for suite in suites:
@@ -90,8 +92,12 @@ def run_suites(suites: list[str], evals_root: Path) -> dict[str, list[CaseResult
             results["tier0"] = synthetic.run_suite()
         elif suite == "tier1":
             results["tier1"] = run_tier1(evals_root)
+        elif suite == "stage1":
+            results["stage1"] = stage1.run_stage1(Path(evals_root))
         else:
-            raise ValueError(f"unknown suite {suite!r} (expected tier0, tier1)")
+            raise ValueError(
+                f"unknown suite {suite!r} (expected tier0, tier1, stage1)"
+            )
     return results
 
 
