@@ -238,5 +238,5 @@ comparison surface.
 Regressions and classifications: none — outcomes byte-identical.
 Lesson (durable, one paragraph): n/a — see main entry (this closes its
 BLOCKED note).
-Status: PROPOSED (rung 1 deliverables complete for all 30 DEV clips;
-owner: bless, then rung 1.5 verification).
+Status: BLESSED (owner, 2026-08-11, in the supervised session: merged to
+main as 6da3fa6; CURRENT RUNG advanced to 1.5).

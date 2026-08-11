@@ -7,12 +7,14 @@
 [RESEARCH-LOG.md](RESEARCH-LOG.md) (the memory),
 [agent-environment.md](agent-environment.md) (cloud setup).
 
-> **CURRENT RUNG: 1 — annotation tooling + stage-level scoring.**
-> (Rung 0 data staging complete 2026-08-09: DEV audio and the Ballet
-> Barre 1 section videos are on the Air. Autonomy mode: rung-by-rung with
-> daily blessings through rung 2; the dormant Rung M below is
-> commissioned — or not — at the rung-2 verdict.) The first rung-1
-> session runs supervised before the nightly schedule is enabled. The
+> **CURRENT RUNG: 1.5 — owner verification of the 30 provisional beat
+> grids.** Agent sessions assist as scribe/tooling only (to-labels /
+> from-labels, correction stats, ledger notes); `--verified` is applied
+> only at the owner's word. Rung 2 unlocks when grids are verified.
+> (Rung 1 blessed 2026-08-11, merged from agent/rung-1-stage-scoring —
+> the supervised session. Rung 0 complete 2026-08-09. Autonomy mode:
+> rung-by-rung with daily blessings through rung 2; the dormant Rung M
+> below is commissioned — or not — at the rung-2 verdict.) The
 > owner edits this line when a rung is blessed. Sessions execute the
 > current rung and nothing else.
 
