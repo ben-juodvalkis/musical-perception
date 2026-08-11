@@ -7,8 +7,13 @@
 [RESEARCH-LOG.md](RESEARCH-LOG.md) (the memory),
 [agent-environment.md](agent-environment.md) (cloud setup).
 
-> **CURRENT RUNG: 0 — owner data logistics.** (First agent rung: 1.)
-> The owner edits this line when a rung is blessed. Sessions execute the
+> **CURRENT RUNG: 1 — annotation tooling + stage-level scoring.**
+> (Rung 0 data staging complete 2026-08-09: DEV audio and the Ballet
+> Barre 1 section videos are on the Air. Autonomy mode: rung-by-rung with
+> daily blessings through rung 2; the dormant Rung M below is
+> commissioned — or not — at the rung-2 verdict.) The first rung-1
+> session runs supervised before the nightly schedule is enabled. The
+> owner edits this line when a rung is blessed. Sessions execute the
 > current rung and nothing else.
 
 ## Mission
@@ -63,18 +68,31 @@ flags, classified regressions).
   DEV/SEALED at ingestion, before any iteration touches the batch.
   Annotation targets **vowel onsets** (P-centers), never word starts
   ([Review 1 §2.9](review-1-onsets-pcenters.md)).
+- **Ballet Barre 1 sections (assigned 2026-08-09): all DEV.**
+  Public-source class video handed to the loop by the owner, staged on
+  the Air at `video/youtube/Ballet Barre 1/Sections` (gitignored — local
+  media, never committed). Their truth labels are agent-proposed
+  `provisional` until owner-verified. Sealing continues to come only
+  from the owner's own future capture.
 
 ## Rules of engagement
 
 1. **Branches only.** All work on `agent/rung-<N>-<slug>`. Never push
    `main`. Never run `evals bless` — blessing is the owner's act.
-2. **Eval integrity.** Never modify `evals/cases/*`, `evals/traces/*`,
-   `evals/baseline.json`, or the scorer/harness code
-   (`src/musical_perception/evals/`) in a pipeline rung. Eval
-   *infrastructure* changes (new metrics, new suites) happen only in rungs
-   whose explicit deliverable is eval infrastructure (rung 1 is one),
-   in a dedicated branch, flagged **EVAL-CHANGE** in the report, never
-   bundled with pipeline changes.
+2. **Eval integrity.** Never **modify** any existing file under
+   `evals/cases/`, `evals/traces/`, or `evals/baseline.json`, and never
+   touch the scorer/harness code (`src/musical_perception/evals/`) in a
+   pipeline rung. Eval *infrastructure* changes (new metrics, new suites)
+   happen only in rungs/workstreams whose explicit deliverable is eval
+   infrastructure (W1 is one), flagged **EVAL-CHANGE** in the report,
+   never bundled with pipeline changes. **Add-only carve-out for
+   ingestion:** creating NEW case and trace files for new material is
+   permitted and expected — every agent-authored label ships with
+   `maturity: provisional`. **Provisional rows never gate anything and
+   are always reported as a separate slice**; only owner-verified rows
+   participate in typed-gate decisions. Verification (owner corrects/
+   confirms labels and grids, flips `maturity: verified`) is an owner
+   act, requested via a BLOCKED note.
 3. **Pre-registration.** Before implementing, write the expected
    flips/deltas and reasons into the ledger entry; score the predictions
    honestly in the report (ADR-015 discipline).
@@ -255,6 +273,44 @@ agent/rung-6-baselines; dated RESEARCH-LOG.md entry. Or stop after 35 turns.
 Delete the unreachable ~1,200 lines named in ADR-016 (trigger/wakeword
 path, legacy text-merge, Feb-2026 scripts, dead subdivision fields) once
 rung 4 lands. Proof: pytest green, tier suites byte-identical outcomes.
+
+### Rung M — the marathon *(DORMANT — commissioned only by the owner, at the rung-2 verdict)*
+
+Staged-autonomy plan (owner decision pending, 2026-08-09): rungs 1→2 run
+rung-by-rung with daily blessings, because the early rungs build the
+measuring instruments (rung 1), require human ground truth (rung 1.5),
+and end at the plan's strategic fork (rung 2's kill-test verdict). At
+that verdict the owner decides whether to commission this rung for the
+parallel-friendly middle stretch. Until then, sessions must treat this
+section as inert.
+
+When commissioned, Rung M replaces per-rung blessing with **batch review**:
+
+- **Workstreams** (initial ranking; the meta-rung re-ranks): W1 = rungs
+  3–4 pipeline work · W2 = Ballet Barre 1 ingestion (traces + provisional
+  cases per the add-only carve-out) · W3 = rung 6 baselines · W4 = rung 5
+  ensembles · W5 = pose/gesture channel prototyping on the Barre 1 video ·
+  W6 = rung 7 cleanup. Policy: each session advances exactly one
+  workstream — the highest-ranked one not BLOCKED; blocked workstreams
+  get a BLOCKED ledger note (the owner's task queue) and the session
+  moves on. The loop never idles while any workstream is open.
+- **Per-session condition** (what the standing contract resolves to):
+  one complete increment on one workstream, committed on
+  `agent/marathon`, evidence shown by full command output, constraints
+  verified (`git diff --stat main`; no existing eval file modified; new
+  cases provisional-only), dated ledger entry appended — or a one-line
+  ledger note that every workstream is BLOCKED. Or stop after 45 turns.
+- **Cadence:** owner batch review roughly weekly (plus whenever a BLOCKED
+  queue item needs clearing); the meta-rung runs weekly and re-ranks.
+- **Completion targets** (owner-editable; provisional rows excluded): on
+  verified DEV rows with n ≥ 60 — tier-1 committed accuracy tempo ≥ 0.85,
+  meter_triple ≥ 0.75, counts ≥ 0.75; stage-1 pulse F ≥ 0.85 on the
+  step_names and vocables slices; ECE ≤ 0.15 — plus a **multifaceted
+  proof**: an ablation table showing at least three independent evidence
+  channels (acoustic pulse, ensembled semantics, accent-meter and/or
+  pose) each contributing positive marginal accuracy. Completion is
+  declared by a meta-rung report **co-signed by the owner**, never by a
+  session alone.
 
 ### Meta-rung — weekly review
 
