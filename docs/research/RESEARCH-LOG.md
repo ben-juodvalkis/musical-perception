@@ -98,3 +98,24 @@ identical on the Air and in the cloud; what the Air buys is state
 (weights, venvs, recordings) surviving between runs, which is exactly
 the tax ephemeral containers keep re-paying.
 Status: BLESSED (owner decision in session, 2026-08-09).
+
+## 2026-08-09 · rung — · (data staged; autonomy mode pending) · cloud
+
+Attempted: Rung-0 data staging confirmed by the owner (DEV audio ready;
+Ballet Barre 1 section videos at `video/youtube/Ballet Barre 1/Sections`
+on the Air, assigned all-DEV). Charter amended: add-only ingestion
+carve-out with `maturity: provisional|verified` case labels (provisional
+rows never gate, always a separate slice); Rung M (marathon) drafted as
+an explicitly DORMANT section — staged-autonomy plan is rung-by-rung
+with daily blessings through rung 2, then an owner decision at the
+rung-2 kill-test verdict on whether to commission the marathon.
+CURRENT RUNG set to 1.
+Pre-registered expectations: n/a (process decision).
+Result: n/a.
+Regressions and classifications: n/a.
+Lesson (durable): The early rungs are inherently interactive — rung 1
+builds the measuring instruments, rung 1.5 needs human ground truth,
+rung 2 ends at a strategic fork. Autonomy is earned at exactly the
+point where the work becomes parallel and the foundations are verified.
+Status: PROPOSED (awaiting owner confirmation of staged-autonomy mode +
+the supervised rung-1 session).
