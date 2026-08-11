@@ -214,3 +214,29 @@ Status: BLOCKED (needs owner: copy the 6 files from the main machine to
 audio/counting/ and video/youtube/, then run
 `python -m musical_perception.annotation generate` — completes in about
 a minute and closes rung 1's last gap).
+
+## 2026-08-11 · rung 1 · agent/rung-1-stage-scoring · local (resolution: 30/30)
+
+Attempted: BLOCKED-state resolution during the supervised session — the
+owner staged the 6 missing media files in-session (audio/counting/ and
+video/youtube/old demos/; symlinks bridge the case-declared paths, media
+stays gitignored).
+Pre-registered expectations: n/a (unblocking, not an experiment).
+Result: All 6 files sha256-MATCH their trace metas (same bytes the traces
+were recorded from — timeline provenance intact). Grids generated: 30/30
+DEV clips, all provisional=true. Full-suite rerun: tier-0/tier-1
+unchanged ("no outcome changes vs baseline"), pytest 193 passed /
+3 skipped / 0 failed. stage1 over all 30: pooled P 0.499 R 0.464
+F 0.481 (macro 0.41), asynchrony mean −7.6 ms (median −11.3, sd 32.0).
+New observation the 24-clip view could not see: the four YouTube demo
+clips score F 0.58–0.65 — the word-onset baseline looks *better* on
+dense continuous teaching speech than on sparse metronomic rig marking
+(rig median F ≈ 0.36), so rung 2's required +15/+30-point margins are
+against a baseline that varies strongly by speech density; the per-slice
+split (step_names 0.483 / numbers 0.475 / vocables 0.08) is the honest
+comparison surface.
+Regressions and classifications: none — outcomes byte-identical.
+Lesson (durable, one paragraph): n/a — see main entry (this closes its
+BLOCKED note).
+Status: PROPOSED (rung 1 deliverables complete for all 30 DEV clips;
+owner: bless, then rung 1.5 verification).
