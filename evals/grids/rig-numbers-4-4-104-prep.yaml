@@ -1,9 +1,9 @@
 format: 1
 clip: rig-numbers-4-4-104-prep
-provisional: true
+provisional: false
 media: audio/rig/rig-numbers-4-4-104-prep.mp3
 media_sha256: c87a39885f1d0f7d3e1b4a623d2788dbbcf06848be339e669f07c60e6f2f8a86
-annotator: peakrate-tap-assist/1
+annotator: owner-verified (peakrate-tap-assist/1 seed)
 created_at: '2026-08-11T22:42:28+00:00'
 params:
   sr: 16000
@@ -21,13 +21,9 @@ params:
   pitch_ceiling_hz: 450.0
 beats:
 - 2.3678
-- 2.5756
-- 2.7216
 - 3.0068
 - 3.5248
-- 3.6991
 - 4.0764
-- 4.2195
 - 4.6835
 - 5.3108
 - 5.8518
@@ -35,7 +31,6 @@ beats:
 - 6.9985
 - 7.6485
 - 8.169
-- 8.3027
 - 8.74
 - 9.3305
 - 9.9204
@@ -44,7 +39,6 @@ beats:
 - 11.5924
 - 12.2213
 - 12.7538
-- 12.8745
 - 13.3062
 onsets:
 - 2.3678
@@ -73,5 +67,27 @@ onsets:
 - 12.7538
 - 12.8745
 - 13.3062
-notes: "peakRate suggestions \u2014 unverified; may include subdivisions and spurious\
-  \ events"
+notes: 'Owner-verified 2026-08-12 (rung 1.5). Convention: docs/evals/annotation-convention.md
+  - tactus only; ruling (c) puts the in-tempo prep IN the grid. 20 beats = prep ''five
+  six seven eight'' + 1-8 twice, 2.37-13.31 s, matching the 20 transcript tokens exactly.
+  Correction vs frozen onsets (time-matched): kept 20, deleted 6, added 0; median
+  |nudge| 0.0 ms - peakRate found every true beat and the owner moved nothing. Grid-implied
+  BPM 105.08 vs case label 104 (+1.04%) - within the 4% check. IOI 0.518-0.650 s,
+  CV 6.8%, no phrase-boundary gaps.
+
+  Contract note: the case sheet expects counts=8, deliberately treating the prep as
+  outside the phrase. That is the counts contract; this grid is the beat contract.
+  Prep beats are in the grid AND outside the counted phrase - no contradiction.
+
+  All 6 deletions are within-word extra events, in two distinct modes. (a) Second
+  syllable of ''seven'': +174.3 / +133.7 / +120.7 ms - the mode the owner identified
+  on rig-numbers-4-4-104-clean, now 6 instances across two clips at a consistent +120
+  to +175 ms. (b) NEW - diphthong/coda re-fire on MONOSYLLABLES: ''five'' (+207.8,
+  +353.8 ms) and ''eight'' (+143.1 ms), both /aI/ or /eI/ with a stop or fricative
+  coda. Lexical stress is not the whole story; the detector re-fires on the glide
+  or the release.
+
+  Distribution finding: 4 of the 6 extras fall in the 4-beat prep (100% false-positive
+  rate) vs 2 across the 16 body beats. Emphatic tempo-setting delivery is what the
+  envelope-derivative detector over-reads, so ruling (c) means rung 2 is scored on
+  the hardest beats in the clip rather than skipping them.'
