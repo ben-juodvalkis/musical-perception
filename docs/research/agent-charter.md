@@ -171,6 +171,17 @@ Prereq: rung 1 blessed AND grids owner-verified. Deliverable: the
 acoustic pulse channel ([Review 1 "steal this first"](review-1-onsets-pcenters.md)),
 plus the Whisper-word-onset baseline scored on the same grids.
 
+> **Gate re-expression pending (2026-08-11, rule 9):** the margins in the
+> condition below were pre-registered against *provisional* grids. Per the
+> owner-ratified annotation convention (`docs/evals/annotation-convention.md`
+> §6), the gate is re-expressed at the END of rung 1.5 — from the
+> convention, the verified-grid baseline numbers, and the already-adopted
+> metrics only (recall-at-tactus + level-collapsed precision is the
+> intended shape; a decisive vocables win remains mandatory; no peeking at
+> candidate-extractor performance). The owner blesses the re-expressed
+> gate before the CURRENT RUNG pointer advances to 2. Until then, do not
+> treat the margins below as final.
+
 ```
 /goal Per docs/research/agent-charter.md rung 2: a peakRate acoustic pulse
 extractor (envelope-derivative peaks, voiced-gated, syllable-nuclei
