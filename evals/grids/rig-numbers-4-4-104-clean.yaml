@@ -1,9 +1,9 @@
 format: 1
 clip: rig-numbers-4-4-104-clean
-provisional: true
+provisional: false
 media: audio/rig/rig-numbers-4-4-104-clean.mp3
 media_sha256: dad6a37c2ecaf94adf9e4e1c827f6697dd55e4dc25a5a0229e649d4ec25c0abf
-annotator: peakrate-tap-assist/1
+annotator: owner-verified (peakrate-tap-assist/1 seed)
 created_at: '2026-08-11T22:42:27+00:00'
 params:
   sr: 16000
@@ -27,7 +27,6 @@ beats:
 - 4.672
 - 5.2868
 - 5.8345
-- 5.9675
 - 6.4267
 - 6.9967
 - 7.6195
@@ -36,7 +35,6 @@ beats:
 - 9.3033
 - 9.9174
 - 10.4961
-- 10.6332
 - 10.9887
 - 11.5953
 - 12.2035
@@ -45,7 +43,6 @@ beats:
 - 13.9081
 - 14.5203
 - 15.0765
-- 15.2042
 - 15.6635
 onsets:
 - 2.3544
@@ -75,5 +72,23 @@ onsets:
 - 15.0765
 - 15.2042
 - 15.6635
-notes: "peakRate suggestions \u2014 unverified; may include subdivisions and spurious\
-  \ events"
+notes: 'Owner-verified 2026-08-12 (rung 1.5, calibration clip 2 of 2). Convention:
+  docs/evals/annotation-convention.md. 24 beats = three rounds of eight, 2.35-15.66
+  s. Correction vs frozen onsets (time-matched, +/-120 ms): kept 24, deleted 3, added
+  0; median |nudge| 0.0 ms - the owner repositioned nothing, every kept seed was already
+  on the vowel onset. Grid-implied BPM 103.68 vs case label 104 (-0.31%) - within
+  the 4% check. IOI 0.493-0.623 s, CV 5.4%.
+
+  Owner observation: peakRate placed a spurious label on the SECOND syllable of ''seven''
+  in every round - the only three deletions, at +133.0 / +137.1 / +127.7 ms after
+  the true beat. ''seven'' is the only two-syllable number in the count and the detector
+  has no lexical-stress model.
+
+  FINDING (parked, not acted on - Standing Lesson 8): the trace''s whisper.json holds
+  16 words = two rounds; this grid holds 24 voiced beats = three. Whisper dropped
+  the entire middle round (6.99-10.99 s) on a clean high-SNR clip; gemini.json classified
+  the 16 survivors as two tidy rounds of eight. The case scores green on tempo/meter/counts
+  anyway (counts-per-phrase is 8 either way; the 5.2 s inter-round gap is rejected
+  as an outlier), so a third of the recording is invisible to the pipeline behind
+  a green row. Both the owner''s ear and the voiced-gated peakRate detector independently
+  place 8 beats across the dropped span.'
