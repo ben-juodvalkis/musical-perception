@@ -1,9 +1,9 @@
 format: 1
 clip: rig-numbers-4-4-80-triplet
-provisional: true
+provisional: false
 media: audio/rig/rig-numbers-4-4-80-triplet.mp3
 media_sha256: c273c48b3020e7acede4e688099ad97290972df07b44217fafdcb71b332ddbb9
-annotator: peakrate-tap-assist/1
+annotator: owner-verified (peakrate-tap-assist/1 seed)
 created_at: '2026-08-11T22:42:28+00:00'
 params:
   sr: 16000
@@ -21,36 +21,21 @@ params:
   pitch_ceiling_hz: 450.0
 beats:
 - 3.0595
-- 3.3131
-- 3.5767
 - 3.8702
-- 4.3808
 - 4.6581
-- 5.1457
 - 5.4023
-- 5.8308
 - 6.086
-- 6.3442
 - 6.8392
-- 7.0814
-- 7.3098
 - 7.5685
-- 8.0418
 - 8.3886
-- 8.5955
-- 8.8203
 - 9.0832
 - 9.8667
 - 10.5938
 - 11.3397
 - 12.05
 - 12.8126
-- 13.0578
-- 13.3136
 - 13.5537
 - 14.2622
-- 14.5598
-- 14.8383
 onsets:
 - 3.0595
 - 3.3131
@@ -83,5 +68,22 @@ onsets:
 - 14.2622
 - 14.5598
 - 14.8383
-notes: "peakRate suggestions \u2014 unverified; may include subdivisions and spurious\
-  \ events"
+notes: 'Owner-verified 2026-08-12 (rung 1.5). Convention: docs/evals/annotation-convention.md
+  - tactus only, so the numbers and none of the ''and-a'' triplet syllables. 16 beats
+  = 2 rounds of 8, 3.06-14.26 s. Correction vs frozen onsets (time-matched, +/-120
+  ms): kept 16, deleted 15, added 0; median |nudge| 0.0 ms. Grid-implied BPM 80.62
+  vs case label 80 (+0.78%). IOI 0.684-0.820 s, CV 5.2%, no short IOIs, no gaps.
+
+  Cleanest correction in the session so far: peakRate found every one of the 16 tactus
+  beats, placed each exactly, and all 15 of its errors are genuine subdivision syllables
+  that ruling (a) excludes - i.e. on this clip the detector made no timing error and
+  no miss, only level-selection errors.
+
+  Whisper alignment vs verified truth (nearest token start to each beat): 14/16 beats
+  align to the number rather than a subdivision syllable; median signed offset -35.4
+  ms (early), median |offset| 43.0 ms. Direction matches Standing Lesson 1. This is
+  the first words-vs-truth asynchrony measured on a triplet clip against verified
+  ground truth rather than peakRate suggestions. Whisper emits all 48 syllable tokens
+  here (2 x 8 x 3), so on dense triplet counting the ASR channel is complete and reasonably
+  aligned - contrast rig-numbers-4-4-104-clean, where it silently dropped a whole
+  round of eight.'
