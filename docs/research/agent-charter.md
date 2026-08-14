@@ -67,12 +67,23 @@ flags, classified regressions).
   DEV/SEALED at ingestion, before any iteration touches the batch.
   Annotation targets **vowel onsets** (P-centers), never word starts
   ([Review 1 §2.9](review-1-onsets-pcenters.md)).
-- **Ballet Barre 1 sections (assigned 2026-08-09): all DEV.**
-  Public-source class video handed to the loop by the owner, staged on
-  the Air at `video/youtube/Ballet Barre 1/Sections` (gitignored — local
-  media, never committed). Their truth labels are agent-proposed
-  `provisional` until owner-verified. Sealing continues to come only
-  from the owner's own future capture.
+- **Ballet Barre 1 sections (re-assigned 2026-08-14, amending the
+  2026-08-09 all-DEV ruling per the rung-1.5 report §8.1):** split
+  **before any ingestion**, which cannot be redone later.
+  - **HELD-OUT (~one third, weak seal):** the owner selects randomly —
+    never by content (`ls Sections | sort -R | head -11`-style) — and
+    **moves the files off the Air to the main machine** before the first
+    ingestion session exists. The list lives on the main machine, never
+    in this repository. "Weak" because the source is public and thus
+    reconstructable in principle; the property being protected is
+    *never iterated on*, which physical removal provides.
+  - **DEV (the remainder):** ingested per the protocol above; truth
+    labels agent-proposed `provisional` until owner-verified.
+  - The four existing video demos stay as they are (frozen traces,
+    blessed baseline); new material adds alongside, never replaces.
+  - **SEALED (strong) is unchanged:** only the owner's own future
+    capture, per the bullet above. HELD-OUT and SEALED are distinct
+    labels and must not be conflated in reports.
 
 ## Rules of engagement
 
@@ -197,6 +208,26 @@ evals/baseline.json untouched (prove with `git diff --stat main` when
 claiming completion); branch agent/rung-2-acoustic-pulse; dated
 RESEARCH-LOG.md entry appended. Or stop after 40 turns.
 ```
+
+### Rung 2.5 — taggable grid format + ratified QC checks (EVAL-CHANGE rung)
+
+Prereq: rung 2's verdict recorded. Must complete **before** any Ballet
+Barre 1 ingestion (the video material is explanation-heavy, where the
+current format's untagged holes are worst). Scheduled 2026-08-14 from the
+rung-1.5 report §8.2–8.3, owner-ratified.
+
+Deliverables: (1) lift the C6 limitation — an **additive-only** grid
+extension distinguishing silent-beat, free-time, and excluded-explanation
+regions: `beats` remains a flat time list so **all verified grids remain
+valid untouched**; tags land in an optional parallel structure, with the
+Audacity round trip extended accordingly. (2) Implement the two
+owner-ratified QC checks (convention §4 amendment, 2026-08-14): minimum-IOI
+and within-phrase IOI-spread, suppressed in free-time regions — the checks
+that caught four real export errors while the BPM-vs-label check
+false-passed. (3) Annotation-method metadata per grid (`anchored` vs
+`from-scratch`, per the rung-1.5 cohort-offset finding). Gated as an
+EVAL-CHANGE: no pipeline changes bundled; stage1 outputs on the 28
+verified grids must be byte-identical before and after the format change.
 
 ### Rung 3 — accent-periodicity meter votes
 
