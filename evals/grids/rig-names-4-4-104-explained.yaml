@@ -105,4 +105,8 @@ notes: 'Owner-verified 2026-08-13 (rung 1.5). Convention: docs/evals/annotation-
   unrecoverable from the file. This is the C6 no-tagging limitation (annotation-convention.md
   section 3) in a new form: a consumer cannot separate ''no beat existed here'' from
   ''a beat existed and was silent''. Only these notes carry it, which matters for
-  any later attempt to reconstruct full metric grids.'
+  any later attempt to reconstruct full metric grids.
+
+  OWNER RULING 2026-08-14: re-checked by ear after the (d'') amendment. The pulse
+  was NOT voiced through the excised explanation window (8.180-13.397 s), so zero
+  beats there is correct under (d'') as well as under v1. No re-annotation needed.'

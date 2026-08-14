@@ -79,4 +79,10 @@ notes: 'Owner-verified 2026-08-13 (rung 1.5). Convention: docs/evals/annotation-
   NOT ACTED ON: evals/cases/ is untouchable this rung and correcting expect.marking_bpm
   would change tier-1 outcomes and require a re-bless. Owner decision. Worth checking
   the sibling fixture adr006-8-counts-triple from the same session, whose expect block
-  carries no marking_bpm at all.'
+  carries no marking_bpm at all.
+
+  OWNER RULING 2026-08-14 (tempo): the owner, asked directly, puts this clip at ''around
+  104 BPM'' - independently consistent with the grid''s measured 101.63 (2.3% apart)
+  and confirming that expect.marking_bpm: 130 is wrong. The case file is NOT edited
+  here (evals/cases is untouchable this rung); correcting it is a separate owner act
+  that would change tier-1 outcomes and require a re-bless.'

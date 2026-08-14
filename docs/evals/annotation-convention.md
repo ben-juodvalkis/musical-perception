@@ -80,9 +80,15 @@ grid and still outside the counted phrase — no contradiction.
 even where it sounds in tempo. Justified on reproducibility.
 
 **Clips annotated under v1:** `rig-numbers-4-4-104-explained`,
-`rig-names-4-4-104-explained`. Both have their explanation stretches excised.
-They are consistent with each other and flagged here; re-annotating them under
-(d′) is an owner decision, not yet taken.
+`rig-names-4-4-104-explained`. Both have their explanation stretches excised
+(8.198→13.907 s and 8.180→13.397 s).
+
+**Owner ruling 2026-08-14: no re-annotation needed — they are already correct
+under (d′).** Asked to judge those windows by ear, the owner confirmed the
+pulse was *not voiced* through them. (d′) makes explanation *eligible*; it does
+not require marks where nothing was voiced, which remains ruling (b). Zero beats
+in those windows is therefore the right answer under both v1 and (d′), and the
+two clips are consistent with the rest of the corpus rather than grandfathered.
 
 ### (d′) Explanation speech IS eligible — owner amendment, 2026-08-14
 

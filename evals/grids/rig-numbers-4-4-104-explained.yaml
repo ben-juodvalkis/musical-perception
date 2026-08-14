@@ -108,4 +108,10 @@ notes: 'Owner-verified 2026-08-12 (rung 1.5). Convention: docs/evals/annotation-
   and one missing beat (a 1.181 s gap where a ''five'' belonged at ~15.11 s). Pre-fix
   the clip read BPM +3.51% and within-phrase CV 29.1%; post-fix +0.03% and 6.2%. The
   IOI-spread and short-IOI checks are what surfaced it, not the BPM check, which passed
-  at +3.51%.'
+  at +3.51%.
+
+  OWNER RULING 2026-08-14: re-checked by ear after the (d'') amendment. The pulse
+  was NOT voiced through the excised explanation window (8.198-13.907 s), so zero
+  beats there is correct under (d'') as well as under v1 - (d'') makes explanation
+  eligible, it does not require marks where nothing was voiced (ruling (b)). No re-annotation
+  needed.'

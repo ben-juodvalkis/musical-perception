@@ -69,4 +69,10 @@ notes: 'Owner-verified 2026-08-13 (rung 1.5). Convention: docs/evals/annotation-
 
   Companion to adr006-8-counts-2x, whose verified grid showed its expect.marking_bpm
   of 130 to be wrong by -21.83%. Both fixtures from the same session now have human
-  tempo ground truth.'
+  tempo ground truth.
+
+  OWNER RULING 2026-08-14 (tempo): the owner puts this clip at ''about 66 BPM if I
+  just count the integers and 200 if I count the subdivisions'' - independently consistent
+  with the grid''s measured 68.38 tactus (3.5% apart) and 205.1 syllable-level (2.5%).
+  This is the human confirmation of a tempo the ADRs never established. The case file
+  is NOT edited here; pinning expect.marking_bpm is a separate owner act.'
