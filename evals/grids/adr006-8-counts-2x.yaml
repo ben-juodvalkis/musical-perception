@@ -1,9 +1,9 @@
 format: 1
 clip: adr006-8-counts-2x
-provisional: true
+provisional: false
 media: audio/counting/8-counts-2x.aif
 media_sha256: d4a1062292788056eb3987fd5810d4594d5a7de56383c7d8244b5ee8e02327c1
-annotator: peakrate-tap-assist/1
+annotator: owner-verified (peakrate-tap-assist/1 seed, accepted unchanged)
 created_at: '2026-08-11T23:03:20+00:00'
 params:
   sr: 16000
@@ -53,5 +53,30 @@ onsets:
 - 7.9963
 - 8.5981
 - 9.1885
-notes: "peakRate suggestions \u2014 unverified; may include subdivisions and spurious\
-  \ events"
+notes: 'Owner-verified 2026-08-13 (rung 1.5). Convention: docs/evals/annotation-convention.md
+  - tactus only. 16 beats = 8 counts twice through, 0.13-9.19 s. The owner accepted
+  the peakRate seed UNCHANGED - the only clip in the corpus needing no correction:
+  kept 16, deleted 0, added 0, nudge 0.0 ms. Checks pass internally: IOI 0.559-0.678
+  s, CV 5.7%, no short IOIs, no gaps; all 16 Whisper tokens match within 250 ms at
+  a median offset of -21.5 ms.
+
+  FLAGGED >4% BPM DISCREPANCY - first of the session, and it is the CASE LABEL that
+  is out, not the grid. Grid-implied BPM is 101.63 vs the case''s expect.marking_bpm
+  of 130 (-21.83%). The arithmetic is decisive given the verified labels: 16 counts
+  at 130 BPM would span 7.38 s, but these 16 counts span 9.06 s - 1.7 s longer than
+  130 allows - and a ''16 voiced of 20 real beats'' reading is excluded because the
+  intervals are uniform with no gaps. The owner, asked to judge by ear, also did not
+  hear 130.
+
+  Consequence for scoring: the blessed baseline scores this row tempo=WRONG (predicted
+  95.6, expected 130.0, rel_err 0.265, ''truth absent from family''). Against the
+  verified grid the pipeline''s 95.6 is within 6% of truth. The row is red because
+  the label is wrong - a FAKE RED, the mirror of the fake-green in Standing Lesson
+  8, and exactly what a human ground-truth pass exists to catch. The case notes say
+  ''ADR-007 recorded 129.8 / 4/4 / none as correct'', which suggests the 130 expectation
+  was derived from a pipeline output of the time and then frozen as truth.
+
+  NOT ACTED ON: evals/cases/ is untouchable this rung and correcting expect.marking_bpm
+  would change tier-1 outcomes and require a re-bless. Owner decision. Worth checking
+  the sibling fixture adr006-8-counts-triple from the same session, whose expect block
+  carries no marking_bpm at all.'
