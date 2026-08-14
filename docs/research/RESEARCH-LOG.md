@@ -240,3 +240,166 @@ Lesson (durable, one paragraph): n/a — see main entry (this closes its
 BLOCKED note).
 Status: BLESSED (owner, 2026-08-11, in the supervised session: merged to
 main as 6da3fa6; CURRENT RUNG advanced to 1.5).
+
+## 2026-08-13 · rung 1.5 · agent/rung-1.5-grid-verification · local (owner-supervised)
+
+Attempted: Step 0 (settle and commit the annotation convention) plus the
+owner verification loop over the 30 provisional beat grids. Agent acted as
+scribe and tool-runner only: every time judgment came from the owner, and
+`--verified` was applied per clip on the owner's word.
+
+Pre-registered expectations: none recorded — this rung is measurement of
+human ground truth, not an experiment. The one forward-looking claim under
+test was the convention's own premise (ruling (b)) that full metric grids
+are derivable later from verified grids + tempo; scored below.
+
+Result: **21 of 30 clips verified** (numbers slice complete 14/14, vocables
+1/1, step_names 6/14, adr006 counting 0/2, video demos 0/4).
+
+*Convention (owner-ratified, `docs/evals/annotation-convention.md`, commit
+b8c24a9).* (a) beats = tactus only, syllable evidence stays in the frozen
+unverified `onsets`; (b) vocalized beats only, silences described in free
+text; (c) in-tempo prep counts IN, framing talk OUT; (d) explanation speech
+never beats, categorically; (e) continuous through transitions; (f)
+annotate what was heard, lengthening included. §2 records the owner's
+Option-2 ruling that the rung-2 gate is re-expressed at the end of rung 1.5
+from the convention + verified baseline + adopted metrics only, no
+candidate peeking, vocables staying a decisive-win requirement.
+
+*Aggregate correction stats (21 clips, 693 provisional events → 542
+verified beats, −21.8%):* kept 486, deleted 207, added 56. Median |nudge|
+of survivors is **0.0 ms on 19 of 21 clips** (max observed 100.5 ms). The
+headline is that split: peakRate's *placement* is essentially solved —
+where it fires on a real beat it is already at the vowel onset — and its
+*selection* is the entire problem. Best case rig-numbers-4-4-80-triplet
+(found all 16 tactus beats, 15 errors all genuine subdivision syllables);
+worst rig-names-4-4-63-adagio (49 events for 26 beats, precision 37%,
+recall 69%) and rig-names-4-4-100-quiet (recall 69%, precision 61%). Slice
+pattern: on numbers clips peakRate repeatedly hit perfect recall with zero
+additions; on step_names it both misses and over-fires. Two false-positive
+modes were isolated and are lexical, not acoustic-noise: the second
+syllable of "seven" (+120 to +175 ms, 6 instances) and a diphthong/coda
+re-fire on monosyllables "five"/"eight" (/aI/, /eI/ closed by a stop or
+fricative). At 160 BPM the detector's 120 ms minimum peak spacing is a
+third of a beat period and it structurally under-resolves
+(rig-names-2-4-160-long: 10 beats added by hand, the only clip where
+additions exceeded false positives).
+
+*Stage-1 verified slice — the first honest words-vs-truth numbers.*
+`aggregate_verified` clips=21 P=0.371 R=0.410 F=0.389 (macro 0.380),
+asynchrony mean −12.1 ms, median −15.0 ms, sd 30.4 ms. Do NOT read this
+against `aggregate_provisional` (F=0.583): the 9 remaining provisional
+clips are a different, easier population (the four long video demos alone
+score 0.58–0.65). The honest comparison is same-clip before/after, which
+is reconstructible exactly because each grid's frozen `onsets` list *is*
+its original provisional reference: **macro F on the same 21 clips moved
+0.356 → 0.380 (+0.024), 15 improved / 6 worsened.** So verification did not
+crater the word-onset baseline; it slightly raised it while cutting the
+reference count by 21.8%. Slices now: numbers 0.506 (n=14), step_names
+0.489 (n=14), vocables 0.118 (n=1). The verified vocables baseline is
+pinned at P=1.000 R=0.0625 **F=0.1176** (1 prediction, 16 references), up
+from 0.080 provisional — this is the number the §2 gate's decisive-win
+requirement will be expressed against.
+
+*Ruling (b) validated, twice, arithmetically.* rig-names-4-4-96-allegro: 27
+voiced beats, four gaps at integer multiples of the median IOI implying 5
+unvoiced beats, 27+5 = 32 = the case's counts=32. rig-names-4-4-63-adagio:
+26 voiced, six gaps spaced ~4 beats apart (the owner speaks three and holds
+the fourth), 26+6 = 32. An arbitrary set of missed labels would not total a
+round number, so the reconstruction is self-confirming. Limitation found
+and recorded: gap-based recovery is blind to silence at the START or END of
+a marked passage, so recovered totals are lower bounds
+(rig-names-3-4-90-clean, rig-names-2-4-160-long).
+
+*Owner observations.* Background music of unknown origin, NOT beat-
+synchronized, on rig-numbers-2-4-120-clean, which is tagged
+accompanied=false / snr_band=high — a data-quality discrepancy for the
+owner to rule on (cases untouchable this rung). Being unsynchronized it
+cannot leak a pulse an acoustic detector could cheat off, and peakRate
+still posted its second-best selection result there, suggesting the Praat
+voiced-gate suppressed music-driven onsets. Compound-meter tactus level
+recorded explicitly for both 6/8 clips (the six, not the dotted quarter);
+without that note a consumer would expect ~33 BPM.
+
+*Findings parked, not acted on.* (1) **Whisper silently drops entire rounds
+of eight on clean high-SNR rig audio — three instances**:
+rig-numbers-4-4-104-clean (middle round, 16 tokens vs 24 beats),
+rig-numbers-2-4-120-clean (final round, 24 vs 32),
+rig-numbers-4-4-104-fourx8 (24 vs 32). All three still score green on
+tempo/meter/counts because counts is per-phrase and surviving intervals
+give the right tempo — Standing Lesson 8 in live form, and invisible before
+human grids existed. (2) On rig-numbers-4-4-104-fourx8 the verified grid
+shows a known red row has TWO stacked causes: the predicted 8 is
+counts-per-phrase against a case expecting one 32-count phrase, and even
+fixed, the token stream holds only 24 of 32 counts, so a corrected
+implementation would answer 24. (3) **Whisper block phase slip** on
+rig-numbers-4-4-60-halftempo: token count matches 16:16, but beats 2–4 and
+10–11 are shifted bodily ~0.75 s early (three quarters of a beat) with
+correct internal spacing, then re-sync. Median −11.9 ms hides it; mean is
+−219.9 ms, sd 361, only 7/16 within ±70 ms. A tolerance-based F reads phase
+error as detection failure. (4) **Bar-internal agogic accent** on
+rig-names-3-4-88-waltz: beat 1→2 runs +9.9% vs mean, 2→3 −3.7%, 3→1 −7.0%,
+consistent across all 8 bars; removing per-position means drops CV from
+10.7% to 7.8%. Standing Lesson 5 frames lengthening as phrase-FINAL; this
+is periodic and bar-internal, and at ~50 ms it consumes most of the ±70 ms
+tolerance before any detector error is counted. (5) The two-gap problem on
+rig-names-4-4-104-explained: an excluded-explanation gap and a silent-beat
+gap are indistinguishable in a flat time list (the C6 no-tagging limit).
+
+*Workflow amendment earned (recommended for the convention doc).* The
+ratified per-clip check is grid-implied BPM vs case label, flagged >4%.
+That check PASSED at +3.51% on a grid carrying three spurious labels and a
+missing beat (rig-numbers-4-4-104-explained). What caught it was a
+**minimum-IOI check** (0.124 s against a 0.577 s beat) and an **IOI-spread
+check**. Four owner-export errors were caught this way across the session
+(rig-numbers-4-4-104-explained, rig-numbers-6-8-100-clean,
+rig-names-2-4-120-clean, rig-names-2-4-160-long); on the last, removing one
+stray moved the BPM check from +1.30% to −0.15%. Both checks must be
+computed WITHIN-PHRASE, excluding owner-confirmed breaks: on
+rig-names-4-4-96-allegro overall CV is 44.1% and within-phrase 9.1%; on
+rig-names-2-4-120-clean 25.6% vs 6.4%. Recommend adding both to §4 of the
+convention.
+
+*Guard verdict.* The rung-1 hallucination guard's first trigger,
+rig-numbers-3-4-90-clean (94 tokens vs 52 voiced onsets — the ADR-016
+clip-17 signature), is adjudicated **BENIGN by ear, not by inference**.
+Asked before seeing the transcript, the owner described 32 numbers at 90
+BPM in 4 sets of 8, each followed by "and-ah", plus 4 extra syllables from
+bisyllabic "seven" = 100 syllables. Whisper's 94 tokens reconcile exactly:
+100 − 4 ("seven" is one word) − 2 (no trailing "and a" on the final eight).
+Threshold stays as calibrated: this false alarm cost one listen; a miss
+would be a silent green.
+
+Regressions and classifications: none. tier-0 (tempo 25/25, meter 24/25)
+and tier-1 (tempo 0.571, meter_triple 0.357, counts 0.571) byte-identical
+to the blessed baseline — "no outcome changes vs baseline". pytest 193
+passed / 3 skipped. `git diff --stat main` shows 22 files: 21 grid YAMLs +
+docs/evals/annotation-convention.md, with 0 files changed under
+evals/cases/, evals/traces/, evals/baseline.json, or
+src/musical_perception/evals/.
+
+Lesson (durable, one paragraph): Verifying the grids changed what the
+instrument measures far more than what it reports — same-clip macro F moved
+only +0.024 while the reference count fell 21.8%, yet the *composition* of
+the error flipped from "peakRate mistimes beats" to "peakRate cannot
+choose which onsets are beats", a distinction no aggregate could have
+surfaced and the whole reason rung 2's gate needs level-collapsed scoring.
+The corollary is that a ground-truth pass is also an audit of everything
+upstream of it: three silent Whisper round-drops, a block phase slip, a
+two-cause red row, and a periodic bar-internal agogic accent were all
+sitting inside green or unexplained rows and became visible only once a
+human said what was actually there.
+
+Status: PAUSED (21 of 30 verified). Remaining: rig-mixed-4-4-104-quantities,
+rig-names-4-4-104-coda, rig-numbers-4-4-104-bothsides, adr006-8-counts-2x,
+adr006-8-counts-triple, and the four video demos (adr006-exercise-1-demo,
+adr007-plies-demo, adr010-grande-battement, frappe — ~510 events total;
+their media lives at video/youtube/old demos/ and needs symlinks to the
+case-declared paths recreated). Resume rule: progress = grids with
+provisional:false. Also outstanding: the ratified duplicate-pass
+self-consistency measurement on the two calibration clips
+(rig-names-4-4-104-clean, rig-numbers-4-4-104-clean) — untouched seed
+copies are preserved at /Users/Shared/DevWork/rung1.5-wav/*.SEED.labels.txt
+so pass B starts from the seed rather than from pass A; this number is the
+intra-annotator noise floor beneath which no rung-2 result can claim
+significance, and it is not yet measured.
