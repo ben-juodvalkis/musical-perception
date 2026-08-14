@@ -176,6 +176,19 @@ exists and firing at the wrong time.
 
 **F_lc** — harmonic mean of R@tac and P_lc.
 
+**Pinned edge semantics (folded from the rung-2 P0 validity gate,
+2026-08-14 — the single 24-variant interpretation that reproduces every
+committed number in §2.2):** cluster slots are beat-centered with
+boundaries at midpoints between consecutive verified beats; the annotated
+span extends half the **median** inter-beat interval beyond the first and
+last beat, and predictions outside it are charged as **individual** false
+positives; a cluster is a TP iff it contains a prediction one-to-one
+matched to a beat at ±70 ms by the frozen matcher; per-clip
+F_lc = harmonic mean of R@tac and P_lc; slice rows are per-clip macros.
+Reference implementation: `scripts/rung2_kill_test.py`. A metric that
+exists only as prose is not yet a metric — future gates ship with
+reference code.
+
 *Honesty note:* level-collapsing raises the **baseline** too — overall F 0.383
 → F_lc 0.452, and `rig-numbers-4-4-80-triplet` 0.469 → 0.882, because
 Whisper's 48 triplet tokens collapse into 16 slots. The new metric raises the
@@ -220,9 +233,11 @@ Rung 2 passes if **all four** hold:
   metrics carry no measurable annotator variance.
 - **Signed-asynchrony differences below ~25 ms are inside annotator noise** and
   may not be claimed as results.
-- **Cohort offset.** 21 grids are seed-anchored, 3 are from-scratch, and the
-  methods differ by ~20 ms systematically. Asynchrony comparisons must be
-  within-cohort or must correct for it. F/P/R are unaffected.
+- **Cohort offset.** **25** grids are seed-anchored (corrected 2026-08-14
+  from the originally stated 21 — the four session-2 audio grids were also
+  anchored), 3 are from-scratch, and the methods differ by ~20 ms
+  systematically. Asynchrony comparisons must be within-cohort or must
+  correct for it. F/P/R are unaffected.
 - Per charter rule 5, a documented **negative result** with per-clip evidence
   satisfies rung 2 as fully as a pass, and ends it (ADR-016: the reset stops
   and P2 strengthens).

@@ -7,13 +7,15 @@
 [RESEARCH-LOG.md](RESEARCH-LOG.md) (the memory),
 [agent-environment.md](agent-environment.md) (cloud setup).
 
-> **CURRENT RUNG: 2 — the peakRate acoustic extractor kill-test.**
-> Rung 1.5 blessed 2026-08-14: 28 of 30 DEV grids owner-verified (802
-> beats), 2 declined with recorded reasons; annotation convention
-> ratified and amended (d′); annotator self-consistency measured; the
-> rung-2 gate re-expressed and blessed (see
-> docs/evals/annotation-convention.md §2 — it supersedes the margins in
-> the rung-2 condition below). Grids are now ground truth.
+> **CURRENT RUNG: M — the marathon (COMMISSIONED 2026-08-14 at the
+> rung-2 verdict: PASS).** Rung 2 blessed and merged — all four §2 gate
+> conditions held with wide margins (step_names R@tac 0.349→0.719 with
+> 12/13 clips improved and zero losses; vocables 0.062→0.875; numbers
+> F_lc 0.577→0.926). Sessions now execute Rung M's per-session contract:
+> one increment on the highest-ranked non-BLOCKED workstream. The owner
+> reviews in weekly batches and clears the BLOCKED queue; every hard
+> rule (eval files, provisional-never-gates, HELD-OUT/SEALED, no
+> self-blessing) is unchanged.
 
 ## Mission
 
@@ -183,6 +185,12 @@ are not ground truth until this happens.)*
 
 ### Rung 2 — peakRate acoustic extractor: the kill-test
 
+> **VERDICT: PASS — blessed and merged 2026-08-14.** All four §2 gates
+> held: step_names R@tac 0.719 (≥0.499), 12/13 clips improved with zero
+> losses, vocables 0.875/0.875, numbers F_lc 0.926. Full results:
+> `docs/research/rung2-kill-test.md`. Anchoring caveat stands: quote the
+> from-scratch cohort for external magnitude claims.
+
 Prereq: rung 1 blessed AND grids owner-verified. Deliverable: the
 acoustic pulse channel ([Review 1 "steal this first"](review-1-onsets-pcenters.md)),
 plus the Whisper-word-onset baseline scored on the same grids.
@@ -321,26 +329,29 @@ Delete the unreachable ~1,200 lines named in ADR-016 (trigger/wakeword
 path, legacy text-merge, Feb-2026 scripts, dead subdivision fields) once
 rung 4 lands. Proof: pytest green, tier suites byte-identical outcomes.
 
-### Rung M — the marathon *(DORMANT — commissioned only by the owner, at the rung-2 verdict)*
+### Rung M — the marathon *(COMMISSIONED by the owner 2026-08-14, at the rung-2 PASS verdict)*
 
-Staged-autonomy plan (owner decision pending, 2026-08-09): rungs 1→2 run
-rung-by-rung with daily blessings, because the early rungs build the
-measuring instruments (rung 1), require human ground truth (rung 1.5),
-and end at the plan's strategic fork (rung 2's kill-test verdict). At
-that verdict the owner decides whether to commission this rung for the
-parallel-friendly middle stretch. Until then, sessions must treat this
-section as inert.
+Staged autonomy delivered its gate: rungs 1→2 ran rung-by-rung with
+daily blessings while the measuring instruments were built (rung 1),
+ground truth was humanized (rung 1.5), and the kill-test decided the
+strategy (rung 2: PASS). Rung M replaces per-rung blessing with
+**batch review**:
 
-When commissioned, Rung M replaces per-rung blessing with **batch review**:
-
-- **Workstreams** (initial ranking; the meta-rung re-ranks): W1 = rungs
-  3–4 pipeline work · W2 = Ballet Barre 1 ingestion (traces + provisional
-  cases per the add-only carve-out) · W3 = rung 6 baselines · W4 = rung 5
-  ensembles · W5 = pose/gesture channel prototyping on the Barre 1 video ·
-  W6 = rung 7 cleanup. Policy: each session advances exactly one
-  workstream — the highest-ranked one not BLOCKED; blocked workstreams
-  get a BLOCKED ledger note (the owner's task queue) and the session
-  moves on. The loop never idles while any workstream is open.
+- **Workstreams** (ranking refreshed at commissioning; the meta-rung
+  re-ranks): W1 = rung 2.5, taggable grid format + ratified QC checks —
+  gates all ingestion; includes the vocables dropped-beats QC listen ·
+  W2 = rung 3, accent-periodicity meter votes · W3 = rung 6, baselines
+  benchmark (independent — good parallel second-session material) ·
+  W4 = Ballet Barre 1 DEV ingestion (requires W1; the 8 remaining
+  exercises only — 4 are HELD-OUT on the owner's machine) · W5 = rung 4,
+  joint posterior (requires W2's evidence) · W6 = rung 5, ensembled
+  semantics · W7 = pose/gesture channel prototyping on the Barre 1 video
+  (after W4) · W8 = rung 7, RETIRED sweep (after W5) · parked from rung
+  2: relative (speech-band-level) nuclei silence floor for quiet clips —
+  a pipeline workstream once W2 exists. Policy: each session advances
+  exactly one workstream — the highest-ranked one not BLOCKED; blocked
+  workstreams get a BLOCKED ledger note (the owner's task queue) and the
+  session moves on. The loop never idles while any workstream is open.
 - **Per-session condition** (what the standing contract resolves to):
   one complete increment on one workstream, committed on
   `agent/marathon`, evidence shown by full command output, constraints
