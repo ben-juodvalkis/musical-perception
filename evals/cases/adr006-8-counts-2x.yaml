@@ -11,10 +11,25 @@ tags:
   lang: en
   accompanied: false
 expect:
-  marking_bpm: 130
+  marking_bpm: 101.63
   meter: "4/4"
   subdivision: none
   counts: 8
 notes: >-
-  Clean counting fixture: eight counts, twice through. ADR-007 recorded
-  129.8 / 4/4 / none as correct.
+  Clean counting fixture: eight counts, twice through.
+
+  marking_bpm CORRECTED 2026-08-14 from 130 to 101.63 (rung 1.5, owner
+  ruling). The original 130 was wrong. The owner-verified beat grid
+  (evals/grids/adr006-8-counts-2x.yaml, 16 beats, accepted unchanged from
+  the peakRate seed) measures 101.63 BPM, and the owner independently put
+  the clip at "around 104" when asked by ear. The arithmetic is decisive:
+  16 counts at 130 BPM would span 7.38 s, but these 16 counts span 9.06 s,
+  and the intervals are uniform (CV 5.7%, no gaps), which excludes a
+  16-voiced-of-20-real reading. The 130 appears to have been derived from
+  a contemporaneous pipeline output — the old note read "ADR-007 recorded
+  129.8 / 4/4 / none as correct" — and then frozen as truth, making this a
+  FAKE RED: the row was scored wrong for a prediction (95.6) that is
+  within 6% of the real tempo. Correcting the label does not turn the row
+  green (rel_err 0.059, still outside the +/-4% window) but it moves the
+  error from 26.5% to 5.9% and stops the pipeline being penalised against
+  a bad reference.
