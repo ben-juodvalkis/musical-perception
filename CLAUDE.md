@@ -23,7 +23,8 @@ src/musical_perception/
 │   ├── tempo.py          # BPM from timestamps
 │   ├── subdivision.py    # Duple/triplet classification
 │   ├── signature.py      # Counting signature computation
-│   └── dynamics.py       # Movement quality from pose landmarks
+│   ├── dynamics.py       # Movement quality from pose landmarks
+│   └── pulse.py          # Acoustic pulse extractor (peakRate + nuclei regions, rung 2)
 ├── perception/           # DISPOSABLE — thin model wrappers
 │   ├── whisper.py        # Whisper transcription (word timestamps)
 │   ├── prosody.py        # Praat pitch/intensity extraction
