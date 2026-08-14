@@ -719,3 +719,105 @@ Lesson (durable): The holdout's protection is that agent sessions cannot
 enumerate it — so the ledger records THAT it exists and its size, never
 its contents. A holdout you can look up is not held out.
 Status: BLESSED (owner, 2026-08-14).
+
+## 2026-08-14 · rung 2 · agent/rung-2-acoustic-pulse · local
+
+Attempted: the rung-2 kill-test — a peakRate acoustic pulse extractor in
+the precision layer, scored against the whisper-word-start baseline on
+the 28 owner-verified grids under the blessed §2 gate
+(docs/evals/annotation-convention.md). The two declined clips
+(`adr007-plies-demo`, `rig-mixed-4-4-104-quantities`) are excluded by
+name. This section and the frozen design below are committed BEFORE any
+extractor implementation exists (charter rule 3); results follow in this
+same entry at session end.
+
+Pre-registered expectations:
+
+*Extractor design, frozen a priori (no tuning against gate results
+permitted after this commit).* Review-1 "steal this first" #1 + #2:
+(i) the peakRate core reuses `annotation/peakrate.py`'s frozen
+`PeakRateParams` verbatim (300–3000 Hz band, 10 Hz zero-phase low-pass,
+3·MAD prominence, 120 ms min spacing, Praat voiced gate ±30 ms,
+75–450 Hz pitch) — the same detector whose selection behaviour rung 1.5
+measured; (ii) NEW relative to the annotation seeder: de Jong & Wempe
+syllable-nuclei REGIONS via Parselmouth (intensity 50 ms frames, silence
+threshold −25 dB re the 99th-percentile max, min dip 4 dB — review-1
+§1.2 says 4–8 dB for marked speech, the conservative end is chosen here
+a priori — and the same AC pitch voicing), with **the first peakRate
+event inside each nucleus region** kept as the event time (first, not
+largest: the documented five/eight diphtong re-fire is a *second* rise
+inside one nucleus); events outside every region are dropped. No tactus
+selection — the extractor emits the syllable-rate stream the §2.1
+metrics were designed to score fairly. Output: sorted times in seconds,
+pure function of (audio, sr).
+
+*P0 — metric validity gate (checked before any candidate number is
+read).* The committed analysis code must reproduce the §2.2 baseline
+table EXACTLY (all 12 numbers: ALL 0.449/0.506/0.452, numbers
+0.568/0.604/0.577, step_names 0.349/0.363/0.343, vocables
+0.062/1.000/0.118) from the frozen scorer's matcher + traces + verified
+grids. Where §2.1 leaves edge semantics unstated (span ends, clustering
+of out-of-span predictions), the reproduction pins them; if NO variant
+reproduces the table, stop and write a BLOCKED entry rather than pick a
+flattering variant.
+
+*Evidence base for the predictions below* — only ledger-recorded facts:
+rung-1.5 correction stats (21 anchored clips: 486 kept / 207 deleted /
+56 added → peakRate found ~89.7% of anchored verified beats; numbers
+clips repeatedly perfect recall with zero additions; step_names both
+misses and over-fires: adagio R 0.69 / P 0.37, quiet R 0.69 / P 0.61,
+160-long 10 beats hand-added; lexical FP modes: "seven" second syllable
++120–175 ms, five/eight diphthong re-fire), the from-scratch video
+cohort sitting −13.5/−18.8/−2.7 ms (median) from peakRate onsets, and
+the §2.2 baseline. No candidate has been run.
+
+- **P1 (gate 1, step_names R@tac ≥ 0.499):** PASS predicted. Extractor
+  macro R@tac on the 13 step_names clips in **[0.70, 0.88]**, point
+  ~0.80, vs baseline 0.349. Reason: worst measured peakRate step_names
+  recalls are ~0.69 (adagio, quiet) and ~0.81 ceiling on 160-long
+  (44/54 after 10 hand-adds); the two video clips' from-scratch beats
+  sit within ~19 ms of peakRate events (matched at ±70 ms), predicted
+  R@tac 0.6–0.9 there. Risk: the new nuclei-region gate drops devoiced/
+  whispered nuclei (review-1 §1.2 failure mode) — expected small on
+  this close-mic corpus.
+- **P2 (gate 2, improvement on ≥ 9 of 13):** PASS predicted, point
+  prediction **13 of 13** (accept ≥ 12): baseline macro is 0.349 and no
+  known per-clip peakRate recall sits below 0.69; weakest-margin clips
+  predicted to be rig-names-2-4-160-long (structural 120 ms
+  under-resolution at 160 BPM) and rig-names-4-4-63-adagio.
+- **P3 (gate 3, vocables R@tac ≥ 0.60 AND P_lc ≥ 0.50, n=1):** PASS
+  predicted: R@tac in **[0.94, 1.0]** (16 beats, seed-anchored grid —
+  beats coincide with detector events unless the nuclei gate drops
+  one), P_lc in **[0.70, 1.0]** (plosive vocables are the detector's
+  best case; sub-tactus doubles collapse). Baseline 0.0625/1.000. n=1,
+  never quoted as a slice average.
+- **P4 (gate 4, numbers F_lc ≥ 0.527):** PASS predicted with margin:
+  extractor numbers macro F_lc in **[0.80, 0.95]** vs baseline 0.577.
+  Reason: repeatedly perfect recall + zero additions on numbers rig
+  clips; subdivision syllables and both lexical FP modes land inside
+  their beats' slots and collapse. Slice risk rows:
+  adr010-grande-battement (from-scratch video — dense speech,
+  out-of-span clusters charge P_lc) and adr006-8-counts-triple (n_ref
+  8, small denominator).
+- **P5 (overall, informational):** extractor ALL macro F_lc in
+  **[0.75, 0.92]** vs baseline 0.452.
+- **P6 (signed asynchrony, reported under the noise rules, no claims
+  under ~25 ms):** on the 21 anchored grids extractor matched-pair
+  asynchrony |median| ≤ 15 ms — and this is an ARTIFACT of anchoring
+  (kept beats ARE detector events), to be disclosed as such, not
+  claimed as placement accuracy; on the 3 from-scratch video grids
+  median in **[0, +30] ms** (grids sit early of peakRate by ~3–19 ms).
+  Whisper baseline stays ~−14 to −19 ms as recorded. Anchored and
+  from-scratch never pooled without the ~20 ms offset disclosed.
+
+*Kill criteria (what NEGATIVE looks like):* any of gates 1–4 failing
+after the frozen design is scored as specified — no post-hoc parameter
+changes, no re-runs with different constants. A failure writes the
+negative-result entry with per-clip evidence and ends the rung
+(ADR-016: the reset stops, P2 strengthens).
+
+Result: PENDING — appended below in this entry at session end.
+Regressions and classifications: PENDING.
+Lesson (durable, one paragraph): PENDING.
+Status: IN-PROGRESS (pre-registration commit; the session completes this
+entry before ending).
