@@ -550,3 +550,69 @@ quantify the annotator's own noise floor separately from the anchoring bias.
 Owner decisions also outstanding: whether to re-annotate the two v1 clips
 under (d′); whether to correct `adr006-8-counts-2x`'s `marking_bpm`; whether
 to pin `adr006-8-counts-triple`'s.
+
+## 2026-08-14 · rung 1.5 · agent/rung-1.5-grid-verification · local (self-consistency measurement)
+
+Attempted: the ratified duplicate-pass self-consistency measurement, the
+last outstanding rung-1.5 deliverable besides the §2 gate re-expression.
+
+Design note (deviation from the original plan, disclosed): the plan was two
+seed-anchored passes from the same preserved seeds. The anchoring finding
+invalidated that design — seed-anchored passes overwhelmingly *accept* the
+seeds (median |nudge| 0.0 ms on 19 of 21 clips), so two such passes would
+agree almost perfectly and report a meaninglessly small noise floor. Pass B
+was therefore run **from scratch** (REAPER, no seeds shown) against the
+already-verified seed-anchored pass A, on `rig-numbers-4-4-104-clean`
+(16 s, plain 1-8 counted three times at 104). Scope reduced from two clips
+to one by owner decision after the cost/benefit was stated. This measures
+the anchored-vs-scratch cohort offset *and* bounds placement scatter, which
+is what the corpus actually needs given it holds 21 anchored + 3 scratch
+clips.
+
+Result:
+
+```
+pass A (seed-anchored, Audacity)   24 beats, 2.354-15.664 s
+pass B (from scratch, REAPER)      24 beats, 2.494-15.636 s
+matched  22/24 at ±70 ms (92%)   ·  23/24 at ±120 ms (96%)
+delta (B − A):  median −21.6 ms   sd 24.9 ms   max |Δ| 71.0 ms
+pass B vs peakRate onsets: median −19.7 ms   (pass A is 0.0 by anchoring)
+```
+
+**Structure is perfectly reproducible: 24 beats both times, none added, none
+missed.** Beat identification — the thing that drives pulse precision,
+recall and F — carries no measurable annotator variance on this clip. The
+owner's prior ("I think I'd be really consistent") was correct on structure.
+
+**Placement carries ~25 ms of noise, in two separable parts.** (1) A
+systematic −20 ms: the from-scratch method lands earlier than peakRate's
+onsets, while seed-anchored lands exactly on them by construction. This
+matches the three video clips (−13.5, −18.8, −2.7 ms vs peakRate) and is
+therefore the anchored-vs-scratch **cohort offset**, now measured rather
+than assumed. (2) A residual sd of ~25 ms — genuine placement scatter.
+
+Regressions and classifications: n/a (measurement only; no pipeline or eval
+code touched).
+
+Lesson (durable, one paragraph): The annotator's reproducibility is not one
+number but two, and they behave completely differently — *which events are
+beats* proved perfectly repeatable across methods and instruments, while
+*where exactly those beats sit* carries ~25 ms of scatter on top of a ~20 ms
+systematic offset between annotation methods. That split is convenient: it
+means F-measure is robust to how the corpus was annotated, and only signed
+asynchrony inherits the noise. It also means the original self-consistency
+design would have measured nothing, because two anchored passes agree by
+construction — the measurement only became informative once it was pointed
+at the methods rather than at the annotator.
+
+**THRESHOLD FOR RUNG 2 (the deliverable):** pulse P/R/F against these grids
+are trustworthy and may be compared directly. **Signed-asynchrony
+differences smaller than ~25 ms are inside annotator noise and must not be
+claimed as results.** Any comparison that mixes anchored clips (the 21 rig
+grids) with from-scratch clips (the 3 video grids) must additionally account
+for the ~20 ms cohort offset, or restrict itself to within-cohort
+comparisons.
+
+Status: PROPOSED. Rung 1.5 deliverables now complete except the §2 rung-2
+gate re-expression, which is unblocked by this measurement and is the last
+item before the CURRENT RUNG pointer can advance.
