@@ -1,9 +1,9 @@
 format: 1
 clip: rig-numbers-3-4-90-clean
-provisional: true
+provisional: false
 media: audio/rig/rig-numbers-3-4-90-clean.mp3
 media_sha256: 6dc12b119c925b759f33c35e9ecb8808cb16664165db14aa9eceb8514946a56c
-annotator: peakrate-tap-assist/1
+annotator: owner-verified (peakrate-tap-assist/1 seed)
 created_at: '2026-08-11T22:42:27+00:00'
 params:
   sr: 16000
@@ -21,57 +21,37 @@ params:
   pitch_ceiling_hz: 450.0
 beats:
 - 2.7019
-- 3.2097
-- 3.5048
-- 3.6855
-- 3.9
-- 4.1753
-- 4.5749
-- 4.8188
-- 5.2067
-- 5.4543
-- 5.8875
-- 6.1458
-- 6.3924
+- 3.4855
+- 4.1934
+- 4.8293
+- 5.5492
+- 6.1311
 - 6.7922
 - 7.473
-- 7.7074
-- 8.1073
-- 8.855
-- 9.2297
-- 9.4739
-- 10.1445
-- 10.8241
-- 11.4703
-- 11.7049
-- 11.8777
+- 8.1408
+- 8.8847
+- 9.4906
+- 10.1446
+- 10.8405
+- 11.5004
+- 12.1483
 - 12.7761
 - 13.4199
-- 13.8516
 - 14.1224
-- 15.4585
-- 16.1095
-- 16.5373
+- 14.7999
+- 15.4718
+- 16.1257
 - 16.7652
-- 16.9965
-- 17.1926
 - 17.4199
-- 17.8355
 - 18.0763
-- 18.5383
 - 18.7652
-- 20.1482
-- 20.814
-- 21.2338
+- 19.4792
+- 20.1571
+- 20.823
 - 21.4725
-- 21.6905
-- 21.911
 - 22.136
 - 22.7944
-- 23.042
-- 23.2647
 - 23.4997
-- 23.7184
 onsets:
 - 2.7019
 - 3.2097
@@ -125,5 +105,22 @@ onsets:
 - 23.2647
 - 23.4997
 - 23.7184
-notes: "peakRate suggestions \u2014 unverified; may include subdivisions and spurious\
-  \ events"
+notes: 'Owner-verified 2026-08-12 (rung 1.5). Convention: docs/evals/annotation-convention.md
+  - tactus only, so the numbers and none of the ''and-ah'' subdivision syllables.
+  32 beats = 4 sets of 8, 2.70-23.50 s. Correction vs frozen onsets (time-matched,
+  +/-120 ms): kept 29, deleted 23, added 3; median |nudge| 0.1 ms, max 94.9 ms. Grid-implied
+  BPM 90.43 vs case label 90 (+0.48%) - within the 4% check. IOI 0.582-0.784 s, CV
+  5.8%; 31 intervals over 20.80 s matches 32 beats at 90 BPM with no gaps.
+
+  HALLUCINATION-GUARD VERDICT: BENIGN - adjudicated by ear, not inferred. The rung-1
+  guard fired here (94 transcript tokens vs 52 voiced onsets, the ADR-016 clip-17
+  signature). Before seeing the transcript the owner described the clip as 32 numbers
+  at 90 BPM in 4 sets of 8, each followed by ''and-ah'' (3 syllables per beat, ~270/min),
+  plus 4 extra syllables because ''seven'' is bisyllabic = 100 syllables. Whisper''s
+  94 tokens reconcile exactly: 100 minus the 4 ''seven'' second syllables (Whisper
+  emits ''seven'' as one word) minus the 2 tokens of the absent final ''and a'' =
+  94. The transcript is real. Threshold stays as calibrated: this false alarm cost
+  one listen; a miss would be a silent green.
+
+  peakRate at 52 events sits between levels again - every stressed number plus roughly
+  a third of the unstressed ''and-ah'' schwas.'

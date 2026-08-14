@@ -1,9 +1,9 @@
 format: 1
 clip: rig-names-3-4-88-waltz
-provisional: true
+provisional: false
 media: audio/rig/rig-names-3-4-88-waltz.mp3
 media_sha256: 36207a1cfd620b8ffe173aea3034658c8698931db03e358ffcdd3d9459378b4f
-annotator: peakrate-tap-assist/1
+annotator: owner-verified (peakrate-tap-assist/1 seed)
 created_at: '2026-08-11T22:42:27+00:00'
 params:
   sr: 16000
@@ -23,22 +23,21 @@ beats:
 - 0.7427
 - 1.5262
 - 2.2412
-- 2.6712
 - 2.886
+- 3.5958
 - 4.1787
 - 4.9117
 - 5.6239
-- 5.8063
 - 6.286
-- 6.6367
 - 6.9344
+- 7.5892
+- 8.3306
 - 8.9285
-- 9.0485
 - 9.6786
 - 10.3425
 - 10.9082
-- 11.2982
 - 11.7191
+- 12.3594
 - 12.9827
 - 13.7527
 - 14.4478
@@ -71,5 +70,24 @@ onsets:
 - 15.0712
 - 15.8712
 - 16.4191
-notes: "peakRate suggestions \u2014 unverified; may include subdivisions and spurious\
-  \ events"
+notes: 'Owner-verified 2026-08-13 (rung 1.5). Convention: docs/evals/annotation-convention.md
+  - tactus only; marked at the three-per-bar level. 24 beats = 8 bars of 3/4, 0.74-16.42
+  s (earliest clip start in the corpus). Correction vs frozen onsets (+/-120 ms):
+  kept 20, deleted 5, added 4; median |nudge| 0.0 ms. Grid-implied BPM 90.38 vs case
+  label 88 (+2.70%) - within the 4% check. No short IOIs, no gaps.
+
+  FINDING - BAR-INTERNAL AGOGIC ACCENT (parked). The elevated CV (10.7% vs the 5-7%
+  corpus norm) is structure, not imprecision. Interval durations by position-in-bar,
+  consistent across all 8 bars: beat 1->2 mean 0.749 s (+9.9% vs the 0.682 s overall
+  mean), beat 2->3 mean 0.656 s (-3.7%), beat 3->1 mean 0.634 s (-7.0%). The downbeat
+  - the beat carrying the step name - is held ~10% longer than the ''two, three''
+  that fill the bar. Removing the per-position means drops CV from 10.7% to 7.8%,
+  so about a third of the apparent variance is this periodic pattern.
+
+  Why it matters: Standing Lesson 5 treats expressive lengthening as expected structure
+  rather than noise, but discusses it as a PHRASE-FINAL effect. This is bar-internal
+  and periodic. A model assuming isochrony within the bar will mis-predict beats 2
+  and 3 by roughly 50 ms systematically on 3/4 marking - the same order as the +/-70
+  ms stage-1 scoring tolerance, so it can consume most of the error budget before
+  any detector error is counted. Ruling (f) says annotate what was heard, so the non-isochrony
+  is in the grid.'

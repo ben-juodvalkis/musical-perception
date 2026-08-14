@@ -97,5 +97,24 @@ onsets:
 - 19.5067
 - 19.7642
 - 20.2881
-notes: "peakRate suggestions \u2014 unverified; may include subdivisions and spurious\
-  \ events"
+notes: 'peakRate suggestions - unverified; may include subdivisions and spurious events.
+
+  RUNG 1.5: DELIBERATELY LEFT PROVISIONAL (2026-08-13). The owner - who recorded the
+  clip - listened and declined to annotate it, reporting that the marking was ''real
+  weird'' and that they could not parse the pulse themselves. Skipping was the owner''s
+  decision and is the honest outcome: a grid asserted here would be guesswork dressed
+  as ground truth, which is worse than an absent grid, since provisional grids gate
+  nothing by construction.
+
+  Content: the transcript is almost entirely prose describing quantities rather than
+  counting them (''we take two tendus to the front, then one to the back, three quick
+  chates, and then we do four more...''), which ruling (d) classifies as explanation
+  and therefore beatless. The case nonetheless expects counts=32.
+
+  CONSEQUENCE: this is the ONLY clip in the `mixed` count_style slice, so that slice
+  has no verified member and its stage1 numbers remain provisional-only. Any future
+  claim about mixed-style marking rests on n=0 verified clips.
+
+  If revisited: the convention does not require a grid to span a whole clip, so annotating
+  only a stretch where the owner clearly hears marking would be a legitimate partial
+  grid.'

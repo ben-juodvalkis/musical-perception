@@ -1,9 +1,9 @@
 format: 1
 clip: rig-names-6-8-100-clean
-provisional: true
+provisional: false
 media: audio/rig/rig-names-6-8-100-clean.mp3
 media_sha256: 76601e51c74ba5cef35ae40a57e9a35d77366a975a10dfdbed6de51b924c54b8
-annotator: peakrate-tap-assist/1
+annotator: owner-verified (peakrate-tap-assist/1 seed)
 created_at: '2026-08-11T22:42:27+00:00'
 params:
   sr: 16000
@@ -22,24 +22,23 @@ params:
 beats:
 - 2.4073
 - 3.0265
-- 3.4226
 - 3.678
 - 4.2764
-- 4.3979
 - 4.8469
 - 5.4998
 - 6.0948
 - 6.6683
 - 7.2545
 - 7.8787
-- 8.025
 - 8.4627
+- 9.0827
 - 9.6167
 - 10.2942
 - 10.9028
 - 11.4554
 - 12.0738
 - 12.7733
+- 13.3236
 - 13.8832
 - 14.4256
 - 15.0844
@@ -67,5 +66,14 @@ onsets:
 - 13.8832
 - 14.4256
 - 15.0844
-notes: "peakRate suggestions \u2014 unverified; may include subdivisions and spurious\
-  \ events"
+notes: 'Owner-verified 2026-08-13 (rung 1.5). Convention: docs/evals/annotation-convention.md
+  - tactus only. 22 beats, 2.41-15.08 s. TACTUS LEVEL: the six (eighth-note) level,
+  matching the sibling clip rig-numbers-6-8-100-clean; grid-implied BPM at that level
+  is 100.27 vs case label 100 (+0.27%). A dotted-quarter reading would be ~33 BPM
+  and is not encoded here.
+
+  Correction vs frozen onsets (+/-120 ms): kept 20, deleted 3, added 2; median |nudge|
+  0.0 ms. IOI 0.534-0.700 s, CV 7.4%, no short IOIs, no gaps - metrically clean throughout,
+  no silent beats. Whisper heard ''in, and out, and up, and down, and dump, and breeze,
+  and then fall apart''; the trailing ''and then fall apart'' carries no beats in
+  the verified grid.'

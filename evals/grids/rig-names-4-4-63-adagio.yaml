@@ -1,9 +1,9 @@
 format: 1
 clip: rig-names-4-4-63-adagio
-provisional: true
+provisional: false
 media: audio/rig/rig-names-4-4-63-adagio.mp3
 media_sha256: 039b5cc28612ab48e5ca356fceeab27da7231db15b7c8b9b41aff4607b6ee529
-annotator: peakrate-tap-assist/1
+annotator: owner-verified (peakrate-tap-assist/1 seed)
 created_at: '2026-08-11T22:42:27+00:00'
 params:
   sr: 16000
@@ -20,55 +20,32 @@ params:
   pitch_floor_hz: 75.0
   pitch_ceiling_hz: 450.0
 beats:
-- 3.6275
 - 3.943
 - 4.848
 - 5.655
-- 10.0513
+- 7.8136
+- 8.7056
+- 9.8206
 - 11.4548
-- 11.7263
+- 12.5895
 - 13.2636
-- 13.4307
-- 14.0796
-- 14.5024
-- 14.9296
 - 15.411
-- 15.8697
+- 16.3133
 - 17.2356
 - 19.0114
-- 19.2167
+- 20.1171
+- 21.0901
 - 23.1535
-- 23.4737
 - 23.8708
-- 24.4221
-- 24.7287
 - 24.9229
-- 25.0728
-- 25.2223
 - 26.6076
-- 26.8483
-- 27.3425
-- 28.1407
+- 27.585
 - 28.778
-- 28.9225
-- 29.173
-- 29.3952
 - 29.5982
-- 30.085
-- 30.4434
 - 30.5678
-- 30.767
-- 31.0737
-- 31.2091
-- 31.4925
 - 31.7307
-- 32.019
-- 32.1834
-- 32.3413
 - 32.6498
-- 32.8504
 - 33.4977
-- 33.6239
 onsets:
 - 3.6275
 - 3.943
@@ -119,5 +96,23 @@ onsets:
 - 32.8504
 - 33.4977
 - 33.6239
-notes: "peakRate suggestions \u2014 unverified; may include subdivisions and spurious\
-  \ events"
+notes: 'Owner-verified 2026-08-13 (rung 1.5). Convention: docs/evals/annotation-convention.md
+  - tactus only, vocalized only. 26 voiced beats, 3.94-33.50 s. Correction vs frozen
+  onsets (+/-120 ms): kept 18, deleted 31, added 8; median |nudge| 0.0 ms. Grid-implied
+  BPM 61.39 vs case label 63 (-2.56%) - within the 4% check. Within-phrase IOI CV
+  15.0% (adagio rubato).
+
+  PERIODIC SILENT BEATS (ruling (b)). Six gaps, each ~2x the 0.977 s median IOI, after
+  5.655 / 9.821 / 13.264 / 17.236 / 21.090 / 24.923 s - spaced about 3.9 s apart,
+  i.e. roughly every 4 beats. One unvoiced beat per gap, at approximately 6.734, 10.638,
+  14.337, 18.124, 22.122 and 25.765 s. The owner speaks three beats and holds the
+  fourth, consistently. 26 voiced + 6 silent = 32 = 4 rounds of 8, which is independent
+  confirmation that the reading is correct - an arbitrary set of missed labels would
+  not total a round number.
+
+  peakRate''s second-worst clip: 49 events offered for 26 true beats, 31 of them not
+  beats, and 8 real beats missed entirely (recall 69%, precision 37%). This is the
+  widest word-vs-syllable gap in the corpus - Whisper produced only 19 word tokens
+  here while peakRate fired 49 times - and it is what continuous adagio prose at 63
+  BPM does to a syllable-rate detector: syllables outnumber beats several times over
+  and nothing in the envelope distinguishes them.'

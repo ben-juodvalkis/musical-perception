@@ -1,9 +1,9 @@
 format: 1
 clip: rig-names-4-4-104-clean
-provisional: true
+provisional: false
 media: audio/rig/rig-names-4-4-104-clean.mp3
 media_sha256: fc9ddd09978be0027166f6efccb45b25257a893ae4f7b2768448c04598454ef8
-annotator: peakrate-tap-assist/1
+annotator: owner-verified (peakrate-tap-assist/1 seed)
 created_at: '2026-08-11T22:42:27+00:00'
 params:
   sr: 16000
@@ -23,31 +23,27 @@ beats:
 - 2.3244
 - 3.0053
 - 3.5596
+- 4.072
 - 4.6809
 - 5.2582
-- 5.8767
-- 6.031
-- 6.2607
+- 5.835
+- 6.4211
 - 6.9913
-- 7.5828
-- 8.3053
-- 8.5472
-- 9.4793
-- 9.9642
-- 10.4773
-- 11.5812
-- 12.1743
-- 12.7393
-- 13.1088
-- 13.3653
-- 13.9101
-- 14.0422
-- 15.0981
+- 7.6212
+- 8.1792
+- 8.7315
+- 9.3007
+- 9.9204
+- 10.4952
+- 10.9803
+- 11.5383
+- 12.2141
+- 12.744
+- 13.3356
+- 13.9161
+- 14.5245
+- 15.0657
 - 15.6452
-- 16.7388
-- 17.3585
-- 18.3078
-- 18.5338
 onsets:
 - 2.3244
 - 3.0053
@@ -77,5 +73,13 @@ onsets:
 - 17.3585
 - 18.3078
 - 18.5338
-notes: "peakRate suggestions \u2014 unverified; may include subdivisions and spurious\
-  \ events"
+notes: "Owner-verified 2026-08-11 (rung 1.5, calibration clip 1 of 2). Convention:\
+  \ docs/evals/annotation-convention.md \u2014 tactus only, vocalized only, vowel\
+  \ onsets. 24 beats over 2.32-15.65 s. Owner excluded the final ~3 s (4 seeded events\
+  \ after 15.65 s) as not needed. Correction vs frozen onsets (time-matched, +/-120\
+  \ ms): kept 17, deleted 11, added 7; median |nudge| 6.0 ms, max 43.8 ms. Grid-implied\
+  \ BPM 104.01 vs case label 104 (+0.01%) - within the 4% check. IOI 0.485-0.681 s,\
+  \ CV 7.7%. Owner note: labels were repositioned rather than deleted during the first\
+  \ pass (Audacity deletion not yet known); owner confirmed each was placed on a beat\
+  \ actually heard, and the unwanted trailing labels were deleted before the final\
+  \ export."

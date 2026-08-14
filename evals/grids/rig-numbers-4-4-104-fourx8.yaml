@@ -1,9 +1,9 @@
 format: 1
 clip: rig-numbers-4-4-104-fourx8
-provisional: true
+provisional: false
 media: audio/rig/rig-numbers-4-4-104-fourx8.mp3
 media_sha256: 33c5c865bfde554889c844ccbb061632756214f0eb718c3b22e06e99e922572c
-annotator: peakrate-tap-assist/1
+annotator: owner-verified (peakrate-tap-assist/1 seed)
 created_at: '2026-08-11T22:42:28+00:00'
 params:
   sr: 16000
@@ -20,7 +20,6 @@ params:
   pitch_floor_hz: 75.0
   pitch_ceiling_hz: 450.0
 beats:
-- 2.1958
 - 2.3857
 - 3.0257
 - 3.5756
@@ -28,34 +27,28 @@ beats:
 - 4.7187
 - 5.3308
 - 5.8588
-- 6.1588
 - 6.4423
 - 7.0268
+- 7.6133
 - 8.1852
 - 8.7537
 - 9.3218
+- 9.8801
 - 10.4519
 - 11.0275
 - 11.6516
 - 12.2018
-- 12.397
 - 12.7448
 - 13.3488
 - 13.8856
-- 14.0331
 - 14.5052
 - 15.065
 - 15.6171
 - 16.2214
-- 16.4502
 - 16.8452
-- 17.135
 - 17.3811
-- 17.5538
 - 17.9412
-- 18.0629
 - 18.5093
-- 18.7473
 - 19.1088
 - 19.6718
 - 20.2912
@@ -99,5 +92,22 @@ onsets:
 - 19.1088
 - 19.6718
 - 20.2912
-notes: "peakRate suggestions \u2014 unverified; may include subdivisions and spurious\
-  \ events"
+notes: 'Owner-verified 2026-08-12 (rung 1.5). Convention: docs/evals/annotation-convention.md
+  - tactus only. 32 beats = 4 rounds of 8, 2.39-20.29 s. Correction vs frozen onsets
+  (+/-120 ms): kept 30, deleted 9, added 2; median |nudge| 0.0 ms. Grid-implied BPM
+  104.94 vs case label 104 (+0.90%). IOI 0.522-0.640 s, CV 5.5%, no short IOIs, no
+  gaps.
+
+  FINDING (parked): third silent Whisper round-drop of the session - 24 tokens = 3
+  rounds against 32 voiced beats; 23/32 beats have a token within 250 ms. Where tokens
+  exist they are well placed (median offset -12.1 ms).
+
+  DIAGNOSTIC on a known red row: the blessed baseline scores this case counts=wrong
+  (predicted 8, expected 32, failure_mode counts_wrong) while tempo and meter_triple
+  are green. The verified grid shows TWO independent causes stacked. (1) The predicted
+  8 is counts-per-phrase against a case that expects the whole clip as one 32-count
+  phrase - a phrase-semantics mismatch, unrelated to the round-drop. (2) Even with
+  that fixed, the row could not go green: the token stream holds only 24 of the 32
+  counts, so a corrected summing implementation would answer 24, not 32. The second
+  cause was invisible before a human grid existed to compare against. Not acted on
+  this rung.'

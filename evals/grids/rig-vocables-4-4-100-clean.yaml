@@ -1,9 +1,9 @@
 format: 1
 clip: rig-vocables-4-4-100-clean
-provisional: true
+provisional: false
 media: audio/rig/rig-vocables-4-4-100-clean.mp3
 media_sha256: d866a660dafba0f156e5f34767ec2e51cd5ec95d5b2a7d2ee5015a9aa92a418f
-annotator: peakrate-tap-assist/1
+annotator: owner-verified (peakrate-tap-assist/1 seed)
 created_at: '2026-08-11T22:42:28+00:00'
 params:
   sr: 16000
@@ -21,29 +21,21 @@ params:
   pitch_ceiling_hz: 450.0
 beats:
 - 2.4685
-- 2.8213
-- 2.944
-- 3.1372
+- 3.1504
 - 3.7106
-- 3.9741
 - 4.3041
 - 4.8581
-- 5.1581
 - 5.4813
-- 5.782
 - 6.1137
-- 6.4041
 - 6.6797
-- 7.8682
-- 8.4598
-- 8.7634
+- 7.2745
+- 7.8974
+- 8.463
 - 9.0625
-- 9.3822
-- 9.9745
+- 9.7017
 - 10.2792
 - 10.8412
 - 11.3997
-- 11.7787
 onsets:
 - 2.4685
 - 2.8213
@@ -69,5 +61,20 @@ onsets:
 - 10.8412
 - 11.3997
 - 11.7787
-notes: "peakRate suggestions \u2014 unverified; may include subdivisions and spurious\
-  \ events"
+notes: 'Owner-verified 2026-08-12 (rung 1.5). Convention: docs/evals/annotation-convention.md
+  - tactus only. 16 beats = 2 rounds of 8, 2.47-11.40 s. Correction vs frozen onsets
+  (time-matched, +/-120 ms): kept 14, deleted 10, added 2; median |nudge| 0.0 ms,
+  max 29.2 ms. Grid-implied BPM 101.10 vs case label 100 (+1.10%) - within the 4%
+  check, and an independent confirmation of the case''s 2-rounds-of-8 structure (the
+  owner annotated by ear without consulting the expect block).
+
+  HIGH-STAKES GRID, two reasons. (1) It is the only annotation this clip can ever
+  have: Whisper does not mistime these vocables, it deletes them - the whole ~9.5
+  s phrase returns as a single untimed token, so there is no word stream to cross-check
+  against. (2) It is the entire vocables slice (n=1), and the re-expressed rung-2
+  gate (annotation-convention.md section 2) requires a decisive vocables win measured
+  against exactly this grid.
+
+  peakRate kept 14 of 16 true beats here - better recall than it managed on the step_names
+  calibration clip, which is evidence the acoustic channel is viable on non-lexical
+  speech precisely where the ASR channel collapses.'

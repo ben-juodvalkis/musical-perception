@@ -1,9 +1,9 @@
 format: 1
 clip: rig-names-4-4-104-coda
-provisional: true
+provisional: false
 media: audio/rig/rig-names-4-4-104-coda.mp3
 media_sha256: e953e658322a1a26b794ce50bdbe8df1b796e8ddb0f75431f88d2a8251d2a9c7
-annotator: peakrate-tap-assist/1
+annotator: owner-verified (peakrate-tap-assist/1 seed)
 created_at: '2026-08-11T22:42:27+00:00'
 params:
   sr: 16000
@@ -20,58 +20,35 @@ params:
   pitch_floor_hz: 75.0
   pitch_ceiling_hz: 450.0
 beats:
-- 2.7885
+- 2.3965
 - 2.9306
-- 3.0678
-- 3.2658
 - 3.4921
-- 3.7645
-- 4.0911
 - 4.2625
 - 4.7284
 - 5.3404
 - 5.8953
 - 6.4813
 - 7.045
-- 7.3083
 - 7.5912
-- 7.875
-- 8.1191
-- 8.2681
-- 8.514
-- 8.7343
+- 8.1437
+- 8.7573
 - 9.3347
 - 9.8239
 - 10.4843
-- 10.8475
-- 11.1358
 - 11.6687
-- 11.8093
-- 12.0488
-- 12.2137
-- 12.527
+- 12.1877
 - 12.8362
-- 13.0027
 - 13.3706
 - 13.9162
+- 14.4956
 - 15.1609
-- 15.2937
 - 15.66
+- 16.2875
 - 16.7972
-- 17.9046
-- 18.4492
+- 17.3717
+- 17.9469
+- 18.5605
 - 19.1096
-- 20.4147
-- 20.629
-- 20.7541
-- 20.9022
-- 21.108
-- 21.3402
-- 21.486
-- 21.6137
-- 21.8638
-- 22.1075
-- 22.2979
 - 25.9115
 - 26.0615
 - 26.2457
@@ -149,5 +126,22 @@ onsets:
 - 32.7686
 - 33.0507
 - 33.9959
-notes: "peakRate suggestions \u2014 unverified; may include subdivisions and spurious\
-  \ events"
+notes: 'Owner-verified 2026-08-13 (rung 1.5). Convention: docs/evals/annotation-convention.md
+  - tactus only; ruling (e), annotate through transitions (port de bras, balance)
+  wherever voiced. 41 beats, 2.40-34.00 s. Correction vs frozen onsets (+/-120 ms):
+  kept 37, deleted 27, added 4; median |nudge| 0.0 ms, max 111.3 ms.
+
+  TWO-TEMPO CLIP - the owner reports ''that end is out of time'', and the data agrees.
+  Split at the 6.8 s break after 19.110 s: IN-TIME BODY 29 beats, 2.40-19.11 s, within-phrase
+  BPM 106.44 vs case label 104 (+2.35%), CV 10.9% - passes the 4% check. CODA 12 beats,
+  25.91-34.00 s, IOIs 0.150-2.938 s, CV 121.5%, no stable period - free time. The
+  whole-clip BPM (107.49) is not a meaningful single number here; the body figure
+  is the one to use.
+
+  METHOD NOTE: this clip produces the FIRST FALSE POSITIVES from the short-IOI check.
+  All six flagged intervals (0.150 / 0.184 / 0.253 / 0.227 / 0.237 / 0.282 s) fall
+  inside the coda and are genuine fast marking, not stray labels - every previous
+  short-IOI flag this session was a real error. The check must therefore be evaluated
+  against a SEGMENT''s own tempo and suppressed in owner-declared free-time regions,
+  exactly as the IOI-spread check must be computed within-phrase. Refines the workflow
+  amendment recommended in the rung-1.5 ledger entry.'

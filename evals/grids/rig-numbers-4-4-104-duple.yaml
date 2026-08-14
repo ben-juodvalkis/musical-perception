@@ -1,9 +1,9 @@
 format: 1
 clip: rig-numbers-4-4-104-duple
-provisional: true
+provisional: false
 media: audio/rig/rig-numbers-4-4-104-duple.mp3
 media_sha256: d2f6714f4db200a58e8f09278604028ad83f1c4c7ae8f60d74fe45da671bab31
-annotator: peakrate-tap-assist/1
+annotator: owner-verified (peakrate-tap-assist/1 seed)
 created_at: '2026-08-11T22:42:27+00:00'
 params:
   sr: 16000
@@ -21,30 +21,21 @@ params:
   pitch_ceiling_hz: 450.0
 beats:
 - 2.3712
-- 2.658
 - 2.9846
-- 3.2159
 - 3.5167
-- 3.8078
 - 4.0985
-- 4.9793
-- 5.2658
+- 4.6806
+- 5.1933
 - 5.8161
-- 6.0898
 - 6.4408
-- 6.6887
 - 6.989
-- 7.8705
+- 7.6252
 - 8.1705
 - 8.754
-- 8.997
 - 9.3197
-- 9.5945
 - 9.8808
-- 10.1713
 - 10.4312
 - 10.9727
-- 11.2699
 onsets:
 - 2.3712
 - 2.658
@@ -71,5 +62,12 @@ onsets:
 - 10.4312
 - 10.9727
 - 11.2699
-notes: "peakRate suggestions \u2014 unverified; may include subdivisions and spurious\
-  \ events"
+notes: 'Owner-verified 2026-08-12 (rung 1.5). Convention: docs/evals/annotation-convention.md
+  - tactus only, ''and''s excluded. 16 beats = 2 rounds of 8, 2.37-10.97 s (shortest
+  clip in the corpus). Correction vs frozen onsets (+/-120 ms): kept 14, deleted 11,
+  added 2; median |nudge| 0.0 ms, one nudge at 72.5 ms. Grid-implied BPM 106.06 vs
+  case label 104 (+1.98%). IOI 0.513-0.636 s, CV 6.3%, no short IOIs, no gaps.
+
+  Whisper alignment vs verified truth: 32 tokens = exactly 16 x 2, and the nearest
+  token to each beat is a number on 16/16 beats; median signed offset -16.0 ms (early),
+  median |offset| 35.6 ms. Best ASR alignment measured against verified truth so far.'

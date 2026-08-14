@@ -363,5 +363,34 @@ onsets:
 - 70.8443
 - 71.9119
 - 73.1092
-notes: "peakRate suggestions \u2014 unverified; may include subdivisions and spurious\
-  \ events"
+notes: 'peakRate suggestions - unverified; may include subdivisions and spurious events.
+
+  RUNG 1.5: DELIBERATELY LEFT PROVISIONAL (2026-08-14), second of two declines. The
+  owner annotated a sparse 11-mark pass against the video and we then tested whether
+  those marks form a usable grid. They do not, and the reason is a substantive finding
+  rather than a gap in the work.
+
+  THE PULSE IS NOT IN THE AUDIO. The owner''s own account: ''he''s almost always just
+  explaining really quickly... as an accompanist I would only really know which tempo
+  to follow since I know plies are slow.'' The teacher speaks fast over a slow exercise,
+  so the musical pulse is almost entirely UNVOICED and is recovered from exercise
+  knowledge, not from anything an acoustic or ASR channel can hear. Ruling (b), vocalized-only,
+  therefore cannot represent this clip''s tempo - the clearest evidence in the corpus
+  of that convention''s hard limit.
+
+  TEMPO CONFIRMED, BEAT TIMES NOT. Fitting a single period to the sparse marks: with
+  three tight pairs removed (two syllables inside one beat, not two beats) the best-fitting
+  period is 0.5080 s = 118.1 BPM, matching the case label of 118 almost exactly -
+  the first human confirmation of that label. But the residual scatter is ~90 ms rms
+  regardless of which subset is fitted (all marks 107.1 BPM / 90 ms; without tight
+  pairs 118.1 BPM / 91 ms; dropping the other member 72.9 BPM / 91 ms). 90 ms exceeds
+  the +/-70 ms stage-1 matching tolerance, so these marks locate the TEMPO but not
+  the BEATS. Asserting a grid would inject ~90 ms of noise into exactly the metric
+  the grids exist to protect.
+
+  Marks also fall on ordinary syllables (''with'', ''that'', ''goes'', ''the'') rather
+  than counts, consistent with speech that is near the pulse without being locked
+  to it.
+
+  CONSEQUENCE: no verified grid for the plie slot; stage1 numbers for this clip stay
+  provisional and gate nothing.'
