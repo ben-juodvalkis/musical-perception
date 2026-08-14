@@ -1,9 +1,9 @@
 format: 1
 clip: rig-names-4-4-104-explained
-provisional: true
+provisional: false
 media: audio/rig/rig-names-4-4-104-explained.mp3
 media_sha256: d9ed84738568b4f9115d481a9e999955e7e48c362008a5dd94060330e959d3ca
-annotator: peakrate-tap-assist/1
+annotator: owner-verified (peakrate-tap-assist/1 seed)
 created_at: '2026-08-11T22:42:27+00:00'
 params:
   sr: 16000
@@ -21,34 +21,18 @@ params:
   pitch_ceiling_hz: 450.0
 beats:
 - 2.4204
-- 2.5743
 - 2.9465
 - 3.5268
-- 3.7753
 - 4.0507
 - 4.6637
 - 5.2935
-- 5.4187
 - 5.8677
 - 6.4332
-- 6.5807
 - 7.0215
 - 7.6082
 - 8.1801
-- 8.5297
-- 8.7715
-- 9.0651
-- 9.2493
-- 9.9261
-- 10.166
-- 10.3987
-- 11.2987
-- 11.5021
-- 11.6602
-- 11.8436
 - 13.3972
 - 13.9645
-- 14.1086
 - 14.4987
 - 15.0318
 - 15.6098
@@ -58,9 +42,10 @@ beats:
 - 18.5161
 - 19.0775
 - 19.6523
-- 19.7937
 - 20.2572
+- 20.9526
 - 21.44
+- 21.9938
 onsets:
 - 2.4204
 - 2.5743
@@ -103,5 +88,21 @@ onsets:
 - 19.7937
 - 20.2572
 - 21.44
-notes: "peakRate suggestions \u2014 unverified; may include subdivisions and spurious\
-  \ events"
+notes: 'Owner-verified 2026-08-13 (rung 1.5). Convention: docs/evals/annotation-convention.md
+  - tactus only; ruling (d) applied without exception to the explanation. 26 beats,
+  2.42-21.99 s. Correction vs frozen onsets (+/-120 ms): kept 24, deleted 17, added
+  2; median |nudge| 0.0 ms. Grid-implied BPM 103.81 vs case label 104 (-0.19%); within-phrase
+  IOI CV 7.1%.
+
+  TWO GAPS, TWO DIFFERENT MEANINGS - and the file cannot tell them apart. (1) After
+  8.180 s, a 5.217 s gap (9.03x median): the explanation (''now make sure when you
+  tendu that you''re really lengthening from the floor''), excluded under ruling (d).
+  No beats exist there - the pulse was not being marked. 15 of the 17 deletions fall
+  inside it. (2) After 17.378 s, a 1.138 s gap (1.97x): ONE unvoiced beat at approximately
+  17.95 s, where the pulse continued but nothing was said - a ruling (b) silent beat.
+
+  Both appear in `beats` as holes in a flat list of times, and the distinction is
+  unrecoverable from the file. This is the C6 no-tagging limitation (annotation-convention.md
+  section 3) in a new form: a consumer cannot separate ''no beat existed here'' from
+  ''a beat existed and was silent''. Only these notes carry it, which matters for
+  any later attempt to reconstruct full metric grids.'
