@@ -1,9 +1,9 @@
 format: 1
 clip: rig-names-2-4-120-clean
-provisional: true
+provisional: false
 media: audio/rig/rig-names-2-4-120-clean.mp3
 media_sha256: 8b222fd1302dce98d7d33d00c3447751557b3ae41bd68ddbbc256b639856ebe6
-annotator: peakrate-tap-assist/1
+annotator: owner-verified (peakrate-tap-assist/1 seed)
 created_at: '2026-08-11T22:42:27+00:00'
 params:
   sr: 16000
@@ -23,7 +23,6 @@ beats:
 - 2.046
 - 2.561
 - 3.1392
-- 3.387
 - 3.6351
 - 4.0995
 - 4.5595
@@ -31,7 +30,7 @@ beats:
 - 6.087
 - 6.5385
 - 7.0869
-- 7.2947
+- 7.6181
 - 8.0729
 - 8.5681
 - 9.0912
@@ -42,10 +41,10 @@ beats:
 - 12.0908
 - 12.6017
 - 13.1042
-- 13.2329
 - 13.6201
 - 14.0765
 - 14.5585
+- 15.0627
 - 15.5243
 - 16.0363
 onsets:
@@ -77,5 +76,27 @@ onsets:
 - 14.5585
 - 15.5243
 - 16.0363
-notes: "peakRate suggestions \u2014 unverified; may include subdivisions and spurious\
-  \ events"
+notes: 'Owner-verified 2026-08-13 (rung 1.5). Convention: docs/evals/annotation-convention.md
+  - tactus only. 27 beats, 2.05-16.04 s. The marking level is the ''and'' level (front
+  AND close AND ...), which the BPM check confirms: within-phrase BPM 119.51 vs case
+  label 120 (-0.66%). Correction vs frozen onsets (+/-120 ms): kept 25, deleted 3,
+  added 2; median |nudge| 0.0 ms.
+
+  SILENT BEATS (ruling (b)) - first grid in the corpus to carry them. Two phrase breaks,
+  owner-confirmed by ear: a ~2-beat gap before the beat at 6.087 s (silent beat around
+  5.60 s) and another before 10.112 s (silent beat around 9.60 s). Both fall exactly
+  at the transcript''s phrase boundaries. The pulse continued; nothing was voiced;
+  so no labels, per the vocalized-only ruling. Recorded here so a later taggable-format
+  rung can reconstruct the full metric grid.
+
+  METHOD NOTE: overall IOI CV is 25.6%, but that is entirely the two legitimate phrase
+  breaks. Within-phrase (24 intervals, breaks excluded) the range is 0.452-0.578 s
+  and CV is 6.4% - squarely in the corpus norm. The IOI-spread check must be computed
+  within-phrase or every clip containing a rest reads as a broken grid; same principle
+  as Standing Lesson 5, where boundary intervals are censored rather than averaged
+  in.
+
+  QC: the owner''s first export carried one leftover within-word extra at 13.233 s,
+  129 ms after the beat at 13.104 s - the same re-fire mode as the ''seven''/''five''/''eight''
+  strays on the numbers clips. Caught by the short-IOI check and removed on re-listening.
+  Third such catch this session.'
