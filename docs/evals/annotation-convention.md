@@ -145,7 +145,7 @@ intervals) is an instruction to the **scorer**, not to the annotator. Verified
 grids will therefore contain genuinely non-isochronous intervals at phrase
 boundaries, and any consumer assuming isochrony must do its own censoring.
 
-## 2. Rung-2 gate (re-expressed 2026-08-14 — PROPOSED, awaiting owner blessing)
+## 2. Rung-2 gate (re-expressed and BLESSED by the owner, 2026-08-14)
 
 The pre-registered margins (+15 points step_names, +30 points vocables) were
 set against *provisional* grids and are void: they named a step_names baseline

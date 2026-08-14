@@ -1,6 +1,6 @@
 # Eval Baseline
 
-Generated 2026-08-09T04:52:35+00:00 at git `15b8164` by `python -m musical_perception.evals bless`. Do not edit by hand.
+Generated 2026-08-14T17:36:47+00:00 at git `0b93bc5` by `python -m musical_perception.evals bless`. Do not edit by hand.
 
 Outcomes are **correct / wrong / abstained** — abstention is never
 counted as wrong (ADR-009). n is small; intervals are the honest part.
@@ -17,12 +17,20 @@ gates nothing; outcomes above are unaffected by it.
 | meter_triple | 25 | 24 | 1 | 0 | 0.96 | [0.805, 0.993] | — | meter_wrong×1 |
 | tempo | 25 | 25 | 0 | 0 | 1.0 | [0.867, 1.0] | — | — |
 
+tempo n=25: Acc1 1.0@4% 1.0@8% · Acc2 1.0@4% 1.0@8% · OE1 median 0.0 · |OE2| median 0.0 (max 0.0478) · between-levels rows 0
+
 ## tier1 (30 cases)
 
 | field | n | correct | wrong | abstained | accuracy | wilson 95% | truth in family | failure modes |
 |---|---|---|---|---|---|---|---|---|
 | counts | 28 | 12 | 9 | 7 | 0.571 | [0.365, 0.755] | — | counts_wrong×9 |
-| meter_triple | 29 | 10 | 18 | 1 | 0.357 | [0.207, 0.542] | — | tempo_wrong×6, subdivision_wrong×5, meter_wrong×5, equivalent_reading×2 |
+| meter_triple | 29 | 11 | 17 | 1 | 0.393 | [0.236, 0.576] | — | tempo_wrong×6, meter_wrong×5, equivalent_reading×2, subdivision_wrong×4 |
 | sides | 2 | 2 | 0 | 0 | 1.0 | [0.342, 1.0] | — | — |
 | slot | 4 | 4 | 0 | 0 | 1.0 | [0.51, 1.0] | — | — |
-| tempo | 29 | 16 | 12 | 1 | 0.571 | [0.391, 0.735] | 3/12 | tempo_error×9, metric_level_div2×2, metric_level_x2×1 |
+| tempo | 30 | 17 | 12 | 1 | 0.586 | [0.407, 0.745] | 3/12 | tempo_error×9, metric_level_div2×2, metric_level_x2×1 |
+
+tempo n=29: Acc1 0.379@4% 0.586@8% · Acc2 0.483@4% 0.69@8% · OE1 median 0.0055 · |OE2| median 0.0604 (max 0.491) · between-levels rows 11
+
+## stage1 (pulse vs beat grids — PROVISIONAL, gates nothing)
+
+whisper-word-starts ±0.07s: P 0.597 R 0.66 F 0.627 over 2 clips; asynchrony mean 2.2 ms

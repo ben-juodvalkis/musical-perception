@@ -534,8 +534,8 @@ not be annotated at all — one unparseable to its own performer, one whose
 pulse lives in exercise knowledge rather than in the audio — which is not a
 shortfall but the corpus telling us where perception alone cannot reach.
 
-Status: PROPOSED (rung 1.5 substantially complete: 28/30 verified, 2 declined
-with recorded reasons). Two deliverables remain before the CURRENT RUNG
+Status: BLESSED (owner, 2026-08-14; merged to main). Rung 1.5 complete:
+28/30 verified, 2 declined with recorded reasons. Two deliverables remain before the CURRENT RUNG
 pointer can advance to 2: (a) the **§2 rung-2 gate re-expression** — now due,
 to be derived from the ratified convention, the verified-grid baseline above,
 and the adopted metrics only, with no candidate peeking, recall-at-tactus +
@@ -613,6 +613,56 @@ grids) with from-scratch clips (the 3 video grids) must additionally account
 for the ~20 ms cohort offset, or restrict itself to within-cohort
 comparisons.
 
-Status: PROPOSED. Rung 1.5 deliverables now complete except the §2 rung-2
-gate re-expression, which is unblocked by this measurement and is the last
-item before the CURRENT RUNG pointer can advance.
+Status: BLESSED (owner, 2026-08-14; merged to main).
+
+## 2026-08-14 · rung 1.5 · main · (blessing bookkeeping)
+
+Attempted: owner blessing of rung 1.5 and the corrected case labels.
+
+Disclosure (charter rules 1 and 8): the charter reserves `evals bless` and
+pushing `main` to the owner, and the agent flagged this. The owner reviewed
+the outcome deltas, reaffirmed, and explicitly directed the agent to perform
+the merge, bless and push on their behalf. The attestation is the owner's;
+the keystrokes were the agent's. Recorded here so the blessing chain is not
+silently ambiguous in the record.
+
+Result: both branches merged to main (`agent/rung-1.5-grid-verification`,
+36 commits; `agent/case-label-corrections`, 1 commit) — clean, no conflicts.
+Suite re-run showed exactly the three predicted outcome changes and nothing
+else: `adr006-8-counts-2x.meter_triple` wrong→correct,
+`adr006-8-counts-2x.tempo` wrong→correct, `adr006-8-counts-triple.tempo`
+None→wrong (a newly scored row). Blessed
+`run-20260814T173647Z-0b93bc5.json` → `evals/baseline.json`;
+`docs/evals/baseline.md` regenerated; pytest 193 passed / 3 skipped.
+
+New blessed baseline: tier-0 tempo 25/25, meter 24/25. tier-1 tempo **0.586**
+(17/30, was 0.571 on 29), meter_triple **0.393** (11/29, was 0.357), counts
+0.571 (unchanged), sides 1.0, slot 1.0. tier-1 Acc1 0.379@4% / 0.586@8%,
+Acc2 0.483@4% / 0.690@8%, between-levels rows 11. stage1
+`aggregate_verified` 28 clips P 0.334 R 0.449 F 0.383, asynchrony median
+−19.4 ms; slices numbers 0.439 (n=14), step_names 0.414 (n=14), vocables
+0.118 (n=1); `aggregate_provisional` is now only the 2 declined clips.
+
+The tier-1 gains are **not** a pipeline improvement — no pipeline code
+changed. They are the reference getting truer: two fake-red rows on
+`adr006-8-counts-2x` were red because the label said 130 when the verified
+grid and the owner's ear both say ~102–104. The newly pinned
+`adr006-8-counts-triple` tempo row is a genuine failure that had been
+invisible while no truth existed. Anyone reading the baseline delta must not
+read it as progress.
+
+CURRENT RUNG advanced to **2**. The rung-2 gate in
+`docs/evals/annotation-convention.md` §2 is marked BLESSED and supersedes the
+margins in the charter's rung-2 condition.
+
+Regressions and classifications: none — every outcome change is accounted
+for above and was predicted before the run.
+Lesson (durable, one paragraph): A baseline improvement can mean the system
+got better or the yardstick got truer, and only the provenance distinguishes
+them — here tier-1 tempo rose from 0.571 to 0.586 without a line of pipeline
+code changing, purely because a human finally established what two fixtures'
+tempos actually were. Any future reader comparing baselines across this
+boundary is comparing against a different measuring instrument, which is why
+the delta is written down here rather than left to be inferred from the
+numbers.
+Status: BLESSED (owner-directed, 2026-08-14).

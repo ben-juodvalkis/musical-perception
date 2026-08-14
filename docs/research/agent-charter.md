@@ -7,16 +7,13 @@
 [RESEARCH-LOG.md](RESEARCH-LOG.md) (the memory),
 [agent-environment.md](agent-environment.md) (cloud setup).
 
-> **CURRENT RUNG: 1.5 — owner verification of the 30 provisional beat
-> grids.** Agent sessions assist as scribe/tooling only (to-labels /
-> from-labels, correction stats, ledger notes); `--verified` is applied
-> only at the owner's word. Rung 2 unlocks when grids are verified.
-> (Rung 1 blessed 2026-08-11, merged from agent/rung-1-stage-scoring —
-> the supervised session. Rung 0 complete 2026-08-09. Autonomy mode:
-> rung-by-rung with daily blessings through rung 2; the dormant Rung M
-> below is commissioned — or not — at the rung-2 verdict.) The
-> owner edits this line when a rung is blessed. Sessions execute the
-> current rung and nothing else.
+> **CURRENT RUNG: 2 — the peakRate acoustic extractor kill-test.**
+> Rung 1.5 blessed 2026-08-14: 28 of 30 DEV grids owner-verified (802
+> beats), 2 declined with recorded reasons; annotation convention
+> ratified and amended (d′); annotator self-consistency measured; the
+> rung-2 gate re-expressed and blessed (see
+> docs/evals/annotation-convention.md §2 — it supersedes the margins in
+> the rung-2 condition below). Grids are now ground truth.
 
 ## Mission
 
@@ -173,7 +170,7 @@ Prereq: rung 1 blessed AND grids owner-verified. Deliverable: the
 acoustic pulse channel ([Review 1 "steal this first"](review-1-onsets-pcenters.md)),
 plus the Whisper-word-onset baseline scored on the same grids.
 
-> **Gate re-expression pending (2026-08-11, rule 9):** the margins in the
+> **Gate re-expressed and BLESSED (2026-08-14, rule 9):** the margins in the
 > condition below were pre-registered against *provisional* grids. Per the
 > owner-ratified annotation convention (`docs/evals/annotation-convention.md`
 > §6), the gate is re-expressed at the END of rung 1.5 — from the
