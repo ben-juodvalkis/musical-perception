@@ -70,13 +70,19 @@ flags, classified regressions).
 - **Ballet Barre 1 sections (re-assigned 2026-08-14, amending the
   2026-08-09 all-DEV ruling per the rung-1.5 report §8.1):** split
   **before any ingestion**, which cannot be redone later.
-  - **HELD-OUT (~one third, weak seal):** the owner selects randomly —
-    never by content (`ls Sections | sort -R | head -11`-style) — and
-    **moves the files off the Air to the main machine** before the first
-    ingestion session exists. The list lives on the main machine, never
-    in this repository. "Weak" because the source is public and thus
-    reconstructable in principle; the property being protected is
-    *never iterated on*, which physical removal provides.
+  - **HELD-OUT (~one third, weak seal), split at the EXERCISE level
+    (amended 2026-08-14):** the batch is 12 exercises, each with demo +
+    execution videos; demo and execution of one exercise are near-
+    duplicate data, so the unit of splitting is the exercise, never the
+    file (Vision 13's class-level-split rule applied). The owner draws
+    **4 of the 12 exercises at random — one from each quarter of the
+    barre order (1–3, 4–6, 7–9, 10–12), which is public metadata, never
+    by content** — and **moves ALL files of those exercises off the Air
+    to the main machine** before the first ingestion session exists. The
+    list lives on the main machine, never in this repository. "Weak"
+    because the source is public and thus reconstructable in principle;
+    the property being protected is *never iterated on*, which physical
+    removal provides.
   - **DEV (the remainder):** ingested per the protocol above; truth
     labels agent-proposed `provisional` until owner-verified.
   - The four existing video demos stay as they are (frozen traces,
