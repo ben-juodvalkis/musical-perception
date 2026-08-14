@@ -139,27 +139,87 @@ intervals) is an instruction to the **scorer**, not to the annotator. Verified
 grids will therefore contain genuinely non-isochronous intervals at phrase
 boundaries, and any consumer assuming isochrony must do its own censoring.
 
-## 2. Rung-2 gate re-expression (§6 of the decision brief)
+## 2. Rung-2 gate (re-expressed 2026-08-14 — PROPOSED, awaiting owner blessing)
 
-The pre-registered rung-2 margins (+15 points step_names, +30 points vocables)
-were set against *provisional* grids and shift with this convention. Per the
-owner's ruling — **Option 2** — the gate is re-expressed at the **end of rung
-1.5**, under these constraints:
+The pre-registered margins (+15 points step_names, +30 points vocables) were
+set against *provisional* grids and are void: they named a step_names baseline
+of 0.483 that no longer exists, and rung 1's belief that video clips were the
+easy slice was an artifact of machine-generated references (video macro F
+0.621 → 0.299 against verified truth).
 
-1. Derived from **only** the ratified convention, the verified-grid baseline
-   numbers, and the already-adopted metrics.
-2. **No candidate peeking** — no rung-2 extractor performance may inform the
-   threshold. Pre-registration is preserved by construction.
-3. Intended shape: **recall-at-tactus + level-collapsed precision** (a syllable
-   detector is not charged for correct sub-tactus events).
-4. **Vocables must remain a decisive-win requirement.** Whisper produces one
-   token for the entire `rig-vocables-4-4-100-clean` phrase; any acoustic
-   channel that does not win decisively there has not earned the reset.
-5. Owner-blessed before the CURRENT RUNG pointer advances to 2.
+Per the owner's **Option 2** ruling, this gate is derived from **only** the
+ratified convention, the verified-grid baseline, and the already-adopted
+metrics. **No candidate extractor has been built, run, or inspected.** The
+derivation below is auditable from committed artifacts.
 
-Recorded as a charter note at
-[agent-charter.md](../research/agent-charter.md) rung 2 so no future session
-reads the old margins as final.
+### 2.1 Metrics
+
+**recall-at-tactus (R@tac)** — fraction of verified tactus beats matched by a
+predicted event within ±70 ms, one-to-one. Unchanged from stage-1 recall;
+renamed because the reference is now human tactus truth.
+
+**level-collapsed precision (P_lc)** — predictions falling inside one
+inter-beat interval (slot boundaries at midpoints between consecutive verified
+beats) are clustered and charged **once**. A cluster containing an on-beat
+match is a true positive; a cluster with no on-beat member, and any prediction
+outside the annotated span, is a false positive. `P_lc = TP clusters / total
+clusters`. This stops a syllable-rate detector being charged for sub-tactus
+events it is correct to emit (ruling (a)'s accepted cost, fixed in the metric
+rather than the ground truth) while still penalising firing where no beat
+exists and firing at the wrong time.
+
+**F_lc** — harmonic mean of R@tac and P_lc.
+
+*Honesty note:* level-collapsing raises the **baseline** too — overall F 0.383
+→ F_lc 0.452, and `rig-numbers-4-4-80-triplet` 0.469 → 0.882, because
+Whisper's 48 triplet tokens collapse into 16 slots. The new metric raises the
+bar rather than lowering it.
+
+### 2.2 Baseline (whisper-word-starts, 28 verified grids, macro per slice)
+
+```
+                  n     R@tac   P_lc    F_lc
+ALL              28     0.449   0.506   0.452
+numbers          14     0.568   0.604   0.577
+step_names       13     0.349   0.363   0.343
+vocables          1     0.062   1.000   0.118
+```
+
+Slices are by the case's `count_style` tag; the three verified video clips
+fall inside `numbers` (adr010) and `step_names` (adr006-exercise-1-demo,
+frappe). `mixed` has no verified member and gates nothing.
+
+### 2.3 The gate
+
+Rung 2 passes if **all four** hold:
+
+1. **Primary — step_names recall.** `R@tac ≥ 0.499` on the step_names slice
+   (baseline 0.349, i.e. **+0.15 absolute**), the slice where the word channel
+   is weakest and the acoustic claim is strongest.
+2. **Consistency, not just the mean.** R@tac improves on **≥ 9 of the 13**
+   step_names clips. A margin carried by one or two clips does not pass.
+3. **Vocables — decisive, and n=1.** On `rig-vocables-4-4-100-clean`,
+   `R@tac ≥ 0.60` **and** `P_lc ≥ 0.50` (baseline R@tac 0.0625 — Whisper emits
+   one token for the whole phrase). This is a tenfold recall requirement on a
+   **single clip**, which is the entire vocables slice; it must never be quoted
+   as a slice average. It is the cleanest available test of whether an acoustic
+   channel earns its place.
+4. **No regression elsewhere.** numbers-slice `F_lc ≥ 0.527` (baseline 0.577
+   − 0.05). The acoustic channel may not buy step_names by breaking numbers.
+
+### 2.4 Reading the results
+
+- **F, P and R are trustworthy.** The self-consistency measurement found beat
+  *identification* perfectly reproducible (24/24 beats, both passes), so these
+  metrics carry no measurable annotator variance.
+- **Signed-asynchrony differences below ~25 ms are inside annotator noise** and
+  may not be claimed as results.
+- **Cohort offset.** 21 grids are seed-anchored, 3 are from-scratch, and the
+  methods differ by ~20 ms systematically. Asynchrony comparisons must be
+  within-cohort or must correct for it. F/P/R are unaffected.
+- Per charter rule 5, a documented **negative result** with per-clip evidence
+  satisfies rung 2 as fully as a pass, and ends it (ADR-016: the reset stops
+  and P2 strengthens).
 
 ## 3. Tooling constraint behind (b) and (e)
 
