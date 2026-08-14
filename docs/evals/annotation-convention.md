@@ -74,15 +74,48 @@ prep is deliberately **not** part of the phrase for the `counts` field. That is
 the counts contract; the grid is a different contract. Prep beats are in the
 grid and still outside the counted phrase — no contradiction.
 
-### (d) Explanation speech is never beats — categorically
+### (d) Explanation speech — SUPERSEDED by (d′) on 2026-08-14
 
-Speech that describes the step rather than counting it contributes **no** beats,
-with no case-by-case exception, even where it sounds in tempo.
+*Original ruling (v1):* explanation speech contributes no beats, categorically,
+even where it sounds in tempo. Justified on reproducibility.
 
-*Why:* a categorical rule survives being applied months apart by the same
-annotator; a judgment call does not. Reproducibility is worth more here than
-marginal fidelity. Affects `rig-names-4-4-104-explained` and
-`rig-numbers-4-4-104-explained`, which exist to test this boundary.
+**Clips annotated under v1:** `rig-numbers-4-4-104-explained`,
+`rig-names-4-4-104-explained`. Both have their explanation stretches excised.
+They are consistent with each other and flagged here; re-annotating them under
+(d′) is an owner decision, not yet taken.
+
+### (d′) Explanation speech IS eligible — owner amendment, 2026-08-14
+
+**Annotate every beat you hear voiced on the pulse, whether you are counting it
+or talking through it.** Framing talk that is not in tempo ("okay, from the
+top") still carries nothing, and genuinely free-time material carries nothing
+(see below).
+
+*Why the amendment (charter rule 9 — evidence against a standing rule):*
+
+1. **The pulse demonstrably continues through explanation.** In the two v1
+   clips, the excised explanation gaps span almost exactly whole numbers of
+   beats: 5.709 s = 9.92 beat periods (10 beats, off by 44 ms) and 5.217 s =
+   9.08 (9 beats, off by 44 ms). Landing within 44 ms of the grid after ~5.5 s
+   of talking is not chance — the teacher kept the pulse and resumed in phase.
+2. **It is the point of the system.** An accompanist must hold tempo *through*
+   the teacher talking. A grid that deletes those beats grades the wrong thing.
+3. **On teaching video, explanation is the majority of the audio**, not a brief
+   aside. Under v1 a video grid covers a small fraction of its clip and any
+   extractor that correctly finds beats in the rest is charged for all of them
+   as false positives — measuring the convention, not the extractor.
+4. **It removes a judgment step rather than adding one.** v1 required
+   classifying speech as counting-vs-explaining before annotating. (d′) leaves
+   only the question the annotator must answer anyway: *did I voice a beat on
+   the pulse here?* The original reproducibility argument for v1 was therefore
+   backwards.
+
+**Three kinds of hole, none distinguishable in the file** (the C6 limitation,
+§3): (i) in-tempo beats that went unvoiced — ruling (b) silent beats;
+(ii) free-time material (out-of-time demonstration, rubato coda) where no
+metric beat exists at all; (iii) framing talk. Only the grid `notes` record
+which is which, and silent-beat arithmetic must exclude free-time regions or it
+will count them as skipped beats.
 
 ### (e) Transitions — annotate continuously
 

@@ -1,9 +1,9 @@
 format: 1
 clip: adr010-grande-battement
-provisional: true
+provisional: false
 media: video/youtube/grande battement.mov
 media_sha256: 113b620db914bdcda7a8abf1ac6058ad971f2599c57097b74f10329bc8a80814
-annotator: peakrate-tap-assist/1
+annotator: owner-verified (REAPER video-synced, from scratch + refinement pass)
 created_at: '2026-08-11T23:03:20+00:00'
 params:
   sr: 16000
@@ -20,107 +20,42 @@ params:
   pitch_floor_hz: 75.0
   pitch_ceiling_hz: 450.0
 beats:
-- 0.5025
-- 0.6438
-- 0.8162
-- 0.9525
-- 1.1394
-- 1.2993
-- 1.541
-- 2.3625
-- 2.4997
-- 2.8425
-- 3.0006
-- 3.1278
-- 3.3261
-- 3.8077
-- 4.3095
-- 4.554
-- 5.1562
-- 5.5381
-- 5.7865
-- 6.3795
-- 6.7787
-- 6.9565
-- 7.335
-- 7.5629
-- 7.7239
-- 7.8983
-- 8.1228
-- 8.6938
-- 8.9986
-- 9.2741
-- 9.8494
-- 10.1967
-- 10.43
-- 10.7677
-- 11.0537
-- 11.4296
-- 11.6504
-- 12.1689
-- 12.3753
-- 12.5142
-- 12.7415
-- 13.7644
-- 14.32
-- 14.9475
-- 15.3972
-- 15.5363
-- 16.0404
-- 16.6037
-- 17.2682
-- 17.5495
-- 17.8037
-- 18.3367
-- 19.5078
-- 20.0237
-- 20.6753
-- 21.4076
-- 21.6735
-- 21.9197
-- 22.2647
-- 22.4384
-- 22.6088
-- 22.7651
-- 22.9288
-- 23.9242
-- 24.2015
-- 24.3649
-- 24.5232
-- 24.6813
-- 24.8351
-- 25.0737
-- 25.6912
-- 25.8414
-- 26.0152
-- 26.1678
-- 26.4048
-- 27.1345
-- 27.3316
-- 27.4872
-- 27.612
-- 28.0443
-- 28.6175
-- 28.7672
-- 28.9526
-- 29.1767
-- 29.9941
-- 30.1528
-- 30.4309
-- 31.0628
-- 31.4484
-- 31.7019
-- 32.1217
-- 32.3068
-- 32.7805
-- 32.9447
-- 33.5309
-- 33.8917
-- 34.1103
-- 35.2178
-- 35.6603
-- 35.9347
-- 36.1735
+- 3.7834
+- 4.5467
+- 5.144
+- 5.7307
+- 6.3493
+- 6.936
+- 7.5227
+- 8.1093
+- 8.664
+- 9.2293
+- 9.8587
+- 10.424
+- 10.9573
+- 11.5547
+- 12.1733
+- 12.696
+- 14.4667
+- 14.9787
+- 15.5867
+- 16.152
+- 16.696
+- 17.304
+- 17.7627
+- 18.3493
+- 19.4907
+- 19.996
+- 20.6427
+- 21.7093
+- 29.1373
+- 30.268
+- 30.9507
+- 31.6013
+- 32.348
+- 32.9347
+- 33.5213
+- 34.1187
 onsets:
 - 0.5025
 - 0.6438
@@ -223,5 +158,39 @@ onsets:
 - 35.6603
 - 35.9347
 - 36.1735
-notes: "peakRate suggestions \u2014 unverified; may include subdivisions and spurious\
-  \ events"
+notes: 'Owner-verified 2026-08-14 (rung 1.5). FIRST CLIP UNDER RULING (d''): explanation
+  speech is eligible and IS marked here - this is a teaching demo where the teacher
+  talks in tempo throughout, and the owner marked the pulse through the explanation.
+  See docs/evals/annotation-convention.md (d'').
+
+  36 voiced beats, 3.78-34.12 s. Annotated in REAPER against the VIDEO (markers read
+  from the .RPP in seconds), not in Audacity - the owner needed to see the demonstration
+  to locate accents and counts.
+
+  FROM SCRATCH, not seed-corrected: the peakRate seeds were deleted and all 36 marks
+  placed by the owner. Correction stats vs the frozen onsets are therefore unbiased
+  by anchoring: kept 35, deleted 66, added 1; median |offset| 32.6 ms.
+
+  ANCHORING / REACTION-LAG FINDING - the most important methodological result of the
+  session. The owner''s first pass was tapped live during playback and sat SYSTEMATICALLY
+  LATE: median +39.2 ms, mean +34.0 ms vs the nearest peakRate onset, 28 of 33 marks
+  later. A refinement pass (scrub and nudge, transport stopped) removed it: median
+  -13.5 ms, mean -10.4 ms, 12 later / 23 earlier. For contrast every seed-anchored
+  clip in the corpus reads exactly 0.0 ms by construction, because the owner left
+  correct-looking seeds untouched. So BOTH methods are biased - live tapping by ~+39
+  ms of reaction time, seed correction by anchoring toward peakRate - and the two
+  must not be mixed silently: signed asynchrony is a headline stage-1 metric, and
+  a 39 ms reference bias is over half the +/-70 ms tolerance. This clip is on the
+  refined (scrub-and-nudge) method; the 21 rig clips are seed-anchored.
+
+  Grid-implied BPM: within-phrase 102.27 vs case label 104 (-1.66%); whole-clip 100.45
+  (-3.42%), pulled down by the holes. Within-phrase IOI CV 10.5%, no short IOIs.
+
+  THREE KINDS OF HOLE, owner-adjudicated: (i) FREE TIME - a 7.428 s gap after 21.71
+  s is an out-of-time demonstration, and the description after the last mark at 34.12
+  s (5.3 s to clip end) is also out of time. No metric beats exist in either; they
+  must NOT be counted as skipped beats. (ii) SILENT BEATS (ruling (b)) - four gaps
+  at ~2x median after 12.70 / 18.35 / 20.64 / 29.14 s, one unvoiced beat each. (iii)
+  nothing else. So 36 voiced + 5 silent = 41 metric beats, alongside two free-time
+  regions. An earlier automated count of ''16 silent beats'' was wrong precisely because
+  it read the free-time demonstration as 12 skipped beats.'
