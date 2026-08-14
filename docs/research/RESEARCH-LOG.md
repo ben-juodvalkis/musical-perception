@@ -922,3 +922,31 @@ Status: PROPOSED (owner: bless rung 2 — the kill-test PASSES, the reset
 continues past its strategic fork; per the charter this is also the
 owner's decision point on commissioning Rung M, and rung 2.5 is next
 before any Barre-1 ingestion).
+
+## 2026-08-14 · rung 2 + M · main · (blessing + commissioning bookkeeping)
+
+Attempted: Owner blessing of rung 2 and commissioning of Rung M, both
+owner-directed in session ("yes do it all") — disclosure per the
+established pattern: the attestation is the owner's, the keystrokes the
+master agent's, recorded per-instance.
+Pre-registered expectations: n/a (governance).
+Result: `agent/rung-2-acoustic-pulse` merged to main (VERDICT: PASS —
+all four §2 gates, wide margins; no bless run needed, stage1 pins no
+outcomes and frozen suites were byte-stable). Convention corrections
+folded at the same touch: §2.1 now carries the pinned edge semantics
+from the rung-2 P0 validity gate (reference implementation
+scripts/rung2_kill_test.py; "a metric that exists only as prose is not
+yet a metric"), §2.4 cohort count corrected 21→25 anchored. Charter:
+CURRENT RUNG → M (COMMISSIONED); Rung M workstream ranking refreshed
+(W1 rung 2.5 → W8 RETIRED sweep, with rung-2's parked nuclei-floor item
+queued); rung-2 section carries its PASS verdict. Merged agent branches
+deleted (`agent/rung-1-stage-scoring`, `agent/rung-2-acoustic-pulse`).
+Regressions and classifications: n/a.
+Lesson (durable, one paragraph): The staged-autonomy bargain completed
+exactly as designed — the loop earned the marathon by three circuits of
+disclosed constraints, honest scorecards, and a self-declared BLOCK, and
+the commissioning decision was made at the pre-registered decision
+point, on a PASS verdict measured against human ground truth. Autonomy
+was granted at the moment the work became parallel and the foundations
+became verified, not before.
+Status: BLESSED (owner-directed, 2026-08-14). Marathon ACTIVE.
