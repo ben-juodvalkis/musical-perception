@@ -1,9 +1,9 @@
 format: 1
 clip: rig-names-2-4-160-long
-provisional: true
+provisional: false
 media: audio/rig/rig-names-2-4-160-long.mp3
 media_sha256: f041020f435a37ea3f9571cb09e3e069bf35cba1e3166cdada0f0107b36a04dd
-annotator: peakrate-tap-assist/1
+annotator: owner-verified (peakrate-tap-assist/1 seed)
 created_at: '2026-08-11T22:42:27+00:00'
 params:
   sr: 16000
@@ -27,32 +27,38 @@ beats:
 - 4.5813
 - 4.9187
 - 5.3412
-- 5.54
 - 6.0883
 - 6.4178
 - 6.8143
+- 7.2088
 - 7.5742
 - 7.9363
+- 8.3335
 - 9.069
 - 9.4289
 - 9.8228
+- 10.1526
 - 10.5374
 - 10.939
 - 11.3252
 - 12.1055
+- 12.4879
 - 12.8772
+- 13.2008
 - 13.6137
 - 13.9533
 - 14.315
 - 15.059
 - 15.4465
 - 15.845
+- 16.1876
 - 16.5446
 - 16.917
 - 17.2832
 - 18.1208
 - 18.4358
 - 18.8472
+- 19.5799
 - 19.9423
 - 20.294
 - 21.1758
@@ -62,10 +68,11 @@ beats:
 - 22.5733
 - 22.9164
 - 23.2432
-- 23.3639
 - 23.6809
+- 24.0601
+- 24.4964
 - 24.872
-- 25.3565
+- 25.2032
 - 25.5689
 onsets:
 - 3.0647
@@ -115,5 +122,21 @@ onsets:
 - 24.872
 - 25.3565
 - 25.5689
-notes: "peakRate suggestions \u2014 unverified; may include subdivisions and spurious\
-  \ events"
+notes: 'Owner-verified 2026-08-13 (rung 1.5). Convention: docs/evals/annotation-convention.md
+  - tactus only, vocalized only. 54 voiced beats, 3.06-25.57 s. Fastest clip in the
+  corpus: 160 BPM, 0.375 s beat period. Correction vs frozen onsets (+/-120 ms): kept
+  44, deleted 3, added 10 - the only clip where the owner ADDED more beats than peakRate
+  got wrong, because at this tempo the detector''s 120 ms minimum peak spacing is
+  a third of a beat period and it simply cannot resolve them all. median |nudge| 0.0
+  ms. Grid-implied BPM 159.76 vs case label 160 (-0.15%). Within-phrase IOI CV 9.7%.
+
+  SILENT BEATS (ruling (b)): 7 gaps, each ~2x median, after 5.341 / 8.333 / 11.325
+  / 14.315 / 17.283 / 18.847 / 20.294 s. The first four are spaced ~2.99 s apart =
+  8 beats, i.e. one unvoiced beat at the end of each 8-count. 54 voiced + 7 interior
+  silent = 61 against the case''s counts=64; the remaining 3 are most likely at the
+  edges, where gap-based detection is blind (see rig-names-3-4-90-clean notes).
+
+  QC: the owner''s first export carried a leftover within-word extra at ~23.364 s,
+  121 ms after the beat at 23.243 s - caught by the short-IOI check and removed on
+  re-listening. Removing it also moved the BPM check from +1.30% to -0.15%. Fourth
+  such catch this session.'
