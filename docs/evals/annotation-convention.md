@@ -272,6 +272,24 @@ which no rung-2 result can claim significance.
 Never run `annotation generate --force` on a corrected grid: it overwrites
 `beats` and destroys the human pass.
 
+### QC checks — owner amendment, 2026-08-14
+
+Ratified from rung-1.5 evidence (report §6.7): the step-5 BPM-vs-label
+check **false-passed** (+3.51%) on a grid carrying three spurious labels
+and a missing beat; what actually caught that error — and three further
+owner-export errors — were two checks not in the ratified workflow:
+
+- **Minimum-IOI check:** flag any inter-beat interval implausibly short
+  for the clip's tempo (a spurious double-mark signature).
+- **Within-phrase IOI-spread check:** flag excess IOI variance computed
+  *within* phrases, suppressed in free-time regions (a missing-beat or
+  stray-label signature that per-clip medians hide).
+
+Both are **required** parts of the per-clip workflow from this date,
+alongside (not replacing) the BPM-vs-label check. Implementation lands in
+rung 2.5 (the next annotation-tooling touch); until then, sessions run
+them ad hoc and record results in grid `notes`.
+
 ## 5. Provenance
 
 Provisional grids are peakRate suggestions and measure *words-vs-peakRate*, not

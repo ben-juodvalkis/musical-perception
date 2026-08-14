@@ -666,3 +666,36 @@ boundary is comparing against a different measuring instrument, which is why
 the delta is written down here rather than left to be inferred from the
 numbers.
 Status: BLESSED (owner-directed, 2026-08-14).
+
+## 2026-08-14 · rung — · (rung-1.5 report §8 rulings) · cloud
+
+Attempted: Master-agent responses to the rung-1.5 completion report's
+three open decisions, owner-confirmed ("go for it") in session.
+Pre-registered expectations: n/a (governance).
+Result: (1) **Barre-1 holdout carve-out** — amends the 2026-08-09 all-DEV
+assignment: the owner randomly selects ~one third of the 33 sections and
+moves them off the Air to the main machine BEFORE any ingestion; new
+taxonomy HELD-OUT (weak seal, public-source, never-iterated-on) vs
+SEALED (strong, owner capture only) written into the charter's splits.
+Rationale for the reversal: the rung-1.5 report correctly elevated the
+holdout gap to the project's largest structural risk, and the property
+that matters at this corpus size — never iterated on — is protected by
+physical removal regardless of source. (2) **QC checks ratified** into
+convention §4 (min-IOI + within-phrase IOI-spread, evidence-based: they
+caught four real errors the BPM check false-passed). (3) **Rung 2.5
+scheduled** — taggable grid format (additive-only; verified grids remain
+untouched) + QC implementation + annotation-method metadata, after rung
+2's verdict, before Barre-1 ingestion. Also countersigned: the (d′)
+amendment (the master agent's original (d) ruling was refuted by the
+9.92/9.08-beat-period gap evidence — recorded as such), and the
+owner-directed blessing pattern as acceptable with per-instance
+disclosure, never as a default.
+Regressions and classifications: n/a.
+Lesson (durable, one paragraph): A holdout decision is only available
+before iteration touches the data — it is the single irreversible step
+in every ingestion, which is why it now sits in the charter as a
+physical act (move files off the runner) rather than a labeling
+convention. And a ruling made on reproducibility grounds ((d)) fell to
+evidence within three days — conventions earn their keep by surviving
+contact with the corpus, not by sounding principled.
+Status: BLESSED (owner, 2026-08-14, in session).
