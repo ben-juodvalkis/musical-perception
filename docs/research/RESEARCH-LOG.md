@@ -699,3 +699,23 @@ convention. And a ruling made on reproducibility grounds ((d)) fell to
 evidence within three days — conventions earn their keep by surviving
 contact with the corpus, not by sounding principled.
 Status: BLESSED (owner, 2026-08-14, in session).
+
+## 2026-08-14 · rung — · (holdout executed) · owner action
+
+Attempted: The Barre-1 HELD-OUT carve-out, executed by the owner per the
+amended charter: 4 of the 12 exercises drawn at random (one per
+barre-order quarter, exercise-level split — demo and execution files
+move together), all their files saved to the main machine and deleted
+from the Air including the trash. **Which exercises were drawn is
+deliberately not recorded here** — the list exists only on the main
+machine, per the charter. The remaining 8 exercises' section videos stay
+on the Air as future DEV ingestion material.
+Pre-registered expectations: n/a.
+Result: Rung 2's prerequisites are now fully met (rung 1 blessed, 28/30
+grids verified, gate blessed, DEV media present, holdout physically
+removed from the runner). The kill-test is clear to run.
+Regressions and classifications: n/a.
+Lesson (durable): The holdout's protection is that agent sessions cannot
+enumerate it — so the ledger records THAT it exists and its size, never
+its contents. A holdout you can look up is not held out.
+Status: BLESSED (owner, 2026-08-14).
