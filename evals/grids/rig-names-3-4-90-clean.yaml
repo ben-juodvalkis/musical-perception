@@ -1,9 +1,9 @@
 format: 1
 clip: rig-names-3-4-90-clean
-provisional: true
+provisional: false
 media: audio/rig/rig-names-3-4-90-clean.mp3
 media_sha256: b52323354387800244d240173a6702f11ffe97bb58a4e626a550a9c9994a60c1
-annotator: peakrate-tap-assist/1
+annotator: owner-verified (peakrate-tap-assist/1 seed)
 created_at: '2026-08-11T22:42:27+00:00'
 params:
   sr: 16000
@@ -23,55 +23,46 @@ beats:
 - 8.1134
 - 8.8355
 - 9.4433
-- 9.5828
 - 10.0223
 - 10.7106
+- 11.3926
 - 12.0272
-- 12.1777
 - 12.6719
 - 13.4048
 - 14.0543
 - 14.735
 - 16.1058
-- 16.2312
 - 16.7655
-- 17.1943
+- 17.4829
 - 18.023
 - 18.7165
-- 19.0641
 - 19.3743
 - 20.1357
 - 20.6815
-- 20.9412
 - 21.275
 - 22.0246
+- 23.3841
 - 24.0793
 - 24.708
-- 25.1429
 - 25.3671
-- 25.4947
-- 25.7345
 - 25.9967
+- 26.7991
+- 27.4206
 - 28.0616
 - 28.7209
-- 28.8562
 - 29.4788
-- 29.7889
 - 30.0875
-- 30.2852
 - 30.7847
 - 32.1576
 - 32.7045
-- 32.8354
 - 33.3684
 - 34.1257
 - 34.7577
 - 35.4298
 - 36.0766
 - 36.6348
-- 36.7707
 - 37.3619
-- 37.4873
+- 37.9665
 onsets:
 - 8.1134
 - 8.8355
@@ -125,5 +116,19 @@ onsets:
 - 36.7707
 - 37.3619
 - 37.4873
-notes: "peakRate suggestions \u2014 unverified; may include subdivisions and spurious\
-  \ events"
+notes: 'Owner-verified 2026-08-13 (rung 1.5). Convention: docs/evals/annotation-convention.md
+  - tactus only, vocalized only. 43 voiced beats, 8.11-37.97 s. Correction vs frozen
+  onsets (+/-120 ms): kept 37, deleted 15, added 6; median |nudge| 0.0 ms. Grid-implied
+  BPM 90.98 vs case label 90 (+1.09%). Within-phrase IOI CV 9.6%, no short IOIs.
+
+  SILENT BEATS (ruling (b)): three gaps, each ~2.07x the 0.660 s median IOI, after
+  14.735 / 22.025 / 30.785 s - one unvoiced beat apiece. Voiced 43 + interior silent
+  3 = 46.
+
+  METHOD CAVEAT: gap-based silent-beat detection only sees silence BETWEEN voiced
+  beats. Unvoiced beats at the start or end of the marked passage leave no gap to
+  measure and are invisible to it. So 46 is a LOWER BOUND on this clip''s metric total,
+  not a claim about its structure - 48 (16 bars of 3/4) would require only two more
+  silent beats at the edges. Recorded as a bound rather than an assertion; contrast
+  rig-names-4-4-96-allegro and rig-names-4-4-63-adagio, where the interior-only count
+  landed exactly on 32 and the structure was self-confirming.'
