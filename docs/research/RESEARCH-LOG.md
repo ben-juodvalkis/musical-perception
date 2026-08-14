@@ -816,8 +816,109 @@ changes, no re-runs with different constants. A failure writes the
 negative-result entry with per-clip evidence and ends the rung
 (ADR-016: the reset stops, P2 strengthens).
 
-Result: PENDING — appended below in this entry at session end.
-Regressions and classifications: PENDING.
-Lesson (durable, one paragraph): PENDING.
-Status: IN-PROGRESS (pre-registration commit; the session completes this
-entry before ending).
+Result: **PASS — all four gate conditions hold.** Verdict from
+`scripts/rung2_kill_test.py` (committed analysis code; frozen scorer
+untouched); full artifacts in `docs/research/rung2-kill-test.{md,json}`
+and the extractor event streams in
+`docs/research/rung2-extractor-events.json`.
+
+*P0 (metric validity) passed:* the §2.2 baseline table reproduced
+EXACTLY (all 12 numbers) once the edge semantics were pinned by search
+over 24 variants — beat-centered midpoint slots, annotated span extended
+by half the MEDIAN IOI beyond the first/last beat, out-of-span
+predictions individually charged, TP = cluster containing a one-to-one
+±70 ms matched prediction, macro rows. Only this variant reproduces the
+table AND the honesty-note per-clip value (triplet 0.469 → 0.882); it is
+now the committed definition.
+
+*Blessed metrics, macro per slice (baseline → extractor):*
+
+```
+                 n    R@tac           P_lc            F_lc
+ALL             28    0.449 → 0.828   0.506 → 0.867   0.452 → 0.839
+numbers         14    0.568 → 0.926   0.604 → 0.931   0.577 → 0.926
+step_names      13    0.349 → 0.719   0.363 → 0.798   0.343 → 0.742
+vocables (n=1)   1    0.062 → 0.875   1.000 → 0.875   0.118 → 0.875
+```
+
+*Gate:* (1) step_names R@tac 0.719 ≥ 0.499 ✓ (+0.370 absolute, 2.5× the
+required margin). (2) improved on **12 of 13** step_names clips ✓; the
+one exception is a TIE, not a loss — rig-names-4-4-100-quiet at 0.312
+both systems. (3) vocables R@tac 0.875 ≥ 0.60 AND P_lc 0.875 ≥ 0.50 ✓
+(single clip, never a slice average; baseline was R 0.0625 — Whisper
+emitted one token for the phrase, the extractor 24 events, 14 of 16
+beats matched). (4) numbers F_lc 0.926 ≥ 0.527 ✓ — the no-regression
+slice improved by +0.349 instead. Stage-1 pooled over the 28 verified
+grids: whisper P 0.334 / R 0.449 / F 0.383 → acoustic P 0.645 / R 0.805
+/ F 0.716.
+
+*Prediction scorecard: 5 hits, 1 partial.* P1 ✓ 0.719 ∈ [0.70, 0.88] —
+at the LOW end of the range, not the ~0.80 point. P2 ✓ at the accept
+threshold (12 ≥ 12; the point prediction of 13 missed, and the risk
+reasoning was partly wrong: the predicted weak clips 160-long and
+adagio improved strongly, while the actual non-improver was quiet). P3
+partial: P_lc 0.875 ✓ ∈ [0.70, 1.0], but R@tac 0.875 ✗ below the
+predicted [0.94, 1.0] (2 of 16 beats lost). P4 ✓ 0.926 ∈ [0.80, 0.95].
+P5 ✓ 0.839 ∈ [0.75, 0.92]. P6 ✓ anchored-cohort extractor median
+0.0 ms (the predicted anchoring ARTIFACT — kept beats ARE detector
+events; not a placement claim), from-scratch +9.6 ms ∈ [0, +30], under
+the 25 ms noise floor so nothing is claimed; baseline −20.0 / −18.3 ms
+as recorded. P1's low end, P2's miss, and P3's miss all trace to ONE
+cause: the new nuclei-region gate trims recall harder than predicted on
+quiet or soft material — on rig-names-4-4-100-quiet it emitted 9 events
+for 16 beats where rung-1.5 measured ungated peakRate recall at 0.69,
+i.e. the q99−25 dB silence threshold, quantile-relative or not, bites
+when the whole clip is quiet (review-1 §1.2's failure mode, observed).
+
+*Honesty flags.* (a) **Anchoring inflates the rig margins:** on the 25
+seed-anchored grids, verified beats coincide with peakRate events
+wherever the owner kept the seed, so R@tac there partly measures "did
+the owner keep this event" — and the extractor's core IS the seeding
+detector. The gate was blessed knowing this provenance, so the PASS
+stands, but the anchor-free evidence is the from-scratch cohort: on the
+only two step_names video clips the improvement is real but small
+(exercise-1-demo 0.488 → 0.561, frappe 0.673 → 0.691), while the
+numbers video clip is large (adr010 0.389 → 0.694). Anyone reading the
+step_names +0.370 as anchor-free detection quality is over-reading it.
+(b) The vocables clip is also seed-anchored. (c) Extractor asynchrony
+sd 6.2 ms on anchored clips is the same artifact, not super-human
+placement.
+
+Regressions and classifications: none — tier-0 (tempo 25/25, meter
+24/25) and tier-1 (tempo 0.586, meter_triple 0.393, counts 0.571)
+byte-identical, "no outcome changes vs baseline"; the extractor is new
+precision-layer code not wired into the analyze pipeline; the frozen
+stage1 suite still scores whisper-word-starts and is unchanged. pytest
+198 passed / 3 skipped (5 new extractor tests). `git diff --stat main`:
+9 files — pulse.py, test_pulse.py, rung2_kill_test.py, this ledger,
+CLAUDE.md, and the three rung2 result artifacts + events cache under
+docs/research/; **0 files changed** under `evals/cases/`,
+`evals/traces/`, `evals/baseline.json`, or
+`src/musical_perception/evals/`.
+
+Backlog notes (rule 6, parked): (i) nuclei silence threshold fails on
+uniformly quiet clips — consider a floor relative to the clip's speech
+band rather than q99, in a future pipeline rung; (ii) the vocables
+clip's 2 dropped beats deserve a listen at rung 2.5's QC pass; (iii)
+the §2.4 cohort counts in the convention say 21 anchored / 3 scratch —
+the 4 session-2 audio grids (coda, bothsides, both adr006 counting
+clips) were also seed-anchored, so the honest split is 25/3; a one-line
+convention correction is owner business.
+
+Lesson (durable, one paragraph): The kill-test verdict is that the word
+channel loses to the acoustic channel categorically, not marginally —
+macro R@tac 0.449 → 0.828 with level-collapsed precision RISING — but
+the size of the win is partly a property of the measuring instrument:
+seed-anchored grids flatter the detector that seeded them, and the
+anchor-free video cohort shows the honest, smaller margin. The rung's
+second finding is methodological: a blessed gate whose metric has
+unstated edge semantics is not yet a gate — reproducing the committed
+baseline table EXACTLY (P0) forced every hidden choice into the open
+before any candidate number could be read, and without it this session
+could have picked among 24 variants whose step_names P_lc spans 0.334
+to 0.417. Freeze the metric before the candidate, always.
+
+Status: PROPOSED (owner: bless rung 2 — the kill-test PASSES, the reset
+continues past its strategic fork; per the charter this is also the
+owner's decision point on commissioning Rung M, and rung 2.5 is next
+before any Barre-1 ingestion).
