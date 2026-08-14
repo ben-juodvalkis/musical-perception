@@ -1,9 +1,9 @@
 format: 1
 clip: rig-names-4-4-100-quiet
-provisional: true
+provisional: false
 media: audio/rig/rig-names-4-4-100-quiet.mp3
 media_sha256: cacfbef07beb916b8afede020cf590b5abc978f6faadebe33382d7370fd1e26a
-annotator: peakrate-tap-assist/1
+annotator: owner-verified (peakrate-tap-assist/1 seed)
 created_at: '2026-08-11T22:42:27+00:00'
 params:
   sr: 16000
@@ -20,24 +20,22 @@ params:
   pitch_floor_hz: 75.0
   pitch_ceiling_hz: 450.0
 beats:
-- 2.3152
 - 2.4587
 - 3.1123
-- 3.3245
-- 3.5972
-- 3.9264
-- 4.3008
+- 3.638
+- 4.3763
+- 4.8485
+- 5.4871
 - 6.1466
-- 6.5013
 - 6.7412
-- 7.1488
 - 7.4668
+- 7.9684
+- 8.4407
 - 9.0772
 - 9.6885
 - 10.2867
-- 10.4975
-- 11.4738
-- 11.694
+- 10.8552
+- 11.5935
 onsets:
 - 2.3152
 - 2.4587
@@ -57,5 +55,25 @@ onsets:
 - 10.4975
 - 11.4738
 - 11.694
-notes: "peakRate suggestions \u2014 unverified; may include subdivisions and spurious\
-  \ events"
+notes: 'Owner-verified 2026-08-13 (rung 1.5). Convention: docs/evals/annotation-convention.md
+  - tactus only, one label per beat regardless of how many syllables the step name
+  carries. 16 beats, 2.46-11.59 s, matching the case''s counts=16. Grid-implied BPM
+  98.15 vs case label 100 (-1.85%) - within the 4% check.
+
+  peakRate''s WORST clip of the session: kept 11, deleted 7, added 5 - recall 69%,
+  precision 61%, and the first clip where the owner had to hand-place a substantial
+  number of beats (5). median |nudge| 0.0 ms, max 100.5 ms. This is the low-SNR ''quiet''
+  condition: less envelope energy to differentiate, so the detector both misses beats
+  and fires on non-beats. Contrast the numbers slice, where it repeatedly scored perfect
+  recall with zero additions.
+
+  CLIP PROPERTY (not a defect): IOI CV is 14.1%, roughly double the 5-7% every other
+  verified clip shows, with no individual interval out of range (0.472-0.738 s, no
+  short IOIs, no gaps) - a uniformly elastic pulse rather than a localized error,
+  consistent with quiet rubato marking of step names. A tolerance-based metric will
+  read this elasticity as error; noted so the row is interpreted correctly rather
+  than treated as a detection failure.
+
+  Owner judgment recorded: beats 13-16 fall on ''now / now / done / yeah''. The owner
+  marked them, so they stand as counted beats rather than framing talk under ruling
+  (d).'
