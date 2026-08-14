@@ -403,3 +403,150 @@ copies are preserved at /Users/Shared/DevWork/rung1.5-wav/*.SEED.labels.txt
 so pass B starts from the seed rather than from pass A; this number is the
 intra-annotator noise floor beneath which no rung-2 result can claim
 significance, and it is not yet measured.
+
+## 2026-08-14 · rung 1.5 · agent/rung-1.5-grid-verification · local (owner-supervised, session 2)
+
+Attempted: completion of the rung-1.5 verification pass begun in the
+2026-08-13 entry (which PAUSED at 21/30). Same division of labour: owner
+judges, agent runs tools and records.
+
+Pre-registered expectations: none — measurement of human ground truth.
+
+Result: **28 of 30 clips verified, 2 deliberately declined with reasons.**
+802 verified beats. Corpus complete.
+
+*Convention amendment (charter rule 9), owner-ratified 2026-08-14.* Ruling
+(d) — "explanation speech is never beats" — is **superseded by (d′)**:
+annotate every beat you hear voiced on the pulse, whether counting or
+talking through it. Framing talk and genuinely free-time material still
+carry nothing. Four arguments, in
+[annotation-convention.md](../evals/annotation-convention.md): (1) the pulse
+demonstrably continues through explanation — in the two v1-annotated clips
+the excised gaps span 9.92 and 9.08 beat periods, landing within 44 ms of
+the grid after ~5.5 s of talking; (2) an accompanist must hold tempo
+*through* the teacher talking, so a grid that deletes those beats grades the
+wrong thing; (3) on teaching video explanation is the majority of the audio,
+so v1 grids would cover a fraction of the clip and charge an extractor for
+every correct beat elsewhere; (4) v1 required classifying speech before
+annotating and was therefore *less* reproducible, not more — the original
+justification was backwards. `rig-numbers-4-4-104-explained` and
+`rig-names-4-4-104-explained` remain annotated under v1 and are flagged in
+the doc; re-annotating them is an owner decision, not taken.
+
+*THE ANCHORING / REACTION-LAG FINDING — the session's most important
+methodological result.* Every seed-corrected clip reports median |nudge| =
+0.0 ms, which looked like evidence that peakRate's placement is exact. It is
+substantially **anchoring**: the owner left correct-looking seeds untouched.
+The video clips were annotated from scratch in REAPER against the video, so
+the statistic is finally unbiased — and the first pass, tapped live during
+playback, sat **systematically late**: `adr010-grande-battement` median
+**+39.2 ms** (28 of 33 marks later than the nearest peakRate onset),
+`adr006-exercise-1-demo` **+33.2 ms**. A scrub-and-nudge pass with the
+transport stopped removed it: −13.5, −18.8 and −2.7 ms across the three
+video clips, a mutually comparable cohort. Both methods are therefore biased
+— live tapping by ~35–40 ms of reaction time, seed correction by anchoring
+toward peakRate — and mixing them silently would corrupt **signed
+asynchrony**, a headline stage-1 metric, by more than half the ±70 ms
+tolerance. Any future annotation must declare its method.
+
+*A rung-1 finding overturned.* The rung-1 entry recorded that "the four
+YouTube demo clips score F 0.58–0.65 — the word-onset baseline looks
+*better* on dense continuous teaching speech than on sparse metronomic rig
+marking." Same-clip before/after against verified grids:
+
+```
+VIDEO (3)       macro F 0.621 -> 0.299   (-0.322)
+NON-VIDEO (25)  macro F 0.368 -> 0.397   (+0.029)
+ALL 28          macro F 0.395 -> 0.386   (-0.009)
+references      1199 provisional -> 802 verified (-33.1%)
+```
+
+The video advantage was an artifact of peakRate-seeded references: dense
+machine onsets matched dense Whisper tokens. Against human tactus truth the
+video clips are the **worst** slice, not the best —
+`adr010-grande-battement` 0.653 → 0.209, `adr006-exercise-1-demo` 0.629 →
+0.213. This materially changes rung 2's expectations: the baseline it must
+beat is far weaker on teaching video than rung 1 believed, and far more of
+that slice's apparent performance was measuring the annotator's proxy
+against itself.
+
+*Final stage-1 verified slice (28 clips, whisper-word-starts):* pooled
+P 0.334 R 0.449 **F 0.383** (macro 0.386), asynchrony mean −14.3 ms, median
+−19.4 ms, sd 32.6 ms. By count_style: numbers F 0.439 (n=14), step_names
+0.414 (n=14), vocables 0.118 (n=1); mixed has no verified member. Vocables
+baseline for the §2 gate stays pinned at P 1.000 / R 0.0625 / **F 0.1176**.
+
+*Two deliberate declines, both substantive findings rather than gaps.*
+(1) `rig-mixed-4-4-104-quantities` — the owner, who recorded it, could not
+parse the pulse ("real weird"); the transcript is almost entirely prose
+describing quantities. It is the only clip in the `mixed` slice, which
+therefore has no verified member. (2) `adr007-plies-demo` — **the pulse is
+not in the audio.** The teacher speaks quickly over a slow exercise; in the
+owner's words an accompanist "would only really know which tempo to follow
+since I know pliés are slow." Fitting a single period to the owner's sparse
+11-mark pass: removing three tight pairs (two syllables inside one beat)
+gives 0.5080 s = **118.1 BPM, matching the case label of 118** — the first
+human confirmation of that label — but residual scatter is **~90 ms rms on
+every subset fitted**, against a ±70 ms tolerance. The marks locate the
+*tempo* but not the *beats*, and the marked syllables are ordinary words
+("with", "that", "goes", "the"), not counts. This is the clearest evidence
+in the corpus of the hard limit of ruling (b): where the pulse is unvoiced
+and recovered from exercise knowledge, a vocalized-only grid cannot
+represent it.
+
+*Other findings from session 2.* `adr006-8-counts-2x` is a **FAKE RED**: its
+verified grid reads 101.63 BPM against `expect.marking_bpm: 130` (−21.83%),
+and the arithmetic is decisive (16 counts at 130 BPM span 7.38 s; these span
+9.06 s, with uniform intervals excluding a 16-of-20 reading). The blessed
+baseline scores the row tempo=wrong at predicted 95.6 — which is within 6%
+of verified truth. The row is red because the label is wrong, the mirror of
+Standing Lesson 8's fake-green. Its sibling `adr006-8-counts-triple` had
+`marking_bpm` deliberately unpinned; it now has a first ground truth of
+68.38 BPM, which also sharpens ADR-007's recorded "/2-over-/3 normalization
+defect": the historical output of 82.7 is not in the family {⅓,½,1,2,3} ×
+68.38 = {22.8, 34.2, 68.4, 136.8, 205.1}, so that failure was **off-family**,
+not a level confusion. A **fourth Whisper round-drop** appeared
+(`rig-numbers-4-4-104-bothsides`: grid shows 8 rounds of eight, transcript
+holds 7), making four across fourteen numbers clips. `adr006-exercise-1-demo`
+required clustering rather than a median to recover its beat period, because
+the teacher voices only two of three beats per bar — its plain median IOI
+(0.896 s) is not the beat period; pooled clustering gives 0.5067 s = 118.42
+BPM vs a label of 117.
+
+Regressions and classifications: none. tier-0 (tempo 25/25, meter 24/25) and
+tier-1 (tempo 0.571, meter_triple 0.357, counts 0.571) byte-identical to the
+blessed baseline — "no outcome changes vs baseline". pytest 193 passed /
+3 skipped. `git diff --stat main`: 32 files, all under `evals/grids/` plus
+`docs/evals/annotation-convention.md` and this ledger; **0 files changed**
+under `evals/cases/`, `evals/traces/`, `evals/baseline.json`, or
+`src/musical_perception/`.
+
+Lesson (durable, one paragraph): The instrument that measures the annotator
+matters as much as the annotator — median |nudge| of 0.0 ms across twenty-one
+clips looked like a clean finding about peakRate's placement and was mostly
+an artifact of showing the annotator peakRate's answer first, while the
+unanchored alternative carried a 35–40 ms reaction-time bias of its own, so
+the only honest reading came from running both and declaring the method. The
+same lesson explains the corpus's biggest reversal: video clips looked like
+the easy slice while their references were machine-generated, and became the
+hardest the moment a human said where the beats were. And two clips could
+not be annotated at all — one unparseable to its own performer, one whose
+pulse lives in exercise knowledge rather than in the audio — which is not a
+shortfall but the corpus telling us where perception alone cannot reach.
+
+Status: PROPOSED (rung 1.5 substantially complete: 28/30 verified, 2 declined
+with recorded reasons). Two deliverables remain before the CURRENT RUNG
+pointer can advance to 2: (a) the **§2 rung-2 gate re-expression** — now due,
+to be derived from the ratified convention, the verified-grid baseline above,
+and the adopted metrics only, with no candidate peeking, recall-at-tactus +
+level-collapsed precision as the intended shape and a decisive vocables win
+mandatory; owner-blessed before the pointer moves. (b) the **duplicate-pass
+self-consistency measurement** on the two calibration clips, still not done —
+untouched seeds are preserved at
+`/Users/Shared/DevWork/rung1.5-wav/*.SEED.labels.txt` so pass B starts from
+the seed rather than pass A; given the anchoring finding this measurement is
+now more important than when it was commissioned, since it is the only way to
+quantify the annotator's own noise floor separately from the anchoring bias.
+Owner decisions also outstanding: whether to re-annotate the two v1 clips
+under (d′); whether to correct `adr006-8-counts-2x`'s `marking_bpm`; whether
+to pin `adr006-8-counts-triple`'s.
