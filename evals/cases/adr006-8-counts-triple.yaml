@@ -11,11 +11,26 @@ tags:
   lang: en
   accompanied: false
 expect:
+  marking_bpm: 68.38
   meter: "4/4"
   subdivision: triplet
   counts: 8
 notes: >-
   Triplet counting fixture. ADR-007 recorded the /2-over-/3 normalization
   defect here (output 82.7 duple) — same defect tier-0 pins as
-  t0-4-4-clean-triplet. Expected to fail until that fix lands. marking_bpm
-  deliberately unpinned: the ADRs never established the true beat rate.
+  t0-4-4-clean-triplet. Expected to fail until that fix lands. marking_bpm PINNED
+  2026-08-14 at 68.38 (rung 1.5, owner ruling), replacing the earlier
+  "deliberately unpinned: the ADRs never established the true beat rate".
+  It is now established: the owner-verified beat grid
+  (evals/grids/adr006-8-counts-triple.yaml, 8 tactus beats, IOI CV 4.4%)
+  measures 68.38 BPM at the tactus, and the owner independently put the
+  clip at "about 66 counting the integers and 200 counting the
+  subdivisions" (grid syllable level: 205.1). Pinned at the TACTUS level,
+  consistent with every other grid in the corpus.
+
+  This ADDS a scored tempo row that the pipeline fails, lowering tier-1
+  tempo accuracy — deliberately. The failure was previously invisible
+  because no truth existed. It also sharpens the defect this case records:
+  ADR-007's output of 82.7 is not in the family {1/3,1/2,1,2,3} x 68.38 =
+  {22.8, 34.2, 68.4, 136.8, 205.1}, so that failure was OFF-FAMILY, not
+  the level confusion "/2-over-/3" implies.
