@@ -1063,3 +1063,145 @@ be surgical and the ledger says so.
 stops the session with a BLOCKED entry rather than a guessed metric.
 Q2–Q4 are measurements, not gates — an unexpected flag is a finding
 about the corpus or the threshold, reported either way.
+
+Result: **W1 (rung 2.5) delivered — grid format 2, the three QC checks, and
+annotation-method metadata; EVAL-CHANGE gate held.** No pipeline code was
+touched. Prediction scorecard: **3 hits, 1 partial, 2 misses of 6.**
+
+*Q0 — the EVAL-CHANGE gate: PASS.* The deterministic `run_stage1()` dump
+hashes to `1d5fe5a3cbdc28b3e61873fa216ad36bc1a2e58c614b6ad6511ca5ed89c1d82a`
+both before and after — `diff` reports no differences, 12,660 bytes each.
+The suite run agrees end to end: tier-0 tempo 25/25, meter 24/25; tier-1
+tempo 0.586, meter_triple 0.393, counts 0.571, sides 1.0, slot 1.0;
+stage1 `aggregate_verified` 28 clips P 0.334 R 0.449 F 0.383, median
+−19.4 ms; "no outcome changes vs baseline". pytest 213 passed / 3 skipped
+(15 new tests). `git diff --stat main`: 8 files — `grids.py`, `qc.py`,
+`annotation/__main__.py`, two test files, two eval docs, this ledger;
+**0 files changed** under `evals/cases/`, `evals/traces/`,
+`evals/grids/`, `evals/baseline.json`, or `src/musical_perception/evals/`.
+
+*Q1 — validity gate: PASS (24 of 25 ≥ the predicted 23).* The
+implementation reproduces to ±0.02 BPM every grid-implied figure the
+owner recorded by hand in `notes`. The single miss is
+`rig-names-4-4-104-coda`: recorded 106.44, computed 108.93 — and it is
+the most useful number in the session, because the coda's own notes
+already say why in prose ("TWO-TEMPO CLIP … CODA 12 beats, 25.91–34.00 s
+… no stable period — free time"). Tagging exactly that span `free_time`
+reproduces **106.44 exactly** and clears all seven of the clip's flags.
+The metric was pinned before any new-check output was read.
+
+*Q2 — min-IOI on the 28 verified grids: PARTIAL (1 clip flagged; accept
+was ≤ 1, point prediction 0).* The one clip is `rig-names-4-4-104-coda`,
+5 intervals of 0.150–0.253 s against a 0.558 s median. These are **not**
+grid errors: the same notes record them as this check's first false
+positives ("genuine fast marking, not stray labels"), and the notes go on
+to prescribe the fix this rung implements. The prediction miss is my own
+— the ledger I had already read contained the answer, and I reasoned only
+from the four corrected export errors.
+
+*Q3 — within-phrase spread on the 28 verified grids: MISS (4 flagged,
+predicted 0–3).* All three named must-not-flag rows held:
+`rig-names-3-4-88-waltz` 10.7%, `rig-names-4-4-96-allegro` 10.0%,
+`rig-names-2-4-120-clean` 8.2% — the threshold does separate genuine
+musical spread from error. The four flagged rows, each classified:
+- `adr006-exercise-1-demo` (also −42.77% on BPM). Its notes warn
+  outright that "the plain median IOI is NOT the beat period on this
+  clip and would mislead (0.896 s)": the owner voices two of three beats
+  per bar, so 21 intervals are two beats long. Tagging them
+  `silent_beat` plus the owner-confirmed 20.6 s free-time tail moves the
+  BPM flag from −42.77% to −3.85% and clears **all four** findings. The
+  residual gap to the owner's cluster-first 118.42 BPM is real and
+  unfixed: a plain median cannot recover the period here, tags or not.
+- `rig-names-4-4-63-adagio`, 2 phrases at 29.3% / 25.0%. Tagging the six
+  unvoiced beats the notes name reproduces the owner's recorded **15.0%**
+  exactly. The finding worth keeping: two of those six gaps are 1.67×
+  and 1.72× the median — **below** the 1.75× break ratio — because
+  rubato compresses an unvoiced beat. No break ratio distinguishes them
+  from a stretched beat, which is the argument for tagging rather than
+  tuning. One flag survives at CV 15.03%, knife-edge over the line and
+  equal to the owner's own number; no action (Standing Lesson 7).
+- `rig-names-2-4-160-long`, one 6-interval phrase at 16.5%. Pooled
+  within-phrase CV is **9.7%, exactly the figure in its notes** — the
+  disagreement is statistic, not data: I flag max-over-phrases, the
+  owner recorded pooled. At 160 BPM the beat is 0.375 s, so ±90 ms of
+  annotation scatter reads as 16.5% in a short phrase. Threshold
+  sensitivity at the corpus's fastest tempo, not a grid error.
+- `rig-names-4-4-104-coda`, covered above.
+
+**Zero of the 28 verified grids shows an actual annotation error.** Two
+are cured exactly by the tags this rung adds; two are threshold
+sensitivities at the tempo extremes, reported rather than tuned away
+(pre-registered rule 4).
+
+*Q4 — positive control: MISS, and it taught the most.* Predicted both
+provisional grids flagged by min-IOI; **neither was** (ratios 0.521 and
+0.524, just above 0.5×). Both are flagged loudly by the other two checks
+(`adr007-plies-demo` +119.74% on BPM and 12 spread flags;
+`rig-mixed-4-4-104-quantities` +28.63% and 4), so the control's intent —
+"the checks can fire" — is satisfied, but the specific prediction was
+wrong for a reason worth writing down: **min-IOI is relative to the
+clip's own median, so it catches a *local* double mark and is blind to a
+*globally* wrong metric level.** A raw peakRate seed is uniformly at the
+syllable level, so nothing in it looks short relative to itself. The
+level error is exactly what the BPM check is for; the three checks are
+complementary, not redundant, and that is now demonstrated rather than
+assumed.
+
+*Q5 — round-trip stability: PASS, clean.* All 28 verified grids
+round-trip through `load_grid` → `save_grid` with beats, onsets, notes
+and params preserved, and **0 grids** show any text change beyond
+`format: 1` → `format: 2` plus the two new keys. The owner's eventual
+backfill is therefore a three-line diff per file.
+
+Regressions and classifications: **none.** Every tier-0/tier-1/stage1
+number is byte-identical to the blessed baseline and the runner prints
+"no outcome changes vs baseline"; the one surviving QC flag after tagging
+(adagio 15.03% vs a 15% line) is classified **knife-edge**. The two
+threshold sensitivities (160-long, adagio) are classified **genuine-trade**
+— a check sensitive enough to catch four real export errors will graze
+rubato and fast material, and the corpus evidence says tagging is the
+right fix, not a looser constant.
+
+BLOCKED — owner queue (nothing here blocks the next session):
+1. **Backfill `annotation_method` on the 28 verified grids.** Provenance
+   is owner authority (§2.4's cohort count was itself corrected 21→25),
+   so no session wrote it. One command per grid:
+   `python -m musical_perception.annotation set-method <id> anchored|from_scratch`.
+2. **Tag the regions the grid notes already describe in prose** — at
+   minimum coda (`free_time` 25.91–34.00 s), exercise-1-demo
+   (`silent_beat` × 21 + `free_time` 39.44 s→end, plus the one interior
+   3.392 s gap the notes leave unclassified between silent-pulse and free
+   time, which only the owner can settle), adagio (`silent_beat` × 6),
+   160-long (`silent_beat` × 7). Each is a small edit to a verified grid,
+   which is why it is owner business rather than agent business.
+3. **The vocables dropped-beats listen** (rung-2 backlog (ii)): 2 of 16
+   beats missed on `rig-vocables-4-4-100-clean`. Its QC is clean
+   (min-IOI 0.933, CV 6.1%), so the checks cannot settle it — it needs an
+   ear. Carried forward, still open.
+4. **Ruling question raised, not answered:** `silent_beat` regions
+   describe stretches the annotator did *not* mark, and ruling (b) still
+   says vocalized-only. Whether a future scorer should credit silent
+   beats (Standing Lesson 6) is a convention change and stays with the
+   owner; the format now makes it expressible, which is all this rung
+   claims.
+
+Lesson (durable, one paragraph): Every QC flag on a verified grid turned
+out to be the file failing to say something the annotator already knew —
+the coda is out of time, the waltz voices two beats in three, the adagio
+holds every fourth — and all of it was sitting in prose in the `notes`
+field, unreadable to any check. Adding three region kinds did not make
+the checks smarter; it let the human's existing knowledge reach them, and
+the proof is that tagging reproduces the owner's hand-computed numbers
+(106.44 BPM, 15.0% CV) to the digit rather than merely silencing a
+warning. The second lesson is about thresholds: two of the six unvoiced
+beats on the adagio clip compress to 1.67× and 1.72× the median under
+rubato, which no break ratio can distinguish from a stretched beat, so a
+constant tuned to pass them would have blinded the check on the material
+it was ratified to police — the fix for a check that is right for the
+wrong reason is more information, not a looser constant.
+
+Status: PROPOSED (owner: review the format-2 extension and the three QC
+checks; then the four BLOCKED items above, of which #1 and #2 are the
+ones that gate W4 Barre-1 ingestion). Marathon: W1 complete, W2 (rung 3,
+accent-periodicity meter votes) is the next-highest non-BLOCKED
+workstream.

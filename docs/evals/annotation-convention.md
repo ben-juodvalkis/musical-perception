@@ -244,14 +244,27 @@ Rung 2 passes if **all four** hold:
 
 ## 3. Tooling constraint behind (b) and (e)
 
-`beats_from_label_text()` (`src/musical_perception/annotation/grids.py`) parses
-**only the start time** of each Audacity label and discards the label text. The
-schema is a flat list of floats. **A grid beat therefore cannot carry a tag** —
-silent-vs-voiced, prep-vs-body, primary-vs-transitional are all unrepresentable.
-Every annotation decision reduces to a binary: in the list, or not.
+*Original text (v1), kept because rulings (b), (d′) and (e) were decided under
+it:* `beats_from_label_text()` parses **only the start time** of each Audacity
+label and discards the label text. The schema is a flat list of floats. **A grid
+beat therefore cannot carry a tag** — silent-vs-voiced, prep-vs-body,
+primary-vs-transitional are all unrepresentable. Every annotation decision
+reduces to a binary: in the list, or not. Any future convention needing a tag
+requires a format + tool change, i.e. a new EVAL-CHANGE rung.
 
-Any future convention needing a tag requires a format + tool change, i.e. a new
-EVAL-CHANGE rung.
+> **LIFTED at rung 2.5 (2026-08-14) — for *spans*, not for individual beats.**
+> Grid format 2 adds an optional `regions` list tagging the three holes (d′)
+> names: `silent_beat`, `free_time`, `excluded_explanation`. The Audacity round
+> trip carries them as region labels, and the §4 QC checks are suppressed
+> inside them. See [beat-grids.md](beat-grids.md).
+>
+> **What this does and does not change.** The format now *permits* a tag; the
+> rulings above are unchanged and still govern what the annotator marks —
+> (b) is still vocalized-only, and a `silent_beat` region describes a stretch
+> the annotator did not mark, it does not add beats. Changing a ruling is owner
+> business (charter rule 9), and none is proposed here. Individual beats still
+> carry no tag: prep-vs-body and primary-vs-transitional remain
+> unrepresentable, so ruling (c)'s and (e)'s reasoning stands as written.
 
 ## 4. Per-clip workflow (rung 1.5)
 
@@ -301,9 +314,30 @@ owner-export errors — were two checks not in the ratified workflow:
   stray-label signature that per-clip medians hide).
 
 Both are **required** parts of the per-clip workflow from this date,
-alongside (not replacing) the BPM-vs-label check. Implementation lands in
-rung 2.5 (the next annotation-tooling touch); until then, sessions run
-them ad hoc and record results in grid `notes`.
+alongside (not replacing) the BPM-vs-label check.
+
+**Implemented at rung 2.5 (2026-08-14):**
+
+```bash
+python -m musical_perception.annotation qc [ID ...]
+```
+
+Frozen thresholds, pre-registered before the checks were ever run — a
+misfiring threshold is proposed for owner ratification, never quietly
+retuned: min-IOI < 0.5 × the clip's median IOI; within-phrase IOI CV
+> 15%, over phrases split at intervals above 1.75 × the median, minimum 3
+intervals, CV = population sd / mean; BPM-vs-label > 4% as before. Both
+amendment checks are suppressed inside `regions` (§3) — the missing
+capability that forced the ad-hoc runs.
+
+*Validation against the human record:* the implementation reproduces 24 of
+the 25 grid-implied BPM figures the owner recorded by hand in grid `notes`
+(±0.02 BPM). The 25th, `rig-names-4-4-104-coda`, reproduces exactly once
+its out-of-time coda is tagged `free_time`; so does
+`rig-names-4-4-63-adagio`'s recorded 15.0% within-phrase CV once its six
+unvoiced beats are tagged. Two of those six gaps compress to 1.67–1.72 ×
+the median under rubato — **below** the 1.75 × break ratio — so tagging,
+not threshold tuning, is what makes the check correct on rubato material.
 
 ## 5. Provenance
 

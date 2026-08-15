@@ -4,11 +4,16 @@ Tap-assist annotator CLI (rung 1):
     python -m musical_perception.annotation generate [--only ID ...] [--force]
     python -m musical_perception.annotation to-labels ID
     python -m musical_perception.annotation from-labels ID LABELS.txt [--verified]
+    python -m musical_perception.annotation qc [ID ...]
+    python -m musical_perception.annotation set-method ID {anchored,from_scratch}
 
 `generate` pre-annotates a provisional beat grid per eval case via
 peakRate. `to-labels`/`from-labels` round-trip through an Audacity label
 track so the owner corrects beats by ear (rung 1.5); `--verified` is the
 owner's act of flipping `provisional` off — never used by agent sessions.
+`qc` runs the three ratified convention §4 checks (rung 2.5); `set-method`
+records the anchored-vs-from-scratch provenance and, like `--verified`, is
+an owner act — the cohort assignment is the owner's to state.
 
 Needs the [prosody,eval] extras (librosa/scipy/parselmouth + pyyaml).
 """
@@ -21,9 +26,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from musical_perception.annotation.grids import (
+    ANNOTATION_METHODS,
     BeatGrid,
-    beats_from_label_text,
     load_grid,
+    load_grids,
+    parse_label_text,
     save_grid,
     to_label_text,
 )
@@ -121,13 +128,73 @@ def _cmd_to_labels(args) -> int:
 def _cmd_from_labels(args) -> int:
     path = _grid_path(args)
     grid = load_grid(path)
-    grid.beats = beats_from_label_text(Path(args.labels).read_text())
+    grid.beats, grid.regions = parse_label_text(Path(args.labels).read_text())
     if args.verified:
         grid.provisional = False
     save_grid(grid, Path(args.grids))
     state = "verified" if not grid.provisional else "still provisional"
-    print(f"updated {path}: {len(grid.beats)} beats, {state}")
+    tagged = f", {len(grid.regions)} tagged regions" if grid.regions else ""
+    print(f"updated {path}: {len(grid.beats)} beats{tagged}, {state}")
     return 0
+
+
+def _cmd_set_method(args) -> int:
+    """Owner act: record how this grid was annotated (convention §2.4)."""
+    path = _grid_path(args)
+    grid = load_grid(path)
+    grid.annotation_method = args.method
+    save_grid(grid, Path(args.grids))
+    print(f"updated {path}: annotation_method = {args.method}")
+    return 0
+
+
+def _cmd_qc(args) -> int:
+    """The three ratified convention §4 checks over every grid present."""
+    from musical_perception.annotation.qc import run_qc
+    from musical_perception.evals.cases import load_cases
+
+    grids = load_grids(Path(args.grids))
+    if not grids:
+        print(f"no grids under {args.grids}", file=sys.stderr)
+        return 2
+    labels = {
+        c.id: c.expect.get("marking_bpm") for c in load_cases(Path(args.cases))
+    }
+    wanted = set(args.case_ids or grids)
+    unknown = wanted - set(grids)
+    if unknown:
+        print(f"no grid for: {sorted(unknown)}", file=sys.stderr)
+        return 2
+
+    header = (
+        f"{'clip':38s} {'state':5s} {'beats':>5s} {'phr':>4s} "
+        f"{'BPM':>7s} {'inphr':>7s} {'label':>6s} {'Δ%':>7s} "
+        f"{'minIOI':>7s} {'maxCV':>7s}  flags"
+    )
+    print(header)
+    print("-" * len(header))
+    flagged, findings = [], []
+    for cid in sorted(wanted):
+        r = run_qc(grids[cid], labels.get(cid))
+        if r.findings:
+            flagged.append(cid)
+            findings.extend(r.findings)
+        print(
+            f"{cid:38s} {'prov' if r.provisional else 'ver':5s} "
+            f"{r.n_beats:5d} {r.n_phrases:4d} "
+            f"{_num(r.bpm_whole, 2, 7)} {_num(r.bpm_within_phrase, 2, 7)} "
+            f"{_num(r.marking_bpm, 0, 6)} {_num(r.bpm_delta_pct, 2, 7)} "
+            f"{_num(r.min_ioi_ratio, 3, 7)} {_num(r.max_phrase_cv, 3, 7)}  "
+            f"{','.join(sorted({f.check for f in r.findings})) or '-'}"
+        )
+    print(f"\n{len(flagged)} of {len(wanted)} grids flagged")
+    for f in findings:
+        print(f"  {f.clip}: {f}")
+    return 0
+
+
+def _num(value, decimals: int, width: int) -> str:
+    return f"{'':>{width}}" if value is None else f"{value:>{width}.{decimals}f}"
 
 
 def main() -> int:
@@ -151,6 +218,16 @@ def main() -> int:
     p_from.add_argument("--verified", action="store_true",
                         help="owner act: flip provisional off")
     p_from.set_defaults(fn=_cmd_from_labels)
+
+    p_qc = sub.add_parser("qc", help="run the convention §4 checks on grids")
+    p_qc.add_argument("case_ids", nargs="*", help="default: every grid present")
+    p_qc.set_defaults(fn=_cmd_qc)
+
+    p_method = sub.add_parser(
+        "set-method", help="owner act: record anchored vs from_scratch")
+    p_method.add_argument("case_id")
+    p_method.add_argument("method", choices=ANNOTATION_METHODS)
+    p_method.set_defaults(fn=_cmd_set_method)
 
     args = parser.parse_args()
     return args.fn(args)
