@@ -950,3 +950,116 @@ point, on a PASS verdict measured against human ground truth. Autonomy
 was granted at the moment the work became parallel and the foundations
 became verified, not before.
 Status: BLESSED (owner-directed, 2026-08-14). Marathon ACTIVE.
+
+## 2026-08-14 · rung M · agent/marathon · local
+
+Attempted: **W1 (= rung 2.5), the highest-ranked non-BLOCKED marathon
+workstream** — the taggable grid format + the two owner-ratified QC
+checks + annotation-method metadata. EVAL-CHANGE: no pipeline change is
+bundled, and the gate is that stage1 output on the 28 verified grids is
+byte-identical before and after. W1 gates all Barre-1 ingestion (W4), so
+it is the correct first marathon increment. This pre-registration
+section is committed BEFORE any implementation exists (charter rule 3);
+results follow in this same entry at session end.
+
+Pre-registered expectations:
+
+*Design, frozen a priori (no tuning against results permitted after this
+commit).*
+
+1. **Format 2, additive-only.** `GRID_FORMAT = 2` for writing;
+   `load_grid` accepts `{1, 2}`, so **every existing verified grid stays
+   valid with zero edits**. `beats` stays a flat sorted time list —
+   untouched semantics. Two optional keys are added:
+   - `regions: [{start, end, kind, note}]` — a **parallel** structure,
+     never interleaved with beats. `kind` is a closed set of exactly the
+     three holes the C6 limitation could not distinguish
+     (convention (d′)): `silent_beat` (pulse continued, unvoiced),
+     `free_time` (no metric beat exists), `excluded_explanation`
+     (material deliberately outside the annotation). Validation:
+     `0 ≤ start < end`, sorted by start, non-overlapping, known kind.
+   - `annotation_method: anchored | from_scratch | null` — the
+     rung-1.5 cohort-offset finding (convention §2.4: 25 anchored / 3
+     from-scratch) made a per-grid property. `null` = unrecorded.
+2. **Audacity round trip extended.** `to_label_text` appends Audacity
+   *region* labels (`start<TAB>end<TAB><kind>`) after the beat point
+   labels. Parsing rule, frozen: a line is a **region** iff its label
+   text is a known `kind`, and then `end > start` is required; a line
+   with `end > start + 1 ms` whose text is *not* a known kind is a loud
+   `ValueError`, never a silent beat. Every other line is a beat at
+   `start`. Existing `.labels.txt` files (all point labels, `beat-N`)
+   therefore parse **exactly as before** — this is the one place the
+   extension could have corrupted a correction pass, so it is pinned by
+   test, not by inspection.
+3. **QC module** `annotation/qc.py` + `annotation qc [ID ...]` CLI,
+   implementing convention §4 as amended 2026-08-14. Constants frozen
+   here, a priori: `MIN_IOI_RATIO = 0.5` (flag IOI < 0.5 × clip median —
+   the caught error was 0.124 s against a 0.577 s beat = 0.215×),
+   `PHRASE_BREAK_RATIO = 1.75` (an IOI above this is a phrase break, not
+   an agogic stretch), `MAX_PHRASE_CV = 0.15` (rung-1.5 healthy
+   within-phrase CVs: 4.4 / 6.4 / 7.8 / 9.1 / 9.6 %, and the waltz's
+   genuine bar-internal accent at 10.7 % must NOT flag),
+   `MIN_PHRASE_IOIS = 3`, BPM tolerance 4 % (already ratified), CV =
+   population sd / mean. **Suppression, as ratified:** any IOI
+   overlapping a `free_time`, `excluded_explanation`, or `silent_beat`
+   region is excluded from both checks — a gap explained by a tag is not
+   evidence of an error.
+4. **No threshold may be retuned after seeing output.** If a constant
+   misfires it is reported as a finding and proposed for owner
+   ratification (rule 9), not quietly changed.
+5. **No verified grid file is written this session.** Provenance is
+   owner authority — convention §2.4's cohort count was itself corrected
+   21→25 — so `annotation_method` ships as field + `set-method` CLI, and
+   backfilling the 28 verified grids is a BLOCKED owner act, exactly as
+   `--verified` is.
+
+*Q0 — the EVAL-CHANGE gate.* A deterministic dump of `run_stage1()` over
+`evals/` hashes to `1d5fe5a3cbdc28b3e61873fa216ad36bc1a2e58c614b6ad6511ca5ed89c1d82a`
+(12,660 bytes) at `main` = 85317e3, captured before any edit. **Predicted
+PASS**: stage1 reads only `beats` and `provisional`, and no grid file is
+written. A mismatch means the format change leaked into scoring and the
+increment is reverted, not explained.
+
+*Q1 — validity gate (P0 discipline: pin the metric before reading any
+new number).* 25 verified grids' `notes` already record a grid-implied
+BPM. The implementation must reproduce them from the committed grids
+before any min-IOI or spread output is read: whole-clip `60/median(IOI)`
+for the 21 recorded as "Grid-implied BPM" and the within-phrase variant
+for the 4 recorded as "within-phrase BPM" (frappe 156.25,
+rig-names-2-4-120-clean 119.51, rig-names-4-4-104-coda 106.44,
+rig-names-4-4-96-allegro 96.07). **Predicted ≥ 23 of 25 reproduce to
+±0.02.** If fewer, pin the semantics by explicit search across stated
+variants and disclose which one the recorded numbers used — never pick
+the flattering one.
+
+*Q2 — min-IOI on the 28 verified grids.* **Predicted 0 violations**
+(accept ≤ 1). Reason: this check's four rung-1.5 catches were all
+corrected before verification (`rig-numbers-4-4-104-explained` read
++3.51 % pre-fix and is now 104.03). A violation here means a verified
+grid still carries a double-mark — a real finding about ground truth.
+
+*Q3 — within-phrase IOI spread on the 28 verified grids.* **Predicted
+0–3 clips flagged at CV > 15 %.** Named must-not-flag rows, because
+their spread is musical rather than erroneous:
+`rig-names-3-4-88-waltz` (10.7 %, periodic bar-internal agogic accent),
+`rig-names-4-4-96-allegro` (9.1 %), `rig-names-2-4-120-clean` (6.4 %).
+If any of the three flags, the threshold is wrong for this corpus and
+that is the reportable finding.
+
+*Q4 — positive control on the 2 provisional grids.* `adr007-plies-demo`
+and `rig-mixed-4-4-104-quantities` are raw peakRate seeds carrying
+sub-tactus events. **Predicted: BOTH flagged by min-IOI.** A QC check
+that finds nothing on unverified seed data is not checking anything, so
+this is the control that the checks can fire at all.
+
+*Q5 — round-trip stability (informational, sizes the owner's backfill).*
+Re-serializing a verified format-1 grid through `load_grid` →
+`save_grid` in a scratch dir changes **only** the `format:` line plus the
+new optional keys, leaving beats, onsets, params and notes byte-for-byte
+identical. **Predicted clean.** If it is not, the eventual backfill must
+be surgical and the ledger says so.
+
+*What failure looks like:* Q0 failing reverts the increment. Q1 failing
+stops the session with a BLOCKED entry rather than a guessed metric.
+Q2–Q4 are measurements, not gates — an unexpected flag is a finding
+about the corpus or the threshold, reported either way.
