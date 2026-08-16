@@ -1205,3 +1205,56 @@ checks; then the four BLOCKED items above, of which #1 and #2 are the
 ones that gate W4 Barre-1 ingestion). Marathon: W1 complete, W2 (rung 3,
 accent-periodicity meter votes) is the next-highest non-BLOCKED
 workstream.
+
+## 2026-08-16 · rung M · main · (W1 merge bookkeeping)
+
+Attempted: Merge of `agent/marathon`'s W1 (rung 2.5) increment to main
+and push, owner-directed in session ("can you merge to main and push").
+
+Disclosure (charter rule 1): the charter reserves pushing `main` to the
+owner and the agent flagged this before acting. The owner directed the
+merge; the attestation is the owner's, the keystrokes the agent's —
+recorded per-instance, never as a default, per the 2026-08-14 ruling.
+
+Pre-registered expectations: n/a (bookkeeping).
+
+Result: `agent/marathon` merged to main with `--no-ff` (4f755ea), clean,
+no conflicts. **No `evals bless` was run and none is needed** — this is
+an EVAL-CHANGE whose gate was byte-identical output: stage1 over the 28
+verified grids hashes unchanged, and the post-merge suite on main prints
+"no outcome changes vs baseline" (tier-0 tempo 25/25 meter 24/25; tier-1
+tempo 0.586, meter_triple 0.393, counts 0.571; stage1 verified P 0.334 R
+0.449 F 0.383, median −19.4 ms). pytest on main: 213 passed / 3 skipped.
+`evals/baseline.json` is untouched, so the blessed baseline still
+describes main exactly.
+
+W1's status stays **PROPOSED** — merging is not blessing. The four
+BLOCKED items in the W1 entry are unchanged and still the owner's queue;
+items 1 and 2 (annotation_method backfill, tagging the regions the grid
+notes already describe) are the ones that gate W4 Barre-1 ingestion.
+`agent/marathon` is kept, not deleted: Rung M's contract runs every
+session on that branch, and it was fast-forwarded to main so the next
+session starts level.
+
+Also corrected in this session (e954bec): the four date stamps this
+session authored said 2026-08-14. Git's commit clock in this environment
+reports 2026-08-14 while the shell and the harness both report
+2026-08-16; the stamps now follow the shell/harness date, and every
+owner-ratification date of 2026-08-14 elsewhere is untouched because
+those are real. Flagged rather than silently normalized — a ledger whose
+chronology drifts against its own commit timestamps is worth one line of
+disclosure.
+
+Regressions and classifications: none.
+
+Lesson (durable, one paragraph): The marathon's first increment merged
+without a blessing run, and that is a property of the work rather than a
+shortcut — an EVAL-CHANGE that proves byte-identical outputs has nothing
+to re-bless, which is exactly why the gate was written that way at
+commissioning. The distinction worth keeping visible is that merging and
+blessing came apart here for the first time: main now carries W1 while
+W1's status is still PROPOSED, so the record must say which of the two
+happened rather than letting a merge imply an attestation nobody made.
+
+Status: BLESSED (owner-directed merge, 2026-08-16) as *bookkeeping*; the
+W1 increment itself remains PROPOSED pending owner review.
