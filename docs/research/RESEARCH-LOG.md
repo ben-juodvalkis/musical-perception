@@ -951,7 +951,7 @@ was granted at the moment the work became parallel and the foundations
 became verified, not before.
 Status: BLESSED (owner-directed, 2026-08-14). Marathon ACTIVE.
 
-## 2026-08-14 · rung M · agent/marathon · local
+## 2026-08-16 · rung M · agent/marathon · local
 
 Attempted: **W1 (= rung 2.5), the highest-ranked non-BLOCKED marathon
 workstream** — the taggable grid format + the two owner-ratified QC

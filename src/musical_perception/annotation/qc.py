@@ -22,7 +22,7 @@ Before rung 2.5 there was no way to say so in the file, which is why the
 checks had to be run ad hoc.
 
 Thresholds are frozen constants, pre-registered before the checks were
-ever run (ledger 2026-08-14, rung M / W1). A misfiring threshold is a
+ever run (ledger 2026-08-16, rung M / W1). A misfiring threshold is a
 reportable finding proposed for owner ratification, never a quiet edit.
 """
 

@@ -252,7 +252,7 @@ primary-vs-transitional are all unrepresentable. Every annotation decision
 reduces to a binary: in the list, or not. Any future convention needing a tag
 requires a format + tool change, i.e. a new EVAL-CHANGE rung.
 
-> **LIFTED at rung 2.5 (2026-08-14) — for *spans*, not for individual beats.**
+> **LIFTED at rung 2.5 (2026-08-16) — for *spans*, not for individual beats.**
 > Grid format 2 adds an optional `regions` list tagging the three holes (d′)
 > names: `silent_beat`, `free_time`, `excluded_explanation`. The Audacity round
 > trip carries them as region labels, and the §4 QC checks are suppressed
@@ -316,7 +316,7 @@ owner-export errors — were two checks not in the ratified workflow:
 Both are **required** parts of the per-clip workflow from this date,
 alongside (not replacing) the BPM-vs-label check.
 
-**Implemented at rung 2.5 (2026-08-14):**
+**Implemented at rung 2.5 (2026-08-16):**
 
 ```bash
 python -m musical_perception.annotation qc [ID ...]
