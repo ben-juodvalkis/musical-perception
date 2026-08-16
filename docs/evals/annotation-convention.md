@@ -104,6 +104,23 @@ top") still carries nothing, and genuinely free-time material carries nothing
    beats: 5.709 s = 9.92 beat periods (10 beats, off by 44 ms) and 5.217 s =
    9.08 (9 beats, off by 44 ms). Landing within 44 ms of the grid after ~5.5 s
    of talking is not chance — the teacher kept the pulse and resumed in phase.
+
+   > **Owner correction (2026-08-15) — argument 1 WITHDRAWN as evidence.**
+   > The speaker (the owner) testifies the phase-aligned re-entries were
+   > **coincidence**: restarts were ad lib ("I just restarted whenever I
+   > felt like it"), not a held pulse. Under random restart the two-gap
+   > phase agreement had p ≈ 2%, so the inference was reasonable — but the
+   > speaker's direct account of his own production outweighs a 1-in-40
+   > coincidence, and it is withdrawn. (One curiosity recorded without
+   > authority: trained musicians often re-enter in tempo without feeling
+   > they counted, so "ad lib" and "in phase" are not always
+   > contradictions — but tags must never assume this.) **(d′) stands on
+   > arguments 2–4 alone.** Tagging consequences: unmarked talking
+   > stretches default to `free_time` (no pulse), per owner ruling;
+   > phase-aligned re-entry is a *flag for human attention only*, never an
+   > automatic held-pulse tag — this exact case proves the auto-rule would
+   > false-positive; whether any future teacher holds pulse through talk
+   > is an empirical per-clip question the owner rules on.
 2. **It is the point of the system.** An accompanist must hold tempo *through*
    the teacher talking. A grid that deletes those beats grades the wrong thing.
 3. **On teaching video, explanation is the majority of the audio**, not a brief

@@ -1258,3 +1258,33 @@ happened rather than letting a merge imply an attestation nobody made.
 
 Status: BLESSED (owner-directed merge, 2026-08-16) as *bookkeeping*; the
 W1 increment itself remains PROPOSED pending owner review.
+
+## 2026-08-15 · rung — · (owner correction: (d') argument 1 withdrawn) · cloud
+
+Attempted: Correction of the loop's memory on owner testimony, before the
+owner-service session could present stale evidence as fact.
+Pre-registered expectations: n/a (correction).
+Result: The rung-1.5 finding "the pulse demonstrably continues through
+explanation" (9.92/9.08-beat gaps, 44 ms re-entry) is WITHDRAWN as
+evidence: the speaker testifies the restarts were ad lib and the phase
+alignment coincidental (p ≈ 2% under random restart — unlikely, but the
+speaker's account of his own production outweighs it). Convention (d')
+now carries the correction inline; the ruling itself stands on its other
+three arguments. Tagging consequences ratified by the owner: unmarked
+talking stretches default to free_time; the proposed automatic
+phase-re-entry test for held-pulse tagging is DEAD — this case proves it
+false-positives; phase alignment may flag a stretch for human attention,
+never decide a tag; held-pulse-through-talk is a per-clip owner ruling
+for all future material. The master agent notes for the record that it
+endorsed the withdrawn inference twice; the ground-truth authority
+structure worked as designed.
+Regressions and classifications: n/a.
+Lesson (durable, one paragraph): A measurement can be improbable under
+the wrong null and still be a coincidence — and the person who made the
+sound is a better witness to the generative process than the residuals
+are. Statistical inference about human production yields to the human's
+testimony in this loop; where the two conflict, record both, let the
+testimony govern the tags, and keep the measurement as a flag for
+attention rather than a fact. Auto-rules derived from n=2 findings do
+not survive contact with the n=1 human who produced them.
+Status: BLESSED (owner testimony in session, 2026-08-15).
