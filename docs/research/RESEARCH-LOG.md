@@ -1307,3 +1307,53 @@ different ones — the guards convert "the owner would have caught this"
 into structure: the un-delegable work waits, and the review happens on
 schedule whether or not anyone is watching.
 Status: BLESSED (owner-requested in session, 2026-08-16).
+
+## 2026-08-18 · rung M · (owner question: eye contact as a cue) · cloud
+
+Attempted: Answer an owner design question — "a teacher will often make
+eye contact with me to show me they want to give me tempo; could we
+detect this via camera?" — as a feasibility note rather than a pipeline
+increment. Owner-directed session; no workstream advanced, no eval file
+or pipeline code touched.
+Pre-registered expectations: n/a for the note itself; the note
+pre-registers Q1–Q4 for the eventual W7 increment, Q1 (lead-time
+distribution) declared the decider with an explicit kill condition
+(median lead <= 0.2 s or inconsistent sign => the channel is redundant
+with audio and W7 does not spend on it).
+Result: `docs/research/gaze-as-addressing-cue.md` written. Findings:
+(1) the perception is tractable with existing dependencies — a three-rung
+ladder where rung A (head orientation from the BlazePose landmarks
+`pose.py` already returns) needs no new code dependency at all, rung B is
+MediaPipe Face Landmarker in the same package, rung C is iris/appearance
+gaze and is probably unnecessary for the gate role; (2) the signal is an
+*addressing* cue, not a start cue, so under Vision 07 §7.4 it may permit
+and never trigger — which makes it a low-recall-tolerant, precision-
+critical problem rather than a hard one; (3) two non-CV questions decide
+the whole thing — capture geometry (eye contact is a ray to the
+accompanist's head, so a camera elsewhere measures a different ray) and
+lead time over the audio cue; (4) mirrors are the named principal failure
+mode, and they false-positive precisely when the teacher is facing away
+from the pianist; (5) "looking at the camera" must not be hard-coded —
+the target direction becomes a per-teacher `gaze_signature` in the
+calibration profile, absorbing the camera-vs-pianist offset (~14 deg at
+4 m for a 1 m offset, larger than the detector's own error).
+Regressions and classifications: none — no code, eval, or charter change.
+The W7 scope suggestion in §7 is a recommendation only; the charter's
+workstream text is unedited per rule 9.
+Lesson (durable, one paragraph): The interesting constraint on a new
+perception channel was not the model's accuracy but the rig's geometry
+and the signal's timing — both of which are properties of the capture
+setup rather than of the algorithm, and neither of which any amount of
+work on the detector can recover after the fact. Deciding the camera
+position is therefore the expensive, irreversible decision here, in the
+same way the DEV/SEALED split was for the corpus; the cheap detector work
+should wait behind it. The asymmetric error policy also made the problem
+easier rather than harder — once the channel is only ever allowed to
+permit, recall becomes free to spend and only precision has to be earned.
+Status: PROPOSED — owner review requested.
+
+BLOCKED on owner (queue item, from the note's §7): was the Ballet Barre 1
+material shot from the accompanist's position or from the room? The
+answer decides whether the existing corpus can answer a weak form of Q1
+or whether new capture from the piano is required before any W7 gaze
+increment starts.
