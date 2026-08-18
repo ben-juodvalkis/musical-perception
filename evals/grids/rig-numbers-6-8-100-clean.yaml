@@ -1,9 +1,10 @@
-format: 1
+format: 2
 clip: rig-numbers-6-8-100-clean
 provisional: false
 media: audio/rig/rig-numbers-6-8-100-clean.mp3
 media_sha256: 04b6ca87cb7a298b69892b7b7daa110ba25bc97e2d8be1c3aeb9ee46c2bd4681
 annotator: owner-verified (peakrate-tap-assist/1 seed)
+annotation_method: anchored
 created_at: '2026-08-11T22:42:28+00:00'
 params:
   sr: 16000
@@ -70,6 +71,7 @@ onsets:
 - 15.0732
 - 15.6503
 - 16.2727
+regions: []
 notes: 'Owner-verified 2026-08-13 (rung 1.5). Convention: docs/evals/annotation-convention.md
   - tactus only. 24 beats = 4 sets of 6, 2.44-16.27 s.
 
@@ -90,4 +92,11 @@ notes: 'Owner-verified 2026-08-13 (rung 1.5). Convention: docs/evals/annotation-
   owner deleted 2.678 and 5.935, added a beat at 4.926, and nudged one label 56 ms,
   yielding 25 - 2 + 1 = 24 = the 4 sets of 6 they had described. Second time this
   session that the short-IOI and IOI-spread checks caught what a pass-through would
-  have missed.'
+  have missed.
+
+
+  ANNOTATION METHOD (recorded 2026-08-18, owner-confirmed): anchored - correction
+  of pre-existing peakRate marker suggestions in Audacity (delete non-beats, nudge
+  survivors to vowel onsets, add missed beats). The annotation_method enum records
+  the cohort; this line records the tool and the gesture, which the enum''s frozen
+  two-value vocabulary cannot express.'

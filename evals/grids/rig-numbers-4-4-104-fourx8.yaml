@@ -1,9 +1,10 @@
-format: 1
+format: 2
 clip: rig-numbers-4-4-104-fourx8
 provisional: false
 media: audio/rig/rig-numbers-4-4-104-fourx8.mp3
 media_sha256: 33c5c865bfde554889c844ccbb061632756214f0eb718c3b22e06e99e922572c
 annotator: owner-verified (peakrate-tap-assist/1 seed)
+annotation_method: anchored
 created_at: '2026-08-11T22:42:28+00:00'
 params:
   sr: 16000
@@ -92,6 +93,7 @@ onsets:
 - 19.1088
 - 19.6718
 - 20.2912
+regions: []
 notes: 'Owner-verified 2026-08-12 (rung 1.5). Convention: docs/evals/annotation-convention.md
   - tactus only. 32 beats = 4 rounds of 8, 2.39-20.29 s. Correction vs frozen onsets
   (+/-120 ms): kept 30, deleted 9, added 2; median |nudge| 0.0 ms. Grid-implied BPM
@@ -110,4 +112,11 @@ notes: 'Owner-verified 2026-08-12 (rung 1.5). Convention: docs/evals/annotation-
   that fixed, the row could not go green: the token stream holds only 24 of the 32
   counts, so a corrected summing implementation would answer 24, not 32. The second
   cause was invisible before a human grid existed to compare against. Not acted on
-  this rung.'
+  this rung.
+
+
+  ANNOTATION METHOD (recorded 2026-08-18, owner-confirmed): anchored - correction
+  of pre-existing peakRate marker suggestions in Audacity (delete non-beats, nudge
+  survivors to vowel onsets, add missed beats). The annotation_method enum records
+  the cohort; this line records the tool and the gesture, which the enum''s frozen
+  two-value vocabulary cannot express.'

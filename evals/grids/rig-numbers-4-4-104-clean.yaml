@@ -1,9 +1,10 @@
-format: 1
+format: 2
 clip: rig-numbers-4-4-104-clean
 provisional: false
 media: audio/rig/rig-numbers-4-4-104-clean.mp3
 media_sha256: dad6a37c2ecaf94adf9e4e1c827f6697dd55e4dc25a5a0229e649d4ec25c0abf
 annotator: owner-verified (peakrate-tap-assist/1 seed)
+annotation_method: anchored
 created_at: '2026-08-11T22:42:27+00:00'
 params:
   sr: 16000
@@ -72,6 +73,7 @@ onsets:
 - 15.0765
 - 15.2042
 - 15.6635
+regions: []
 notes: 'Owner-verified 2026-08-12 (rung 1.5, calibration clip 2 of 2). Convention:
   docs/evals/annotation-convention.md. 24 beats = three rounds of eight, 2.35-15.66
   s. Correction vs frozen onsets (time-matched, +/-120 ms): kept 24, deleted 3, added
@@ -91,4 +93,11 @@ notes: 'Owner-verified 2026-08-12 (rung 1.5, calibration clip 2 of 2). Conventio
   anyway (counts-per-phrase is 8 either way; the 5.2 s inter-round gap is rejected
   as an outlier), so a third of the recording is invisible to the pipeline behind
   a green row. Both the owner''s ear and the voiced-gated peakRate detector independently
-  place 8 beats across the dropped span.'
+  place 8 beats across the dropped span.
+
+
+  ANNOTATION METHOD (recorded 2026-08-18, owner-confirmed): anchored - correction
+  of pre-existing peakRate marker suggestions in Audacity (delete non-beats, nudge
+  survivors to vowel onsets, add missed beats). The annotation_method enum records
+  the cohort; this line records the tool and the gesture, which the enum''s frozen
+  two-value vocabulary cannot express.'

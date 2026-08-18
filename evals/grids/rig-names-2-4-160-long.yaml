@@ -1,9 +1,10 @@
-format: 1
+format: 2
 clip: rig-names-2-4-160-long
 provisional: false
 media: audio/rig/rig-names-2-4-160-long.mp3
 media_sha256: f041020f435a37ea3f9571cb09e3e069bf35cba1e3166cdada0f0107b36a04dd
 annotator: owner-verified (peakrate-tap-assist/1 seed)
+annotation_method: anchored
 created_at: '2026-08-11T22:42:27+00:00'
 params:
   sr: 16000
@@ -122,6 +123,7 @@ onsets:
 - 24.872
 - 25.3565
 - 25.5689
+regions: []
 notes: 'Owner-verified 2026-08-13 (rung 1.5). Convention: docs/evals/annotation-convention.md
   - tactus only, vocalized only. 54 voiced beats, 3.06-25.57 s. Fastest clip in the
   corpus: 160 BPM, 0.375 s beat period. Correction vs frozen onsets (+/-120 ms): kept
@@ -139,4 +141,11 @@ notes: 'Owner-verified 2026-08-13 (rung 1.5). Convention: docs/evals/annotation-
   QC: the owner''s first export carried a leftover within-word extra at ~23.364 s,
   121 ms after the beat at 23.243 s - caught by the short-IOI check and removed on
   re-listening. Removing it also moved the BPM check from +1.30% to -0.15%. Fourth
-  such catch this session.'
+  such catch this session.
+
+
+  ANNOTATION METHOD (recorded 2026-08-18, owner-confirmed): anchored - correction
+  of pre-existing peakRate marker suggestions in Audacity (delete non-beats, nudge
+  survivors to vowel onsets, add missed beats). The annotation_method enum records
+  the cohort; this line records the tool and the gesture, which the enum''s frozen
+  two-value vocabulary cannot express.'

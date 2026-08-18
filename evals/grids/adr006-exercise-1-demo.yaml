@@ -1,9 +1,10 @@
-format: 1
+format: 2
 clip: adr006-exercise-1-demo
 provisional: false
 media: video/youtube/Exercise 1 Demo.m4v
 media_sha256: 23ed8c7b7b20c0097515ac1553cee26532158a66649b4aa3561dca4f02dbf9c3
 annotator: owner-verified (REAPER video-synced, from scratch + nudge pass)
+annotation_method: from_scratch
 created_at: '2026-08-11T23:03:20+00:00'
 params:
   sr: 16000
@@ -198,6 +199,7 @@ onsets:
 - 58.2764
 - 59.1694
 - 59.3664
+regions: []
 notes: 'Owner-verified 2026-08-14 (rung 1.5), under ruling (d''). 41 voiced beats,
   4.77-39.44 s of a 60.1 s clip. Annotated in REAPER against the video, from scratch,
   plus a scrub-and-nudge pass.
@@ -229,4 +231,11 @@ notes: 'Owner-verified 2026-08-14 (rung 1.5), under ruling (d''). 41 voiced beat
   between silent-pulse and free time.
 
   Silent-beat arithmetic over the marked span: 41 voiced + 19 silent (from the 2-beat
-  gaps) = 60 metric beats.'
+  gaps) = 60 metric beats.
+
+
+  ANNOTATION METHOD (recorded 2026-08-18, owner-confirmed): from_scratch - live tap
+  (REAPER, M key) against the video with no marker suggestions shown, followed by
+  a scrub-and-nudge correction pass. The annotation_method enum records the cohort;
+  this line records the tool and the gesture, which the enum''s frozen two-value vocabulary
+  cannot express.'

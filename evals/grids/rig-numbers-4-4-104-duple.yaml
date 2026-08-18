@@ -1,9 +1,10 @@
-format: 1
+format: 2
 clip: rig-numbers-4-4-104-duple
 provisional: false
 media: audio/rig/rig-numbers-4-4-104-duple.mp3
 media_sha256: d2f6714f4db200a58e8f09278604028ad83f1c4c7ae8f60d74fe45da671bab31
 annotator: owner-verified (peakrate-tap-assist/1 seed)
+annotation_method: anchored
 created_at: '2026-08-11T22:42:27+00:00'
 params:
   sr: 16000
@@ -62,6 +63,7 @@ onsets:
 - 10.4312
 - 10.9727
 - 11.2699
+regions: []
 notes: 'Owner-verified 2026-08-12 (rung 1.5). Convention: docs/evals/annotation-convention.md
   - tactus only, ''and''s excluded. 16 beats = 2 rounds of 8, 2.37-10.97 s (shortest
   clip in the corpus). Correction vs frozen onsets (+/-120 ms): kept 14, deleted 11,
@@ -70,4 +72,11 @@ notes: 'Owner-verified 2026-08-12 (rung 1.5). Convention: docs/evals/annotation-
 
   Whisper alignment vs verified truth: 32 tokens = exactly 16 x 2, and the nearest
   token to each beat is a number on 16/16 beats; median signed offset -16.0 ms (early),
-  median |offset| 35.6 ms. Best ASR alignment measured against verified truth so far.'
+  median |offset| 35.6 ms. Best ASR alignment measured against verified truth so far.
+
+
+  ANNOTATION METHOD (recorded 2026-08-18, owner-confirmed): anchored - correction
+  of pre-existing peakRate marker suggestions in Audacity (delete non-beats, nudge
+  survivors to vowel onsets, add missed beats). The annotation_method enum records
+  the cohort; this line records the tool and the gesture, which the enum''s frozen
+  two-value vocabulary cannot express.'

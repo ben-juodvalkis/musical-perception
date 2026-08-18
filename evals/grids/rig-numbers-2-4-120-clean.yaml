@@ -1,9 +1,10 @@
-format: 1
+format: 2
 clip: rig-numbers-2-4-120-clean
 provisional: false
 media: audio/rig/rig-numbers-2-4-120-clean.mp3
 media_sha256: 56f029004ab003edd1227fd84dbc45857717762c27fe96dd8329f7ba48220319
 annotator: owner-verified (peakrate-tap-assist/1 seed)
+annotation_method: anchored
 created_at: '2026-08-11T22:42:27+00:00'
 params:
   sr: 16000
@@ -88,6 +89,7 @@ onsets:
 - 17.134
 - 17.2782
 - 17.6153
+regions: []
 notes: 'Owner-verified 2026-08-12 (rung 1.5). Convention: docs/evals/annotation-convention.md
   - tactus only. 32 beats = 4 rounds of 8 (matches the case card''s ''four rounds
   through''), 2.10-17.62 s. Correction vs frozen onsets (+/-120 ms): kept 32, deleted
@@ -111,4 +113,11 @@ notes: 'Owner-verified 2026-08-12 (rung 1.5). Convention: docs/evals/annotation-
   unsynchronized it cannot leak a pulse for an acoustic detector to lock onto, so
   it is noise rather than a cheat channel; and peakRate still posted its second-best
   selection result here (only 3 rejects), which suggests the Praat voiced-gate suppressed
-  music-driven onsets - a small positive signal for the rung-2 channel.'
+  music-driven onsets - a small positive signal for the rung-2 channel.
+
+
+  ANNOTATION METHOD (recorded 2026-08-18, owner-confirmed): anchored - correction
+  of pre-existing peakRate marker suggestions in Audacity (delete non-beats, nudge
+  survivors to vowel onsets, add missed beats). The annotation_method enum records
+  the cohort; this line records the tool and the gesture, which the enum''s frozen
+  two-value vocabulary cannot express.'

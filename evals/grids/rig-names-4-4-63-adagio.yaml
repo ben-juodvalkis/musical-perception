@@ -1,9 +1,10 @@
-format: 1
+format: 2
 clip: rig-names-4-4-63-adagio
 provisional: false
 media: audio/rig/rig-names-4-4-63-adagio.mp3
 media_sha256: 039b5cc28612ab48e5ca356fceeab27da7231db15b7c8b9b41aff4607b6ee529
 annotator: owner-verified (peakrate-tap-assist/1 seed)
+annotation_method: anchored
 created_at: '2026-08-11T22:42:27+00:00'
 params:
   sr: 16000
@@ -96,6 +97,7 @@ onsets:
 - 32.8504
 - 33.4977
 - 33.6239
+regions: []
 notes: 'Owner-verified 2026-08-13 (rung 1.5). Convention: docs/evals/annotation-convention.md
   - tactus only, vocalized only. 26 voiced beats, 3.94-33.50 s. Correction vs frozen
   onsets (+/-120 ms): kept 18, deleted 31, added 8; median |nudge| 0.0 ms. Grid-implied
@@ -115,4 +117,11 @@ notes: 'Owner-verified 2026-08-13 (rung 1.5). Convention: docs/evals/annotation-
   widest word-vs-syllable gap in the corpus - Whisper produced only 19 word tokens
   here while peakRate fired 49 times - and it is what continuous adagio prose at 63
   BPM does to a syllable-rate detector: syllables outnumber beats several times over
-  and nothing in the envelope distinguishes them.'
+  and nothing in the envelope distinguishes them.
+
+
+  ANNOTATION METHOD (recorded 2026-08-18, owner-confirmed): anchored - correction
+  of pre-existing peakRate marker suggestions in Audacity (delete non-beats, nudge
+  survivors to vowel onsets, add missed beats). The annotation_method enum records
+  the cohort; this line records the tool and the gesture, which the enum''s frozen
+  two-value vocabulary cannot express.'

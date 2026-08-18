@@ -1,9 +1,10 @@
-format: 1
+format: 2
 clip: rig-names-4-4-96-allegro
 provisional: false
 media: audio/rig/rig-names-4-4-96-allegro.mp3
 media_sha256: 0276482bf73af3a4099b0b2a6ebc3e0a7a1b4b1a98a833882a7aa5b25121b187
 annotator: owner-verified (peakrate-tap-assist/1 seed)
+annotation_method: anchored
 created_at: '2026-08-11T22:42:27+00:00'
 params:
   sr: 16000
@@ -82,6 +83,7 @@ onsets:
 - 20.7239
 - 21.4268
 - 22.0344
+regions: []
 notes: 'Owner-verified 2026-08-13 (rung 1.5). Convention: docs/evals/annotation-convention.md
   - tactus only, vocalized only. 27 voiced beats, 2.63-22.03 s. Correction vs frozen
   onsets (+/-120 ms): kept 26, deleted 8, added 1; median |nudge| 0.0 ms, max 24.1
@@ -101,4 +103,11 @@ notes: 'Owner-verified 2026-08-13 (rung 1.5). Convention: docs/evals/annotation-
 
   Tempo: overall IOI CV is 44.1%, entirely the skips. Excluding them, within-phrase
   BPM is 96.07 vs case label 96 (+0.07%) with CV 9.1%. Reinforces the method note
-  from rig-names-2-4-120-clean: the IOI-spread check is only meaningful within-phrase.'
+  from rig-names-2-4-120-clean: the IOI-spread check is only meaningful within-phrase.
+
+
+  ANNOTATION METHOD (recorded 2026-08-18, owner-confirmed): anchored - correction
+  of pre-existing peakRate marker suggestions in Audacity (delete non-beats, nudge
+  survivors to vowel onsets, add missed beats). The annotation_method enum records
+  the cohort; this line records the tool and the gesture, which the enum''s frozen
+  two-value vocabulary cannot express.'

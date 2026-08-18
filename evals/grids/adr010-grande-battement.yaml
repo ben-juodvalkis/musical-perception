@@ -1,9 +1,10 @@
-format: 1
+format: 2
 clip: adr010-grande-battement
 provisional: false
 media: video/youtube/grande battement.mov
 media_sha256: 113b620db914bdcda7a8abf1ac6058ad971f2599c57097b74f10329bc8a80814
 annotator: owner-verified (REAPER video-synced, from scratch + refinement pass)
+annotation_method: from_scratch
 created_at: '2026-08-11T23:03:20+00:00'
 params:
   sr: 16000
@@ -158,6 +159,7 @@ onsets:
 - 35.6603
 - 35.9347
 - 36.1735
+regions: []
 notes: 'Owner-verified 2026-08-14 (rung 1.5). FIRST CLIP UNDER RULING (d''): explanation
   speech is eligible and IS marked here - this is a teaching demo where the teacher
   talks in tempo throughout, and the owner marked the pulse through the explanation.
@@ -193,4 +195,11 @@ notes: 'Owner-verified 2026-08-14 (rung 1.5). FIRST CLIP UNDER RULING (d''): exp
   at ~2x median after 12.70 / 18.35 / 20.64 / 29.14 s, one unvoiced beat each. (iii)
   nothing else. So 36 voiced + 5 silent = 41 metric beats, alongside two free-time
   regions. An earlier automated count of ''16 silent beats'' was wrong precisely because
-  it read the free-time demonstration as 12 skipped beats.'
+  it read the free-time demonstration as 12 skipped beats.
+
+
+  ANNOTATION METHOD (recorded 2026-08-18, owner-confirmed): from_scratch - live tap
+  (REAPER, M key) against the video with no marker suggestions shown, followed by
+  a scrub-and-nudge correction pass. The annotation_method enum records the cohort;
+  this line records the tool and the gesture, which the enum''s frozen two-value vocabulary
+  cannot express.'
