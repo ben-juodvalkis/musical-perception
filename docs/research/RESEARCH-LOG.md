@@ -1288,3 +1288,22 @@ testimony govern the tags, and keep the measurement as a flag for
 attention rather than a fact. Auto-rules derived from n=2 findings do
 not survive contact with the n=1 human who produced them.
 Status: BLESSED (owner testimony in session, 2026-08-15).
+
+## 2026-08-16 · rung M · (departure guards) · cloud
+
+Attempted: Two charter guards added before an extended unattended
+marathon stretch, owner-requested ("send the Air on another long
+adventure"): (1) W5 (joint posterior) marked OWNER-STARTED — scheduled
+sessions treat it as BLOCKED-on-owner and move past it, so the deepest
+modeling work cannot run unattended on a default model; (2) W0 meta-rung
+made self-scheduling — it outranks all workstreams whenever the last
+meta entry is >7 days old (or none exists after >=5 sessions), so the
+loop reviews itself weekly without the owner triggering it.
+Pre-registered expectations: n/a (governance).
+Result: Charter amended; no pipeline or eval changes.
+Regressions and classifications: n/a.
+Lesson (durable): Autonomy for an absent owner is not fewer rules but
+different ones — the guards convert "the owner would have caught this"
+into structure: the un-delegable work waits, and the review happens on
+schedule whether or not anyone is watching.
+Status: BLESSED (owner-requested in session, 2026-08-16).
