@@ -344,14 +344,24 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   benchmark (independent — good parallel second-session material) ·
   W4 = Ballet Barre 1 DEV ingestion (requires W1; the 8 remaining
   exercises only — 4 are HELD-OUT on the owner's machine) · W5 = rung 4,
-  joint posterior (requires W2's evidence) · W6 = rung 5, ensembled
-  semantics · W7 = pose/gesture channel prototyping on the Barre 1 video
-  (after W4) · W8 = rung 7, RETIRED sweep (after W5) · parked from rung
-  2: relative (speech-band-level) nuclei silence floor for quiet clips —
-  a pipeline workstream once W2 exists. Policy: each session advances
-  exactly one workstream — the highest-ranked one not BLOCKED; blocked
-  workstreams get a BLOCKED ledger note (the owner's task queue) and the
-  session moves on. The loop never idles while any workstream is open.
+  joint posterior (requires W2's evidence; **OWNER-STARTED — scheduled
+  sessions must never take this workstream**: it runs in an
+  owner-attended session on the top-tier model; if W5 is next and
+  unstarted, treat it as BLOCKED-on-owner and move on) · W6 = rung 5,
+  ensembled semantics · W7 = pose/gesture channel prototyping on the
+  Barre 1 video (after W4) · W8 = rung 7, RETIRED sweep (after W5) ·
+  parked from rung 2: relative (speech-band-level) nuclei silence floor
+  for quiet clips — a pipeline workstream once W2 exists. Policy: each
+  session advances exactly one workstream — the highest-ranked one not
+  BLOCKED; blocked workstreams get a BLOCKED ledger note (the owner's
+  task queue) and the session moves on. The loop never idles while any
+  workstream is open. **W0 = the meta-rung, self-scheduling:** whenever
+  the ledger's most recent meta-rung entry is older than 7 days (or none
+  exists yet and the marathon has run ≥ 5 sessions), W0 outranks every
+  other workstream — that session performs the weekly review (re-rank
+  the workstreams, audit the BLOCKED queue, propose any charter
+  amendments as a PROPOSED ledger entry, write a plain-language summary
+  addressed to the owner) instead of a pipeline increment.
 - **Per-session condition** (what the standing contract resolves to):
   one complete increment on one workstream, committed on
   `agent/marathon`, evidence shown by full command output, constraints
