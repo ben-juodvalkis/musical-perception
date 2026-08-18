@@ -1357,3 +1357,73 @@ material shot from the accompanist's position or from the room? The
 answer decides whether the existing corpus can answer a weak form of Q1
 or whether new capture from the piano is required before any W7 gaze
 increment starts.
+
+## 2026-08-18 · rung M · (owner request: gaze tool survey) · cloud
+
+Attempted: Owner follow-up to the eye-contact question — survey existing
+tools that could serve the channel. Web-research increment; no pipeline
+or eval code touched. Deliverable
+`docs/research/review-5-gaze-and-cueing-tools.md`, numbered into the
+existing review series.
+Pre-registered expectations: the working assumption going in (stated in
+the note being surveyed) was that the ladder rungs differ mainly in
+angular accuracy and that the capture geometry is a hard prerequisite.
+Both were wrong; scored below.
+Result: Three findings that change the plan. (1) **Prediction missed —
+angular accuracy.** The note's "~4–6°" for refined gaze is the
+close-range webcam figure (L2CS-Net 3.92° on MPIIGaze); the
+unconstrained-at-distance benchmark matching a studio, Gaze360, is
+10.41° for the same model. §3 corrected in place, with the consequence
+that rung C buys much less over rung A than assumed — calibration, not
+precision, is where the headroom is. (2) **Prediction missed — geometry
+is not a prerequisite.** Tools sort by camera position, not by accuracy:
+a camera at the piano poses a binary "looking at me" (eye-contact-CNN's
+egocentric framing, human-parity numbers) while a room camera seeing
+teacher and piano together poses gaze-*target* estimation (Gaze-LLE,
+CVPR 2025). The second geometry is more forgiving, degrades gracefully,
+and can be tried on footage that already exists — so the weak form of Q1
+runs now rather than after a rig decision. (3) **New scope, from the
+domain's own literature.** Bishop & Goebl (2018) on ensemble cueing-in
+gestures: peak head-nod acceleration communicates beat position;
+periodicity, duration and peak velocity communicate tempo; visual cues
+are most salient at re-entry after a pause — every start in a class.
+Eye contact selects the addressee, the nod carries the beat, and
+`precision/dynamics.py` already computes the velocity this needs. The
+nod experiment is now the recommended first increment: no new model, no
+new capture, and it tests the owner's "gives me tempo" phrasing
+literally. Counter-evidence recorded rather than buried: the
+addressee-detection literature (Tsai et al. 2015) found head pose yields
+little nonredundant information because the device acts as a situational
+attractor — the strongest published reason to expect Q1 negative, now
+cited in the pre-registration. Cross-cutting practical finding: every
+capable tool pairs permissive code with research-only weights (Gaze360's
+licence explicitly bars "models trained on dataset"; InsightFace models
+non-commercial; OpenFace 3.0 needs a CMU licence; eye-contact-CNN is
+GTRC-noncommercial and claims derivative ownership). MediaPipe Face
+Landmarker is the only Apache-2.0-throughout option, and is also the one
+already installed.
+Regressions and classifications: none — no code, eval, or charter
+change. Two documented corrections to the 2026-08-18 design note
+(angular error; geometry-as-prerequisite), both made in place with the
+superseded claim quoted rather than deleted.
+Luck/limitation flags: arxiv.org, pubmed.ncbi.nlm.nih.gov and
+journals.sagepub.com are blocked by this environment's egress proxy, so
+the paper-level numbers — including the Bishop & Goebl kinematics that
+finding (3) rests on — are abstract-level summaries, marked as such in
+the review and flagged for owner verification before external quotation.
+Repository and documentation pages were fetched directly and are
+verified.
+Lesson (durable, one paragraph): The survey overturned two of the design
+note's assumptions within an hour of the note being written, and both
+errors were of the same kind — a number and a constraint carried in from
+general knowledge without checking which benchmark or which setup it
+belonged to. A 4° gaze error and a 10° gaze error are the same sentence
+in a summary and a different product in a room. The durable rule is that
+a feasibility note written before a tool survey should be treated as a
+list of things to check, not as findings, and that its numbers get
+benchmark provenance attached or get struck. The second lesson is
+cheaper and better: the most valuable result came from searching the
+*domain's* literature rather than the *technique's* — the ensemble
+cueing-gesture work answered the owner's actual question ("give me
+tempo") more directly than any gaze tool did.
+Status: PROPOSED — owner review requested.

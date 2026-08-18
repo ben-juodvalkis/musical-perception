@@ -5,6 +5,9 @@
 measured yet. Owner question: *"A teacher will often make eye contact
 with me to show me they want to give me tempo. Could we detect this via
 camera?"*
+**Tool survey:** [Review 5](review-5-gaze-and-cueing-tools.md)
+(2026-08-18) — surveys the off-the-shelf options and **amends §3 and §7
+below**; read it alongside this note.
 **Feeds:** W7 (pose/gesture channel prototyping),
 [Vision 07 §7.2](../vision/07-interaction-design.md) cue detection,
 [Vision 05 §5.6](../vision/05-perception-strategy.md) calibration profile.
@@ -42,6 +45,18 @@ The teacher's eye contact does not mean "start playing." It means
 next few seconds of speech and gesture. The cue proper ("aaand—", the
 arm lift) still arrives afterward.
 
+**Amendment (2026-08-18, from [Review 5](review-5-gaze-and-cueing-tools.md)
+§(c)):** the ensemble-performance literature says the *following* gesture
+is not merely a cue to detect but a carrier of the quantity the owner
+named. Bishop & Goebl (2018) find that in cueing-in gestures, peak
+acceleration of the leader's head-nod communicates **beat position**, and
+periodicity, duration and peak velocity communicate **tempo** — and that
+such cues are most salient exactly at re-entry after a pause, which is
+every start in a ballet class. So: eye contact selects the addressee; the
+nod carries the beat. W7 should scope both, and the nod is plausibly the
+more valuable half, since `precision/dynamics.py` already derives
+velocity from `LandmarkTimeSeries`.
+
 That distinction sets its role, and the
 [asymmetric error policy](../vision/07-interaction-design.md) §7.4 makes
 it non-negotiable: **gaze may permit, never trigger.** It raises the
@@ -75,16 +90,25 @@ new dependency: 478 landmarks and an optional 4×4 facial transformation
 matrix giving proper yaw/pitch/roll, real-time on CPU. This is the
 workhorse rung.
 
-**Rung C — iris/gaze refinement.** The Face Landmarker's iris points
-(and, if needed, an appearance-based gaze model) push angular error into
-the ~4–6° range under favorable conditions. Only worth it if rung B's
-precision proves insufficient.
+**Rung C — iris/gaze refinement.** The Face Landmarker's iris points,
+or an appearance-based gaze model. **Corrected 2026-08-18 by
+[Review 5](review-5-gaze-and-cueing-tools.md):** an earlier draft of this
+note put the refined error at ~4–6°, which is the *close-range webcam*
+figure (L2CS-Net: 3.92° on MPIIGaze). On the unconstrained-at-distance
+benchmark that actually matches a studio — Gaze360 — the same model
+reports **10.41°**. Budget ~10°, and note that this is barely better than
+rung A: the refinement rungs buy much less than they appear to, which is
+an argument for staying on rung A/B and spending the effort on
+calibration instead.
 
 **What the geometry demands.** Angular error θ at distance *d* is a
-lateral error of *d*·tan θ: at 4 m, 5° ≈ 0.35 m and 12° ≈ 0.85 m. Piano
-to nearest dancer is typically well over 1.5 m, so even rung A plausibly
+lateral error of *d*·tan θ: at 4 m, 10° ≈ 0.71 m and 15° ≈ 1.07 m. Piano
+to nearest dancer is typically well over 1.5 m, so every rung plausibly
 separates "looking at the pianist" from "looking at the room" — but
-nothing separates the pianist from someone standing beside the piano.
+nothing separates the pianist from someone standing beside the piano, and
+with realistic errors that margin is a factor of two, not ten. Dwell and
+per-teacher calibration, not angular precision, are what buy the
+headroom.
 
 **What the optics demand.** Iris landmarks want an inter-ocular distance
 of roughly 40–50 px. At 4 m through a ~70° horizontal FOV lens the frame
@@ -164,6 +188,17 @@ measured on a handful of exercises → only then any detector work beyond
 rung A. Rung A is a few hours on data that already exists in the right
 form; rungs B–C are only worth their cost if Q1 says the channel leads
 the audio.
+
+**Amended 2026-08-18 by [Review 5](review-5-gaze-and-cueing-tools.md).**
+Three changes, all of which make the first increment cheaper:
+(1) the capture decision is **no longer a prerequisite** — a room camera
+that sees teacher and piano together supports gaze-*target* estimation,
+a second tractable setup with its own tool stack, so the weak form of Q1
+can run on existing footage now; (2) the nod-kinematics experiment above
+needs no new model at all and should run first; (3) **licensing is a
+design constraint, not a deployment detail** — every capable gaze tool
+surveyed pairs permissive code with research-only weights, so no research
+checkpoint may become load-bearing.
 
 **BLOCKED on owner (queue item):** was the Ballet Barre 1 material shot
 from the accompanist's position, or from the room? If from the room, the
