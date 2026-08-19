@@ -1438,3 +1438,108 @@ Status: PROPOSED. Owner queue, unchanged and now sharpened: (b) region
 tags on the four named clips; (c) the vocables listen, blocked until the
 rig MP3s are staged on this machine; (d) ruling (g) ratification; plus
 the standing review of W1, still PROPOSED since 2026-08-16.
+
+## 2026-08-18 · rung M · agent/owner-queue-20260816 · local (owner-service, session 2: items (b) and (d))
+
+Attempted: The two deferred owner-authority items from this morning's
+entry — (b) region tagging on the four clips whose notes describe their
+spans in prose, and (d) ratification of ruling (g), silent-beat
+crediting. Both worked with the owner present, one clip and one question
+at a time. (c) remains blocked on media; W1's review remains open.
+
+Pre-registered expectation, stated before writing any region: tags are
+parallel metadata and add no beats, so **stage1 must stay byte-identical**
+and the QC checks must reproduce the owner's hand-computed figures.
+Predicted PASS on both.
+
+Result: **(b) COMPLETE — 4 clips, 33 `silent_beat` gaps, 6 `free_time`
+spans. (d) RATIFIED and written into the convention as ruling (g).**
+
+*(b), clip by clip. Every span was proposed from the clip's own notes and
+ruled on by the owner in session; nothing was inferred.*
+
+- `rig-names-4-4-104-coda` — owner chose two regions over one: the 6.8 s
+  break (19.110–25.912) and the out-of-time coda (25.912–33.996) tagged
+  `free_time` separately rather than merged, keeping them distinct events
+  in the record. **Plus a find the notes never recorded:** a 2.12×-median
+  gap at 10.484–11.669 inside the *in-time body*, owner-ruled
+  `silent_beat`. Result: grid-implied BPM **106.44 — the owner's
+  hand-computed figure reproduced exactly** — and all seven flags cleared.
+- `rig-names-4-4-63-adagio` — 6 `silent_beat` gaps, exactly where the
+  notes put them. Two of the six are 1.67× and 1.72× the median, *below*
+  the 1.75× phrase-break ratio, which is the pre-registered argument for
+  tagging over threshold tuning, now exercised rather than argued.
+  One flag survives at CV **15.2%** against a 15% line — **knife-edge**,
+  equal to the owner's own recorded 15.0%, no action (Standing Lesson 7).
+- `rig-names-2-4-160-long` — 7 `silent_beat` gaps as recorded. Clean,
+  spread 9.9%, zero flags.
+- `adr006-exercise-1-demo` — the hard one. The plain median (0.896 s) is
+  not the beat period here, exactly as its notes warn, so gaps were
+  measured against the cluster-derived **0.5067 s**: 19 `silent_beat`
+  gaps, matching the notes' predicted 19. **Two holes needed the owner
+  and only the owner:** the 3.392 s gap at 15.930 the notes explicitly
+  left unclassified, and a 2.309 s gap at 28.186 **the notes never
+  mention** — found this session. Owner ruled both `free_time`: the pulse
+  *stopped*. Plus the head (0–4.772) and the owner-confirmed 20.6 s
+  demonstration tail. Result: BPM flag **−42.77% → −3.85%**, the figure
+  the W1 entry predicted, all four findings cleared, spread 9.2%.
+
+*Prediction hit.* Suite after tagging: **"no outcome changes vs
+baseline"**; `aggregate_verified` clips=28 P=0.334 R=0.449 F=0.383 median
+−19.4 ms, unchanged. `git diff --name-only main` over `evals/cases/`,
+`evals/traces/`, `evals/baseline.json`, `src/musical_perception/evals/`:
+**0 files**.
+
+*A finding worth more than the tagging: the notes' BPM figures are now
+stale, and in two directions.* Tagging changes what "grid-implied BPM"
+means, because tagged IOIs are excluded from the median. On the coda that
+moved the number **onto** the owner's recorded 106.44 (he had computed
+body-only). On the adagio and the 160-long it moved it **away** — 61.39
+→ 65.17 and 159.76 → 164.07 — because those figures were computed
+whole-clip, gaps included. Both still pass the 4% check so nothing flags,
+but two grids now disagree with their own prose. Recorded rather than
+silently reconciled; the notes are the stale artifact, not the tags.
+
+*(d) Ruling (g) — ratified with one amendment the owner accepted.* The
+proposal as put: stage-1 stays vocalized-only and unchanged; crediting
+happens at the rung-4 tier as a separate CONTINUATION metric scoring
+phase coherence across tagged `silent_beat` gaps against the verified
+beats on the far side; **no beat is ever placed inside a gap** by hand or
+by interpolation; `free_time` credits nothing anywhere. The agent
+recommended, and the owner ratified, one addition: **CONTINUATION reports
+per-clip, never as a bare average across gaps, and pins no gate until its
+coverage is broad enough to support one.** The argument was precedent
+rather than principle — the rung-2 gate already refused a margin carried
+by one or two clips ("A margin carried by one or two clips does not
+pass"), and today's tagging makes the same hazard concrete: 19 of the 33
+gaps (58%) are on `adr006-exercise-1-demo` alone, so a gap-averaged
+CONTINUATION would be one clip wearing a corpus's name. Also deliberately
+excluded on the agent's recommendation: any specification of *how* phase
+coherence is computed. Pre-specifying an unbuilt metric is precisely what
+voided the original rung-2 gate; the arithmetic gets pinned at rung 4,
+against grids that exist, with reference code. Ruling (b) gains a
+cross-reference so its "stays unscored until a taggable format" line no
+longer reads as still-pending.
+
+Regressions and classifications: **none.** All tier-0/tier-1/stage1
+figures byte-identical; the one surviving QC flag (adagio 15.2% vs a 15%
+line) is classified **knife-edge**, as its predecessor was.
+
+Lesson (durable, one paragraph): Tagging was supposed to be transcription
+— moving what the notes already said into a form the checks could read —
+and on three clips it was. What it actually produced was two beats nobody
+had written down (an unvoiced beat inside the coda's in-time body, and a
+2.3-second hole in the waltz that no note mentions), because prose can
+describe a clip without accounting for it, and a format that demands
+spans forces the accounting. The second lesson is the stale-notes finding:
+making the file smarter changed the meaning of a number the file already
+carried, so two grids now contradict their own prose — the cost of a
+better representation is that every figure derived under the old one has
+to be re-read, and the honest move is to say which artifact went stale
+rather than to quietly recompute the notes to match.
+
+Status: PROPOSED. Ruling (g) is BLESSED (owner-ratified in session,
+2026-08-18) and live in the convention. Owner queue now: (c) the vocables
+listen, still blocked until the rig MP3s are staged on this machine; the
+review of W1, PROPOSED since 2026-08-16; and the notes-vs-tags BPM
+staleness on `rig-names-4-4-63-adagio` and `rig-names-2-4-160-long`.

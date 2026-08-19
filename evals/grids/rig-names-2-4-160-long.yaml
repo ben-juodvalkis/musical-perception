@@ -123,7 +123,35 @@ onsets:
 - 24.872
 - 25.3565
 - 25.5689
-regions: []
+regions:
+- start: 5.341
+  end: 6.088
+  kind: silent_beat
+  note: One unvoiced beat at the end of an 8-count. Owner-confirmed 2026-08-18.
+- start: 8.334
+  end: 9.069
+  kind: silent_beat
+  note: One unvoiced beat at the end of an 8-count. Owner-confirmed 2026-08-18.
+- start: 11.325
+  end: 12.105
+  kind: silent_beat
+  note: One unvoiced beat at the end of an 8-count. Owner-confirmed 2026-08-18.
+- start: 14.315
+  end: 15.059
+  kind: silent_beat
+  note: One unvoiced beat at the end of an 8-count. Owner-confirmed 2026-08-18.
+- start: 17.283
+  end: 18.121
+  kind: silent_beat
+  note: One unvoiced beat at the end of an 8-count. Owner-confirmed 2026-08-18.
+- start: 18.847
+  end: 19.58
+  kind: silent_beat
+  note: One unvoiced beat at the end of an 8-count. Owner-confirmed 2026-08-18.
+- start: 20.294
+  end: 21.176
+  kind: silent_beat
+  note: One unvoiced beat at the end of an 8-count. Owner-confirmed 2026-08-18.
 notes: 'Owner-verified 2026-08-13 (rung 1.5). Convention: docs/evals/annotation-convention.md
   - tactus only, vocalized only. 54 voiced beats, 3.06-25.57 s. Fastest clip in the
   corpus: 160 BPM, 0.375 s beat period. Correction vs frozen onsets (+/-120 ms): kept

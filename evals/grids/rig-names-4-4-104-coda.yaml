@@ -127,7 +127,22 @@ onsets:
 - 32.7686
 - 33.0507
 - 33.9959
-regions: []
+regions:
+- start: 10.484
+  end: 11.669
+  kind: silent_beat
+  note: One unvoiced beat inside the in-time body. Owner-ruled 2026-08-18; not described
+    in the original notes.
+- start: 19.11
+  end: 25.912
+  kind: free_time
+  note: The 6.8 s break between the in-time body and the coda. Owner-ruled 2026-08-18
+    as free time, tagged separately from the coda.
+- start: 25.912
+  end: 33.996
+  kind: free_time
+  note: 'Out-of-time coda: 12 voiced marks, IOIs 0.150-2.938 s, CV 121.5%, no stable
+    period. Owner: ''that end is out of time''.'
 notes: 'Owner-verified 2026-08-13 (rung 1.5). Convention: docs/evals/annotation-convention.md
   - tactus only; ruling (e), annotate through transitions (port de bras, balance)
   wherever voiced. 41 beats, 2.40-34.00 s. Correction vs frozen onsets (+/-120 ms):
