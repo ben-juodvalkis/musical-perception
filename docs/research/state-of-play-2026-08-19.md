@@ -186,3 +186,20 @@ neither needs owner time or an API key — while the owner's scarce hours go to 
 annotation, because the corpus, not the code, is the binding constraint on every
 claim this project wants to make. Keep W5 parked until W2's evidence and something
 like 40 verified clips exist; a big model judged on 28 clips cannot be told from luck.
+
+---
+
+## Addendum (written at the end of the session)
+
+While this briefing was being written, one more commit landed on `origin/main`
+(`fabd12e`, ✓ inspected, no eval/grid/case files touched): the nightly runner's
+transcript now lives inside the repo (ignored by git) and a short summary file is
+committed after each run. It carries a **proposed, unratified change to the rules**:
+the nightly script now **pushes `main` by itself** to publish that summary. The
+charter reserves pushing `main` to the owner without exception; the log flags this
+prominently as needing the owner's yes or no. Add to §7, owner-only: **8. Ratify or
+reject the runner's self-push carve-out.** It also sharpens the point in §4 and §6 —
+`main` is increasingly the loop's instruction channel, and now partly its own
+publisher. This branch was cut from `034d226`, one commit before that change; both
+append to the research log, so the owner's merge will meet a trivial end-of-file
+conflict in `RESEARCH-LOG.md`.

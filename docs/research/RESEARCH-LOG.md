@@ -1858,3 +1858,9 @@ record of what sessions believed, not of what is on disk — and the
 cheapest way to keep the two honest is to label every sentence with
 which one it came from.
 Status: PROPOSED (owner: read the briefing; its §7 is the owner queue).
+Addendum (same session): `origin/main` advanced to `fabd12e` while this
+briefing was written (runner logging into repo; nightly self-push of
+`main` PROPOSED as a rule-1 deviation). Inspected, no protected paths
+touched; briefing gained a closing addendum adding it to the owner queue.
+This branch stays based on `034d226`; the ledger will need a trivial
+append-append merge. Local `main` fast-forwarded to `fabd12e` (no push).
