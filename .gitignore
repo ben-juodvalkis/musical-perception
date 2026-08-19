@@ -40,3 +40,9 @@ audio/*
 !audio/rig/
 audio/rig/*
 !audio/rig/*.mp3
+
+# Agent runner logs: the raw stream-json transcript is NEVER committed (~1 MB/run,
+# can quote personal teacher-video speech, and a directory listing in it would
+# encode the HELD-OUT split by absence). The per-run summary IS committed.
+logs/*
+!logs/run-summaries.md

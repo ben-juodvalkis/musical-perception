@@ -1819,3 +1819,79 @@ in the ledger with its deadline stated.
 Status: BLESSED (owner-directed merge, 2026-08-19) as *bookkeeping*; the
 W0 review and amendments A1–A6 remain PROPOSED for owner decision, as do
 the three increments awaiting the first weekly batch review.
+
+## 2026-08-19 · rung M · main · (runner logging moved into the repo)
+
+Attempted: Make the nightly run's record reachable and reviewable, owner-
+directed in session ("do all of that and commit and push to main").
+
+Disclosure (charter rule 1): committed and pushed directly to `main` at
+the owner's explicit direction; the attestation is the owner's, the
+keystrokes the agent's, recorded per-instance.
+
+**A SECOND, LARGER DEVIATION NEEDING RATIFICATION (rule 9), flagged
+prominently because it is a standing change rather than a one-off:**
+`scripts/air-nightly.sh` now **pushes `main` by itself**, unattended, to
+publish `logs/run-summaries.md`. The charter reserves pushing `main` to
+the owner without exception. The carve-out being claimed is narrow — the
+push carries that one file, a machine's record of its own runs, never
+research work, and it happens after the pull so it cannot race the
+agent's own commits. It is nonetheless a rule-1 deviation and is
+**PROPOSED, not assumed**: if the owner rejects it, the publish block
+comes out and summaries reach `main` by the ordinary merge path instead.
+
+Pre-registered expectation: the summary extractor, run against the real
+2026-08-19 log, reproduces that run's headline facts without a human
+reading 964 KB. Predicted PASS.
+
+Result: **done and verified.**
+
+*What moved and why.* The raw transcript moved from
+`~/musical-perception-agent.log` to `logs/agent-nightly.log` **inside the
+repo, gitignored**. In the repo because a session cannot read outside its
+working directory — the 2026-08-19 run flagged this about itself ("a
+session can't read `~/musical-perception-agent.log` to inspect its own
+predecessors"), and it is why diagnosing that failure needed a human.
+Gitignored for three reasons, the third being the one that decided it:
+~1 MB per run appended nightly; it can quote personal teacher-video
+speech, which agent-environment.md keeps out of this repo; and **a
+directory listing captured in a transcript would encode the HELD-OUT
+split by absence** — which four Barre-1 exercises are missing *is* the
+list the charter keeps off this repository, and once committed it is in
+history permanently. The current log names no section files (checked),
+but mentions "Ballet Barre 1" twice, so the exposure was one `ls` away.
+
+*What is committed instead.* `logs/run-summaries.md` — per run: outcome,
+turns, duration, cost, and the agent's own closing message. Published by
+the *following* night's run, after the pull, so the tree is clean before
+the agent works; one night's lag by design.
+
+*Verification.* Extractor run against the real 964 KB log: **success, 107
+turns, 20.2 min, $11.98**, with the closing message quoted — the artifact
+that would have answered "did last night work?" in one glance instead of
+a hand dig. `bash -n` clean. `git check-ignore` confirms
+`logs/agent-nightly.log` ignored and `logs/run-summaries.md` tracked.
+**Prediction hit.** Two bugs were caught in review before commit rather
+than at 02:00: a cost f-string whose trailing conditional collapsed the
+whole summary body to empty when `total_cost_usd` was absent, and a
+publish guard using `git diff` that would never have fired on the
+first, untracked summary — now `git status --porcelain`.
+
+Regressions and classifications: none. No eval, grid, or pipeline file
+touched.
+
+Lesson (durable, one paragraph): The instinct to commit the log was right
+about the problem and wrong about the fix — what was actually broken was
+*reachability*, not *durability*, and those wanted opposite answers: move
+the file in, keep the bytes out. Worth keeping is how close the tidy
+version came to permanently leaking a research control: a held-out split
+protected by physical absence is also destroyed by any faithful record of
+that absence, so "just commit the logs" and "never let the loop see the
+holdout" are in direct conflict, and nothing in the repo would have
+announced it. The general rule: before committing any machine-generated
+record, ask what it encodes about what is *missing*, not only about what
+it contains.
+
+Status: PROPOSED. One item needs an explicit owner decision: whether the
+nightly script may push `main` on its own to publish summaries (rule 9
+above), or whether that block should be removed.

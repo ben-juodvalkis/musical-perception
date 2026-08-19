@@ -172,7 +172,18 @@ posture:
 
 - **Steering the Air:** nightly runs are fire-and-forget (log +
   branch + ledger are the record); supervised runs are just interactive
-  sessions. Check `~/musical-perception-agent.log` when curious.
+  sessions. **Two records, moved 2026-08-19:** the raw transcript is
+  `logs/agent-nightly.log` **inside the repo but gitignored** — in the repo
+  so a session can read why its predecessor failed (it cannot read outside
+  its working directory, which is why the 2026-08-19 failure needed a human
+  to diagnose), gitignored because it runs ~1 MB per run, can quote personal
+  teacher-video speech, and a directory listing inside it would encode the
+  HELD-OUT split by absence. The committed record is
+  `logs/run-summaries.md`: outcome, turns, duration, cost and the agent's
+  closing message per run, published by the *following* night's run (one
+  night's lag, by design — it commits after the pull so the tree is clean
+  before the agent works). Read the summary from anywhere; read the raw log
+  on the runner.
 - **Air failure modes:** macOS updates rebooting the machine (settings →
   defer major updates), launchd PATH issues (absolute `claude` path in
   the wrapper), Wi-Fi drops mid-push (the wrapper's git operations fail
