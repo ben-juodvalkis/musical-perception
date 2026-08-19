@@ -29,7 +29,7 @@ which case a one-line ledger note saying so is the entire deliverable.
 Begin by reading the charter and the ledger's Standing Lessons.
 EOF
 
-caffeinate -i "$CLAUDE_BIN" -p "$STANDING_CONTRACT" \
+caffeinate -i "$CLAUDE_BIN" -p "$STANDING_CONTRACT" --model opus \
   --output-format stream-json --verbose >>"$LOG" 2>&1
 
 echo "=== run finished $(date -u +%Y-%m-%dT%H:%M:%SZ) ===" >>"$LOG"

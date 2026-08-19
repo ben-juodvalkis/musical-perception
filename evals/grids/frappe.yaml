@@ -1,9 +1,10 @@
-format: 1
+format: 2
 clip: frappe
 provisional: false
 media: video/youtube/Frappe.mov
 media_sha256: 0edb985d905ddc1b0edcbc02e9e9116d8d38924e94d146884bf3a3032df4267f
 annotator: owner-verified (REAPER video-synced, from scratch + nudge pass)
+annotation_method: from_scratch
 created_at: '2026-08-11T23:03:20+00:00'
 params:
   sr: 16000
@@ -178,6 +179,7 @@ onsets:
 - 38.0329
 - 38.2492
 - 38.4495
+regions: []
 notes: 'Owner-verified 2026-08-14 (rung 1.5). Annotated under ruling (d'') - explanation
   speech is eligible - and ruling (e), through the attitude-balance section. 55 voiced
   beats, 4.71-28.64 s. Annotated in REAPER against the video, from scratch (no peakRate
@@ -204,4 +206,11 @@ notes: 'Owner-verified 2026-08-14 (rung 1.5). Annotated under ruling (d'') - exp
   FREE TIME (no metric beats, not silent beats): the clip runs to 39.5 s but marking
   ends at 28.64 s - the owner reports the tail is explanation delivered OUT of time.
   The first 4.71 s is likewise unmarked (''good, let''s get the feet moving with a
-  nice quick frappe'' - framing). Neither region may be counted as skipped beats.'
+  nice quick frappe'' - framing). Neither region may be counted as skipped beats.
+
+
+  ANNOTATION METHOD (recorded 2026-08-18, owner-confirmed): from_scratch - live tap
+  (REAPER, M key) against the video with no marker suggestions shown, followed by
+  a scrub-and-nudge correction pass. The annotation_method enum records the cohort;
+  this line records the tool and the gesture, which the enum''s frozen two-value vocabulary
+  cannot express.'

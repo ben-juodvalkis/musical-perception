@@ -1,9 +1,10 @@
-format: 1
+format: 2
 clip: rig-names-2-4-120-clean
 provisional: false
 media: audio/rig/rig-names-2-4-120-clean.mp3
 media_sha256: 8b222fd1302dce98d7d33d00c3447751557b3ae41bd68ddbbc256b639856ebe6
 annotator: owner-verified (peakrate-tap-assist/1 seed)
+annotation_method: anchored
 created_at: '2026-08-11T22:42:27+00:00'
 params:
   sr: 16000
@@ -76,6 +77,7 @@ onsets:
 - 14.5585
 - 15.5243
 - 16.0363
+regions: []
 notes: 'Owner-verified 2026-08-13 (rung 1.5). Convention: docs/evals/annotation-convention.md
   - tactus only. 27 beats, 2.05-16.04 s. The marking level is the ''and'' level (front
   AND close AND ...), which the BPM check confirms: within-phrase BPM 119.51 vs case
@@ -99,4 +101,11 @@ notes: 'Owner-verified 2026-08-13 (rung 1.5). Convention: docs/evals/annotation-
   QC: the owner''s first export carried one leftover within-word extra at 13.233 s,
   129 ms after the beat at 13.104 s - the same re-fire mode as the ''seven''/''five''/''eight''
   strays on the numbers clips. Caught by the short-IOI check and removed on re-listening.
-  Third such catch this session.'
+  Third such catch this session.
+
+
+  ANNOTATION METHOD (recorded 2026-08-18, owner-confirmed): anchored - correction
+  of pre-existing peakRate marker suggestions in Audacity (delete non-beats, nudge
+  survivors to vowel onsets, add missed beats). The annotation_method enum records
+  the cohort; this line records the tool and the gesture, which the enum''s frozen
+  two-value vocabulary cannot express.'

@@ -1307,3 +1307,239 @@ different ones — the guards convert "the owner would have caught this"
 into structure: the un-delegable work waits, and the review happens on
 schedule whether or not anyone is watching.
 Status: BLESSED (owner-requested in session, 2026-08-16).
+
+## 2026-08-18 · rung M · agent/owner-queue-20260816 · local (owner-service + launch)
+
+Attempted: **Owner-service session — no W-workstream advanced, by design.**
+Working the BLOCKED queue with the owner present, plus arming the nightly
+schedule. Branch name carries `20260816` as the owner specified it; the
+shell and git clock both read 2026-08-18 and agree with each other (the
+2026-08-16 entry's clock disagreement has resolved itself), so the entry
+is stamped 08-18 and the branch name is left as issued.
+
+Pre-registered expectations: n/a (owner service + governance). The one
+measurable claim is the EVAL-CHANGE gate on (a), stated before running:
+writing `annotation_method` + a notes line touches no `beats` and no
+`onsets`, so stage1 must be byte-identical. **Predicted PASS.**
+
+BLOCKED sweep (the prompt warned its list might be incomplete — it was).
+Two historical BLOCKED entries are already closed (2026-08-11 missing DEV
+media; rung-1 grid coverage). Three open items the prompt did not name:
+- **W1's status is still PROPOSED.** It is merged to main but never
+  reviewed. Merging is not blessing; the distinction is live.
+- **The 2026-08-14 blessing entry is wrong about branch deletion.** It
+  records `agent/rung-1-stage-scoring` and `agent/rung-2-acoustic-pulse`
+  as deleted. They were not — both existed, local and remote, until this
+  session. Corrected by doing it, and recorded here so the ledger stops
+  asserting a completed act that had not happened.
+- **Rung-2 backlog (i)** (relative speech-band silence floor for quiet
+  clips) is parked behind W2 as a pipeline workstream, not an owner
+  block. Noted so it is not lost; no action.
+
+Result, item by item.
+
+*(a) `set-method` backfill — RESOLVED, gate held.* All 28 verified grids
+stamped: 25 `anchored`, 3 `from_scratch` (`adr006-exercise-1-demo`,
+`adr010-grande-battement`, `frappe` — the three video grids, owner-
+confirmed in session against the agent's reading of log line 440). The
+2 provisional grids are deliberately unstamped. **A limitation surfaced
+and ruled on rather than worked around:** the owner's instruction was
+that labels name the *method*, not just the cohort, but the enum is a
+frozen two-value vocabulary (W1 pre-registration §1, rule 4 forbids
+retuning it after the fact) and `from_scratch` cannot say "live tap in
+REAPER, then nudge-corrected". Owner chose enum + prose over a format-3
+proposal, so each grid's `notes` now carries the tool and the gesture —
+the same field where every other method fact in this corpus already
+lives. `git diff --stat main`: 28 grid files, 305 insertions / 56
+deletions; **0 files** under `evals/cases/`, `evals/traces/`,
+`evals/baseline.json`, or `src/musical_perception/evals/`. Diff
+inspection confirms no `beats` or `onsets` line changed — the deletions
+are YAML re-wrapping of existing notes plus `format: 1`→`2` and
+`regions: []`. Suite: **"no outcome changes vs baseline"**;
+`aggregate_verified` clips=28 P=0.334 R=0.449 F=0.383 (macro 0.386)
+median −19.4 ms, identical to the W1 entry's figures. **Prediction hit.**
+
+*(b) Region tagging — DEFERRED by turn budget, material prepared.* Not
+started. The four clips whose own notes already describe their spans in
+prose are `rig-names-4-4-104-coda` (`free_time` 25.91–34.00 s),
+`adr006-exercise-1-demo` (19 × `silent_beat` from the 2-beat gaps,
+`free_time` 39.44 s→end and 0→4.77 s, plus the interior 3.392 s gap at
+~16.0 s that the notes leave unclassified and only the owner can settle),
+`rig-names-4-4-63-adagio` (6 × `silent_beat` at ~6.734 / 10.638 / 14.337
+/ 18.124 / 22.122 / 25.765 s), `rig-names-2-4-160-long` (7 × `silent_beat`
+after 5.341 / 8.333 / 11.325 / 14.315 / 17.283 / 18.847 / 20.294 s).
+Per the 2026-08-15 correction, unmarked talking stretches default to
+`free_time` and phase-aligned re-entry is a flag for attention only.
+
+*(c) Vocables dropped-beats listen — DEFERRED, and BLOCKED on media.*
+The two missed beats are computed and pinned: on
+`rig-vocables-4-4-100-clean` the rung-2 extractor misses **beat 9 at
+7.274 s** and **beat 13 at 9.702 s** (one-to-one ±70 ms against the
+verified grid; nearest extractor events are 6.680/7.868 and 9.382/9.975,
+so it emitted nothing in either window rather than mistiming). **New
+blocker found this session:** `audio/rig/*.mp3` is not on this machine
+and has never been committed — the `.gitignore` exception exists but
+`git log --all -- 'audio/rig/*'` is empty. `audio/counting/` and
+`video/youtube/` are present; the rig audio is not. The colour-coded
+Reaper marker file is trivial once the audio is staged; without it there
+is nothing to listen to. Owner action: stage the DEV rig MP3s here, or
+do the listen on the machine that holds them.
+
+*(d) Ruling (g), silent-beat crediting — DEFERRED, not ratified.* Not
+presented, so nothing was written into the convention. This is the item
+that most needed the owner's own words and it did not get its turn; it
+carries forward unchanged and unprejudiced.
+
+*(e) Housekeeping — RESOLVED.* `agent/rung-1-stage-scoring` and
+`agent/rung-2-acoustic-pulse` deleted, remote and local, after confirming
+both are merged into main. `agent/marathon` untouched, local and remote.
+
+*(f) Launch — RESOLVED and armed.* `scripts/air-nightly.sh` now passes
+`--model opus` to the headless invocation (`bash -n`: OK).
+`~/Library/LaunchAgents/com.musical-perception.nightly.plist` created
+from the agent-environment.md template with this machine's real paths
+(`/Users/la-ben.juodvalkis/github/musical-perception`), `plutil -lint`:
+OK, and loaded. `launchctl list` shows `- 0 com.musical-perception.nightly`
+— registered, never fired. **Departure from the template, disclosed:**
+the template sets no environment, but `CLAUDE_BIN` defaults to bare
+`claude` and launchd does not inherit a login PATH, so the job would have
+died on command-not-found at 2am. The plist therefore sets `CLAUDE_BIN`
+to the absolute `/Users/la-ben.juodvalkis/.local/bin/claude` (verified
+executable) plus `HOME` and `PATH`. This is exactly the failure mode
+agent-environment.md's "Air failure modes" note predicts. No nested
+claude session was launched; the first firing is 02:00 local.
+
+Also this session: `.claude/settings.local.json` created with a single
+narrow allow rule for `annotation set-method`, because the auto-mode
+classifier refused every compound shell command and 28 grids at one turn
+apiece would have consumed the session. Owner-authorized in-session
+rather than routed around; the file is globally gitignored and does not
+enter the repo.
+
+Regressions and classifications: **none.** Every tier-0/tier-1/stage1
+number byte-identical; the runner prints "no outcome changes vs
+baseline". `evals/baseline.json` and the frozen scorer untouched.
+
+Lesson (durable, one paragraph): The queue's cheapest item exposed the
+sharpest constraint — an enum frozen a priori is a promise not to
+improvise, so when the owner asked the label to say more than the enum
+can hold, the honest move was to surface the collision and let him choose
+between prose today and a format change later, not to widen the
+vocabulary quietly and report success. The session's other lesson is
+about budget: five owner-authority items and a launch do not fit in forty
+turns when each needs the owner's actual words, and the right failure is
+to finish the mechanical work completely and hand back the judgment calls
+untouched rather than to guess at three rulings in the last five turns.
+(b), (c) and (d) are deferred with their evidence computed and their
+questions intact, which costs the owner a session but costs the ground
+truth nothing.
+
+Status: PROPOSED. Owner queue, unchanged and now sharpened: (b) region
+tags on the four named clips; (c) the vocables listen, blocked until the
+rig MP3s are staged on this machine; (d) ruling (g) ratification; plus
+the standing review of W1, still PROPOSED since 2026-08-16.
+
+## 2026-08-18 · rung M · agent/owner-queue-20260816 · local (owner-service, session 2: items (b) and (d))
+
+Attempted: The two deferred owner-authority items from this morning's
+entry — (b) region tagging on the four clips whose notes describe their
+spans in prose, and (d) ratification of ruling (g), silent-beat
+crediting. Both worked with the owner present, one clip and one question
+at a time. (c) remains blocked on media; W1's review remains open.
+
+Pre-registered expectation, stated before writing any region: tags are
+parallel metadata and add no beats, so **stage1 must stay byte-identical**
+and the QC checks must reproduce the owner's hand-computed figures.
+Predicted PASS on both.
+
+Result: **(b) COMPLETE — 4 clips, 33 `silent_beat` gaps, 6 `free_time`
+spans. (d) RATIFIED and written into the convention as ruling (g).**
+
+*(b), clip by clip. Every span was proposed from the clip's own notes and
+ruled on by the owner in session; nothing was inferred.*
+
+- `rig-names-4-4-104-coda` — owner chose two regions over one: the 6.8 s
+  break (19.110–25.912) and the out-of-time coda (25.912–33.996) tagged
+  `free_time` separately rather than merged, keeping them distinct events
+  in the record. **Plus a find the notes never recorded:** a 2.12×-median
+  gap at 10.484–11.669 inside the *in-time body*, owner-ruled
+  `silent_beat`. Result: grid-implied BPM **106.44 — the owner's
+  hand-computed figure reproduced exactly** — and all seven flags cleared.
+- `rig-names-4-4-63-adagio` — 6 `silent_beat` gaps, exactly where the
+  notes put them. Two of the six are 1.67× and 1.72× the median, *below*
+  the 1.75× phrase-break ratio, which is the pre-registered argument for
+  tagging over threshold tuning, now exercised rather than argued.
+  One flag survives at CV **15.2%** against a 15% line — **knife-edge**,
+  equal to the owner's own recorded 15.0%, no action (Standing Lesson 7).
+- `rig-names-2-4-160-long` — 7 `silent_beat` gaps as recorded. Clean,
+  spread 9.9%, zero flags.
+- `adr006-exercise-1-demo` — the hard one. The plain median (0.896 s) is
+  not the beat period here, exactly as its notes warn, so gaps were
+  measured against the cluster-derived **0.5067 s**: 19 `silent_beat`
+  gaps, matching the notes' predicted 19. **Two holes needed the owner
+  and only the owner:** the 3.392 s gap at 15.930 the notes explicitly
+  left unclassified, and a 2.309 s gap at 28.186 **the notes never
+  mention** — found this session. Owner ruled both `free_time`: the pulse
+  *stopped*. Plus the head (0–4.772) and the owner-confirmed 20.6 s
+  demonstration tail. Result: BPM flag **−42.77% → −3.85%**, the figure
+  the W1 entry predicted, all four findings cleared, spread 9.2%.
+
+*Prediction hit.* Suite after tagging: **"no outcome changes vs
+baseline"**; `aggregate_verified` clips=28 P=0.334 R=0.449 F=0.383 median
+−19.4 ms, unchanged. `git diff --name-only main` over `evals/cases/`,
+`evals/traces/`, `evals/baseline.json`, `src/musical_perception/evals/`:
+**0 files**.
+
+*A finding worth more than the tagging: the notes' BPM figures are now
+stale, and in two directions.* Tagging changes what "grid-implied BPM"
+means, because tagged IOIs are excluded from the median. On the coda that
+moved the number **onto** the owner's recorded 106.44 (he had computed
+body-only). On the adagio and the 160-long it moved it **away** — 61.39
+→ 65.17 and 159.76 → 164.07 — because those figures were computed
+whole-clip, gaps included. Both still pass the 4% check so nothing flags,
+but two grids now disagree with their own prose. Recorded rather than
+silently reconciled; the notes are the stale artifact, not the tags.
+
+*(d) Ruling (g) — ratified with one amendment the owner accepted.* The
+proposal as put: stage-1 stays vocalized-only and unchanged; crediting
+happens at the rung-4 tier as a separate CONTINUATION metric scoring
+phase coherence across tagged `silent_beat` gaps against the verified
+beats on the far side; **no beat is ever placed inside a gap** by hand or
+by interpolation; `free_time` credits nothing anywhere. The agent
+recommended, and the owner ratified, one addition: **CONTINUATION reports
+per-clip, never as a bare average across gaps, and pins no gate until its
+coverage is broad enough to support one.** The argument was precedent
+rather than principle — the rung-2 gate already refused a margin carried
+by one or two clips ("A margin carried by one or two clips does not
+pass"), and today's tagging makes the same hazard concrete: 19 of the 33
+gaps (58%) are on `adr006-exercise-1-demo` alone, so a gap-averaged
+CONTINUATION would be one clip wearing a corpus's name. Also deliberately
+excluded on the agent's recommendation: any specification of *how* phase
+coherence is computed. Pre-specifying an unbuilt metric is precisely what
+voided the original rung-2 gate; the arithmetic gets pinned at rung 4,
+against grids that exist, with reference code. Ruling (b) gains a
+cross-reference so its "stays unscored until a taggable format" line no
+longer reads as still-pending.
+
+Regressions and classifications: **none.** All tier-0/tier-1/stage1
+figures byte-identical; the one surviving QC flag (adagio 15.2% vs a 15%
+line) is classified **knife-edge**, as its predecessor was.
+
+Lesson (durable, one paragraph): Tagging was supposed to be transcription
+— moving what the notes already said into a form the checks could read —
+and on three clips it was. What it actually produced was two beats nobody
+had written down (an unvoiced beat inside the coda's in-time body, and a
+2.3-second hole in the waltz that no note mentions), because prose can
+describe a clip without accounting for it, and a format that demands
+spans forces the accounting. The second lesson is the stale-notes finding:
+making the file smarter changed the meaning of a number the file already
+carried, so two grids now contradict their own prose — the cost of a
+better representation is that every figure derived under the old one has
+to be re-read, and the honest move is to say which artifact went stale
+rather than to quietly recompute the notes to match.
+
+Status: PROPOSED. Ruling (g) is BLESSED (owner-ratified in session,
+2026-08-18) and live in the convention. Owner queue now: (c) the vocables
+listen, still blocked until the rig MP3s are staged on this machine; the
+review of W1, PROPOSED since 2026-08-16; and the notes-vs-tags BPM
+staleness on `rig-names-4-4-63-adagio` and `rig-names-2-4-160-long`.

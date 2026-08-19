@@ -1,9 +1,10 @@
-format: 1
+format: 2
 clip: rig-numbers-4-4-80-triplet
 provisional: false
 media: audio/rig/rig-numbers-4-4-80-triplet.mp3
 media_sha256: c273c48b3020e7acede4e688099ad97290972df07b44217fafdcb71b332ddbb9
 annotator: owner-verified (peakrate-tap-assist/1 seed)
+annotation_method: anchored
 created_at: '2026-08-11T22:42:28+00:00'
 params:
   sr: 16000
@@ -68,6 +69,7 @@ onsets:
 - 14.2622
 - 14.5598
 - 14.8383
+regions: []
 notes: 'Owner-verified 2026-08-12 (rung 1.5). Convention: docs/evals/annotation-convention.md
   - tactus only, so the numbers and none of the ''and-a'' triplet syllables. 16 beats
   = 2 rounds of 8, 3.06-14.26 s. Correction vs frozen onsets (time-matched, +/-120
@@ -86,4 +88,11 @@ notes: 'Owner-verified 2026-08-12 (rung 1.5). Convention: docs/evals/annotation-
   ground truth rather than peakRate suggestions. Whisper emits all 48 syllable tokens
   here (2 x 8 x 3), so on dense triplet counting the ASR channel is complete and reasonably
   aligned - contrast rig-numbers-4-4-104-clean, where it silently dropped a whole
-  round of eight.'
+  round of eight.
+
+
+  ANNOTATION METHOD (recorded 2026-08-18, owner-confirmed): anchored - correction
+  of pre-existing peakRate marker suggestions in Audacity (delete non-beats, nudge
+  survivors to vowel onsets, add missed beats). The annotation_method enum records
+  the cohort; this line records the tool and the gesture, which the enum''s frozen
+  two-value vocabulary cannot express.'

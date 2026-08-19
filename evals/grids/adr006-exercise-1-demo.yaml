@@ -1,9 +1,10 @@
-format: 1
+format: 2
 clip: adr006-exercise-1-demo
 provisional: false
 media: video/youtube/Exercise 1 Demo.m4v
 media_sha256: 23ed8c7b7b20c0097515ac1553cee26532158a66649b4aa3561dca4f02dbf9c3
 annotator: owner-verified (REAPER video-synced, from scratch + nudge pass)
+annotation_method: from_scratch
 created_at: '2026-08-11T23:03:20+00:00'
 params:
   sr: 16000
@@ -198,6 +199,141 @@ onsets:
 - 58.2764
 - 59.1694
 - 59.3664
+regions:
+- start: 0.0
+  end: 4.7725
+  kind: free_time
+  note: 'Unmarked head before the first voiced beat. Owner-ruled 2026-08-18: pulse
+    had not started.'
+- start: 4.7725
+  end: 5.8605
+  kind: silent_beat
+  note: 'One unvoiced beat: 3/4 waltz, the owner voices two of the three beats per
+    bar (ruling (b)). Gap measured against the cluster-derived 0.5067 s period, not
+    the misleading 0.896 s plain median. Owner-confirmed 2026-08-18.'
+- start: 6.3512
+  end: 7.3005
+  kind: silent_beat
+  note: 'One unvoiced beat: 3/4 waltz, the owner voices two of the three beats per
+    bar (ruling (b)). Gap measured against the cluster-derived 0.5067 s period, not
+    the misleading 0.896 s plain median. Owner-confirmed 2026-08-18.'
+- start: 7.8125
+  end: 9.0392
+  kind: silent_beat
+  note: 'One unvoiced beat: 3/4 waltz, the owner voices two of the three beats per
+    bar (ruling (b)). Gap measured against the cluster-derived 0.5067 s period, not
+    the misleading 0.896 s plain median. Owner-confirmed 2026-08-18.'
+- start: 9.7005
+  end: 10.8312
+  kind: silent_beat
+  note: 'One unvoiced beat: 3/4 waltz, the owner voices two of the three beats per
+    bar (ruling (b)). Gap measured against the cluster-derived 0.5067 s period, not
+    the misleading 0.896 s plain median. Owner-confirmed 2026-08-18.'
+- start: 11.3218
+  end: 12.3458
+  kind: silent_beat
+  note: 'One unvoiced beat: 3/4 waltz, the owner voices two of the three beats per
+    bar (ruling (b)). Gap measured against the cluster-derived 0.5067 s period, not
+    the misleading 0.896 s plain median. Owner-confirmed 2026-08-18.'
+- start: 12.8792
+  end: 13.8285
+  kind: silent_beat
+  note: 'One unvoiced beat: 3/4 waltz, the owner voices two of the three beats per
+    bar (ruling (b)). Gap measured against the cluster-derived 0.5067 s period, not
+    the misleading 0.896 s plain median. Owner-confirmed 2026-08-18.'
+- start: 14.3725
+  end: 15.3538
+  kind: silent_beat
+  note: 'One unvoiced beat: 3/4 waltz, the owner voices two of the three beats per
+    bar (ruling (b)). Gap measured against the cluster-derived 0.5067 s period, not
+    the misleading 0.896 s plain median. Owner-confirmed 2026-08-18.'
+- start: 15.9298
+  end: 19.3218
+  kind: free_time
+  note: '3.392 s hole the original notes left unclassified between silent-pulse and
+    free time. Owner-ruled 2026-08-18: the pulse STOPPED - free time, not held.'
+- start: 19.3218
+  end: 20.2605
+  kind: silent_beat
+  note: 'One unvoiced beat: 3/4 waltz, the owner voices two of the three beats per
+    bar (ruling (b)). Gap measured against the cluster-derived 0.5067 s period, not
+    the misleading 0.896 s plain median. Owner-confirmed 2026-08-18.'
+- start: 20.8152
+  end: 21.7005
+  kind: silent_beat
+  note: 'One unvoiced beat: 3/4 waltz, the owner voices two of the three beats per
+    bar (ruling (b)). Gap measured against the cluster-derived 0.5067 s period, not
+    the misleading 0.896 s plain median. Owner-confirmed 2026-08-18.'
+- start: 22.1485
+  end: 23.0658
+  kind: silent_beat
+  note: 'One unvoiced beat: 3/4 waltz, the owner voices two of the three beats per
+    bar (ruling (b)). Gap measured against the cluster-derived 0.5067 s period, not
+    the misleading 0.896 s plain median. Owner-confirmed 2026-08-18.'
+- start: 23.5778
+  end: 24.4952
+  kind: silent_beat
+  note: 'One unvoiced beat: 3/4 waltz, the owner voices two of the three beats per
+    bar (ruling (b)). Gap measured against the cluster-derived 0.5067 s period, not
+    the misleading 0.896 s plain median. Owner-confirmed 2026-08-18.'
+- start: 25.1245
+  end: 26.0312
+  kind: silent_beat
+  note: 'One unvoiced beat: 3/4 waltz, the owner voices two of the three beats per
+    bar (ruling (b)). Gap measured against the cluster-derived 0.5067 s period, not
+    the misleading 0.896 s plain median. Owner-confirmed 2026-08-18.'
+- start: 26.5325
+  end: 27.6738
+  kind: silent_beat
+  note: 'One unvoiced beat: 3/4 waltz, the owner voices two of the three beats per
+    bar (ruling (b)). Gap measured against the cluster-derived 0.5067 s period, not
+    the misleading 0.896 s plain median. Owner-confirmed 2026-08-18.'
+- start: 28.1858
+  end: 30.4952
+  kind: free_time
+  note: '2.309 s hole not described in the original notes; found 2026-08-18. Owner-ruled
+    the same as the 15.930 s hole: pulse stopped.'
+- start: 30.4952
+  end: 31.4872
+  kind: silent_beat
+  note: 'One unvoiced beat: 3/4 waltz, the owner voices two of the three beats per
+    bar (ruling (b)). Gap measured against the cluster-derived 0.5067 s period, not
+    the misleading 0.896 s plain median. Owner-confirmed 2026-08-18.'
+- start: 31.9778
+  end: 32.9058
+  kind: silent_beat
+  note: 'One unvoiced beat: 3/4 waltz, the owner voices two of the three beats per
+    bar (ruling (b)). Gap measured against the cluster-derived 0.5067 s period, not
+    the misleading 0.896 s plain median. Owner-confirmed 2026-08-18.'
+- start: 33.4712
+  end: 34.4312
+  kind: silent_beat
+  note: 'One unvoiced beat: 3/4 waltz, the owner voices two of the three beats per
+    bar (ruling (b)). Gap measured against the cluster-derived 0.5067 s period, not
+    the misleading 0.896 s plain median. Owner-confirmed 2026-08-18.'
+- start: 34.9965
+  end: 35.9032
+  kind: silent_beat
+  note: 'One unvoiced beat: 3/4 waltz, the owner voices two of the three beats per
+    bar (ruling (b)). Gap measured against the cluster-derived 0.5067 s period, not
+    the misleading 0.896 s plain median. Owner-confirmed 2026-08-18.'
+- start: 36.4792
+  end: 37.4072
+  kind: silent_beat
+  note: 'One unvoiced beat: 3/4 waltz, the owner voices two of the three beats per
+    bar (ruling (b)). Gap measured against the cluster-derived 0.5067 s period, not
+    the misleading 0.896 s plain median. Owner-confirmed 2026-08-18.'
+- start: 37.9405
+  end: 38.8898
+  kind: silent_beat
+  note: 'One unvoiced beat: 3/4 waltz, the owner voices two of the three beats per
+    bar (ruling (b)). Gap measured against the cluster-derived 0.5067 s period, not
+    the misleading 0.896 s plain median. Owner-confirmed 2026-08-18.'
+- start: 39.4445
+  end: 60.1
+  kind: free_time
+  note: 'The final ~20.6 s: teacher speeding through a demonstration OUT of time (owner-confirmed).
+    A third of the clip; must not count as skipped beats.'
 notes: 'Owner-verified 2026-08-14 (rung 1.5), under ruling (d''). 41 voiced beats,
   4.77-39.44 s of a 60.1 s clip. Annotated in REAPER against the video, from scratch,
   plus a scrub-and-nudge pass.
@@ -229,4 +365,11 @@ notes: 'Owner-verified 2026-08-14 (rung 1.5), under ruling (d''). 41 voiced beat
   between silent-pulse and free time.
 
   Silent-beat arithmetic over the marked span: 41 voiced + 19 silent (from the 2-beat
-  gaps) = 60 metric beats.'
+  gaps) = 60 metric beats.
+
+
+  ANNOTATION METHOD (recorded 2026-08-18, owner-confirmed): from_scratch - live tap
+  (REAPER, M key) against the video with no marker suggestions shown, followed by
+  a scrub-and-nudge correction pass. The annotation_method enum records the cohort;
+  this line records the tool and the gesture, which the enum''s frozen two-value vocabulary
+  cannot express.'

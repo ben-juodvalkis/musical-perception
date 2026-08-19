@@ -1,9 +1,10 @@
-format: 1
+format: 2
 clip: rig-names-3-4-88-waltz
 provisional: false
 media: audio/rig/rig-names-3-4-88-waltz.mp3
 media_sha256: 36207a1cfd620b8ffe173aea3034658c8698931db03e358ffcdd3d9459378b4f
 annotator: owner-verified (peakrate-tap-assist/1 seed)
+annotation_method: anchored
 created_at: '2026-08-11T22:42:27+00:00'
 params:
   sr: 16000
@@ -70,6 +71,7 @@ onsets:
 - 15.0712
 - 15.8712
 - 16.4191
+regions: []
 notes: 'Owner-verified 2026-08-13 (rung 1.5). Convention: docs/evals/annotation-convention.md
   - tactus only; marked at the three-per-bar level. 24 beats = 8 bars of 3/4, 0.74-16.42
   s (earliest clip start in the corpus). Correction vs frozen onsets (+/-120 ms):
@@ -90,4 +92,11 @@ notes: 'Owner-verified 2026-08-13 (rung 1.5). Convention: docs/evals/annotation-
   and 3 by roughly 50 ms systematically on 3/4 marking - the same order as the +/-70
   ms stage-1 scoring tolerance, so it can consume most of the error budget before
   any detector error is counted. Ruling (f) says annotate what was heard, so the non-isochrony
-  is in the grid.'
+  is in the grid.
+
+
+  ANNOTATION METHOD (recorded 2026-08-18, owner-confirmed): anchored - correction
+  of pre-existing peakRate marker suggestions in Audacity (delete non-beats, nudge
+  survivors to vowel onsets, add missed beats). The annotation_method enum records
+  the cohort; this line records the tool and the gesture, which the enum''s frozen
+  two-value vocabulary cannot express.'

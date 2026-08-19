@@ -61,7 +61,9 @@ margins read as detection quality.
 *Not lost:* full metric grids are **derivable later** from a verified grid plus
 tempo — the human pass is the expensive, unrecoverable part, and it is captured.
 Standing Lesson 6 ("silence is evidence") stays unscored until a rung whose
-explicit deliverable is a taggable grid format.
+explicit deliverable is a taggable grid format. **That rung was 2.5, and ruling
+(g) below now says where the evidence counts** — at the rung-4 tier only, never
+in stage-1, which this ruling continues to govern unchanged.
 
 ### (c) Prep counts IN, framing talk OUT
 
@@ -161,6 +163,54 @@ lengthening stretches it. Do not regularize toward an isochronous grid.
 intervals) is an instruction to the **scorer**, not to the annotator. Verified
 grids will therefore contain genuinely non-isochronous intervals at phrase
 boundaries, and any consumer assuming isochrony must do its own censoring.
+
+### (g) Silent-beat crediting — owner-ratified 2026-08-18
+
+**Stage-1 scoring is unchanged: vocalized-only, exactly as ruling (b)
+leaves it.** No tag written under format 2 moves a stage-1 number, and
+none may. Rung 2's verdict rests on those figures, so a crediting rule
+that shifted them would silently re-open a settled kill-test.
+
+**Crediting happens instead at the rung-4 / inference tier, as a separate
+CONTINUATION metric.** It asks one question per tagged `silent_beat`
+gap: when the voice returns, is the system still in phase? It is scored
+as phase coherence across the gap **against the verified beats on the far
+side of it** — real annotations, never invented ones.
+
+**No beat is ever placed inside a gap.** Not by hand, not by
+interpolation, not by inference from the surrounding tempo. A silence
+stays a silence in the file permanently. This is the load-bearing clause:
+the moment anything fills a gap, the grid stops recording what the human
+produced and starts recording what a model guessed, and the corpus's
+whole claim to being ground truth goes with it.
+
+**`free_time` credits nothing, anywhere.** No metric pulse existed, so
+there is nothing to hold or lose — neither success nor failure. This
+covers the out-of-time coda, the demonstration tail, and every stretch of
+talking the annotator did not mark (2026-08-15 owner ruling: unmarked
+talking defaults to `free_time`).
+
+**CONTINUATION reports per-clip, never as a bare average across gaps, and
+pins no gate until its coverage is broad enough to support one.**
+Rationale, and precedent: the rung-2 gate (§2.3, condition 2) already
+refused a margin carried by one or two clips — "A margin carried by one
+or two clips does not pass." As of ratification the corpus holds 33
+tagged `silent_beat` gaps across 4 clips, and 19 of them (58%) are on
+`adr006-exercise-1-demo` alone, so a gap-averaged CONTINUATION would be
+one clip wearing a corpus's name. Until coverage is broad, it is
+informational — the posture `stage1` already occupies.
+
+*Deliberately not specified:* how phase coherence is computed. That is
+rung 4's to pin, against grids that exist, with a reference
+implementation — the lesson of the rung-2 gate, which was pre-registered
+against provisional grids and had to be declared void and re-expressed
+(§2). A convention that pre-specifies a metric it has not built repeats
+that mistake.
+
+*What (g) does not do:* it does not change ruling (b), does not add a
+beat to any grid, and does not alter any committed number. It states
+where the evidence in `silent_beat` tags is allowed to count, and where
+it is not.
 
 ## 2. Rung-2 gate (re-expressed and BLESSED by the owner, 2026-08-14)
 
