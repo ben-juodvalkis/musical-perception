@@ -1593,3 +1593,185 @@ Status: BLESSED (owner-directed merge, 2026-08-18) as *bookkeeping*; the
 increments themselves — the (a)/(b) grid work and item (f) — remain
 PROPOSED pending owner review, as does W1 from 2026-08-16. Ruling (g) is
 separately BLESSED by owner ratification in session.
+
+## 2026-08-19 · rung M · agent/nightly-permission-fix · local (W0 recovery + runner fix)
+
+Attempted: Diagnosis of the first unattended nightly run, recovery of the
+W0 meta-rung review it completed but could not file, and the runner fix.
+The review below is the **nightly session's work, recovered from
+`~/musical-perception-agent.log`**; the diagnosis, verification and fix
+are this session's. Attribution kept explicit because the reviewing agent
+never got to sign its own entry.
+
+Pre-registered expectation for the fix, stated before running it: a
+headless `claude -p` with `--permission-mode auto` can write a file, and
+the same invocation without it cannot. Predicted PASS.
+
+Result: **the run fired perfectly and wrote nothing.**
+
+*What happened.* launchd started the job at 02:00:04 PDT exactly as
+scheduled. It pulled `main`, read the charter and ledger, selected W0
+correctly (no meta entry existed and the marathon had run ≥ 5 sessions,
+so W0's self-scheduling rule outranked every pipeline workstream), and
+ran **107 turns / 20 minutes / $11.98**, exiting `success`. Then: `main`
+still at 5e5f592, clean tree, no branch, no commit, no ledger entry.
+Seven denied writes across four mechanisms (`Write`, `Edit`, `git
+branch`, `git switch`), plus denied `pytest`. The log line that names it:
+*"Claude requested permissions to write to … RESEARCH-LOG.md, but you
+haven't granted it yet."*
+
+*Root cause, and it is one flag.* `scripts/air-nightly.sh:32` invoked
+`claude -p` with **no `--permission-mode`**, so the session's init reads
+`"permissionMode":"default"` — the mode that waits on a human. Permission
+mode is **per-session and inherits nothing**: the interactive session that
+armed the schedule had auto mode on, and that fact travelled with it and
+not with the job.
+
+*The deeper cause, which is the finding worth keeping.* The rung-0
+checklist's guard (agent-environment.md step 4) specifies a **supervised
+interactive dry-run**. An interactive session gets its permissions from a
+human answering prompts, so it is *structurally incapable* of detecting a
+headless-only permission failure. The guard could never have caught this.
+The 2026-08-18 launch session verified the job would **start** — PATH,
+`CLAUDE_BIN`, `plutil -lint`, git reachability, log writability — and
+never verified the started job could **act**. That omission is this
+agent's, and the checklist made it easy to make.
+
+*Fix applied and verified.* (1) `--permission-mode auto` added to
+`air-nightly.sh:32`, with a comment marking it load-bearing rather than
+convenient. `auto` rather than `bypassPermissions`: the runner executes
+under the owner's own account and working repo, **not** the dedicated
+sandbox account the charter's rung-0 assumed, so blanket bypass would be
+a materially different bargain than the one the charter designed; auto
+gives the job the same classifier-guarded latitude the owner already
+accepts interactively. (2) The rung-0 checklist gains a **headless write
+probe** as step 5, with the exact command and the generalized rule:
+*never accept an interactive test as evidence about a non-interactive
+runner.* **Probe run and passed** — `claude -p '…' --permission-mode
+auto` wrote `/tmp/mp-write-probe.txt` containing `ok`, exit 0.
+**Prediction hit.**
+
+*Known residual, disclosed:* auto mode's classifier refuses compound
+shell commands — it blocked this session's own `sed && …` and, on
+2026-08-18, a `for` loop over `set-method`. The nightly agent will meet
+the same wall and must issue commands singly or use the file tools. That
+degrades throughput, not correctness, and is the accepted cost of not
+handing an unattended 2am process a blanket bypass on the owner's
+account.
+
+---
+
+### The W0 review, as recovered (nightly session, 2026-08-19)
+
+**Trigger:** correct. No meta-rung entry existed; W0 outranked all.
+
+**BLOCKED-queue audit, checked against files rather than against the last
+entry that mentioned each item.** *Closed but still listed open:* the
+`annotation_method` backfill; region tagging; ruling (g); **both
+rung-1.5 `marking_bpm` decisions** (`adr006-8-counts-2x` reads 101.63
+"CORRECTED", `adr006-8-counts-triple` reads 68.38 "PINNED" — taken
+08-14, never recorded as closed); the v1 re-annotation question. *Genuinely
+open:* three increments on main unreviewed (W1 since 08-16, plus the
+08-18 grid work and the launch item — the first weekly batch is due); the
+vocables listen, blocked on media; the notes-vs-tags BPM staleness; and
+**`evals/cases/rig-numbers-2-4-120-clean.yaml:12` still reading
+`accompanied: false`** with notes describing a metronome in one earbud,
+on the clip the owner heard music on — carried in prose since 08-13,
+never reaching the file. Cases are agent-untouchable; only the owner can
+close it. *(Verified this session: the line is there.)*
+
+**Re-ranking:** W2 (rung 3, meter) · **W2.5 (rung-2 nuclei silence floor,
+promoted)** — cheapest pipeline increment with a pre-measured target
+(`rig-names-4-4-100-quiet`, 9 events for 16 beats, the only step_names
+clip rung 2 did not improve) · W3 baselines · W4 ingestion (no longer
+gated by W1, which shipped; recommend it wait on W1's *review*) · W5
+OWNER-STARTED · W6–W8.
+
+**Rung 3 re-expressed — and the review's own mid-course correction, which
+is the best thing in it.** It first put W2's reachable set at seven
+non-4/4 rows, then read `src/musical_perception/evals/scorers.py:151-208`
+(read-only) and corrected itself: `meter_triple` requires meter **and**
+tempo within ±8% **and** subdivision jointly, and `meter_wrong` is a
+priority label emitted whenever meter differs regardless of tempo. **The
+true reachable set is two rows, not seven** — `rig-numbers-2-4-120-clean`
+and `rig-numbers-3-4-90-clean`, the two the charter had named. *(Verified
+this session against `evals/baseline.json`: those two predict 119.7 vs
+120 and 90.8 vs 90, inside tolerance; every step_names non-4/4 row is
+17–50% off on tempo — 90.1 vs 120, 78.3 vs 160, 102.6 vs 88, 129.6 vs 90,
+133 vs 100. Meter-only code cannot flip them.)* The charter's own
+"1-of-8 … 0-of-3" is stale; the blessed truth is **2-of-9**.
+
+**A6 — the strongest recommendation: re-scope W2 from an accuracy rung to
+an evidence rung.** A meter-only module can move `meter_triple` from
+0.393 to at most 0.459 (2 of 30 rows), and the reason is structural, not
+fixable by better meter code — which is exactly ADR-016's and review-3's
+argument for the joint posterior. Score W2's votes as a **diagnostic**
+(does it recover the correct grouping on the nine non-4/4 clips given the
+verified grids?) rather than against tier-1 committed accuracy, keeping
+the two flippable rows as the accuracy check. The charter already says W5
+requires W2's evidence; A6 makes W2 honestly what it already is, and
+stops a future session pre-registering against a two-row ceiling and
+calling a two-row move a rung.
+
+**Structural finding behind A6:** five of seven wrong non-4/4 rows predict
+4/4, four of them with a duple subdivision the truth lacks —
+`interpret_meter`'s multiplier heuristic collapsing onto 4/4 by
+construction.
+
+**Pre-registered predictions drafted for W2 (M1–M5):** 3/4 rows flip most
+readily (the waltz carries a *measured* periodic bar-internal agogic
+accent, +9.9% / −3.7% / −7.0% consistent across all 8 bars — a period-3
+signal sitting in verified ground truth); 2/4 is the risk, since counting
+2/4 in eights makes period-2 and period-4 nearly indistinguishable; 6/8
+flips or abstains but must never land on 3/4; zero regressions among the
+11 greens (logic change, ADR-015); no movement on the 10
+tempo/subdivision rows. Build note: run against the committed
+`docs/research/rung2-extractor-events.json`, which needs no models, no
+API key, and no rig MP3s.
+
+**Amendments A1–A6 recovered:** (A1) Rung M's per-session condition needs
+a **writability precondition** — a session that cannot commit satisfies
+no clause and has no defined exit; (A2) a session's first act should be a
+cheap write probe (this one spent eight turns reading before the
+constraint surfaced); (A3) the meta-rung trigger should count ledger
+*entries*, not "sessions"; (A4, flagged not pressed) the completion
+targets assume n ≥ 60 verified DEV rows against a corpus of 28, so every
+target is unreachable until W4 ingests — the ranking and the completion
+criteria disagree about what matters; (A5) the rung-3 re-expression
+above; (A6) as stated. **A7 and A8 are named in the run's closing summary
+but were never written out in recoverable form; they are not reconstructed
+here.** Their evident substance — the headless-probe guard and the
+permission-mode fix — is implemented in this entry regardless.
+
+**The nightly agent's own closing judgement, kept because it is the right
+one:** it declined to keep re-attempting denied writes or to generate
+turns to reach a bound it could not display, on the grounds that
+fabricating a committed ledger entry or padding a counter were both worse
+than an honest stop. It flagged every constraint clause as holding
+*vacuously* rather than letting an empty `git diff --stat main` read as
+compliance.
+
+---
+
+Regressions and classifications: none. No pipeline, eval, or grid file
+touched this session: `git diff --stat main` covers
+`scripts/air-nightly.sh`, `docs/research/agent-environment.md`, and this
+ledger only.
+
+Lesson (durable, one paragraph): The guard that fails is the one whose
+test runs in a different mode from the thing it guards — an interactive
+dry-run can prove a headless runner will start and can never prove it can
+act, and no amount of care inside the wrong mode substitutes for testing
+in the right one. The second lesson is about what an unattended agent is
+worth when it is blocked: this one could not write a byte and still
+produced the most useful artifact of the week, including a self-correction
+that cut its own headline finding from seven rows to two after reading the
+scorer — so the recovery question for a failed run is never "did it
+commit" but "did it think, and is the thinking retrievable." The log was
+the only reason it was.
+
+Status: PROPOSED. The runner fix needs to reach `main` before 02:00
+tonight or the same failure repeats. Owner queue unchanged and now
+sharpened: the first weekly batch review (three increments, oldest since
+08-16); the `accompanied: false` case-file discrepancy; the vocables
+listen; and A1–A6 to accept, modify or reject.
