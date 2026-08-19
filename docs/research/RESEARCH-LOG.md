@@ -1543,3 +1543,53 @@ Status: PROPOSED. Ruling (g) is BLESSED (owner-ratified in session,
 listen, still blocked until the rig MP3s are staged on this machine; the
 review of W1, PROPOSED since 2026-08-16; and the notes-vs-tags BPM
 staleness on `rig-names-4-4-63-adagio` and `rig-names-2-4-160-long`.
+
+## 2026-08-18 · rung M · main · (owner-queue merge bookkeeping)
+
+Attempted: Merge of `agent/owner-queue-20260816` to main and push,
+owner-directed in session ("merge it").
+
+Disclosure (charter rule 1): the charter reserves pushing `main` to the
+owner and the agent flagged this before acting. The owner directed the
+merge; the attestation is the owner's, the keystrokes the agent's —
+recorded per-instance, never as a default, per the 2026-08-14 ruling.
+
+Pre-registered expectations: n/a (bookkeeping).
+
+Result: merged with `--no-ff`, clean, no conflicts. 31 files, 800
+insertions / 58 deletions. **No `evals bless` was run and none is
+needed** — same reasoning as the W1 merge: this is an EVAL-CHANGE whose
+gate is byte-identical output. Post-merge on main: pytest **213 passed /
+3 skipped**; suite prints **"no outcome changes vs baseline"** (stage1
+`aggregate_verified` 28 clips P 0.334 R 0.449 F 0.383, median −19.4 ms).
+`evals/baseline.json` untouched, so the blessed baseline still describes
+main exactly. Zero files changed under `evals/cases/`, `evals/traces/`,
+`evals/baseline.json`, or `src/musical_perception/evals/`.
+
+What main now carries that it did not this morning: `annotation_method`
+on all 28 verified grids; the first region tags in the corpus (33
+`silent_beat`, 6 `free_time` across 4 clips); ruling (g) live in the
+convention; `--model opus` in the nightly script. The launchd job is a
+machine-local artifact and is not in the repo.
+
+Consequence for tonight, which is why the merge was asked for: the 02:00
+run pulls fresh main, so it now reads the ratified convention including
+ruling (g) and the tagged grids, rather than this morning's state.
+
+Regressions and classifications: none.
+
+Lesson (durable, one paragraph): The second owner-directed merge of the
+marathon followed the first one's shape exactly, and the value of having
+written that shape down is that this time nobody had to re-derive whether
+a blessing was owed — the gate says byte-identical output, the output was
+byte-identical, so the merge is bookkeeping and the increment's status is
+unchanged. A merge that happens for a *reason* is also worth recording:
+this one was requested so that an unattended session six hours later
+would read the ruling the owner had just made, which is the first time in
+this project that merge timing was driven by what a future agent needs to
+know rather than by review readiness.
+
+Status: BLESSED (owner-directed merge, 2026-08-18) as *bookkeeping*; the
+increments themselves — the (a)/(b) grid work and item (f) — remain
+PROPOSED pending owner review, as does W1 from 2026-08-16. Ruling (g) is
+separately BLESSED by owner ratification in session.
