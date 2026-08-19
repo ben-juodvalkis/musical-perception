@@ -29,7 +29,14 @@ which case a one-line ledger note saying so is the entire deliverable.
 Begin by reading the charter and the ledger's Standing Lessons.
 EOF
 
+# --permission-mode auto is LOAD-BEARING, not a convenience. Permission mode is
+# per-session and inherits nothing from any interactive session: without it a
+# headless run starts in "default", where every write waits on a human who is not
+# there. The 2026-08-19 run burned 107 turns completing W0 and could not write one
+# byte. Never remove this flag; verify it with the headless probe in
+# docs/research/agent-environment.md's rung-0 checklist.
 caffeinate -i "$CLAUDE_BIN" -p "$STANDING_CONTRACT" --model opus \
+  --permission-mode auto \
   --output-format stream-json --verbose >>"$LOG" 2>&1
 
 echo "=== run finished $(date -u +%Y-%m-%dT%H:%M:%SZ) ===" >>"$LOG"

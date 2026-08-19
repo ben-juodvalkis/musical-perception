@@ -143,6 +143,26 @@ posture:
 3. SEALED vault: sealed material staged on the main machine only.
 4. One supervised interactive dry-run of rung 1 on the Air. Fix friction
    here, not at 2am. Then enable the schedule.
+5. **A HEADLESS write probe — amended 2026-08-19, and the amendment is the
+   point.** Step 4 as originally written is *structurally blind to the
+   failure it exists to prevent*: an interactive session gets permissions
+   from a human answering prompts, so it can never detect a headless-only
+   permission failure. The 2026-08-19 nightly run proved it — the schedule
+   fired correctly, the agent read everything and completed W0 across 107
+   turns, and it could not write a single byte, because permission mode is
+   **per-session and inherits nothing**; `claude -p` with no
+   `--permission-mode` starts in `default`, where every write blocks on a
+   human who is not there. Before enabling any schedule, run the probe
+   below **headlessly, with the exact flags the wrapper uses**, and confirm
+   the file exists afterwards:
+
+   ```bash
+   claude -p 'Write the word ok to /tmp/mp-write-probe.txt, then stop.' --permission-mode auto && cat /tmp/mp-write-probe.txt
+   ```
+
+   If that file is missing, the schedule will run all night and commit
+   nothing. Generalized: **never accept an interactive test as evidence
+   about a non-interactive runner.** Test the runner in the mode it runs in.
 
 **Path B — cloud overflow (later, optional):**
 5. DEV MP3s committed and pushed; cloud environment configured; one
