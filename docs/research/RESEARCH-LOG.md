@@ -1819,3 +1819,42 @@ in the ledger with its deadline stated.
 Status: BLESSED (owner-directed merge, 2026-08-19) as *bookkeeping*; the
 W0 review and amendments A1–A6 remain PROPOSED for owner decision, as do
 the three increments awaiting the first weekly batch review.
+
+## 2026-08-19 · rung M · agent/state-of-play · local (stock-taking: owner briefing)
+
+Attempted: A plain-language state-of-the-project briefing for the owner,
+`docs/research/state-of-play-2026-08-19.md` — a stock-taking session, not
+a marathon increment. No workstream advanced; no pipeline code changed.
+Local `main` was 28 commits behind `origin/main` at session start and was
+fast-forwarded to `034d226` before anything was read (no push).
+Pre-registered expectations: n/a (briefing, not experiment).
+Result: Briefing written and committed. Every headline claim was checked
+against artifacts where possible and labelled ✓ (verified) or (relayed)
+in the document. Verified this session: 30 grid files, 28 `provisional:
+false`, 25 anchored / 3 from_scratch, 33 `silent_beat` + 6 `free_time`
+regions on 4 clips, 28 at format 2; blessed baseline tier-1 tempo 17/30,
+meter_triple 11/29, counts 12/28 (+7 abstained), by-style slices as
+recorded; stage1 verified 28 clips P 0.334 R 0.449 F 0.383; rung-2
+kill-test tables and per-clip from-scratch cohort (R@tac 0.561/0.691/
+0.694, P_lc 0.242/0.452/0.490) from the committed JSON; scorer requires
+meter AND tempo ±8% AND subdivision, so only 2 of the 7 wrong non-4/4
+rows are meter-flippable (blessed non-4/4 truth is 2-of-9);
+`evals/cases/rig-numbers-2-4-120-clean.yaml:12` still `accompanied:
+false`; `scripts/air-nightly.sh:39` carries `--permission-mode auto`;
+`analyze.py` does not reference the acoustic extractor (not wired in).
+Live: pytest 213 passed / 3 skipped; `evals run --suite
+tier0,tier1,stage1` prints "no outcome changes vs baseline". Noted: the
+DEV rig MP3s ARE present on this (owner's) machine, so the vocables
+listen is blocked only on the Air. The `video/youtube/Ballet Barre 1`
+directory exists here and was deliberately not opened (HELD-OUT may live
+in it). Briefing length ~2,000 words incl. headers, slightly over brief.
+Regressions and classifications: none — `git diff --stat main` shows
+only this ledger and the briefing; 0 files under `evals/cases/`,
+`evals/traces/`, `evals/grids/`, `evals/baseline.json`, or
+`src/musical_perception/evals/`. No `evals bless` run. `main` not pushed.
+Lesson (durable, one paragraph): A briefing that cites the ledger has to
+re-derive the ledger's claims from the files, because the ledger is a
+record of what sessions believed, not of what is on disk — and the
+cheapest way to keep the two honest is to label every sentence with
+which one it came from.
+Status: PROPOSED (owner: read the briefing; its §7 is the owner queue).
