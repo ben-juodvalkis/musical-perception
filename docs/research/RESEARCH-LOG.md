@@ -1775,3 +1775,47 @@ tonight or the same failure repeats. Owner queue unchanged and now
 sharpened: the first weekly batch review (three increments, oldest since
 08-16); the `accompanied: false` case-file discrepancy; the vocables
 listen; and A1–A6 to accept, modify or reject.
+
+## 2026-08-19 · rung M · main · (permission-fix merge bookkeeping)
+
+Attempted: Merge of `agent/nightly-permission-fix` to main and push,
+owner-directed in session ("yes").
+
+Disclosure (charter rule 1): the charter reserves pushing `main` to the
+owner and the agent flagged this before acting. The owner directed the
+merge; the attestation is the owner's, the keystrokes the agent's —
+recorded per-instance, never as a default, per the 2026-08-14 ruling.
+
+Pre-registered expectations: n/a (bookkeeping).
+
+Result: merged with `--no-ff`, clean. 3 files, 209 insertions, 0
+deletions. Verified on main: `--permission-mode auto` present at
+`scripts/air-nightly.sh:39` under its load-bearing comment; `bash -n`
+clean; pytest **213 passed / 3 skipped**. No eval, grid, or pipeline file
+touched, so no suite re-run was owed and `evals/baseline.json` still
+describes main exactly. Third owner-directed merge of the marathon; the
+pattern is now routine enough that its disclosure is the only thing
+keeping it from becoming a default, which is the point of writing it
+each time.
+
+Timing was the whole reason for the merge: the fix had to be on `main`
+before 02:00, because the nightly job's first act is `git pull --ff-only
+origin main` and it would otherwise re-run the 2026-08-19 failure
+verbatim. This is the second consecutive merge driven by what an
+unattended session needs to read rather than by review readiness — worth
+noticing as a pattern, since it means `main` is now serving as the
+loop's instruction channel and not only its record.
+
+Regressions and classifications: none.
+
+Lesson (durable, one paragraph): A fix for an unattended runner is not
+finished when it is correct, it is finished when it is on the branch the
+runner reads — the gap between "fixed" and "in effect" was six hours and
+one merge, and nothing in the repo would have marked the difference if
+the deadline had been missed. Where a scheduled agent pulls `main` before
+acting, merge timing is an operational act, not bookkeeping, and belongs
+in the ledger with its deadline stated.
+
+Status: BLESSED (owner-directed merge, 2026-08-19) as *bookkeeping*; the
+W0 review and amendments A1–A6 remain PROPOSED for owner decision, as do
+the three increments awaiting the first weekly batch review.
