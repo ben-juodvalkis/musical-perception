@@ -1999,4 +1999,176 @@ meter and is excluded.
   is *not* reached. Predicted net tier-1 accuracy movement if wired:
   **zero**. Stated in advance so a zero is not read as a failed run.
 
-Result: (see the results section appended in the second commit)
+### Result: NEGATIVE, with a structural finding (charter rule 5)
+
+**Headline: the accent-periodicity module recovers metre on 4 of 26
+scoreable verified clips — worse than the 6.5/26 a uniform guess over four
+metres would give — and the reason is not tuning. Two independent
+measurements, one of the corpus and one of the model, say the bar-level
+accent this rung was built to read is mostly not there, and that the part
+that is there cannot be resolved to a metre by this method.**
+
+Prediction scorecard, scored honestly:
+
+| # | prediction | outcome |
+|---|---|---|
+| P1 | ≥ 6/8 non-4/4 grouping correct | **MISS** — 1/8 (only `rig-numbers-6-8-100-clean`) |
+| P2 | all three 3/4 clips correct | **MISS** — 0/3 (two abstained, one read 4/4) |
+| P3 | ≤ 1/3 of 2/4 correct | **HIT**, and for the predicted reason — 0/3, the two committed rows both read 4/4 |
+| P4 | 6/8 numbers correct; names-6/8 fails to 3/4 not 4/4 | **SPLIT** — numbers correct as predicted; names-6/8 failed to **4/4**, so the second half is a miss |
+| P5 | ≥ 12/17 of 4/4 correct | **MISS** — 3/18 correct, 10 abstained |
+| P6 | `rig-numbers-3-4-90-clean` degenerate, excluded | **HIT** (declared before measurement; it is excluded by name) |
+| P7 | zero tier-0/tier-1/stage1 outcome changes | **HIT** — `no outcome changes vs baseline` |
+| P8 | zero tier-1 accuracy movement if wired | **HIT** — neither flippable row is reached |
+
+Five predictions missed. The three that hit are the three that predicted
+*failure*, which is worth saying plainly: the parts of this session that
+were right were the parts that expected the method not to work.
+
+#### Finding 1 — the accent in this corpus is at the count-phrase, not the bar
+
+`scripts/rung3-accent-evidence-audit.py` measures periodicity of the
+salience vector at lags 2/3/4/6/8 against a 400-draw phase-shuffle null,
+before any metre model is involved. Over the 28 verified grids the
+strongest *significant* lag is:
+
+- **lag 8 — 6 clips** · lag 4 — 4 · lag 2 — 3 · lag 3 — 1 · lag 6 — 1
+- **no significant lag at all — 13 clips**
+
+Lag 8 also carries the largest raw contrast on most clips where nothing
+reaches significance (its null is wide because few periods fit in a clip,
+so the audit *under*-credits it). This corpus is teachers counting in
+eights; the accent that exists is the eight-count phrase, and the bar is
+a much fainter thing sitting inside it. The pre-registration named period
+8 as an excluded hypothesis and called it "a stated limitation, not an
+oversight" — the audit says it is not a limitation at the edge of the
+method, it is where nearly all the signal actually is.
+
+Half the corpus carries no significant periodic accent at any lag. On
+those clips there is no bar-level accent to read, and no metre model of
+this shape — however well built — can read one.
+
+#### Finding 2 — the salience clock resolves *family*, not metre
+
+The template confusability check is pure mathematics, no data: tile each
+metrical template over 24 beats and correlate it with every other at its
+best relative phase.
+
+|      |  2/4 |  3/4 |  4/4 |  6/8 |
+|------|------|------|------|------|
+| 2/4  | 1.00 | 0.00 | **0.90** | 0.22 |
+| 3/4  | 0.00 | 1.00 | 0.00 | **0.93** |
+| 4/4  | **0.90** | 0.00 | 1.00 | 0.20 |
+| 6/8  | 0.22 | **0.93** | 0.20 | 1.00 |
+
+2/4 against 4/4 is r = 0.90; 3/4 against 6/8 is r = 0.93. Across families
+it is 0.00–0.22. A Parncutt/Povel–Essens salience clock **cannot**
+separate 2/4 from 4/4 or 3/4 from 6/8 by correlation — not on this
+corpus, not on perfect data. The distinction lives entirely in one
+medium-weight position, and one position out of four (or six) is worth
+about a tenth of the correlation the shared downbeat structure is already
+worth.
+
+This is pinned as a test
+(`tests/test_accent_meter.py::test_duple_and_triple_templates_are_separable_but_2_4_and_4_4_are_not`)
+so a future edit that changes it has to say so out loud.
+
+At the resolution the method does have, it is no longer at chance:
+**family (duple vs triple/compound), committed rows only: 9/13**. That is
+the honest positive result of the rung, and it is a much smaller claim
+than the rung was scoped to make.
+
+#### What this means for W5 (rung 4, the joint posterior)
+
+This strengthens ADR-016's and review-3's argument rather than weakening
+it, and it is the evidence the charter says W5 requires:
+
+1. **Metre is not separately measurable at this corpus's accent level.**
+   The two evidence channels a standalone metre module has — periodic
+   accent and metrical templates — are respectively mostly-absent and
+   family-resolution-only. A module that votes on metre alone is voting
+   on something the signal does not distinguish.
+2. **The count-phrase (lag 8) is the real periodic structure** and it is
+   *above* the bar. A state space that models phrase and bar jointly can
+   use it; a metre-only module must either ignore it or be fooled by it.
+   Every one of the 4/4 abstentions is the model failing to choose
+   between 2/4 and 4/4 while an 8-periodic accent projects equally onto
+   both.
+3. **Half the clips need the prior to carry the answer.** With no
+   significant accent periodicity, metre has to come from tempo,
+   subdivision, exercise identity and semantics — which is precisely the
+   joint-posterior argument.
+
+Recommendation to the owner, for the batch review: **accept A6's
+re-scoping and go further — do not spend another session making a
+standalone metre module more accurate.** Fold accent periodicity into W5
+as one observation channel among several, and carry the lag-8 phrase
+periodicity as its own state dimension rather than as noise. The module
+committed here is written to be used that way: it returns ranked votes
+with margins, not a decision.
+
+#### What was built, and its status in the tree
+
+- `src/musical_perception/precision/accent_meter.py` — the module.
+  **Unwired by design** (P7): nothing in `analyze.py` or the
+  normalize/interpret stack calls it, so tier-0/tier-1/stage1 are
+  byte-identical to the blessed baseline and this session sits inside the
+  ADR-015 zero-regression gate by construction rather than by luck.
+- `scripts/rung3-accent-meter-report.py` — the grouping diagnostic.
+- `scripts/rung3-accent-evidence-audit.py` — the periodicity audit and
+  the confusability matrix. Fixed seed (20260820); replays identically.
+- `tests/test_accent_meter.py` — 9 tests, synthetic data only.
+
+Both scripts run from committed files only — grids, cases, and
+`docs/research/rung2-extractor-events.json`. No audio, no models, no API
+key (Standing Lesson 9: the replay path exists before the channel is bet
+on).
+
+#### Disclosed: one bug found and fixed mid-run
+
+The first diagnostic run scored 4/26 with the agogic channel computing
+its local median on a hole-filtered list while indexing it with the
+unfiltered index — the window slid on any clip with silent beats or free
+time. Fixed
+(`src/musical_perception/precision/accent_meter.py`, `beat_salience`) and
+re-run. **The score was 4/26 before the fix and 4/26 after**; two
+abstention margins moved in the third decimal. Reported because a bug
+found *after* a disappointing number and fixed *without* moving it is
+exactly the case a session is tempted not to mention.
+
+#### Luck flags
+
+`rig-numbers-6-8-100-clean`, the single non-4/4 hit, wins by a margin of
+0.060 against a 3/4 rival it cannot structurally separate (r = 0.93). It
+is **one hit inside the noise band**, not a demonstration, and should not
+be quoted as evidence that 6/8 is recoverable. Its sibling
+`rig-names-6-8-100-clean`, same metre, same annotated level, reads 4/4.
+
+Regressions and classifications: none — no pipeline file is wired, and
+`python -m musical_perception.evals run --suite tier0,tier1,stage1`
+reports `no outcome changes vs baseline`. No file under `evals/cases/`,
+`evals/traces/`, `evals/grids/`, or `src/musical_perception/evals/` was
+modified; `evals/baseline.json` untouched. Verified by `git diff --stat
+main`, output in the session transcript.
+
+Lesson (durable, one paragraph): Before building a detector for a
+quantity, measure whether the quantity is present in the data at the
+level the detector will look — the twenty lines of phase-shuffle audit
+that produced Finding 1 would have predicted this rung's outcome before
+the module was written, and they cost a fraction of what the module cost.
+The second half is about model families rather than data: a template set
+whose members correlate at 0.90 with each other has a resolution ceiling
+that no amount of better evidence lifts, and that ceiling is computable
+from the templates alone, with no corpus at all. Both checks are cheap,
+both are prior to the work, and neither is in the session boot sequence.
+
+Status: PROPOSED. For the owner's batch review: (1) the negative result
+above, which per charter rule 5 completes W2 as fully as a win would
+have; (2) the recommendation to fold accent periodicity into W5 rather
+than iterate it standalone; (3) A6, which this session's evidence
+supports more strongly than the W0 review could — the re-scoping A6 asks
+for turns out to be generous to the metre-only approach, not harsh on it.
+Owner queue otherwise unchanged: the weekly batch review (now four
+increments, oldest since 08-16), the `accompanied: false` case-file
+discrepancy on `rig-numbers-2-4-120-clean`, the vocables listen, the
+nightly-push carve-out from 2026-08-19, and A1–A6.
