@@ -2172,3 +2172,12 @@ Owner queue otherwise unchanged: the weekly batch review (now four
 increments, oldest since 08-16), the `accompanied: false` case-file
 discrepancy on `rig-numbers-2-4-120-clean`, the vocables listen, the
 nightly-push carve-out from 2026-08-19, and A1–A6.
+
+## 2026-08-20 · rung M · agent/marathon · (completion status, one line)
+
+Rung M's own completion is **owner-only and not reachable by a session**:
+the charter requires a meta-rung report co-signed by the owner plus a
+multifaceted ablation table, and says completion is "never [declared] by
+a session alone" — so this session satisfied Rung M's *per-session*
+condition (W2, above) and records here that the marathon's completion
+awaits the owner, with the 45-turn per-session bound also now reached.
