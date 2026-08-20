@@ -1895,3 +1895,108 @@ it contains.
 Status: PROPOSED. One item needs an explicit owner decision: whether the
 nightly script may push `main` on its own to publish summaries (rule 9
 above), or whether that block should be removed.
+
+## 2026-08-20 · rung M / W2 (rung 3) · agent/marathon · local (nightly, unattended)
+
+Attempted: W2 — the accent-periodicity meter module. Highest-ranked
+non-BLOCKED workstream per the 2026-08-19 W0 re-ranking (W2 · W2.5 · W3 ·
+W4 · W5-OWNER · W6–W8). W0 does not re-trigger: its last entry is dated
+2026-08-19, one day old against the 7-day rule.
+
+**This section is the pre-registration and was committed before any
+module code existed** (charter rule 3); the results section below it is a
+second commit. `git log --oneline` on this branch shows the order.
+
+### Framing: taking amendment A6 as written, and why
+
+A6 (PROPOSED 2026-08-19, owner has not ruled) argues W2 should be scored
+as an **evidence rung**, not an accuracy rung, because `meter_triple`
+requires meter AND tempo AND subdivision jointly, so meter-only code can
+reach at most 2 of 30 tier-1 rows. This session adopts A6's *scoring*
+while leaving the charter text alone: the primary number is a grouping
+diagnostic on the verified grids, and the two flippable tier-1 rows are
+reported as a secondary check. If the owner rejects A6, nothing here is
+invalidated — the accuracy check is present, it is simply not the
+headline.
+
+### Design, stated before measurement
+
+Input is the **owner-verified grid** (tactus times, plus `silent_beat`
+regions reconstructed into the beat sequence, `free_time` regions cutting
+it into segments) and the committed rung-2 acoustic events
+(`docs/research/rung2-extractor-events.json`). No audio, no models, no API
+key — the whole diagnostic is replayable from committed files (Standing
+Lesson 9).
+
+Per-beat salience from three channels, none of which needs amplitude
+(the events file carries times only):
+
+1. **agogic** — the IOI following each beat, relative to the local
+   median. This is the channel the rung-1.5 waltz finding measured:
+   +9.9% / −3.7% / −7.0% by position-in-bar, consistent across 8 bars.
+2. **density** — count of acoustic events falling inside each beat's
+   interval (a beat carrying more syllables reads as accented).
+3. **voicing** — whether the beat was voiced at all. Standing Lesson 6:
+   silence is evidence, and an unvoiced beat is evidence *against* that
+   position being the downbeat.
+
+Hypotheses are scored by a **Parncutt/Povel–Essens salience clock**:
+tile a metrical-weight template over the beat sequence at every phase and
+correlate it with the salience vector. Templates carry the hierarchy that
+distinguishes the confusable pairs:
+
+- 2/4 `[S, w]` · 3/4 `[S, w, w]` · 4/4 `[S, w, m, w]` · 6/8 `[S, w, w, m, w, w]`
+
+4/4 is separated from 2/4 only by the medium third beat; 6/8 from 3/4
+only by the medium fourth. Those two contrasts are where this model can
+fail honestly, and both are predicted against below. Period 8 (the
+count-phrase level) is deliberately **not** in the hypothesis set: an
+8-periodic accent puts equal energy on every harmonic of 1/8, so it
+cannot be told from 4/4 or 2/4 by periodicity alone. That is a stated
+limitation, not an oversight.
+
+### Truth for the diagnostic
+
+Bar length in grid-beat units, read from the owner-verified grid notes
+(not inferred): 2/4→2, 3/4→3, 4/4→4, 6/8→6 (both 6/8 grids are annotated
+at the six/eighth level and say so explicitly). 28 verified grids; the 2
+provisional grids (`adr007-plies-demo`, `rig-mixed-4-4-104-quantities`)
+are reported as a separate slice and gate nothing. `frappe` has no truth
+meter and is excluded.
+
+### Pre-registered predictions
+
+- **P1** Grouping period correct on ≥ 6 of the 8 non-degenerate non-4/4
+  clips.
+- **P2** All three 3/4 clips correct (`rig-names-3-4-88-waltz`,
+  `rig-names-3-4-90-clean`, `adr006-exercise-1-demo`). Reason: the waltz
+  agogic accent is *measured* in the verified grid, and on the demo the
+  owner voices two of three beats per bar, so the voicing channel alone
+  is period-3.
+- **P3** 2/4 is the risk. Counting in 8s at the 'and' level makes period
+  2 and period 4 nearly indistinguishable without a real third-beat
+  contrast. Predict **≤ 1 of 3** 2/4 clips correct, the rest reading 4/4.
+- **P4** 6/8: `rig-numbers-6-8-100-clean` correct (the owner counted six
+  with accents on 1 and 4 — exactly the template's medium);
+  `rig-names-6-8-100-clean` is the coin flip and if it fails it fails to
+  3/4, not to 4/4.
+- **P5** 4/4 slice: ≥ 12 of the 17 verified 4/4 clips correct. The
+  count-phrase-of-8 is the confounder, per the period-8 limitation above.
+- **P6** `rig-numbers-3-4-90-clean` is **unreachable by this method and
+  is declared so before measurement**: its grid is at the number level
+  and its 3/4 label lives in the 'and-ah' subdivision *below* the tactus
+  (ADR-006's equivalence case), so bar length in grid-beat units is 1 —
+  degenerate. It is excluded from P1's denominator and reported by name.
+  Note this contradicts the W0 review's expectation that it is one of two
+  flippable rows: it is flippable in principle by *subdivision* evidence,
+  not by grouping evidence.
+- **P7** Zero tier-0 / tier-1 / stage1 outcome changes. The module ships
+  **unwired** — nothing in `analyze.py`, `normalize_tempo`, or
+  `interpret_meter` calls it this session. This keeps the session inside
+  the ADR-015 zero-regression gate for a logic change by construction.
+- **P8** Of the two tier-1-flippable rows, at most one
+  (`rig-numbers-2-4-120-clean`) is reachable at all, and P3 predicts it
+  is *not* reached. Predicted net tier-1 accuracy movement if wired:
+  **zero**. Stated in advance so a zero is not read as a failed run.
+
+Result: (see the results section appended in the second commit)
