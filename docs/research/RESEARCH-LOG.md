@@ -2181,3 +2181,98 @@ multifaceted ablation table, and says completion is "never [declared] by
 a session alone" — so this session satisfied Rung M's *per-session*
 condition (W2, above) and records here that the marathon's completion
 awaits the owner, with the 45-turn per-session bound also now reached.
+
+## 2026-08-21 · rung M / W3 (rung 6) · agent/marathon · local (nightly, unattended)
+
+Attempted: W3 — the Review-4 off-the-shelf baselines benchmark. Selected
+as the highest-ranked workstream that is not blocked, after W2 completed
+last night and W2.5 was found blocked on media (see the BLOCKED note
+below). W0 does not re-trigger: its last entry is 2026-08-19, two days
+old against the 7-day rule.
+
+**Rule-3 disclosure, stated plainly because the ordering is weaker than
+W2's.** This pre-registration section is committed before any result
+beyond a single-tool smoke test (`librosa_dp`, which is why its numbers
+are not predicted below), but *after* the harness was written — not
+before, as W2 managed. The predictions are therefore constrained to what
+[Review 4 §(a)'s failure-mode column](review-4-tools-baselines.md) and
+the Standing Lessons already commit to in prose, so they carry real risk
+of being wrong; but a reader should weight them below a
+predictions-before-code registration. `git log --oneline` on this branch
+shows the commit order.
+
+### BLOCKED — W2.5 (rung-2 nuclei silence floor), ranked above this
+
+W2.5's whole content is a relative silence floor for quiet clips, with a
+single pre-measured target: `rig-names-4-4-100-quiet` (9 extractor events
+for 16 beats, the one step_names clip rung 2 did not improve). The
+extractor consumes audio, and **`audio/rig/*.mp3` is not on this
+machine** — 24 of 30 DEV clips have no media here; only
+`audio/counting/*.aif` (3) and `video/youtube/` (3) are present. This is
+the same blocker the 2026-08-18 session filed against the vocables
+listen, still open. A silence-floor change cannot be validated where it
+was measured, so the workstream is BLOCKED, not attempted. **Owner
+action, unchanged from 08-18: stage the DEV rig MP3s on the runner** —
+the `.gitignore` exception for `audio/rig/*.mp3` already exists and
+`git log --all -- 'audio/rig/*'` is still empty. Staging them unblocks
+W2.5, the vocables listen, and 24 of the 30 rows of this benchmark's raw
+condition in one act.
+
+### Design, stated before measurement
+
+Two conditions, both scored against the same owner-verified grids:
+
+* **raw** — the clip's media, decoded to 22.05 kHz mono. Available for
+  **6 of 30 clips** on this machine, per the blocker above.
+* **markers** — a click track synthesised at the frozen trace's Whisper
+  word-start times. Every tool in the plan consumes audio, so the marker
+  stream is realised *as* audio rather than as a special code path; the
+  two conditions are then the same tools on the same scale, differing
+  only in front end. Covers **all 30 clips**, because traces are
+  committed and media is not.
+
+Metrics: F@70 ms, CMLt, AMLt, **AMLt-with-triples**, Acc1/Acc2 at 4% and
+8%, OE1/OE2. Acc/OE come from `musical_perception.evals.aggregate` by
+read-only import, so they mean exactly what tier-1 reporting means by
+them. Reference tempo is the grid's own median-IBI BPM, not the case
+file's `marking_bpm`: the metrics grade a tool against *these beats*, so
+the tempo it is graded on must be the tempo of the same annotation.
+
+**AMLt-with-triples had to be built.** mir_eval's allowed metric
+variations are duple-only — original, off-beat, double, half-odd,
+half-even. On a corpus containing 3/4, 6/8 and triplet subdivisions,
+standard AMLt scores a tool that locked onto the triplet level as wrong
+for a reason that is an artefact of the metric's variation set. The
+extension adds the triple and third-with-three-phases variations and
+scores each with mir_eval's own continuity loop, so the only thing added
+is the candidate set.
+
+### Pre-registered predictions (B1–B8)
+
+- **B1** Every music-trained tool scores mean F@70 ms **< 0.5** on the
+  verified grids in the raw condition. Reason: Standing Lesson 1 — the
+  grids are annotated at vowel onsets and spectral flux fires on
+  consonant bursts.
+- **B2** For every music-trained tool, **markers beats raw** on mean F.
+  The click track hands the tracker the event stream with the
+  fricative clutter removed; what remains is its periodicity assumption
+  failing rather than its front end.
+- **B3** **AMLt > CMLt for every tool**, by a wide margin: metric-*level*
+  confusion, not phase confusion, is the dominant error mode here.
+- **B4** **AMLt-with-triples > AMLt** for at least one tool, and the
+  clips where it lifts are the 3/4, 6/8 and triplet rows. If the two are
+  identical everywhere, the extension is a null result and is reported as
+  one.
+- **B5** madmom at `min_bpm=40` does **not** rescue the sub-70 BPM clips
+  (`rig-names-4-4-63-adagio`, `rig-numbers-4-4-60-halftempo`). Review 4:
+  the DBN has no "no beat" state and fills talk gaps regardless of the
+  tempo floor.
+- **B6** **`nuclei_hybrid` beats every music-trained tool on mean F in the
+  raw condition.** This is Review 4's core claim — the domain-native
+  front end wins — and it is the prediction most worth falsifying. On 5–6
+  clips it is evidence, not proof, and is labelled as such.
+- **B7** **Acc2 > Acc1 for every tool**; octave errors dominate outright
+  tempo errors.
+- **B8** No off-the-shelf tool exceeds the blessed pipeline's own stage-1
+  pulse F on the same grids. If one does, that is the most important
+  sentence in the report and it goes at the top.
