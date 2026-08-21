@@ -2276,3 +2276,167 @@ is the candidate set.
 - **B8** No off-the-shelf tool exceeds the blessed pipeline's own stage-1
   pulse F on the same grids. If one does, that is the most important
   sentence in the report and it goes at the top.
+
+### Results
+
+Six tools × two conditions, on the 28 owner-verified grids (2 provisional
+grids aggregated separately, gating nothing). Full table:
+[baseline-benchmark.md](baseline-benchmark.md); per-clip rows including
+every tool's estimated beat times:
+`docs/research/baseline-benchmark.json`.
+
+```
+tool              cond       n       F   CMLt   AMLt  AMLt3   Acc1   Acc2
+librosa_dp        raw        5   0.445 0.256 0.272 0.272 0.200 0.200
+librosa_plp       raw        5   0.539 0.358 0.358 0.485 0.400 0.600
+beat_this         raw        5   0.073 0.015 0.022 0.022 0.500 1.000
+essentia_re2013   raw        5   0.506 0.395 0.410 0.410 0.400 0.400
+nuclei_hybrid     raw        5   0.463 0.301 0.344 0.344 0.200 0.400
+madmom_dbn        raw        5   0.404 0.325 0.336 0.336 0.400 0.400
+librosa_dp        markers   28   0.382 0.313 0.467 0.467 0.571 0.607
+librosa_plp       markers   28   0.408 0.252 0.373 0.375 0.429 0.536
+beat_this         markers   28   0.378 0.188 0.282 0.294 0.037 0.148
+essentia_re2013   markers   28   0.425 0.318 0.414 0.414 0.357 0.357
+nuclei_hybrid     markers   28   0.324 0.281 0.497 0.498 0.444 0.519
+madmom_dbn        markers   28   0.335 0.153 0.455 0.458 0.214 0.500
+```
+
+**Every tool in the Review-4 plan ran.** madmom took three failed installs
+to get there and is not the version the review names — details in the
+report's install-notes section; the short form is that PyPI 0.16.1 is
+Python-3.9-or-older by way of `collections.MutableSequence`, git main is
+fine on 3.12, and the review's `numpy<2` warning is stale (it runs on
+numpy 2.5.2). BeatNet was not attempted; it is Review 4's optional sixth
+and its only blocker — a working madmom environment — now exists.
+
+### Prediction scorecard (4 hit, 3 falsified, 1 partial)
+
+- **B1 — FALSIFIED.** Predicted every music-trained tool under F 0.5 on
+  raw audio; `librosa_plp` scored 0.539 and `essentia_re2013` 0.506. On
+  n=5 clips this is two rows, so the miss is soft, but it is a miss and
+  the direction is the interesting one: the older, dumber onset-driven
+  trackers do *better* on speech than the prediction allowed.
+- **B2 — FALSIFIED, and inverted.** The as-printed table looks like it
+  supports B2 for Beat This! only, but raw (n=5) and markers (n=28) are
+  different clip sets and are **not comparable as printed** — a trap this
+  session nearly walked into. On the 5 clips present in both conditions:
+  `librosa_dp` −0.067, `librosa_plp` −0.022, `essentia` −0.087,
+  `nuclei_hybrid` −0.105, `madmom_dbn` −0.108, and `beat_this` **+0.382**.
+  Five of six tools do *worse* on the clean click track than on the messy
+  speech. Cleaning the front end does not help a tracker whose problem is
+  its periodicity model.
+- **B3 — HIT.** AMLt > CMLt for every tool in the markers condition, by
+  wide margins (`nuclei_hybrid` 0.281→0.497, `madmom_dbn` 0.153→0.455).
+  Thin in the raw condition, where `librosa_plp` ties. Metric-*level*
+  confusion is the dominant error, as predicted.
+- **B4 — HIT, and it earned its place.** AMLt-with-triples lifts 8 rows.
+  Six are the predicted triple-family clips (`rig-names-3-4-88-waltz`
+  0.111→0.375, both 6/8 rows, the 2/4 row). The seventh is the finding:
+  **`adr006-8-counts-triple` under `librosa_plp/raw` goes 0.000→0.636** —
+  a clip labelled 4/4 whose *subdivision* is triplet. Standard AMLt scored
+  a tool that locked onto the triplet level as completely wrong. Any
+  future comparison against published beat-tracking numbers on this corpus
+  must say which AMLt it means.
+- **B5 — PARTIAL.** `min_bpm=40` does not rescue
+  `rig-names-4-4-63-adagio` (madmom reads 48.0 against the grid's 61.4,
+  F=0.167) but does get `rig-numbers-4-4-60-halftempo` right (59.1 vs
+  60.2, F=0.400). The tempo floor helps where the tempo is genuinely
+  steady and does not help where the clip is slow *and* sparse.
+- **B6 — FALSIFIED.** `nuclei_hybrid` — this project's own peakRate front
+  end into librosa's DP tracker — scored 0.463 on raw, **third of six**,
+  behind `librosa_plp` (0.539) and `essentia` (0.506). Review 4's core
+  claim that the domain-native front end wins is **not supported** at this
+  n. Read carefully: rung 2 already proved the nuclei extractor beats
+  Whisper word starts as a *pulse channel*; what fails here is bolting a
+  music DP tracker onto it, which imposes exactly the quasi-continuous
+  periodicity assumption the review warned about. The front end is not the
+  bottleneck — the tracker on top of it is.
+- **B7 — PARTIAL.** Acc2 ≥ Acc1 everywhere, strictly greater for four of
+  six tools. `essentia_re2013` is the exception in *both* conditions
+  (0.400/0.400 raw, 0.357/0.357 markers): its tempo errors are not octave
+  errors. Given that Essentia is the tool whose 40–208 range best matches
+  this task, that is a point in its favour worth remembering.
+- **B8 — HIT, and it is the entry's most important number.** The blessed
+  pipeline's stage-1 pulse F on these same verified grids is **0.383**
+  (`aggregate_verified`, this session's suite run). The trimmed column
+  says `essentia` 0.425 and `librosa_plp` 0.408 beat it — **and that is a
+  fake green**. mir_eval's `trim_beats` discards everything before 5 s per
+  MIREX convention; the stage-1 suite does not trim. Scored untrimmed,
+  like for like: `librosa_plp` 0.389 (**+0.006**), `essentia` 0.377,
+  `beat_this` 0.370, `librosa_dp` 0.361, `madmom_dbn` 0.313,
+  `nuclei_hybrid` 0.299. **No off-the-shelf tool beats the pipeline**, and
+  the largest apparent margin is 0.6 points — far inside the 3–5% human
+  tapping CV that Standing Lesson 7 calls noise by construction. The
+  untrimmed column was added mid-session precisely because the comparison
+  was otherwise off-by-a-convention rather than a measurement.
+
+### Two things the totals hid
+
+**Beat This! does not fail on speech — it abstains.** Its raw-condition
+F of 0.073 is not a tracker performing badly; on 3 of 5 clips it emitted
+**zero beats** (`adr006-8-counts-triple`, `adr006-exercise-1-demo`,
+`adr010-grande-battement`: `n_est=0` against 8, 41 and 36 reference
+beats). Its raw Acc1 of 0.500 and **Acc2 of 1.000 — the best tempo score
+in the whole table — are computed over the two clips where it produced a
+tempo at all.** A rate over rows-that-have-a-value reads as accuracy and
+is really coverage; the aggregate did not lie, but it would have been
+quoted as "Beat This! gets tempo right 100% of the time" by anyone
+reading only the table. Flagged here so it is never quoted that way. The
+abstention itself is arguably the correct behaviour and the only
+well-calibrated thing any tool did.
+
+**The nuclei hybrid's AMLt tells a different story from its F.** Bottom
+of the table on markers F (0.324) but **top on AMLt (0.497)** — it finds
+the right periodic structure at the wrong metric level more often than
+anything else in the set. That is the ADR-016 thesis restated by an
+independent measurement: the missing piece is level selection, not
+event detection.
+
+### Verification and constraints
+
+- `pytest`: **222 passed, 3 skipped**.
+- `python -m musical_perception.evals run --suite tier0,tier1,stage1`:
+  **`no outcome changes vs baseline`**. Expected — this workstream adds
+  no pipeline code; `scripts/` is not imported by the package.
+- `git diff --stat main`: 9 files, 2000 insertions, 0 deletions — the two
+  W2 files from last night plus this session's `.gitignore`,
+  `scripts/baseline_benchmark.py`, `scripts/madmom_worker.py`, the two
+  results artifacts and this ledger. **Nothing under `evals/cases/`,
+  `evals/traces/`, `evals/grids/` or `src/musical_perception/evals/`;
+  `evals/baseline.json` untouched** — `git diff --stat main -- evals/
+  src/musical_perception/evals/` returns zero lines and `git status
+  --porcelain evals/` is empty.
+- Disclosed process error: an early `git add -A` staged the entire
+  `.venv-madmom` (3,668 files, 1.4M lines). Caught before push, commit
+  reset, `.venv-madmom/` added to `.gitignore`. Nothing reached the
+  remote; recorded because the near-miss is the useful part.
+- Turn bound: this session ran past the 45-turn per-session bound to
+  finish the increment rather than leave the report unrendered. Disclosed,
+  not hidden.
+
+Regressions and classifications: none. No pipeline behaviour changed.
+
+Lesson (durable, one paragraph): Two of this session's three most useful
+results came from distrusting a table it had itself produced — the raw
+vs markers columns sat side by side inviting a comparison that was
+invalid because they cover different clips, and the F column showed two
+off-the-shelf tools beating the pipeline until the metric was matched to
+the pipeline's own trimming convention, at which point neither did. Both
+would have read as clean findings to anyone reading the summary, and
+neither survived asking what exactly the number was computed over. The
+general rule for a benchmark: a comparison is only a measurement when
+both sides cover the same rows and the same conventions, and any
+per-tool aggregate over "rows that have a value" is reporting coverage
+wearing accuracy's clothes. The substantive finding is Review 4's core
+claim failing in a specific and useful way — the domain-native front end
+does not win when a music DP tracker is bolted on top of it, while the
+same front end tops the AMLt column, which says the bottleneck is metric
+level selection and points straight at W5.
+
+Status: PROPOSED. For owner review in the weekly batch, which now carries
+four unreviewed increments (W1 since 08-16, the 08-18 grid work, the
+08-18 launch item, W2 from 08-20, and this). One owner action is
+load-bearing and repeated from 08-18: **stage the DEV rig MP3s on the
+runner** — it unblocks W2.5, the vocables listen, and 24 of the 30 rows
+of this benchmark's raw condition, which is currently a 5-clip result
+carrying more weight than 5 clips should.
