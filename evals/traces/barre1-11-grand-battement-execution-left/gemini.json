@@ -1,0 +1,51 @@
+{
+ "model": "gemini-2.5-flash",
+ "raw_response": {
+  "words": [],
+  "exercise": {
+   "exercise_type": "pas_de_valse",
+   "display_name": "Pas de Valse",
+   "confidence": 0.8,
+   "reasoning": "The music is a lively waltz in 3/4 time, which is characteristic for a Pas de Valse or similar continuous waltz steps in ballet."
+  },
+  "counting_structure": {
+   "total_counts": 123,
+   "prep_counts": null,
+   "subdivision_type": "none",
+   "estimated_bpm": 180
+  },
+  "meter": {
+   "beats_per_measure": 3,
+   "beat_unit": 4
+  },
+  "quality": [
+   {
+    "phrase_number": 1,
+    "description": "The first section of the waltz music, characterized by a flowing and lively melody.",
+    "articulation": 0.7,
+    "weight": 0.35,
+    "energy": 0.6,
+    "primary": true
+   },
+   {
+    "phrase_number": 2,
+    "description": "The second section continues with the same lively waltz character, maintaining a flowing and active feel.",
+    "articulation": 0.7,
+    "weight": 0.35,
+    "energy": 0.6,
+    "primary": true
+   }
+  ],
+  "structure": {
+   "counts": 123,
+   "sides": 1
+  }
+ },
+ "inputs": {
+  "onset_bpm_sent": null,
+  "transcript_words_sent": [
+   "...",
+   "..."
+  ]
+ }
+}

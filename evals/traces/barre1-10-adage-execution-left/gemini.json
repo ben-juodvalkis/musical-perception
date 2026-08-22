@@ -1,0 +1,52 @@
+{
+ "model": "gemini-2.5-flash",
+ "raw_response": {
+  "words": [],
+  "exercise": {
+   "exercise_type": "unknown",
+   "display_name": "Unknown",
+   "confidence": 0.0,
+   "reasoning": "No dancer or spoken instruction is present in the video to identify a specific ballet exercise. Only a pianist is shown."
+  },
+  "counting_structure": {
+   "total_counts": 170,
+   "prep_counts": null,
+   "subdivision_type": "none",
+   "estimated_bpm": 131.0
+  },
+  "meter": {
+   "beats_per_measure": 3,
+   "beat_unit": 4
+  },
+  "quality": [
+   {
+    "phrase_number": 1,
+    "description": "First musical theme, a gentle waltz melody, with no dancer present.",
+    "articulation": 0.5,
+    "weight": 0.5,
+    "energy": 0.5,
+    "primary": false
+   },
+   {
+    "phrase_number": 2,
+    "description": "Second musical theme, slightly more flowing, with no dancer present.",
+    "articulation": 0.5,
+    "weight": 0.5,
+    "energy": 0.5,
+    "primary": false
+   }
+  ],
+  "structure": {
+   "counts": 24,
+   "sides": 1
+  }
+ },
+ "inputs": {
+  "onset_bpm_sent": null,
+  "transcript_words_sent": [
+   "...",
+   "...",
+   "..."
+  ]
+ }
+}

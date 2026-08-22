@@ -1,0 +1,1221 @@
+{
+ "model": "gemini-2.5-flash",
+ "raw_response": {
+  "words": [
+   {
+    "word": "good,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 0
+   },
+   {
+    "word": "we'll",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 1
+   },
+   {
+    "word": "just",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 2
+   },
+   {
+    "word": "do",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 3
+   },
+   {
+    "word": "some,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 4
+   },
+   {
+    "word": "rice",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 5
+   },
+   {
+    "word": "is",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 6
+   },
+   {
+    "word": "facing",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 7
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 8
+   },
+   {
+    "word": "barre,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 9
+   },
+   {
+    "word": "you",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 10
+   },
+   {
+    "word": "can",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 11
+   },
+   {
+    "word": "just",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 12
+   },
+   {
+    "word": "follow",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 13
+   },
+   {
+    "word": "me,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 14
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 15
+   },
+   {
+    "word": "then",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 16
+   },
+   {
+    "word": "we'll",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 17
+   },
+   {
+    "word": "have",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 18
+   },
+   {
+    "word": "a",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 19
+   },
+   {
+    "word": "good",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 20
+   },
+   {
+    "word": "stretch",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 21
+   },
+   {
+    "word": "at",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 22
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 23
+   },
+   {
+    "word": "end,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 24
+   },
+   {
+    "word": "just",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 25
+   },
+   {
+    "word": "to",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 26
+   },
+   {
+    "word": "finish",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 27
+   },
+   {
+    "word": "our",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 28
+   },
+   {
+    "word": "barre",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 29
+   },
+   {
+    "word": "off.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 30
+   },
+   {
+    "word": "thanks,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 31
+   },
+   {
+    "word": "rex.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 32
+   },
+   {
+    "word": "nice",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 33
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 34
+   },
+   {
+    "word": "parallel,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 35
+   },
+   {
+    "word": "on",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 36
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 37
+   },
+   {
+    "word": "right",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 38
+   },
+   {
+    "word": "leg.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 39
+   },
+   {
+    "word": "Up,",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 40
+   },
+   {
+    "word": "Lower,",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 41
+   },
+   {
+    "word": "down.",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 42
+   },
+   {
+    "word": "resist",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 43
+   },
+   {
+    "word": "on",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 44
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 45
+   },
+   {
+    "word": "way",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 46
+   },
+   {
+    "word": "down.",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 47
+   },
+   {
+    "word": "We're",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 48
+   },
+   {
+    "word": "gonna",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 49
+   },
+   {
+    "word": "go",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 50
+   },
+   {
+    "word": "eight",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 51
+   },
+   {
+    "word": "times.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 52
+   },
+   {
+    "word": "Five.",
+    "marker_type": "beat",
+    "beat_number": 13,
+    "index": 53
+   },
+   {
+    "word": "Six.",
+    "marker_type": "beat",
+    "beat_number": 16,
+    "index": 54
+   },
+   {
+    "word": "same",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 55
+   },
+   {
+    "word": "to",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 56
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 57
+   },
+   {
+    "word": "other",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 58
+   },
+   {
+    "word": "side,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 59
+   },
+   {
+    "word": "please,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 60
+   },
+   {
+    "word": "you",
+    "marker_type": "beat",
+    "beat_number": 25,
+    "index": 61
+   },
+   {
+    "word": "rise",
+    "marker_type": "beat",
+    "beat_number": 26,
+    "index": 62
+   },
+   {
+    "word": "up,",
+    "marker_type": "beat",
+    "beat_number": 27,
+    "index": 63
+   },
+   {
+    "word": "wrist",
+    "marker_type": "beat",
+    "beat_number": 28,
+    "index": 64
+   },
+   {
+    "word": "is",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 65
+   },
+   {
+    "word": "down,",
+    "marker_type": "beat",
+    "beat_number": 30,
+    "index": 66
+   },
+   {
+    "word": "a",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 67
+   },
+   {
+    "word": "strong",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 68
+   },
+   {
+    "word": "ankle,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 69
+   },
+   {
+    "word": "try",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 70
+   },
+   {
+    "word": "not",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 71
+   },
+   {
+    "word": "to",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 72
+   },
+   {
+    "word": "wobble",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 73
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 74
+   },
+   {
+    "word": "ankle,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 75
+   },
+   {
+    "word": "really",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 76
+   },
+   {
+    "word": "nice",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 77
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 78
+   },
+   {
+    "word": "strong.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 79
+   },
+   {
+    "word": "same",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 80
+   },
+   {
+    "word": "turned",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 81
+   },
+   {
+    "word": "out,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 82
+   },
+   {
+    "word": "turn",
+    "marker_type": "beat",
+    "beat_number": 49,
+    "index": 83
+   },
+   {
+    "word": "out,",
+    "marker_type": "beat",
+    "beat_number": 50,
+    "index": 84
+   },
+   {
+    "word": "up,",
+    "marker_type": "beat",
+    "beat_number": 52,
+    "index": 85
+   },
+   {
+    "word": "lower,",
+    "marker_type": "beat",
+    "beat_number": 53,
+    "index": 86
+   },
+   {
+    "word": "up,",
+    "marker_type": "beat",
+    "beat_number": 55,
+    "index": 87
+   },
+   {
+    "word": "lower,",
+    "marker_type": "beat",
+    "beat_number": 56,
+    "index": 88
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 89
+   },
+   {
+    "word": "each",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 90
+   },
+   {
+    "word": "time",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 91
+   },
+   {
+    "word": "you",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 92
+   },
+   {
+    "word": "lower,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 93
+   },
+   {
+    "word": "you",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 94
+   },
+   {
+    "word": "turn",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 95
+   },
+   {
+    "word": "out",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 96
+   },
+   {
+    "word": "a",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 97
+   },
+   {
+    "word": "little",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 98
+   },
+   {
+    "word": "bit",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 99
+   },
+   {
+    "word": "more",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 100
+   },
+   {
+    "word": "with",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 101
+   },
+   {
+    "word": "your",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 102
+   },
+   {
+    "word": "both",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 103
+   },
+   {
+    "word": "of",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 104
+   },
+   {
+    "word": "your",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 105
+   },
+   {
+    "word": "legs.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 106
+   },
+   {
+    "word": "same",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 107
+   },
+   {
+    "word": "to",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 108
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 109
+   },
+   {
+    "word": "other",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 110
+   },
+   {
+    "word": "side.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 111
+   },
+   {
+    "word": "more.",
+    "marker_type": "beat",
+    "beat_number": 73,
+    "index": 112
+   },
+   {
+    "word": "resist.",
+    "marker_type": "beat",
+    "beat_number": 77,
+    "index": 113
+   },
+   {
+    "word": "try",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 114
+   },
+   {
+    "word": "to",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 115
+   },
+   {
+    "word": "keep",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 116
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 117
+   },
+   {
+    "word": "hips",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 118
+   },
+   {
+    "word": "square.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 119
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 120
+   },
+   {
+    "word": "we're",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 121
+   },
+   {
+    "word": "going",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 122
+   },
+   {
+    "word": "to",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 123
+   },
+   {
+    "word": "finish",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 124
+   },
+   {
+    "word": "there.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 125
+   },
+   {
+    "word": "thank",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 126
+   },
+   {
+    "word": "you",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 127
+   },
+   {
+    "word": "rex,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 128
+   },
+   {
+    "word": "back",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 129
+   },
+   {
+    "word": "to",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 130
+   },
+   {
+    "word": "first.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 131
+   },
+   {
+    "word": "good,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 132
+   },
+   {
+    "word": "just",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 133
+   },
+   {
+    "word": "take",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 134
+   },
+   {
+    "word": "a",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 135
+   },
+   {
+    "word": "good",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 136
+   },
+   {
+    "word": "demi-pli\u00e9,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 137
+   },
+   {
+    "word": "stretch",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 138
+   },
+   {
+    "word": "out",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 139
+   },
+   {
+    "word": "your",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 140
+   },
+   {
+    "word": "calves",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 141
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 142
+   },
+   {
+    "word": "everything.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 143
+   },
+   {
+    "word": "i",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 144
+   },
+   {
+    "word": "think",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 145
+   },
+   {
+    "word": "you've",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 146
+   },
+   {
+    "word": "done",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 147
+   },
+   {
+    "word": "great.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 148
+   },
+   {
+    "word": "thank",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 149
+   },
+   {
+    "word": "you",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 150
+   },
+   {
+    "word": "for",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 151
+   },
+   {
+    "word": "joining",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 152
+   },
+   {
+    "word": "me",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 153
+   },
+   {
+    "word": "on",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 154
+   },
+   {
+    "word": "this",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 155
+   },
+   {
+    "word": "first",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 156
+   },
+   {
+    "word": "bar.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 157
+   },
+   {
+    "word": "i",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 158
+   },
+   {
+    "word": "hope",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 159
+   },
+   {
+    "word": "to",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 160
+   },
+   {
+    "word": "see",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 161
+   },
+   {
+    "word": "you",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 162
+   },
+   {
+    "word": "soon",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 163
+   },
+   {
+    "word": "again.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 164
+   }
+  ],
+  "exercise": {
+   "exercise_type": "releve",
+   "display_name": "Relev\u00e9",
+   "confidence": 1.0,
+   "reasoning": "The dancer performs rises onto the balls of the feet, both parallel and turned out, holding onto the barre. The teacher explicitly mentions 'rises' and demonstrates the movement."
+  },
+  "counting_structure": {
+   "total_counts": 96,
+   "prep_counts": null,
+   "subdivision_type": "none",
+   "estimated_bpm": 113
+  },
+  "meter": {
+   "beats_per_measure": 3,
+   "beat_unit": 4
+  },
+  "quality": [
+   {
+    "phrase_number": 1,
+    "description": "Performs relev\u00e9s on the right leg in parallel position, rising and lowering with control.",
+    "articulation": 0.6,
+    "weight": 0.4,
+    "energy": 0.45,
+    "primary": true
+   },
+   {
+    "phrase_number": 2,
+    "description": "Performs relev\u00e9s on the left leg in parallel position, rising and lowering with control.",
+    "articulation": 0.6,
+    "weight": 0.4,
+    "energy": 0.45,
+    "primary": true
+   },
+   {
+    "phrase_number": 3,
+    "description": "Performs relev\u00e9s on the right leg in turned out position, rising and lowering with control.",
+    "articulation": 0.6,
+    "weight": 0.4,
+    "energy": 0.45,
+    "primary": true
+   },
+   {
+    "phrase_number": 4,
+    "description": "Performs relev\u00e9s on the left leg in turned out position, rising and lowering with control.",
+    "articulation": 0.6,
+    "weight": 0.4,
+    "energy": 0.45,
+    "primary": true
+   }
+  ],
+  "structure": {
+   "counts": 24,
+   "sides": 4
+  }
+ },
+ "inputs": {
+  "onset_bpm_sent": 227.7,
+  "transcript_words_sent": [
+   "good,",
+   "we'll",
+   "just",
+   "do",
+   "some,",
+   "rice",
+   "is",
+   "facing",
+   "the",
+   "barre,",
+   "you",
+   "can",
+   "just",
+   "follow",
+   "me,",
+   "and",
+   "then",
+   "we'll",
+   "have",
+   "a",
+   "good",
+   "stretch",
+   "at",
+   "the",
+   "end,",
+   "just",
+   "to",
+   "finish",
+   "our",
+   "barre",
+   "off.",
+   "thanks,",
+   "rex.",
+   "nice",
+   "and",
+   "parallel,",
+   "on",
+   "the",
+   "right",
+   "leg.",
+   "up,",
+   "lower,",
+   "down.",
+   "resist",
+   "on",
+   "the",
+   "way",
+   "down.",
+   "we're",
+   "gonna",
+   "go",
+   "eight",
+   "times.",
+   "five.",
+   "six.",
+   "same",
+   "to",
+   "the",
+   "other",
+   "side,",
+   "please,",
+   "you",
+   "rise",
+   "up,",
+   "wrist",
+   "is",
+   "down,",
+   "a",
+   "strong",
+   "ankle,",
+   "try",
+   "not",
+   "to",
+   "wobble",
+   "the",
+   "ankle,",
+   "really",
+   "nice",
+   "and",
+   "strong.",
+   "same",
+   "turned",
+   "out,",
+   "turn",
+   "out,",
+   "up,",
+   "lower,",
+   "up,",
+   "lower,",
+   "and",
+   "each",
+   "time",
+   "you",
+   "lower,",
+   "you",
+   "turn",
+   "out",
+   "a",
+   "little",
+   "bit",
+   "more",
+   "with",
+   "your",
+   "both",
+   "of",
+   "your",
+   "legs.",
+   "same",
+   "to",
+   "the",
+   "other",
+   "side.",
+   "more.",
+   "resist.",
+   "try",
+   "to",
+   "keep",
+   "the",
+   "hips",
+   "square.",
+   "and",
+   "we're",
+   "going",
+   "to",
+   "finish",
+   "there.",
+   "thank",
+   "you",
+   "rex,",
+   "back",
+   "to",
+   "first.",
+   "good,",
+   "just",
+   "take",
+   "a",
+   "good",
+   "demi-pli\u00e9,",
+   "stretch",
+   "out",
+   "your",
+   "calves",
+   "and",
+   "everything.",
+   "i",
+   "think",
+   "you've",
+   "done",
+   "great.",
+   "thank",
+   "you",
+   "for",
+   "joining",
+   "me",
+   "on",
+   "this",
+   "first",
+   "bar.",
+   "i",
+   "hope",
+   "to",
+   "see",
+   "you",
+   "soon",
+   "again."
+  ]
+ }
+}
