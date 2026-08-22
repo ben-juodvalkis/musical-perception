@@ -2686,3 +2686,23 @@ first weekly batch review, now six unreviewed increments deep (W1 08-16,
 the 08-18 grid work, the 08-18 launch item, W2 08-20, W3 08-21, and this);
 (5) the `accompanied: false` discrepancy in
 `evals/cases/rig-numbers-2-4-120-clean.yaml:12`, carried since 08-13.
+
+## 2026-08-22 · rung M · agent/marathon · (one-line note: every remaining workstream is BLOCKED)
+
+**Every workstream open to a scheduled session is now BLOCKED, so Rung
+M's per-session alternative deliverable applies:** W0 not triggered (last
+meta entry 2026-08-19, three days against the 7-day rule) · W1 shipped
+08-16 · **W1.5** (new, proposed tonight — the `maturity`/provisional-slice
+eval infrastructure) BLOCKED on owner commissioning, since rule 2 puts
+EVAL-CHANGE work in a workstream whose declared deliverable is eval
+infrastructure and the standing contract forbids this session touching
+scorer code · W2 completed 08-20 (negative) · W2.5 BLOCKED on media
+(`audio/rig/*.mp3` still absent, re-checked tonight) · W3 completed 08-21
+· **W4 half-delivered tonight** — the 22 traces are frozen and committed,
+its case files BLOCKED on W1.5 · W5 OWNER-STARTED · W6 BLOCKED (needs
+rung 4's shape per the charter, and the same missing media) · W7 BLOCKED
+on W4's case files (its pose data is now recorded and waiting) · W8
+BLOCKED on W5. The 45-turn per-session bound is also reached and
+disclosed in the entry above.
+
+Status: PROPOSED (bookkeeping note; the substantive entry is above).
