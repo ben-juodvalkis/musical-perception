@@ -2494,3 +2494,63 @@ batch).
 * **I6** — adding traces only, with no case file, changes nothing that is
   scored: `pytest` stays green and `evals run --suite tier0,tier1,stage1`
   still reports `no outcome changes vs baseline`. *Predicted: PASS.*
+
+### BLOCKED — W4's case files: the ingestion carve-out has no implementation
+
+The charter's rule 2 carve-out reads: *"creating NEW case and trace files
+for new material is permitted and expected — every agent-authored label
+ships with `maturity: provisional`. Provisional rows never gate anything
+and are always reported as a separate slice."* Three facts, each shown by
+command output in this transcript:
+
+1. **`maturity` cannot be written.** `evals/cases/…` files are validated
+   against `_TOP_KEYS = {id, input, tags, expect, notes}`
+   (`src/musical_perception/evals/cases.py:20`). A case carrying
+   `maturity: provisional` raises
+   `ValueError: unknown top-level keys ['maturity']` — probed tonight on a
+   file in `/tmp`, never in `evals/cases/`.
+2. **A new case turns the tier-1 gate red.** `compare_outcomes`
+   (`src/musical_perception/evals/runner.py:115-134`) walks
+   `set(baseline) | set(current)` and emits `<id>: new case (not in
+   baseline)` for any id the blessed baseline lacks; `tests/
+   test_evals_replay.py:43` asserts that list is empty. Demonstrated
+   against the real `evals/baseline.json` (30 blessed ids) with one
+   synthetic added row.
+3. **There is no separate slice.** `grep -rn maturity
+   src/musical_perception/evals/ docs/evals/*.md` returns nothing, and
+   `aggregate.py` computes committed accuracy over every row it is handed
+   (`aggregate.py:102`). Provisional rows would land inside the headline
+   tier-1 numbers — the marathon's own fitness function — with
+   agent-invented truth labels.
+
+Fact 3 is the one that matters. Facts 1 and 2 are inconveniences an owner
+re-bless would clear; fact 3 means that clearing them *the obvious way*
+freezes agent-guessed ground truth into the blessed baseline and silently
+moves every completion target. **A session must not do that**, so the
+ingestion stops at traces tonight rather than pushing case files that
+would look like progress and contaminate the metric.
+
+**Owner action / what unblocks W4:** one eval-infrastructure increment
+(call it **W1.5**, EVAL-CHANGE, must not be bundled with pipeline work) —
+(a) accept `maturity: provisional|verified` as a top-level case key,
+defaulting to `verified` so all 30 existing cases keep their meaning
+untouched; (b) exclude provisional rows from `compare_outcomes`, from the
+typed gates, and from the headline aggregates; (c) report them as their
+own slice with its own n. That is the smallest change that makes the
+charter's own sentence true, and it gates W4, W7, and every future
+capture batch — which is to say it now outranks them.
+
+### PROPOSED (rule 9) — the standing contract contradicts the carve-out
+
+`scripts/air-nightly.sh`'s standing contract requires *"evals/cases,
+evals/traces, evals/baseline.json and the scorer code untouched"*. Read
+literally, **no ingestion session can ever satisfy its own contract**: W4's
+defined deliverable is new files in exactly those two directories. The
+charter is the governing text and permits additions (rule 2 carve-out;
+Rung M's per-session condition says only *"no existing eval file
+modified; new cases provisional-only"*), so this session followed the
+charter and added trace directories only. Proposed fix, owner's call: the
+contract's clause becomes *"no existing file under `evals/cases/`,
+`evals/traces/` or `evals/baseline.json` modified, and no scorer code
+touched outside a declared EVAL-CHANGE workstream."* Until it is amended,
+every ingestion night will re-litigate this paragraph.
