@@ -2440,3 +2440,57 @@ load-bearing and repeated from 08-18: **stage the DEV rig MP3s on the
 runner** — it unblocks W2.5, the vocables listen, and 24 of the 30 rows
 of this benchmark's raw condition, which is currently a 5-clip result
 carrying more weight than 5 clips should.
+
+## 2026-08-22 · rung M / W4 (Barre 1 DEV ingestion) · agent/marathon · local (nightly, unattended)
+
+Attempted: W4 — Ballet Barre 1 DEV ingestion, selected as the
+highest-ranked workstream that is not blocked (W2 completed 08-20, W3
+completed 08-21, W2.5 still blocked on media — `audio/rig/*.mp3` is still
+absent from this machine, checked again tonight, so the 08-18/08-21 owner
+action stands unchanged). W0 does not re-trigger: its last entry is
+2026-08-19, three days old against the 7-day rule.
+
+**Headline, stated first because it changes what the workstream is:
+W4 cannot be completed as the charter describes it, and the reason is in
+the harness, not the material.** The ingestion carve-out (rule 2) requires
+every agent-authored label to ship `maturity: provisional` and says
+provisional rows "never gate anything and are always reported as a
+separate slice". No part of that exists in code. This session therefore
+delivers the half of W4 that is legal and useful — the frozen traces —
+and files the other half as BLOCKED with the mechanism named.
+
+### Pre-registration (rule 3), written before the batch was launched
+
+The two blocker facts (I3a, I3b) were established by reading and probing
+the harness *before* any ingestion command ran; they are recorded here as
+findings, not predictions. I1, I2, I5, I6 are genuine forward predictions
+made before any of the 22 trace runs completed (a single 30 s probe clip
+had been run to measure wall time, and was deleted and re-recorded in the
+batch).
+
+* **I1** — all 22 section files produce complete traces
+  (`whisper.json`, `gemini.json`, `pose.npz`, `meta.json`, rc=0). Risk:
+  the longest clip is 147 s and the material is explanation-heavy, but
+  nothing here is structurally different from the four existing video
+  demos. *Predicted: 22/22.*
+* **I2** — the material is explanation-heavy in a way the rig clips are
+  not: predicted **median counting-token fraction below 0.5** across the
+  22 transcripts (i.e. most spoken words are instruction, not counts).
+  This is the property that makes region tagging (W1, rung 2.5) load
+  bearing for this batch, and the reason the charter ordered W1 first.
+* **I3a** — *(established, not predicted)* `maturity` cannot be written
+  into a case file: `cases.py:_TOP_KEYS` rejects unknown top-level keys.
+  Probe output is in this transcript.
+* **I3b** — *(established, not predicted)* adding any new case file turns
+  the tier-1 pytest gate red: `compare_outcomes` emits
+  `<id>: new case (not in baseline)` for every id absent from
+  `evals/baseline.json`. Demonstrated in this transcript against the real
+  baseline.
+* **I5** — internal consistency check with no gate attached: for each
+  exercise with both an `execution_left` and an `execution_right` file,
+  the two committed BPMs agree within 8% (same teacher, same exercise,
+  same session, one side then the other). *Predicted: at least 5 of the
+  7 pairs agree.*
+* **I6** — adding traces only, with no case file, changes nothing that is
+  scored: `pytest` stays green and `evals run --suite tier0,tier1,stage1`
+  still reports `no outcome changes vs baseline`. *Predicted: PASS.*
