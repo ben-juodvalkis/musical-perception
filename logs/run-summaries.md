@@ -58,3 +58,18 @@ is how the runner's permission failure was found.)*
 > **Owner queue** — one item is load-bearing and now repeated from 08-18: **stage the DEV rig MP3s on the runner**. It unblocks W2.5, the vocables listen, and 24 of this benchmark's 30 raw-condition rows in one act. Five increments now await the weekly batch review.
 
 *Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
+
+## run 2026-08-22T09:00:08Z · main b25f48f
+
+- **outcome:** success, shell exit 0
+- **turns:** 85 · **duration:** 58.4 min · **cost:** $6.88
+
+**Agent's closing message:**
+
+> …nt that did complete** — 22 frozen traces for the 8 DEV Ballet Barre 1 exercises (whisper/gemini/pose/meta, 24 MB, add-only), committed with full command evidence: `pytest` 222 passed / 3 skipped · `evals run --suite tier0,tier1,stage1` → `no outcome changes vs baseline` · `git diff --stat main` → 100 files, 39,432 insertions, 0 deletions, with `--diff-filter=MD` over `evals/` and `src/musical_perception/evals/` empty, `evals/baseline.json` untouched, and 0 files added under `evals/cases/`.
+> 
+> **The one-line BLOCKED note** — now filed as its own dated ledger entry, enumerating why every remaining workstream is blocked to a scheduled session (W0 not triggered; W1/W2/W3 done; W1.5 needs owner commissioning; W2.5 needs the rig MP3s; W4's case files need W1.5; W5 owner-started; W6 needs rung 4; W7 needs W4; W8 needs W5), with the 45-turn bound reached and disclosed.
+> 
+> The two findings worth your attention remain the ones above: the ingestion carve-out has no implementation (so writing case files tonight would have frozen agent-guessed truth into the baseline), and seven of the 22 new clips are piano-only takes with no voice at all — a condition the existing 30-clip corpus doesn't contain.
+
+*Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
