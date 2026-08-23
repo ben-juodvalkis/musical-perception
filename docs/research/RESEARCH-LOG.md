@@ -2720,3 +2720,132 @@ BLOCKED on W5. The 45-turn per-session bound is also reached and
 disclosed in the entry above.
 
 Status: PROPOSED (bookkeeping note; the substantive entry is above).
+
+## 2026-08-23 · rung M / W7 (pose-gesture channel) · agent/marathon · local (nightly, unattended)
+
+Attempted: W7 — pose/gesture channel prototyping on the frozen Ballet
+Barre 1 traces, selected after re-verifying every blocker rather than
+inheriting last night's conclusion. **Selection disclosed as a judgment
+call:** the 2026-08-22 note put W7 as BLOCKED on W4's case files. W7's
+charter text is "pose/gesture channel prototyping on the Barre 1 video
+(after W4)"; W4's trace half shipped last night, so the *material* W7
+needs now exists in the repository, and what the case files would add is
+scoring, which this increment does not claim. I read the prerequisite as
+satisfied in substance and deliver a **diagnostic**, not an accuracy
+result. If the owner disagrees, this entry is a BLOCKED note plus a
+prototype that cost one night.
+
+Blockers re-verified tonight, not inherited: **W0** last meta entry
+2026-08-19, four days against the 7-day rule — not triggered · **W2.5**
+`audio/rig/*.mp3` still absent (`find audio video -type f` shows 3 `.aif`
+counting clips and no rig media) — still blocked, the 08-18/08-21/08-22
+owner action stands unchanged and is now four sessions old · **W1.5**
+still uncommissioned, so W4's case files stay blocked · **W5**
+OWNER-STARTED · **W6/W8** unchanged.
+
+### BLOCKED — the HELD-OUT split is derivable from this repository
+
+Filed first because it has a deadline and only the owner can act.
+
+The charter's data-splits section says of the four held-out Barre 1
+exercises: *"The list lives on the main machine, never in this
+repository."* On `agent/marathon` it now lives in this repository, by
+absence:
+
+1. Last night's W4 commit added 22 trace directories named
+   `evals/traces/barre1-<barre-order-number>-<exercise>-<take>/`, so the
+   **eight DEV exercises' positions in the barre order are committed
+   filenames**.
+2. Each `meta.json` additionally carries the full source path of its
+   section file under the Barre 1 `Sections/` directory.
+3. The charter itself states — publicly, in this repository — that the
+   batch is **12 exercises** and that the owner draws **one from each
+   quarter** (1–3, 4–6, 7–9, 10–12).
+
+(1) and (3) together determine the complement exactly. The draw is not
+merely narrowed, it is **solved**: eight known positions out of twelve,
+with a one-per-quarter constraint, leaves exactly one possibility. No
+inference from content is needed and none was performed; this is
+arithmetic over committed filenames and the charter's own public
+metadata. The held-out identities are deliberately **not written into
+this entry**, and this session did not seek, open, or reason about any
+held-out material — the finding is about derivability, not about content.
+
+**Severity, calibrated rather than alarmed.** HELD-OUT is the charter's
+*weak* seal, and the property it actually protects — *never iterated on*
+— is provided by physical removal of the files, which still holds: the
+media is not on this machine and no session can score against it. What is
+lost is opacity. A loop that can name the held-out exercises can select,
+tune, or stop in ways that anticipate them, and the owner loses the
+ability to state that the split was unknown to the loop when the held-out
+results are eventually read. That is a real weakening of a research
+control and it is permanent once merged.
+
+**Blast radius, and why the deadline matters.** The leak is confined to
+`agent/marathon` (local and `origin/agent/marathon`); `git ls-tree -r
+--name-only origin/main evals/traces/ | grep -c barre1` returns **0**.
+Nothing is on `main` yet. Remediation before the marathon branch merges
+is cheap; after it, it is a history rewrite of the trunk.
+
+**Why this session cannot fix it.** Every available remedy — renaming the
+trace directories to opaque ids, rewriting `meta.json`'s media paths,
+dropping and re-freezing the batch — is a *modification* of existing
+files under `evals/traces/`, which rule 2 forbids without exception, and
+the branch is already pushed. **Owner action required.** Three options,
+cheapest first: (a) rename the 22 trace directories and their `media`
+fields to opaque ids (e.g. `barre1-a`…`barre1-h`) with the id↔exercise
+map held on the main machine, then force-push the branch — preserves the
+data, removes the ordering; (b) re-draw the held-out four from the full
+12 *after* deciding (a) is not wanted, which restores opacity at the cost
+of the current draw; (c) accept the disclosure, and record in the charter
+that the Barre 1 held-out set is known to the loop, so that no future
+report claims otherwise. Doing nothing is option (c) by default, which is
+the reason to choose deliberately.
+
+**Root cause worth keeping.** The 2026-08-19 entry predicted this
+mechanism exactly — *"a directory listing captured in a transcript would
+encode the HELD-OUT split by absence"* — and defended against it in the
+**transcript**, by gitignoring the log. The very next ingestion session
+then committed the same information as **filenames**, where no ignore
+rule applies and no reviewer is prompted. The guard was placed on the
+channel that had just been noticed, not on the class of channel. Naming
+convention is a data channel; so is any artifact whose set of names is
+determined by which inputs exist.
+
+### Pre-registration (rule 3), written before any W7 code
+
+*Established facts (probed before predicting, recorded as findings, not
+predictions):* all 22 Barre 1 traces carry `pose.npz` with 33-landmark
+MediaPipe series at **50 fps**, `detection_rate` **0.71–1.00** (18 of 22
+at ≥ 0.99); and **6 of the 22 have ≤ 3 transcribed words** (four with
+2–3, one with 0), all of them `execution-left` takes. Those six are the
+voice-less condition W4 flagged — the case where the marker channel the
+whole pipeline rests on is empty, and pose is the only non-music evidence
+present. That is what makes W7 worth a night.
+
+* **G1 — extraction works.** A scale-normalized movement-speed signal and
+  gesture events (velocity minima = arrivals) can be extracted on all
+  22 clips, median event rate ≥ 1.0/s. *Predicted: 22/22.*
+* **G2 — periodicity exists at all.** Gesture IOIs beat a rate-matched
+  Poisson null at p < 0.05 on a majority of clips. *Predicted: ≥ 12/22.*
+  Risk: adage and fondu are legato, with no arrival to find.
+* **G3 — the level it sits at.** Following W2's finding that accent
+  periodicity in this corpus sits at the count phrase rather than the
+  bar, the dominant gesture period will more often be phrasal than beat
+  level. *Predicted: median dominant period > 1.2 s* (i.e. slower than a
+  100 BPM beat).
+* **G4 — cross-channel agreement, the honest low expectation.** On clips
+  where the voice channel yields a tempo, gesture BPM will agree with it
+  within a metric-level family (×1, ×2, ×3, ÷2, ÷3 at 8%) on **fewer
+  than half**. *Predicted: < 50% agreement.* A higher number would be the
+  session's surprise and would be flagged as such rather than celebrated.
+* **G5 — coverage is voice-independent.** The six voice-less clips yield
+  event rates and periodicity significance indistinguishable from the
+  voiced clips; movement does not stop when the teacher does.
+  *Predicted: PASS.*
+* **G6 — inertness.** The module is not wired into `analyze.py`, so
+  `pytest` stays green and `evals run --suite tier0,tier1,stage1` reports
+  `no outcome changes vs baseline`. *Predicted: PASS.*
+
+Scoring of G1–G6 and the results table follow in this entry's Result
+section, appended after the run.
