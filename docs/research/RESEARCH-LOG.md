@@ -2849,3 +2849,126 @@ present. That is what makes W7 worth a night.
 
 Scoring of G1–G6 and the results table follow in this entry's Result
 section, appended after the run.
+
+### Result — W7 is a negative result, and the periodicity it found was its own
+
+Full table and method: [w7-pose-gesture.md](w7-pose-gesture.md); per-clip
+JSON in `docs/research/w7-gesture-results.json`; reproduce with
+`python scripts/w7-pose-gesture-report.py` (read-only over committed
+traces — no media, no models, no API key, which is why W7 was runnable on
+a night when W2.5 was not).
+
+**Scorecard: G1 HIT · G2 MISS · G3 MISS · G4 HIT · G5 MISS · G6 HIT.**
+G4's "hit" is not a success — it pre-registered that the channel would be
+weak and the channel was weaker (0 of 7, not < 50%). Scoring that as a win
+would be grading the thermometer instead of the patient, so the three
+misses are the content.
+
+Movement events extract cleanly everywhere: 22/22 clips, median 2.76
+events/s. Everything after that fails. Only **8 of 22** clips carry a
+single significant periodicity window and the median per-clip coverage is
+**0.00**; every period found sits at **163–240 BPM**, above any plausible
+ballet tempo; and gesture BPM agrees with the replayed voice-channel tempo
+at **0 of 7** clips where both exist, at any metric level.
+
+**The diagnosis, which is the deliverable.** A post-hoc scale sweep
+(labelled post-hoc, not pre-registered) shows the detected period tracking
+the minimum-IOI *parameter* at +0.10 s across every setting — 0.20→0.29,
+0.35→0.45, 0.50→0.61 s — while the number of clips carrying any signal
+*falls* 12 → 9 → 4 as the analysis scale approaches musical tempo. A real
+musical period would sit still while the parameter moved and would get
+easier to see, not harder, once the detector stopped chopping it up. So
+the honest claim is narrow and it is not "movement carries no beat": it is
+that *velocity minima of torso-normalized limb speed, thinned at 0.2 s, do
+not carry recoverable musical periodicity on this corpus, and the obvious
+fix makes it worse.*
+
+**Three nulls, two of them mine and wrong — disclosed in full, because
+each names a distinct way this test fails.** (1) *Plain uniform*, rejected
+after the first full run: the detector enforces a minimum IOI, so uniform
+draws lack a constraint the observations have and the test reports the
+constraint — symptom, every clip pinned to the short edge of the period
+grid. (2) *Shuffled IOIs*, rejected next: permuting intervals is the
+**identity** on an isochronous train, so it has exactly zero power against
+the one hypothesis the module exists to test; it scored a synthetic
+perfectly-periodic input at p = 0.31. (3) *Hard-core uniform*, adopted:
+same event count placed at random subject to the same minimum IOI —
+shares the constraint, keeps the power, both controls pass. **The middle
+null was live when the first results table was produced and its numbers
+were friendlier (12/22 clips, not 8/22); the correction moved the result
+against the hypothesis.** Null (2) was caught by a unit test written as a
+positive control, not by reading the results — which is the whole argument
+for writing the positive control, since a null with no power produces
+plausible tables rather than obviously broken ones.
+
+**Secondary finding, and it is a warning to every future consumer of these
+traces: `detection_rate` is not a usability signal.** Fourteen of 22 clips
+first reported *zero* events. That was a bug — undetected frames arrive as
+`NaN`, a plain median over them makes the threshold `NaN`, and nothing can
+then fall below it — but the field that should have flagged the risk did
+not: a clip reporting `detection_rate = 1.00` still carried 0.43 % `NaN`
+landmarks, which was enough to erase every event in it. Check the
+landmarks for gaps, never the summary field. Fixed, with
+`test_nan_gaps_do_not_erase_every_event` pinning it.
+
+**Verification (proof clauses).** `pytest` → **229 passed, 3 skipped** ·
+`evals run --suite tier0,tier1,stage1` → **`no outcome changes vs
+baseline`** (aggregate_verified F=0.383 over 28 clips, aggregate_provisional
+reported as its own slice, unchanged) · `git diff --stat main` shown in
+transcript, and the targeted proofs: `--diff-filter=MD` over `evals/` and
+`src/musical_perception/evals/` is **empty**, `evals/baseline.json` shows
+**no diff**, **0** files added under `evals/cases/`. This session's own
+contribution is 5 new files, 1,038 insertions, 0 deletions, none of them
+under `evals/`. (`git diff --stat main` also shows
+`logs/run-summaries.md | 15 -`: that is the branch being behind `main`'s
+automated summary commits, not a deletion by this session — visible in the
+branch-point diff above, which touches no such file.)
+
+**Recommendation.** Do not iterate W7 standalone, for the same reason W2
+was folded rather than iterated. W2 found accent periodicity sitting at the
+count phrase rather than the bar with half its clips carrying nothing at
+any lag; W7 finds movement periodicity that dissolves under scale change.
+Both are weak channels that a joint posterior can still consume as *votes*
+(W5's design), and neither can carry a tempo alone. If W7 is revisited, the
+next thing worth trying is not a better peak-picker but a different event
+definition — a dancer places *phrase arrivals* on the beat, which is a
+segmentation problem, not a periodicity problem.
+
+**Disclosures.** (i) The 45-turn per-session bound was **exceeded**,
+deliberately, to finish the corrected null rather than ship the friendlier
+number produced by the broken one; the overrun is the second consecutive
+night this has happened (cf. 08-21) and is worth the meta-rung's attention
+as a sign the bound and the work are mismatched, not as a habit to
+normalize. (ii) Diagnosing the split-derivability finding required running
+`find` over the media tree, whose output enumerates the DEV sections and
+therefore encodes the held-out complement; that output stayed in the
+gitignored transcript and is in no committed file, and no held-out
+identity is written anywhere in this repository by this session.
+
+Regressions and classifications: none — the module is not wired into
+`analyze.py`, and the eval suites confirm it (G6).
+
+Lesson (durable, one paragraph): A significance test can fail in two
+opposite ways and only one of them looks like a bug — a null that is too
+weak pins every result to a grid edge and announces itself, while a null
+with *no power* returns calm, plausible, entirely fictional non-findings,
+and nothing in the output distinguishes it from an honest negative. The
+only thing that caught it here was a positive control asserting that a
+perfectly periodic input must come back significant, which cost four lines
+and would have been easy to skip on the grounds that the module was a
+prototype and the answer was going to be negative anyway. That reasoning is
+exactly backwards: the more confidently a session expects a negative
+result, the more it needs the control that proves it could have detected a
+positive one. The night's second lesson is cheaper and older — the
+threshold `NaN` that silently zeroed 14 of 22 clips was a summary
+statistic quietly poisoned by missing data, and the field that existed to
+warn about missing data said everything was fine.
+
+Status: PROPOSED. Two items need owner decisions and are independent of
+each other: **(1) the HELD-OUT derivability BLOCKED note above, which has a
+deadline — it is cheap to remediate while `agent/marathon` is unmerged and
+expensive afterwards**; and (2) whether W7's prerequisite reading was
+right, and whether the negative result is accepted as folding pose into W5
+alongside W2. Six increments now await the weekly batch review, and the
+owner queue is otherwise unchanged, including the four-session-old request
+to stage the DEV rig MP3s that still blocks W2.5.
