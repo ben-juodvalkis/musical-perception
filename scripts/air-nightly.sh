@@ -45,8 +45,9 @@ read -r -d '' STANDING_CONTRACT <<'EOF' || true
 is complete per that rung's own condition as written in the charter -
 every proof clause demonstrated by command output in this transcript, the
 constraints verified (git diff --stat main shown; work only on the rung's
-agent/* branch; evals/cases, evals/traces, evals/baseline.json and the
-scorer code untouched), and a dated entry appended to
+agent/* branch; no existing file under evals/cases/, evals/traces/, or
+evals/baseline.json modified, and no scorer code touched outside a
+declared EVAL-CHANGE workstream), and a dated entry appended to
 docs/research/RESEARCH-LOG.md - OR the rung's stated turn bound is
 reached - OR the current rung is owner-only or awaiting blessing, in
 which case a one-line ledger note saying so is the entire deliverable.

@@ -1895,3 +1895,278 @@ it contains.
 Status: PROPOSED. One item needs an explicit owner decision: whether the
 nightly script may push `main` on its own to publish summaries (rule 9
 above), or whether that block should be removed.
+
+## 2026-08-19 · rung M · agent/state-of-play · local (stock-taking: owner briefing)
+
+Attempted: A plain-language state-of-the-project briefing for the owner,
+`docs/research/state-of-play-2026-08-19.md` — a stock-taking session, not
+a marathon increment. No workstream advanced; no pipeline code changed.
+Local `main` was 28 commits behind `origin/main` at session start and was
+fast-forwarded to `034d226` before anything was read (no push).
+Pre-registered expectations: n/a (briefing, not experiment).
+Result: Briefing written and committed. Every headline claim was checked
+against artifacts where possible and labelled ✓ (verified) or (relayed)
+in the document. Verified this session: 30 grid files, 28 `provisional:
+false`, 25 anchored / 3 from_scratch, 33 `silent_beat` + 6 `free_time`
+regions on 4 clips, 28 at format 2; blessed baseline tier-1 tempo 17/30,
+meter_triple 11/29, counts 12/28 (+7 abstained), by-style slices as
+recorded; stage1 verified 28 clips P 0.334 R 0.449 F 0.383; rung-2
+kill-test tables and per-clip from-scratch cohort (R@tac 0.561/0.691/
+0.694, P_lc 0.242/0.452/0.490) from the committed JSON; scorer requires
+meter AND tempo ±8% AND subdivision, so only 2 of the 7 wrong non-4/4
+rows are meter-flippable (blessed non-4/4 truth is 2-of-9);
+`evals/cases/rig-numbers-2-4-120-clean.yaml:12` still `accompanied:
+false`; `scripts/air-nightly.sh:39` carries `--permission-mode auto`;
+`analyze.py` does not reference the acoustic extractor (not wired in).
+Live: pytest 213 passed / 3 skipped; `evals run --suite
+tier0,tier1,stage1` prints "no outcome changes vs baseline". Noted: the
+DEV rig MP3s ARE present on this (owner's) machine, so the vocables
+listen is blocked only on the Air. The `video/youtube/Ballet Barre 1`
+directory exists here and was deliberately not opened (HELD-OUT may live
+in it). Briefing length ~2,000 words incl. headers, slightly over brief.
+Regressions and classifications: none — `git diff --stat main` shows
+only this ledger and the briefing; 0 files under `evals/cases/`,
+`evals/traces/`, `evals/grids/`, `evals/baseline.json`, or
+`src/musical_perception/evals/`. No `evals bless` run. `main` not pushed.
+Lesson (durable, one paragraph): A briefing that cites the ledger has to
+re-derive the ledger's claims from the files, because the ledger is a
+record of what sessions believed, not of what is on disk — and the
+cheapest way to keep the two honest is to label every sentence with
+which one it came from.
+Status: PROPOSED (owner: read the briefing; its §7 is the owner queue).
+Addendum (same session): `origin/main` advanced to `fabd12e` while this
+briefing was written (runner logging into repo; nightly self-push of
+`main` PROPOSED as a rule-1 deviation). Inspected, no protected paths
+touched; briefing gained a closing addendum adding it to the owner queue.
+This branch stays based on `034d226`; the ledger will need a trivial
+append-append merge. Local `main` fast-forwarded to `fabd12e` (no push).
+
+## 2026-08-24 · rung M · agent/batch-review-20260824 · local (owner batch review, session 1)
+
+Attempted: The first Rung-M weekly batch review, owner present and
+interactive, ruling item by item on every PROPOSED increment and standing
+question. Branch cut from `origin/main` (`9de9b72`) with
+`agent/state-of-play` merged in (the predicted append-append ledger
+conflict, resolved by keeping both 2026-08-19 entries in landing order).
+Agent role: docket clerk — all reading and verification done before item
+one; the owner is the judge on every ruling below.
+
+Pre-registered expectations: n/a (review session). Pre-review state
+verified on this branch before any ruling: pytest **213 passed / 3
+skipped**; `evals run --suite tier0,tier1,stage1` → **"no outcome changes
+vs baseline"** (aggregate_verified 28 clips P 0.334 R 0.449 F 0.383).
+
+### Verification findings (this session's own, found before item one)
+
+1. **The W2 ledger entry misstates its own committed artifact** (third
+   known instance of ledger-vs-file drift). It claims family-level
+   (duple-vs-triple) accuracy "9/13 — no longer at chance"; the committed
+   `rung3-accent-meter.md` table says **6/13**, its own confusion list
+   sums to 6/13, and a fresh replay of the committed script from
+   committed files reproduces **6/13** — a coin flip. The negative result
+   is stronger than the entry admits.
+2. **"Seven piano-only Barre-1 takes" is six.** Word counts read directly
+   from the frozen traces: one left-side take is fully voiced (~116
+   words — it is also the W4 entry's own left/right BPM pair), five carry
+   2–3 words, one carries 0. W4's prose ("six of the seven execution_left
+   clips transcribe to zero words") contradicts both its own table and
+   the traces.
+3. **W3's "+0.006 margin" in B8 is scoring-convention-dependent**: the
+   entry scored a tool-emitted-nothing clip as F=0; excluding it instead
+   gives the best shelf tool ≈ +0.020 over the pipeline's 0.383. Both
+   readings sit inside the Standing-Lesson-7 noise band, so
+   "no shelf tool meaningfully wins" survives — but no precise margin
+   should ever be quoted.
+4. **No evidence the 2026-08-24 02:00 nightly run fired**: origin carries
+   summaries only through the 08-22 run, the 08-23 (W7) summary is
+   unpublished, and no branch shows an 08-24 commit. Either the Air did
+   not run or it died before writing. Not diagnosable from this machine.
+5. Minor: the W7 entry's "six of the 22 clips carry ≤ 3 transcribed
+   words (four with 2–3, one with 0)" needs "five with 2–3" for its own
+   arithmetic; substance unaffected.
+
+### Part A rulings (owner, in session)
+
+- **A1 — W1 / rung 2.5 (grid format 2, QC checks, annotation-method
+  metadata; on main since 08-16): BLESSED.** Verified this session: 28
+  grids at format 2, 25 anchored / 3 from_scratch, suite byte-stable.
+  No `evals bless` owed (EVAL-CHANGE, baseline untouched by design).
+- **A2 — the 08-18 grid work (set-method backfill; 33 silent_beat + 6
+  free_time region tags across 4 clips; on main since 08-18):
+  BLESSED.** Owner-supervised work; tag and stamp counts re-verified
+  against files this session.
+- **A3 — the 08-18/19 runner items (launch, permission fix, logging;
+  on main): BLESSED.** Four consecutive successful unattended runs since
+  the fix are the operational proof. The self-push carve-out is ruled
+  separately (B3 below).
+- **A4 — W2 accent-periodicity meter (marathon): negative result
+  ACCEPTED**, with verification finding 1 above recorded as a
+  correction to its entry (family accuracy is 6/13, chance-level; the
+  "no longer at chance" claim is struck). **Owner adopts the
+  recommendation: fold accent periodicity into W5 as one observation
+  channel; no further standalone meter iteration.**
+- **A5 — W3 baselines benchmark (marathon): ACCEPTED**, including the
+  no-shelf-tool-meaningfully-wins headline (with finding 3's
+  margin-not-quotable caveat) and the 5-clip raw-condition caveat.
+  **Owner queues the raw-condition completion** (24 remaining rows +
+  optional BeatNet) as scheduled-session work once the rig MP3s reach
+  the runner (C5).
+- **A6 — W4 Barre-1 half-ingestion (marathon): ACCEPTED** — the 22
+  frozen traces stand as the deliverable and the refusal to write case
+  files is endorsed as correct (the ingestion carve-out has no harness
+  implementation; writing them would have frozen agent-guessed truth
+  into headline metrics). **Merge of this material is gated on C1
+  executing first.** Verified this session: 22 complete trace
+  directories on the branch, zero on main.
+- **A7 — W7 pose-gesture prototype (marathon): negative result
+  ACCEPTED and the prerequisite reading RATIFIED** (the charter's
+  "after W4" was satisfied in substance by the frozen traces for a
+  diagnostic claiming no accuracy). **Movement folds into W5 as a
+  weak vote; no standalone iteration.** The two-broken-nulls
+  disclosure and the detection_rate warning are noted as exemplary.
+- **A8 — eye-contact branch (feasibility note + Review 5): both
+  ACCEPTED**, with the survey's own caveat kept (abstract-level paper
+  numbers must be verified before external quotation). **Owner adopts
+  nod-first**: the head-nod kinematics experiment precedes any gaze
+  detector work. **Owner answers the note's blocked question: the
+  Ballet Barre 1 material was shot from the room** — so the weak form
+  of Q1 (lead time) can be attempted on existing footage.
+
+### Part B rulings (standing decisions; charter updated in this commit)
+
+- **B1 — the recovered W0 amendments:** amendments **1, 2, 3
+  ACCEPTED** (writability precondition; write-probe as first act; the
+  meta-rung trigger counts ledger *entries*, not "sessions").
+  **Amendment 5 ACCEPTED** (the charter's stale "1-of-8 … 0-of-3"
+  non-4/4 numbers corrected to the blessed 2-of-9 / two-reachable-rows
+  truth, now in the rung-3 verdict banner). **Amendment 4: targets
+  KEPT, constraint NAMED** — the completion targets stand unchanged and
+  the charter now states they are unreachable until n ≥ 60 verified
+  rows exist, with corpus growth the binding constraint. **Amendment 6
+  ratified retroactively** — settled in practice by W2's negative and
+  the A4 ruling.
+- **B2 — W1.5 COMMISSIONED** (EVAL-CHANGE, nightly-eligible, ranked
+  first among non-BLOCKED workstreams): `maturity` as a case key,
+  provisional rows out of every gate and headline aggregate, own
+  reporting slice, W1-style byte-identical proof. Gates W4 case files,
+  W7 scoring, and all future capture.
+- **B3 — the runner's self-push of `main` RATIFIED, narrowly:** only
+  `logs/run-summaries.md`, post-pull; any push touching any other file
+  voids the carve-out. Written into charter rule 1. Verified before
+  ruling: all three automated pushes to date touched exactly that one
+  file.
+- **B4 — standing-contract wording ACCEPTED as proposed** ("no
+  *existing* file under evals/cases/, evals/traces/, or
+  evals/baseline.json modified, and no scorer code touched outside a
+  declared EVAL-CHANGE workstream") — applied to both copies
+  (`scripts/air-nightly.sh`, `agent-environment.md`).
+- **B5 — the voiceless Barre-1 takes: FIRST-CLASS CONDITION, with an
+  owner correction to what they are.** Owner testimony in session: the
+  six takes (six, not seven — verification finding 2) are, he believes,
+  **class recordings of the pianist playing the exercise** —
+  accompaniment-only material, not silent teacher demonstrations. This
+  matches Gemini's own "only piano music is present / no dancer is
+  present" readings and **corrects W4's and W7's framing of them as a
+  pose testbed** — with no dancer in frame, W7's "pose is the only
+  evidence present" motivation was wrong about these takes (its
+  negative result is unaffected; if anything this explains the
+  voice-less clips' zero periodicity coverage). Ruling: tagged
+  **accompaniment-only** at W1.5; truth, if ever labeled, comes from
+  the piano's beat (owner-annotated); candidate material for future
+  accompaniment-following work, not for pose work. Testimony is
+  tentative ("I think") — owner may confirm take-by-take on this
+  machine at leisure; agents must not open the media.
+
+### Part C — owner acts executed in session
+
+- **C1 — HELD-OUT containment EXECUTED (owner-directed, full scope).**
+  `agent/marathon`'s recent history was rebuilt from `90f2db9`: the 22
+  Barre-1 trace directories re-authored under opaque ids
+  (`barre1-<letter>-<take>`, letters assigned cryptographically at
+  random so ordering carries nothing); every `meta.json` `media` field
+  rewritten to `offrepo:<id>` (all other trace bytes unchanged); the W4
+  results ledger entry amended in place — prose exercise list and table
+  clip/label columns replaced with opaque ids and slot-agreement marks,
+  with a loud amendment note; `w7-gesture-results.json` re-keyed. The
+  id↔exercise map lives OFF-REPO on the owner's machine. Force-pushed
+  with lease (owner-confirmed in session): `2020b9d` → `83f8aed`.
+  **Disclosed deviations, owner-directed per-instance:** (rule 2)
+  existing trace files' `media` fields were modified and the branch's
+  eval-trace history re-authored; (append-only) the W4 entry was
+  amended pre-merge rather than corrected by a later entry — a later
+  correction would have preserved exactly the text being contained.
+  **Verification:** history audit over all 15 rebuilt commits — 0
+  old-shape paths, 0 position+stem content hits; W7 diagnostic re-run
+  over the renamed traces reproduces the committed results with 0 field
+  mismatches (22/22 rows). **Residuals, disclosed:** trace *contents*
+  can still identify their own exercises (teacher's speech, model
+  labels) — the seal stays "weak" as chartered, its real protection
+  being physical absence of held-out media; pre-rewrite objects remain
+  on origin until GitHub GC and in local reflogs (this machine and the
+  Air); the Air's local `agent/marathon` will no longer fast-forward
+  and needs a reset before its next marathon session (see C6).
+- **C2 — `accompanied: false` RULED CORRECT; queue item CLOSED with no
+  file edit.** The owner listened to the full clip in session (twice)
+  and ruled: **"there's no metronome"** — the recording carries no
+  audible accompaniment; the metronome lived only in the owner's earbud
+  during capture, which the case notes already record
+  ("metronome-locked at 120 in one earbud"). The tag correctly
+  describes the recording. The 08-13 queue item rested on a conflation
+  of "the owner heard music while recording" with "music is in the
+  recording"; the owner's ear settles it. `evals/cases/` untouched.
+- **C3 — stale BPM prose RESOLVED by dual-definition lines,
+  owner-directed.** One dated paragraph appended inside each grid's
+  `notes` (the only field touched): adagio — whole-clip 61.39 /
+  post-tagging 65.17 (+3.4% vs label, passing); 160-long — whole-clip
+  159.76 / post-tagging 164.07 (+2.5%, passing). Both figures kept,
+  each with its definition, per the owner's choice. Disclosure (rule
+  2): two **verified grid files modified**, owner-directed in session.
+  Both grids re-load cleanly (26 and 54 beats unchanged) and the full
+  suite re-ran after the edit: **"no outcome changes vs baseline."**
+- **C4 — the vocables listen: VERDICT RECORDED, grid stands.** Media is
+  on this machine; the owner heard the full clip plus two 3-second
+  windows centered on the questioned moments (beat 9 at 7.274 s, beat
+  13 at 9.702 s), then re-checked both excerpt files himself in Finder
+  before ruling. Verdict, owner's ear, in session: **both windows carry
+  a real vocalization at the questioned moment** ("both of those …
+  actually do have a vocalization at 1.5 seconds in"). So the verified
+  grid is right and the rung-2 extractor **missed two genuinely voiced
+  beats** on its best slice (vocables 14/16). Closed as a detector
+  limitation on soft/swallowed vocables — the same soft-material
+  weakness the parked quiet-floor work (W2.5) targets; no grid or eval
+  file touched. The rung-2 backlog item (ii), open since 2026-08-14,
+  closes with this verdict. An initial same-direction verdict given
+  mid-session was explicitly set aside at the owner's request pending
+  his re-listen; only the post-re-listen ruling above is recorded.
+- **C5 — rig MP3s to the Air: owner will copy them himself** (AirDrop/
+  Finder, `audio/rig/` → the Air repo's `audio/rig/`, ~11 MB, 24 files).
+  Recorded as the standing owner action, now six days old; it unblocks
+  W2.5, the Air-side listen tooling, and the 24 missing raw-condition
+  rows of the W3 benchmark (queued at A5).
+- **C6 — nightly PAUSED until the owner checks the Air; five merged
+  branches deleted.** Owner direction: the job stays unloaded/asleep
+  until he has (a) read the Air's local log to explain the silent
+  2026-08-24 02:00 slot (no run evidence reached origin — verification
+  finding 4), (b) reset the Air's diverged branch
+  (`git fetch && git branch -f agent/marathon origin/agent/marathon` —
+  required after C1's force-push), and (c) staged the MP3s (C5). Once
+  re-armed, the first run takes W1.5 (commissioned at B2). Branch
+  cleanup, owner-directed after merge verification: `origin/agent/
+  nightly-permission-fix`, `origin/agent/owner-queue-20260816`, and the
+  three cloud branches (`claude/baker-accompanist-feasibility-mhgtxz`,
+  `claude/ballet-tempo-detection-rdxvfo`,
+  `claude/project-evals-strategy-tn3w13`) — each verified fully merged
+  into `origin/main` before deletion.
+
+### Part D — owner-directed merges (all three, in order)
+
+Owner direction in session: merge (1) this review branch, (2)
+`agent/marathon` (post-containment `83f8aed`; the A6 gate is satisfied
+— C1 executed and verified above), (3) the eye-contact branch — each to
+`main` with `--no-ff`, each followed by pytest + the full suite, which
+must print "no outcome changes vs baseline" or the session stops and
+flags. No `evals bless` (nothing here re-blesses; the baseline file is
+untouched throughout). Ledger conflict resolutions keep every entry
+from both sides, incoming entries slotted before this (2026-08-24)
+entry so the ledger's newest-last property holds for the next session's
+boot read. Results recorded below after execution.

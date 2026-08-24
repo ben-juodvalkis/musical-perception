@@ -154,4 +154,11 @@ notes: 'Owner-verified 2026-08-13 (rung 1.5). Convention: docs/evals/annotation-
   of pre-existing peakRate marker suggestions in Audacity (delete non-beats, nudge
   survivors to vowel onsets, add missed beats). The annotation_method enum records
   the cohort; this line records the tool and the gesture, which the enum''s frozen
-  two-value vocabulary cannot express.'
+  two-value vocabulary cannot express.
+
+  BPM DEFINITIONS (owner-directed, 2026-08-24 batch review): the figure above -
+  grid-implied BPM 61.39 - is the whole-clip median including the six unvoiced
+  gaps, computed before region tags existed. Post-tagging, with tagged gaps
+  excluded from the median, the same grid computes 65.17 (vs case label 63 =
+  +3.4%, within the 4% check). Both are correct under their definitions; the
+  2026-08-18 tagging changed the default computation (see that ledger entry).'
