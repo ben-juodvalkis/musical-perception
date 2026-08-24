@@ -3018,6 +3018,126 @@ alongside W2. Six increments now await the weekly batch review, and the
 owner queue is otherwise unchanged, including the four-session-old request
 to stage the DEV rig MP3s that still blocks W2.5.
 
+## 2026-08-18 · rung M · (owner question: eye contact as a cue) · cloud
+
+Attempted: Answer an owner design question — "a teacher will often make
+eye contact with me to show me they want to give me tempo; could we
+detect this via camera?" — as a feasibility note rather than a pipeline
+increment. Owner-directed session; no workstream advanced, no eval file
+or pipeline code touched.
+Pre-registered expectations: n/a for the note itself; the note
+pre-registers Q1–Q4 for the eventual W7 increment, Q1 (lead-time
+distribution) declared the decider with an explicit kill condition
+(median lead <= 0.2 s or inconsistent sign => the channel is redundant
+with audio and W7 does not spend on it).
+Result: `docs/research/gaze-as-addressing-cue.md` written. Findings:
+(1) the perception is tractable with existing dependencies — a three-rung
+ladder where rung A (head orientation from the BlazePose landmarks
+`pose.py` already returns) needs no new code dependency at all, rung B is
+MediaPipe Face Landmarker in the same package, rung C is iris/appearance
+gaze and is probably unnecessary for the gate role; (2) the signal is an
+*addressing* cue, not a start cue, so under Vision 07 §7.4 it may permit
+and never trigger — which makes it a low-recall-tolerant, precision-
+critical problem rather than a hard one; (3) two non-CV questions decide
+the whole thing — capture geometry (eye contact is a ray to the
+accompanist's head, so a camera elsewhere measures a different ray) and
+lead time over the audio cue; (4) mirrors are the named principal failure
+mode, and they false-positive precisely when the teacher is facing away
+from the pianist; (5) "looking at the camera" must not be hard-coded —
+the target direction becomes a per-teacher `gaze_signature` in the
+calibration profile, absorbing the camera-vs-pianist offset (~14 deg at
+4 m for a 1 m offset, larger than the detector's own error).
+Regressions and classifications: none — no code, eval, or charter change.
+The W7 scope suggestion in §7 is a recommendation only; the charter's
+workstream text is unedited per rule 9.
+Lesson (durable, one paragraph): The interesting constraint on a new
+perception channel was not the model's accuracy but the rig's geometry
+and the signal's timing — both of which are properties of the capture
+setup rather than of the algorithm, and neither of which any amount of
+work on the detector can recover after the fact. Deciding the camera
+position is therefore the expensive, irreversible decision here, in the
+same way the DEV/SEALED split was for the corpus; the cheap detector work
+should wait behind it. The asymmetric error policy also made the problem
+easier rather than harder — once the channel is only ever allowed to
+permit, recall becomes free to spend and only precision has to be earned.
+Status: PROPOSED — owner review requested.
+
+BLOCKED on owner (queue item, from the note's §7): was the Ballet Barre 1
+material shot from the accompanist's position or from the room? The
+answer decides whether the existing corpus can answer a weak form of Q1
+or whether new capture from the piano is required before any W7 gaze
+increment starts.
+
+## 2026-08-18 · rung M · (owner request: gaze tool survey) · cloud
+
+Attempted: Owner follow-up to the eye-contact question — survey existing
+tools that could serve the channel. Web-research increment; no pipeline
+or eval code touched. Deliverable
+`docs/research/review-5-gaze-and-cueing-tools.md`, numbered into the
+existing review series.
+Pre-registered expectations: the working assumption going in (stated in
+the note being surveyed) was that the ladder rungs differ mainly in
+angular accuracy and that the capture geometry is a hard prerequisite.
+Both were wrong; scored below.
+Result: Three findings that change the plan. (1) **Prediction missed —
+angular accuracy.** The note's "~4–6°" for refined gaze is the
+close-range webcam figure (L2CS-Net 3.92° on MPIIGaze); the
+unconstrained-at-distance benchmark matching a studio, Gaze360, is
+10.41° for the same model. §3 corrected in place, with the consequence
+that rung C buys much less over rung A than assumed — calibration, not
+precision, is where the headroom is. (2) **Prediction missed — geometry
+is not a prerequisite.** Tools sort by camera position, not by accuracy:
+a camera at the piano poses a binary "looking at me" (eye-contact-CNN's
+egocentric framing, human-parity numbers) while a room camera seeing
+teacher and piano together poses gaze-*target* estimation (Gaze-LLE,
+CVPR 2025). The second geometry is more forgiving, degrades gracefully,
+and can be tried on footage that already exists — so the weak form of Q1
+runs now rather than after a rig decision. (3) **New scope, from the
+domain's own literature.** Bishop & Goebl (2018) on ensemble cueing-in
+gestures: peak head-nod acceleration communicates beat position;
+periodicity, duration and peak velocity communicate tempo; visual cues
+are most salient at re-entry after a pause — every start in a class.
+Eye contact selects the addressee, the nod carries the beat, and
+`precision/dynamics.py` already computes the velocity this needs. The
+nod experiment is now the recommended first increment: no new model, no
+new capture, and it tests the owner's "gives me tempo" phrasing
+literally. Counter-evidence recorded rather than buried: the
+addressee-detection literature (Tsai et al. 2015) found head pose yields
+little nonredundant information because the device acts as a situational
+attractor — the strongest published reason to expect Q1 negative, now
+cited in the pre-registration. Cross-cutting practical finding: every
+capable tool pairs permissive code with research-only weights (Gaze360's
+licence explicitly bars "models trained on dataset"; InsightFace models
+non-commercial; OpenFace 3.0 needs a CMU licence; eye-contact-CNN is
+GTRC-noncommercial and claims derivative ownership). MediaPipe Face
+Landmarker is the only Apache-2.0-throughout option, and is also the one
+already installed.
+Regressions and classifications: none — no code, eval, or charter
+change. Two documented corrections to the 2026-08-18 design note
+(angular error; geometry-as-prerequisite), both made in place with the
+superseded claim quoted rather than deleted.
+Luck/limitation flags: arxiv.org, pubmed.ncbi.nlm.nih.gov and
+journals.sagepub.com are blocked by this environment's egress proxy, so
+the paper-level numbers — including the Bishop & Goebl kinematics that
+finding (3) rests on — are abstract-level summaries, marked as such in
+the review and flagged for owner verification before external quotation.
+Repository and documentation pages were fetched directly and are
+verified.
+Lesson (durable, one paragraph): The survey overturned two of the design
+note's assumptions within an hour of the note being written, and both
+errors were of the same kind — a number and a constraint carried in from
+general knowledge without checking which benchmark or which setup it
+belonged to. A 4° gaze error and a 10° gaze error are the same sentence
+in a summary and a different product in a room. The durable rule is that
+a feasibility note written before a tool survey should be treated as a
+list of things to check, not as findings, and that its numbers get
+benchmark provenance attached or get struck. The second lesson is
+cheaper and better: the most valuable result came from searching the
+*domain's* literature rather than the *technique's* — the ensemble
+cueing-gesture work answered the owner's actual question ("give me
+tempo") more directly than any gaze tool did.
+Status: PROPOSED — owner review requested.
+
 ## 2026-08-24 · rung M · agent/batch-review-20260824 · local (owner batch review, session 1)
 
 Attempted: The first Rung-M weekly batch review, owner present and
