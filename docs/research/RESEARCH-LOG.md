@@ -3412,3 +3412,80 @@ Status: rulings recorded as itemized above — A1–A3 BLESSED, A4–A8
 ACCEPTED (with corrections/adoptions as stated), B1–B5 ruled, C1–C6
 executed or closed, Part D merged and verified. The marathon resumes
 when the owner re-arms the Air (C6); its first increment is W1.5.
+
+## 2026-08-24 · rung M · agent/air-service-20260824 · local (owner-service: Air maintenance after the batch review)
+
+Attempted: The C6 re-arm checklist as an owner-service session — no
+workstream advanced. Write-probe as first act; main synced and the
+rewritten `agent/marathon` adopted; the silent 2026-08-24 02:00 slot
+diagnosed from machine-local evidence; the staged rig MP3s verified
+against their frozen traces; re-arm decision made and recorded.
+
+Pre-registered expectations: n/a (service session).
+
+Result:
+- **Write-probe (per-session precondition): PASS.** Headless
+  `claude -p … --permission-mode auto` wrote `/tmp/mp-write-probe.txt`
+  containing `ok`, exit 0 (stale probe file removed first so a leftover
+  could not false-pass).
+- **Sync (C6·b): done.** `main` fast-forwarded `9de9b72` → `ce96a97`
+  (at-or-past the batch-review commit, confirmed by ancestry check);
+  `agent/marathon` reset `2020b9d` → `5f407a8` = `origin/agent/marathon`
+  with tracking set (old local history discarded as directed — C1
+  rebuilt the branch on origin). The wrapper-written, still-unpublished
+  08-23 run summary was carried across the sync: extracted before the
+  branch switch, re-appended uncommitted onto main's new tail, so the
+  next wrapper's publish step commits it instead of losing it.
+- **02:00 slot diagnosis (C6·a): the job started and died — at the
+  wrapper's `git checkout main`, ~5 s in.** Evidence: the log's final
+  section is 7 lines — `=== nightly run 2026-08-24T09:00:05Z ===`, a
+  successful fetch, then `error: Your local changes to the following
+  files would be overwritten by checkout: logs/run-summaries.md …
+  Aborting`; `launchctl list` showed the job loaded with last exit
+  status 1 (matching `set -euo pipefail`); the machine was awake (log
+  mtime 02:00:05 local; powerd's no-idle-sleep assertion had held
+  ~54 h). Not launchd, not sleep, not network. Cause: the 08-23 session
+  ended with HEAD on `agent/marathon` — whose committed
+  `logs/run-summaries.md` predates main's 08-22-summary publish
+  commit — plus the wrapper's own uncommitted 08-23 append, so the next
+  wrapper's checkout refused and `set -e` killed the script before the
+  publish step or the agent ever ran. That exact tree state is what the
+  sync above repaired; tonight's run starts already on a clean `main`.
+- **Rig media (C6·c): 24/24 verified, 0 mismatches.** `audio/rig/`
+  holds exactly 24 `.mp3`; every file hashed and matched against its
+  frozen trace's `media_sha256` (strong check — the decode-only
+  fallback was not needed); 0 missing, 0 unreferenced files.
+- **Re-arm: ARMED.** The launchd job was never actually unloaded on
+  this machine — `launchctl list` has carried the label throughout, so
+  C6's "unloaded/asleep" pause was effective only because the broken
+  tree state guaranteed an instant exit. With all three checks clean it
+  stays loaded deliberately: label present, `CLAUDE_BIN`
+  (`~/.local/bin/claude`) executable, schedule 02:00. First run's
+  expected work: **W1.5** (commissioned at B2, ranked first in the
+  charter's workstream list).
+
+Regressions and classifications: none — no pipeline code, no eval
+file, no suite run; protected paths proven untouched by
+`git diff --stat main` (the only tracked change this session commits
+is this entry; the dirty `logs/run-summaries.md` is the wrapper's
+pending publication, left uncommitted on purpose).
+
+Lesson (durable, one paragraph): The one-night-lag publish design
+assumes run N ends where run N+1 begins. The summary append lands as
+an uncommitted edit to a *tracked* file, so any session that ends with
+HEAD off `main` — on a branch whose copy of that file lags main's —
+arms a checkout refusal that kills the next wrapper seconds in,
+*before* the very steps that would have cleaned the state. A scheduler
+is only as re-entrant as the working tree it inherits; state left for
+tomorrow must be state tomorrow's first command can stand on. (The
+diagnosis needed nothing but content-free machine-local evidence — one
+mtime, one exit status, seven log lines — which vindicates keeping the
+raw log inside the repo where a session can read it.)
+
+Status: PROPOSED (service complete; nightly ARMED, first increment
+W1.5). BLOCKED (needs owner): the wrapper race above is latent — any
+future session ending off-main with a divergent `run-summaries.md`
+blob re-kills the next run; hardening `scripts/air-nightly.sh` (e.g.,
+append the summary only after returning to `main`, or make the
+checkout tolerate a dirty summary file) is a wrapper change for the
+owner to direct, not a service-session act.
