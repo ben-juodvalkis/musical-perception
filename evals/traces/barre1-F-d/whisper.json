@@ -1,0 +1,409 @@
+{
+ "words": [
+  {
+   "word": "good,",
+   "start": 1.002,
+   "end": 1.182
+  },
+  {
+   "word": "last",
+   "start": 1.442,
+   "end": 1.662
+  },
+  {
+   "word": "one,",
+   "start": 1.742,
+   "end": 1.862
+  },
+  {
+   "word": "piqu\u00e9's",
+   "start": 2.183,
+   "end": 2.463
+  },
+  {
+   "word": "round",
+   "start": 2.503,
+   "end": 2.703
+  },
+  {
+   "word": "please.",
+   "start": 2.763,
+   "end": 3.003
+  },
+  {
+   "word": "front",
+   "start": 3.383,
+   "end": 3.623
+  },
+  {
+   "word": "and",
+   "start": 3.743,
+   "end": 3.843
+  },
+  {
+   "word": "side",
+   "start": 3.904,
+   "end": 4.244
+  },
+  {
+   "word": "and",
+   "start": 4.324,
+   "end": 4.424
+  },
+  {
+   "word": "back,",
+   "start": 4.484,
+   "end": 4.704
+  },
+  {
+   "word": "you",
+   "start": 4.744,
+   "end": 4.964
+  },
+  {
+   "word": "brush",
+   "start": 5.004,
+   "end": 5.264
+  },
+  {
+   "word": "and",
+   "start": 5.344,
+   "end": 5.444
+  },
+  {
+   "word": "front",
+   "start": 5.504,
+   "end": 5.764
+  },
+  {
+   "word": "and",
+   "start": 5.885,
+   "end": 5.985
+  },
+  {
+   "word": "side",
+   "start": 6.045,
+   "end": 6.385
+  },
+  {
+   "word": "and",
+   "start": 6.465,
+   "end": 6.565
+  },
+  {
+   "word": "back,",
+   "start": 6.605,
+   "end": 6.825
+  },
+  {
+   "word": "you",
+   "start": 6.865,
+   "end": 7.065
+  },
+  {
+   "word": "brush",
+   "start": 7.105,
+   "end": 7.365
+  },
+  {
+   "word": "and",
+   "start": 7.425,
+   "end": 7.545
+  },
+  {
+   "word": "front",
+   "start": 7.585,
+   "end": 7.846
+  },
+  {
+   "word": "and",
+   "start": 7.926,
+   "end": 8.066
+  },
+  {
+   "word": "side",
+   "start": 8.146,
+   "end": 8.486
+  },
+  {
+   "word": "and",
+   "start": 8.546,
+   "end": 8.646
+  },
+  {
+   "word": "back,",
+   "start": 8.686,
+   "end": 8.906
+  },
+  {
+   "word": "you",
+   "start": 8.926,
+   "end": 9.126
+  },
+  {
+   "word": "brush",
+   "start": 9.166,
+   "end": 9.406
+  },
+  {
+   "word": "and",
+   "start": 9.506,
+   "end": 9.606
+  },
+  {
+   "word": "front,",
+   "start": 9.686,
+   "end": 9.967
+  },
+  {
+   "word": "side,",
+   "start": 10.227,
+   "end": 10.627
+  },
+  {
+   "word": "back,",
+   "start": 10.787,
+   "end": 10.987
+  },
+  {
+   "word": "reverse,",
+   "start": 11.627,
+   "end": 12.128
+  },
+  {
+   "word": "three,",
+   "start": 12.808,
+   "end": 13.048
+  },
+  {
+   "word": "four",
+   "start": 13.368,
+   "end": 13.628
+  },
+  {
+   "word": "and",
+   "start": 13.729,
+   "end": 13.849
+  },
+  {
+   "word": "one,",
+   "start": 13.949,
+   "end": 14.049
+  },
+  {
+   "word": "three",
+   "start": 14.869,
+   "end": 15.109
+  },
+  {
+   "word": "and",
+   "start": 15.289,
+   "end": 15.389
+  },
+  {
+   "word": "brush",
+   "start": 15.409,
+   "end": 15.69
+  },
+  {
+   "word": "and",
+   "start": 15.77,
+   "end": 15.89
+  },
+  {
+   "word": "one,",
+   "start": 16.01,
+   "end": 16.13
+  },
+  {
+   "word": "two,",
+   "start": 16.45,
+   "end": 16.65
+  },
+  {
+   "word": "three",
+   "start": 16.95,
+   "end": 17.21
+  },
+  {
+   "word": "and",
+   "start": 17.37,
+   "end": 17.47
+  },
+  {
+   "word": "brush",
+   "start": 17.49,
+   "end": 17.731
+  },
+  {
+   "word": "and",
+   "start": 17.851,
+   "end": 17.951
+  },
+  {
+   "word": "back",
+   "start": 18.031,
+   "end": 18.251
+  },
+  {
+   "word": "and",
+   "start": 18.391,
+   "end": 18.491
+  },
+  {
+   "word": "side",
+   "start": 18.551,
+   "end": 18.871
+  },
+  {
+   "word": "and",
+   "start": 18.931,
+   "end": 19.011
+  },
+  {
+   "word": "front,",
+   "start": 19.071,
+   "end": 19.291
+  },
+  {
+   "word": "one",
+   "start": 19.391,
+   "end": 19.471
+  },
+  {
+   "word": "more",
+   "start": 19.491,
+   "end": 19.592
+  },
+  {
+   "word": "time,",
+   "start": 19.612,
+   "end": 19.832
+  },
+  {
+   "word": "peak,",
+   "start": 20.192,
+   "end": 20.392
+  },
+  {
+   "word": "peak,",
+   "start": 20.692,
+   "end": 20.932
+  },
+  {
+   "word": "peak,",
+   "start": 21.232,
+   "end": 21.473
+  },
+  {
+   "word": "you",
+   "start": 21.493,
+   "end": 21.693
+  },
+  {
+   "word": "brush",
+   "start": 21.733,
+   "end": 21.973
+  },
+  {
+   "word": "three",
+   "start": 21.993,
+   "end": 22.213
+  },
+  {
+   "word": "times,",
+   "start": 22.273,
+   "end": 22.573
+  },
+  {
+   "word": "three",
+   "start": 23.253,
+   "end": 23.494
+  },
+  {
+   "word": "you",
+   "start": 23.534,
+   "end": 23.694
+  },
+  {
+   "word": "brush",
+   "start": 23.754,
+   "end": 24.014
+  },
+  {
+   "word": "and",
+   "start": 24.094,
+   "end": 24.194
+  },
+  {
+   "word": "piqu\u00e9,",
+   "start": 24.294,
+   "end": 24.774
+  },
+  {
+   "word": "piqu\u00e9,",
+   "start": 24.814,
+   "end": 25.254
+  },
+  {
+   "word": "piqu\u00e9",
+   "start": 25.334,
+   "end": 25.735
+  },
+  {
+   "word": "brush",
+   "start": 25.775,
+   "end": 26.035
+  },
+  {
+   "word": "and",
+   "start": 26.135,
+   "end": 26.235
+  },
+  {
+   "word": "chass\u00e9,",
+   "start": 26.295,
+   "end": 26.755
+  },
+  {
+   "word": "chass\u00e9,",
+   "start": 26.795,
+   "end": 27.255
+  },
+  {
+   "word": "chass\u00e9,",
+   "start": 27.316,
+   "end": 27.776
+  },
+  {
+   "word": "same",
+   "start": 28.256,
+   "end": 28.496
+  },
+  {
+   "word": "reverse,",
+   "start": 28.556,
+   "end": 28.916
+  },
+  {
+   "word": "we'll",
+   "start": 28.936,
+   "end": 29.096
+  },
+  {
+   "word": "go",
+   "start": 29.116,
+   "end": 29.216
+  },
+  {
+   "word": "twice",
+   "start": 29.256,
+   "end": 29.497
+  },
+  {
+   "word": "through.",
+   "start": 29.517,
+   "end": 29.757
+  }
+ ]
+}

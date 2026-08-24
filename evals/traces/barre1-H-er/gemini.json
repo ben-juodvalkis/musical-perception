@@ -1,0 +1,637 @@
+{
+ "model": "gemini-2.5-flash",
+ "raw_response": {
+  "words": [
+   {
+    "word": "stand",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 0
+   },
+   {
+    "word": "from",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 1
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 2
+   },
+   {
+    "word": "first,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 3
+   },
+   {
+    "word": "please.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 4
+   },
+   {
+    "word": "stand",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 5
+   },
+   {
+    "word": "from",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 6
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 7
+   },
+   {
+    "word": "first,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 8
+   },
+   {
+    "word": "please.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 9
+   },
+   {
+    "word": "stand",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 10
+   },
+   {
+    "word": "from",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 11
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 12
+   },
+   {
+    "word": "front,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 13
+   },
+   {
+    "word": "pli\u00e9,",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 14
+   },
+   {
+    "word": "forward,",
+    "marker_type": "beat",
+    "beat_number": 11,
+    "index": 15
+   },
+   {
+    "word": "flex,",
+    "marker_type": "beat",
+    "beat_number": 16,
+    "index": 16
+   },
+   {
+    "word": "push,",
+    "marker_type": "beat",
+    "beat_number": 17,
+    "index": 17
+   },
+   {
+    "word": "same",
+    "marker_type": "beat",
+    "beat_number": 26,
+    "index": 18
+   },
+   {
+    "word": "to",
+    "marker_type": "beat",
+    "beat_number": 27,
+    "index": 19
+   },
+   {
+    "word": "the",
+    "marker_type": "beat",
+    "beat_number": 28,
+    "index": 20
+   },
+   {
+    "word": "side.",
+    "marker_type": "beat",
+    "beat_number": 29,
+    "index": 21
+   },
+   {
+    "word": "to",
+    "marker_type": "beat",
+    "beat_number": 48,
+    "index": 22
+   },
+   {
+    "word": "the",
+    "marker_type": "beat",
+    "beat_number": 49,
+    "index": 23
+   },
+   {
+    "word": "back,",
+    "marker_type": "beat",
+    "beat_number": 50,
+    "index": 24
+   },
+   {
+    "word": "please.",
+    "marker_type": "beat",
+    "beat_number": 51,
+    "index": 25
+   },
+   {
+    "word": "one",
+    "marker_type": "beat",
+    "beat_number": 68,
+    "index": 26
+   },
+   {
+    "word": "last",
+    "marker_type": "beat",
+    "beat_number": 69,
+    "index": 27
+   },
+   {
+    "word": "time",
+    "marker_type": "beat",
+    "beat_number": 70,
+    "index": 28
+   },
+   {
+    "word": "to",
+    "marker_type": "beat",
+    "beat_number": 71,
+    "index": 29
+   },
+   {
+    "word": "the",
+    "marker_type": "beat",
+    "beat_number": 72,
+    "index": 30
+   },
+   {
+    "word": "side.",
+    "marker_type": "beat",
+    "beat_number": 73,
+    "index": 31
+   },
+   {
+    "word": "really",
+    "marker_type": "beat",
+    "beat_number": 78,
+    "index": 32
+   },
+   {
+    "word": "on",
+    "marker_type": "beat",
+    "beat_number": 79,
+    "index": 33
+   },
+   {
+    "word": "two",
+    "marker_type": "beat",
+    "beat_number": 80,
+    "index": 34
+   },
+   {
+    "word": "legs,",
+    "marker_type": "beat",
+    "beat_number": 81,
+    "index": 35
+   },
+   {
+    "word": "back",
+    "marker_type": "beat",
+    "beat_number": 82,
+    "index": 36
+   },
+   {
+    "word": "on",
+    "marker_type": "beat",
+    "beat_number": 83,
+    "index": 37
+   },
+   {
+    "word": "one.",
+    "marker_type": "beat",
+    "beat_number": 84,
+    "index": 38
+   },
+   {
+    "word": "little",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 39
+   },
+   {
+    "word": "slow",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 40
+   },
+   {
+    "word": "work,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 41
+   },
+   {
+    "word": "and",
+    "marker_type": "beat",
+    "beat_number": 96,
+    "index": 42
+   },
+   {
+    "word": "one.",
+    "marker_type": "beat",
+    "beat_number": 97,
+    "index": 43
+   },
+   {
+    "word": "stretch",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 44
+   },
+   {
+    "word": "it",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 45
+   },
+   {
+    "word": "out",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 46
+   },
+   {
+    "word": "from",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 47
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 48
+   },
+   {
+    "word": "back",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 49
+   },
+   {
+    "word": "of",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 50
+   },
+   {
+    "word": "your",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 51
+   },
+   {
+    "word": "legs,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 52
+   },
+   {
+    "word": "up",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 53
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 54
+   },
+   {
+    "word": "back.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 55
+   },
+   {
+    "word": "rotate",
+    "marker_type": "beat",
+    "beat_number": 118,
+    "index": 56
+   },
+   {
+    "word": "out,",
+    "marker_type": "beat",
+    "beat_number": 119,
+    "index": 57
+   },
+   {
+    "word": "roll",
+    "marker_type": "beat",
+    "beat_number": 120,
+    "index": 58
+   },
+   {
+    "word": "through.",
+    "marker_type": "beat",
+    "beat_number": 121,
+    "index": 59
+   },
+   {
+    "word": "and",
+    "marker_type": "beat",
+    "beat_number": 124,
+    "index": 60
+   },
+   {
+    "word": "we'll",
+    "marker_type": "beat",
+    "beat_number": 125,
+    "index": 61
+   },
+   {
+    "word": "finish",
+    "marker_type": "beat",
+    "beat_number": 126,
+    "index": 62
+   },
+   {
+    "word": "there.",
+    "marker_type": "beat",
+    "beat_number": 127,
+    "index": 63
+   },
+   {
+    "word": "keep",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 64
+   },
+   {
+    "word": "lengthening.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 65
+   },
+   {
+    "word": "open",
+    "marker_type": "beat",
+    "beat_number": 141,
+    "index": 66
+   },
+   {
+    "word": "and",
+    "marker_type": "beat",
+    "beat_number": 142,
+    "index": 67
+   },
+   {
+    "word": "close.",
+    "marker_type": "beat",
+    "beat_number": 143,
+    "index": 68
+   },
+   {
+    "word": "thanks,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 69
+   },
+   {
+    "word": "let's",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 70
+   },
+   {
+    "word": "do",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 71
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 72
+   },
+   {
+    "word": "same",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 73
+   },
+   {
+    "word": "to",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 74
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 75
+   },
+   {
+    "word": "left.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 76
+   }
+  ],
+  "exercise": {
+   "exercise_type": "tendu",
+   "display_name": "Tendu",
+   "confidence": 0.95,
+   "reasoning": "The exercise primarily consists of tendus to the front, side, and back, combined with pli\u00e9s and relev\u00e9s, which is characteristic of a tendu combination."
+  },
+  "counting_structure": {
+   "total_counts": 143,
+   "prep_counts": null,
+   "subdivision_type": "none",
+   "estimated_bpm": 150
+  },
+  "meter": {
+   "beats_per_measure": 3,
+   "beat_unit": 4
+  },
+  "quality": [
+   {
+    "phrase_number": 1,
+    "description": "The first phrase involves tendus to the front with pli\u00e9s and relev\u00e9s.",
+    "articulation": 0.5,
+    "weight": 0.5,
+    "energy": 0.4,
+    "primary": true
+   },
+   {
+    "phrase_number": 2,
+    "description": "The second phrase involves tendus to the side with pli\u00e9s and relev\u00e9s.",
+    "articulation": 0.5,
+    "weight": 0.5,
+    "energy": 0.4,
+    "primary": true
+   },
+   {
+    "phrase_number": 3,
+    "description": "The third phrase involves tendus to the back with pli\u00e9s and relev\u00e9s.",
+    "articulation": 0.5,
+    "weight": 0.5,
+    "energy": 0.4,
+    "primary": true
+   },
+   {
+    "phrase_number": 4,
+    "description": "The fourth phrase involves tendus to the side again with pli\u00e9s and relev\u00e9s.",
+    "articulation": 0.5,
+    "weight": 0.5,
+    "energy": 0.4,
+    "primary": true
+   },
+   {
+    "phrase_number": 5,
+    "description": "A balance is held on one leg in retir\u00e9 position.",
+    "articulation": 0.8,
+    "weight": 0.2,
+    "energy": 0.2,
+    "primary": false
+   },
+   {
+    "phrase_number": 6,
+    "description": "A port de bras sequence involves bending forward and arching back.",
+    "articulation": 0.9,
+    "weight": 0.5,
+    "energy": 0.2,
+    "primary": false
+   },
+   {
+    "phrase_number": 7,
+    "description": "A grand pli\u00e9 in first position is followed by a relev\u00e9.",
+    "articulation": 0.6,
+    "weight": 0.6,
+    "energy": 0.4,
+    "primary": false
+   },
+   {
+    "phrase_number": 8,
+    "description": "The exercise concludes with a final closing movement.",
+    "articulation": 0.7,
+    "weight": 0.4,
+    "energy": 0.3,
+    "primary": false
+   }
+  ],
+  "structure": {
+   "counts": 64,
+   "sides": 1
+  }
+ },
+ "inputs": {
+  "onset_bpm_sent": 179.3,
+  "transcript_words_sent": [
+   "stand",
+   "from",
+   "the",
+   "first,",
+   "please.",
+   "stand",
+   "from",
+   "the",
+   "first,",
+   "please.",
+   "stand",
+   "from",
+   "the",
+   "front,",
+   "pli\u00e9,",
+   "forward,",
+   "flex,",
+   "push,",
+   "same",
+   "to",
+   "the",
+   "side.",
+   "to",
+   "the",
+   "back,",
+   "please.",
+   "one",
+   "last",
+   "time",
+   "to",
+   "the",
+   "side.",
+   "really",
+   "on",
+   "two",
+   "legs,",
+   "back",
+   "on",
+   "one.",
+   "little",
+   "slow",
+   "work,",
+   "and",
+   "one.",
+   "stretch",
+   "it",
+   "out",
+   "from",
+   "the",
+   "back",
+   "of",
+   "your",
+   "legs,",
+   "up",
+   "and",
+   "back.",
+   "rotate",
+   "out,",
+   "roll",
+   "through.",
+   "and",
+   "we'll",
+   "finish",
+   "there.",
+   "keep",
+   "lengthening.",
+   "open",
+   "and",
+   "close.",
+   "thanks,",
+   "let's",
+   "do",
+   "the",
+   "same",
+   "to",
+   "the",
+   "left."
+  ]
+ }
+}

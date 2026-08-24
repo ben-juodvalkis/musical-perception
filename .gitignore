@@ -8,6 +8,9 @@ build/
 *.egg
 .venv/
 venv/
+# madmom needs its own interpreter (PyPI 0.16.1 is py<3.10 only) -- see
+# scripts/madmom_worker.py. Never committed.
+.venv-madmom/
 .env
 *.so
 .pytest_cache/

@@ -1,0 +1,829 @@
+{
+ "words": [
+  {
+   "word": "let's",
+   "start": 0.425,
+   "end": 0.565
+  },
+  {
+   "word": "have",
+   "start": 0.605,
+   "end": 0.685
+  },
+  {
+   "word": "a",
+   "start": 0.705,
+   "end": 0.725
+  },
+  {
+   "word": "go.",
+   "start": 0.745,
+   "end": 0.925
+  },
+  {
+   "word": "arm",
+   "start": 9.273,
+   "end": 9.593
+  },
+  {
+   "word": "side.",
+   "start": 9.714,
+   "end": 13.097
+  },
+  {
+   "word": "under",
+   "start": 13.477,
+   "end": 13.717
+  },
+  {
+   "word": "the",
+   "start": 13.737,
+   "end": 13.837
+  },
+  {
+   "word": "arm.",
+   "start": 14.017,
+   "end": 14.438
+  },
+  {
+   "word": "from",
+   "start": 14.518,
+   "end": 15.058
+  },
+  {
+   "word": "the",
+   "start": 15.118,
+   "end": 15.679
+  },
+  {
+   "word": "end.",
+   "start": 15.839,
+   "end": 15.959
+  },
+  {
+   "word": "now",
+   "start": 16.039,
+   "end": 16.34
+  },
+  {
+   "word": "you",
+   "start": 16.4,
+   "end": 17.0
+  },
+  {
+   "word": "go",
+   "start": 17.18,
+   "end": 17.421
+  },
+  {
+   "word": "forward.",
+   "start": 17.661,
+   "end": 18.762
+  },
+  {
+   "word": "throat.",
+   "start": 18.862,
+   "end": 19.603
+  },
+  {
+   "word": "and",
+   "start": 30.359,
+   "end": 30.479
+  },
+  {
+   "word": "you",
+   "start": 30.519,
+   "end": 30.759
+  },
+  {
+   "word": "rise",
+   "start": 30.839,
+   "end": 31.159
+  },
+  {
+   "word": "and",
+   "start": 31.24,
+   "end": 31.34
+  },
+  {
+   "word": "balance,",
+   "start": 31.38,
+   "end": 32.24
+  },
+  {
+   "word": "five.",
+   "start": 32.32,
+   "end": 35.822
+  },
+  {
+   "word": "in",
+   "start": 37.042,
+   "end": 37.302
+  },
+  {
+   "word": "second,",
+   "start": 37.462,
+   "end": 38.043
+  },
+  {
+   "word": "same",
+   "start": 38.123,
+   "end": 38.463
+  },
+  {
+   "word": "thing,",
+   "start": 38.523,
+   "end": 38.723
+  },
+  {
+   "word": "arm",
+   "start": 38.843,
+   "end": 39.003
+  },
+  {
+   "word": "stays",
+   "start": 39.043,
+   "end": 39.243
+  },
+  {
+   "word": "side.",
+   "start": 39.283,
+   "end": 39.623
+  },
+  {
+   "word": "use",
+   "start": 41.564,
+   "end": 41.744
+  },
+  {
+   "word": "your",
+   "start": 41.784,
+   "end": 41.925
+  },
+  {
+   "word": "upper",
+   "start": 41.965,
+   "end": 42.185
+  },
+  {
+   "word": "body.",
+   "start": 42.225,
+   "end": 42.765
+  },
+  {
+   "word": "bromp",
+   "start": 43.205,
+   "end": 45.606
+  },
+  {
+   "word": "again.",
+   "start": 46.227,
+   "end": 47.767
+  },
+  {
+   "word": "and",
+   "start": 47.987,
+   "end": 50.569
+  },
+  {
+   "word": "the",
+   "start": 51.129,
+   "end": 51.249
+  },
+  {
+   "word": "port",
+   "start": 51.269,
+   "end": 51.409
+  },
+  {
+   "word": "de",
+   "start": 51.449,
+   "end": 51.489
+  },
+  {
+   "word": "bras",
+   "start": 51.509,
+   "end": 51.669
+  },
+  {
+   "word": "goes",
+   "start": 51.709,
+   "end": 51.969
+  },
+  {
+   "word": "up",
+   "start": 52.029,
+   "end": 52.129
+  },
+  {
+   "word": "and",
+   "start": 52.189,
+   "end": 52.329
+  },
+  {
+   "word": "back.",
+   "start": 52.369,
+   "end": 52.67
+  },
+  {
+   "word": "up",
+   "start": 54.21,
+   "end": 54.33
+  },
+  {
+   "word": "to",
+   "start": 55.011,
+   "end": 55.211
+  },
+  {
+   "word": "go,",
+   "start": 55.231,
+   "end": 55.731
+  },
+  {
+   "word": "back.",
+   "start": 55.791,
+   "end": 56.271
+  },
+  {
+   "word": "rise",
+   "start": 60.292,
+   "end": 60.732
+  },
+  {
+   "word": "and",
+   "start": 60.832,
+   "end": 60.952
+  },
+  {
+   "word": "balance,",
+   "start": 61.032,
+   "end": 61.452
+  },
+  {
+   "word": "trying",
+   "start": 61.532,
+   "end": 61.732
+  },
+  {
+   "word": "to",
+   "start": 61.752,
+   "end": 61.792
+  },
+  {
+   "word": "get",
+   "start": 61.812,
+   "end": 61.872
+  },
+  {
+   "word": "your",
+   "start": 61.892,
+   "end": 62.013
+  },
+  {
+   "word": "ankles",
+   "start": 62.113,
+   "end": 62.413
+  },
+  {
+   "word": "really",
+   "start": 62.493,
+   "end": 62.733
+  },
+  {
+   "word": "still.",
+   "start": 62.773,
+   "end": 63.133
+  },
+  {
+   "word": "transfer.",
+   "start": 66.154,
+   "end": 67.134
+  },
+  {
+   "word": "demi.",
+   "start": 68.814,
+   "end": 71.495
+  },
+  {
+   "word": "demi.",
+   "start": 72.555,
+   "end": 74.196
+  },
+  {
+   "word": "transfer.",
+   "start": 74.276,
+   "end": 75.336
+  },
+  {
+   "word": "same",
+   "start": 76.016,
+   "end": 76.396
+  },
+  {
+   "word": "to",
+   "start": 76.616,
+   "end": 77.456
+  },
+  {
+   "word": "the",
+   "start": 77.497,
+   "end": 77.717
+  },
+  {
+   "word": "back.",
+   "start": 77.757,
+   "end": 79.657
+  },
+  {
+   "word": "keep",
+   "start": 79.957,
+   "end": 80.957
+  },
+  {
+   "word": "the",
+   "start": 80.997,
+   "end": 81.117
+  },
+  {
+   "word": "tendu",
+   "start": 81.137,
+   "end": 81.558
+  },
+  {
+   "word": "front,",
+   "start": 81.598,
+   "end": 81.958
+  },
+  {
+   "word": "you",
+   "start": 81.978,
+   "end": 82.098
+  },
+  {
+   "word": "take",
+   "start": 82.118,
+   "end": 82.278
+  },
+  {
+   "word": "a",
+   "start": 82.338,
+   "end": 82.378
+  },
+  {
+   "word": "port",
+   "start": 82.398,
+   "end": 82.538
+  },
+  {
+   "word": "de",
+   "start": 82.558,
+   "end": 82.638
+  },
+  {
+   "word": "bras.",
+   "start": 82.658,
+   "end": 83.058
+  },
+  {
+   "word": "up",
+   "start": 88.389,
+   "end": 88.529
+  },
+  {
+   "word": "and",
+   "start": 88.629,
+   "end": 88.73
+  },
+  {
+   "word": "back,",
+   "start": 88.79,
+   "end": 89.01
+  },
+  {
+   "word": "keep",
+   "start": 89.03,
+   "end": 89.21
+  },
+  {
+   "word": "lengthening",
+   "start": 89.27,
+   "end": 89.75
+  },
+  {
+   "word": "on",
+   "start": 89.81,
+   "end": 89.871
+  },
+  {
+   "word": "your",
+   "start": 89.911,
+   "end": 90.031
+  },
+  {
+   "word": "left",
+   "start": 90.051,
+   "end": 90.251
+  },
+  {
+   "word": "leg.",
+   "start": 90.291,
+   "end": 94.034
+  },
+  {
+   "word": "last",
+   "start": 94.074,
+   "end": 94.395
+  },
+  {
+   "word": "time",
+   "start": 94.435,
+   "end": 94.595
+  },
+  {
+   "word": "in",
+   "start": 94.695,
+   "end": 94.855
+  },
+  {
+   "word": "fifth,",
+   "start": 94.895,
+   "end": 95.316
+  },
+  {
+   "word": "arm",
+   "start": 95.996,
+   "end": 96.196
+  },
+  {
+   "word": "stays",
+   "start": 96.216,
+   "end": 96.497
+  },
+  {
+   "word": "side,",
+   "start": 96.597,
+   "end": 97.177
+  },
+  {
+   "word": "demi.",
+   "start": 97.558,
+   "end": 98.278
+  },
+  {
+   "word": "under",
+   "start": 100.04,
+   "end": 100.24
+  },
+  {
+   "word": "your",
+   "start": 100.28,
+   "end": 100.44
+  },
+  {
+   "word": "arm,",
+   "start": 100.54,
+   "end": 100.74
+  },
+  {
+   "word": "grand",
+   "start": 101.161,
+   "end": 101.601
+  },
+  {
+   "word": "pli\u00e9.",
+   "start": 101.761,
+   "end": 102.522
+  },
+  {
+   "word": "now",
+   "start": 102.762,
+   "end": 103.203
+  },
+  {
+   "word": "port",
+   "start": 103.223,
+   "end": 103.703
+  },
+  {
+   "word": "de",
+   "start": 103.743,
+   "end": 103.863
+  },
+  {
+   "word": "bras",
+   "start": 103.883,
+   "end": 104.484
+  },
+  {
+   "word": "all",
+   "start": 104.644,
+   "end": 104.764
+  },
+  {
+   "word": "the",
+   "start": 105.104,
+   "end": 105.565
+  },
+  {
+   "word": "way",
+   "start": 105.665,
+   "end": 106.065
+  },
+  {
+   "word": "around,",
+   "start": 106.185,
+   "end": 106.766
+  },
+  {
+   "word": "breathing",
+   "start": 106.846,
+   "end": 107.807
+  },
+  {
+   "word": "out.",
+   "start": 108.087,
+   "end": 108.387
+  },
+  {
+   "word": "down,",
+   "start": 117.608,
+   "end": 118.568
+  },
+  {
+   "word": "up,",
+   "start": 118.588,
+   "end": 118.928
+  },
+  {
+   "word": "and",
+   "start": 119.228,
+   "end": 119.348
+  },
+  {
+   "word": "a",
+   "start": 119.388,
+   "end": 119.448
+  },
+  {
+   "word": "good",
+   "start": 119.468,
+   "end": 119.588
+  },
+  {
+   "word": "finish.",
+   "start": 119.608,
+   "end": 125.21
+  },
+  {
+   "word": "thanks,",
+   "start": 131.111,
+   "end": 131.371
+  },
+  {
+   "word": "rex.",
+   "start": 131.391,
+   "end": 131.611
+  },
+  {
+   "word": "we'll",
+   "start": 132.831,
+   "end": 132.971
+  },
+  {
+   "word": "do",
+   "start": 132.991,
+   "end": 133.071
+  },
+  {
+   "word": "the",
+   "start": 133.111,
+   "end": 133.191
+  },
+  {
+   "word": "same",
+   "start": 133.211,
+   "end": 133.351
+  },
+  {
+   "word": "to",
+   "start": 133.371,
+   "end": 133.471
+  },
+  {
+   "word": "the",
+   "start": 133.511,
+   "end": 133.571
+  },
+  {
+   "word": "left,",
+   "start": 133.611,
+   "end": 133.811
+  },
+  {
+   "word": "please.",
+   "start": 133.831,
+   "end": 134.092
+  },
+  {
+   "word": "now,",
+   "start": 135.092,
+   "end": 135.232
+  },
+  {
+   "word": "rex",
+   "start": 135.292,
+   "end": 135.472
+  },
+  {
+   "word": "will",
+   "start": 135.512,
+   "end": 135.692
+  },
+  {
+   "word": "play",
+   "start": 135.712,
+   "end": 135.872
+  },
+  {
+   "word": "your",
+   "start": 135.912,
+   "end": 136.092
+  },
+  {
+   "word": "left",
+   "start": 136.132,
+   "end": 136.292
+  },
+  {
+   "word": "side.",
+   "start": 136.332,
+   "end": 136.632
+  },
+  {
+   "word": "make",
+   "start": 137.552,
+   "end": 137.692
+  },
+  {
+   "word": "sure",
+   "start": 137.732,
+   "end": 137.872
+  },
+  {
+   "word": "that",
+   "start": 137.892,
+   "end": 138.032
+  },
+  {
+   "word": "you",
+   "start": 138.052,
+   "end": 138.172
+  },
+  {
+   "word": "do",
+   "start": 138.192,
+   "end": 138.332
+  },
+  {
+   "word": "it",
+   "start": 138.372,
+   "end": 138.432
+  },
+  {
+   "word": "as",
+   "start": 138.652,
+   "end": 138.732
+  },
+  {
+   "word": "well",
+   "start": 138.793,
+   "end": 138.953
+  },
+  {
+   "word": "as",
+   "start": 138.993,
+   "end": 139.053
+  },
+  {
+   "word": "the",
+   "start": 139.093,
+   "end": 139.193
+  },
+  {
+   "word": "right.",
+   "start": 139.233,
+   "end": 139.473
+  },
+  {
+   "word": "you",
+   "start": 139.733,
+   "end": 139.833
+  },
+  {
+   "word": "won't",
+   "start": 139.873,
+   "end": 140.073
+  },
+  {
+   "word": "see",
+   "start": 140.133,
+   "end": 140.313
+  },
+  {
+   "word": "me,",
+   "start": 140.353,
+   "end": 140.513
+  },
+  {
+   "word": "but",
+   "start": 141.453,
+   "end": 141.573
+  },
+  {
+   "word": "we'll",
+   "start": 141.613,
+   "end": 141.753
+  },
+  {
+   "word": "do",
+   "start": 141.773,
+   "end": 141.873
+  },
+  {
+   "word": "the",
+   "start": 141.893,
+   "end": 141.953
+  },
+  {
+   "word": "left",
+   "start": 141.993,
+   "end": 142.153
+  },
+  {
+   "word": "side",
+   "start": 142.173,
+   "end": 142.393
+  },
+  {
+   "word": "now.",
+   "start": 142.453,
+   "end": 142.613
+  },
+  {
+   "word": "we'll",
+   "start": 142.773,
+   "end": 142.933
+  },
+  {
+   "word": "do",
+   "start": 142.973,
+   "end": 143.073
+  },
+  {
+   "word": "exactly",
+   "start": 143.133,
+   "end": 143.574
+  },
+  {
+   "word": "the",
+   "start": 143.614,
+   "end": 143.694
+  },
+  {
+   "word": "same",
+   "start": 143.734,
+   "end": 143.934
+  },
+  {
+   "word": "with",
+   "start": 143.974,
+   "end": 144.094
+  },
+  {
+   "word": "each",
+   "start": 144.154,
+   "end": 144.314
+  },
+  {
+   "word": "exercise",
+   "start": 144.394,
+   "end": 144.874
+  },
+  {
+   "word": "at",
+   "start": 145.194,
+   "end": 145.254
+  },
+  {
+   "word": "the",
+   "start": 145.274,
+   "end": 145.374
+  },
+  {
+   "word": "barre.",
+   "start": 145.394,
+   "end": 145.674
+  }
+ ]
+}

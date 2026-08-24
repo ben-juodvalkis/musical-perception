@@ -1,0 +1,20 @@
+{
+  "trace_format": 1,
+  "media": "offrepo:barre1-C-el",
+  "media_sha256": "76c27b596659778f5b6537badbef623f33ee7be4c8704d88d1733748d1ab7128",
+  "recorded_at": "2026-08-22T09:37:38+00:00",
+  "git_sha": "90f2db9d4333330a004a12984ecf5a3e3688b55a",
+  "analyze_flags": {
+    "use_pose": true
+  },
+  "whisper": {
+    "model_name": "large-v3-turbo",
+    "initial_prompt_sha256": "1a0a4f8864db116bd6a38c5e2009db6df13a472fbb024a8b230d26bf3373aee3"
+  },
+  "gemini": {
+    "model": "gemini-2.5-flash",
+    "temperature": 0.0,
+    "prompt_template_sha256": "fcec696dc1d76251024d94b8778c2c42de591795b154c8756fd3b4800bafaeaf",
+    "response_schema_sha256": "6e6b7c434305cd9487f12e4eb064bd476fef24e1a70224c206841a25820324fc"
+  }
+}
