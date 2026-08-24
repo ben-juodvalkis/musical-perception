@@ -2138,3 +2138,35 @@ vs baseline"** (aggregate_verified 28 clips P 0.334 R 0.449 F 0.383).
   closes with this verdict. An initial same-direction verdict given
   mid-session was explicitly set aside at the owner's request pending
   his re-listen; only the post-re-listen ruling above is recorded.
+- **C5 — rig MP3s to the Air: owner will copy them himself** (AirDrop/
+  Finder, `audio/rig/` → the Air repo's `audio/rig/`, ~11 MB, 24 files).
+  Recorded as the standing owner action, now six days old; it unblocks
+  W2.5, the Air-side listen tooling, and the 24 missing raw-condition
+  rows of the W3 benchmark (queued at A5).
+- **C6 — nightly PAUSED until the owner checks the Air; five merged
+  branches deleted.** Owner direction: the job stays unloaded/asleep
+  until he has (a) read the Air's local log to explain the silent
+  2026-08-24 02:00 slot (no run evidence reached origin — verification
+  finding 4), (b) reset the Air's diverged branch
+  (`git fetch && git branch -f agent/marathon origin/agent/marathon` —
+  required after C1's force-push), and (c) staged the MP3s (C5). Once
+  re-armed, the first run takes W1.5 (commissioned at B2). Branch
+  cleanup, owner-directed after merge verification: `origin/agent/
+  nightly-permission-fix`, `origin/agent/owner-queue-20260816`, and the
+  three cloud branches (`claude/baker-accompanist-feasibility-mhgtxz`,
+  `claude/ballet-tempo-detection-rdxvfo`,
+  `claude/project-evals-strategy-tn3w13`) — each verified fully merged
+  into `origin/main` before deletion.
+
+### Part D — owner-directed merges (all three, in order)
+
+Owner direction in session: merge (1) this review branch, (2)
+`agent/marathon` (post-containment `83f8aed`; the A6 gate is satisfied
+— C1 executed and verified above), (3) the eye-contact branch — each to
+`main` with `--no-ff`, each followed by pytest + the full suite, which
+must print "no outcome changes vs baseline" or the session stops and
+flags. No `evals bless` (nothing here re-blesses; the baseline file is
+untouched throughout). Ledger conflict resolutions keep every entry
+from both sides, incoming entries slotted before this (2026-08-24)
+entry so the ledger's newest-last property holds for the next session's
+boot read. Results recorded below after execution.
