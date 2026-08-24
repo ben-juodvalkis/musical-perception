@@ -3367,3 +3367,48 @@ untouched throughout). Ledger conflict resolutions keep every entry
 from both sides, incoming entries slotted before this (2026-08-24)
 entry so the ledger's newest-last property holds for the next session's
 boot read. Results recorded below after execution.
+
+**Part D results (executed in session, owner-directed).** All three
+merges landed with `--no-ff` and every gate held:
+(1) review branch → `f9a2ce1` — pytest **213 passed / 3 skipped**,
+suite **"no outcome changes vs baseline"**, pushed;
+(2) `agent/marathon` (`83f8aed`) → `efcc773` — one ledger conflict,
+resolved keeping every entry from both sides in chronological slot
+(32 entries, 2026-08-24 last); post-merge pytest **229 passed / 3
+skipped** (the 16 new W2/W7 tests), suite **"no outcome changes vs
+baseline"**; zero old-shape trace ids anywhere on main (audited);
+pushed; (3) eye-contact branch → `5f407a8` — same conflict shape, same
+resolution (34 entries), pytest **229 / 3**, suite **"no outcome
+changes vs baseline"**, pushed. `evals/baseline.json` untouched all
+session; **no `evals bless` run** — nothing merged today changes a
+scored outcome, which is what the three gate runs prove. Housekeeping
+per C6: the five verified-merged branches deleted on origin;
+`agent/marathon` fast-forwarded to main per the W1-merge precedent so
+the next marathon session starts level. Protected-path changes across
+the entire session, proven by `git diff --stat` against pre-review
+main: the two C3 grid-note edits (owner-directed, disclosed) and the
+88 add-only opaque trace files from W4 — nothing under `evals/cases/`,
+`evals/baseline.json`, or `src/musical_perception/evals/`.
+
+Regressions and classifications: none — every suite run this session
+printed "no outcome changes vs baseline."
+
+Lesson (durable, one paragraph): A batch review is only as good as its
+clerk's disbelief — three of today's items arrived carrying a headline
+their own committed artifacts contradicted (a 9/13 that is 6/13 on
+disk and on replay; a "seven takes" that is six in the traces; a
+margin that silently depended on a scoring convention), and each was
+caught the same way: re-derive the claim from the files before it
+reaches the judge, because the ledger records what sessions believed
+while the artifacts record what happened. The session's second keeper
+is about containment: a leak through a *naming* channel is only closed
+by covering every faithful record of the names — directories,
+metadata, tables, prose, and the history that carries them — and the
+cheap moment is before the first merge; after it, the same fix is
+trunk surgery. Both lessons were already in this ledger separately;
+today was the first time they had to work together.
+
+Status: rulings recorded as itemized above — A1–A3 BLESSED, A4–A8
+ACCEPTED (with corrections/adoptions as stated), B1–B5 ruled, C1–C6
+executed or closed, Part D merged and verified. The marathon resumes
+when the owner re-arms the Air (C6); its first increment is W1.5.
