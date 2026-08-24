@@ -2554,3 +2554,149 @@ contract's clause becomes *"no existing file under `evals/cases/`,
 `evals/traces/` or `evals/baseline.json` modified, and no scorer code
 touched outside a declared EVAL-CHANGE workstream."* Until it is amended,
 every ingestion night will re-litigate this paragraph.
+
+### Result — 22 traces frozen, and half the batch has no voice in it
+
+> **[Amended 2026-08-24, owner-directed held-out containment — see the
+> 2026-08-24 batch-review entry.** As first committed, this entry named
+> the 8 DEV exercises and their barre positions in the prose and table
+> below; with the charter’s public one-per-quarter rule that made the
+> four HELD-OUT exercises derivable by subtraction (the 2026-08-23
+> BLOCKED note). Under the owner’s ruling this branch’s recent history
+> was rebuilt before merge: trace directories and every reference here
+> carry opaque ids; the id↔exercise map lives off-repo on the owner’s
+> machine; the pre-rewrite history is not part of what merges. The
+> ledger’s append-only rule was deliberately deviated from for this one
+> entry, pre-merge, for containment. Trace *contents* are unchanged and
+> may still identify their own exercises internally (the teacher
+> speaks; the model labels); the seal remains “weak” exactly as the
+> charter defines it — the protected property is never-iterated-on,
+> provided by physical absence of the held-out media.]**
+
+All 22 section files of the 8 DEV exercises (identities in the owner’s off-repo containment map) now have
+frozen traces under `evals/traces/barre1-*`: `whisper.json`,
+`gemini.json`, `pose.npz`, `meta.json` each, 24 MB total, recorded with
+`--pose` so W7 needs no re-run. The full-class 500 MB file was **not**
+touched: it contains the HELD-OUT exercises, and only `Sections/` files
+are legal input.
+
+**Disclosed retry (house style):** `barre1-H-d` failed on the
+first pass — Gemini returned truncated JSON
+(`JSONDecodeError: Unterminated string ... char 6641`). Re-run once, rc=0.
+One retry in 22, disclosed rather than hidden; the failure mode is a
+length limit on a response, not a property of the clip.
+
+| clip | BPM | meter | subdiv | exercise | counts | words | count_frac |
+|---|---|---|---|---|---|---|---|
+| barre1-D-d | 127.7 | 4/4 | duple | agrees | 64 | 196 | 0.153 |
+| barre1-D-el | 125.6 | 3/4 | none | none | — | 112 | 0.000 |
+| barre1-D-er | 119.2 | 4/4 | none | agrees | 96 | 165 | 0.358 |
+| barre1-H-d | 124.7 | 3/4 | none | agrees | 32 | 129 | 0.310 |
+| barre1-H-el | — | 4/4 | none | agrees | — | 2 | 0.000 |
+| barre1-H-er | 89.7 | 3/4 | none | agrees | 96 | 77 | 0.519 |
+| barre1-G-d | 82.0 | 4/4 | duple | DIFFERS | 32 | 108 | 0.583 |
+| barre1-G-el | — | 3/4 | none | none | — | 0 | 0.000 |
+| barre1-G-er | 90.2 | 3/4 | none | DIFFERS | 32 | 58 | 0.000 |
+| barre1-F-d | 91.2 | 4/4 | duple | agrees | 32 | 81 | 0.741 |
+| barre1-F-el | — | 4/4 | none | none | — | 0 | 0.000 |
+| barre1-F-er | 131.8 | 4/4 | none | agrees | 32 | 42 | 0.690 |
+| barre1-C-d | 83.3 | 4/4 | none | agrees | 24 | 118 | 0.229 |
+| barre1-C-el | — | 4/4 | none | DIFFERS | — | 0 | 0.000 |
+| barre1-C-er | 103.4 | 4/4 | none | agrees | 32 | 62 | 0.435 |
+| barre1-E-d | 81.5 | 4/4 | none | agrees | — | 133 | 0.451 |
+| barre1-E-el | — | 3/4 | none | none | — | 0 | 0.000 |
+| barre1-E-er | 75.5 | 4/4 | none | agrees | 32 | 111 | 0.279 |
+| barre1-B-d | 109.4 | 4/4 | none | agrees | 32 | 119 | 0.311 |
+| barre1-B-el | — | 3/4 | none | DIFFERS | 96 | 0 | 0.000 |
+| barre1-B-er | 107.1 | 4/4 | duple | agrees | — | 41 | 0.878 |
+| barre1-A-s | 113.8 | 3/4 | none | agrees | 96 | 165 | 0.121 |
+
+**Prediction scorecard: 3 of 4 landed (I3a/I3b were findings, not
+predictions).**
+
+* **I1 — MISSED, and the miss is the finding.** 22/22 traces exist, but
+  "produced a trace" is not "produced usable data": **six of the seven
+  `execution_left` clips transcribe to zero words** (one at two),
+  and the pipeline abstains on tempo for all seven. Corroborated three
+  ways rather than assumed: Whisper returns an empty word list; Gemini,
+  looking at the same media, says *"only piano music is present"* and
+  *"no dancer is present"*; `volumedetect` shows the audio is normal
+  level (−17.2 dB mean), so this is not a silent or broken track. These
+  are **music-only accompaniment takes** — a whole condition the corpus
+  has never contained. `execution_right` clips, by contrast, all carry
+  speech.
+* **I2 — HIT.** Median counting-token fraction **0.254** (predicted
+  < 0.5), n=22, range 0.000–0.878. Even excluding the seven silent
+  clips the median is ≈0.31: three of every four spoken words in this
+  material are instruction, not counting. This is the quantitative
+  version of the charter's reason for ordering W1 (region tagging)
+  before ingestion, and it is now measured rather than asserted.
+* **I5 — UNTESTABLE as written, 1/1 on what survived.** Six of the seven
+  left/right pairs have no left-side BPM to compare (see I1), so the
+  prediction "at least 5 of 7 agree" could not be scored. The one real
+  pair agrees: barre1-D-d: L 125.6 / R 119.2, 5.1% apart. Recording this as a
+  miss would be as dishonest as recording it as a hit; the prediction
+  assumed a symmetry in the material that does not exist.
+* **I6 — HIT.** `pytest` **222 passed, 3 skipped**;
+  `evals run --suite tier0,tier1,stage1` → **`no outcome changes vs
+  baseline`**; `aggregate_verified: clips=28 F=0.383` unchanged. Adding
+  traces with no case files changes nothing that is scored, exactly as
+  designed.
+
+**What the music-only clips mean for the ladder.** Seven clips (~32% of
+the batch) have accompaniment and no voice. They are worthless to the
+voice-as-drum core and are the *only* material in the corpus where the
+pose channel (W7) and any accompaniment-following work would have to
+carry the whole estimate alone — which makes them the natural W7 test
+set rather than dead weight. They also need a tag the case schema does
+not have yet: `accompanied: true` exists in `tags`, but "no speech at
+all" is a different thing from "speech over music", and the counts/meter
+truth for a clip with no counting has to come from the piano. Parked for
+the owner, not decided here.
+
+**A caution about the table.** Every number in it is the *current
+pipeline's output*, not truth. Gemini's exercise labels disagree with the
+filename slot on several rows (two rows carry a different exercise’s name — the DIFFERS marks), the meter column
+reads 3/4 on eight clips including ones the demos count in eights, and
+`counts` reads 96 where 32 is likely. Those disagreements are *why* the
+owner-verification step exists; quoting this table as performance would
+be exactly the error ADR-015 warns about.
+
+Regressions and classifications: **none.** No pipeline code, no scorer
+code, no eval case, no grid, and no existing trace was touched. `git diff
+--stat main` → 100 files, 39,432 insertions, **0 deletions**;
+`git diff --name-status main --diff-filter=M` → only `.gitignore`
+(carried from 08-21) and this ledger; `--diff-filter=MD` over `evals/`
+and `src/musical_perception/evals/` → **empty**; `evals/baseline.json`
+→ **empty diff**; 88 added files under `evals/`, **0 of them under
+`evals/cases/`**.
+
+**Turn bound, disclosed:** past the 45-turn per-session bound. The
+overrun was spent waiting on the 44-minute ingestion batch and writing
+this entry rather than starting anything new, which is the same call the
+08-21 session made and disclosed.
+
+Lesson (durable, one paragraph): A carve-out written into a charter is
+not a capability until something in the code implements it — the
+ingestion rule has said "ships with `maturity: provisional`" and
+"provisional rows never gate anything" since 08-09, and tonight was the
+first time anyone tried to write such a file and discovered the loader
+rejects the key, the gate reddens on the new id, and no slicing exists
+anywhere; the sentence was load-bearing for three workstreams and had
+never been executed. The second lesson is about what ingestion is for:
+freezing traces on 22 new clips cost 44 minutes and immediately revealed
+a condition the 30-clip corpus does not contain at all — seven takes with
+piano and no voice — which no amount of iterating on the existing DEV
+split could have surfaced, and which quietly redraws what "the pipeline
+works" would even mean for a real class.
+
+Status: PROPOSED. Owner queue, in priority order: (1) **W1.5** — the
+`maturity`/provisional-slice eval-infrastructure increment, which now
+gates W4's case files, W7, and every future capture batch; (2) the rule-9
+contract-wording amendment above; (3) still open from 08-18 and 08-21 —
+**stage the DEV rig MP3s on the runner** (unblocks W2.5, the vocables
+listen, and 24 of 30 rows of the W3 benchmark's raw condition); (4) the
+first weekly batch review, now six unreviewed increments deep (W1 08-16,
+the 08-18 grid work, the 08-18 launch item, W2 08-20, W3 08-21, and this);
+(5) the `accompanied: false` discrepancy in
+`evals/cases/rig-numbers-2-4-120-clean.yaml:12`, carried since 08-13.
