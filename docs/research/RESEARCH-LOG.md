@@ -1940,3 +1940,94 @@ briefing was written (runner logging into repo; nightly self-push of
 touched; briefing gained a closing addendum adding it to the owner queue.
 This branch stays based on `034d226`; the ledger will need a trivial
 append-append merge. Local `main` fast-forwarded to `fabd12e` (no push).
+
+## 2026-08-24 · rung M · agent/batch-review-20260824 · local (owner batch review, session 1)
+
+Attempted: The first Rung-M weekly batch review, owner present and
+interactive, ruling item by item on every PROPOSED increment and standing
+question. Branch cut from `origin/main` (`9de9b72`) with
+`agent/state-of-play` merged in (the predicted append-append ledger
+conflict, resolved by keeping both 2026-08-19 entries in landing order).
+Agent role: docket clerk — all reading and verification done before item
+one; the owner is the judge on every ruling below.
+
+Pre-registered expectations: n/a (review session). Pre-review state
+verified on this branch before any ruling: pytest **213 passed / 3
+skipped**; `evals run --suite tier0,tier1,stage1` → **"no outcome changes
+vs baseline"** (aggregate_verified 28 clips P 0.334 R 0.449 F 0.383).
+
+### Verification findings (this session's own, found before item one)
+
+1. **The W2 ledger entry misstates its own committed artifact** (third
+   known instance of ledger-vs-file drift). It claims family-level
+   (duple-vs-triple) accuracy "9/13 — no longer at chance"; the committed
+   `rung3-accent-meter.md` table says **6/13**, its own confusion list
+   sums to 6/13, and a fresh replay of the committed script from
+   committed files reproduces **6/13** — a coin flip. The negative result
+   is stronger than the entry admits.
+2. **"Seven piano-only Barre-1 takes" is six.** Word counts read directly
+   from the frozen traces: one left-side take is fully voiced (~116
+   words — it is also the W4 entry's own left/right BPM pair), five carry
+   2–3 words, one carries 0. W4's prose ("six of the seven execution_left
+   clips transcribe to zero words") contradicts both its own table and
+   the traces.
+3. **W3's "+0.006 margin" in B8 is scoring-convention-dependent**: the
+   entry scored a tool-emitted-nothing clip as F=0; excluding it instead
+   gives the best shelf tool ≈ +0.020 over the pipeline's 0.383. Both
+   readings sit inside the Standing-Lesson-7 noise band, so
+   "no shelf tool meaningfully wins" survives — but no precise margin
+   should ever be quoted.
+4. **No evidence the 2026-08-24 02:00 nightly run fired**: origin carries
+   summaries only through the 08-22 run, the 08-23 (W7) summary is
+   unpublished, and no branch shows an 08-24 commit. Either the Air did
+   not run or it died before writing. Not diagnosable from this machine.
+5. Minor: the W7 entry's "six of the 22 clips carry ≤ 3 transcribed
+   words (four with 2–3, one with 0)" needs "five with 2–3" for its own
+   arithmetic; substance unaffected.
+
+### Part A rulings (owner, in session)
+
+- **A1 — W1 / rung 2.5 (grid format 2, QC checks, annotation-method
+  metadata; on main since 08-16): BLESSED.** Verified this session: 28
+  grids at format 2, 25 anchored / 3 from_scratch, suite byte-stable.
+  No `evals bless` owed (EVAL-CHANGE, baseline untouched by design).
+- **A2 — the 08-18 grid work (set-method backfill; 33 silent_beat + 6
+  free_time region tags across 4 clips; on main since 08-18):
+  BLESSED.** Owner-supervised work; tag and stamp counts re-verified
+  against files this session.
+- **A3 — the 08-18/19 runner items (launch, permission fix, logging;
+  on main): BLESSED.** Four consecutive successful unattended runs since
+  the fix are the operational proof. The self-push carve-out is ruled
+  separately (B3 below).
+- **A4 — W2 accent-periodicity meter (marathon): negative result
+  ACCEPTED**, with verification finding 1 above recorded as a
+  correction to its entry (family accuracy is 6/13, chance-level; the
+  "no longer at chance" claim is struck). **Owner adopts the
+  recommendation: fold accent periodicity into W5 as one observation
+  channel; no further standalone meter iteration.**
+- **A5 — W3 baselines benchmark (marathon): ACCEPTED**, including the
+  no-shelf-tool-meaningfully-wins headline (with finding 3's
+  margin-not-quotable caveat) and the 5-clip raw-condition caveat.
+  **Owner queues the raw-condition completion** (24 remaining rows +
+  optional BeatNet) as scheduled-session work once the rig MP3s reach
+  the runner (C5).
+- **A6 — W4 Barre-1 half-ingestion (marathon): ACCEPTED** — the 22
+  frozen traces stand as the deliverable and the refusal to write case
+  files is endorsed as correct (the ingestion carve-out has no harness
+  implementation; writing them would have frozen agent-guessed truth
+  into headline metrics). **Merge of this material is gated on C1
+  executing first.** Verified this session: 22 complete trace
+  directories on the branch, zero on main.
+- **A7 — W7 pose-gesture prototype (marathon): negative result
+  ACCEPTED and the prerequisite reading RATIFIED** (the charter's
+  "after W4" was satisfied in substance by the frozen traces for a
+  diagnostic claiming no accuracy). **Movement folds into W5 as a
+  weak vote; no standalone iteration.** The two-broken-nulls
+  disclosure and the detection_rate warning are noted as exemplary.
+- **A8 — eye-contact branch (feasibility note + Review 5): both
+  ACCEPTED**, with the survey's own caveat kept (abstract-level paper
+  numbers must be verified before external quotation). **Owner adopts
+  nod-first**: the head-nod kinematics experiment precedes any gaze
+  detector work. **Owner answers the note's blocked question: the
+  Ballet Barre 1 material was shot from the room** — so the weak form
+  of Q1 (lead time) can be attempted on existing footage.
