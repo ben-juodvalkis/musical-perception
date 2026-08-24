@@ -2076,3 +2076,32 @@ vs baseline"** (aggregate_verified 28 clips P 0.334 R 0.449 F 0.383).
   accompaniment-following work, not for pose work. Testimony is
   tentative ("I think") — owner may confirm take-by-take on this
   machine at leisure; agents must not open the media.
+
+### Part C — owner acts executed in session
+
+- **C1 — HELD-OUT containment EXECUTED (owner-directed, full scope).**
+  `agent/marathon`'s recent history was rebuilt from `90f2db9`: the 22
+  Barre-1 trace directories re-authored under opaque ids
+  (`barre1-<letter>-<take>`, letters assigned cryptographically at
+  random so ordering carries nothing); every `meta.json` `media` field
+  rewritten to `offrepo:<id>` (all other trace bytes unchanged); the W4
+  results ledger entry amended in place — prose exercise list and table
+  clip/label columns replaced with opaque ids and slot-agreement marks,
+  with a loud amendment note; `w7-gesture-results.json` re-keyed. The
+  id↔exercise map lives OFF-REPO on the owner's machine. Force-pushed
+  with lease (owner-confirmed in session): `2020b9d` → `83f8aed`.
+  **Disclosed deviations, owner-directed per-instance:** (rule 2)
+  existing trace files' `media` fields were modified and the branch's
+  eval-trace history re-authored; (append-only) the W4 entry was
+  amended pre-merge rather than corrected by a later entry — a later
+  correction would have preserved exactly the text being contained.
+  **Verification:** history audit over all 15 rebuilt commits — 0
+  old-shape paths, 0 position+stem content hits; W7 diagnostic re-run
+  over the renamed traces reproduces the committed results with 0 field
+  mismatches (22/22 rows). **Residuals, disclosed:** trace *contents*
+  can still identify their own exercises (teacher's speech, model
+  labels) — the seal stays "weak" as chartered, its real protection
+  being physical absence of held-out media; pre-rewrite objects remain
+  on origin until GitHub GC and in local reflogs (this machine and the
+  Air); the Air's local `agent/marathon` will no longer fast-forward
+  and needs a reset before its next marathon session (see C6).
