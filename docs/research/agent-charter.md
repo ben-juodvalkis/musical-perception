@@ -97,6 +97,9 @@ flags, classified regressions).
 
 1. **Branches only.** All work on `agent/rung-<N>-<slug>`. Never push
    `main`. Never run `evals bless` — blessing is the owner's act.
+   *Sole ratified exception (owner, 2026-08-24):* the nightly runner may
+   push `main` carrying **only** `logs/run-summaries.md`, after its pull;
+   a push touching any other file voids the carve-out.
 2. **Eval integrity.** Never **modify** any existing file under
    `evals/cases/`, `evals/traces/`, or `evals/baseline.json`, and never
    touch the scorer/harness code (`src/musical_perception/evals/`) in a
@@ -245,6 +248,20 @@ verified grids must be byte-identical before and after the format change.
 
 ### Rung 3 — accent-periodicity meter votes
 
+> **VERDICT: NEGATIVE — owner-accepted 2026-08-24 (W2, run 2026-08-20).**
+> Accent periodicity in this corpus sits at the count phrase (lag 8), not
+> the bar — half the clips carry no significant periodic accent at any
+> lag — and salience-clock templates cannot separate 2/4 from 4/4
+> (r = 0.90) or 3/4 from 6/8 (r = 0.93) on any data. Family-level
+> accuracy is **6/13 (chance)** — the entry's "9/13" was corrected
+> against the committed artifact at review. **Accent periodicity folds
+> into W5 as one observation channel; no standalone meter iteration.**
+> Stale-number correction (amendment 5, owner-ratified 2026-08-24): the
+> baseline's non-4/4 truth is **2-of-9**, and only two rows
+> (`rig-numbers-2-4-120-clean`, `rig-numbers-3-4-90-clean`) were ever
+> reachable by meter-only code — the "1-of-8 … 0-of-3" below is the
+> stale pre-registration-era text, kept for the record.
+
 Prereq: rung 2 blessed (positive). Deliverables: S-AMPH-style delta/theta
 band phase reader + Povel–Essens/Parncutt salience-clock scoring
 ([Reviews 1 §3.4, 3 §2](review-3-beat-meter-models.md)), evaluated as
@@ -338,18 +355,36 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
 **batch review**:
 
 - **Workstreams** (ranking refreshed at commissioning; the meta-rung
-  re-ranks): W1 = rung 2.5, taggable grid format + ratified QC checks —
-  gates all ingestion; includes the vocables dropped-beats QC listen ·
-  W2 = rung 3, accent-periodicity meter votes · W3 = rung 6, baselines
-  benchmark (independent — good parallel second-session material) ·
+  re-ranks; status marks owner-ruled 2026-08-24): W1 = rung 2.5,
+  taggable grid format + ratified QC checks — gates all ingestion;
+  includes the vocables dropped-beats QC listen *(BLESSED 2026-08-24)* ·
+  **W1.5 = provisional-slice eval infrastructure (COMMISSIONED
+  2026-08-24, EVAL-CHANGE, ranked first among non-BLOCKED workstreams):**
+  `maturity: provisional|verified` as a case-file key (default
+  `verified`, existing 30 cases untouched in meaning); provisional rows
+  excluded from `compare_outcomes`, the typed gates, and every headline
+  aggregate; reported as their own slice with their own n; tag
+  vocabulary gains the **accompaniment-only** condition (the six
+  pianist-playing Barre-1 takes, owner ruling B5). Proof style as W1:
+  byte-identical suite output on the existing corpus plus tests proving
+  the exclusion. Gates W4 case files, W7 scoring, and all future
+  capture ·
+  W2 = rung 3, accent-periodicity meter votes *(COMPLETE 2026-08-20,
+  negative — folded into W5)* · W3 = rung 6, baselines benchmark
+  *(COMPLETE 2026-08-21; raw-condition completion + optional BeatNet
+  queued behind media staging)* ·
   W4 = Ballet Barre 1 DEV ingestion (requires W1; the 8 remaining
-  exercises only — 4 are HELD-OUT on the owner's machine) · W5 = rung 4,
+  exercises only — 4 are HELD-OUT on the owner's machine) *(traces
+  frozen 2026-08-22; case files gated on W1.5)* · W5 = rung 4,
   joint posterior (requires W2's evidence; **OWNER-STARTED — scheduled
   sessions must never take this workstream**: it runs in an
   owner-attended session on the top-tier model; if W5 is next and
   unstarted, treat it as BLOCKED-on-owner and move on) · W6 = rung 5,
   ensembled semantics · W7 = pose/gesture channel prototyping on the
-  Barre 1 video (after W4) · W8 = rung 7, RETIRED sweep (after W5) ·
+  Barre 1 video (after W4) *(velocity-minima prototype COMPLETE
+  2026-08-23, negative — movement folds into W5 as a weak vote; if
+  revisited: nod-kinematics / phrase-arrival segmentation first, per
+  Review 5 and the W7 entry)* · W8 = rung 7, RETIRED sweep (after W5) ·
   parked from rung 2: relative (speech-band-level) nuclei silence floor
   for quiet clips — a pipeline workstream once W2 exists. Policy: each
   session advances exactly one workstream — the highest-ranked one not
@@ -357,8 +392,9 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   task queue) and the session moves on. The loop never idles while any
   workstream is open. **W0 = the meta-rung, self-scheduling:** whenever
   the ledger's most recent meta-rung entry is older than 7 days (or none
-  exists yet and the marathon has run ≥ 5 sessions), W0 outranks every
-  other workstream — that session performs the weekly review (re-rank
+  exists yet and the ledger carries ≥ 5 marathon entries — entries, not
+  "sessions", per amendment 3, owner-ratified 2026-08-24), W0 outranks
+  every other workstream — that session performs the weekly review (re-rank
   the workstreams, audit the BLOCKED queue, propose any charter
   amendments as a PROPOSED ledger entry, write a plain-language summary
   addressed to the owner) instead of a pipeline increment.
@@ -368,6 +404,10 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   verified (`git diff --stat main`; no existing eval file modified; new
   cases provisional-only), dated ledger entry appended — or a one-line
   ledger note that every workstream is BLOCKED. Or stop after 45 turns.
+  **Writability precondition (owner, 2026-08-24, amendments 1–2):** the
+  session's *first act* is a cheap write-and-commit probe; a session
+  that cannot write satisfies no clause and stops immediately with
+  whatever diagnostic it can surface, rather than burning turns.
 - **Cadence:** owner batch review roughly weekly (plus whenever a BLOCKED
   queue item needs clearing); the meta-rung runs weekly and re-ranks.
 - **Completion targets** (owner-editable; provisional rows excluded): on
@@ -378,7 +418,11 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   channels (acoustic pulse, ensembled semantics, accent-meter and/or
   pose) each contributing positive marginal accuracy. Completion is
   declared by a meta-rung report **co-signed by the owner**, never by a
-  session alone.
+  session alone. **Standing note (owner, 2026-08-24, amendment 4):**
+  with 28 verified rows these targets are arithmetically unreachable;
+  corpus growth (W4 + future capture) is the binding constraint, and
+  "targets unmet" must never be read as "pipeline regressing" until
+  n ≥ 60 verified rows exist.
 
 ### Meta-rung — weekly review
 

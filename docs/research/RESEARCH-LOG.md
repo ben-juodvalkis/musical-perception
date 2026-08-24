@@ -2031,3 +2031,48 @@ vs baseline"** (aggregate_verified 28 clips P 0.334 R 0.449 F 0.383).
   detector work. **Owner answers the note's blocked question: the
   Ballet Barre 1 material was shot from the room** — so the weak form
   of Q1 (lead time) can be attempted on existing footage.
+
+### Part B rulings (standing decisions; charter updated in this commit)
+
+- **B1 — the recovered W0 amendments:** amendments **1, 2, 3
+  ACCEPTED** (writability precondition; write-probe as first act; the
+  meta-rung trigger counts ledger *entries*, not "sessions").
+  **Amendment 5 ACCEPTED** (the charter's stale "1-of-8 … 0-of-3"
+  non-4/4 numbers corrected to the blessed 2-of-9 / two-reachable-rows
+  truth, now in the rung-3 verdict banner). **Amendment 4: targets
+  KEPT, constraint NAMED** — the completion targets stand unchanged and
+  the charter now states they are unreachable until n ≥ 60 verified
+  rows exist, with corpus growth the binding constraint. **Amendment 6
+  ratified retroactively** — settled in practice by W2's negative and
+  the A4 ruling.
+- **B2 — W1.5 COMMISSIONED** (EVAL-CHANGE, nightly-eligible, ranked
+  first among non-BLOCKED workstreams): `maturity` as a case key,
+  provisional rows out of every gate and headline aggregate, own
+  reporting slice, W1-style byte-identical proof. Gates W4 case files,
+  W7 scoring, and all future capture.
+- **B3 — the runner's self-push of `main` RATIFIED, narrowly:** only
+  `logs/run-summaries.md`, post-pull; any push touching any other file
+  voids the carve-out. Written into charter rule 1. Verified before
+  ruling: all three automated pushes to date touched exactly that one
+  file.
+- **B4 — standing-contract wording ACCEPTED as proposed** ("no
+  *existing* file under evals/cases/, evals/traces/, or
+  evals/baseline.json modified, and no scorer code touched outside a
+  declared EVAL-CHANGE workstream") — applied to both copies
+  (`scripts/air-nightly.sh`, `agent-environment.md`).
+- **B5 — the voiceless Barre-1 takes: FIRST-CLASS CONDITION, with an
+  owner correction to what they are.** Owner testimony in session: the
+  six takes (six, not seven — verification finding 2) are, he believes,
+  **class recordings of the pianist playing the exercise** —
+  accompaniment-only material, not silent teacher demonstrations. This
+  matches Gemini's own "only piano music is present / no dancer is
+  present" readings and **corrects W4's and W7's framing of them as a
+  pose testbed** — with no dancer in frame, W7's "pose is the only
+  evidence present" motivation was wrong about these takes (its
+  negative result is unaffected; if anything this explains the
+  voice-less clips' zero periodicity coverage). Ruling: tagged
+  **accompaniment-only** at W1.5; truth, if ever labeled, comes from
+  the piano's beat (owner-annotated); candidate material for future
+  accompaniment-following work, not for pose work. Testimony is
+  tentative ("I think") — owner may confirm take-by-take on this
+  machine at leisure; agents must not open the media.
