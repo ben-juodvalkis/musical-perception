@@ -2123,3 +2123,18 @@ vs baseline"** (aggregate_verified 28 clips P 0.334 R 0.449 F 0.383).
   2): two **verified grid files modified**, owner-directed in session.
   Both grids re-load cleanly (26 and 54 beats unchanged) and the full
   suite re-ran after the edit: **"no outcome changes vs baseline."**
+- **C4 — the vocables listen: VERDICT RECORDED, grid stands.** Media is
+  on this machine; the owner heard the full clip plus two 3-second
+  windows centered on the questioned moments (beat 9 at 7.274 s, beat
+  13 at 9.702 s), then re-checked both excerpt files himself in Finder
+  before ruling. Verdict, owner's ear, in session: **both windows carry
+  a real vocalization at the questioned moment** ("both of those …
+  actually do have a vocalization at 1.5 seconds in"). So the verified
+  grid is right and the rung-2 extractor **missed two genuinely voiced
+  beats** on its best slice (vocables 14/16). Closed as a detector
+  limitation on soft/swallowed vocables — the same soft-material
+  weakness the parked quiet-floor work (W2.5) targets; no grid or eval
+  file touched. The rung-2 backlog item (ii), open since 2026-08-14,
+  closes with this verdict. An initial same-direction verdict given
+  mid-session was explicitly set aside at the owner's request pending
+  his re-listen; only the post-re-listen ruling above is recorded.
