@@ -1,0 +1,669 @@
+{
+ "words": [
+  {
+   "word": "all",
+   "start": 1.234,
+   "end": 1.354
+  },
+  {
+   "word": "right,",
+   "start": 1.374,
+   "end": 1.615
+  },
+  {
+   "word": "moving",
+   "start": 1.635,
+   "end": 1.915
+  },
+  {
+   "word": "on",
+   "start": 2.015,
+   "end": 2.095
+  },
+  {
+   "word": "with",
+   "start": 2.115,
+   "end": 2.256
+  },
+  {
+   "word": "a",
+   "start": 2.296,
+   "end": 2.336
+  },
+  {
+   "word": "nice",
+   "start": 2.396,
+   "end": 2.636
+  },
+  {
+   "word": "head",
+   "start": 2.676,
+   "end": 2.836
+  },
+  {
+   "word": "out,",
+   "start": 2.957,
+   "end": 3.157
+  },
+  {
+   "word": "seven",
+   "start": 3.818,
+   "end": 4.238
+  },
+  {
+   "word": "and",
+   "start": 5.38,
+   "end": 5.56
+  },
+  {
+   "word": "eight.",
+   "start": 5.901,
+   "end": 6.101
+  },
+  {
+   "word": "a",
+   "start": 6.682,
+   "end": 6.722
+  },
+  {
+   "word": "d\u00e9velopp\u00e9",
+   "start": 6.762,
+   "end": 7.283
+  },
+  {
+   "word": "front",
+   "start": 7.443,
+   "end": 8.004
+  },
+  {
+   "word": "to",
+   "start": 8.805,
+   "end": 9.225
+  },
+  {
+   "word": "start,",
+   "start": 9.506,
+   "end": 9.846
+  },
+  {
+   "word": "then",
+   "start": 10.187,
+   "end": 10.307
+  },
+  {
+   "word": "through",
+   "start": 10.347,
+   "end": 10.567
+  },
+  {
+   "word": "a",
+   "start": 10.607,
+   "end": 10.647
+  },
+  {
+   "word": "high",
+   "start": 10.707,
+   "end": 10.908
+  },
+  {
+   "word": "pass\u00e9,",
+   "start": 10.968,
+   "end": 11.508
+  },
+  {
+   "word": "lift",
+   "start": 11.969,
+   "end": 12.169
+  },
+  {
+   "word": "into",
+   "start": 12.209,
+   "end": 12.37
+  },
+  {
+   "word": "your",
+   "start": 12.41,
+   "end": 12.53
+  },
+  {
+   "word": "arabesque",
+   "start": 12.59,
+   "end": 12.97
+  },
+  {
+   "word": "pli\u00e9.",
+   "start": 13.111,
+   "end": 13.311
+  },
+  {
+   "word": "pas",
+   "start": 14.31,
+   "end": 14.47
+  },
+  {
+   "word": "de",
+   "start": 14.49,
+   "end": 14.55
+  },
+  {
+   "word": "bourr\u00e9e,",
+   "start": 14.57,
+   "end": 14.97
+  },
+  {
+   "word": "you",
+   "start": 15.57,
+   "end": 15.71
+  },
+  {
+   "word": "close",
+   "start": 15.75,
+   "end": 16.09
+  },
+  {
+   "word": "in",
+   "start": 16.15,
+   "end": 16.29
+  },
+  {
+   "word": "fifth,",
+   "start": 16.41,
+   "end": 16.691
+  },
+  {
+   "word": "chass\u00e9",
+   "start": 17.171,
+   "end": 17.691
+  },
+  {
+   "word": "forward,",
+   "start": 17.871,
+   "end": 18.331
+  },
+  {
+   "word": "as",
+   "start": 18.371,
+   "end": 18.431
+  },
+  {
+   "word": "much",
+   "start": 18.471,
+   "end": 18.631
+  },
+  {
+   "word": "as",
+   "start": 18.671,
+   "end": 18.731
+  },
+  {
+   "word": "you",
+   "start": 18.771,
+   "end": 18.871
+  },
+  {
+   "word": "can",
+   "start": 18.891,
+   "end": 19.031
+  },
+  {
+   "word": "go",
+   "start": 19.071,
+   "end": 19.211
+  },
+  {
+   "word": "forward,",
+   "start": 19.251,
+   "end": 19.611
+  },
+  {
+   "word": "into",
+   "start": 19.971,
+   "end": 20.191
+  },
+  {
+   "word": "an",
+   "start": 20.211,
+   "end": 20.291
+  },
+  {
+   "word": "arabesque.",
+   "start": 20.351,
+   "end": 20.991
+  },
+  {
+   "word": "you",
+   "start": 21.391,
+   "end": 21.472
+  },
+  {
+   "word": "have",
+   "start": 21.492,
+   "end": 21.592
+  },
+  {
+   "word": "four",
+   "start": 21.712,
+   "end": 21.972
+  },
+  {
+   "word": "counts,",
+   "start": 22.032,
+   "end": 22.392
+  },
+  {
+   "word": "two",
+   "start": 23.252,
+   "end": 23.412
+  },
+  {
+   "word": "panch\u00e9,",
+   "start": 23.472,
+   "end": 23.952
+  },
+  {
+   "word": "come",
+   "start": 24.372,
+   "end": 24.532
+  },
+  {
+   "word": "back",
+   "start": 24.572,
+   "end": 24.812
+  },
+  {
+   "word": "up,",
+   "start": 24.992,
+   "end": 25.092
+  },
+  {
+   "word": "you",
+   "start": 25.452,
+   "end": 25.572
+  },
+  {
+   "word": "close",
+   "start": 25.612,
+   "end": 25.892
+  },
+  {
+   "word": "in",
+   "start": 25.932,
+   "end": 26.052
+  },
+  {
+   "word": "fifth,",
+   "start": 26.152,
+   "end": 26.393
+  },
+  {
+   "word": "then",
+   "start": 26.833,
+   "end": 26.973
+  },
+  {
+   "word": "a",
+   "start": 27.033,
+   "end": 27.073
+  },
+  {
+   "word": "d\u00e9velopp\u00e9",
+   "start": 27.113,
+   "end": 27.573
+  },
+  {
+   "word": "side,",
+   "start": 27.613,
+   "end": 27.933
+  },
+  {
+   "word": "six,",
+   "start": 28.873,
+   "end": 29.193
+  },
+  {
+   "word": "seven,",
+   "start": 29.913,
+   "end": 30.293
+  },
+  {
+   "word": "and",
+   "start": 30.353,
+   "end": 30.433
+  },
+  {
+   "word": "we",
+   "start": 30.453,
+   "end": 30.573
+  },
+  {
+   "word": "reverse",
+   "start": 30.613,
+   "end": 31.074
+  },
+  {
+   "word": "all",
+   "start": 31.114,
+   "end": 31.254
+  },
+  {
+   "word": "of",
+   "start": 31.274,
+   "end": 31.334
+  },
+  {
+   "word": "that.",
+   "start": 31.374,
+   "end": 31.634
+  },
+  {
+   "word": "so",
+   "start": 32.014,
+   "end": 32.134
+  },
+  {
+   "word": "you",
+   "start": 32.154,
+   "end": 32.254
+  },
+  {
+   "word": "take",
+   "start": 32.294,
+   "end": 32.454
+  },
+  {
+   "word": "a",
+   "start": 32.514,
+   "end": 32.554
+  },
+  {
+   "word": "d\u00e9velopp\u00e9",
+   "start": 32.614,
+   "end": 33.174
+  },
+  {
+   "word": "to",
+   "start": 33.734,
+   "end": 33.934
+  },
+  {
+   "word": "the",
+   "start": 33.954,
+   "end": 34.094
+  },
+  {
+   "word": "back,",
+   "start": 34.174,
+   "end": 34.434
+  },
+  {
+   "word": "high",
+   "start": 34.954,
+   "end": 35.314
+  },
+  {
+   "word": "pass\u00e9,",
+   "start": 35.394,
+   "end": 35.915
+  },
+  {
+   "word": "pli\u00e9",
+   "start": 36.555,
+   "end": 37.175
+  },
+  {
+   "word": "front.",
+   "start": 37.295,
+   "end": 37.635
+  },
+  {
+   "word": "pas",
+   "start": 38.36,
+   "end": 38.521
+  },
+  {
+   "word": "de",
+   "start": 38.541,
+   "end": 38.641
+  },
+  {
+   "word": "bourr\u00e9e,",
+   "start": 38.681,
+   "end": 39.082
+  },
+  {
+   "word": "you",
+   "start": 39.724,
+   "end": 39.885
+  },
+  {
+   "word": "close",
+   "start": 39.925,
+   "end": 40.286
+  },
+  {
+   "word": "in",
+   "start": 40.346,
+   "end": 40.487
+  },
+  {
+   "word": "fifth,",
+   "start": 40.587,
+   "end": 40.828
+  },
+  {
+   "word": "chass\u00e9",
+   "start": 41.369,
+   "end": 41.871
+  },
+  {
+   "word": "back",
+   "start": 41.911,
+   "end": 42.112
+  },
+  {
+   "word": "and",
+   "start": 42.152,
+   "end": 42.232
+  },
+  {
+   "word": "you",
+   "start": 42.252,
+   "end": 42.412
+  },
+  {
+   "word": "lift",
+   "start": 42.473,
+   "end": 42.653
+  },
+  {
+   "word": "the",
+   "start": 42.673,
+   "end": 42.753
+  },
+  {
+   "word": "leg",
+   "start": 42.794,
+   "end": 42.954
+  },
+  {
+   "word": "to",
+   "start": 42.974,
+   "end": 43.095
+  },
+  {
+   "word": "90",
+   "start": 43.135,
+   "end": 43.415
+  },
+  {
+   "word": "degrees.",
+   "start": 43.456,
+   "end": 43.837
+  },
+  {
+   "word": "then",
+   "start": 44.298,
+   "end": 44.499
+  },
+  {
+   "word": "lengthen",
+   "start": 44.76,
+   "end": 45.06
+  },
+  {
+   "word": "on",
+   "start": 45.101,
+   "end": 45.161
+  },
+  {
+   "word": "your",
+   "start": 45.201,
+   "end": 45.301
+  },
+  {
+   "word": "standing",
+   "start": 45.341,
+   "end": 45.602
+  },
+  {
+   "word": "leg",
+   "start": 45.622,
+   "end": 45.783
+  },
+  {
+   "word": "as",
+   "start": 45.803,
+   "end": 45.883
+  },
+  {
+   "word": "you",
+   "start": 45.903,
+   "end": 46.003
+  },
+  {
+   "word": "do",
+   "start": 46.023,
+   "end": 46.124
+  },
+  {
+   "word": "a",
+   "start": 46.144,
+   "end": 46.164
+  },
+  {
+   "word": "little",
+   "start": 46.244,
+   "end": 46.465
+  },
+  {
+   "word": "port",
+   "start": 46.505,
+   "end": 46.625
+  },
+  {
+   "word": "de",
+   "start": 46.645,
+   "end": 46.726
+  },
+  {
+   "word": "bras",
+   "start": 46.746,
+   "end": 46.906
+  },
+  {
+   "word": "back,",
+   "start": 46.926,
+   "end": 47.167
+  },
+  {
+   "word": "in",
+   "start": 47.889,
+   "end": 47.989
+  },
+  {
+   "word": "four",
+   "start": 48.03,
+   "end": 48.19
+  },
+  {
+   "word": "counts,",
+   "start": 48.25,
+   "end": 48.531
+  },
+  {
+   "word": "and",
+   "start": 49.073,
+   "end": 49.173
+  },
+  {
+   "word": "you",
+   "start": 49.193,
+   "end": 49.293
+  },
+  {
+   "word": "finish",
+   "start": 49.333,
+   "end": 49.554
+  },
+  {
+   "word": "with",
+   "start": 49.574,
+   "end": 49.675
+  },
+  {
+   "word": "a",
+   "start": 49.715,
+   "end": 49.735
+  },
+  {
+   "word": "beautiful",
+   "start": 49.775,
+   "end": 50.337
+  },
+  {
+   "word": "d\u00e9velopp\u00e9",
+   "start": 50.377,
+   "end": 50.798
+  },
+  {
+   "word": "\u00e0",
+   "start": 50.858,
+   "end": 50.898
+  },
+  {
+   "word": "la",
+   "start": 50.938,
+   "end": 51.039
+  },
+  {
+   "word": "seconde,",
+   "start": 51.059,
+   "end": 51.5
+  },
+  {
+   "word": "to",
+   "start": 52.503,
+   "end": 52.744
+  },
+  {
+   "word": "finish.",
+   "start": 52.824,
+   "end": 53.205
+  },
+  {
+   "word": "nice",
+   "start": 54.268,
+   "end": 54.409
+  },
+  {
+   "word": "slow",
+   "start": 54.449,
+   "end": 54.71
+  },
+  {
+   "word": "adagio.",
+   "start": 54.75,
+   "end": 55.292
+  }
+ ]
+}

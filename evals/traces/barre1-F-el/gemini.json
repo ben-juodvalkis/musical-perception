@@ -1,0 +1,52 @@
+{
+ "model": "gemini-2.5-flash",
+ "raw_response": {
+  "words": [],
+  "exercise": {
+   "exercise_type": "unknown",
+   "display_name": "Unknown Exercise",
+   "confidence": 0.0,
+   "reasoning": "No dancer is present in the video to demonstrate an exercise."
+  },
+  "counting_structure": {
+   "total_counts": 64,
+   "prep_counts": null,
+   "subdivision_type": "none",
+   "estimated_bpm": 120
+  },
+  "meter": {
+   "beats_per_measure": 4,
+   "beat_unit": 4
+  },
+  "quality": [
+   {
+    "phrase_number": 1,
+    "description": "The music begins with a bright, articulate, and driving character, suggesting quick, precise movements.",
+    "articulation": 0.25,
+    "weight": 0.3,
+    "energy": 0.6,
+    "primary": true
+   },
+   {
+    "phrase_number": 2,
+    "description": "The music shifts to a more expansive and lyrical melody while maintaining its energetic and articulate quality.",
+    "articulation": 0.35,
+    "weight": 0.3,
+    "energy": 0.65,
+    "primary": true
+   }
+  ],
+  "structure": {
+   "counts": 32,
+   "sides": 2
+  }
+ },
+ "inputs": {
+  "onset_bpm_sent": null,
+  "transcript_words_sent": [
+   "...",
+   "...",
+   "..."
+  ]
+ }
+}

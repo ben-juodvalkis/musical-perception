@@ -1,0 +1,389 @@
+{
+ "words": [
+  {
+   "word": "stand",
+   "start": 0.841,
+   "end": 1.081
+  },
+  {
+   "word": "from",
+   "start": 1.101,
+   "end": 1.221
+  },
+  {
+   "word": "the",
+   "start": 1.241,
+   "end": 1.341
+  },
+  {
+   "word": "first,",
+   "start": 1.361,
+   "end": 1.561
+  },
+  {
+   "word": "please.",
+   "start": 1.581,
+   "end": 1.802
+  },
+  {
+   "word": "stand",
+   "start": 1.822,
+   "end": 2.622
+  },
+  {
+   "word": "from",
+   "start": 7.125,
+   "end": 7.325
+  },
+  {
+   "word": "the",
+   "start": 7.345,
+   "end": 7.445
+  },
+  {
+   "word": "first,",
+   "start": 7.465,
+   "end": 8.786
+  },
+  {
+   "word": "please.",
+   "start": 9.487,
+   "end": 10.287
+  },
+  {
+   "word": "stand",
+   "start": 10.808,
+   "end": 11.088
+  },
+  {
+   "word": "from",
+   "start": 11.148,
+   "end": 11.708
+  },
+  {
+   "word": "the",
+   "start": 11.768,
+   "end": 11.988
+  },
+  {
+   "word": "front,",
+   "start": 12.048,
+   "end": 12.569
+  },
+  {
+   "word": "pli\u00e9,",
+   "start": 12.609,
+   "end": 13.109
+  },
+  {
+   "word": "forward,",
+   "start": 13.229,
+   "end": 13.769
+  },
+  {
+   "word": "flex,",
+   "start": 13.83,
+   "end": 14.23
+  },
+  {
+   "word": "push,",
+   "start": 14.39,
+   "end": 14.67
+  },
+  {
+   "word": "same",
+   "start": 14.71,
+   "end": 15.01
+  },
+  {
+   "word": "to",
+   "start": 15.05,
+   "end": 15.391
+  },
+  {
+   "word": "the",
+   "start": 15.451,
+   "end": 15.591
+  },
+  {
+   "word": "side.",
+   "start": 15.631,
+   "end": 15.911
+  },
+  {
+   "word": "to",
+   "start": 15.931,
+   "end": 16.171
+  },
+  {
+   "word": "the",
+   "start": 16.231,
+   "end": 16.451
+  },
+  {
+   "word": "back,",
+   "start": 16.511,
+   "end": 16.731
+  },
+  {
+   "word": "please.",
+   "start": 16.771,
+   "end": 17.152
+  },
+  {
+   "word": "one",
+   "start": 34.572,
+   "end": 34.672
+  },
+  {
+   "word": "last",
+   "start": 34.712,
+   "end": 34.892
+  },
+  {
+   "word": "time",
+   "start": 34.912,
+   "end": 35.052
+  },
+  {
+   "word": "to",
+   "start": 35.072,
+   "end": 35.172
+  },
+  {
+   "word": "the",
+   "start": 35.212,
+   "end": 35.292
+  },
+  {
+   "word": "side.",
+   "start": 35.312,
+   "end": 36.153
+  },
+  {
+   "word": "really",
+   "start": 38.774,
+   "end": 39.074
+  },
+  {
+   "word": "on",
+   "start": 39.154,
+   "end": 39.274
+  },
+  {
+   "word": "two",
+   "start": 39.354,
+   "end": 39.534
+  },
+  {
+   "word": "legs,",
+   "start": 39.594,
+   "end": 40.034
+  },
+  {
+   "word": "back",
+   "start": 40.054,
+   "end": 40.234
+  },
+  {
+   "word": "on",
+   "start": 40.314,
+   "end": 40.414
+  },
+  {
+   "word": "one.",
+   "start": 40.554,
+   "end": 43.495
+  },
+  {
+   "word": "little",
+   "start": 43.595,
+   "end": 43.815
+  },
+  {
+   "word": "slow",
+   "start": 43.875,
+   "end": 44.296
+  },
+  {
+   "word": "work,",
+   "start": 44.436,
+   "end": 44.976
+  },
+  {
+   "word": "and",
+   "start": 45.536,
+   "end": 45.716
+  },
+  {
+   "word": "one.",
+   "start": 46.156,
+   "end": 46.356
+  },
+  {
+   "word": "stretch",
+   "start": 48.097,
+   "end": 48.397
+  },
+  {
+   "word": "it",
+   "start": 48.437,
+   "end": 48.517
+  },
+  {
+   "word": "out",
+   "start": 48.577,
+   "end": 48.677
+  },
+  {
+   "word": "from",
+   "start": 48.777,
+   "end": 49.157
+  },
+  {
+   "word": "the",
+   "start": 49.177,
+   "end": 49.237
+  },
+  {
+   "word": "back",
+   "start": 49.277,
+   "end": 49.437
+  },
+  {
+   "word": "of",
+   "start": 49.457,
+   "end": 49.497
+  },
+  {
+   "word": "your",
+   "start": 49.537,
+   "end": 49.678
+  },
+  {
+   "word": "legs,",
+   "start": 49.718,
+   "end": 49.998
+  },
+  {
+   "word": "up",
+   "start": 50.618,
+   "end": 50.718
+  },
+  {
+   "word": "and",
+   "start": 50.818,
+   "end": 50.938
+  },
+  {
+   "word": "back.",
+   "start": 50.978,
+   "end": 52.859
+  },
+  {
+   "word": "rotate",
+   "start": 54.039,
+   "end": 54.679
+  },
+  {
+   "word": "out,",
+   "start": 54.779,
+   "end": 54.959
+  },
+  {
+   "word": "roll",
+   "start": 55.22,
+   "end": 55.8
+  },
+  {
+   "word": "through.",
+   "start": 55.86,
+   "end": 57.68
+  },
+  {
+   "word": "and",
+   "start": 57.921,
+   "end": 58.061
+  },
+  {
+   "word": "we'll",
+   "start": 58.101,
+   "end": 58.281
+  },
+  {
+   "word": "finish",
+   "start": 58.301,
+   "end": 58.621
+  },
+  {
+   "word": "there.",
+   "start": 58.661,
+   "end": 59.341
+  },
+  {
+   "word": "keep",
+   "start": 59.701,
+   "end": 61.042
+  },
+  {
+   "word": "lengthening.",
+   "start": 61.082,
+   "end": 61.762
+  },
+  {
+   "word": "open",
+   "start": 63.558,
+   "end": 63.899
+  },
+  {
+   "word": "and",
+   "start": 64.42,
+   "end": 64.621
+  },
+  {
+   "word": "close.",
+   "start": 65.183,
+   "end": 67.831
+  },
+  {
+   "word": "thanks,",
+   "start": 69.035,
+   "end": 69.296
+  },
+  {
+   "word": "let's",
+   "start": 69.316,
+   "end": 69.757
+  },
+  {
+   "word": "do",
+   "start": 69.777,
+   "end": 69.877
+  },
+  {
+   "word": "the",
+   "start": 69.897,
+   "end": 69.958
+  },
+  {
+   "word": "same",
+   "start": 69.978,
+   "end": 70.158
+  },
+  {
+   "word": "to",
+   "start": 70.178,
+   "end": 70.259
+  },
+  {
+   "word": "the",
+   "start": 70.279,
+   "end": 70.339
+  },
+  {
+   "word": "left.",
+   "start": 70.379,
+   "end": 70.6
+  }
+ ]
+}

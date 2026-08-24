@@ -1,0 +1,1221 @@
+{
+ "model": "gemini-2.5-flash",
+ "raw_response": {
+  "words": [
+   {
+    "word": "let's",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 0
+   },
+   {
+    "word": "have",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 1
+   },
+   {
+    "word": "a",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 2
+   },
+   {
+    "word": "go.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 3
+   },
+   {
+    "word": "arm",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 4
+   },
+   {
+    "word": "side.",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 5
+   },
+   {
+    "word": "under",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 6
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 7
+   },
+   {
+    "word": "arm.",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 8
+   },
+   {
+    "word": "grand",
+    "marker_type": "beat",
+    "beat_number": 13,
+    "index": 9
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 10
+   },
+   {
+    "word": "pli\u00e9",
+    "marker_type": "beat",
+    "beat_number": 14,
+    "index": 11
+   },
+   {
+    "word": "now",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 12
+   },
+   {
+    "word": "you",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 13
+   },
+   {
+    "word": "go",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 14
+   },
+   {
+    "word": "forward.",
+    "marker_type": "beat",
+    "beat_number": 18,
+    "index": 15
+   },
+   {
+    "word": "stretch",
+    "marker_type": "beat",
+    "beat_number": 21,
+    "index": 16
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 17
+   },
+   {
+    "word": "you",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 18
+   },
+   {
+    "word": "rise",
+    "marker_type": "beat",
+    "beat_number": 28,
+    "index": 19
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 20
+   },
+   {
+    "word": "balance,",
+    "marker_type": "beat",
+    "beat_number": 29,
+    "index": 21
+   },
+   {
+    "word": "five.",
+    "marker_type": "beat",
+    "beat_number": 30,
+    "index": 22
+   },
+   {
+    "word": "in",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 23
+   },
+   {
+    "word": "second,",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 24
+   },
+   {
+    "word": "same",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 25
+   },
+   {
+    "word": "thing,",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 26
+   },
+   {
+    "word": "arm",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 27
+   },
+   {
+    "word": "stays",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 28
+   },
+   {
+    "word": "side.",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 29
+   },
+   {
+    "word": "use",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 30
+   },
+   {
+    "word": "your",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 31
+   },
+   {
+    "word": "upper",
+    "marker_type": "beat",
+    "beat_number": 9,
+    "index": 32
+   },
+   {
+    "word": "body.",
+    "marker_type": "beat",
+    "beat_number": 10,
+    "index": 33
+   },
+   {
+    "word": "grand",
+    "marker_type": "beat",
+    "beat_number": 13,
+    "index": 34
+   },
+   {
+    "word": "pli\u00e9.",
+    "marker_type": "beat",
+    "beat_number": 14,
+    "index": 35
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 36
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 37
+   },
+   {
+    "word": "port",
+    "marker_type": "beat",
+    "beat_number": 19,
+    "index": 38
+   },
+   {
+    "word": "de",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 39
+   },
+   {
+    "word": "bras",
+    "marker_type": "beat",
+    "beat_number": 20,
+    "index": 40
+   },
+   {
+    "word": "goes",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 41
+   },
+   {
+    "word": "up",
+    "marker_type": "beat",
+    "beat_number": 21,
+    "index": 42
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 43
+   },
+   {
+    "word": "back.",
+    "marker_type": "beat",
+    "beat_number": 22,
+    "index": 44
+   },
+   {
+    "word": "up",
+    "marker_type": "beat",
+    "beat_number": 23,
+    "index": 45
+   },
+   {
+    "word": "to",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 46
+   },
+   {
+    "word": "go,",
+    "marker_type": "beat",
+    "beat_number": 24,
+    "index": 47
+   },
+   {
+    "word": "back.",
+    "marker_type": "beat",
+    "beat_number": 25,
+    "index": 48
+   },
+   {
+    "word": "rise",
+    "marker_type": "beat",
+    "beat_number": 29,
+    "index": 49
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 50
+   },
+   {
+    "word": "balance,",
+    "marker_type": "beat",
+    "beat_number": 30,
+    "index": 51
+   },
+   {
+    "word": "trying",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 52
+   },
+   {
+    "word": "to",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 53
+   },
+   {
+    "word": "get",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 54
+   },
+   {
+    "word": "your",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 55
+   },
+   {
+    "word": "ankles",
+    "marker_type": "beat",
+    "beat_number": 31,
+    "index": 56
+   },
+   {
+    "word": "really",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 57
+   },
+   {
+    "word": "still.",
+    "marker_type": "beat",
+    "beat_number": 32,
+    "index": 58
+   },
+   {
+    "word": "transfer.",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 59
+   },
+   {
+    "word": "demi.",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 60
+   },
+   {
+    "word": "demi.",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 61
+   },
+   {
+    "word": "transfer.",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 62
+   },
+   {
+    "word": "same",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 63
+   },
+   {
+    "word": "to",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 64
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 65
+   },
+   {
+    "word": "back.",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 66
+   },
+   {
+    "word": "keep",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 67
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 68
+   },
+   {
+    "word": "tendu",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 69
+   },
+   {
+    "word": "front,",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 70
+   },
+   {
+    "word": "you",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 71
+   },
+   {
+    "word": "take",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 72
+   },
+   {
+    "word": "a",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 73
+   },
+   {
+    "word": "port",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 74
+   },
+   {
+    "word": "de",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 75
+   },
+   {
+    "word": "bras.",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 76
+   },
+   {
+    "word": "up",
+    "marker_type": "beat",
+    "beat_number": 11,
+    "index": 77
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 78
+   },
+   {
+    "word": "back,",
+    "marker_type": "beat",
+    "beat_number": 12,
+    "index": 79
+   },
+   {
+    "word": "keep",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 80
+   },
+   {
+    "word": "lengthening",
+    "marker_type": "beat",
+    "beat_number": 13,
+    "index": 81
+   },
+   {
+    "word": "on",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 82
+   },
+   {
+    "word": "your",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 83
+   },
+   {
+    "word": "left",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 84
+   },
+   {
+    "word": "leg.",
+    "marker_type": "beat",
+    "beat_number": 14,
+    "index": 85
+   },
+   {
+    "word": "last",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 86
+   },
+   {
+    "word": "time",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 87
+   },
+   {
+    "word": "in",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 88
+   },
+   {
+    "word": "fifth,",
+    "marker_type": "beat",
+    "beat_number": 19,
+    "index": 89
+   },
+   {
+    "word": "arm",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 90
+   },
+   {
+    "word": "stays",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 91
+   },
+   {
+    "word": "side,",
+    "marker_type": "beat",
+    "beat_number": 20,
+    "index": 92
+   },
+   {
+    "word": "demi.",
+    "marker_type": "beat",
+    "beat_number": 21,
+    "index": 93
+   },
+   {
+    "word": "under",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 94
+   },
+   {
+    "word": "your",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 95
+   },
+   {
+    "word": "arm,",
+    "marker_type": "beat",
+    "beat_number": 25,
+    "index": 96
+   },
+   {
+    "word": "grand",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 97
+   },
+   {
+    "word": "pli\u00e9.",
+    "marker_type": "beat",
+    "beat_number": 26,
+    "index": 98
+   },
+   {
+    "word": "now",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 99
+   },
+   {
+    "word": "port",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 100
+   },
+   {
+    "word": "de",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 101
+   },
+   {
+    "word": "bras",
+    "marker_type": "beat",
+    "beat_number": 27,
+    "index": 102
+   },
+   {
+    "word": "all",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 103
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 104
+   },
+   {
+    "word": "way",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 105
+   },
+   {
+    "word": "around,",
+    "marker_type": "beat",
+    "beat_number": 28,
+    "index": 106
+   },
+   {
+    "word": "breathing",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 107
+   },
+   {
+    "word": "out.",
+    "marker_type": "beat",
+    "beat_number": 29,
+    "index": 108
+   },
+   {
+    "word": "down,",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 109
+   },
+   {
+    "word": "up,",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 110
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 111
+   },
+   {
+    "word": "a",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 112
+   },
+   {
+    "word": "good",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 113
+   },
+   {
+    "word": "finish.",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 114
+   },
+   {
+    "word": "thanks,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 115
+   },
+   {
+    "word": "rex.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 116
+   },
+   {
+    "word": "we'll",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 117
+   },
+   {
+    "word": "do",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 118
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 119
+   },
+   {
+    "word": "same",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 120
+   },
+   {
+    "word": "to",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 121
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 122
+   },
+   {
+    "word": "left,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 123
+   },
+   {
+    "word": "please.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 124
+   },
+   {
+    "word": "now,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 125
+   },
+   {
+    "word": "rex",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 126
+   },
+   {
+    "word": "will",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 127
+   },
+   {
+    "word": "play",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 128
+   },
+   {
+    "word": "your",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 129
+   },
+   {
+    "word": "left",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 130
+   },
+   {
+    "word": "side.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 131
+   },
+   {
+    "word": "make",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 132
+   },
+   {
+    "word": "sure",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 133
+   },
+   {
+    "word": "that",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 134
+   },
+   {
+    "word": "you",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 135
+   },
+   {
+    "word": "do",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 136
+   },
+   {
+    "word": "it",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 137
+   },
+   {
+    "word": "as",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 138
+   },
+   {
+    "word": "well",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 139
+   },
+   {
+    "word": "as",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 140
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 141
+   },
+   {
+    "word": "right.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 142
+   },
+   {
+    "word": "you",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 143
+   },
+   {
+    "word": "won't",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 144
+   },
+   {
+    "word": "see",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 145
+   },
+   {
+    "word": "me,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 146
+   },
+   {
+    "word": "but",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 147
+   },
+   {
+    "word": "we'll",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 148
+   },
+   {
+    "word": "do",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 149
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 150
+   },
+   {
+    "word": "left",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 151
+   },
+   {
+    "word": "side",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 152
+   },
+   {
+    "word": "now.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 153
+   },
+   {
+    "word": "we'll",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 154
+   },
+   {
+    "word": "do",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 155
+   },
+   {
+    "word": "exactly",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 156
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 157
+   },
+   {
+    "word": "same",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 158
+   },
+   {
+    "word": "with",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 159
+   },
+   {
+    "word": "each",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 160
+   },
+   {
+    "word": "exercise",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 161
+   },
+   {
+    "word": "at",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 162
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 163
+   },
+   {
+    "word": "barre.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 164
+   }
+  ],
+  "exercise": {
+   "exercise_type": "plie",
+   "display_name": "Pli\u00e9",
+   "confidence": 0.95,
+   "reasoning": "The teacher explicitly states 'grand pli\u00e9' and demonstrates pli\u00e9s in first, second, and fifth positions, combined with port de bras and balances."
+  },
+  "counting_structure": {
+   "total_counts": 112,
+   "prep_counts": "8 counts (implied)",
+   "subdivision_type": "none",
+   "estimated_bpm": 80
+  },
+  "meter": {
+   "beats_per_measure": 4,
+   "beat_unit": 4
+  },
+  "quality": [
+   {
+    "phrase_number": 1,
+    "description": "Pli\u00e9 in first position with port de bras forward, then a balance.",
+    "articulation": 0.7,
+    "weight": 0.5,
+    "energy": 0.4,
+    "primary": true
+   },
+   {
+    "phrase_number": 2,
+    "description": "Pli\u00e9 in second position with port de bras to the side, then a balance.",
+    "articulation": 0.7,
+    "weight": 0.5,
+    "energy": 0.4,
+    "primary": true
+   },
+   {
+    "phrase_number": 3,
+    "description": "Pli\u00e9 in fifth position with port de bras to the back, then a balance.",
+    "articulation": 0.7,
+    "weight": 0.5,
+    "energy": 0.4,
+    "primary": true
+   },
+   {
+    "phrase_number": 4,
+    "description": "A final port de bras all the way around to finish.",
+    "articulation": 0.9,
+    "weight": 0.3,
+    "energy": 0.2,
+    "primary": false
+   }
+  ],
+  "structure": {
+   "counts": 32,
+   "sides": 2
+  }
+ },
+ "inputs": {
+  "onset_bpm_sent": 238.5,
+  "transcript_words_sent": [
+   "let's",
+   "have",
+   "a",
+   "go.",
+   "arm",
+   "side.",
+   "under",
+   "the",
+   "arm.",
+   "from",
+   "the",
+   "end.",
+   "now",
+   "you",
+   "go",
+   "forward.",
+   "throat.",
+   "and",
+   "you",
+   "rise",
+   "and",
+   "balance,",
+   "five.",
+   "in",
+   "second,",
+   "same",
+   "thing,",
+   "arm",
+   "stays",
+   "side.",
+   "use",
+   "your",
+   "upper",
+   "body.",
+   "bromp",
+   "again.",
+   "and",
+   "the",
+   "port",
+   "de",
+   "bras",
+   "goes",
+   "up",
+   "and",
+   "back.",
+   "up",
+   "to",
+   "go,",
+   "back.",
+   "rise",
+   "and",
+   "balance,",
+   "trying",
+   "to",
+   "get",
+   "your",
+   "ankles",
+   "really",
+   "still.",
+   "transfer.",
+   "demi.",
+   "demi.",
+   "transfer.",
+   "same",
+   "to",
+   "the",
+   "back.",
+   "keep",
+   "the",
+   "tendu",
+   "front,",
+   "you",
+   "take",
+   "a",
+   "port",
+   "de",
+   "bras.",
+   "up",
+   "and",
+   "back,",
+   "keep",
+   "lengthening",
+   "on",
+   "your",
+   "left",
+   "leg.",
+   "last",
+   "time",
+   "in",
+   "fifth,",
+   "arm",
+   "stays",
+   "side,",
+   "demi.",
+   "under",
+   "your",
+   "arm,",
+   "grand",
+   "pli\u00e9.",
+   "now",
+   "port",
+   "de",
+   "bras",
+   "all",
+   "the",
+   "way",
+   "around,",
+   "breathing",
+   "out.",
+   "down,",
+   "up,",
+   "and",
+   "a",
+   "good",
+   "finish.",
+   "thanks,",
+   "rex.",
+   "we'll",
+   "do",
+   "the",
+   "same",
+   "to",
+   "the",
+   "left,",
+   "please.",
+   "now,",
+   "rex",
+   "will",
+   "play",
+   "your",
+   "left",
+   "side.",
+   "make",
+   "sure",
+   "that",
+   "you",
+   "do",
+   "it",
+   "as",
+   "well",
+   "as",
+   "the",
+   "right.",
+   "you",
+   "won't",
+   "see",
+   "me,",
+   "but",
+   "we'll",
+   "do",
+   "the",
+   "left",
+   "side",
+   "now.",
+   "we'll",
+   "do",
+   "exactly",
+   "the",
+   "same",
+   "with",
+   "each",
+   "exercise",
+   "at",
+   "the",
+   "barre."
+  ]
+ }
+}
