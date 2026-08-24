@@ -2105,3 +2105,21 @@ vs baseline"** (aggregate_verified 28 clips P 0.334 R 0.449 F 0.383).
   on origin until GitHub GC and in local reflogs (this machine and the
   Air); the Air's local `agent/marathon` will no longer fast-forward
   and needs a reset before its next marathon session (see C6).
+- **C2 — `accompanied: false` RULED CORRECT; queue item CLOSED with no
+  file edit.** The owner listened to the full clip in session (twice)
+  and ruled: **"there's no metronome"** — the recording carries no
+  audible accompaniment; the metronome lived only in the owner's earbud
+  during capture, which the case notes already record
+  ("metronome-locked at 120 in one earbud"). The tag correctly
+  describes the recording. The 08-13 queue item rested on a conflation
+  of "the owner heard music while recording" with "music is in the
+  recording"; the owner's ear settles it. `evals/cases/` untouched.
+- **C3 — stale BPM prose RESOLVED by dual-definition lines,
+  owner-directed.** One dated paragraph appended inside each grid's
+  `notes` (the only field touched): adagio — whole-clip 61.39 /
+  post-tagging 65.17 (+3.4% vs label, passing); 160-long — whole-clip
+  159.76 / post-tagging 164.07 (+2.5%, passing). Both figures kept,
+  each with its definition, per the owner's choice. Disclosure (rule
+  2): two **verified grid files modified**, owner-directed in session.
+  Both grids re-load cleanly (26 and 54 beats unchanged) and the full
+  suite re-ran after the edit: **"no outcome changes vs baseline."**
