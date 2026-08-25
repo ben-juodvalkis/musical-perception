@@ -3578,4 +3578,61 @@ lessons live in the two entries above.
 Status: MERGED to main (owner-directed); the 2026-08-26 02:00
 exposure named in the previous entry's Status is closed.
 
-<!-- write-probe 2026-08-25 marathon session (W1.5) -->
+
+## 2026-08-25 · rung M / W1.5 (provisional-slice eval infrastructure) · agent/marathon · local
+
+**EVAL-CHANGE.** Scorer/harness code is in scope for this workstream by
+its commissioning (charter B2, 2026-08-24); no pipeline change is
+bundled.
+
+Attempted: the W1.5 deliverable as commissioned — `maturity:
+provisional|verified` as a case-file key (default `verified`);
+provisional rows out of `compare_outcomes`, the typed gates, and every
+headline aggregate; provisional reported as its own slice with its own
+n; the tag vocabulary gains the accompaniment-only condition (owner
+ruling B5).
+
+Pre-registered expectations (written and committed BEFORE any code was
+written this session — this section is its own commit):
+
+1. **Zero outcome changes.** All 30 existing cases default to
+   `maturity: verified`, so every headline number must be unchanged:
+   tier-0 and tier-1 outcomes byte-identical to the pre-change run, and
+   the CLI's final line still `no outcome changes vs baseline`.
+2. **Byte-identical suite summaries on the existing corpus.** The
+   `summary` and `outcomes` blocks of the run artifact for tier0, tier1
+   and stage1 must diff clean against the pre-change run (`/tmp` copies
+   taken this session, both artifacts kept for the diff). The one
+   permitted difference is *additive keys whose value is null/empty* —
+   and I predict there will be **zero non-null** differences, because
+   the provisional block is emitted as `None` when no provisional row
+   exists, matching the existing `aggregate_verified: null` precedent.
+   If a non-null diff appears, the change is wrong, not the prediction.
+3. **stage1 aggregates unmoved:** `aggregate_verified` stays
+   clips=28 P=0.334 R=0.449 F=0.383; `aggregate_provisional` stays
+   clips=2 P=0.597 R=0.66 F=0.627. Case maturity ORs with grid
+   provisionality, and no existing case is provisional, so the split
+   cannot move.
+4. **pytest stays green at 229 passed / 3 skipped, plus the new
+   W1.5 tests.** I expect to add roughly 8-12 tests; the count therefore
+   rises to ~237-241 with 3 skipped, and **no existing test changes its
+   outcome**. If an existing test needs editing to pass, that is a
+   design error in the change and I will say so rather than edit the
+   test.
+5. **The gate exclusion is real, not cosmetic.** A synthetic provisional
+   case whose outcomes differ from the baseline (and a provisional case
+   absent from the baseline entirely) must produce an empty
+   `compare_outcomes` result; the same case marked `verified` must
+   produce a non-empty one. This is the test that decides whether W1.5
+   actually gates W4.
+6. **Risk I expect to hit:** `compare_outcomes` is called from two
+   places (the CLI and `tests/test_evals_replay.py`) and its signature
+   has to grow. I predict the ergonomics — not the logic — will be the
+   fiddly part, and that the honest shape is for the run artifact to
+   *carry* its own provisional-id list so the baseline is
+   self-describing rather than relying on every caller to pass a set.
+7. **Out of scope, stated up front:** no case file under `evals/cases/`
+   is created or modified this session. W1.5 builds the mechanism; W4's
+   Barre-1 case files are a separate increment that consumes it.
+
+Result: (filled in below after execution)
