@@ -3577,3 +3577,5 @@ Lesson (durable, one paragraph): n/a — administrative merge; the
 lessons live in the two entries above.
 Status: MERGED to main (owner-directed); the 2026-08-26 02:00
 exposure named in the previous entry's Status is closed.
+
+<!-- write-probe 2026-08-25 marathon session (W1.5) -->
