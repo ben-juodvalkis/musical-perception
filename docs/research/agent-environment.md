@@ -183,8 +183,14 @@ posture:
   `logs/run-summaries.md`: outcome, turns, duration, cost and the agent's
   closing message per run, published by the *following* night's run (one
   night's lag, by design — it commits after the pull so the tree is clean
-  before the agent works). Read the summary from anywhere; read the raw log
-  on the runner.
+  before the agent works). Between runs the entry waits in gitignored
+  `logs/pending-summary.md` (2026-08-24 fix: it used to wait as an
+  uncommitted edit to the tracked file, which armed the `git checkout main`
+  refusal that killed the 2026-08-24 02:00 run five seconds in); the
+  wrapper also lifts any legacy dirty summary tail into that file and
+  stashes other leftover tracked changes with a dated message, so no
+  inherited tree state can kill a night. Read the summary from anywhere;
+  read the raw log on the runner.
 - **Air failure modes:** macOS updates rebooting the machine (settings →
   defer major updates), launchd PATH issues (absolute `claude` path in
   the wrapper), Wi-Fi drops mid-push (the wrapper's git operations fail
