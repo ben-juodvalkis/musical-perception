@@ -210,11 +210,11 @@ def tempo_metrics(case_results: list[CaseResult]) -> dict | None:
     }
 
 
-def aggregate(
+def _summarize_cases(
     case_results: list[CaseResult],
-    slice_keys: tuple[str, ...] = ("count_style", "source", "slot"),
+    slice_keys: tuple[str, ...],
 ) -> dict:
-    """Suite summary: per-field metrics, calibration, quality rank corr, slices."""
+    """The metric block for one cohort of cases (verified or provisional)."""
     all_rows = [s for c in case_results for s in c.scores]
     by_field = defaultdict(list)
     for row in all_rows:
@@ -255,6 +255,34 @@ def aggregate(
         "risk_coverage": risk_coverage(all_rows),
         "slices": slices,
     }
+
+
+def aggregate(
+    case_results: list[CaseResult],
+    slice_keys: tuple[str, ...] = ("count_style", "source", "slot"),
+) -> dict:
+    """Suite summary: per-field metrics, calibration, quality rank corr, slices.
+
+    Charter W1.5: **every headline number here is verified-only.**
+    Agent-proposed (`maturity: provisional`) cases are summarized with the
+    same machinery under a separate `provisional` block carrying its own n
+    — never pooled into the headline, never averaged with owner-verified
+    truth. The block is `None` when the corpus has no provisional rows, so
+    a verified-only corpus produces byte-identical output to the pre-W1.5
+    harness.
+    """
+    verified = [c for c in case_results if not c.provisional]
+    provisional = [c for c in case_results if c.provisional]
+
+    summary = _summarize_cases(verified, slice_keys)
+    summary["provisional"] = (
+        {
+            "case_ids": sorted(c.case_id for c in provisional),
+            **_summarize_cases(provisional, slice_keys),
+        }
+        if provisional else None
+    )
+    return summary
 
 
 def _by_field(rows: list[ScoreResult]) -> dict[str, list[ScoreResult]]:

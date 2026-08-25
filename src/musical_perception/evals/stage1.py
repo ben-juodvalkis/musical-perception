@@ -15,6 +15,12 @@ acoustic extractor must beat on these same grids.
 Provisional grids never gate anything: every row carries the grid's
 `provisional` flag, aggregates are split provisional vs verified, and no
 pytest gate consumes this suite.
+
+W1.5 widens that flag rather than adding a second one: a row is
+provisional when its grid is provisional **or** its case carries
+`maturity: provisional`. Both mean the same thing here — some part of
+this row's truth was proposed by an agent and not yet checked by the
+owner — and a row is only as verified as its weakest label.
 """
 
 from dataclasses import dataclass
@@ -28,7 +34,12 @@ PULSE_SOURCE = "whisper-word-starts"
 
 @dataclass
 class ClipPulseScore:
-    """Stage-1 result for one clip (times in seconds, asynchrony in ms)."""
+    """Stage-1 result for one clip (times in seconds, asynchrony in ms).
+
+    `provisional` is the OR of the grid's flag and the case's maturity —
+    the row is verified only when both its beat grid and its case labels
+    have been owner-checked.
+    """
     case_id: str
     provisional: bool
     count_style: str | None
@@ -184,7 +195,7 @@ def run_stage1(
             continue
         rows.append(ClipPulseScore(
             case_id=case.id,
-            provisional=grid.provisional,
+            provisional=grid.provisional or case.provisional,
             count_style=case.tags.get("count_style"),
             n_ref=len(grid.beats),
             n_pred=len(predicted),

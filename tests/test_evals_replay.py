@@ -4,6 +4,14 @@ Any per-case, per-field outcome change vs evals/baseline.json fails —
 including improvements. A PR that legitimately moves a number re-blesses
 the baseline and carries the delta in its diff (ADR-009 rule 9).
 
+The gate is **verified-only** (charter W1.5): cases carrying
+`maturity: provisional` are agent-proposed truth, so a difference against
+them measures the label, not the pipeline. They are excluded here and
+reported in their own slice instead. The exclusion set is the union of
+this run's provisional ids and the baseline's own, so a row flipping
+maturity in either direction still cannot gate until the owner verifies
+it.
+
 Skips cleanly until the first baseline exists.
 """
 
@@ -28,18 +36,27 @@ pytestmark = pytest.mark.skipif(
 )
 
 
+def _baseline_provisional(baseline: dict, suite: str) -> set[str]:
+    from musical_perception.evals.__main__ import suite_provisional_ids
+
+    return suite_provisional_ids(baseline.get("suites", {}).get(suite))
+
+
 def test_tier1_outcomes_match_baseline_exactly():
     from musical_perception.evals.runner import (
         REBLESS_RECIPE,
         compare_outcomes,
         outcomes_map,
+        provisional_ids,
         run_tier1,
     )
 
-    current = outcomes_map(run_tier1(_EVALS))
+    results = run_tier1(_EVALS)
+    current = outcomes_map(results)
     baseline = json.loads(_BASELINE.read_text())
     blessed = baseline["suites"]["tier1"]["outcomes"]
-    changes = compare_outcomes(current, blessed)
+    excluded = set(provisional_ids(results)) | _baseline_provisional(baseline, "tier1")
+    changes = compare_outcomes(current, blessed, provisional=excluded)
     assert not changes, "tier-1 outcomes changed vs baseline:\n  " + \
         "\n  ".join(changes) + "\n\n" + REBLESS_RECIPE
 

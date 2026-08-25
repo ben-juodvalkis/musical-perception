@@ -71,9 +71,14 @@ def run_case(case: Case, evals_root: Path) -> CaseResult:
         return CaseResult(
             case_id=case.id, tags=dict(case.tags),
             scores=score_parameters(result, case),
+            provisional=case.provisional,
         )
     except Exception as e:  # a broken trace is a reportable row, not a crash
-        return CaseResult(case_id=case.id, tags=dict(case.tags), error=f"{type(e).__name__}: {e}")
+        return CaseResult(
+            case_id=case.id, tags=dict(case.tags),
+            error=f"{type(e).__name__}: {e}",
+            provisional=case.provisional,
+        )
 
 
 def run_tier1(evals_root: Path) -> list[CaseResult]:
@@ -112,14 +117,36 @@ def outcomes_map(case_results: list[CaseResult]) -> dict:
     }
 
 
-def compare_outcomes(current: dict, baseline: dict) -> list[str]:
+def provisional_ids(case_results: list[CaseResult]) -> list[str]:
+    """Case ids whose truth labels are agent-proposed (charter W1.5).
+
+    Sorted so the run artifact — and therefore the blessed baseline — is
+    self-describing and stable: a later run learns which of the baseline's
+    rows were provisional without re-reading the case files.
+    """
+    return sorted(c.case_id for c in case_results if c.provisional)
+
+
+def compare_outcomes(
+    current: dict, baseline: dict, provisional: set[str] | None = None
+) -> list[str]:
     """Human-readable per-case, per-field outcome changes vs the baseline.
 
     Any difference — regression or improvement — is a change the PR must
     own by re-blessing the baseline; that is how PRs carry their delta.
+
+    Rows named in `provisional` are skipped entirely (charter W1.5): their
+    truth is agent-proposed, so a difference against them says nothing
+    about the pipeline and must never fail the tier-1 gate. Callers pass
+    the union of this run's provisional ids and the baseline's own, so a
+    row flipping maturity in either direction still cannot gate until the
+    owner has verified it.
     """
+    skip = set(provisional or ())
     changes = []
     for case_id in sorted(set(baseline) | set(current)):
+        if case_id in skip:
+            continue
         base, cur = baseline.get(case_id), current.get(case_id)
         if base is None:
             changes.append(f"{case_id}: new case (not in baseline)")

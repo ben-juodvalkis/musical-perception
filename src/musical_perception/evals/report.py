@@ -176,6 +176,27 @@ def _stage1_section(suite: str, summary: dict) -> str:
 <p>missing grids: {missing}</p>"""
 
 
+def _provisional_section(suite: str, summary: dict) -> str:
+    """The W1.5 slice: agent-proposed truth, its own n, never pooled above."""
+    prov = summary.get("provisional")
+    if not prov:
+        return ""
+    tm_line = tempo_metrics_line(prov)
+    return f"""
+<h3>{suite} — provisional slice ({prov['n_cases']} cases)</h3>
+<p><strong>Agent-proposed truth labels — gates nothing, pooled into nothing
+above.</strong> Cases: {', '.join(prov['case_ids'])}</p>
+<table>
+<tr><th>field</th><th>n</th><th>correct</th><th>wrong</th><th>abstained</th>
+<th>accuracy</th><th>wilson 95%</th><th>credit</th><th>truth in family</th>
+<th>failure modes</th></tr>
+{_field_rows(prov)}
+</table>
+<p>{tm_line + '<br>' if tm_line else ''}
+ECE: {prov['ece'] if prov['ece'] is not None else 'n/a'}
+&nbsp; errors: {', '.join(prov['errors']) or 'none'}</p>"""
+
+
 def render_html(report: dict) -> str:
     sections = []
     for suite, data in report["suites"].items():
@@ -199,7 +220,7 @@ ECE: {summary['ece'] if summary['ece'] is not None else 'n/a'}
 <table>
 <tr><th>case</th><th>field</th><th>outcome</th><th>pred / exp</th><th>notes</th></tr>
 {_case_rows(data['cases'])}
-</table></details>""")
+</table></details>{_provisional_section(suite, summary)}""")
     body = "\n".join(sections)
     return f"""<!doctype html><meta charset="utf-8">
 <title>eval run {report['created_at']}</title>
@@ -269,4 +290,35 @@ def render_markdown_baseline(report: dict) -> str:
         if data["summary"]["errors"]:
             lines.append(f"Case errors: {', '.join(summary['errors'])}")
             lines.append("")
+        lines += _provisional_markdown(suite, summary)
     return "\n".join(lines)
+
+
+def _provisional_markdown(suite: str, summary: dict) -> list[str]:
+    """W1.5 slice for the published baseline — separate table, separate n."""
+    prov = summary.get("provisional")
+    if not prov:
+        return []
+    lines = [
+        f"### {suite} — provisional slice ({prov['n_cases']} cases)",
+        "",
+        "Agent-proposed truth labels (`maturity: provisional`). These rows",
+        "gate nothing and are pooled into none of the numbers above; they",
+        "become headline rows only when the owner verifies their labels.",
+        "",
+        f"Cases: {', '.join(prov['case_ids'])}",
+        "",
+        "| field | n | correct | wrong | abstained | accuracy | wilson 95% "
+        "| truth in family | failure modes |",
+        "|---|---|---|---|---|---|---|---|---|",
+    ]
+    for name, s in prov["fields"].items():
+        acc = s["accuracy"] if s["accuracy"] is not None else "—"
+        wil = s["accuracy_wilson95"] or "—"
+        modes = ", ".join(f"{k}×{v}" for k, v in s["failure_modes"].items()) or "—"
+        lines.append(
+            f"| {name} | {s['n']} | {s['correct']} | {s['wrong']} | "
+            f"{s['abstained']} | {acc} | {wil} | {family_cell(s)} | {modes} |"
+        )
+    lines.append("")
+    return lines
