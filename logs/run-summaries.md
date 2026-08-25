@@ -73,3 +73,19 @@ is how the runner's permission failure was found.)*
 > The two findings worth your attention remain the ones above: the ingestion carve-out has no implementation (so writing case files tonight would have frozen agent-guessed truth into the baseline), and seven of the 22 new clips are piano-only takes with no voice at all — a condition the existing 30-clip corpus doesn't contain.
 
 *Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
+
+## run 2026-08-23T09:00:02Z · main 2020b9d
+
+- **outcome:** success, shell exit 0
+- **turns:** 59 · **duration:** 17.1 min · **cost:** $5.24
+
+**Agent's closing message:**
+
+> …ent/marathon` (`a64438a` pre-registration → `2020b9d` results), pushed to `origin/agent/marathon`.
+> - **Proof clauses, all shown by command output above:** `pytest` 229 passed / 3 skipped · `evals run --suite tier0,tier1,stage1` → `no outcome changes vs baseline` · `git diff --stat main` displayed in full, with the targeted constraint proofs empty (`--diff-filter=MD` over `evals/` and `src/musical_perception/evals/`), `evals/baseline.json` no diff, 0 files added under `evals/cases/`.
+> - **Ledger:** dated 2026-08-23 entry appended to `docs/research/RESEARCH-LOG.md`, carrying the pre-registration, the scored G1–G6 result, the BLOCKED note on HELD-OUT derivability, both disclosures, and the durable lesson. Status PROPOSED.
+> - **Turn bound:** exceeded and disclosed in the entry rather than silently; the charter's `Or stop after 45 turns` terminator is what ends the session now.
+> 
+> Nothing is left mid-flight — no uncommitted work, no unpushed commits, no unrendered report. The two items waiting on you are in the ledger's Status line: the split-derivability remediation, which is cheap only while `agent/marathon` stays unmerged, and whether W7's negative result folds pose into W5 alongside W2.
+
+*Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
