@@ -3635,4 +3635,141 @@ written this session — this section is its own commit):
    is created or modified this session. W1.5 builds the mechanism; W4's
    Barre-1 case files are a separate increment that consumes it.
 
-Result: (filled in below after execution)
+Result:
+
+**Shipped** (branch `agent/marathon`, commit `7a1021c`; write-probe
+`66a0f04` was the session's first act per the amendment-1/2 precondition,
+and the pre-registration above is its own commit `2f20d91`, written
+before a line of implementation):
+
+- `maturity: provisional|verified` on case files, defaulting to
+  `verified`. An unknown value is a **load error**, not a silent
+  promotion — the failure this key exists to prevent is a guessed label
+  quietly becoming a gate.
+- `compare_outcomes(current, baseline, provisional=...)` skips named rows
+  outright. The tier-1 pytest gate and the CLI both pass the **union** of
+  this run's provisional ids and the baseline's own, so a row flipping
+  maturity in either direction still cannot gate on the run where it
+  flipped. The run artifact carries `summary.provisional.case_ids`, so
+  the blessed baseline is self-describing; a pre-W1.5 baseline with no
+  such key degrades to "nothing excluded", correct for a verified-only
+  corpus.
+- Every tier-1 headline number — `fields`, `ece`, `slices`,
+  `tempo_metrics`, `n_cases`, `errors` — is verified-only. Provisional
+  cases run through the same machinery into a separate `provisional`
+  block with its own n and its own case list, `None` when the corpus has
+  none.
+- stage1: a row is provisional when its **grid** is provisional **or**
+  its **case** is. One flag widened rather than a second one added — a
+  row is only as verified as its weakest label.
+- `accompanied` gains `accompaniment_only` (owner ruling B5); values
+  outside the vocabulary are a load error.
+- Docs: `docs/evals/case-maturity.md` (new), plus Vision 13 §13.6,
+  `beat-grids.md` and `CLAUDE.md` pointers.
+
+**Proof, as run this session:**
+
+- `pytest`: **250 passed / 3 skipped** (was 229/3 before the change on
+  this same branch). 21 new tests in `tests/test_evals_maturity.py`.
+- Suite before vs after (`run --suite tier0,tier1,stage1`): the printed
+  report **diffs clean, zero differences**, modulo the `wrote <path>`
+  line. The run artifacts differ by **exactly one additive key per tier
+  suite — `provisional: null`** — and nothing else: `tier0.outcomes`,
+  `tier1.outcomes`, `stage1.outcomes` and `stage1.summary` are byte-
+  identical, `tier0.summary`/`tier1.summary` have zero removed keys and
+  zero changed keys. Final line still `no outcome changes vs baseline`.
+- End-to-end, not just unit tests. On a scratch evals root in `/tmp`
+  (never committed) carrying the real corpus plus one deliberately
+  **wrong** provisional case (`marking_bpm: 60`, `meter: 3/4`,
+  `accompanied: accompaniment_only`, over a 104-bpm 4/4 trace):
+  - as `maturity: provisional` — tempo scores wrong, meter scores wrong,
+    the provisional slice prints them at `accuracy=0.0` with `n=1`, the
+    headline stays at `tempo n=30 accuracy=0.586`, and the gate prints
+    **`no outcome changes vs baseline`**;
+  - the control, the identical case flipped to `maturity: verified` —
+    headline moves to `tempo n=31 accuracy=0.567` and the gate fires:
+    `w15-demo-provisional: new case (not in baseline)`.
+  That pair is the workstream's actual claim: the exclusion is doing the
+  work, not the case happening to be harmless.
+
+**Prediction scorecard: 6/7 landed, 1 split.**
+
+1. Zero outcome changes — **landed.**
+2. Zero non-null differences in the suite summaries — **landed**, exactly
+   as reasoned (the `None`-when-empty block, on the `aggregate_verified`
+   precedent).
+3. stage1 aggregates unmoved (verified 28 / P 0.334 R 0.449 F 0.383;
+   provisional 2 / P 0.597 R 0.66 F 0.627) — **landed.**
+4. "pytest green, ~8–12 new tests → 237–241, no existing test changes its
+   outcome" — **split, and the miss is worth naming.** Green: landed. No
+   existing test changed outcome: landed (229 → 250, all additive). The
+   count: **wrong** — I wrote 21, not 8–12, because I under-estimated how
+   many distinct promises "provisional gates nothing" actually makes
+   (six consumers, two vocabularies, two report renderers). And a
+   caveat the prediction did not anticipate cleanly: I **did edit an
+   existing test file**, `tests/test_evals_replay.py`. The prediction's
+   rule was "if an existing test needs editing *to pass*, that is a
+   design error" — this edit is not that. That file *is* the typed gate,
+   so teaching it the exclusion is the deliverable, not a workaround; it
+   passed before the edit and after it. Recording the distinction rather
+   than quietly scoring myself green.
+5. The exclusion is real, not cosmetic — **landed**, with the
+   verified-control pair above as the evidence.
+6. The honest shape is a self-describing artifact rather than
+   every-caller-passes-a-set — **landed**; `summary.provisional.case_ids`
+   is exactly that, and `suite_provisional_ids()` tolerates a stale
+   baseline.
+7. No case file created or modified — **landed**; `git diff --stat main`
+   shows zero paths under `evals/cases/`, `evals/traces/`, or
+   `evals/baseline.json`.
+
+**Constraints verified** (`git diff --stat main`, output in the session
+transcript): 14 files, +742/−15, on `agent/marathon`. Zero files under
+`evals/cases/`, `evals/traces/`, `evals/baseline.json`. Seven files under
+`src/musical_perception/evals/` were modified — permitted and expected
+here, because W1.5 is a **declared EVAL-CHANGE workstream** whose whole
+deliverable is eval infrastructure (charter rule 2); no pipeline change
+is bundled. No `evals bless` run.
+
+Regressions and classifications: **none.** Every suite run this session
+printed "no outcome changes vs baseline", and the before/after diff of
+the printed report is empty.
+
+**Backlog (parked, with the numbers, not hand-waved):** stage1's
+`slices` block still pools provisional and verified rows together — a
+rung-1 design that predates case maturity, in a suite that gates nothing
+at all. Making it verified-only is a real measurement change, so it does
+not belong bundled into a byte-identical infrastructure increment.
+Measured this session so the next owner of it does not have to:
+`step_names` would go **0.414 → 0.337** (n 14 → 13, losing
+`adr007-plies-demo`) and `mixed` would **empty entirely** (n 1 → 0,
+losing `rig-mixed-4-4-104-quantities`); `numbers` (0.439, n 14) and
+`vocables` (0.118, n 1) would not move. The cost of leaving it is that
+once W4's Barre-1 provisional cases land, those slice F-scores silently
+mix maturities — so this should be picked up **before** W4 writes case
+files, not after.
+
+Lesson (durable, one paragraph): The cheap way to add a "this doesn't
+count" flag is to filter it at the one place you were thinking about;
+the honest way is to enumerate every consumer first and discover there
+are six — the gate, the headline fields, the calibration number, the
+slices, the tempo metrics, and a sibling suite with its own pre-existing
+flag — because a number that quietly pools unverified truth is worse
+than no number, and the pooling always happens in the consumer you did
+not enumerate. The second keeper is about proving it: the unit tests all
+passed the moment the code compiled, and told me nothing, because a
+filter that excludes everything passes them just as well as a correct
+one. What actually established the claim was the paired end-to-end run —
+the same deliberately-wrong case, provisional and then verified, one
+printing "no outcome changes" and the other firing the gate. A
+suppression mechanism can only be demonstrated by a control that shows
+the suppressed thing was loud to begin with.
+
+Status: PROPOSED — for the owner's next batch review. Nothing here
+re-blesses; `evals/baseline.json` is untouched by design and the
+byte-identity result is what proves no re-bless is owed. Unblocks W4's
+case files (they can now land as `maturity: provisional` without
+touching the gate) and W7 scoring. Requests, when the owner reaches it:
+(a) confirm `accompaniment_only` is the spelling he wants for the B5
+condition before any case file uses it; (b) rule on the parked stage1
+`slices` item above, ideally before W4 ingests.
