@@ -3556,3 +3556,24 @@ branch is checked out on the Air; but tonight's own `checkout main`
 reverts the working tree to the OLD wrapper, so without a merge
 tomorrow's run is exposed again the moment tonight's session ends
 off-main. Closes the BLOCKED item in the previous entry.
+
+## 2026-08-24 · rung M · main (merge) · local (owner-service, session 2 addendum: owner-directed merge)
+
+Attempted: The session-2 wrapper fix merged to `main` at the owner's
+in-session direction ("can you just handle it") — a disclosed,
+owner-directed exception to charter rule 1, per the C1 precedent.
+Pre-registered expectations: both gates land exactly at the batch
+review's figures (pytest 229/3; suite "no outcome changes vs
+baseline"). Both held.
+Result: merge `c2a092a` (`--no-ff`); pytest **229 passed / 3
+skipped**; `evals run --suite tier0,tier1,stage1` → **"no outcome
+changes vs baseline"** (aggregate_verified 28 clips P 0.334 R 0.449
+F 0.383 — matching the review's recorded state); pushed together with
+this note. HEAD left on `main`, so tonight and every later night run
+the merged wrapper from `main`. `evals/baseline.json` untouched; no
+`evals bless`.
+Regressions and classifications: none.
+Lesson (durable, one paragraph): n/a — administrative merge; the
+lessons live in the two entries above.
+Status: MERGED to main (owner-directed); the 2026-08-26 02:00
+exposure named in the previous entry's Status is closed.
