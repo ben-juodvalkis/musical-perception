@@ -3918,4 +3918,174 @@ Note that nothing in the repository gates on this decision — tier-0/1 do
 not consume the extractor — so this rule is self-imposed rather than
 enforced by the harness.
 
-Result: *(written at session end, below)*
+Result: **V1 adopted; the parked hypothesis (V2) falsified outright.**
+Branch `agent/marathon`; pre-registration is its own commit `eea45c3`,
+written before a line of implementation. Scored with the committed rung-2
+kill-test harness via `scripts/w25_nuclei_gate.py` (new); the scorer is
+imported read-only.
+
+### Blessed §2.1 metrics on the 28 owner-verified grids
+
+| variant | ref | per-nucleus | n_pred | ALL R/P/F | numbers | step_names | vocables |
+|---|---|---|---|---|---|---|---|
+| V0 rung-2 | q99 | first | 1002 | 0.828/0.867/0.839 | 0.926/0.931/0.926 | 0.719/0.798/0.742 | 0.875/0.875/0.875 |
+| **V1** | q99 | **all** | 1199 | **0.874/0.893/0.876** | 0.939/0.938/0.936 | **0.803/0.845/0.811** | 0.875/0.875/0.875 |
+| V2 | voiced_median | first | 1002 | 0.828/0.867/0.839 | 0.926/0.931/0.926 | 0.719/0.798/0.742 | 0.875/0.875/0.875 |
+| V3 | both | all | 1199 | 0.874/0.893/0.876 | 0.939/0.938/0.936 | 0.803/0.845/0.811 | 0.875/0.875/0.875 |
+
+**V2 is byte-identical to V0 in every per-clip blessed metric — 0 clips of
+28 differ — and it is not a no-op.** The speech-band floor genuinely moves
+the regions (adagio 21 → 22 nuclei; per-clip width vectors differ on every
+clip checked) and still changes **not one emitted event**. peakRate events
+are voiced-gated and sit on intensity summits far above either threshold;
+moving the floor only shuffles region *edges*, where no events live. The
+parked backlog-(i) hypothesis is therefore falsified twice over — by the
+0-of-802 decomposition before the fact, and by a faithful implementation
+after it.
+
+**All 40 recoverable beats were recovered, clip by clip, exactly as the
+decomposition predicted** (V0 → V1 R@tac): coda +0.341, adagio +0.308,
+quiet +0.250, exercise-1-demo +0.122, adr010 +0.083, waltz +0.042,
+numbers-6-8 +0.042, names-explained +0.038, bothsides +0.032,
+fourx8 +0.031. **Zero clips lost recall.**
+
+### The totals hid one thing, and it points the other way
+
+The blessed metric is level-collapsed, which by construction forgives
+extra events inside an already-occupied beat slot. Scored **un-collapsed**
+with the frozen `score_pulse`, the same change is a **loss**:
+
+```
+                    n_pred  matched   RAW pooled P     R       F
+events=first (V0)    1002     646        0.645      0.805   0.716
+events=all   (V1)    1199     686        0.572      0.855   0.686
+```
+
+Recall rises 0.805 → 0.855 (+40 matched, exactly the decomposition's
+number) while raw precision falls 0.645 → 0.572, and raw F **falls
+0.716 → 0.686**. So the headline "+0.037 F_lc" and "−0.030 F" are the
+same experiment read through two metrics. The level-collapsed metric is
+the one rung 2 was blessed on and the one the module was built for — its
+docstring says the output is "a syllable-rate stream, scored by the
+level-collapsed §2.1 metrics that were designed for it" — so the adoption
+rule is met on its own terms. But a reader who wants one number should be
+told both, and the owner may reasonably rule that the metric choice, not
+the extractor, is what this result actually puts in question.
+
+### Prediction scorecard: 5 clean hits, 1 falsified, 3 split
+
+- **P1 ALL R@tac → 0.874 — HIT, exactly on the point prediction.**
+- **P2 ALL P_lc falls into [0.78, 0.86] — FALSIFIED.** It **rose** to
+  0.893. The reasoning error is worth naming: I assumed the added events
+  would mostly land in empty non-beat slots and cost precision. They
+  landed on **real beats** — a recovered beat adds one matched slot to
+  the numerator and one occupied slot to the denominator, which raises a
+  ratio below 1. The events being recovered were never noise.
+- **P3 ALL F_lc ∈ [0.84, 0.88] → 0.876 — HIT.**
+- **P4 step_names — SPLIT.** R@tac 0.803 ∈ [0.77, 0.82] hit; F_lc 0.811
+  missed [0.74, 0.80] on the **high** side, downstream of P2's error.
+- **P5 the named target — SPLIT, and the target is met.**
+  `rig-names-4-4-100-quiet` R@tac 0.3125 → **0.5625, the exact predicted
+  value**; F_lc 0.400 → 0.667 overshot [0.45, 0.60], again via P2.
+- **P6 V2 no meaningful gain — HIT, and stronger than predicted** (zero
+  change, not small change). The stated risk — that a lower floor might
+  split fused nuclei and help by an uncovered route — did not
+  materialise; it adds candidate peaks, but the 4 dB dip merge absorbs
+  them.
+- **P7 zero clips lose R@tac — HIT** (0 of 28), as the maximum-matching
+  argument required.
+- **P8 nothing gated moves — HIT.** `evals run --suite tier0,tier1,stage1`
+  prints **"no outcome changes vs baseline"**; stage1 `aggregate_verified`
+  stays clips=28 P=0.334 R=0.449 F=0.383 (it scores whisper word starts,
+  not this extractor).
+- **P9 the existing tests — SPLIT, and the miss is inside the
+  justification, not the count.** Exactly one existing test encoded the
+  rule (`test_double_rise_in_one_nucleus_collapses_to_first`), as
+  predicted. But the pre-registered *reason* for dropping the rule —
+  "`min_distance_s` = 0.12 s already imposes a refractory at the re-fire
+  timescale" — is **wrong**: peakRate fires **four** times inside that
+  0.5 s synthetic sustained tone, at ~130 ms spacing, i.e. right at the
+  refractory limit rather than suppressed by it. The test now asserts 4
+  and carries the correction in a comment. V1 still earns its adoption,
+  but it earns it on the corpus evidence, not on the argument I
+  pre-registered for it.
+
+### Regressions and classifications
+
+Three clips lose F_lc, all **genuine-trade** (recall flat, extra events
+in empty slots), none losing recall: `rig-names-4-4-104-clean`
+0.723 → 0.694 (−0.030), `rig-numbers-2-4-120-clean` 0.985 → 0.970
+(−0.015), `frappe` 0.547 → 0.539 (−0.008). The latter two are inside the
+3–5 % human-tapping noise floor and are additionally **knife-edge**
+(Standing Lesson 7). No other clip of the 28 falls on any metric. Nothing
+gated regressed: tier-0/tier-1 outcomes are unchanged by construction.
+
+### Verification and constraints
+
+- `pytest`: **251 passed / 3 skipped** (was 250/3 at session start).
+- `evals run --suite tier0,tier1,stage1` → **"no outcome changes vs
+  baseline"**.
+- Media reproduction 28/28; kill-test artifacts re-ran **unmodified**;
+  V0 re-derived from the new code path reproduces the blessed event cache
+  **28/28 byte-identical**, so the adopted change is additive rather than
+  a silent re-baselining.
+- `git diff --stat` for **this session** (from the branch state at session
+  start, `9ddc07a`): **6 files, +3739/−7** — `pulse.py`, `test_pulse.py`,
+  `scripts/w25_nuclei_gate.py`, two result artifacts, this ledger.
+  `git diff --name-only 9ddc07a -- evals/ src/musical_perception/evals/`
+  is **empty**. (The branch's *cumulative* diff vs `main` does show seven
+  files under `src/musical_perception/evals/`; those are **W1.5's**, from
+  2026-08-25, under its declared EVAL-CHANGE commissioning — this session
+  touched none of them. Stating it explicitly because the cumulative
+  `--stat` looks like a rule-2 violation and is not.)
+- No `evals bless` run. `audio/` left untracked — it is the owner's C5
+  media staging, not this session's to commit.
+
+**Disclosures.** (a) A `str.replace` in my own test patch matched three
+identical lines in a *second* test and clobbered
+`test_unvoiced_noise_burst_is_dropped`; pytest caught it, and it was
+repaired to its original assertion in the same session. Recording it
+because a green suite reached by fixing my own damage is not the same
+green as one that never broke. (b) The 45-turn bound was exceeded, by
+roughly four turns, to finish the report rather than leave the result
+unrendered — the same call and the same disclosure as 2026-08-21.
+
+### C5 confirmed executed, and what it unblocks
+
+24 `audio/rig/*.mp3` are staged on this runner. The reproduction gate
+above is independent evidence they are the same files the blessed cache
+was built from. Beyond W2.5 this unblocks, for a future session: **W3's
+24 missing raw-condition benchmark rows** (queued at A5), and the Air-side
+listen tooling. Both are now the ranking's live candidates.
+
+Lesson (durable, one paragraph): The backlog item said the silence floor
+fails on quiet clips, and three separate things in that sentence were
+wrong — the clip is not quiet (its q99 is identical to the "clean" clip's;
+what it is, is *low-contrast*, 23 % of frames below threshold against
+39 %), the floor is not what fails (it discards 0 of 802 beats, and a
+faithful implementation of the proposed fix changes not one event), and
+the real failure is a *fused-nucleus* artifact in which a greedy dip-merge
+slides its reference summit forward until a legato phrase becomes one
+3.9-second "syllable" and the one-event-per-nucleus rule throws away every
+beat in it but the first. A parked hypothesis is a guess made at the
+moment of least information — the session that wrote it had just measured
+the symptom and had no budget to measure the cause — so the first act of
+the rung that inherits it should be to decompose the loss and let the
+hypothesis stand or fall against the decomposition, not to implement it.
+The second keeper is a warning about the win: the same change reads
++0.037 under the blessed level-collapsed metric and −0.030 un-collapsed,
+because level-collapsing was designed to forgive exactly the extra events
+this change emits. When a metric is built for a stream, improving the
+stream against that metric is close to circular, and the honest report is
+both numbers rather than the flattering one.
+
+Status: PROPOSED — for the owner's next batch review. Two requests:
+(a) rule on the metric question in "the totals hid one thing" — whether
+level-collapsed F_lc remains the extractor's headline now that a change
+can move the two metrics in opposite directions; (b) confirm whether the
+`voiced_median` code path should be **kept** (it is retained only so the
+falsification stays re-runnable and it provably changes no output) or
+deleted as dead weight. W2.5's own target is met:
+`rig-names-4-4-100-quiet` R@tac 0.312 → 0.562. Nothing here re-blesses;
+`evals/baseline.json` is untouched and the suite prints no outcome
+changes, which is what proves no re-bless is owed.

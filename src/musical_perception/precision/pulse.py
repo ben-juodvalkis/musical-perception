@@ -37,8 +37,20 @@ class AcousticPulseParams:
     peakrate: PeakRateParams = field(default_factory=PeakRateParams)
     intensity_min_pitch_hz: float = 50.0   # Praat To Intensity minimum pitch
     intensity_time_step_s: float = 0.01
-    silence_db: float = 25.0               # threshold: q99(intensity) − this
+    silence_db: float = 25.0               # threshold: reference − this
     min_dip_db: float = 4.0                # marked speech: review-1 §1.2
+    # W2.5 (2026-08-26), pre-registered before measurement. Both are closed
+    # vocabularies; an unknown value is a hard error, never a silent
+    # fallback to the old behaviour.
+    # Default flipped to "all" by W2.5's pre-registered adoption rule
+    # (ALL F_lc 0.839 -> 0.876, step_names 0.742 -> 0.811, zero clips
+    # losing R@tac). "first" is retained so rung 2's blessed stream stays
+    # reproducible. `voiced_median` is the parked backlog-(i) speech-band
+    # floor: measured, and it changes region bounds without changing a
+    # single emitted event on all 28 verified clips -- kept only so that
+    # falsification is re-runnable.
+    silence_reference: str = "q99"         # q99 | voiced_median
+    events_per_nucleus: str = "all"        # all | first
 
     def as_dict(self) -> dict:
         d = {k: getattr(self, k) for k in self.__dataclass_fields__}
@@ -77,7 +89,29 @@ def _nucleus_regions(
     floor = float(values[finite].min()) - 1.0
     values = np.where(finite, values, floor)
 
-    threshold = float(np.percentile(values[finite], 99)) - params.silence_db
+    if params.silence_reference == "q99":
+        reference = float(np.percentile(values[finite], 99))
+    elif params.silence_reference == "voiced_median":
+        # W2.5 V2: the clip's own speech-band level rather than its loudest
+        # 1%. Voiced frames ARE the speech band; unvoiced frames and silence
+        # are exactly what the threshold exists to exclude.
+        voiced_ref = _voiced_times(y, sr, params.peakrate)
+        if voiced_ref.size:
+            near = np.min(
+                np.abs(times[:, None] - voiced_ref[None, :]), axis=1
+            ) <= params.peakrate.voiced_window_s
+        else:
+            near = np.zeros(times.shape, dtype=bool)
+        pool = values[finite & near]
+        reference = (
+            float(np.median(pool)) if pool.size
+            else float(np.percentile(values[finite], 99))
+        )
+    else:
+        raise ValueError(
+            f"unknown silence_reference: {params.silence_reference!r}"
+        )
+    threshold = reference - params.silence_db
     candidates, _ = find_peaks(values, height=threshold)
     kept: list[int] = []
     for c in candidates:
@@ -132,10 +166,18 @@ def acoustic_pulse_events(
     if events.size == 0:
         return events
 
-    kept = []
+    if params.events_per_nucleus not in ("first", "all"):
+        raise ValueError(
+            f"unknown events_per_nucleus: {params.events_per_nucleus!r}"
+        )
+    kept: list[float] = []
     regions = _nucleus_regions(y, sr, params)
     for start, end in regions:
         inside = events[(events >= start) & (events <= end)]
-        if inside.size:
+        if not inside.size:
+            continue
+        if params.events_per_nucleus == "first":
             kept.append(float(inside[0]))
+        else:
+            kept.extend(float(t) for t in inside)
     return np.array(sorted(set(kept)))
