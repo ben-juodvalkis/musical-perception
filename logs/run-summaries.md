@@ -89,3 +89,20 @@ is how the runner's permission failure was found.)*
 > Nothing is left mid-flight — no uncommitted work, no unpushed commits, no unrendered report. The two items waiting on you are in the ledger's Status line: the split-derivability remediation, which is cheap only while `agent/marathon` stays unmerged, and whether W7's negative result folds pose into W5 alongside W2.
 
 *Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
+
+## run 2026-08-25T09:00:08Z · main 55fd1b9
+
+- **outcome:** success, shell exit 0
+- **turns:** 56 · **duration:** 11.3 min · **cost:** $5.53
+
+**Agent's closing message:**
+
+> …it diff --stat main`: 14 files, +742/−15, branch `agent/marathon`. **Zero** paths under `evals/cases/`, `evals/traces/`, `evals/baseline.json`. Seven files under `src/musical_perception/evals/` — permitted, W1.5 is a declared EVAL-CHANGE workstream. No `evals bless`. The untracked `audio/` (owner's C5 MP3s) was left alone.
+> 
+> ## Two things flagged honestly in the ledger
+> - **Prediction 4 was a split:** I predicted 8–12 new tests and wrote 21, and I *did* edit `tests/test_evals_replay.py` — not to make it pass (it passed before and after), but because that file *is* the typed gate, so teaching it the exclusion is the deliverable. Recorded rather than scored green.
+> - **Parked with numbers:** stage1's `slices` still pools provisional and verified rows (a rung-1 design, in a suite that gates nothing). Making it verified-only would move `step_names` 0.414→0.337 and empty `mixed` — a measurement change that doesn't belong in a byte-identical infrastructure increment, but should be picked up **before** W4 writes case files.
+> 
+> Status: **PROPOSED** for the owner's next batch review, with two questions queued — confirm the `accompaniment_only` spelling, and rule on the parked stage1 slices item.
+
+*Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
