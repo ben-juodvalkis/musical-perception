@@ -6,6 +6,13 @@ Eval cases: YAML files whose fields are a strict subset of the Vision 08
 `marking_bpm` — and mapped to internal types here. `subdivision` is the one
 additive field (the coherent-triple scorer needs it; flagged for a §8.2
 amendment). Omitted expect fields are simply not scored.
+
+`maturity` (charter W1.5) says who wrote the truth labels: `verified` is
+owner-checked and gates; `provisional` is agent-proposed and gates
+nothing. The key is optional and defaults to `verified`, so every case
+written before W1.5 keeps exactly the meaning it had. Agent-authored
+cases for new material MUST carry `maturity: provisional` — that is the
+whole point of the charter's add-only ingestion carve-out.
 """
 
 from dataclasses import dataclass, field
@@ -17,7 +24,21 @@ _EXPECT_KEYS = {
     "slot", "marking_bpm", "performance_bpm", "meter", "subdivision",
     "counts", "sides", "character",
 }
-_TOP_KEYS = {"id", "input", "tags", "expect", "notes"}
+_TOP_KEYS = {"id", "input", "tags", "expect", "notes", "maturity"}
+
+VERIFIED = "verified"
+PROVISIONAL = "provisional"
+_MATURITIES = (VERIFIED, PROVISIONAL)
+
+# Tag vocabulary (Vision 13 §13.6). Only the values this loader actually
+# adjudicates live here; the rest of the vocabulary stays documentation.
+# `accompanied` gained a third state at W1.5 (owner ruling B5,
+# 2026-08-24): a recording that is accompaniment *and nothing else* — a
+# pianist playing the exercise with no teacher voice present — is neither
+# `false` nor the `true` of "a teacher counting over a pianist". Its truth,
+# if ever labeled, comes from the piano's beat.
+ACCOMPANIMENT_ONLY = "accompaniment_only"
+_ACCOMPANIED_VALUES = (False, True, ACCOMPANIMENT_ONLY)
 
 
 @dataclass
@@ -29,6 +50,17 @@ class Case:
     tags: dict = field(default_factory=dict)
     expect: dict = field(default_factory=dict)   # normalized values
     notes: str = ""
+    maturity: str = VERIFIED     # verified (gates) | provisional (never gates)
+
+    @property
+    def provisional(self) -> bool:
+        """True when this case's truth labels have not been owner-verified."""
+        return self.maturity == PROVISIONAL
+
+    @property
+    def accompaniment_only(self) -> bool:
+        """True for takes that are accompaniment and nothing else (B5)."""
+        return self.tags.get("accompanied") == ACCOMPANIMENT_ONLY
 
     @property
     def expected_bpm(self) -> float | None:
@@ -48,6 +80,29 @@ def parse_sides(value) -> int:
     if str(value) not in mapping:
         raise ValueError(f"sides must be 'both', 'one', or an int — got {value!r}")
     return mapping[str(value)]
+
+
+def parse_maturity(value, case_id: str) -> str:
+    """Default `verified`; anything outside the vocabulary is an error."""
+    if value is None:
+        return VERIFIED
+    text = str(value)
+    if text not in _MATURITIES:
+        raise ValueError(
+            f"case {case_id}: maturity must be one of {list(_MATURITIES)} "
+            f"— got {value!r}"
+        )
+    return text
+
+
+def _check_tags(tags: dict, case_id: str) -> dict:
+    """Adjudicate the one tag whose vocabulary the harness depends on."""
+    if "accompanied" in tags and tags["accompanied"] not in _ACCOMPANIED_VALUES:
+        raise ValueError(
+            f"case {case_id}: accompanied must be one of "
+            f"{list(_ACCOMPANIED_VALUES)} — got {tags['accompanied']!r}"
+        )
+    return tags
 
 
 def _normalize_expect(raw: dict, case_id: str) -> dict:
@@ -83,9 +138,10 @@ def load_case_file(path: Path) -> Case:
         id=str(raw["id"]),
         trace=str(inp["trace"]),
         media=inp.get("media"),
-        tags=dict(raw.get("tags") or {}),
+        tags=_check_tags(dict(raw.get("tags") or {}), raw["id"]),
         expect=_normalize_expect(dict(raw.get("expect") or {}), raw["id"]),
         notes=str(raw.get("notes") or ""),
+        maturity=parse_maturity(raw.get("maturity"), raw["id"]),
     )
 
 

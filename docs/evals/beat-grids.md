@@ -116,6 +116,13 @@ beats reproduces the owner's 15.0% within-phrase CV — two of those six
 gaps compress to 1.67–1.72 × the median under rubato, i.e. *below* the
 break ratio, so only the tag can exclude them.
 
+## Case maturity (W1.5)
+
+The `provisional` flag below is a *grid*-level statement. Its case-level
+sibling is `maturity: provisional|verified` in the case file — see
+[case maturity](case-maturity.md). A stage-1 row is provisional when
+either one is: a row is only as verified as its weakest label.
+
 ## stage1 suite
 
 ```bash

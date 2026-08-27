@@ -50,6 +50,9 @@ class CaseResult:
     tags: dict = field(default_factory=dict)
     scores: list[ScoreResult] = field(default_factory=list)
     error: str | None = None
+    # W1.5: agent-proposed truth. Provisional rows are scored and reported,
+    # but they leave every headline aggregate and every gate alone.
+    provisional: bool = False
 
 
 _METRIC_LEVELS = [(2.0, "metric_level_x2"), (3.0, "metric_level_x3"),

@@ -130,7 +130,14 @@ tags:
   count_style: numbers | step_names | vocables | minimal
   explanation: none | before | interleaved
   lang: en
-  accompanied: true            # a pianist is playing → free tempo labels
+  accompanied: false | true | accompaniment_only
+                               # true = a pianist is playing under the
+                               # teacher → free tempo labels.
+                               # accompaniment_only = the pianist and
+                               # nothing else: no teacher voice, no
+                               # dancer. Truth comes from the piano's
+                               # beat, not from counted words.
+                               # (owner ruling B5, 2026-08-24)
   snr_band: high | mid | low
   marking_seconds: 14
   performed: false             # teacher visibly adapting to the camera
@@ -139,6 +146,11 @@ tags:
 Every metric slices on these ([08](08-benchmark-and-shadow-mode.md) §8.3), and
 the gate is the worst slice above a minimum n. New difficulty axes are added as
 tags, never as new folders.
+
+Tags say what the clip *is*. The sibling question — who wrote its truth
+labels, and may they gate — is the case file's `maturity` key
+(`provisional` | `verified`, default `verified`); see
+[case maturity](../evals/case-maturity.md).
 
 ## 13.7 Splits, and the slice you seal on day one
 

@@ -44,6 +44,35 @@ def _print_stage1(suite: str, summary: dict) -> None:
         print(f"    ERROR {err}")
 
 
+def suite_provisional_ids(suite_block: dict | None) -> set[str]:
+    """Case ids a run (or the blessed baseline) recorded as provisional.
+
+    The run artifact carries its own list, so the baseline is
+    self-describing: comparing two runs never needs to re-read the case
+    files, and a row that changed maturity in either direction is excluded
+    by taking the union of both sides (charter W1.5).
+    """
+    prov = ((suite_block or {}).get("summary") or {}).get("provisional")
+    return set((prov or {}).get("case_ids") or ())
+
+
+def _print_provisional(suite: str, summary: dict, family_cell, tempo_metrics_line) -> None:
+    prov = summary.get("provisional")
+    if not prov:
+        return
+    print(f"  {suite:6s} -- provisional slice, n={prov['n_cases']} cases: "
+          f"{', '.join(prov['case_ids'])}")
+    print(f"  {suite:6s}    (agent-proposed truth: gates nothing, "
+          f"pooled into none of the numbers above)")
+    for name, s in prov["fields"].items():
+        print(f"  {suite:6s}  P {name:20s} n={s['n']:3d} correct={s['correct']:3d} "
+              f"wrong={s['wrong']:3d} abstained={s['abstained']:3d} "
+              f"accuracy={s['accuracy']} truth_in_family={family_cell(s)}")
+    tm_line = tempo_metrics_line(prov)
+    if tm_line:
+        print(f"  {suite:6s}  P {tm_line}")
+
+
 def _cmd_run(args) -> int:
     from musical_perception.evals.report import (
         build_report, family_cell, tempo_metrics_line, write_run,
@@ -68,6 +97,7 @@ def _cmd_run(args) -> int:
         tm_line = tempo_metrics_line(summary)
         if tm_line:
             print(f"  {suite:6s} {tm_line}")
+        _print_provisional(suite, summary, family_cell, tempo_metrics_line)
 
     baseline_path = root / BASELINE_NAME
     if baseline_path.is_file():
@@ -77,7 +107,12 @@ def _cmd_run(args) -> int:
             base_suite = baseline.get("suites", {}).get(suite)
             if base_suite:
                 changes += compare_outcomes(
-                    report["suites"][suite]["outcomes"], base_suite["outcomes"]
+                    report["suites"][suite]["outcomes"],
+                    base_suite["outcomes"],
+                    provisional=(
+                        suite_provisional_ids(report["suites"][suite])
+                        | suite_provisional_ids(base_suite)
+                    ),
                 )
         if changes:
             print("\noutcome changes vs baseline:")

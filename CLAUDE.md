@@ -107,7 +107,11 @@ Cases live in `evals/cases/*.yaml` (field names are a strict subset of
 `evals/traces/`; beat grids in `evals/grids/` (see
 [docs/evals/beat-grids.md](docs/evals/beat-grids.md) — provisional grids
 never gate anything); the blessed baseline is `evals/baseline.json` +
-[docs/evals/baseline.md](docs/evals/baseline.md). The tier-1 pytest gate
+[docs/evals/baseline.md](docs/evals/baseline.md). A case's `maturity` key
+(`provisional` | `verified`, default `verified`) says whether its truth
+labels were owner-verified; provisional rows are scored and reported in
+their own slice but gate nothing — see
+[docs/evals/case-maturity.md](docs/evals/case-maturity.md). The tier-1 pytest gate
 fails on ANY outcome change vs the baseline — improvements too; re-bless
 to carry the delta. The stage1 suite (pulse P/R/F + signed asynchrony vs
 grids) pins no outcomes; tier-1 reporting also carries Acc1/Acc2 and
