@@ -386,7 +386,27 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   revisited: nod-kinematics / phrase-arrival segmentation first, per
   Review 5 and the W7 entry)* · W8 = rung 7, RETIRED sweep (after W5) ·
   parked from rung 2: relative (speech-band-level) nuclei silence floor
-  for quiet clips — a pipeline workstream once W2 exists. Policy: each
+  for quiet clips *(EXECUTED as W2.5 2026-08-26 — hypothesis FALSIFIED:
+  the floor discards 0 of 802 beats, and a faithful implementation
+  changes no emitted event. The real defect was a fused-nucleus
+  artifact; the one-event-per-nucleus rule was dropped instead.
+  PROPOSED)* ·
+  **W9 = tempo-estimator robustness, the pulse → BPM step (COMMISSIONED
+  2026-08-26 by the owner; pipeline workstream; evidence in the owner
+  probe ledger entry of that date).** `calculate_tempo`'s median-of-
+  consecutive-gaps is destroyed by extra ticks in a way a periodicity
+  estimator is not (owner probe: 11/23 vs 20/23 on rig clips against the
+  filename metronome — indicative only; wrong stream, wrong metric, see
+  the entry's "does NOT establish" list). Scope: both tempo arms
+  (`calculate_tempo` and `detect_onset_tempo`) and the arbitration
+  between them, measured on the **shipping path** with the **blessed
+  tier-1 metrics**, reporting Acc1/Acc2/OE1/OE2 beside the
+  committed-accuracy delta; the 70–140 band is a separate named
+  question, since `interpret_meter` gates arbitration on it and the
+  probe shows it turning a correct 60.9 BPM reading into 121.7.
+  Standard typed gate; it moves tier-1 outcomes, so it needs an owner
+  re-bless. **Rank not fixed at commissioning — W0 re-ranks.**
+  Policy: each
   session advances exactly one workstream — the highest-ranked one not
   BLOCKED; blocked workstreams get a BLOCKED ledger note (the owner's
   task queue) and the session moves on. The loop never idles while any

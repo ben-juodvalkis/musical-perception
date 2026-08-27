@@ -3577,3 +3577,164 @@ Lesson (durable, one paragraph): n/a — administrative merge; the
 lessons live in the two entries above.
 Status: MERGED to main (owner-directed); the 2026-08-26 02:00
 exposure named in the previous entry's Status is closed.
+
+## 2026-08-26 · rung M · main · local (owner probe + W9 commissioning)
+
+**Owner entry, not a session increment.** Written in an owner-attended
+session while reviewing the 08-25 (W1.5) and 08-26 (W2.5) nightly
+results. Nothing here is blessed, nothing is pre-registered, and no
+workstream is executed. Its purpose is to put evidence under a
+commissioning decision.
+
+### Where it started
+
+Reviewing W2.5, the owner asked a question the entry did not answer:
+for **tempo**, is it better to drop real ticks or to carry extra false
+ones? W2.5 reported the same change as +0.037 F under the blessed
+level-collapsed metric and −0.030 un-collapsed, and asked the owner to
+rule on which is the extractor's headline. The question is prior to
+that ruling — it asks what the extra ticks actually *cost downstream*.
+
+### The probe
+
+`scripts/tempo_estimator_probe.py` (new; writes
+`docs/research/tempo-estimator-probe.{json,md}`). It holds the tick
+stream fixed and varies the estimator, on the 23 owner-verified rig
+clips whose filename carries the metronome BPM they were recorded to:
+
+- **Streams:** V0 (first-event-per-nucleus, rung-2 blessed) and V1
+  (all-in-nucleus, W2.5-adopted), both derived from one extraction pass
+  off the committed extractor.
+- **Estimator A:** `precision.tempo.calculate_tempo` — median of
+  consecutive gaps. This is what `analyze.py:202` calls.
+- **Estimator B:** a pairwise-IOI histogram written for this probe —
+  every tick pair within 4 s votes for the period dividing its gap by a
+  small integer; the modal period wins. **Written once, run once, not
+  tuned against the results.** It is a probe, not a candidate.
+
+```
+correct within 4% of the metronome (n=23):
+  median-of-consecutive-gaps (ships today):   V0 11/23    V1 8/23
+  pairwise-IOI histogram (probe):             V0 20/23    V1 20/23
+```
+
+### Three findings
+
+**1. The owner's intuition is right about the shipping estimator, and
+the effect is a mechanism, not noise.** Under median-of-gaps, extra
+ticks cost 3 clips of 23. A *missed* beat merges two gaps into one at
+~2× the period — a wrong answer that stays musically related, and
+`normalize_tempo` plus ADR-014's metric-level family exist to divide
+exactly that back out. An *extra* tick splits a correct gap into two
+arbitrary fragments: it destroys one good measurement and adds two junk
+ones, at a ratio no octave transform can recover.
+
+**2. The cost is a property of the estimator, not of the stream.**
+Under the periodicity estimator the V0/V1 gap **vanishes entirely**
+(20/23 either way) and absolute accuracy nearly doubles. Extra ticks add
+scattered votes; they cannot outvote a period the whole stream agrees
+on. Missed beats simply leave fewer voters, who still agree. The
+sharpest case is `rig-names-4-4-100-quiet` — W2.5's named target,
+rescued at the stream level over a full session (R@tac 0.312 → 0.562):
+the histogram reads it **99.0 BPM on V0 and 99.3 on V1** against a true
+100. The clip was never a stream problem.
+
+**3. The extras are word tails, not subdivisions — which is why they
+cannot be normalized away.** Of the 164 events V1 adds, **0** land on a
+beat V0 already found, 32 land on beats V0 missed (the recoveries), and
+132 land between beats. Their phase within the beat interval:
+
+```
+ 0.000-0.125  ### 3
+ 0.125-0.250  ############################################## 46
+ 0.250-0.375  ############################### 31
+ 0.375-0.500  ################## 18
+ 0.500-0.625  ################## 18
+ 0.625-0.750  ######## 8
+ 0.750-0.875  ##### 5
+```
+
+Musical subdivisions would pile up at 0.5, or 0.33/0.67 for triplets.
+This mass sits near **0.2** — about 115 ms after the beat at 104 BPM,
+i.e. the second syllable of a two-syllable step name ("ten-DU",
+"pas-SÉ") spilling out behind the beat it starts on. Speech-driven, at
+whatever offset the word happens to carry. Systematic musical extras
+would read as double tempo and divide back out; these cannot.
+
+### A fourth thing the probe surfaced, unlooked-for
+
+On `rig-numbers-4-4-60-halftempo` the periodicity estimator reads
+**60.9 BPM against a true 60** — and `normalize_tempo`'s 70–140 band
+then doubles it to 121.7, converting a correct measurement into a wrong
+one. That band is not only a post-hoc snap: `interpret_meter`'s
+arbitration gates `onset_at_beat_level` and `marker_at_beat_level` on
+the same 70–140 window, so a genuinely slow clip **cannot be classified
+as beat-level by construction**. Two of the three residual histogram
+failures are this shape rather than detection failures (the third,
+`rig-names-4-4-63-adagio`, is a real miss). ADR-014 already introduced
+`FAMILY_LOW`/`FAMILY_HIGH` = 20/400 for the candidate family while
+primary selection kept the band; this is that seam, showing.
+
+### What this probe does NOT establish — read before quoting it
+
+1. **Wrong stream.** It scores the rung-2 acoustic extractor, which is
+   **not wired into `analyze`**. The shipping path feeds
+   `calculate_tempo` a Gemini-*classified* beat stream (cleaner, fewer
+   extras) and arbitrates it against `detect_onset_tempo`, which already
+   grid-fits IOIs over sliding windows and is the more robust of the two
+   arms. The estimator's fragility is the same; the size of the win on
+   the shipping path is **unmeasured**.
+2. **Wrong metric.** Truth here is the filename metronome on rig clips.
+   It is not tier-1 `marking_bpm`, not committed tempo accuracy, and not
+   Acc1/Acc2/OE1/OE2. 20/23 is **indicative, not a score**.
+3. **Not a candidate implementation.** Estimator B is scratch code with
+   parameters chosen a priori and never revisited; that it was not tuned
+   is a claim about process, not a proof of generality.
+4. **n = 23, one corpus, one voice, one room.**
+
+### W9 — commissioned (owner, 2026-08-26)
+
+**W9 = tempo-estimator robustness: the pulse → BPM step.** A pipeline
+workstream. Charter workstream list amended accordingly. Deliverable:
+
+- Measure, on the **shipping path** and the **blessed tier-1 metrics**,
+  whether replacing or augmenting median-of-consecutive-gaps with a
+  periodicity estimator improves committed tempo accuracy. Both arms
+  (`calculate_tempo` and `detect_onset_tempo`) are in scope; so is the
+  arbitration between them.
+- Report **Acc1/Acc2/OE1/OE2** alongside the committed-accuracy delta.
+- Treat the **70–140 band** as a separate, named question: it is a hard
+  gate in `interpret_meter`'s arbitration, not merely a normalization
+  snap, and the probe shows it converting at least one correct reading
+  into a wrong one. A proposal to loosen it is in scope; changing it
+  silently is not.
+- Standard typed gate (ADR-015). This **will** move tier-1 outcomes, so
+  it needs an owner re-bless; the session recommends and does not bless.
+- Pre-registration is the executing session's act, not this entry's.
+  This entry commissions and supplies evidence; predictions are written
+  before implementation, per rule 3.
+
+**Ranking:** the owner does not fix W9's rank here. W0 (the meta-rung)
+last ran 2026-08-19 and is therefore due, and re-ranking is its job —
+W9 enters that re-ranking with this evidence attached. The owner's view,
+recorded so the meta-rung can weigh or reject it: on this probe the
+estimator is worth ~9 clips of 23, which is larger than anything
+remaining on the extractor, and W9 does not depend on the four rulings
+still queued.
+
+Lesson (durable, one paragraph): W2.5 spent a full session recovering 40
+beats at the stream level, and its named target clip turns out to be
+read correctly by a better estimator from the *un-rescued* stream. When
+a stage is judged only by its own metric, effort flows to the stage
+rather than to the chain, and a metric built to suit a stream ratifies
+that flow — the level-collapsed score forgave exactly the 132 extras
+that the shipping estimator is destroyed by, so the stage's own headline
+and the pipeline's interest pointed opposite ways. Before optimizing a
+stage, measure what its output actually costs the stage that consumes
+it; where a project keeps two implementations of the same step (here
+`calculate_tempo` and `detect_onset_tempo`), the weaker one being on the
+committed path is a finding waiting to be noticed, not an accident.
+
+Status: PROPOSED — the probe and the W9 commissioning go to the
+meta-rung and the next batch review. Four rulings from 08-25/08-26
+remain open and are unaffected by this entry.
