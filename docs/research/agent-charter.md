@@ -293,7 +293,12 @@ exercise-conditioned priors at level selection only; posterior mass as
 confidence; entropy abstention; ADR-014 alternates carrying posterior
 weights. Gated as a **measurement change** (diagnosed-regression gate).
 Read the review's top-5 papers first; write the pre-registration before
-any code.
+any code. **Owner direction 2026-08-26 (see the ledger entry of that
+date):** the meter state variable is replaced by a factored
+representation — division (duple/triple) as its own axis, grouping as a
+per-level ladder (2/3/4/6/8/12…) with the bar one rung and the count
+phrase another; the time-signature label is derived late, outside the
+state space, only where a consumer needs notation.
 
 ```
 /goal Per docs/research/agent-charter.md rung 4: a joint-posterior rhythm

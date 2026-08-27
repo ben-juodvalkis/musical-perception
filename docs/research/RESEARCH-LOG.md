@@ -4355,3 +4355,77 @@ that distinguishes them.
 
 Status: **ACCEPTED** (owner). The 08-25/08-26 ruling queue is now empty.
 Open items are W9's execution and W0's re-ranking, which is due tonight.
+
+## 2026-08-26 · rung M · main · local (owner direction for W5: the factored meter contract)
+
+**Owner direction, not an increment.** Recorded in the same owner-attended
+session as the W9 commissioning and the R1–R4 rulings. No code changes;
+this entry exists so the W5 session (owner-started, charter rule) inherits
+it as design input rather than re-deriving it.
+
+### The owner's introspective model, stated in session
+
+Playing classes, the owner perceives three separate facts, not one
+"meter":
+
+1. **Pulse** — a rate, somewhere in the 70–140 band.
+2. **Division** — what sits *below* the pulse: each beat splits in 2 or
+   in 3.
+3. **Grouping** — what sits *above* the pulse: beats bundle in 2s
+   (→ 4 → 8 → 16) or in 3s (→ 6 → 12), a ladder of levels rather than a
+   single bar length.
+
+The move that matters: **"meter" never appears.** The time-signature
+label is a notation-level encoding of division + grouping, not a
+perceptual fact of its own.
+
+### Why this dissolves W2's negative result rather than contradicting it
+
+- **3/4 vs 6/8 (r=0.93 confusable as labels):** 3/4 is grouping-in-3
+  with duple division; 6/8 is grouping-in-2 with triple division. Same
+  six fast notes per bar — hence indistinguishable to a salience clock
+  *as labels* — but different on **both** factored axes. And the
+  division axis is already answered by a blessed component
+  (`subdivision.py`, duple/triple, in the contract since ADR-006). The
+  ill-posed question was two questions welded together, one already
+  solved.
+- **The lag-8 finding:** W2 measured the corpus's strongest periodicity
+  at the eight-count phrase and had to treat it as structure *above* the
+  thing being estimated. In the factored model the count phrase is just
+  the strongest rung of the grouping ladder; the bar is a fainter rung
+  below it. The model has a natural place for where the signal actually
+  is.
+- **The 13 clips with no significant bar accent:** not unanswerable —
+  one rung of the ladder is silent, which is true of that audio. The
+  honest output is per-level evidence ("bar level: absent; phrase level:
+  strong"), not an abstention on a label.
+
+### Direction for W5 (rung 4, the joint posterior)
+
+The rung-4 spec already factors period/phase/subdivision but still
+carries **meter as a state variable** — the label survives inside the
+model. W2's own recommendation ("carry the lag-8 phrase periodicity as
+its own state dimension") went halfway; this direction completes it:
+
+1. **Replace the meter state with a grouping ladder** — per-level
+   (2, 3, 4, 6, 8, 12…) evidence with per-level confidence, the bar
+   being one rung, the count phrase another.
+2. **Division stays its own axis** (duple/triple), joint with the
+   ladder, not folded into a label.
+3. **The `Meter(beats_per_measure, beat_unit)` label is derived late**,
+   outside the state space, from division + grouping — only where a
+   consumer genuinely needs notation. The perception contract reports
+   the factored facts. (Contract change → ADR + owner review when W5
+   lands; `MusicalParameters` is the stable schema and does not move by
+   ledger note.)
+4. **Accompaniment note:** to play, the owner reports needing pulse,
+   division, and where the phrase turns — the label mostly not at all.
+   Downstream design should not assume the label is the deliverable.
+
+Provenance of the idea: owner introspection while playing class,
+2026-08-26, checked in session against W2's three findings (confusability
+matrix, lag-8 audit, the 13 silent clips) and found to predict all three.
+
+Status: **DIRECTION** — standing input to W5. Not a workstream, nothing
+to execute tonight; W0's re-ranking should note it but cannot act on it
+(W5 is owner-started by charter rule).
