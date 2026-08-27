@@ -4429,3 +4429,270 @@ matrix, lag-8 audit, the 13 silent clips) and found to predict all three.
 Status: **DIRECTION** — standing input to W5. Not a workstream, nothing
 to execute tonight; W0's re-ranking should note it but cannot act on it
 (W5 is owner-started by charter rule).
+
+## 2026-08-27 · rung M / W0 (the meta-rung) · agent/marathon · local (nightly, unattended)
+
+**Meta-rung, not a pipeline increment.** No pipeline, eval, grid, or case
+file is touched. Trigger check: the last meta-rung entry is 2026-08-19;
+"older than 7 days" first became true today, so the 2026-08-26 nightly
+was correct to take W2.5 and this one is correct to take W0. The owner's
+08-26 entry independently called the re-ranking due.
+
+Writability probe (charter amendment 2, first act): a file was written,
+committed, and the commit reduced to a no-op on `agent/marathon` before
+any reading. Passed.
+
+Pre-registered expectations: n/a (review session). Pre-review state
+verified on this branch before item one: `pytest` **252 passed / 3
+skipped**; `evals run --suite tier0,tier1,stage1` → **"no outcome changes
+vs baseline"** (aggregate_verified 28 clips P 0.334 R 0.449 F 0.383;
+slices numbers 0.439 n=14, step_names 0.337 n=13, vocables 0.118 n=1 —
+matching R4's verified-only table exactly).
+
+### 1. The finding: the 70-140 band is a hard zero, and Standing Lesson 2 already said so
+
+The owner's 08-26 probe named the band as a separate question worth
+asking, on one clip, from the *unshipped* rung-2 stream. Re-derived here
+from `evals/baseline.json` alone — the blessed, shipping-path,
+committed-metric artifact — it is not one clip and not a side question:
+
+```
+tier-1 committed tempo, split by where the TRUTH lies:
+  truth INSIDE  70-140    n=24   correct=17   acc=0.708
+  truth OUTSIDE 70-140    n= 5   correct= 0   acc=0.000
+
+  adr006-8-counts-triple         pred 118.8  true  68.38   +73.7%
+  frappe                         pred  81.2  true 160.0    -49.2%
+  rig-names-2-4-160-long         pred  78.3  true 160.0    -51.1%
+  rig-names-4-4-63-adagio        pred  72.0  true  63.0    +14.3%
+  rig-numbers-4-4-60-halftempo   pred 123.0  true  60.0   +105.0%
+```
+
+**Five of the twelve tempo failures are clips whose true tempo the band
+cannot represent, and the pipeline gets none of them right.** Four of the
+five land back *inside* the band (72.0, 78.3, 81.2, 118.8, 123.0 — every
+prediction is in-band, without exception). This is not a prior costing a
+little at the margin; on this corpus it is the single largest identified
+block of tempo error.
+
+The mechanism is in three places in one file, verified by reading it:
+`precision/tempo.py:32-33` and `:124-125` (the normalize/family defaults)
+and `interpret_meter` at `:249-259`, where `onset_at_beat_level` and
+`marker_at_beat_level` are **both** conjoined with `70.0 <= bpm <= 140.0`.
+The owner's probe said the band gates arbitration, not just normalization;
+the file confirms it literally — a genuinely slow or fast clip cannot be
+classified as beat-level by either arm, by construction.
+
+And the ledger already forbids this. **Standing Lesson 2**, written
+2026-08-09: *"Priors are priors, not post-processing. A hard fold (the
+old 70-140 band) destroys correct out-of-band measurements. Apply priors
+at level selection, multiplicatively, never to the raw measurement."* The
+lesson is eighteen days old, is quoted at every session boot, calls the
+band "the old 70-140 band" — and the band is still load-bearing in three
+places on the committed path. **A standing lesson that names a specific
+mechanism and does not schedule its removal is a comment, not a rule.**
+
+**What this does NOT license, stated before anyone quotes it.** Deleting
+the band does not win five rows. Three of the five are truth-in-family
+(octave-recoverable): `frappe`, `rig-names-2-4-160-long`,
+`rig-numbers-4-4-60-halftempo` — and Acc2@8% = 0.690 vs Acc1@8% = 0.586
+is exactly those three rows, so the honest ceiling from band work alone
+is **17/29 → 20/29**. `adr006-8-counts-triple` (118.8 vs 68.38) is out of
+family and unreachable this way; `rig-names-4-4-63-adagio` (+14.3%) is a
+real measurement miss, which the owner's probe independently called a
+real miss. n = 5 out-of-band rows is small; 0/5 against 17/24 is not
+noise-shaped, but the interval is wide and no percentage should be quoted
+from it. Widening the band also has a cost this review did not measure:
+the band currently protects in-band clips from octave errors, and 0.708
+in-band accuracy is what is at risk. **That trade is W9's to measure, not
+this entry's to assert.**
+
+**Method note, disclosed because it nearly produced a false headline.**
+An earlier pass of this analysis compared `oe1`/`oe2` against the ±4%/±8%
+tolerances directly and got 14 wrong rows and two knife-edge rows. OE1/OE2
+are **log2 octave errors**; 0.08 in OE units is 5.7%, not 8%. Recomputed
+in linear ratio, the numbers reconcile exactly with the blessed summary
+(17/29 = 0.586 = Acc1@8% = committed accuracy; 12 wrong; **zero**
+knife-edge rows — the nearest miss among the twelve exceeds 12%). The
+corrected figures are the ones above. Two consequences worth keeping:
+every one of W9's twelve target rows is a genuine miss, so no flip it
+earns can be dismissed under Standing Lesson 7; and the reporting units
+invite this mistake at a glance, which is a note for whoever next reads
+an OE column.
+
+### 2. BLOCKED-queue audit — checked against files, not against the entry that last mentioned each item
+
+**Closed, verified this session:**
+
+- **C5 (rig MP3s to the Air) — CLOSED.** `audio/rig/` holds **24 MP3s**
+  on this runner. Standing owner action since 08-24; this is the first
+  session to verify it against the filesystem rather than repeat it as
+  open. Consequence below.
+- **C6 (nightly re-arm) — CLOSED.** `com.musical-perception.nightly` is
+  loaded in launchd here, and `logs/run-summaries.md` carries successful
+  08-25 and 08-26 runs. The 08-24 silent slot is explained in
+  `air-nightly.sh:29-34` (a tracked file left dirty between runs) and
+  guarded.
+- **C2 (`accompanied: false`) — CLOSED, re-verified.**
+  `evals/cases/rig-numbers-2-4-120-clean.yaml:12` still reads
+  `accompanied: false`, which is the *correct* state under the owner's
+  C2 ruling. Recorded so no future audit re-opens it as drift.
+- **C3, C4, B5, R1-R4** — closed by their own entries; no file
+  contradicts them.
+
+**Newly unblocked as a consequence of the above:**
+
+- **W3-remainder** (A5's queued raw-condition completion) was blocked on
+  C5 and is now executable: `docs/research/baseline-benchmark.md:8` says
+  `raw` covers **6 of 30** because "`audio/rig/*.mp3` is not on this
+  runner". It is now. BeatNet is a cheap optional follow-up
+  (`baseline-benchmark.md:56`; the madmom venv exists).
+- **W4 case files** were gated on W1.5, and W1.5 is now in the code, not
+  just the ledger: `evals/cases.py:27` lists `maturity` in `_TOP_KEYS`,
+  `:53` defaults it to `verified`, `:144` parses it. A6's stated
+  objection — that writing case files "would have frozen agent-guessed
+  truth into headline metrics" — is discharged by construction.
+
+**Genuinely open:**
+
+- **W9 execution** (ranked below).
+- **A8's "nod-first" adoption has no workstream home** — see amendment
+  A5-27.
+- **HELD-OUT containment is not agent-auditable** — see A4-27.
+
+### 3. Re-ranking (the meta-rung's act)
+
+```
+1. W9   tempo-estimator robustness + the 70-140 band     PIPELINE, nightly-eligible
+2. W4   Barre-1 DEV ingestion: provisional case files    unblocked by W1.5 landing
+3. W3r  baseline benchmark, raw-condition remainder      unblocked by C5
+4. W6   rung 5, ensembled semantics                      partly blocked (see A6-27)
+-  W5   joint posterior                                  BLOCKED-on-owner (charter rule)
+-  W8   rung 7, RETIRED sweep                            BLOCKED (after W5)
+-  W1, W1.5, W2, W2.5, W7                                COMPLETE
+```
+
+**W9 first.** The owner recorded his own view at commissioning — "worth
+~9 clips of 23, larger than anything remaining on the extractor" — and
+explicitly left the rank to this review rather than fixing it. This
+review ranks it first on evidence the owner's probe did not have: the
+probe was indicative-only by its own four-item disclaimer (wrong stream,
+wrong metric, scratch estimator, n=23). §1 above reaches the same
+conclusion from the **shipping path** and the **blessed metric**, which
+is precisely what W9 was commissioned to measure. Committed tempo is
+0.586 against a completion target of 0.85; it is the furthest-behind
+headline field, and it is the only open workstream that can move one.
+
+**W4 second, and the ranking is deliberately not first.** W4's output is
+`maturity: provisional` by charter, and provisional rows gate nothing and
+enter no headline aggregate — so W4 cannot move a number by itself. Its
+value is that it converts a blocked pipeline into *owner-verifiable*
+work, and owner verification is the long pole on amendment 4's n ≥ 60
+constraint. That argues for doing it soon, not for doing it before the
+one workstream that can move an outcome this week.
+
+**W3r third:** cheap, mechanical, closes an owner-queued item, moves no
+gate. Correct filler for a night when the top two are unavailable. One
+constraint discovered: the `.gitignore` exception at lines 41-45 exists
+for `audio/rig/*.mp3` but `git ls-files audio` returns **0** — the MP3s
+are present and untracked, so W3r must run on the Air, or the owner opts
+into Path B by committing ~11 MB. Not a decision this review takes.
+
+### 4. Charter amendments PROPOSED (owner-reviewed; the branch edit is the proposal)
+
+- **A1-27 — fix W9's rank at 1**, per §3. The charter's W9 entry says
+  "Rank not fixed at commissioning — W0 re-ranks"; this discharges it.
+- **A2-27 — strike W4's "case files gated on W1.5" status mark.** The
+  gate is satisfied in code (`evals/cases.py:27,53,144`).
+- **A3-27 — strike W3's media block.** C5 verified closed against files.
+- **A4-27 — HELD-OUT containment needs an owner attestation, because no
+  agent can check it.** The Barre-1 DEV media still lives on this runner
+  at `video/youtube/Ballet Barre 1`. C1 required the four HELD-OUT
+  exercises to be moved off the Air. **This session did not list that
+  directory and no session should**: with 12 exercises split 8 DEV / 4
+  HELD-OUT, listing the survivors names the held-out four by complement,
+  so the only available audit *is* the leak. Proposal: the owner appends
+  a dated one-line attestation to this ledger when he has confirmed the
+  removal, and the charter states plainly that agents must not enumerate
+  that directory. Right now the charter asks for containment it gives no
+  one a safe way to verify, and this is the third consecutive review to
+  handle it by looking away.
+- **A5-27 — "nod-first" has no workstream number.** The owner adopted it
+  at A8 (2026-08-24): head-nod kinematics precedes any gaze work. It is
+  parked inside W7, which is marked COMPLETE — and the selection rule is
+  "the highest-ranked workstream not BLOCKED", which can never reach a
+  note inside a finished workstream. As written, an owner-adopted
+  direction is unschedulable. Proposal: either commission it as **W10**
+  with a rank, or record explicitly that it is backlog and not a
+  workstream. Either is fine; silence is not.
+- **A6-27 — W6's condition cannot be drafted, and the charter assigns it
+  to me.** Rung 5 says "Condition to be finalized when rung 4's shape is
+  known — the meta-rung drafts it." Rung 4 is W5, which is owner-started
+  and unstarted, so this W0 deliverable is structurally blocked and will
+  be blocked at every future W0 until W5 moves. Named here so the next
+  meta-rung does not re-discover it. Flagged, not pressed: W6 also
+  contains the Feb-2026 model-comparison re-run, which does not depend on
+  rung 4's shape and could be split out as independent work if the owner
+  wants a nightly-eligible perception task.
+
+### 5. Plain-language summary, for the owner
+
+Nothing is broken. The tree is healthy — 252 tests pass, the full suite
+reports no outcome changes against the blessed baseline, and every number
+in this review was re-derived from committed files rather than copied
+from a previous entry.
+
+Two of your standing to-dos are done and nobody had noticed: the rig MP3s
+are on the Air (all 24), and the nightly job is running again. That
+quietly unblocks two things — the leftover half of the baseline benchmark,
+and the Barre-1 case files, which were waiting on eval plumbing that has
+since shipped.
+
+The real news is about your tempo hunch. You probed it on the wrong
+stream with a scratch estimator and said so honestly at the time. Checked
+against the shipping pipeline and the blessed scorecard, it is bigger
+than the probe suggested: **every clip in the corpus whose real tempo
+sits outside 70-140 BPM is scored wrong — five for five.** The pipeline
+pulls all five back inside the band. Removing the band does not simply
+win those five; three are octave errors it could plausibly recover, one
+is a genuine miss, and one is beyond reach. Call it three rows, 0.586 →
+0.690, with a risk to the in-band clips that has to be measured rather
+than assumed. That is W9's job and it is now ranked first.
+
+The uncomfortable part: your own Standing Lesson 2, written on day one
+and read aloud at the start of every session since, names this exact band
+as a mistake. It has been quoted eighteen days running while the code
+kept doing it. The lessons list has no mechanism for turning a lesson
+into scheduled work, and that is the process gap worth your attention
+more than the band itself.
+
+Four things want a ruling: W9's rank (proposed: first), the nod-first
+experiment having no workstream number, whether to commit the rig MP3s,
+and — the one that keeps getting deferred — a one-line attestation that
+the four held-out Barre-1 exercises really did leave this machine. No
+agent can check that without breaking the seal, so it can only come from
+you.
+
+Regressions and classifications: none. No pipeline, eval, grid, or case
+file touched. `git diff --stat main` covers `docs/research/agent-charter.md`
+and this ledger only.
+
+Lesson (durable, one paragraph): A standing lesson is only a rule if
+something schedules it — this loop has quoted "the old 70-140 band" as a
+named error at every session boot for eighteen days while three call
+sites kept it on the committed path, because the lessons list is read at
+boot and never consulted at ranking time, and no workstream owns
+"discharge the lessons." The second keeper is narrower and cost this
+session a wrong headline before it caught it: OE1/OE2 are log2 octave
+errors sitting in the same table as linear ±4%/±8% tolerances, and
+comparing them by eye inflated the failure count from 12 to 14 and
+invented two knife-edge rows that do not exist — a reviewer whose whole
+job is disbelieving other entries' numbers reproduced exactly the failure
+mode it exists to catch, and only re-deriving against the blessed summary
+caught it. Re-derivation is not a courtesy owed to other sessions; it is
+owed to the current one.
+
+Status: PROPOSED — re-ranking recorded, amendments A1-27 through A6-27
+for the owner's next batch review. The charter edit on this branch is the
+proposal and lands only if merged. Nothing here is blessed; no `evals
+bless` was run.
