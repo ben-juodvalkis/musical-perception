@@ -204,7 +204,14 @@ def run_stage1(
 
     provisional_rows = [r for r in rows if r.provisional]
     verified_rows = [r for r in rows if not r.provisional]
-    styles = sorted({r.count_style for r in rows if r.count_style})
+    # Slices are VERIFIED-ONLY (owner ruling 2026-08-26, closing W1.5's
+    # parked remainder). They pooled both maturities until then — a rung-1
+    # design that predates case maturity — which would have silently mixed
+    # owner-verified truth with agent-proposed truth the moment W4's
+    # provisional Barre-1 cases landed. A style whose only clip is
+    # provisional therefore drops out of the table entirely rather than
+    # reporting a number nobody verified.
+    styles = sorted({r.count_style for r in verified_rows if r.count_style})
     return {
         "pulse_source": PULSE_SOURCE,
         "tolerance_s": tol,
@@ -215,7 +222,7 @@ def run_stage1(
         "aggregate_provisional": _pooled(provisional_rows),
         "aggregate_verified": _pooled(verified_rows),
         "slices": {
-            style: _pooled([r for r in rows if r.count_style == style])
+            style: _pooled([r for r in verified_rows if r.count_style == style])
             for style in styles
         },
         "missing_grids": missing,

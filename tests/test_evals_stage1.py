@@ -187,5 +187,56 @@ def test_run_stage1_scores_and_reports_missing(tmp_path):
     assert out["aggregate_verified"] is None
     agg = out["aggregate_provisional"]
     assert agg["n_clips"] == 1
-    assert out["slices"]["numbers"]["n_clips"] == 1
+    # Slices are verified-only (owner ruling 2026-08-26). This clip's grid
+    # is provisional, so its count_style must NOT appear — the table would
+    # otherwise report an unverified number under a bare style name. This
+    # assertion encodes the ruling; it is the deliverable, not a workaround
+    # for a failure.
+    assert out["slices"] == {}
     assert not out["errors"]
+
+
+@needs_yaml
+def test_slices_are_verified_only_and_do_not_pool_maturities(tmp_path):
+    """The paired test the ruling actually needs.
+
+    A filter that excludes everything satisfies "provisional is absent"
+    just as well as a correct one (W1.5's standing lesson), so this
+    asserts BOTH halves at once: the verified row of a style is present
+    and scored, the provisional row of the SAME style is absent from it,
+    and a style carried only by a provisional row produces no slice.
+    """
+    from musical_perception.annotation.grids import BeatGrid, save_grid
+
+    spec = [
+        # (case id, count_style, grid provisional?)
+        ("clip-v", "numbers", False),      # verified -> must appear
+        ("clip-p", "numbers", True),       # provisional, same style -> excluded
+        ("clip-only", "vocables", True),   # style with no verified row -> gone
+    ]
+    (tmp_path / "cases").mkdir()
+    for cid, style, prov in spec:
+        (tmp_path / "cases" / f"{cid}.yaml").write_text(yaml.safe_dump({
+            "id": cid,
+            "input": {"trace": f"traces/{cid}/"},
+            "tags": {"count_style": style},
+            "expect": {"marking_bpm": 104},
+        }))
+        _write_trace(tmp_path / "traces" / cid, n_words=4)
+        times = [round(1.0 + 0.3 * i, 4) for i in range(4)]
+        save_grid(
+            BeatGrid(clip=cid, provisional=prov, beats=times, onsets=times),
+            tmp_path / "grids",
+        )
+
+    out = run_stage1(tmp_path)
+
+    # All three clips are scored and reported...
+    assert {c["case_id"] for c in out["clips"]} == {"clip-v", "clip-p", "clip-only"}
+    assert out["aggregate_provisional"]["n_clips"] == 2
+    assert out["aggregate_verified"]["n_clips"] == 1
+
+    # ...but only the verified one reaches a slice.
+    assert set(out["slices"]) == {"numbers"}
+    assert out["slices"]["numbers"]["n_clips"] == 1
+    assert "vocables" not in out["slices"]
