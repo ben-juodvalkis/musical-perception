@@ -4250,3 +4250,108 @@ committed path is a finding waiting to be noticed, not an accident.
 Status: PROPOSED — the probe and the W9 commissioning go to the
 meta-rung and the next batch review. Four rulings from 08-25/08-26
 remain open and are unaffected by this entry.
+
+## 2026-08-26 · rung M · main · local (owner rulings on the 08-25/08-26 queue)
+
+**Owner rulings**, applied in an owner-attended session immediately after
+the W9 commissioning entry above. `agent/marathon` merged to main first
+(W1.5 + W2.5, both PROPOSED, both accepted); `RESEARCH-LOG.md` conflicted
+only because both branches append at the end of the file, resolved by
+keeping every entry in order 08-25, 08-26 W2.5, 08-26 owner probe.
+
+### R1 — the extractor's headline metric: level-collapsed F_lc stands
+
+W2.5 asked whether `F_lc` remains the headline now that a change can move
+the collapsed and un-collapsed metrics in opposite directions
+(+0.037 vs −0.030). **Ruling: it stands — and both numbers are reported
+together from now on, never the flattering one alone.**
+
+The reasoning is the owner probe in the entry above, not preference. The
+un-collapsed metric was right that the extra events cost *something*, but
+wrong about what: they are destructive only to a
+median-of-consecutive-gaps tempo estimator, and under a periodicity
+estimator the same 132 extra between-beat events cost **nothing at all**
+(V0 and V1 both 20/23). So the clutter is a defect of the consumer, not
+of the stream, and the correct response is W9 — not discarding W2.5's 40
+recovered beats. Standing requirement: any future extractor result
+reports collapsed and un-collapsed side by side, and a fall in either is
+named explicitly.
+
+### R2 — `silence_reference` / `voiced_median`: deleted
+
+The falsified speech-band floor is **removed from `pulse.py`** rather
+than retained as a setting nobody may use. Its measured result is not
+lost: the four-variant table survives in
+`docs/research/w25-nuclei-gate.{json,md}` and in git at `ca6ed2a`.
+`scripts/w25_nuclei_gate.py` is reduced to V0/V1 with a header saying why,
+and the artifact carries a provenance note so its V2/V3 rows are not
+mistaken for something HEAD can still produce.
+`events_per_nucleus: first` is **kept** — that one reproduces rung 2's
+blessed stream and is how "no silent re-baselining" stays checkable.
+
+**Found while doing it, and worth naming.** `tests/test_pulse.py`
+carried `test_unknown_vocabulary_values_are_errors_not_silent_fallbacks`
+**twice**, byte-identical, at lines 91 and 111. Python binds the second
+over the first, so one of the two never executed. This is residue of the
+`str.replace` incident W2.5 disclosed — the repair restored the clobbered
+test's body but left a duplicate definition behind. No coverage was
+actually lost (the copies were identical), but a green suite containing a
+test that cannot run is exactly the kind of thing this ledger exists to
+catch. Deduplicated here.
+
+### R3 — `accompaniment_only` confirmed
+
+Owner's word, confirmed verbatim in session. The tag vocabulary shipped
+by W1.5 stands unchanged; no case file has to move.
+
+### R4 — stage-1 slices are verified-only (EVAL-CHANGE)
+
+W1.5's parked remainder, executed. `slices` pooled provisional and
+verified rows — a rung-1 design predating case maturity — which would
+have silently blended owner-verified truth with agent-proposed truth the
+moment W4's provisional Barre-1 cases landed. Now computed from verified
+rows only, and a `count_style` carried solely by provisional rows drops
+out of the table rather than reporting a number nobody verified.
+
+**W1.5's parked prediction scored 4/4, exactly as measured a night
+earlier:**
+
+```
+                     predicted          observed
+step_names           0.414 -> 0.337     0.337   (n 14 -> 13)   HIT
+mixed                empties (n 1->0)   absent from the table  HIT
+numbers              unmoved (0.439)    0.439  n=14            HIT
+vocables             unmoved (0.118)    0.118  n=1             HIT
+aggregate_verified   unmoved            clips=28 F=0.383       HIT
+```
+
+One existing test changed: `test_run_stage1_scores_and_reports_missing`
+asserted `slices["numbers"]["n_clips"] == 1` on a clip whose grid is
+provisional. That test *encoded the behaviour being ruled out*, so
+editing it is the deliverable, not a workaround — the same distinction
+W1.5 drew about `tests/test_evals_replay.py`, and it is recorded here
+rather than passed over. It now asserts `slices == {}`.
+
+Added `test_slices_are_verified_only_and_do_not_pool_maturities`, which
+asserts both halves at once: the verified row of a style is present and
+scored, a provisional row of the **same** style is excluded from it, and
+a style carried only by a provisional row yields no slice. W1.5's
+standing lesson is that a filter excluding *everything* passes a
+one-sided test just as well as a correct one; this is the paired test
+that distinguishes them.
+
+### Verification
+
+- `pytest`: **252 passed / 3 skipped** (251/3 at merge; +1 net — one test
+  added, one duplicate definition removed).
+- `evals run --suite tier0,tier1,stage1` → **"no outcome changes vs
+  baseline."** stage-1 pins no outcomes, so the slice change owes no
+  re-bless; `evals/baseline.json` is untouched and no `bless` was run.
+- Nothing under `evals/cases/`, `evals/traces/`, or `evals/grids/`
+  modified. `src/musical_perception/evals/stage1.py` **is** modified —
+  permitted: R4 is W1.5's own parked remainder, and W1.5 is a declared
+  EVAL-CHANGE workstream (charter rule 2). No pipeline change is bundled
+  with it; R2's `pulse.py` deletion is committed separately.
+
+Status: **ACCEPTED** (owner). The 08-25/08-26 ruling queue is now empty.
+Open items are W9's execution and W0's re-ranking, which is due tonight.
