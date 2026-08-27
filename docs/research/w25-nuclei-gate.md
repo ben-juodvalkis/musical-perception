@@ -1,5 +1,12 @@
 # W2.5 — the nuclei gate
 
+> **Provenance.** Produced 2026-08-26 by `scripts/w25_nuclei_gate.py` as
+> first written. The V2/V3 rows use `silence_reference=voiced_median`,
+> which the owner ruled out of `pulse.py` later the same day once it was
+> falsified; HEAD can no longer express them. The rows below are the
+> measured record and are preserved deliberately — do not regenerate this
+> file expecting four variants.
+
 Blessed §2.1 metrics on the 28 owner-verified grids. V0 is the rung-2 blessed extractor.
 
 | variant | ref | per-nucleus | n_pred | ALL R/P/F | numbers R/P/F | step_names R/P/F | vocables R/P/F |

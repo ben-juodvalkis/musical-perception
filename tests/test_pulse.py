@@ -88,14 +88,6 @@ def test_double_rise_in_one_nucleus_is_kept_under_w25_default():
     assert abs(first_only[0] - 1.0) < 0.06
 
 
-def test_unknown_vocabulary_values_are_errors_not_silent_fallbacks():
-    y = _harmonic_burst(1.0, 0.30, 5.0)
-    with pytest.raises(ValueError, match="events_per_nucleus"):
-        acoustic_pulse_events(y, SR, AcousticPulseParams(events_per_nucleus="firs"))
-    with pytest.raises(ValueError, match="silence_reference"):
-        acoustic_pulse_events(y, SR, AcousticPulseParams(silence_reference="q98"))
-
-
 def test_unvoiced_noise_burst_is_dropped():
     rng = np.random.default_rng(7)
     y = _harmonic_burst(1.0, 0.40, 4.0)
@@ -112,8 +104,6 @@ def test_unknown_vocabulary_values_are_errors_not_silent_fallbacks():
     y = _harmonic_burst(1.0, 0.30, 5.0)
     with pytest.raises(ValueError, match="events_per_nucleus"):
         acoustic_pulse_events(y, SR, AcousticPulseParams(events_per_nucleus="firs"))
-    with pytest.raises(ValueError, match="silence_reference"):
-        acoustic_pulse_events(y, SR, AcousticPulseParams(silence_reference="q98"))
 
 
 def test_silence_yields_nothing():

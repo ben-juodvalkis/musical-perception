@@ -7,13 +7,20 @@ metrics, by importing the committed rung-2 kill-test harness. Nothing
 under src/musical_perception/evals/ is modified or re-implemented.
 
 Variants (pre-registered in RESEARCH-LOG 2026-08-26 before any result):
-  V0 baseline        silence_reference=q99            events_per_nucleus=first
-  V1 all-in-nucleus  silence_reference=q99            events_per_nucleus=all
-  V2 speech-band     silence_reference=voiced_median  events_per_nucleus=first
-  V3 both            silence_reference=voiced_median  events_per_nucleus=all
+  V0 baseline        events_per_nucleus=first
+  V1 all-in-nucleus  events_per_nucleus=all
 
-Both events_per_nucleus values are derived from ONE extraction pass per
-silence_reference, so the pair is guaranteed to share identical regions.
+REDUCED 2026-08-26 by owner ruling. As first run, this script also scored
+V2/V3, the `silence_reference=voiced_median` speech-band floor. That
+hypothesis was falsified — it moves nucleus bounds and changes not one
+emitted event on any of the 28 verified clips — and the owner ruled the
+code path out of `pulse.py` rather than keep a setting nobody may use, so
+V2/V3 are no longer expressible. Their measured rows survive in the
+committed artifact and in git at commit ca6ed2a; re-running this script
+now regenerates the V0/V1 table only.
+
+Both events_per_nucleus values are derived from ONE extraction pass, so
+the pair is guaranteed to share identical regions.
 
 Usage:  python scripts/w25_nuclei_gate.py
 Writes: docs/research/w25-nuclei-gate.json / .md
@@ -45,9 +52,9 @@ SLICES = ("ALL", "numbers", "step_names", "vocables")
 TARGET = "rig-names-4-4-100-quiet"
 
 
-def events_for_reference(cases, ids, reference):
+def events_for_reference(cases, ids):
     """One extraction pass -> both 'first' and 'all' event streams."""
-    params = AcousticPulseParams(silence_reference=reference)
+    params = AcousticPulseParams()
     first, allev, widths = {}, {}, {}
     for cid in sorted(ids):
         y = _load_audio(Path(cases[cid].media), params.peakrate.sr)
@@ -76,10 +83,9 @@ def main() -> int:
     styles = {cid: cases[cid].tags.get("count_style") for cid in grids}
 
     preds, widths = {}, {}
-    for ref, (a, b) in (("q99", ("V0", "V1")), ("voiced_median", ("V2", "V3"))):
-        f, al, w = events_for_reference(cases, grids, ref)
-        preds[a], preds[b] = f, al
-        widths[ref] = w
+    f, al, w = events_for_reference(cases, grids)
+    preds["V0"], preds["V1"] = f, al
+    widths["q99"] = w
 
     # V0 must reproduce the blessed rung-2 extractor cache exactly.
     cached = json.loads(
@@ -88,14 +94,14 @@ def main() -> int:
     print(f"\nV0 REPRODUCTION vs blessed cache: {repro}/28 byte-identical")
 
     per_clip, slices = {}, {}
-    for v in ("V0", "V1", "V2", "V3"):
+    for v in ("V0", "V1"):
         per_clip[v] = {cid: blessed_row(grids[cid].beats, preds[v][cid])
                        for cid in sorted(grids)}
         slices[v] = slice_table(per_clip[v], styles)
 
     lost = {v: sorted(cid for cid in grids
                       if per_clip[v][cid]["r_tac"] < per_clip["V0"][cid]["r_tac"] - 1e-9)
-            for v in ("V1", "V2", "V3")}
+            for v in ("V1",)}
     npred = {v: sum(len(preds[v][cid]) for cid in grids) for v in preds}
 
     lines = ["# W2.5 — the nuclei gate", "",
@@ -104,9 +110,8 @@ def main() -> int:
              "| variant | ref | per-nucleus | n_pred | " +
              " | ".join(f"{s} R/P/F" for s in SLICES) + " |",
              "|---|---|---|---|" + "---|" * len(SLICES)]
-    meta = {"V0": ("q99", "first"), "V1": ("q99", "all"),
-            "V2": ("voiced_median", "first"), "V3": ("voiced_median", "all")}
-    for v in ("V0", "V1", "V2", "V3"):
+    meta = {"V0": ("q99", "first"), "V1": ("q99", "all")}
+    for v in ("V0", "V1"):
         cells = " | ".join(
             f"{slices[v][s]['r_tac']:.3f}/{slices[v][s]['p_lc']:.3f}/"
             f"{slices[v][s]['f_lc']:.3f}" for s in SLICES)
