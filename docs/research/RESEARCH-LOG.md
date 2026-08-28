@@ -5001,3 +5001,11 @@ python -m musical_perception.evals bless
 ```
 
 Status: **PROPOSED** — awaiting owner review and re-bless.
+
+## 2026-08-28 · rung M · agent/marathon · (one-line note: awaiting blessing)
+
+W9's increment is complete and pushed (`896339d`); the rung is now
+**awaiting owner blessing** — the baseline re-bless is an owner act under
+charter rule 1, so no further session work on W9 is possible until it
+lands, and the next scheduled session should take the next-ranked
+workstream (W4) rather than re-opening this one.
