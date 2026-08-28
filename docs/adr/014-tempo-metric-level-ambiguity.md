@@ -1,7 +1,15 @@
 # ADR-014: Report the Tempo Metric-Level Family Instead of Collapsing It
 
 **Date:** 2026-08-08
-**Status:** Accepted — implemented 2026-08-09
+**Status:** Accepted — implemented 2026-08-09. **Partially superseded
+2026-08-28 (rung M / W9):** the "leave the primary alone, report the
+family alongside it" compromise below was the right call while the fold
+was unexamined. W9 replaced the hard 70–140 snap with level selection
+under a soft log-normal tempo prior, so clip 12 (62.2 BPM) and clip 13
+(161.8 BPM) are now correct *as primaries*, not merely discoverable as
+alternates. The family and everything else in this ADR stand unchanged;
+only the claim that the primary answer is frozen no longer holds. See
+the 2026-08-28 RESEARCH-LOG entry.
 
 ## Context
 

@@ -4805,3 +4805,199 @@ Unit-test contract changes expected (precision layer, not eval files):
 
 Status: **PRE-REGISTERED** — results and scorecard in the completion
 entry below.
+
+## 2026-08-28 · rung M / W9 (tempo-estimator robustness: the 70-140 band) · agent/marathon · local (nightly, unattended) — RESULTS
+
+Same session as the pre-registration above; the predictions were committed
+in `d9c3e97` before a line of `tempo.py` was touched.
+
+### Headline
+
+| tier-1 field | before | after |
+|---|---|---|
+| tempo (committed acc) | 17/29 = **0.586** | 20/29 = **0.690** |
+| tempo mean credit | 0.567 | 0.667 |
+| meter_triple | 11/28 = 0.393 | 12/28 = **0.429** |
+| counts | 12/21 = 0.571 | 13/21 = **0.619** |
+| sides / slot | 1.0 / 1.0 | 1.0 / 1.0 |
+| **ECE** | 0.2654 | **0.1998** |
+| Acc1@4% / Acc1@8% | 0.379 / 0.586 | **0.483 / 0.690** |
+| Acc2@4% / Acc2@8% | 0.483 / 0.690 | 0.483 / 0.690 |
+| OE1 abs-median / max | 0.0710 / 1.0356 | **0.0604 / 0.7969** |
+| OE2 abs-median / max | 0.0604 / 0.491 | 0.0604 / 0.491 |
+| tier-0 tempo / meter | 25/25 · 24/25 | 25/25 · 24/25 |
+| stage1 aggregate_verified | P .334 R .449 F .383 | **identical** |
+
+Outcome changes vs baseline, complete list — six, on four clips:
+
+```
+frappe.counts:                          abstained -> correct
+frappe.tempo:                           wrong     -> correct
+rig-names-2-4-160-long.tempo:           wrong     -> correct
+rig-names-3-4-90-clean.counts:          wrong     -> abstained
+rig-numbers-4-4-60-halftempo.meter_triple: wrong  -> correct
+rig-numbers-4-4-60-halftempo.tempo:     wrong     -> correct
+```
+
+**Zero rows regressed at the outcome level, in any field.** None of the
+changed rows is provisional.
+
+### Prediction scorecard (ADR-015 discipline: scored honestly, misses first)
+
+- **P3 — PARTIAL MISS.** Acc1 and OE1 moved exactly as predicted. But I
+  predicted "between-levels rows 11→8" and they stayed at **11**, and I
+  predicted |OE2| median would improve and it did not move at all. The
+  reason is a fact about the metrics I should have known before writing
+  the prediction: **OE2 and `between_levels` are octave-folded by
+  construction, so no level-selection change can ever move them.** They
+  measure whether a reading sits *between* metric levels, which is
+  invariant to which level you pick. Recorded as a note for anyone reading
+  an OE column — the second such note in two sessions (W0's 2026-08-27
+  entry disclosed the log2-vs-linear units trap).
+- **P7 — MISS.** I predicted counts unchanged. Counts changed on two rows,
+  because `estimate_counts` takes the normalized BPM as one of its votes
+  (`precision/structure.py:139-142`, the `span_x_bpm` cast). I read the
+  tempo path and did not read its consumers. Both changes are diagnosed
+  below; the field net-improved, but the prediction was wrong.
+- **P6 — right, and right for the stated reason.** meter_triple 11→12, in
+  the predicted 11–13 range, with **no losses**, exactly as the argument
+  said: the five bpm-wrong rows could not regress because
+  `score_meter_triple` requires `bpm_ok`. The predicted "+2 at most" came
+  in at +1 — `rig-names-2-4-160-long` did not flip, and the reason is
+  visible in the artifact: Gemini calls that clip `4/4 duple` and the truth
+  is `2/4 none`. The fold was never what was wrong with that row's meter.
+- **P1 — exact.** 17→20, the three named clips, zero losses.
+- **P2 — exact.** truth_in_family 3/12 → 0/9.
+- **P4, P5 — exact.** tier-0 untouched at 25/25 and 24/25.
+- **P8 — right, and by more than claimed.** I predicted ECE would move
+  toward the confidences, not away, and declined to assert a size. It fell
+  **0.2654 → 0.1998**, a 25% reduction, because the three flipped rows were
+  confident *and* wrong before.
+- **Prediction not scored, stated for the record:** the pre-registration
+  said "eight rows change multiplier". Six did.
+  `adr006-8-counts-triple` (237.7) and `rig-mixed-4-4-104-quantities`
+  (183.1) still fold, because both sit above the new 178.0 BPM threshold.
+  Neither changes any outcome; I had simply miscounted which rows crossed.
+
+Six predictions landed, two missed. Both misses are of the same kind — I
+predicted the tempo module's behaviour correctly and its *surroundings*
+incorrectly (a metric's definition, a consumer's inputs).
+
+### The one regression, classified
+
+Nothing regressed at the outcome level, but one row lost partial credit and
+it should not pass unremarked:
+
+- **`rig-names-2-4-160-long`.meter_triple: credit 0.5 → 0.0**, outcome
+  `wrong` both times (so it never appears in `compare_outcomes`).
+  Classification: **genuine-trade.** Before, the pipeline said
+  `4/4 @78.3 duple`, whose *rhythmic surface* (156.6 onsets/min in twos)
+  matched the truth `2/4 @160 none` closely enough for ADR-007 partial
+  credit. Now it says `4/4 @156.6 duple` — surface 313.2 onsets/min, no
+  match. The cause is real and worth its own line: with `multiplier == 1`
+  the derivation table passes **Gemini's subdivision claim straight
+  through**, and Gemini made that claim while implicitly reading the clip
+  at a different metric level. Keeping the fast measurement is right;
+  stacking a level-conditional "duple" on top of it is not. Net on the row
+  is still +0.5 (tempo 0 → 1.0). **Backlog item W9-b: the derivation table
+  should re-derive subdivision when the selected level differs from the
+  one the observation was made under, rather than passing it through.**
+
+### The two counts changes, diagnosed
+
+- **`frappe` abstained → correct (64).** Genuine gain, downstream of the
+  tempo fix: with BPM at 162.5 instead of 81.2 the `span × bpm` vote agrees
+  with the phrase span and `estimate_counts` commits.
+- **`rig-names-3-4-90-clean` wrong (16) → abstained.** Not a regression
+  under Vision 08 §8.3 — a wrong commitment became an honest abstention,
+  and coverage is unchanged overall because `frappe` moved the other way.
+  Flag, in house style: this is the clip carrying the
+  transcription-hallucination guard (94 transcript tokens vs 52 voiced
+  onsets), and its tempo is wrong before (129.6) and after (64.8) against
+  a truth of 90. Nothing about this row is trustworthy in either
+  direction; do not quote the abstention as evidence of good calibration.
+
+### Second finding, negative, recorded so nobody repeats it
+
+**The band inside `interpret_meter`'s arbitration must NOT be removed, and
+the probe says so with per-clip evidence.** All three clips where the
+marker arm currently wins — `rig-numbers-3-4-90-clean` (onset 257.9),
+`-104-duple` (205.6), `-80-triplet` (169.1) — are **correct**, and each wins
+only because its onset reading falls outside 70–140 and hands over. Delete
+the band there and all three become onset-driven and wrong: −3 tempo rows,
+which would have cancelled this session's entire +3. There the band is a
+**level discriminator between two arms**, not a fold applied to a
+measurement; Standing Lesson 2 does not condemn it. A comment saying so now
+sits at `precision/tempo.py` above the arbitration block.
+
+### What this does not fix, stated plainly
+
+The two remaining tempo failure classes are untouched and neither is a band
+problem: five rows where the onset arm measures a genuinely wrong period
+(`rig-names-2-4-120-clean` 90.1 vs 120, `-4-4-104-coda` 74.0 vs 104,
+`-3-4-88-waltz` 102.6 vs 88, `-4-4-63-adagio` 72.0 vs 63,
+`-3-4-90-clean` 64.8 vs 90), and four where the marking is at a level the
+prior cannot recover (`adr006-8-counts-triple`, `adr007-plies-demo`,
+`rig-mixed-4-4-104-quantities`, `rig-names-6-8-100-clean`).
+
+And the honest limit of the method: **the 52-vs-61.5 BPM decision is made
+by the prior alone.** Tier-0's half-tempo case (raw 52) must fold and
+`rig-numbers-4-4-60-halftempo` (raw 61.5) must not, and no acoustic
+evidence in the pipeline separates them — only their distance from 99 BPM
+does. The admissible interval for the ÷2 log-cost is (0.86, 1.72) nats and
+the chosen value 1.386 sits inside it with 0.33 nats of margin, but a
+future clip landing between those two raws is not decidable by this
+mechanism at any parameter value. That is the gap W5's joint posterior
+exists to close, and it is now measured rather than asserted.
+
+### Constraints
+
+```
+$ git diff --stat main
+ docs/adr/014-tempo-metric-level-ambiguity.md |  10 +-
+ docs/research/RESEARCH-LOG.md                | 561 +++++++++++++++++++++++++++
+ docs/research/agent-charter.md               |  49 ++-
+ scripts/w9-tempo-probe.py                    |  59 +++
+ src/musical_perception/precision/tempo.py    | 137 +++++--
+ tests/test_tempo.py                          |  65 +++-
+ 6 files changed, 825 insertions(+), 56 deletions(-)
+```
+
+**Disclosed slip.** The first attempt at this commit used `git add -A` and
+swept in the 24 untracked `audio/rig/*.mp3` files (~11 MB) — the exact Path
+B decision W0's 2026-08-27 entry said was the owner's to take, not a
+session's. Caught by reading `git diff --stat main` rather than trusting
+the commit, removed with `git rm --cached -r audio` and the commit amended
+before any push. The MP3s are back to untracked; the `.gitignore` exception
+at lines 41-45 means they are *not* ignored, so any future `git add -A` on
+the Air will do the same thing. Whoever takes W3-remainder should stage
+explicit paths.
+
+No file under `evals/cases/`, `evals/traces/`, `evals/grids/` or
+`evals/baseline.json` is modified, and `src/musical_perception/evals/` is
+untouched — this is a pipeline workstream, not an EVAL-CHANGE. (The
+`agent-charter.md` line is W0's 2026-08-27 commit already on this branch,
+not this session's.) `evals/runs/` is gitignored. Branch:
+`agent/marathon`.
+
+`pytest`: **253 passed, 3 skipped, 1 failed** — the single failure is
+`test_tier1_outcomes_match_baseline_exactly`, which fails by design on any
+outcome-moving change and clears when the owner re-blesses. Four
+precision-layer unit tests changed contract, all of them tests that pinned
+the old fold: `normalize_tempo(60.0)` is now `(60.0, 1)`, and ADR-014's
+`PRIMARY_SWEEP` rows for clips 12 and 13 now keep their measured level.
+ADR-014's Status line carries a partial-supersession note.
+
+### BLOCKED — owner action needed
+
+**Re-bless the baseline.** This change moves six tier-1 outcomes (five
+improvements, one wrong→abstained) and cannot self-bless (charter rule 1).
+Until it is blessed the tier-1 pytest gate stays red on this branch and
+the nightly runner will report it as a failure. Recipe:
+
+```
+python -m musical_perception.evals run --suite tier0,tier1
+python -m musical_perception.evals bless
+```
+
+Status: **PROPOSED** — awaiting owner review and re-bless.
