@@ -123,3 +123,23 @@ is how the runner's permission failure was found.)*
 > Two things wait on you: whether level-collapsed F_lc stays the extractor's headline now that the two metrics can move in opposite directions, and whether to keep or delete the `voiced_median` path that provably changes nothing.
 
 *Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
+
+## run 2026-08-27T09:00:09Z · main beb918f
+
+- **outcome:** success, shell exit 0
+- **turns:** 43 · **duration:** 9.1 min · **cost:** $3.55
+
+**Agent's closing message:**
+
+> …tolerance by eye. Those are **log₂** octave errors — 0.08 there is 5.7%, not 8%. That inflated the failure count to 14 and invented two knife-edge rows. Recomputed in linear ratio it reconciles exactly with the blessed summary (17/29 = 0.586 = Acc1@8%, 12 wrong, **zero** knife-edge rows). Corrected figures are what's in the entry, and the near-miss is recorded there.
+> 
+> ## Proof
+> 
+> - `pytest` → **252 passed / 3 skipped**
+> - `evals run --suite tier0,tier1,stage1` → **"no outcome changes vs baseline"** (aggregate_verified 28 clips, F=0.383; slices matching R4's verified-only table exactly)
+> - `git diff --stat main` → 2 files, both under `docs/research/`; **zero** paths under `evals/cases/`, `evals/traces/`, `evals/grids/`, `evals/baseline.json`, or `src/musical_perception/evals/`
+> - Branch `agent/marathon`, pushed (`ca6ed2a..beb918f`). No `evals bless`. Writability probe ran as the first act and passed.
+> 
+> Status is **PROPOSED** — the charter edit is the proposal and lands only if you merge it. Four things want a ruling: W9's rank, the nod-first workstream number, whether to commit the rig MP3s (they're present but untracked, so W3-remainder must run on the Air), and the held-out attestation.
+
+*Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
