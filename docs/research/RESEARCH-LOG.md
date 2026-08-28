@@ -4696,3 +4696,112 @@ Status: PROPOSED — re-ranking recorded, amendments A1-27 through A6-27
 for the owner's next batch review. The charter edit on this branch is the
 proposal and lands only if merged. Nothing here is blessed; no `evals
 bless` was run.
+
+## 2026-08-28 · rung M / W9 (tempo-estimator robustness: the 70-140 band) · agent/marathon · local (nightly, unattended) — PRE-REGISTRATION
+
+**Pipeline increment, measurement change (ADR-015 diagnosed-regression
+gate).** Workstream selected by rank: W0's 2026-08-27 re-ranking put W9
+first among non-BLOCKED workstreams. Writability probe (charter amendment
+2, first act): file written, committed, reduced to a no-op on
+`agent/marathon` before any other work — commit `fd9fd30`. Passed.
+
+Pre-run state on this branch, before any edit: `evals run --suite
+tier0,tier1,stage1` → **"no outcome changes vs baseline"**; tier-1 tempo
+17/29 committed (0.586), truth_in_family 3/12, Acc1 0.586@8% / Acc2
+0.690@8%; tier-0 tempo 25/25, meter_triple 24/25.
+
+### The diagnosis (measured, not assumed)
+
+A read-only probe (`scripts/w9-tempo-probe.py`) dumps, for all 30 tier-1
+cases, what each tempo arm reported *before* arbitration, which arm won,
+and how `normalize_tempo` folded it. Two facts come out of it:
+
+1. **Every one of the 17 currently-correct tempo rows has
+   `multiplier == 1`.** The ×2/×3/÷2/÷3 branch of `normalize_tempo` does
+   not produce a single correct answer anywhere on tier-1. It fires on
+   eight rows: three where the raw reading was *already right* and the
+   fold destroyed it (`frappe` 162.5→81.2 vs truth 160;
+   `rig-names-2-4-160-long` 156.6→78.3 vs 160;
+   `rig-numbers-4-4-60-halftempo` 61.5→123.0 vs 60), and five where the
+   answer is wrong before and after the fold.
+2. **The band inside `interpret_meter`'s arbitration is doing real work
+   and must not be touched in the same change.** All three rows where the
+   marker arm wins (`rig-numbers-3-4-90-clean`, `-104-duple`,
+   `-80-triplet`) are correct, and each wins *because* the onset reading
+   sits outside 70–140 (257.9, 205.6, 169.1 BPM — syllable level). Delete
+   the band there and all three become onset-driven and wrong. The
+   arbitration band is a **level discriminator**, not a fold; it is a
+   separate named question and stays for a later increment.
+
+So this increment is bounded to the fold: `normalize_tempo`.
+
+### The change
+
+Standing Lesson 2 — *"priors are priors, not post-processing… apply
+priors at level selection, multiplicatively, never to the raw
+measurement"* — implemented literally. `normalize_tempo` stops snapping
+into a hard interval and instead picks the metric level by MAP over the
+same candidate set `tempo_family` already generates:
+
+```
+score(k) = log N(log2(bpm_k) ; log2 T0, sigma)  +  log P(level k)
+T0    = sqrt(low*high) = 98.995      # the band's geometric centre
+sigma = 0.5*log2(high/low) = 0.5 oct # the band read as the +/-1 sigma interval
+P(fold by factor k) proportional to k^-2   # scale-free metric-distance penalty
+```
+
+Both prior parameters are *derived from the existing 70–140 band*, not
+introduced: the band is re-read as the central interval of the log-normal
+it was always approximating. The one genuinely free choice is the level-
+prior exponent.
+
+**Disclosed selection, because it is DEV-informed.** The admissible
+interval for the ÷2 log-cost, given that tier-0's two half-tempo cases
+(raw 52 and 48 BPM) *must* still fold and the three band-damaged tier-1
+rows must *not*, is (0.86, 1.72) nats. Exponent 1 gives 0.69 (too small —
+`frappe` folds); exponent 3 gives 2.08 (too large — tier-0 breaks);
+**exponent 2 is the only integer exponent that satisfies both**, at 1.386
+nats with a minimum margin of 0.33 nats. I checked those three candidates
+against tier-0 and DEV before choosing. Consequence to state plainly: the
+resulting "keep" band is **55.1–178.0 BPM** (1.7 octaves) rather than
+70–140 (1.0 octave), and the decision at 52 vs 61.5 BPM is decided by the
+prior alone — no acoustic evidence separates them, which is exactly the
+gap W5's joint posterior exists to close.
+
+Abstention is preserved by a 3σ rule: if the best candidate still sits
+more than 1.5 octaves from T0 (outside ≈35–280 BPM), `multiplier` is 0 and
+`interpret_meter` returns None, as today.
+
+### Pre-registered predictions
+
+- **P1** tier-1 tempo 17→**20** correct (0.586→0.690). Flips, all three:
+  `frappe`, `rig-names-2-4-160-long`, `rig-numbers-4-4-60-halftempo`.
+  **Zero tempo rows lost** — every currently-correct row has
+  `multiplier == 1` and its raw reading is inside the new keep band.
+- **P2** `truth_in_family` 3/12 → **0/9**: the three rescuable rows become
+  primary-correct, so the ADR-014 family has nothing left to rescue.
+- **P3** Acc1@8% 0.586→0.690; **Acc2@8% unchanged at 0.690** (this change
+  can only convert family hits into primary hits, never add new ones);
+  |OE2| median improves; between-levels rows 11→8.
+- **P4** tier-0 tempo stays **25/25** (raw 52 and 48 BPM are below the
+  55.1 fold threshold and still double).
+- **P5** tier-0 meter_triple stays **24/25**.
+- **P6** tier-1 meter_triple **11 → 11, 12 or 13; no losses are possible.**
+  Eight rows change multiplier. Five of them are bpm-wrong before and
+  after, and `score_meter_triple` requires `bpm_ok` for a correct — so
+  they are already wrong and cannot regress. The other three are the
+  tempo flips, which can only gain (`frappe` has meter unpinned, so at
+  most +2 from `rig-names-2-4-160-long` and `rig-numbers-4-4-60-halftempo`,
+  and only if Gemini's meter for those clips is right).
+- **P7** counts / sides / slot **unchanged** (structure path untouched);
+  stage1 **byte-identical** (the pulse extractor is untouched).
+- **P8** ECE: confidences are unchanged (arbitration untouched) while
+  accuracy rises, so ECE should move toward the confidence level, not
+  away. Reported, not asserted.
+
+Unit-test contract changes expected (precision layer, not eval files):
+`normalize_tempo(60.0)` now returns `(60.0, 1)` instead of `(120.0, 2)` —
+60 BPM is a plausible beat rate and the old test encoded the defect.
+
+Status: **PRE-REGISTERED** — results and scorecard in the completion
+entry below.
