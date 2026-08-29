@@ -148,7 +148,8 @@ def analyze(
     Returns:
         MusicalParameters with extracted musical information
     """
-    from musical_perception.precision.tempo import calculate_tempo, interpret_meter
+    from musical_perception.precision.tempo import calculate_tempo
+    from musical_perception.precision.posterior import estimate_rhythm
     from musical_perception.precision.subdivision import analyze_subdivisions
     from musical_perception.precision.rhythm import detect_onset_tempo
     from musical_perception.precision.structure import estimate_counts
@@ -230,16 +231,21 @@ def analyze(
         whistress_client = load_whistress()
         stress_labels = predict_stress(whistress_client, audio_path, words)
 
-    # Coherent metric interpretation: BPM + meter + subdivision as one answer
+    # Coherent metric interpretation: the factored joint posterior over
+    # (period, phase, division) with the meter label derived late
+    # (ADR-017). Evidence-poor clips fall back to the legacy arbitration
+    # inside estimate_rhythm.
     gemini_subdivision = (
         gemini_result.counting_structure.subdivision_type
         if gemini_result.counting_structure else None
     )
-    normalized_tempo = interpret_meter(
-        onset_tempo=onset_tempo,
-        gemini_tempo=tempo,
+    normalized_tempo = estimate_rhythm(
+        words,
+        markers,
         gemini_meter=gemini_result.meter,
         gemini_subdivision=gemini_subdivision,
+        onset_tempo=onset_tempo,
+        gemini_tempo=tempo,
     )
 
     # Counts from evidence fusion (ADR-012): the estimator owns counts,
