@@ -175,3 +175,24 @@ is how the runner's permission failure was found.)*
 > If you'd prefer the ledger carry a one-line note *in addition* — pointing the owner at the entry for the weekly batch — say the word and I'll add it. I won't replace the entry with one, because the record of a falsified prediction and a quantified circularity caveat is the part worth keeping.
 
 *Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
+
+## run 2026-08-29T09:00:07Z · main 491fd54
+
+- **outcome:** success, shell exit 0
+- **turns:** 95 · **duration:** 20.0 min · **cost:** $10.05
+
+**Agent's closing message:**
+
+> …ices.
+> 
+> **"Gates nothing" is proven, not asserted** — against the blessed baseline, `fields`, `outcomes`, `ece`, `risk_coverage`, `slices`, `tempo_metrics`, `quality_spearman`, `provisional` all IDENTICAL on tier0 and tier1; two tests pin the property.
+> 
+> ## Constraints
+> 
+> `git diff --stat main`: every path under `evals/` is an **A** (W11's 30 sidecars) — zero M, zero D. `evals/cases/`, `evals/baseline.json`, existing trace files: 0 modified. Pipeline code: **0 paths**. The six `src/musical_perception/evals/` files are the declared EVAL-CHANGE. pytest **320 passed, 3 skipped**. Nothing blessed.
+> 
+> ## Still on the owner
+> 
+> Two things from the collision, in the branch ledger: a proposed **boot-sequence amendment** (read the ledger on `origin/agent/marathon`, not just main — a completed-but-unmerged workstream is invisible to the next session by construction, and W12 would have collided tomorrow), and a verified correction to W11's P4b explanation — its anchoring headline (769/895, 86%) reproduces exactly, but "1,141 preds vs 895 for peakRate" compares a prediction count to a matched-pair count and gets the direction backwards; peakRate emits **more** (1408/1309 all-30, 1199/1078 verified-28).
+
+*Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
