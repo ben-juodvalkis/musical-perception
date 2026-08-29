@@ -242,6 +242,23 @@ class TempoCandidate:
     subdivision: str        # "none", "duple", "triplet"
     multiplier: int         # Relation to raw_bpm — same encoding as NormalizedTempo
     in_comfort_band: bool   # True when bpm sits in the 70-140 ballet-class range
+    # Posterior mass of this candidate's ±8% tempo neighborhood (ADR-017).
+    # None on candidates produced by the legacy heuristic path.
+    weight: float | None = None
+
+
+@dataclass
+class GroupingLevel:
+    """
+    One rung of the grouping ladder (ADR-017): evidence that beats bundle
+    in groups of `level` above the pulse. The bar is one rung, the count
+    phrase another; a silent rung is simply absent from the list — that
+    absence is the honest output for audio carrying no accent at that
+    level.
+    """
+    level: int          # beats per group (2, 3, 4, 6, 8, ...)
+    strength: float     # 0-1 evidence strength
+    source: str         # "counting" | "gaps"
 
 
 @dataclass
@@ -254,10 +271,14 @@ class NormalizedTempo:
     contradictions like "4/4 triplet at 40 BPM" when the pulse is actually
     at 120 BPM in 3/4.
     """
-    bpm: float                  # Beat-level BPM in 70-140 range
-    meter: Meter                # Derived from how raw BPM was scaled
+    bpm: float                  # Beat-level BPM (soft-prior level selection
+    #   since W9 — the answer may sit outside 70-140 when the measurement
+    #   earns it)
+    meter: Meter                # Label derived late — Gemini's claim is one
+    #   vote, never a state variable (ADR-017)
     subdivision: str            # "none", "duple", "triplet"
-    confidence: float           # 0-1
+    confidence: float           # 0-1; posterior-path answers report the
+    #   posterior mass of the committed ±8% tempo neighborhood
     raw_bpm: float              # Original BPM before normalization
     tempo_multiplier: int       # Metric level of raw pulse:
     #   1 = raw was at beat level (bpm ≈ raw_bpm)
@@ -269,6 +290,10 @@ class NormalizedTempo:
     # The other musically-sane readings of the same raw pulse (ADR-014).
     # Additive and informational: primary selection ignores this field.
     alternates: list[TempoCandidate] = field(default_factory=list)
+    # The grouping ladder (ADR-017): per-level evidence above the beat.
+    # Empty on legacy-path answers and on clips whose streams carry no
+    # grouping evidence — a silent ladder is data, not a defect.
+    grouping_levels: list[GroupingLevel] = field(default_factory=list)
 
 
 @dataclass
