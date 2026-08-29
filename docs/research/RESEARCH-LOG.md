@@ -5009,3 +5009,62 @@ W9's increment is complete and pushed (`896339d`); the rung is now
 charter rule 1, so no further session work on W9 is possible until it
 lands, and the next scheduled session should take the next-ranked
 workstream (W4) rather than re-opening this one.
+
+## 2026-08-28 · rung M · main · local (owner-attended: W9 blessed, queue cleared, W5 begins)
+
+**Owner batch review, in session.** Everything PROPOSED on
+`agent/marathon` as of this morning was reviewed and ruled on.
+
+### W9 — BLESSED
+
+Verification performed before the ruling, not after: the branch was
+checked out and both gates re-run locally. `pytest` reproduced
+**253 passed / 3 skipped / 1 failed** with the single failure being
+`test_tier1_outcomes_match_baseline_exactly` (the designed
+red-until-blessed gate); `evals run --suite tier0,tier1,stage1`
+reproduced every headline number in the W9 entry exactly — tempo 20/29
+(0.690), meter_triple 12/28, counts 13/21, ECE 0.1998, Acc1@8% 0.690,
+tier-0 25/25 and 24/25, stage1 aggregate_verified F=0.383 byte-identical,
+and the six outcome changes as listed. One check the W9 entry did not
+claim but blessing diligence wanted: the replay sanity warnings
+("recomputed onset_bpm != frozen") were compared branch-vs-main and are
+**byte-identical** — all predate W9 (rung-2's extractor changed after
+those traces were frozen), so W9 introduced none, behaviorally confirming
+its bounded-to-the-fold scope claim.
+
+Merged `21570ed`; blessed `run-20260829T032345Z-21570ed`; post-bless
+`pytest` **254 passed / 3 skipped**. Charter amendments A1-27 through
+A4-27 landed with the merge.
+
+### Rulings (owner, 2026-08-28)
+
+- **A5-27 → W10 commissioned.** Nod-kinematics gesture channel
+  (head-nod kinematics / phrase-arrival segmentation, per Review 5 and
+  W7's revisit guidance), ranked last among open workstreams. The
+  scheduler can now reach it; nothing is displaced.
+- **Rig MP3s → committed** (`2923288`, 24 files). One honest correction
+  to the queue item's estimate: the set is **20 MB**, not ~11 MB. The
+  W0 consequence stands: W3-remainder is now runnable on any runner.
+  `audio/categories/` and `audio/counting/` are outside the ruling and
+  stay untracked; sessions stage explicit paths.
+- **A6-27 → split deferred.** W5 starts today, so "rung 4's shape" stops
+  being a permanent blocker; the next W0 drafts W6's condition normally.
+- **A4-27 (HELD-OUT attestation) → OPEN, check in progress.** The
+  charter amendment (agents never enumerate the Barre-1 directory)
+  landed with the merge. The owner is performing the containment check
+  by hand, with a procedure designed so no listing enters any agent
+  context; the dated attestation will be appended here when he confirms.
+
+### W5 begins
+
+This owner-attended session (top-tier model) proceeds directly to W5 —
+rung 4, the joint posterior — per the charter's owner-started rule.
+Design inputs inherited: the 2026-08-26 factored-meter direction
+(pulse / division / grouping-ladder; the time-signature label derived
+late, outside the state space), W2's three findings, W9's measured gap
+(52-vs-61.5 undecidable by the prior alone — the joint posterior's job),
+and backlog W9-b (level-conditional subdivision pass-through). Branch:
+`agent/rung-4-joint-posterior`. Pre-registration before any code, per
+charter rule 3.
+
+Status: **BLESSED** (W9) · rulings recorded · W5 IN PROGRESS.

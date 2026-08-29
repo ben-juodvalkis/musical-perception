@@ -394,7 +394,10 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   joint posterior (requires W2's evidence; **OWNER-STARTED — scheduled
   sessions must never take this workstream**: it runs in an
   owner-attended session on the top-tier model; if W5 is next and
-  unstarted, treat it as BLOCKED-on-owner and move on) · W6 = rung 5,
+  unstarted, treat it as BLOCKED-on-owner and move on) *(**IN PROGRESS
+  2026-08-28** — owner-attended session on the top-tier model; design
+  input is the 2026-08-26 factored-meter direction; branch
+  `agent/rung-4-joint-posterior`)* · W6 = rung 5,
   ensembled semantics · W7 = pose/gesture channel prototyping on the
   Barre 1 video (after W4) *(velocity-minima prototype COMPLETE
   2026-08-23, negative — movement folds into W5 as a weak vote; if
@@ -420,8 +423,8 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   question, since `interpret_meter` gates arbitration on it and the
   probe shows it turning a correct 60.9 BPM reading into 121.7.
   Standard typed gate; it moves tier-1 outcomes, so it needs an owner
-  re-bless. **RANKED 1 by W0, 2026-08-27** (PROPOSED — see that ledger
-  entry §1): re-derived from `evals/baseline.json` on the shipping path
+  re-bless. **RANKED 1 by W0, 2026-08-27** (ratified at blessing,
+  2026-08-28): re-derived from `evals/baseline.json` on the shipping path
   and the blessed metric, tier-1 committed tempo is **17/24 (0.708) when
   the truth lies inside 70–140 and 0/5 (0.000) when it lies outside**,
   every one of those five predictions folded back in-band. Five of the
@@ -433,26 +436,41 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   `70.0 <= bpm <= 140.0` — confirming the probe's claim that it gates
   arbitration, not merely normalization. Standing Lesson 2 has named this
   exact band as an error since 2026-08-09.
+  **COMPLETE 2026-08-28, BLESSED same day:** `normalize_tempo`'s hard
+  fold replaced by MAP level selection under a log-normal prior derived
+  from the band itself (+3 tempo, +1 meter_triple, +1 counts, ECE
+  0.265→0.200, zero outcome-level regressions; six outcome changes
+  blessed into the baseline). Negative finding with per-clip evidence:
+  the band inside `interpret_meter`'s arbitration is a **level
+  discriminator and STAYS** — deleting it costs the three marker-arm
+  wins. Backlog **W9-b** parked: the derivation table passes Gemini's
+  subdivision claim through even when the selected metric level differs
+  from the one the observation was made under (`rig-names-2-4-160-long`
+  meter credit 0.5→0.0, classified genuine-trade) — a natural W5
+  absorbee.
   Policy: each
   session advances exactly one workstream — the highest-ranked one not
   BLOCKED; blocked workstreams get a BLOCKED ledger note (the owner's
   task queue) and the session moves on. The loop never idles while any
   workstream is open.
-  **Standing ranking (W0, 2026-08-27, PROPOSED):** 1. **W9** (tempo
-  estimator + the 70–140 band) · 2. **W4** (Barre-1 provisional case
-  files) · 3. **W3-remainder** (raw-condition rows; must run on the Air
-  — the rig MP3s are present but untracked, `git ls-files audio` = 0) ·
-  4. **W6** (partly blocked: its condition is the meta-rung's to draft
-  "when rung 4's shape is known", and rung 4 is W5, owner-started and
-  unstarted — so that W0 deliverable is blocked at every future W0 until
-  W5 moves; the Feb-2026 model-comparison re-run inside W6 does *not*
-  depend on rung 4 and could be split out) · W5 BLOCKED-on-owner ·
-  W8 BLOCKED (after W5) · W1/W1.5/W2/W2.5/W7 COMPLETE.
-  **Unhomed direction (W0 2026-08-27, needs a ruling):** the owner's
-  "nod-first" adoption (ruling A8, 2026-08-24) is parked inside W7,
-  which is marked COMPLETE — so the "highest-ranked non-BLOCKED
-  workstream" rule can never select it. Commission it as **W10** with a
-  rank, or record that it is backlog and not a workstream. **W0 = the meta-rung, self-scheduling:** whenever
+  **Standing ranking (owner-ratified 2026-08-28, post-W9 blessing):**
+  1. **W4** (Barre-1 provisional case files) · 2. **W3-remainder**
+  (raw-condition rows + optional BeatNet; runnable on **any** runner —
+  the 24 rig MP3s are committed as of 2026-08-28, owner Path-B partial
+  opt-in; stage explicit paths, `audio/categories/` and
+  `audio/counting/` remain untracked) · 3. **W6** (partly blocked: its
+  condition is the meta-rung's to draft "when rung 4's shape is known";
+  W5 is IN PROGRESS as of 2026-08-28, so the next W0 can draft it —
+  the owner deferred splitting out the Feb-2026 model-comparison re-run
+  for the same reason) · 4. **W10** (below) · W5 IN PROGRESS
+  (owner-attended) · W8 BLOCKED (after W5) ·
+  W1/W1.5/W2/W2.5/W7/W9 COMPLETE.
+  **W10 = nod-kinematics gesture channel (COMMISSIONED 2026-08-28 by
+  owner ruling, discharging A5-27):** head-nod kinematics /
+  phrase-arrival segmentation on the Barre 1 video — the owner's
+  "nod-first" adoption (ruling A8, 2026-08-24), formerly unschedulable
+  inside COMPLETE W7. Ranked last among open workstreams; a future W0
+  may re-rank it. **W0 = the meta-rung, self-scheduling:** whenever
   the ledger's most recent meta-rung entry is older than 7 days (or none
   exists yet and the ledger carries ≥ 5 marathon entries — entries, not
   "sessions", per amendment 3, owner-ratified 2026-08-24), W0 outranks
