@@ -5542,3 +5542,76 @@ this attestation rests on.
 **A4-27 CLOSED.** The 08-27 review queue is now fully cleared.
 
 Status: **ATTESTED** (owner, 2026-08-28).
+
+## 2026-08-28 · rung M / W11 (pulse sidecars) · agent/marathon · local (nightly, unattended) — PRE-REGISTRATION
+
+**EVAL-CHANGE.** Declared under the owner-ratified sidecar carve-out
+(charter rule 2, 2026-08-28): this increment ADDS derived-evidence files
+inside existing trace directories and touches
+`src/musical_perception/evals/`. No pipeline code changes are bundled
+with it.
+
+Workstream: **W11, ranked 1** in the standing ranking of 2026-08-28
+(W11 · W12 · W4 · W3r · W6 · W10). W0 is not due — the last meta-rung
+entry is 2026-08-27, less than 7 days old.
+
+### What is being built
+
+1. `evals/traces/<clip>/pulse.json` for all 30 existing trace
+   directories: the rung-2 acoustic pulse event stream
+   (`precision/pulse.acoustic_pulse_events`, current defaults, i.e.
+   `events_per_nucleus="all"` after W2.5), recorded once, with the
+   extractor params and the media sha256 frozen alongside.
+2. A recorder that **refuses to write** unless the media file on disk
+   hashes to the trace's stored `media_sha256` — the carve-out's
+   checksum condition, enforced in code rather than by hand.
+3. A loader (`load_pulse_sidecar`) that re-checks the sidecar's recorded
+   `media_sha256` against `meta.json` at load time (offline, no media
+   needed) and raises on a mismatch.
+4. `stage1` gains a second pulse source, `peakrate-sidecar`, reachable
+   only through the NEW suite name `stage1-peakrate`. The existing
+   `stage1` suite keeps `whisper-word-starts` as its source and is not
+   touched.
+
+### Pre-registered predictions
+
+- **P1 — checksums.** All 30 media files hash equal to their trace's
+  `media_sha256`; 30/30 sidecars written, 0 skipped. *Risk:* the four
+  video files and two `.aif` files were hashed in Aug 2026 and could
+  have been re-encoded since. A mismatch is a finding, not a bug to
+  work around — the recorder must skip and say so.
+- **P2 — event counts vs the rung-2 cache.** The 28 clips cached in
+  `docs/research/rung2-extractor-events.json` were extracted before
+  W2.5 flipped `events_per_nucleus` to `"all"`, so that cache is the
+  `"first"` stream. Predict `n_sidecar >= n_cached` for **28/28**
+  clips, with strict inequality on **at least 20** of them. An
+  equality-everywhere result would mean W2.5's flip is inert on this
+  corpus, contradicting its measured +0.037 F_lc.
+- **P3 — byte-identical outcomes.** `evals run --suite
+  tier0,tier1,stage1` produces a `suites` block byte-identical to the
+  pre-change run (`run-20260829T054738Z-ab03527.json`), and
+  `no outcome changes vs baseline` still prints. Nothing consumes the
+  sidecars on the default path.
+- **P4 — what the peakRate source does to stage1's metrics.** stage1
+  scores plain mir_eval P/R/F at ±70 ms, **not** rung 2's blessed
+  level-collapsed pair, and peakRate emits a syllable-rate stream
+  against a tactus-rate reference. Predict: verified-aggregate
+  **recall up by ≥ 0.15 absolute** (0.449 → ≥ 0.60) and
+  **precision down** (from 0.334); the direction of pooled **F is not
+  predicted** — that is exactly the metric mismatch rung 2 was scored
+  around, and calling it either way afterwards would be hindsight. The
+  vocables clip is predicted to move from R=0.062 to R ≥ 0.80 (rung 2
+  measured 0.875 at tactus).
+- **P5 — tests.** pytest stays green; new tests cover checksum refusal,
+  load-time mismatch detection, and the source selection.
+
+### What this does NOT establish
+
+The `stage1-peakrate` numbers are a *reported* second source. They gate
+nothing, re-open nothing about rung 2's verdict (different metric), and
+no consumer reads `pulse.json` yet. W11's purpose is to make the
+acoustic stream replayable — Standing Lesson 9: build the replay path
+before betting on the channel — so that W5's continuation can consume
+it without re-deriving events from media on every run.
+
+Status: PRE-REGISTERED (results entry follows in this session).
