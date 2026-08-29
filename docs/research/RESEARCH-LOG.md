@@ -5542,3 +5542,88 @@ this attestation rests on.
 **A4-27 CLOSED.** The 08-27 review queue is now fully cleared.
 
 Status: **ATTESTED** (owner, 2026-08-28).
+
+## 2026-08-28 · rung M · agent/air-service-20260828 · local (owner-service: temporary 3×/day nightly burst — owner-directed)
+
+Attempted: Owner-directed schedule change, same session pattern as the
+2026-08-24 air service — no workstream advanced, no eval surface
+touched. The launchd nightly (`com.musical-perception.nightly`) moved
+from a single 02:00 fire to a **temporary burst at 02:00, 10:00, and
+18:00 local**, owner-ratified to drain the agent-runnable queue left
+by the 2026-08-28 rulings: W11 (pulse sidecars, ranked 1) · W12
+(factored meter slice) · W4 (Barre-1 case files) · W3-remainder. One
+run kickstarted immediately so the queue starts draining tonight.
+
+Pre-registered expectations: n/a (service session).
+
+Result:
+- **Backup:** the single-02:00 plist preserved byte-identical
+  (cmp-verified before any edit) at
+  `/Users/la-ben.juodvalkis/Library/LaunchAgents/com.musical-perception.nightly.plist.bak-single-0200`.
+- **Edit + lint:** `StartCalendarInterval` dict → array of three dicts
+  (Hour 2/10/18, Minute 0 each). `plutil -lint` OK **before** touching
+  launchd; the edited file parses back as
+  `[{"Hour":2,"Minute":0},{"Hour":10,"Minute":0},{"Hour":18,"Minute":0}]`.
+- **Reload + verify:** `launchctl unload` + `load` in one compound
+  command (the only instant the job was unloaded);
+  `launchctl print gui/503/com.musical-perception.nightly` shows the
+  job loaded with three `com.apple.launchd.calendarinterval` event
+  triggers — Hour 2, Hour 10, Hour 18, all Minute 0.
+- **First kickstart DIED at `git pull --ff-only` — pre-existing repo
+  state, not the schedule change.** origin/main `ad89f18` newly tracks
+  the 24 `audio/rig/*.mp3` (committed by the owner in the 08-28
+  attended session), while the runner's tree still staged them
+  **untracked**: the ff-merge refused ("untracked working tree files
+  would be overwritten by merge") and `set -e` killed the night
+  seconds in (log: `=== nightly run 2026-08-29T05:38:37Z ===` →
+  `Updating 5c6476e..ad89f18` → Aborting). Every scheduled fire —
+  single 02:00 or burst — would have died identically; the manual
+  kickstart surfaced at 22:38 what the schedule would have found
+  silently at 02:00.
+- **Repair, provably lossless:** all 24 staged files hash-verified
+  byte-identical to `ad89f18`'s blobs (`git hash-object` vs
+  `git ls-tree`, 24/24 match, shown in transcript), then parked with
+  `git stash push --include-untracked -- audio/rig` (now stash@{0},
+  dated message). Relocating the media out of the repo was disallowed
+  by the session's permission layer, and the stash is the wrapper's
+  own convention for preserved state, so it is the better mechanism
+  anyway: nothing deleted, nothing left the repository.
+  `audio/counting/*.aif` and the older epitaxy stash are untouched.
+  The pull then materialized the same 24 files as tracked copies
+  (`git ls-files audio` = 24). The stash's content is exactly what
+  main now tracks — `git stash drop stash@{0}` at the owner's leisure.
+- **Second kickstart: RUNNING.** Log: `=== nightly run
+  2026-08-29T05:45:51Z ===` → `Updating 5c6476e..ad89f18` →
+  `Fast-forward`; the publish step then committed the pending 08-28
+  02:00 summary (`ab03527 logs: nightly run summary (automated)`, the
+  ratified carve-out); the agent session is streaming — it has read
+  the charter, switched to `agent/marathon`, and merged main (W5's
+  `posterior.py` arrived in the merge). Expected work per the standing
+  ranking: **W11**. Not waited on, by design.
+
+Regressions and classifications: none — no pipeline code, no eval
+file, no suite run. The only tracked change this session commits is
+this entry, on `agent/air-service-20260828`.
+
+**REVERT CONDITION (standing):** when a run summary reports every open
+workstream BLOCKED or complete, a service session restores the
+backed-up single-02:00 plist from
+`/Users/la-ben.juodvalkis/Library/LaunchAgents/com.musical-perception.nightly.plist.bak-single-0200`
+by the same procedure used here — back up the live plist first,
+`plutil -lint`, `launchctl unload`/`load`, verify via
+`launchctl print` — leaving the nightly loaded at 02:00 only. The
+nightly must never be left unloaded.
+
+Lesson (durable, one paragraph): Promoting staged media to tracked
+files is a two-sided act — the commit on main is only half; every tree
+that pulls still holds the untracked twins, and the runner's guards
+deliberately never touch untracked files (the 08-24 hardening's
+explicit choice), so the ff-merge refuses and the night dies before
+the agent exists. The remaining staged media (`audio/counting/*.aif`)
+will reproduce this exact death the night after anyone commits it
+upstream — whoever promotes it should clear the runner's untracked
+copies in the same motion (hash-verify, stash, pull).
+
+Status: PROPOSED (service complete; burst ARMED at 02:00/10:00/18:00
+local; first burst run in flight). BLOCKED (needs owner): nothing new
+— stash@{0} is disposable at the owner's leisure.
