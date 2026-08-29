@@ -116,7 +116,12 @@ flags, classified regressions).
    never bundled with pipeline changes. **Add-only carve-out for
    ingestion:** creating NEW case and trace files for new material is
    permitted and expected — every agent-authored label ships with
-   `maturity: provisional`. **Provisional rows never gate anything and
+   `maturity: provisional`. **Add-only carve-out for sidecars
+   (owner-ratified 2026-08-28):** in an EVAL-CHANGE increment, agent
+   sessions may ADD new derived-evidence files inside existing trace
+   directories (e.g. `pulse.json`) — never modifying any existing file,
+   with the source media checksum-verified against the trace's stored
+   hash and byte-identical suite output proven before merge. **Provisional rows never gate anything and
    are always reported as a separate slice**; only owner-verified rows
    participate in typed-gate decisions. Verification (owner corrects/
    confirms labels and grids, flips `maturity: verified`) is an owner
@@ -394,10 +399,13 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   joint posterior (requires W2's evidence; **OWNER-STARTED — scheduled
   sessions must never take this workstream**: it runs in an
   owner-attended session on the top-tier model; if W5 is next and
-  unstarted, treat it as BLOCKED-on-owner and move on) *(**IN PROGRESS
-  2026-08-28** — owner-attended session on the top-tier model; design
-  input is the 2026-08-26 factored-meter direction; branch
-  `agent/rung-4-joint-posterior`)* · W6 = rung 5,
+  unstarted, treat it as BLOCKED-on-owner and move on) *(**PHASE 1
+  LANDED 2026-08-28 — by explicit owner override of the pre-registered
+  gate** (tempo tied instead of improving; four diagnosed genuine-trade
+  losses accepted for meter 12→13, ECE 0.1998→0.1815, weighted ADR-014
+  families — see ADR-017 and the 2026-08-28 rulings entry). W5 remains
+  OPEN for the pulse-fed continuation after W11, still owner-started)*
+  · W6 = rung 5,
   ensembled semantics · W7 = pose/gesture channel prototyping on the
   Barre 1 video (after W4) *(velocity-minima prototype COMPLETE
   2026-08-23, negative — movement folds into W5 as a weak vote; if
@@ -453,18 +461,40 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   BLOCKED; blocked workstreams get a BLOCKED ledger note (the owner's
   task queue) and the session moves on. The loop never idles while any
   workstream is open.
-  **Standing ranking (owner-ratified 2026-08-28, post-W9 blessing):**
-  1. **W4** (Barre-1 provisional case files) · 2. **W3-remainder**
-  (raw-condition rows + optional BeatNet; runnable on **any** runner —
-  the 24 rig MP3s are committed as of 2026-08-28, owner Path-B partial
-  opt-in; stage explicit paths, `audio/categories/` and
-  `audio/counting/` remain untracked) · 3. **W6** (partly blocked: its
-  condition is the meta-rung's to draft "when rung 4's shape is known";
-  W5 is IN PROGRESS as of 2026-08-28, so the next W0 can draft it —
-  the owner deferred splitting out the Feb-2026 model-comparison re-run
-  for the same reason) · 4. **W10** (below) · W5 IN PROGRESS
-  (owner-attended) · W8 BLOCKED (after W5) ·
-  W1/W1.5/W2/W2.5/W7/W9 COMPLETE.
+  **W11 = pulse sidecars (COMMISSIONED 2026-08-28 by owner ruling;
+  EVAL-CHANGE):** record `pulse.json` sidecars (rung-2 acoustic pulse
+  events) into all 30 existing trace directories under the ratified
+  sidecar carve-out — 24 clips from the committed rig MP3s, 6 from the
+  video clips' audio, each checksum-verified against the trace's
+  `media_sha256`; loader exposes them; stage1 may gain a peakRate
+  source as part of the same increment; byte-identical tier outcomes
+  proven (nothing consumes the sidecars yet). Unblocks W5's
+  continuation (the owner-probed between-beat discriminator, word-span
+  de-confounded — see the 2026-08-28 rulings entry). ·
+  **W12 = the factored meter slice (COMMISSIONED 2026-08-28 by owner
+  ruling; EVAL-CHANGE):** a REPORTED-ONLY factored meter score beside
+  meter_triple — division scored as measured (duple/triplet/none),
+  grouping scored with duple-family credit ({2,4} both correct where
+  truth is 2/4 or 4/4; exact bar informational), factored truth
+  DERIVED from existing `meter`+`subdivision` labels (nothing
+  relabeled), with the owner-ratified 6/8 mapping: pulse = the counted
+  eighth (bpm label unchanged), accent-every-3 = grouping rung 3, the
+  bar rung 6, division none. Gates NOTHING until a separate future
+  owner ruling; both metrics reported side by side. Mapping table
+  pre-registered in the increment before any pipeline comparison. ·
+  **Standing ranking (owner-ratified 2026-08-28, post-W5 landing):**
+  1. **W11** · 2. **W12** (both quick EVAL-CHANGE increments that
+  unblock the attended W5 continuation) · 3. **W4** (Barre-1
+  provisional case files) · 4. **W3-remainder** (raw-condition rows +
+  optional BeatNet; runnable on **any** runner — the 24 rig MP3s are
+  committed as of 2026-08-28; stage explicit paths,
+  `audio/categories/` and `audio/counting/` remain untracked) ·
+  5. **W6** (partly blocked: its condition is the meta-rung's to draft
+  "when rung 4's shape is known"; rung 4's shape is now landed, so the
+  next W0 drafts it) · 6. **W10** (below) · W5 phase 1 LANDED,
+  continuation OPEN (owner-started, after W11) · W8 BLOCKED (after
+  W5's continuation and the tier-0 driver EVAL-CHANGE named in
+  ADR-017) · W1/W1.5/W2/W2.5/W7/W9 COMPLETE.
   **W10 = nod-kinematics gesture channel (COMMISSIONED 2026-08-28 by
   owner ruling, discharging A5-27):** head-nod kinematics /
   phrase-arrival segmentation on the Barre 1 video — the owner's

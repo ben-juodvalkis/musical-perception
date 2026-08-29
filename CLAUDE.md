@@ -24,7 +24,8 @@ src/musical_perception/
 │   ├── subdivision.py    # Duple/triplet classification
 │   ├── signature.py      # Counting signature computation
 │   ├── dynamics.py       # Movement quality from pose landmarks
-│   └── pulse.py          # Acoustic pulse extractor (peakRate + nuclei regions, rung 2)
+│   ├── pulse.py          # Acoustic pulse extractor (peakRate + nuclei regions, rung 2)
+│   └── posterior.py      # Factored rhythm posterior — bar-pointer lattice (rung 4, ADR-017)
 ├── perception/           # DISPOSABLE — thin model wrappers
 │   ├── whisper.py        # Whisper transcription (word timestamps)
 │   ├── prosody.py        # Praat pitch/intensity extraction
@@ -75,7 +76,11 @@ port de bras breaks and transitions that would skew the overall character.
 - `TempoResult` — BPM + confidence + raw intervals
 - `SubdivisionResult` — duple/triplet/none + confidence
 - `TempoCandidate` — one member of a raw pulse's metric-level family
-  (`NormalizedTempo.alternates`; primary selection ignores it — ADR-014)
+  (`NormalizedTempo.alternates`; primary selection ignores it — ADR-014;
+  carries posterior mass as `weight` since ADR-017)
+- `GroupingLevel` — one rung of the grouping ladder above the beat
+  (`NormalizedTempo.grouping_levels`, ADR-017; a silent rung is absent,
+  not zero)
 - `CountingSignature` — prosodic weight profile
 - `TimestampedWord` — word + start/end time (from transcription)
 - `TimedMarker` — classified rhythmic marker with beat association

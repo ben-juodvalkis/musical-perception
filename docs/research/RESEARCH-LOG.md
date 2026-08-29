@@ -5469,3 +5469,54 @@ the accompanist genuinely uses; report it, don't classify with it.
 
 Status: **PARTIAL — gate unmet on the tempo tie alone**; disposition
 ruling remains with the owner.
+
+## 2026-08-28 · rung M · main · local (owner rulings: W5 landed by override; W11/W12 commissioned; sidecar carve-out; factored-slice semantics)
+
+**Owner batch of four rulings, in session**, following the W5 addendum
+and the acoustic-pulse payoff probe (run read-only on the committed rig
+MP3s: naive between-marker nuclei presence REFUTED by word-internal
+syllables — "sev-en" fires twice; word-end-aware gaps then separate
+stay-at-level rows (halftempo 0.30, numbers-6/8 0.33) from
+markers-above-the-beat rows (104-clean 0.69, coda 0.55, 2-4-120 0.50),
+with one named confound — true subdivisions fill gaps too
+(numbers-104-duple 0.47) — de-confounded by excluding classified
+sub-word spans).
+
+### Rulings
+
+- **R-W5 — LANDED by explicit owner override of the pre-registered
+  gate.** The gate required tempo to net-improve; it tied (20/29, four
+  wins and four diagnosed genuine-trade losses exchanged, halftempo
+  among the losses as a scored must-not-lose miss). The owner accepted
+  the trade for: meter_triple 12→13, ECE 0.1998→**0.1815**, Acc2@8%
+  0.690→**0.793**, truth_in_family 0/9→**5/9**, and the factored
+  contract surface. Merged `310a5f8`; ADR-017 filed; blessed
+  `run-20260829T051847Z-310a5f8`; post-bless pytest **294 passed /
+  3 skipped**. The override is recorded here as the owner's act — the
+  session held to its pre-registration and did not argue past it.
+- **R-sidecars — carve-out RATIFIED** (charter rule 2 amended):
+  add-only derived-evidence files inside existing trace directories,
+  EVAL-CHANGE only, checksum-verified, byte-identical proof. **W11
+  commissioned**, ranked 1.
+- **R-6/8 — the factored mapping, ruled by ear** (owner listened to
+  both 6/8 clips in session): "each of the 8ths is at 100 BPM, and
+  there's an accent every 3 pulses." Pulse = the counted eighth
+  (existing bpm labels unchanged); accent-every-3 = grouping rung 3;
+  the bar = rung 6; division none. This is the owner's factored-meter
+  introspection confirmed on his own recordings: the 6/8-ness is a
+  grouping fact, not a pulse fact.
+- **R-bar-scoring — duple-family credit ratified** for the factored
+  slice where truth is 2/4 or 4/4 (exact bar informational), per W2's
+  r=0.90 confusability and the owner's accompaniment note. Disclosed
+  plainly: this flips some rows by construction; legitimate because the
+  question was ill-posed, safe because **W12 gates nothing** until a
+  separate future owner ruling. **W12 commissioned**, ranked 2.
+
+Standing ranking now W11 · W12 · W4 · W3r · W6 · W10; W5 continuation
+OPEN (owner-started, after W11); W8 additionally waits on ADR-017's
+tier-0-driver EVAL-CHANGE.
+
+Still open on the owner: the HELD-OUT containment hand-check (A4-27).
+
+Status: **BLESSED** (W5 phase 1) · rulings recorded · W11/W12 queued
+for the nightlies.
