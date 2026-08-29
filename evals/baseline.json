@@ -1,7 +1,7 @@
 {
  "schema": 1,
- "created_at": "2026-08-14T17:36:47+00:00",
- "git_sha": "0b93bc5aaebb5fa7e5d43dbea97fc9198a1a5b65",
+ "created_at": "2026-08-29T03:23:45+00:00",
+ "git_sha": "21570ed668659e3f57993536cb28b601152376e9",
  "package_version": "0.1.0",
  "suites": {
   "tier0": {
@@ -576,7 +576,8 @@
        }
       }
      }
-    }
+    },
+    "provisional": null
    },
    "outcomes": {
     "t0-2-4-clean": {
@@ -712,7 +713,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "t0-3-4-clean",
@@ -745,7 +747,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "t0-4-4-clean",
@@ -778,7 +781,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "t0-6-8-clean",
@@ -811,7 +815,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "t0-2-4-clean-duple",
@@ -844,7 +849,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "t0-3-4-clean-duple",
@@ -877,7 +883,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "t0-4-4-clean-duple",
@@ -910,7 +917,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "t0-6-8-clean-duple",
@@ -943,7 +951,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "t0-4-4-clean-triplet",
@@ -976,7 +985,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "t0-2-4-clean-triplet",
@@ -1009,7 +1019,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "t0-3-4-jitter",
@@ -1042,7 +1053,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "t0-4-4-jitter",
@@ -1075,7 +1087,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "t0-4-4-jitter-duple",
@@ -1108,7 +1121,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "t0-2-4-jitter",
@@ -1141,7 +1155,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "t0-4-4-dropped",
@@ -1174,7 +1189,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "t0-3-4-dropped-duple",
@@ -1207,7 +1223,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "t0-4-4-explained",
@@ -1240,7 +1257,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "t0-3-4-explained",
@@ -1273,7 +1291,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "t0-4-4-explained-duple",
@@ -1306,7 +1325,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "t0-4-4-prep",
@@ -1339,7 +1359,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "t0-2-4-prep",
@@ -1372,7 +1393,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "t0-4-4-half",
@@ -1405,7 +1427,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "t0-3-4-half",
@@ -1438,7 +1461,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "t0-4-4-stress",
@@ -1471,7 +1495,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "t0-3-4-swing-triplet",
@@ -1504,7 +1529,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     }
    ]
   },
@@ -1515,41 +1541,41 @@
     "fields": {
      "counts": {
       "n": 28,
-      "correct": 12,
-      "wrong": 9,
+      "correct": 13,
+      "wrong": 8,
       "abstained": 7,
       "coverage": 0.75,
-      "accuracy": 0.571,
+      "accuracy": 0.619,
       "accuracy_wilson95": [
-       0.365,
-       0.755
+       0.409,
+       0.792
       ],
-      "mean_credit": 0.429,
+      "mean_credit": 0.464,
       "truth_in_family": null,
       "truth_in_family_n": null,
       "failure_modes": {
-       "counts_wrong": 9
+       "counts_wrong": 8
       }
      },
      "meter_triple": {
       "n": 29,
-      "correct": 11,
-      "wrong": 17,
+      "correct": 12,
+      "wrong": 16,
       "abstained": 1,
       "coverage": 0.966,
-      "accuracy": 0.393,
+      "accuracy": 0.429,
       "accuracy_wilson95": [
-       0.236,
-       0.576
+       0.265,
+       0.609
       ],
-      "mean_credit": 0.414,
+      "mean_credit": 0.431,
       "truth_in_family": null,
       "truth_in_family_n": null,
       "failure_modes": {
-       "tempo_wrong": 6,
-       "meter_wrong": 5,
-       "equivalent_reading": 2,
-       "subdivision_wrong": 4
+       "tempo_wrong": 5,
+       "meter_wrong": 6,
+       "subdivision_wrong": 4,
+       "equivalent_reading": 1
       }
      },
      "sides": {
@@ -1586,43 +1612,41 @@
      },
      "tempo": {
       "n": 30,
-      "correct": 17,
-      "wrong": 12,
+      "correct": 20,
+      "wrong": 9,
       "abstained": 1,
       "coverage": 0.967,
-      "accuracy": 0.586,
+      "accuracy": 0.69,
       "accuracy_wilson95": [
-       0.407,
-       0.745
+       0.508,
+       0.827
       ],
-      "mean_credit": 0.567,
-      "truth_in_family": 3,
-      "truth_in_family_n": 12,
+      "mean_credit": 0.667,
+      "truth_in_family": 0,
+      "truth_in_family_n": 9,
       "failure_modes": {
-       "tempo_error": 9,
-       "metric_level_div2": 2,
-       "metric_level_x2": 1
+       "tempo_error": 9
       }
      }
     },
     "tempo_metrics": {
      "n_committed": 29,
      "acc1": {
-      "tol_04": 0.379,
-      "tol_08": 0.586
+      "tol_04": 0.483,
+      "tol_08": 0.69
      },
      "acc2": {
       "tol_04": 0.483,
       "tol_08": 0.69
      },
      "oe1": {
-      "mean": -0.0117,
+      "mean": -0.0116,
       "median": 0.0055,
-      "abs_median": 0.071,
-      "max_abs": 1.0356
+      "abs_median": 0.0604,
+      "max_abs": 0.7969
      },
      "oe2": {
-      "mean": -0.0462,
+      "mean": -0.0461,
       "median": -0.0036,
       "abs_median": 0.0604,
       "max_abs": 0.491
@@ -1652,10 +1676,10 @@
       },
       {
        "case": "adr007-plies-demo",
-       "predicted": 88.0,
+       "predicted": 176.1,
        "expected": 118.0,
-       "oe1": -0.4232,
-       "oe2": -0.4232
+       "oe1": 0.5776,
+       "oe2": -0.4224
       },
       {
        "case": "adr010-grande-battement",
@@ -1666,10 +1690,10 @@
       },
       {
        "case": "frappe",
-       "predicted": 81.2,
+       "predicted": 162.5,
        "expected": 160.0,
-       "oe1": -0.9785,
-       "oe2": 0.0215
+       "oe1": 0.0224,
+       "oe2": 0.0224
       },
       {
        "case": "rig-mixed-4-4-104-quantities",
@@ -1687,9 +1711,9 @@
       },
       {
        "case": "rig-names-2-4-160-long",
-       "predicted": 78.3,
+       "predicted": 156.6,
        "expected": 160.0,
-       "oe1": -1.031,
+       "oe1": -0.031,
        "oe2": -0.031
       },
       {
@@ -1701,9 +1725,9 @@
       },
       {
        "case": "rig-names-3-4-90-clean",
-       "predicted": 129.6,
+       "predicted": 64.8,
        "expected": 90.0,
-       "oe1": 0.5261,
+       "oe1": -0.4739,
        "oe2": -0.4739
       },
       {
@@ -1750,9 +1774,9 @@
       },
       {
        "case": "rig-names-6-8-100-clean",
-       "predicted": 133.0,
+       "predicted": 66.5,
        "expected": 100.0,
-       "oe1": 0.4114,
+       "oe1": -0.5886,
        "oe2": 0.4114
       },
       {
@@ -1813,9 +1837,9 @@
       },
       {
        "case": "rig-numbers-4-4-60-halftempo",
-       "predicted": 123.0,
+       "predicted": 61.5,
        "expected": 60.0,
-       "oe1": 1.0356,
+       "oe1": 0.0356,
        "oe2": 0.0356
       },
       {
@@ -1835,7 +1859,7 @@
      ]
     },
     "quality_spearman": null,
-    "ece": 0.2654,
+    "ece": 0.1998,
     "risk_coverage": [
      {
       "threshold": 1.0,
@@ -1970,177 +1994,177 @@
      {
       "threshold": 0.83,
       "coverage": 0.443,
-      "risk": 0.259
+      "risk": 0.222
      },
      {
       "threshold": 0.83,
       "coverage": 0.459,
-      "risk": 0.286
+      "risk": 0.214
      },
      {
       "threshold": 0.82,
       "coverage": 0.475,
-      "risk": 0.31
+      "risk": 0.207
      },
      {
       "threshold": 0.82,
       "coverage": 0.492,
-      "risk": 0.333
+      "risk": 0.233
      },
      {
       "threshold": 0.79,
       "coverage": 0.508,
-      "risk": 0.323
+      "risk": 0.226
      },
      {
       "threshold": 0.79,
       "coverage": 0.525,
-      "risk": 0.312
+      "risk": 0.219
      },
      {
       "threshold": 0.78,
       "coverage": 0.541,
-      "risk": 0.333
+      "risk": 0.242
      },
      {
       "threshold": 0.78,
       "coverage": 0.557,
-      "risk": 0.353
+      "risk": 0.265
      },
      {
       "threshold": 0.78,
       "coverage": 0.574,
-      "risk": 0.343
+      "risk": 0.257
      },
      {
       "threshold": 0.78,
       "coverage": 0.59,
-      "risk": 0.361
+      "risk": 0.278
      },
      {
       "threshold": 0.77,
       "coverage": 0.607,
-      "risk": 0.378
+      "risk": 0.27
      },
      {
       "threshold": 0.77,
       "coverage": 0.623,
-      "risk": 0.368
+      "risk": 0.263
      },
      {
       "threshold": 0.77,
       "coverage": 0.639,
-      "risk": 0.385
+      "risk": 0.282
      },
      {
       "threshold": 0.76,
       "coverage": 0.656,
-      "risk": 0.375
+      "risk": 0.275
      },
      {
       "threshold": 0.76,
       "coverage": 0.672,
-      "risk": 0.39
+      "risk": 0.293
      },
      {
       "threshold": 0.75,
       "coverage": 0.689,
-      "risk": 0.405
+      "risk": 0.31
      },
      {
       "threshold": 0.75,
       "coverage": 0.705,
-      "risk": 0.419
+      "risk": 0.326
      },
      {
       "threshold": 0.74,
       "coverage": 0.721,
-      "risk": 0.432
+      "risk": 0.341
      },
      {
       "threshold": 0.74,
       "coverage": 0.738,
-      "risk": 0.444
+      "risk": 0.356
      },
      {
       "threshold": 0.71,
       "coverage": 0.754,
-      "risk": 0.435
+      "risk": 0.348
      },
      {
       "threshold": 0.71,
       "coverage": 0.77,
-      "risk": 0.426
+      "risk": 0.34
      },
      {
       "threshold": 0.7,
       "coverage": 0.787,
-      "risk": 0.417
+      "risk": 0.333
      },
      {
       "threshold": 0.7,
       "coverage": 0.803,
-      "risk": 0.408
+      "risk": 0.327
      },
      {
       "threshold": 0.68,
       "coverage": 0.82,
-      "risk": 0.42
+      "risk": 0.34
      },
      {
       "threshold": 0.68,
       "coverage": 0.836,
-      "risk": 0.431
+      "risk": 0.353
      },
      {
       "threshold": 0.63,
       "coverage": 0.852,
-      "risk": 0.423
+      "risk": 0.346
      },
      {
       "threshold": 0.63,
       "coverage": 0.869,
-      "risk": 0.434
+      "risk": 0.358
      },
      {
       "threshold": 0.62,
       "coverage": 0.885,
-      "risk": 0.444
+      "risk": 0.37
      },
      {
       "threshold": 0.62,
       "coverage": 0.902,
-      "risk": 0.455
+      "risk": 0.382
      },
      {
       "threshold": 0.6,
       "coverage": 0.918,
-      "risk": 0.464
+      "risk": 0.393
      },
      {
       "threshold": 0.6,
       "coverage": 0.934,
-      "risk": 0.474
+      "risk": 0.404
      },
      {
       "threshold": 0.58,
       "coverage": 0.951,
-      "risk": 0.466
+      "risk": 0.397
      },
      {
       "threshold": 0.58,
       "coverage": 0.967,
-      "risk": 0.458
+      "risk": 0.39
      },
      {
       "threshold": 0.56,
       "coverage": 0.984,
-      "risk": 0.467
+      "risk": 0.4
      },
      {
       "threshold": 0.56,
       "coverage": 1.0,
-      "risk": 0.475
+      "risk": 0.41
      }
     ],
     "slices": {
@@ -2217,20 +2241,20 @@
        },
        "meter_triple": {
         "n": 14,
-        "correct": 10,
-        "wrong": 4,
+        "correct": 11,
+        "wrong": 3,
         "abstained": 0,
         "coverage": 1.0,
-        "accuracy": 0.714,
+        "accuracy": 0.786,
         "accuracy_wilson95": [
-         0.454,
-         0.883
+         0.524,
+         0.924
         ],
-        "mean_credit": 0.75,
+        "mean_credit": 0.821,
         "truth_in_family": null,
         "truth_in_family_n": null,
         "failure_modes": {
-         "tempo_wrong": 2,
+         "tempo_wrong": 1,
          "meter_wrong": 1,
          "equivalent_reading": 1
         }
@@ -2269,41 +2293,40 @@
        },
        "tempo": {
         "n": 14,
-        "correct": 12,
-        "wrong": 2,
+        "correct": 13,
+        "wrong": 1,
         "abstained": 0,
         "coverage": 1.0,
-        "accuracy": 0.857,
+        "accuracy": 0.929,
         "accuracy_wilson95": [
-         0.601,
-         0.96
+         0.685,
+         0.987
         ],
-        "mean_credit": 0.857,
-        "truth_in_family": 1,
-        "truth_in_family_n": 2,
+        "mean_credit": 0.929,
+        "truth_in_family": 0,
+        "truth_in_family_n": 1,
         "failure_modes": {
-         "tempo_error": 1,
-         "metric_level_x2": 1
+         "tempo_error": 1
         }
        }
       },
       "step_names": {
        "counts": {
         "n": 12,
-        "correct": 1,
-        "wrong": 6,
+        "correct": 2,
+        "wrong": 5,
         "abstained": 5,
         "coverage": 0.583,
-        "accuracy": 0.143,
+        "accuracy": 0.286,
         "accuracy_wilson95": [
-         0.026,
-         0.513
+         0.082,
+         0.641
         ],
-        "mean_credit": 0.083,
+        "mean_credit": 0.167,
         "truth_in_family": null,
         "truth_in_family_n": null,
         "failure_modes": {
-         "counts_wrong": 6
+         "counts_wrong": 5
         }
        },
        "meter_triple": {
@@ -2317,13 +2340,12 @@
          0.014,
          0.333
         ],
-        "mean_credit": 0.115,
+        "mean_credit": 0.077,
         "truth_in_family": null,
         "truth_in_family_n": null,
         "failure_modes": {
          "tempo_wrong": 3,
-         "meter_wrong": 4,
-         "equivalent_reading": 1,
+         "meter_wrong": 5,
          "subdivision_wrong": 4
         }
        },
@@ -2345,21 +2367,20 @@
        },
        "tempo": {
         "n": 14,
-        "correct": 5,
-        "wrong": 9,
+        "correct": 7,
+        "wrong": 7,
         "abstained": 0,
         "coverage": 1.0,
-        "accuracy": 0.357,
+        "accuracy": 0.5,
         "accuracy_wilson95": [
-         0.163,
-         0.612
+         0.268,
+         0.732
         ],
-        "mean_credit": 0.357,
-        "truth_in_family": 2,
-        "truth_in_family_n": 9,
+        "mean_credit": 0.5,
+        "truth_in_family": 0,
+        "truth_in_family_n": 7,
         "failure_modes": {
-         "tempo_error": 7,
-         "metric_level_div2": 2
+         "tempo_error": 7
         }
        }
       },
@@ -2410,40 +2431,40 @@
        "counts": {
         "n": 26,
         "correct": 11,
-        "wrong": 9,
-        "abstained": 6,
-        "coverage": 0.769,
-        "accuracy": 0.55,
+        "wrong": 8,
+        "abstained": 7,
+        "coverage": 0.731,
+        "accuracy": 0.579,
         "accuracy_wilson95": [
-         0.342,
-         0.742
+         0.363,
+         0.769
         ],
         "mean_credit": 0.423,
         "truth_in_family": null,
         "truth_in_family_n": null,
         "failure_modes": {
-         "counts_wrong": 9
+         "counts_wrong": 8
         }
        },
        "meter_triple": {
         "n": 26,
-        "correct": 9,
-        "wrong": 16,
+        "correct": 10,
+        "wrong": 15,
         "abstained": 1,
         "coverage": 0.962,
-        "accuracy": 0.36,
+        "accuracy": 0.4,
         "accuracy_wilson95": [
-         0.202,
-         0.555
+         0.234,
+         0.593
         ],
-        "mean_credit": 0.385,
+        "mean_credit": 0.404,
         "truth_in_family": null,
         "truth_in_family_n": null,
         "failure_modes": {
-         "tempo_wrong": 5,
-         "meter_wrong": 5,
-         "equivalent_reading": 2,
-         "subdivision_wrong": 4
+         "tempo_wrong": 4,
+         "meter_wrong": 6,
+         "subdivision_wrong": 4,
+         "equivalent_reading": 1
         }
        },
        "sides": {
@@ -2464,38 +2485,36 @@
        },
        "tempo": {
         "n": 26,
-        "correct": 15,
-        "wrong": 10,
+        "correct": 17,
+        "wrong": 8,
         "abstained": 1,
         "coverage": 0.962,
-        "accuracy": 0.6,
+        "accuracy": 0.68,
         "accuracy_wilson95": [
-         0.407,
-         0.766
+         0.484,
+         0.828
         ],
-        "mean_credit": 0.577,
-        "truth_in_family": 2,
-        "truth_in_family_n": 10,
+        "mean_credit": 0.654,
+        "truth_in_family": 0,
+        "truth_in_family_n": 8,
         "failure_modes": {
-         "tempo_error": 8,
-         "metric_level_div2": 1,
-         "metric_level_x2": 1
+         "tempo_error": 8
         }
        }
       },
       "youtube": {
        "counts": {
         "n": 2,
-        "correct": 1,
+        "correct": 2,
         "wrong": 0,
-        "abstained": 1,
-        "coverage": 0.5,
+        "abstained": 0,
+        "coverage": 1.0,
         "accuracy": 1.0,
         "accuracy_wilson95": [
-         0.207,
+         0.342,
          1.0
         ],
-        "mean_credit": 0.5,
+        "mean_credit": 1.0,
         "truth_in_family": null,
         "truth_in_family_n": null,
         "failure_modes": {}
@@ -2552,21 +2571,20 @@
        },
        "tempo": {
         "n": 4,
-        "correct": 2,
-        "wrong": 2,
+        "correct": 3,
+        "wrong": 1,
         "abstained": 0,
         "coverage": 1.0,
-        "accuracy": 0.5,
+        "accuracy": 0.75,
         "accuracy_wilson95": [
-         0.15,
-         0.85
+         0.301,
+         0.954
         ],
-        "mean_credit": 0.5,
-        "truth_in_family": 1,
-        "truth_in_family_n": 2,
+        "mean_credit": 0.75,
+        "truth_in_family": 0,
+        "truth_in_family_n": 1,
         "failure_modes": {
-         "tempo_error": 1,
-         "metric_level_div2": 1
+         "tempo_error": 1
         }
        }
       }
@@ -2576,40 +2594,40 @@
        "counts": {
         "n": 26,
         "correct": 11,
-        "wrong": 9,
-        "abstained": 6,
-        "coverage": 0.769,
-        "accuracy": 0.55,
+        "wrong": 8,
+        "abstained": 7,
+        "coverage": 0.731,
+        "accuracy": 0.579,
         "accuracy_wilson95": [
-         0.342,
-         0.742
+         0.363,
+         0.769
         ],
         "mean_credit": 0.423,
         "truth_in_family": null,
         "truth_in_family_n": null,
         "failure_modes": {
-         "counts_wrong": 9
+         "counts_wrong": 8
         }
        },
        "meter_triple": {
         "n": 26,
-        "correct": 9,
-        "wrong": 16,
+        "correct": 10,
+        "wrong": 15,
         "abstained": 1,
         "coverage": 0.962,
-        "accuracy": 0.36,
+        "accuracy": 0.4,
         "accuracy_wilson95": [
-         0.202,
-         0.555
+         0.234,
+         0.593
         ],
-        "mean_credit": 0.385,
+        "mean_credit": 0.404,
         "truth_in_family": null,
         "truth_in_family_n": null,
         "failure_modes": {
-         "tempo_wrong": 5,
-         "meter_wrong": 5,
-         "equivalent_reading": 2,
-         "subdivision_wrong": 4
+         "tempo_wrong": 4,
+         "meter_wrong": 6,
+         "subdivision_wrong": 4,
+         "equivalent_reading": 1
         }
        },
        "sides": {
@@ -2630,35 +2648,36 @@
        },
        "tempo": {
         "n": 26,
-        "correct": 15,
-        "wrong": 10,
+        "correct": 17,
+        "wrong": 8,
         "abstained": 1,
         "coverage": 0.962,
-        "accuracy": 0.6,
+        "accuracy": 0.68,
         "accuracy_wilson95": [
-         0.407,
-         0.766
+         0.484,
+         0.828
         ],
-        "mean_credit": 0.577,
-        "truth_in_family": 2,
-        "truth_in_family_n": 10,
+        "mean_credit": 0.654,
+        "truth_in_family": 0,
+        "truth_in_family_n": 8,
         "failure_modes": {
-         "tempo_error": 8,
-         "metric_level_div2": 1,
-         "metric_level_x2": 1
+         "tempo_error": 8
         }
        }
       },
       "frappe": {
        "counts": {
         "n": 1,
-        "correct": 0,
+        "correct": 1,
         "wrong": 0,
-        "abstained": 1,
-        "coverage": 0.0,
-        "accuracy": null,
-        "accuracy_wilson95": null,
-        "mean_credit": 0.0,
+        "abstained": 0,
+        "coverage": 1.0,
+        "accuracy": 1.0,
+        "accuracy_wilson95": [
+         0.207,
+         1.0
+        ],
+        "mean_credit": 1.0,
         "truth_in_family": null,
         "truth_in_family_n": null,
         "failure_modes": {}
@@ -2681,21 +2700,19 @@
        },
        "tempo": {
         "n": 1,
-        "correct": 0,
-        "wrong": 1,
+        "correct": 1,
+        "wrong": 0,
         "abstained": 0,
         "coverage": 1.0,
-        "accuracy": 0.0,
+        "accuracy": 1.0,
         "accuracy_wilson95": [
-         0.0,
-         0.793
+         0.207,
+         1.0
         ],
-        "mean_credit": 0.0,
-        "truth_in_family": 1,
-        "truth_in_family_n": 1,
-        "failure_modes": {
-         "metric_level_div2": 1
-        }
+        "mean_credit": 1.0,
+        "truth_in_family": null,
+        "truth_in_family_n": null,
+        "failure_modes": {}
        }
       },
       "grand_battement": {
@@ -2885,7 +2902,8 @@
        }
       }
      }
-    }
+    },
+    "provisional": null
    },
    "outcomes": {
     "adr006-8-counts-2x": {
@@ -2916,8 +2934,8 @@
      "slot": "correct"
     },
     "frappe": {
-     "tempo": "wrong",
-     "counts": "abstained",
+     "tempo": "correct",
+     "counts": "correct",
      "slot": "correct"
     },
     "rig-mixed-4-4-104-quantities": {
@@ -2931,7 +2949,7 @@
      "counts": "wrong"
     },
     "rig-names-2-4-160-long": {
-     "tempo": "wrong",
+     "tempo": "correct",
      "meter_triple": "wrong",
      "counts": "wrong"
     },
@@ -2943,7 +2961,7 @@
     "rig-names-3-4-90-clean": {
      "tempo": "wrong",
      "meter_triple": "wrong",
-     "counts": "wrong"
+     "counts": "abstained"
     },
     "rig-names-4-4-100-quiet": {
      "tempo": "correct",
@@ -3022,8 +3040,8 @@
      "counts": "correct"
     },
     "rig-numbers-4-4-60-halftempo": {
-     "tempo": "wrong",
-     "meter_triple": "wrong",
+     "tempo": "correct",
+     "meter_triple": "correct",
      "counts": "correct"
     },
     "rig-numbers-4-4-80-triplet": {
@@ -3089,7 +3107,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "adr006-8-counts-triple",
@@ -3137,7 +3156,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "adr006-exercise-1-demo",
@@ -3185,7 +3205,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "adr007-plies-demo",
@@ -3203,18 +3224,18 @@
        "field": "tempo",
        "outcome": "wrong",
        "credit": 0.0,
-       "predicted": 88.0,
+       "predicted": 176.1,
        "expected": 118.0,
        "confidence": 0.56,
        "failure_mode": "tempo_error",
-       "detail": "rel_err=0.254; truth absent from family [88.0, 176.1, 352.2, 58.7]",
+       "detail": "rel_err=0.492; truth absent from family [176.1, 352.2, 88.0, 58.7]",
        "truth_in_family": false
       },
       {
        "field": "meter_triple",
        "outcome": "wrong",
        "credit": 0.0,
-       "predicted": "4/4 @88 duple",
+       "predicted": "4/4 @176.1 duple",
        "expected": "4/4 @118 duple",
        "confidence": 0.56,
        "failure_mode": "tempo_wrong",
@@ -3233,7 +3254,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "adr010-grande-battement",
@@ -3304,7 +3326,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "frappe",
@@ -3320,20 +3343,20 @@
      "scores": [
       {
        "field": "tempo",
-       "outcome": "wrong",
-       "credit": 0.0,
-       "predicted": 81.2,
+       "outcome": "correct",
+       "credit": 1.0,
+       "predicted": 162.5,
        "expected": 160.0,
        "confidence": 0.77,
-       "failure_mode": "metric_level_div2",
-       "detail": "answer sits at 0.5\u00d7 the expected tempo; truth in family as 162.5",
-       "truth_in_family": true
+       "failure_mode": null,
+       "detail": "rel_err=0.016",
+       "truth_in_family": null
       },
       {
        "field": "counts",
-       "outcome": "abstained",
-       "credit": 0.0,
-       "predicted": null,
+       "outcome": "correct",
+       "credit": 1.0,
+       "predicted": 64,
        "expected": 64,
        "confidence": null,
        "failure_mode": null,
@@ -3352,7 +3375,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "rig-mixed-4-4-104-quantities",
@@ -3401,7 +3425,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "rig-names-2-4-120-clean",
@@ -3450,7 +3475,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "rig-names-2-4-160-long",
@@ -3467,24 +3493,24 @@
      "scores": [
       {
        "field": "tempo",
-       "outcome": "wrong",
-       "credit": 0.0,
-       "predicted": 78.3,
+       "outcome": "correct",
+       "credit": 1.0,
+       "predicted": 156.6,
        "expected": 160.0,
        "confidence": 0.82,
-       "failure_mode": "metric_level_div2",
-       "detail": "answer sits at 0.5\u00d7 the expected tempo; truth in family as 156.6",
-       "truth_in_family": true
+       "failure_mode": null,
+       "detail": "rel_err=0.021",
+       "truth_in_family": null
       },
       {
        "field": "meter_triple",
        "outcome": "wrong",
-       "credit": 0.5,
-       "predicted": "4/4 @78.3 duple",
+       "credit": 0.0,
+       "predicted": "4/4 @156.6 duple",
        "expected": "2/4 @160 none",
        "confidence": 0.82,
-       "failure_mode": "equivalent_reading",
-       "detail": "same rhythmic surface, different notation",
+       "failure_mode": "meter_wrong",
+       "detail": "",
        "truth_in_family": null
       },
       {
@@ -3499,7 +3525,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "rig-names-3-4-88-waltz",
@@ -3548,7 +3575,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "rig-names-3-4-90-clean",
@@ -3567,18 +3595,18 @@
        "field": "tempo",
        "outcome": "wrong",
        "credit": 0.0,
-       "predicted": 129.6,
+       "predicted": 64.8,
        "expected": 90.0,
        "confidence": 0.86,
        "failure_mode": "tempo_error",
-       "detail": "rel_err=0.440; truth absent from family [129.6, 64.8, 194.4, 32.4, 21.6]",
+       "detail": "rel_err=0.280; truth absent from family [64.8, 129.6, 194.4, 32.4, 21.6]",
        "truth_in_family": false
       },
       {
        "field": "meter_triple",
        "outcome": "wrong",
        "credit": 0.0,
-       "predicted": "4/4 @129.6 none",
+       "predicted": "4/4 @64.8 duple",
        "expected": "3/4 @90 none",
        "confidence": 0.86,
        "failure_mode": "meter_wrong",
@@ -3587,17 +3615,18 @@
       },
       {
        "field": "counts",
-       "outcome": "wrong",
+       "outcome": "abstained",
        "credit": 0.0,
-       "predicted": 16,
+       "predicted": null,
        "expected": 8,
        "confidence": null,
-       "failure_mode": "counts_wrong",
+       "failure_mode": null,
        "detail": "",
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "rig-names-4-4-100-quiet",
@@ -3646,7 +3675,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "rig-names-4-4-104-clean",
@@ -3695,7 +3725,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "rig-names-4-4-104-coda",
@@ -3744,7 +3775,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "rig-names-4-4-104-explained",
@@ -3793,7 +3825,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "rig-names-4-4-63-adagio",
@@ -3842,7 +3875,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "rig-names-4-4-96-allegro",
@@ -3891,7 +3925,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "rig-names-6-8-100-clean",
@@ -3910,18 +3945,18 @@
        "field": "tempo",
        "outcome": "wrong",
        "credit": 0.0,
-       "predicted": 133.0,
+       "predicted": 66.5,
        "expected": 100.0,
        "confidence": 0.75,
        "failure_mode": "tempo_error",
-       "detail": "rel_err=0.330; truth absent from family [133.0, 66.5, 199.5, 33.2, 22.2]",
+       "detail": "rel_err=0.335; truth absent from family [66.5, 133.0, 199.5, 33.2, 22.2]",
        "truth_in_family": false
       },
       {
        "field": "meter_triple",
        "outcome": "wrong",
        "credit": 0.0,
-       "predicted": "4/4 @133 none",
+       "predicted": "4/4 @66.5 duple",
        "expected": "6/8 @100 none",
        "confidence": 0.75,
        "failure_mode": "meter_wrong",
@@ -3940,7 +3975,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "rig-numbers-2-4-120-clean",
@@ -3989,7 +4025,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "rig-numbers-3-4-90-clean",
@@ -4038,7 +4075,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "rig-numbers-4-4-104-bothsides",
@@ -4098,7 +4136,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "rig-numbers-4-4-104-clean",
@@ -4147,7 +4186,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "rig-numbers-4-4-104-duple",
@@ -4196,7 +4236,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "rig-numbers-4-4-104-explained",
@@ -4245,7 +4286,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "rig-numbers-4-4-104-fourx8",
@@ -4294,7 +4336,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "rig-numbers-4-4-104-prep",
@@ -4343,7 +4386,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "rig-numbers-4-4-60-halftempo",
@@ -4360,23 +4404,23 @@
      "scores": [
       {
        "field": "tempo",
-       "outcome": "wrong",
-       "credit": 0.0,
-       "predicted": 123.0,
+       "outcome": "correct",
+       "credit": 1.0,
+       "predicted": 61.5,
        "expected": 60.0,
        "confidence": 0.83,
-       "failure_mode": "metric_level_x2",
-       "detail": "answer sits at 2\u00d7 the expected tempo; truth in family as 61.5",
-       "truth_in_family": true
+       "failure_mode": null,
+       "detail": "rel_err=0.025",
+       "truth_in_family": null
       },
       {
        "field": "meter_triple",
-       "outcome": "wrong",
-       "credit": 0.0,
-       "predicted": "4/4 @123 none",
+       "outcome": "correct",
+       "credit": 1.0,
+       "predicted": "4/4 @61.5 none",
        "expected": "4/4 @60 none",
        "confidence": 0.83,
-       "failure_mode": "tempo_wrong",
+       "failure_mode": null,
        "detail": "",
        "truth_in_family": null
       },
@@ -4392,7 +4436,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "rig-numbers-4-4-80-triplet",
@@ -4441,7 +4486,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "rig-numbers-6-8-100-clean",
@@ -4490,7 +4536,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     },
     {
      "case_id": "rig-vocables-4-4-100-clean",
@@ -4539,7 +4586,8 @@
        "truth_in_family": null
       }
      ],
-     "error": null
+     "error": null,
+     "provisional": false
     }
    ]
   },
@@ -4997,19 +5045,6 @@
      "asynchrony_sd_ms": 32.6
     },
     "slices": {
-     "mixed": {
-      "n_clips": 1,
-      "n_ref": 38,
-      "n_pred": 44,
-      "matched": 26,
-      "precision": 0.591,
-      "recall": 0.684,
-      "f_measure": 0.634,
-      "f_measure_macro": 0.634,
-      "asynchrony_mean_ms": -9.3,
-      "asynchrony_median_ms": -11.0,
-      "asynchrony_sd_ms": 26.8
-     },
      "numbers": {
       "n_clips": 14,
       "n_ref": 360,
@@ -5024,17 +5059,17 @@
       "asynchrony_sd_ms": 31.3
      },
      "step_names": {
-      "n_clips": 14,
-      "n_ref": 597,
-      "n_pred": 740,
-      "matched": 277,
-      "precision": 0.374,
-      "recall": 0.464,
-      "f_measure": 0.414,
-      "f_measure_macro": 0.347,
-      "asynchrony_mean_ms": -4.3,
-      "asynchrony_median_ms": -6.0,
-      "asynchrony_sd_ms": 34.5
+      "n_clips": 13,
+      "n_ref": 426,
+      "n_pred": 553,
+      "matched": 165,
+      "precision": 0.298,
+      "recall": 0.387,
+      "f_measure": 0.337,
+      "f_measure_macro": 0.325,
+      "asynchrony_mean_ms": -10.5,
+      "asynchrony_median_ms": -15.8,
+      "asynchrony_sd_ms": 33.8
      },
      "vocables": {
       "n_clips": 1,
