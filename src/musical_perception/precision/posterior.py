@@ -181,17 +181,30 @@ def estimate_rhythm(
         and _normalize_text(w.word) not in _SUB_VOCAB
     ))
 
-    n_events = len(beat_times) + len(sub_times) + len(word_times)
-    if len(beat_times) < MIN_BEAT_MARKERS or n_events < MIN_EVENTS:
-        return interpret_meter(
+    def fallback() -> NormalizedTempo | None:
+        """Legacy arbitration, with division still measured, not
+        relayed: on the fallback rows interpret_meter passes Gemini's
+        subdivision claim through at multiplier 1, which is the exact
+        defect W9-b names. Where the answer sits at beat level and
+        there are beat markers to measure against, the counted-and-
+        vetted division replaces the claim."""
+        result = interpret_meter(
             onset_tempo, gemini_tempo, gemini_meter, gemini_subdivision
         )
+        if (result is not None and result.tempo_multiplier == 1
+                and len(beat_times) >= 2):
+            result.subdivision = _division(
+                beat_times, sub_times, gemini_subdivision
+            )
+        return result
+
+    n_events = len(beat_times) + len(sub_times) + len(word_times)
+    if len(beat_times) < MIN_BEAT_MARKERS or n_events < MIN_EVENTS:
+        return fallback()
 
     beat_support = _stream_support(beat_times)
     if beat_support < SUPPORT_FLOOR:
-        return interpret_meter(
-            onset_tempo, gemini_tempo, gemini_meter, gemini_subdivision
-        )
+        return fallback()
 
     bpm_axis, log_marginal = _lattice_forward(
         beat_times, word_times, A_BEAT * beat_support
@@ -344,37 +357,76 @@ def _division(
     sub_times: np.ndarray,
     gemini_subdivision: str | None,
 ) -> str:
-    """Division from sub-syllable COUNTS per beat, not timing.
+    """Division from sub-syllable counts per beat, vetted by timing
+    CONSISTENCY.
 
-    Spoken subdivision syllables carry their metrical identity in what
-    is said, not where it lands: on the real corpus "and"s sit anywhere
-    from frac 0.61 to 0.77 of the beat — a timing template reads that
-    as 2/3 and calls a plainly duple count triplet, and a joint
-    division axis hands the tempo search fine-grained combs that eat
-    dense streams a level down (both observed in this rung's first DEV
-    runs). This is subdivision.py's counting logic — the blessed
-    component the owner's factored-meter direction names as already
-    solving this axis — with the beat association recovered by time
-    (each sub belongs to the beat marker preceding it) instead of by
-    Gemini's beat numbering, which the and/ah markers often lack.
-    Sparse stray subs (fewer than one per two beats) read as `none`;
-    Gemini's claim decides only when there are no beats to associate
-    against.
+    The count decides the candidate category: spoken subdivision
+    syllables carry their metrical identity in how many there are per
+    beat, not in where they land relative to the ideal positions — on
+    the real corpus a duple "and" sits at frac 0.61-0.77 (swing) and a
+    triplet lands its pair near 0.55 and 0.9, nowhere near 1/3 and
+    2/3, so nearest-ideal-position classification misreads both.
+
+    Timing then vets the candidate (the owner's point, measured and
+    confirmed 2026-08-28): a REAL subdivision is a rhythmic event that
+    recurs at a stable phase of the beat, swing included — one tight
+    cluster for duple, two for triplet — while incidental between-beat
+    speech (step names, explanation syllables the classifier tagged as
+    and/ah) scatters across the beat. Each within-beat rank of the sub
+    positions must be circularly concentrated; a candidate whose subs
+    have no stable phase is not a subdivision, and the answer is
+    `none`. Positions are measured between surrounding beat MARKERS
+    (local, drift-free). Sparse strays (fewer than one per two gaps)
+    are `none` before any of this; Gemini's claim decides only when
+    there are no beat markers to measure against.
     """
     if not len(sub_times):
         return "none"
-    if not len(beat_times):
+    if len(beat_times) < 2:
         return gemini_subdivision if gemini_subdivision in _DIVISIONS else "none"
-    idx = np.searchsorted(beat_times, sub_times, side="right") - 1
-    per_beat = np.bincount(idx[idx >= 0], minlength=len(beat_times))
-    avg = float(per_beat.mean())
+
+    gap_positions: dict[int, list[float]] = {}
+    for t in sub_times:
+        i = int(np.searchsorted(beat_times, t)) - 1
+        if 0 <= i < len(beat_times) - 1:
+            span = beat_times[i + 1] - beat_times[i]
+            if 0.2 < span < 3.0:
+                gap_positions.setdefault(i, []).append(
+                    float((t - beat_times[i]) / span)
+                )
+    n_gaps = len(beat_times) - 1
+    n_subs = sum(len(v) for v in gap_positions.values())
+    # Recurrence needs at least three observations — two points always
+    # "recur" (the same identifiability floor as rhythm.py's
+    # GRID_MIN_IOIS). Below it, no subdivision claim is checkable, and
+    # the unverifiable answer is none.
+    if n_subs < 3:
+        return "none"
+    avg = n_subs / n_gaps if n_gaps else 0.0
     if avg < 0.5:
         return "none"
-    if avg < 1.5:
-        return "duple"
-    if avg < 2.5:
-        return "triplet"
-    return gemini_subdivision if gemini_subdivision in _DIVISIONS else "none"
+    candidate = "duple" if avg < 1.5 else ("triplet" if avg < 2.5 else None)
+    if candidate is None:
+        return gemini_subdivision if gemini_subdivision in _DIVISIONS else "none"
+
+    # Consistency vet: per within-gap rank, the circular resultant
+    # length of the positions. Uniform scatter gives R ~ 1/sqrt(n);
+    # a recurring phase gives R near 1. The threshold was chosen with
+    # DEV distributions visible (disclosed, W9-style): the measured
+    # clusters sit at R >= 0.85 and the measured scatter at R <= 0.5,
+    # so any value in (0.5, 0.85) separates them; 0.6 leaves the wider
+    # margin on the cluster side, where a swung but genuine subdivision
+    # must never be rejected.
+    for rank in range(2 if candidate == "triplet" else 1):
+        pos = [sorted(v)[rank] for v in gap_positions.values() if len(v) > rank]
+        if len(pos) < 4:
+            continue
+        angles = 2.0 * math.pi * np.array(pos)
+        resultant = float(np.hypot(np.cos(angles).mean(),
+                                   np.sin(angles).mean()))
+        if resultant < 0.6:
+            return "none"
+    return candidate
 
 
 def _alternates(
