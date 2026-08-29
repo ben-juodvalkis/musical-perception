@@ -5068,3 +5068,165 @@ and backlog W9-b (level-conditional subdivision pass-through). Branch:
 charter rule 3.
 
 Status: **BLESSED** (W9) · rulings recorded · W5 IN PROGRESS.
+
+## 2026-08-28 · rung M / W5 (rung 4: the factored joint posterior) · agent/rung-4-joint-posterior · local (owner-attended) — PRE-REGISTRATION
+
+**Pipeline increment, measurement change (ADR-015 diagnosed-regression
+gate). Owner-started per charter rule; the owner is present in this
+session.** Boot sequence complete: charter, Standing Lessons, fresh
+baseline (post-W9 bless of this morning), Review 3 in full including its
+top-5 reading list (read as the review's verified summaries — the
+original PDFs were egress-blocked at review time and remain unread;
+stated per house honesty), W2's full result tables, the owner's
+2026-08-26 factored-meter direction, W9's results (the 52-vs-61.5 gap,
+backlog W9-b).
+
+### The evidence probe (committed: `scripts/w5-evidence-probe.py`)
+
+Read-only replay of all 30 tier-1 traces, dumping per clip what the
+rhythm core actually has: marker classes and beat-number cycles, beat-
+marker IOI level, onset stream, Gemini claims, current answer. Three
+findings drive the design:
+
+1. **The classified beat-marker stream already knows answers the
+   pipeline throws away.** `adr006-8-counts-triple`: beat markers at
+   66.2 BPM (truth 68.4), answer 118.8 from the onset arm.
+   `rig-names-3-4-88-waltz`: markers 90.6 (truth 88), answer 102.6.
+   `rig-names-4-4-104-coda`: markers 52.5 — exactly half of truth 104.
+   The current arbitration picks ONE arm; levels never vote (Standing
+   Lesson 3 names this).
+2. **Four meter rows are wrong only because Gemini's `duple` claim is
+   passed through** at multiplier 1 on step-name clips whose truth is
+   `none` (`rig-names-4-4-100-quiet`, `-104-clean`, `-104-explained`,
+   `-96-allegro` — all tempo-correct, meter-correct, subdivision-wrong).
+   This is W9-b generalized: division must be measured, not relayed.
+3. **The numbers clips encode the grouping ladder directly**: they count
+   1–8 regardless of bar length — `rig-numbers-2-4-120-clean` counts to
+   8 in 2/4. The count phrase is the strong rung; the bar label below it
+   is partially underdetermined, exactly as the owner's introspection
+   and W2's lag-8 finding said.
+
+### Design (the factored core, per the 2026-08-26 direction)
+
+New module `src/musical_perception/precision/posterior.py` (KEEP layer),
+entry point consuming the replayable streams: all word onsets, classified
+markers (with classes and beat numbers), Gemini's meter/subdivision
+claims as votes.
+
+- **State**: candidate beat period on a log-spaced 40–200 BPM grid ×
+  phase × division d ∈ {none, duple, triplet}. **No meter variable.**
+  One exact enumeration (~10^4–10^5 cells), normalized → a true joint
+  posterior. Global (period, phase) per clip — tempo drift is explicitly
+  OUT of scope this increment (the corpus is steady marking; the 8%
+  scorer tolerance absorbs it; a drift-shaped residual would surface in
+  the per-clip diagnostics and is a named falsifier, not an assumption).
+- **Observation model** (PIPPET template + Povel–Essens negative
+  evidence): per-class Gaussian bumps — beat markers strong at integer
+  beats, and/ah markers at d-dependent sub-positions, unclassified words
+  weak at any grid position — over a background rate that absorbs talk;
+  empty expected-beat slots inside the marked span pay a silence penalty
+  (Standing Lesson 6). Marker-class weight is scaled by within-class
+  grid-fit support so an irregular marker stream cannot outvote a
+  regular onset stream (named risk: `adr010-grande-battement`, markers
+  at 153.6 with high spread, currently correct via onsets — must not
+  lose).
+- **Priors**: W9's log-normal tempo prior (T0 = 99, σ = 0.5 octave)
+  applied once over the whole grid — there is no fold anywhere; the grid
+  IS every level. Gemini's subdivision and meter claims enter as single
+  weak votes (Standing Lesson 4: one draw is a coin flip), never as
+  pass-throughs.
+- **Division** is read off the joint posterior — measured sub-position
+  mass, not Gemini's claim.
+- **Grouping ladder** (the factored deliverable): given the MAP beat
+  grid, per-level evidence for g ∈ {2, 3, 4, 6, 8} from beat-number
+  cycles and resets (strong where present), boundary gaps (Temperley gap
+  rule), and accent alternation (weak, per W2). Reported per level with
+  per-level strength.
+- **The time-signature label is derived late**, outside the state space,
+  only for the contract/eval surface: measured division + ladder +
+  Gemini's label as one vote. Where measured grouping evidence is silent
+  (most 4/4 clips, and the 2-vs-4 ambiguity W2 proved), Gemini's label
+  passes through unchanged — pre-registered consequence: **the 2/4-truth
+  label rows stay wrong** (`rig-names-2-4-*`, `rig-numbers-2-4-120`);
+  no replayable evidence separates grouping-2 from grouping-4 on them.
+  The ladder output records that honestly.
+- **Confidence = posterior mass** of the committed answer's ±8%
+  neighborhood (marginal over phase and division) — the probability the
+  scorer would accept the answer, which is what calibration should mean
+  here. **Abstention**: committed mass below threshold → None (entropy
+  abstention in interpretable form).
+- **Alternates (ADR-014)**: posterior local maxima with their masses —
+  the family finally carries real weights (charter rung-4 deliverable).
+- **Sparse fallback**: fewer than 4 classified beat markers or fewer
+  than 8 usable events → delegate to the existing `interpret_meter`
+  verbatim (named rows: `adr006-exercise-1-demo` — 2 beat markers,
+  currently correct, must not lose; `rig-vocables` — 1 event, stays
+  abstained).
+- **Integration**: `analyze.py` calls the new core on the shipping path.
+  `interpret_meter` is NOT modified and NOT deleted: tier-0's driver
+  (`evals/synthetic.py`, untouchable eval code in a pipeline rung) calls
+  it directly, so tier-0 stays byte-identical by construction. Updating
+  the tier-0 driver to exercise the new core is a named EVAL-CHANGE
+  follow-up for a future infrastructure increment; retiring
+  `interpret_meter` after that is W8's. The contract change (factored
+  fields on the output) ships as an ADR with this rung, additive only —
+  `MusicalParameters` keeps every existing field populated.
+
+### Pre-registered predictions
+
+- **P1 tempo (verified rows, committed accuracy): 20 → 22 minimum.**
+  Confident flips, both wrong→correct: `adr006-8-counts-triple`
+  (118.8 → ≈66–68), `rig-names-3-4-88-waltz` (102.6 → ≈90). Possible
+  (predicted as stretch, not counted in the minimum):
+  `rig-names-4-4-104-coda` (74 → ≈105), `rig-names-2-4-120-clean`
+  (90.1 → ≈120–125). **Zero tempo losses**; must-not-lose named: the
+  three marker-arm rows (`rig-numbers-3-4-90`, `-104-duple`,
+  `-80-triplet`), `rig-numbers-4-4-60-halftempo`,
+  `rig-names-2-4-160-long`, `adr010-grande-battement`,
+  `adr006-exercise-1-demo`, `adr006-8-counts-2x`, and every currently
+  green numbers row.
+- **P2 meter_triple (verified, committed): 12 → 16 minimum.** The four
+  division rows flip by measurement (duple→none):
+  `rig-names-4-4-100-quiet`, `-104-clean`, `-104-explained`,
+  `-96-allegro`. Stretch: `adr006-8-counts-triple` (+tempo flip with
+  measured triplet division → correct triple), `rig-names-4-4-104-coda`
+  (+tempo flip with division→none). Range 16–19. The 2/4-label rows and
+  `rig-names-6-8-100-clean` predicted unchanged-wrong;
+  `rig-numbers-3-4-90-clean` stays at 0.5 equivalent-reading partial.
+- **P3 division changes are exactly enumerable**: duple→none on the four
+  named rows (plus coda if it flips); duple→triplet on
+  `adr006-8-counts-triple`; **no other row's subdivision moves** — in
+  particular the two triplet rows stay triplet and every numbers row
+  with `none` stays `none`. Falsifiable and checked row by row.
+- **P4 tier-0: byte-identical**, 25/25 tempo and 24/25 meter — by
+  construction (driver and `interpret_meter` untouched).
+- **P5 stage1: byte-identical** (pulse extractor untouched).
+- **P6 ECE ≤ 0.1998** (the gate is "not worse"); direction: improved,
+  because confidence becomes the posterior mass of the scored
+  neighborhood. Magnitude not asserted.
+- **P7 counts (the W9-P7 lesson, consumers read before predicting):**
+  `estimate_counts` regime 1 (numeric cycle) is bpm-independent — every
+  currently-correct numbers counts row is safe. Regime-2 rows whose bpm
+  moves are named: `rig-names-3-4-88-waltz` and `rig-names-4-4-104-coda`
+  (both currently abstained) may commit in either direction;
+  `adr006-8-counts-triple` counts is regime-1 (correct, safe). Predict:
+  zero counts correct→wrong; any abstained→wrong classified honestly.
+- **P8 abstentions**: `rig-vocables` stays abstained;
+  `rig-names-3-4-90-clean` tempo predicted wrong→abstained (the
+  hallucination-guard clip — the posterior over its irreconcilable
+  streams should spread; an honest abstention, not counted as a win).
+- **P9 alternates carry posterior mass**; `truth_in_family` on the
+  remaining wrong rows predicted ≤ 2 (the flips convert the recoverable
+  rows to primary-correct).
+- **P10 sides/slot/quality untouched; provisional rows
+  (`adr007-plies-demo`, `rig-mixed-4-4-104-quantities`) reported in
+  their own slice as always** — plies' tempo may flip (markers at 107,
+  truth 118, currently 176.1); stated for the record, gates nothing.
+
+Gate to clear (rung-4 /goal): net tier-1 tempo AND meter_triple
+improvement, ECE not worse, zero undiagnosed regressions, tier-0 tempo
+25/25, eval files untouched (`git diff --stat main` at completion),
+dated ledger entry with this scorecard scored honestly. Turn bound 60.
+
+Status: **PRE-REGISTERED** — implementation follows in this session;
+results entry appended when the suites have run.
