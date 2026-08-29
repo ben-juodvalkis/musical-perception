@@ -5615,3 +5615,100 @@ before betting on the channel — so that W5's continuation can consume
 it without re-deriving events from media on every run.
 
 Status: PRE-REGISTERED (results entry follows in this session).
+
+## 2026-08-28 · rung M / W11 (pulse sidecars) · agent/marathon · local (nightly, unattended) — RESULTS
+
+**EVAL-CHANGE**, declared in the pre-registration above. No pipeline code
+touched: the diff outside `src/musical_perception/evals/` is docs, tests,
+and the 30 added sidecar files.
+
+### What landed (`2b595b7`)
+
+- `evals/traces/<clip>/pulse.json` × **30**, add-only. Each carries the
+  event times, the frozen `AcousticPulseParams`, the media path, the
+  verified `media_sha256`, and the recording git sha.
+- `evals/pulse_sidecar.py` — the checksum contract in code:
+  `record_pulse_sidecar` hashes the media and **refuses to write** unless
+  it equals the trace's pin; `load_pulse_sidecar` re-checks the sidecar's
+  recorded hash against `meta.json` offline on every load and raises
+  `SidecarError` on drift.
+- `python -m musical_perception.evals record-pulse [--only …] [--force]`.
+- `stage1` gains the `peakrate-sidecar` source, reachable only through the
+  NEW suite `stage1-peakrate`. The `stage1` suite is untouched in meaning.
+- `docs/evals/pulse-sidecars.md`; CLAUDE.md pointer.
+
+### Prediction scorecard
+
+| # | prediction | outcome |
+|---|---|---|
+| P1 | 30/30 media hash equal to the trace pin; 0 skipped | **HELD** — `30 recorded, 0 already present, 0 skipped` |
+| P2 | `n_sidecar >= n_rung2_cache` on 28/28; strictly greater on ≥ 20 | **HELD** — 28/28 ≥, **23** strictly greater, 5 equal, 0 fewer |
+| P3 | default `tier0,tier1,stage1` `suites` block byte-identical | **HELD** — sha256 `fdd7f00f…` before and after; `no outcome changes vs baseline` |
+| P4a | verified-aggregate recall up by ≥ 0.15 | **HELD** — 0.449 → **0.855** (+0.406) |
+| P4b | verified-aggregate **precision down** | **WRONG** — 0.334 → **0.572** (+0.238). The reasoning was that a syllable-rate stream must over-emit against a tactus-rate reference; it ignored that the word-start stream *also* over-emits (1,141 preds vs 895 for peakRate) and mostly at wrong times. Recorded as a missed prediction, not re-explained away. |
+| P4c | pooled F direction deliberately not predicted | n/a — it rose 0.383 → 0.686 |
+| P4d | the vocables clip R 0.062 → ≥ 0.80 | **HELD** — **0.875**, matching rung 2's tactus measurement exactly |
+| P5 | pytest green with new coverage | **HELD** — **306 passed, 3 skipped** (was 294/3; +12 new tests) |
+
+Four of five families held; P4b is a clean miss and is scored as one.
+
+### The anchoring caveat, quantified — read this before quoting any number above
+
+`stage1-peakrate`'s verified aggregate (P 0.572 / R 0.855 / F 0.686) is
+**substantially circular** and must not be quoted as extractor quality.
+Most verified grids are `annotation_method: anchored` — seeded from this
+same detector's onsets, then corrected by the owner — so a matched pair
+is often the detector meeting its own frozen output:
+
+- **769 of 895 matched pairs (86%) coincide with a frozen onset to
+  within 1 ms.** That is what the `async=0.0±0.0ms` rows are.
+- The two `provisional` grids (`adr007-plies-demo`,
+  `rig-mixed-4-4-104-quantities`) were never owner-corrected, so their
+  `beats` **are** the detector's events: P=R=F=**1.000**, 171/171 and
+  38/38 exact. The `aggregate_provisional: F=1.0` line in the run output
+  is the detector scored against itself and means nothing.
+- The three `from_scratch` grids carry **0 of 94** exact coincidences.
+  They are the honest cohort:
+
+| clip (from_scratch) | F word-starts | F peakRate | async peakRate |
+|---|---|---|---|
+| adr006-exercise-1-demo | 0.213 | **0.316** | +4.5 ± 39.5 ms |
+| adr010-grande-battement | 0.209 | **0.409** | +9.9 ± 28.6 ms |
+| frappe | 0.474 | **0.484** | +9.0 ± 31.3 ms |
+
+peakRate ahead on all three, decisively on two and by 0.010 (noise, per
+Standing Lesson 7) on the third. That is the magnitude claim W11
+supports — not the 0.383 → 0.686 headline. This is the same caveat the
+charter carries at rung 2; W11 now attaches a number to it.
+
+Second honesty note: the sidecars are the **`events_per_nucleus="all"`**
+stream (W2.5's default flip), whereas
+`docs/research/rung2-extractor-events.json` is the older `"first"`
+stream. The two are not interchangeable, which is why P2 was framed as an
+inequality and why `params` is frozen inside every sidecar.
+
+### What this does NOT establish
+
+Nothing consumes `pulse.json` on the shipping path; no gate reads
+`stage1-peakrate`; rung 2's verdict is neither re-opened nor
+re-confirmed (different metric — plain mir_eval P/R/F here, blessed
+level-collapsed R@tac/P_lc there). The deliverable is replayability:
+the acoustic channel can now be scored, ablated, and consumed offline by
+anyone with the repo, on any runner, without the gitignored media.
+
+### Backlog parked
+
+- **W11-b:** the 22 Barre-1 trace directories have no sidecars — their
+  media is `offrepo:` and has no path to hash. When W4 lands their case
+  files, decide whether sidecars are recorded on the runner that holds
+  the media or skipped by design. Not in scope here; the recorder
+  iterates cases, so those dirs were never touched.
+- The `stage1-peakrate` suite is absent from `evals/baseline.json`, so
+  `compare_outcomes` skips it. It pins no outcomes anyway (dict suites
+  carry `outcomes: {}`), but a future owner who wants it pinned must
+  bless a run that includes the suite.
+
+Status: PROPOSED (agent increment on `agent/marathon`, ready for the
+owner's weekly batch review). W11's purpose — unblocking W5's
+pulse-fed continuation — is met: the events are frozen, checksum-bound,
+and loadable in one call.
