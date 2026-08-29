@@ -6205,3 +6205,19 @@ Status: **PROPOSED**, awaiting the owner's batch review. This branch now
 carries **W11 + W12 + W4**, all three unreviewed. Next by standing rank
 once these are cleared: **W3-remainder** (raw-condition rows + optional
 BeatNet), then W6's condition drafting.
+
+## 2026-08-29 · rung M · agent/marathon · (one-line note: session increment complete, awaiting owner review)
+
+W4's increment is complete and pushed (`bdca335`); this branch now
+carries **three unreviewed increments — W11, W12, W4 — all PROPOSED and
+awaiting the owner's weekly batch review**, so no further session work is
+possible on any of them under charter rule 1 (blessing is human). Rung M
+is a standing contract, never "complete": its per-session condition —
+one bounded increment on the highest-ranked non-BLOCKED workstream,
+constraints verified, dated ledger entry appended — is satisfied by the
+entry above, and charter rule 6 (one bounded change per session) bars
+taking a second workstream tonight. The next scheduled session takes
+**W3-remainder** (raw-condition rows + optional BeatNet, runnable on any
+runner), not any of the three pending here.
+
+Status: PROPOSED (bookkeeping note; the substantive entry is above).
