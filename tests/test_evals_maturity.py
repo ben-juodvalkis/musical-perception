@@ -97,15 +97,30 @@ def test_unknown_maturity_is_an_error(tmp_path):
 
 
 @needs_yaml
-def test_every_committed_case_is_verified():
-    """The corpus this baseline was blessed on is owner-verified, all 30 of
-    it. If a provisional case ever lands here, this test says so loudly —
-    that is a review event, not a detail."""
+def test_the_gating_corpus_is_exactly_the_blessed_thirty():
+    """Every case that gates is owner-verified, and there are exactly 30.
+
+    W1.5 wrote this as a tripwire: "if a provisional case ever lands here,
+    this test says so loudly — that is a review event, not a detail." W4's
+    Barre-1 ingestion (2026-08-29) is that event, and the tripwire fired on
+    the first run; the ledger entry of that date records it as such. What
+    the tripwire was protecting is not the corpus *size* but the *gating
+    set*, so the assertion moves to the thing itself and gets stricter: the
+    verified ids must be exactly the ids the blessed baseline pins, so no
+    session can grow the gating set by writing `maturity: verified` on
+    agent-authored truth. Everything beyond those 30 must be provisional
+    until the owner verifies it.
+    """
     from musical_perception.evals.cases import load_cases
 
     cases = load_cases(_REPO / "evals" / "cases")
-    assert len(cases) == 30
-    assert [c.id for c in cases if c.provisional] == []
+    verified = {c.id for c in cases if not c.provisional}
+    blessed = set(
+        json.loads((_REPO / "evals" / "baseline.json").read_text())
+        ["suites"]["tier1"]["outcomes"]
+    )
+    assert len(blessed) == 30
+    assert verified == blessed
 
 
 # --- the tag vocabulary (owner ruling B5) -------------------------------
