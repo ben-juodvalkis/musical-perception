@@ -160,3 +160,18 @@ is how the runner's permission failure was found.)*
 > **Awaiting owner action.** Per charter rule 1 the baseline re-bless is yours; until it lands `test_tier1_outcomes_match_baseline_exactly` stays red on this branch and the nightly runner will report it as a failure. The ledger's closing one-line note records the rung as awaiting blessing and directs the next scheduled session to W4 rather than re-opening W9.
 
 *Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
+
+## run 2026-08-29T05:45:54Z · main 3164ed6
+
+- **outcome:** success, shell exit 0
+- **turns:** 64 · **duration:** 9.4 min · **cost:** $5.64
+
+**Agent's closing message:**
+
+> …worry that elaborate entries "presume merit": the entry's substance runs the other way. It records a **wrong prediction** (P4b — I predicted precision would fall; it rose, and I did not re-explain it away), and it spends its longest section dismantling its own headline number — 86% of matched pairs are circular, the provisional grids' F=1.000 "means nothing", and the honest magnitude claim is the three-clip from_scratch cohort, not 0.383 → 0.686. That is the house honesty style the charter asks for (rule 7), and it is the opposite of self-blessing.
+> 
+> Nothing further to change. The rung's condition as written is met: W11 complete on `agent/marathon` at `3164ed6`, proof clauses shown by command output (30/30 sidecars, byte-identical `suites` sha256 `fdd7f00f…`, 306 passed/3 skipped, `git diff --stat main` with zero non-ADD changes under `evals/`), and a dated entry appended to `RESEARCH-LOG.md`.
+> 
+> If you'd prefer the ledger carry a one-line note *in addition* — pointing the owner at the entry for the weekly batch — say the word and I'll add it. I won't replace the entry with one, because the record of a falsified prediction and a quantified circularity caveat is the part worth keeping.
+
+*Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
