@@ -5520,3 +5520,25 @@ Still open on the owner: the HELD-OUT containment hand-check (A4-27).
 
 Status: **BLESSED** (W5 phase 1) · rulings recorded · W11/W12 queued
 for the nightlies.
+
+## 2026-08-28 · rung M · main · local (owner attestation: HELD-OUT containment confirmed — A4-27 CLOSED)
+
+**Owner attestation, given in session after a hand-check performed to
+the A4-27 procedure:** the four HELD-OUT Ballet Barre 1 exercises are
+confirmed off the Air — name-checked one by one against the off-repo
+list in the Air's `video/youtube/Ballet Barre 1` directory, plus a
+Spotlight sweep and a Trash check; zero hits on all four. No names,
+listings, or screenshots entered any agent context; the check was
+performed by the owner's eyes only, as the amendment requires.
+
+Honesty note on method: raw counts (33 files on the main machine, 25
+on the Air) were first compared and are consistent with containment,
+but counts alone cannot prove it — per-exercise take counts vary (the
+22 DEV traces prove three takes for most exercises) and the session's
+initial "expect 16" figure was wrong, derived from the charter's
+simplified prose instead of the trace census. The name check is what
+this attestation rests on.
+
+**A4-27 CLOSED.** The 08-27 review queue is now fully cleared.
+
+Status: **ATTESTED** (owner, 2026-08-28).

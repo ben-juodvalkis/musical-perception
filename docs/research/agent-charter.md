@@ -91,7 +91,9 @@ flags, classified regressions).
     by complement*. Agents must therefore **never enumerate it** — the
     only available audit is itself the leak. Confirmation that the four
     exercises left the Air can come only from the owner, as a dated
-    one-line attestation appended to the ledger.
+    one-line attestation appended to the ledger. **Attested 2026-08-28**
+    (name check on the Air by the owner's eyes only; see the ledger
+    entry of that date). The enumeration prohibition stands forever.
   - **DEV (the remainder):** ingested per the protocol above; truth
     labels agent-proposed `provisional` until owner-verified.
   - The four existing video demos stay as they are (frozen traces,
