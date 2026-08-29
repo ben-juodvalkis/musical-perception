@@ -5936,3 +5936,93 @@ already parks for W8.
 Status: **COMPLETE**, awaiting owner batch review. This branch now
 carries W11 (previous session) + W12. Next by standing rank: **W4**
 (Barre-1 provisional case files), then W3-remainder.
+
+## 2026-08-29 · rung M / W4 (Barre 1 DEV ingestion: the case files) · agent/marathon · local (nightly, unattended) — PRE-REGISTRATION
+
+**Workstream selection.** Standing ranking (charter, owner-ratified
+2026-08-28): 1. W11 — **COMPLETE on this branch** (`3164ed6`);
+2. W12 — **COMPLETE on this branch** (`491fd54`); both PROPOSED and
+awaiting the owner's batch review, so both are BLOCKED-on-owner for a new
+increment. 3. **W4** — Barre-1 provisional case files, UNBLOCKED
+2026-08-27 when W1.5's `maturity` key landed (`evals/cases.py:27,53,144`).
+W0 does not pre-empt: its last entry is 2026-08-27, two days old against
+the 7-day rule. This session takes **W4**.
+
+Writability precondition (charter amendment 1–2): satisfied as the first
+act — `9ef2216` (write) + `1dbe142` (remove).
+
+**Add-only ingestion carve-out**, rule 2: new case files only, every one
+`maturity: provisional`. No existing eval file modified, no scorer code
+touched — this is *not* an EVAL-CHANGE increment, it adds no metric and
+no suite.
+
+### What the evidence says before any file is written
+
+The 22 frozen traces (08-22) were read offline tonight — all 22
+transcripts and all 22 `gemini.json` blocks. Two facts decide the shape
+of this increment, and both are findings, not predictions:
+
+* **F1 — the teacher never counts a phrase through.** Across 22 clips
+  there is not one run of counting numbers covering a full 8. What
+  exists are fragments spoken *inside instruction*: `"we're gonna go
+  eight times. five. six."`, `"port de bras, five, six, and"`,
+  `"grand plié, six, seven and eight"`, `"you take a port de bras front
+  in four counts"`, `"forward and back in eight counts"`. The material
+  is instruction over accompaniment, not voice-as-drum. (W4's 08-22
+  entry measured the same thing from the other side: median
+  counting-token fraction 0.254.)
+* **F2 — and those fragments do not establish a bar.** A ballet teacher
+  counting `"six, seven and eight"` is counting the **count phrase**,
+  which over waltz accompaniment is eight *bars* of 3/4, not eight beats
+  of 4/4. The traces contain the collision directly: on one exercise the
+  teacher's demo counts in eights while the same exercise's
+  accompaniment-only take is described by the model as a waltz. So
+  "counted in 8s" → 4/4 is an inference this corpus specifically
+  refutes. This is the same distinction W12 measured last night (the
+  ladder speaks about the count phrase and is silent about bars) and the
+  one the owner's 2026-08-26 factored direction is built on; here it
+  shows up as a *labeling* constraint.
+
+Consequence, stated before the files exist: **for 19 of 22 clips no
+truth label can be honestly proposed from the frozen evidence.** Tempo
+truth would have to come from the piano (no metronome label, no
+verified grid, media `offrepo:`); meter truth is blocked by F2; counts
+truth by F1. Copying the pipeline's own reading into `expect` would
+manufacture a green on rows that gate nothing but would still be quoted
+— exactly the error the 08-22 entry warned about when it published that
+table. Those 19 cases therefore ship with an **empty `expect`**: tags,
+provenance and a per-clip note saying which label is missing and why.
+
+The **one** exception is a clip where the teacher states the meter of the
+music out loud, as an instruction to the pianist — `"we'll go on with a
+slow chaté in a three, please, rex"`. That is a verbal statement about
+the music, not a count, and it is the only such statement in the batch.
+It is proposed as `meter: "3/4"` for that exercise's three files
+(demo + both execution takes — one exercise, one piece of music).
+
+### Pre-registered predictions
+
+* **J1** — all 22 new cases load and replay with **zero** `__error__`
+  rows in the tier-1 output.
+* **J2** — every headline block stays **identical to the blessed
+  baseline** on both tier0 and tier1 (`fields`, `outcomes`, `ece`,
+  `risk_coverage`, `slices`, `tempo_metrics`, `quality_spearman`), and
+  `evals run` prints `no outcome changes vs baseline`. The one block
+  that *must* change is `provisional`: it is `None` today (the corpus has
+  zero provisional cases) and becomes a 22-id block. Predicted: exactly
+  those two states, nothing else moves.
+* **J3** — exactly **6** rows carry `accompanied: accompaniment_only`,
+  matching owner ruling B5's "six pianist-playing Barre-1 takes". The
+  seventh left-side take is *not* one of them: its transcript is two
+  words but the model asserts a dancer is present, so the corroboration
+  the other six have (≤3 words **and** model prose describing music or
+  no dancer) is absent. Recorded as a disagreement, not resolved.
+* **J4** — the provisional slice reports **n=3 for `meter_triple`** and
+  **n=0 for `tempo` and `counts`**. Of the three, the 08-22 table (stale:
+  taken before W5 and W9 landed) read 4/4 on the demo and 3/4 on both
+  execution takes. Predicted **2 correct / 1 wrong**, and the wrong one
+  is the demo.
+* **J5** — `pytest` unchanged at **320 passed, 3 skipped**: no code is
+  touched by this increment.
+
+Status: PRE-REGISTRATION (results entry follows in this session).
