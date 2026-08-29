@@ -127,7 +127,10 @@ their own slice but gate nothing — see
 fails on ANY outcome change vs the baseline — improvements too; re-bless
 to carry the delta. The stage1 suite (pulse P/R/F + signed asynchrony vs
 grids) pins no outcomes; tier-1 reporting also carries Acc1/Acc2 and
-OE1/OE2 tempo metrics (informational). Perception changes are judged by
+OE1/OE2 tempo metrics (informational), plus the W12 **factored meter
+slice** (`meter_division` + `meter_grouping`, reported beside
+`meter_triple` and gating nothing — see
+[docs/evals/factored-meter.md](docs/evals/factored-meter.md)). Perception changes are judged by
 the eval delta, not by a hand-run on one file.
 
 ## Dependencies

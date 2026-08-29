@@ -7,8 +7,10 @@ from pathlib import Path
 
 from musical_perception.evals.cases import Case, load_cases
 from musical_perception.evals.scorers import (
+    REPORTED_ONLY_FIELDS,
     CaseResult,
     score_counts,
+    score_meter_factored,
     score_meter_triple,
     score_quality,
     score_sides,
@@ -37,6 +39,11 @@ def score_parameters(result, case: Case) -> list:
             expect["meter"],
             case.expected_bpm,
             expect.get("subdivision"),
+        ))
+        # W12: the factored slice, reported beside meter_triple and
+        # gating nothing (REPORTED_ONLY_FIELDS).
+        scores.extend(score_meter_factored(
+            normalized, expect["meter"], expect.get("subdivision")
         ))
     if "counts" in expect:
         scores.append(score_counts(result.structure, expect["counts"]))
@@ -118,7 +125,10 @@ def outcomes_map(case_results: list[CaseResult]) -> dict:
     return {
         c.case_id: (
             {"__error__": c.error} if c.error
-            else {s.field: s.outcome for s in c.scores}
+            else {
+                s.field: s.outcome for s in c.scores
+                if s.field not in REPORTED_ONLY_FIELDS
+            }
         )
         for c in case_results
     }

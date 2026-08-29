@@ -13,7 +13,13 @@ from collections import defaultdict
 
 import numpy as np
 
-from musical_perception.evals.scorers import ABSTAINED, CORRECT, CaseResult, ScoreResult
+from musical_perception.evals.scorers import (
+    ABSTAINED,
+    CORRECT,
+    REPORTED_ONLY_FIELDS,
+    CaseResult,
+    ScoreResult,
+)
 
 
 def wilson_interval(k: int, n: int, z: float = 1.96) -> tuple[float, float]:
@@ -215,7 +221,13 @@ def _summarize_cases(
     slice_keys: tuple[str, ...],
 ) -> dict:
     """The metric block for one cohort of cases (verified or provisional)."""
-    all_rows = [s for c in case_results for s in c.scores]
+    every_row = [s for c in case_results for s in c.scores]
+    # W12: reported-only rows leave every headline number alone — `fields`,
+    # ECE, risk-coverage and the tag slices are all computed from the
+    # gating rows exactly as before, so a corpus with no factored rows
+    # produces byte-identical output to the pre-W12 harness.
+    all_rows = [r for r in every_row if r.field not in REPORTED_ONLY_FIELDS]
+    factored_rows = [r for r in every_row if r.field in REPORTED_ONLY_FIELDS]
     by_field = defaultdict(list)
     for row in all_rows:
         by_field[row.field].append(row)
@@ -238,7 +250,9 @@ def _summarize_cases(
         groups = defaultdict(list)
         for c in case_results:
             if key in c.tags:
-                groups[str(c.tags[key])].extend(c.scores)
+                groups[str(c.tags[key])].extend(
+                    r for r in c.scores if r.field not in REPORTED_ONLY_FIELDS
+                )
         if groups:
             slices[key] = {
                 value: {name: summarize_field(rs) for name, rs in _by_field(rows).items()}
@@ -254,6 +268,14 @@ def _summarize_cases(
         "ece": expected_calibration_error(all_rows),
         "risk_coverage": risk_coverage(all_rows),
         "slices": slices,
+        # W12: the factored meter slice, side by side with meter_triple and
+        # gating NOTHING until a separate owner ruling. None when absent,
+        # so pre-W12 corpora are byte-identical.
+        "factored_meter": (
+            {name: summarize_field(rs)
+             for name, rs in _by_field(factored_rows).items()}
+            if factored_rows else None
+        ),
     }
 
 

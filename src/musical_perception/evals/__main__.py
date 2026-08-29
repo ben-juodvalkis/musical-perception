@@ -74,6 +74,18 @@ def _print_provisional(suite: str, summary: dict, family_cell, tempo_metrics_lin
         print(f"  {suite:6s}  P {tm_line}")
 
 
+def _print_factored(suite: str, summary: dict) -> None:
+    """The W12 factored meter slice — printed beside meter_triple, marked
+    as gating nothing so no reader mistakes it for a scored field."""
+    factored = summary.get("factored_meter")
+    if not factored:
+        return
+    for name, s in factored.items():
+        print(f"  {suite:6s} F {name:20s} n={s['n']:3d} correct={s['correct']:3d} "
+              f"wrong={s['wrong']:3d} abstained={s['abstained']:3d} "
+              f"accuracy={s['accuracy']}   [REPORTED-ONLY, gates nothing]")
+
+
 def _cmd_run(args) -> int:
     from musical_perception.evals.report import (
         build_report, family_cell, tempo_metrics_line, write_run,
@@ -98,6 +110,7 @@ def _cmd_run(args) -> int:
         tm_line = tempo_metrics_line(summary)
         if tm_line:
             print(f"  {suite:6s} {tm_line}")
+        _print_factored(suite, summary)
         _print_provisional(suite, summary, family_cell, tempo_metrics_line)
 
     baseline_path = root / BASELINE_NAME
