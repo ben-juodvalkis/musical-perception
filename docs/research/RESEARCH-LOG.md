@@ -5409,3 +5409,63 @@ the /goal's 60 by roughly ten turns finishing the falsification record
 
 Status: **PARTIAL-NEGATIVE, gate not cleared** — branch parked pending
 the owner's disposition ruling; nothing merges, nothing is blessed.
+
+## 2026-08-28 · rung M / W5 · agent/rung-4-joint-posterior · local (owner-attended) — ADDENDUM: the timing-consistency vet
+
+**Owner-prompted correction, same session.** The owner challenged the
+results entry's claim that division is "counted, never timed" — a
+musician's objection that subdivision timing must carry information.
+Measured (read-only probe, all clips with ≥3 sub markers, positions
+taken between surrounding beat markers so drift cancels):
+
+- True duple (`rig-numbers-4-4-104-duple`): ONE tight cluster, 11 of
+  15 subs in a single 0.15-wide band around 0.69 — swung, stable.
+- True triplets (`-80-triplet`, `-3-4-90`, `8-counts-triple`): TWO
+  tight clusters, near 0.55 and 0.9 — neither anywhere near the ideal
+  1/3 and 2/3, killing position-vs-ideal classification a second time.
+- Truth-none names clips: the stray and/ah markers scatter across the
+  whole beat (four bands on `-104-clean`, no cluster anywhere).
+
+So the owner is right, in a form neither the pre-registration nor the
+first results entry had: **timing carries the category as positional
+CONSISTENCY** — a real subdivision recurs at a stable phase (one phase
+for duple, two for triplet, swing included); incidental between-beat
+speech has no stable phase. The corrected division rule: the count
+decides the candidate category, per-rank circular concentration vets
+it (R ≥ 0.6; measured clusters sit ≥ 0.85 and measured scatter ≤ 0.5 —
+threshold chosen with DEV visible, disclosed W9-style), at least three
+positioned subs are required before any claim (recurrence is not
+checkable on fewer — GRID_MIN_IOIS' identifiability logic), and the
+fallback path now gets measured division too instead of Gemini's
+pass-through (W9-b applied at the last seam it survived at).
+
+Delta (`fd993cf` → this commit), all suites re-run:
+
+| | baseline | before addendum | after |
+|---|---|---|---|
+| meter_triple | 12 | 11 | **13 — NET POSITIVE** |
+| ECE | 0.1998 | 0.2143 | **0.1815 — improved** |
+| tempo | 20/29 | 20/29 | 20/29 (tie) |
+
+Flips: `rig-names-4-4-100-quiet` and `rig-names-4-4-96-allegro`
+meter wrong→correct (their phantom duple claims fail the recurrence/
+consistency vet); no row lost anything; tier-0 and stage1 byte-
+identical; 40 synthetic tests green (the swung-duple and swung-triplet
+cases pass the vet by construction).
+
+**Gate status, restated:** meter net-positive ✓, ECE not worsened ✓
+(improved), tempo **tie** ✗ — the pre-registered gate fails on the
+tempo clause alone. The four tempo losses stand diagnosed as
+genuine-trades against four wins (junk-dense streams and the
+52-vs-61.5-class prior adjacency; `rig-numbers-4-4-60-halftempo` was a
+named must-not-lose and its loss is scored as such). Whether a
+tempo-tie + meter-gain + calibration-gain trade can land is not a
+session's call to make against its own pre-registration — it is the
+owner's, and joins the disposition ruling already queued.
+
+Backlog note for the ADR-when-it-lands: the sub-cluster's position IS
+the swing ratio (0.69 on the duple clip ≈ 2.2:1) — a feel parameter
+the accompanist genuinely uses; report it, don't classify with it.
+
+Status: **PARTIAL — gate unmet on the tempo tie alone**; disposition
+ruling remains with the owner.
