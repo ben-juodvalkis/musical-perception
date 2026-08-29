@@ -31,6 +31,13 @@ import numpy as np
 F_MEASURE_TOLERANCE_S = 0.07   # mir_eval.beat f_measure window
 PULSE_SOURCE = "whisper-word-starts"
 
+# W11: a second, opt-in source reading the frozen `pulse.json` sidecars.
+# The default stays the rung-1 word-start stream so the blessed `stage1`
+# suite keeps meaning exactly what it meant; the acoustic stream is
+# reported under its own suite name (`stage1-peakrate`) instead.
+PULSE_SOURCE_PEAKRATE = "peakrate-sidecar"
+PULSE_SOURCES = (PULSE_SOURCE, PULSE_SOURCE_PEAKRATE)
+
 
 @dataclass
 class ClipPulseScore:
@@ -131,12 +138,31 @@ def score_pulse(
     }
 
 
-def predicted_pulse_from_trace(trace_dir: Path) -> list[float]:
-    """The rung-1 pulse stream: every transcript token's start time."""
+def predicted_pulse_from_trace(
+    trace_dir: Path, source: str = PULSE_SOURCE
+) -> list[float]:
+    """One clip's predicted pulse stream, from the named source.
+
+    `whisper-word-starts` is the rung-1 stream: every transcript token's
+    start time. `peakrate-sidecar` is the rung-2 acoustic stream frozen
+    by W11; a clip without a sidecar is an error here rather than an
+    empty stream, because scoring "no events" as recall 0 would read as
+    a measurement, not as a missing file.
+    """
     import json
 
-    payload = json.loads((Path(trace_dir) / "whisper.json").read_text())
-    return [float(w["start"]) for w in payload["words"]]
+    trace_dir = Path(trace_dir)
+    if source == PULSE_SOURCE:
+        payload = json.loads((trace_dir / "whisper.json").read_text())
+        return [float(w["start"]) for w in payload["words"]]
+    if source == PULSE_SOURCE_PEAKRATE:
+        from musical_perception.evals.pulse_sidecar import load_pulse_sidecar
+
+        sidecar = load_pulse_sidecar(trace_dir)
+        if sidecar is None:
+            raise FileNotFoundError(f"{trace_dir.name}: no pulse.json sidecar")
+        return list(sidecar.events)
+    raise ValueError(f"unknown pulse source {source!r} (expected one of {PULSE_SOURCES})")
 
 
 def _pooled(rows: list[ClipPulseScore]) -> dict | None:
@@ -170,12 +196,18 @@ def _pooled(rows: list[ClipPulseScore]) -> dict | None:
 
 
 def run_stage1(
-    evals_root: Path, tol: float = F_MEASURE_TOLERANCE_S
+    evals_root: Path,
+    tol: float = F_MEASURE_TOLERANCE_S,
+    pulse_source: str = PULSE_SOURCE,
 ) -> dict:
     """Score every case that has a beat grid; report missing grids loudly."""
     from musical_perception.annotation.grids import load_grids
     from musical_perception.evals.cases import load_cases
 
+    if pulse_source not in PULSE_SOURCES:
+        raise ValueError(
+            f"unknown pulse source {pulse_source!r} (expected one of {PULSE_SOURCES})"
+        )
     evals_root = Path(evals_root)
     cases = load_cases(evals_root / "cases")
     grids = load_grids(evals_root / "grids")
@@ -188,7 +220,9 @@ def run_stage1(
             missing.append(case.id)
             continue
         try:
-            predicted = predicted_pulse_from_trace(evals_root / case.trace)
+            predicted = predicted_pulse_from_trace(
+                evals_root / case.trace, pulse_source
+            )
             scored = score_pulse(grid.beats, predicted, tol)
         except Exception as e:  # a broken row is reportable, not fatal
             errors.append(f"{case.id}: {type(e).__name__}: {e}")
@@ -213,7 +247,7 @@ def run_stage1(
     # reporting a number nobody verified.
     styles = sorted({r.count_style for r in verified_rows if r.count_style})
     return {
-        "pulse_source": PULSE_SOURCE,
+        "pulse_source": pulse_source,
         "tolerance_s": tol,
         "n_cases": len(cases),
         "clips": [r.summary() for r in rows],

@@ -2,6 +2,7 @@
 Eval CLI:
 
     python -m musical_perception.evals run [--suite tier0,tier1,stage1]
+    python -m musical_perception.evals record-pulse [--only ID ...] [--force]
     python -m musical_perception.evals bless [--run PATH]
     python -m musical_perception.evals live-check --case ID [--runs 3]
 """
@@ -145,6 +146,57 @@ def _cmd_bless(args) -> int:
     return 0
 
 
+def _cmd_record_pulse(args) -> int:
+    """Freeze each case's acoustic pulse stream beside its trace (W11).
+
+    Add-only, per the sidecar carve-out: a clip whose media is absent or
+    whose checksum disagrees with the trace is SKIPPED and named, never
+    recorded from whatever audio happens to be on the runner.
+    """
+    from musical_perception.evals.cases import load_cases
+    from musical_perception.evals.pulse_sidecar import (
+        SidecarError,
+        record_pulse_sidecar,
+        sidecar_path,
+    )
+
+    root = Path(args.evals_root)
+    cases = load_cases(root / "cases")
+    if args.only:
+        wanted = set(args.only)
+        unknown = wanted - {c.id for c in cases}
+        if unknown:
+            print(f"unknown case ids: {sorted(unknown)}", file=sys.stderr)
+            return 2
+        cases = [c for c in cases if c.id in wanted]
+
+    written, skipped, failed = [], [], []
+    for case in cases:
+        trace_dir = root / case.trace
+        if sidecar_path(trace_dir).is_file() and not args.force:
+            skipped.append(case.id)
+            print(f"  exists   {case.id} (--force to re-record)")
+            continue
+        if not case.media:
+            failed.append(f"{case.id}: case pins no media")
+            print(f"  SKIP     {case.id}: case pins no media")
+            continue
+        try:
+            sidecar = record_pulse_sidecar(trace_dir, Path(case.media), force=args.force)
+        except SidecarError as e:
+            failed.append(str(e))
+            print(f"  SKIP     {e}")
+            continue
+        written.append(case.id)
+        print(f"  recorded {case.id}: {sidecar.n_events} events")
+
+    print(f"\n{len(written)} recorded, {len(skipped)} already present, "
+          f"{len(failed)} skipped")
+    for f in failed:
+        print(f"  skipped: {f}")
+    return 0 if not failed else 1
+
+
 def _cmd_live_check(args) -> int:
     """Re-run the REAL pipeline on a case's media N times; every scored
     field must come back correct in every run. The acceptance gate for
@@ -191,6 +243,13 @@ def main() -> int:
     p_run = sub.add_parser("run", help="run suites, write a run artifact")
     p_run.add_argument("--suite", default="tier0,tier1")
     p_run.set_defaults(fn=_cmd_run)
+
+    p_pulse = sub.add_parser(
+        "record-pulse", help="freeze acoustic pulse sidecars into trace dirs"
+    )
+    p_pulse.add_argument("--only", nargs="*", default=None, help="case ids")
+    p_pulse.add_argument("--force", action="store_true", help="re-record existing")
+    p_pulse.set_defaults(fn=_cmd_record_pulse)
 
     p_bless = sub.add_parser("bless", help="promote a run to the baseline")
     p_bless.add_argument("--run", default=None, help="run JSON (default: latest)")

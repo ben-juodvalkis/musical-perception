@@ -105,6 +105,7 @@ python -m musical_perception.evals run --suite tier0,tier1,stage1  # score every
 python -m musical_perception.evals bless                     # promote run to baseline
 python -m musical_perception <clip> --record-traces          # freeze a new trace
 python -m musical_perception.annotation generate             # provisional beat grids
+python -m musical_perception.evals record-pulse              # freeze pulse.json sidecars
 ```
 
 Cases live in `evals/cases/*.yaml` (field names are a strict subset of
@@ -112,7 +113,13 @@ Cases live in `evals/cases/*.yaml` (field names are a strict subset of
 `evals/traces/`; beat grids in `evals/grids/` (see
 [docs/evals/beat-grids.md](docs/evals/beat-grids.md) — provisional grids
 never gate anything); the blessed baseline is `evals/baseline.json` +
-[docs/evals/baseline.md](docs/evals/baseline.md). A case's `maturity` key
+[docs/evals/baseline.md](docs/evals/baseline.md). Each trace directory
+also carries a `pulse.json` **sidecar** — the rung-2 acoustic pulse
+stream, frozen so it replays without the (gitignored) media, see
+[docs/evals/pulse-sidecars.md](docs/evals/pulse-sidecars.md); the
+`stage1-peakrate` suite scores that stream instead of word starts, gates
+nothing like `stage1`, and its numbers carry an anchoring caveat
+documented there. A case's `maturity` key
 (`provisional` | `verified`, default `verified`) says whether its truth
 labels were owner-verified; provisional rows are scored and reported in
 their own slice but gate nothing — see
