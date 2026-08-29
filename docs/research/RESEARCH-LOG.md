@@ -4429,3 +4429,583 @@ matrix, lag-8 audit, the 13 silent clips) and found to predict all three.
 Status: **DIRECTION** — standing input to W5. Not a workstream, nothing
 to execute tonight; W0's re-ranking should note it but cannot act on it
 (W5 is owner-started by charter rule).
+
+## 2026-08-27 · rung M / W0 (the meta-rung) · agent/marathon · local (nightly, unattended)
+
+**Meta-rung, not a pipeline increment.** No pipeline, eval, grid, or case
+file is touched. Trigger check: the last meta-rung entry is 2026-08-19;
+"older than 7 days" first became true today, so the 2026-08-26 nightly
+was correct to take W2.5 and this one is correct to take W0. The owner's
+08-26 entry independently called the re-ranking due.
+
+Writability probe (charter amendment 2, first act): a file was written,
+committed, and the commit reduced to a no-op on `agent/marathon` before
+any reading. Passed.
+
+Pre-registered expectations: n/a (review session). Pre-review state
+verified on this branch before item one: `pytest` **252 passed / 3
+skipped**; `evals run --suite tier0,tier1,stage1` → **"no outcome changes
+vs baseline"** (aggregate_verified 28 clips P 0.334 R 0.449 F 0.383;
+slices numbers 0.439 n=14, step_names 0.337 n=13, vocables 0.118 n=1 —
+matching R4's verified-only table exactly).
+
+### 1. The finding: the 70-140 band is a hard zero, and Standing Lesson 2 already said so
+
+The owner's 08-26 probe named the band as a separate question worth
+asking, on one clip, from the *unshipped* rung-2 stream. Re-derived here
+from `evals/baseline.json` alone — the blessed, shipping-path,
+committed-metric artifact — it is not one clip and not a side question:
+
+```
+tier-1 committed tempo, split by where the TRUTH lies:
+  truth INSIDE  70-140    n=24   correct=17   acc=0.708
+  truth OUTSIDE 70-140    n= 5   correct= 0   acc=0.000
+
+  adr006-8-counts-triple         pred 118.8  true  68.38   +73.7%
+  frappe                         pred  81.2  true 160.0    -49.2%
+  rig-names-2-4-160-long         pred  78.3  true 160.0    -51.1%
+  rig-names-4-4-63-adagio        pred  72.0  true  63.0    +14.3%
+  rig-numbers-4-4-60-halftempo   pred 123.0  true  60.0   +105.0%
+```
+
+**Five of the twelve tempo failures are clips whose true tempo the band
+cannot represent, and the pipeline gets none of them right.** Four of the
+five land back *inside* the band (72.0, 78.3, 81.2, 118.8, 123.0 — every
+prediction is in-band, without exception). This is not a prior costing a
+little at the margin; on this corpus it is the single largest identified
+block of tempo error.
+
+The mechanism is in three places in one file, verified by reading it:
+`precision/tempo.py:32-33` and `:124-125` (the normalize/family defaults)
+and `interpret_meter` at `:249-259`, where `onset_at_beat_level` and
+`marker_at_beat_level` are **both** conjoined with `70.0 <= bpm <= 140.0`.
+The owner's probe said the band gates arbitration, not just normalization;
+the file confirms it literally — a genuinely slow or fast clip cannot be
+classified as beat-level by either arm, by construction.
+
+And the ledger already forbids this. **Standing Lesson 2**, written
+2026-08-09: *"Priors are priors, not post-processing. A hard fold (the
+old 70-140 band) destroys correct out-of-band measurements. Apply priors
+at level selection, multiplicatively, never to the raw measurement."* The
+lesson is eighteen days old, is quoted at every session boot, calls the
+band "the old 70-140 band" — and the band is still load-bearing in three
+places on the committed path. **A standing lesson that names a specific
+mechanism and does not schedule its removal is a comment, not a rule.**
+
+**What this does NOT license, stated before anyone quotes it.** Deleting
+the band does not win five rows. Three of the five are truth-in-family
+(octave-recoverable): `frappe`, `rig-names-2-4-160-long`,
+`rig-numbers-4-4-60-halftempo` — and Acc2@8% = 0.690 vs Acc1@8% = 0.586
+is exactly those three rows, so the honest ceiling from band work alone
+is **17/29 → 20/29**. `adr006-8-counts-triple` (118.8 vs 68.38) is out of
+family and unreachable this way; `rig-names-4-4-63-adagio` (+14.3%) is a
+real measurement miss, which the owner's probe independently called a
+real miss. n = 5 out-of-band rows is small; 0/5 against 17/24 is not
+noise-shaped, but the interval is wide and no percentage should be quoted
+from it. Widening the band also has a cost this review did not measure:
+the band currently protects in-band clips from octave errors, and 0.708
+in-band accuracy is what is at risk. **That trade is W9's to measure, not
+this entry's to assert.**
+
+**Method note, disclosed because it nearly produced a false headline.**
+An earlier pass of this analysis compared `oe1`/`oe2` against the ±4%/±8%
+tolerances directly and got 14 wrong rows and two knife-edge rows. OE1/OE2
+are **log2 octave errors**; 0.08 in OE units is 5.7%, not 8%. Recomputed
+in linear ratio, the numbers reconcile exactly with the blessed summary
+(17/29 = 0.586 = Acc1@8% = committed accuracy; 12 wrong; **zero**
+knife-edge rows — the nearest miss among the twelve exceeds 12%). The
+corrected figures are the ones above. Two consequences worth keeping:
+every one of W9's twelve target rows is a genuine miss, so no flip it
+earns can be dismissed under Standing Lesson 7; and the reporting units
+invite this mistake at a glance, which is a note for whoever next reads
+an OE column.
+
+### 2. BLOCKED-queue audit — checked against files, not against the entry that last mentioned each item
+
+**Closed, verified this session:**
+
+- **C5 (rig MP3s to the Air) — CLOSED.** `audio/rig/` holds **24 MP3s**
+  on this runner. Standing owner action since 08-24; this is the first
+  session to verify it against the filesystem rather than repeat it as
+  open. Consequence below.
+- **C6 (nightly re-arm) — CLOSED.** `com.musical-perception.nightly` is
+  loaded in launchd here, and `logs/run-summaries.md` carries successful
+  08-25 and 08-26 runs. The 08-24 silent slot is explained in
+  `air-nightly.sh:29-34` (a tracked file left dirty between runs) and
+  guarded.
+- **C2 (`accompanied: false`) — CLOSED, re-verified.**
+  `evals/cases/rig-numbers-2-4-120-clean.yaml:12` still reads
+  `accompanied: false`, which is the *correct* state under the owner's
+  C2 ruling. Recorded so no future audit re-opens it as drift.
+- **C3, C4, B5, R1-R4** — closed by their own entries; no file
+  contradicts them.
+
+**Newly unblocked as a consequence of the above:**
+
+- **W3-remainder** (A5's queued raw-condition completion) was blocked on
+  C5 and is now executable: `docs/research/baseline-benchmark.md:8` says
+  `raw` covers **6 of 30** because "`audio/rig/*.mp3` is not on this
+  runner". It is now. BeatNet is a cheap optional follow-up
+  (`baseline-benchmark.md:56`; the madmom venv exists).
+- **W4 case files** were gated on W1.5, and W1.5 is now in the code, not
+  just the ledger: `evals/cases.py:27` lists `maturity` in `_TOP_KEYS`,
+  `:53` defaults it to `verified`, `:144` parses it. A6's stated
+  objection — that writing case files "would have frozen agent-guessed
+  truth into headline metrics" — is discharged by construction.
+
+**Genuinely open:**
+
+- **W9 execution** (ranked below).
+- **A8's "nod-first" adoption has no workstream home** — see amendment
+  A5-27.
+- **HELD-OUT containment is not agent-auditable** — see A4-27.
+
+### 3. Re-ranking (the meta-rung's act)
+
+```
+1. W9   tempo-estimator robustness + the 70-140 band     PIPELINE, nightly-eligible
+2. W4   Barre-1 DEV ingestion: provisional case files    unblocked by W1.5 landing
+3. W3r  baseline benchmark, raw-condition remainder      unblocked by C5
+4. W6   rung 5, ensembled semantics                      partly blocked (see A6-27)
+-  W5   joint posterior                                  BLOCKED-on-owner (charter rule)
+-  W8   rung 7, RETIRED sweep                            BLOCKED (after W5)
+-  W1, W1.5, W2, W2.5, W7                                COMPLETE
+```
+
+**W9 first.** The owner recorded his own view at commissioning — "worth
+~9 clips of 23, larger than anything remaining on the extractor" — and
+explicitly left the rank to this review rather than fixing it. This
+review ranks it first on evidence the owner's probe did not have: the
+probe was indicative-only by its own four-item disclaimer (wrong stream,
+wrong metric, scratch estimator, n=23). §1 above reaches the same
+conclusion from the **shipping path** and the **blessed metric**, which
+is precisely what W9 was commissioned to measure. Committed tempo is
+0.586 against a completion target of 0.85; it is the furthest-behind
+headline field, and it is the only open workstream that can move one.
+
+**W4 second, and the ranking is deliberately not first.** W4's output is
+`maturity: provisional` by charter, and provisional rows gate nothing and
+enter no headline aggregate — so W4 cannot move a number by itself. Its
+value is that it converts a blocked pipeline into *owner-verifiable*
+work, and owner verification is the long pole on amendment 4's n ≥ 60
+constraint. That argues for doing it soon, not for doing it before the
+one workstream that can move an outcome this week.
+
+**W3r third:** cheap, mechanical, closes an owner-queued item, moves no
+gate. Correct filler for a night when the top two are unavailable. One
+constraint discovered: the `.gitignore` exception at lines 41-45 exists
+for `audio/rig/*.mp3` but `git ls-files audio` returns **0** — the MP3s
+are present and untracked, so W3r must run on the Air, or the owner opts
+into Path B by committing ~11 MB. Not a decision this review takes.
+
+### 4. Charter amendments PROPOSED (owner-reviewed; the branch edit is the proposal)
+
+- **A1-27 — fix W9's rank at 1**, per §3. The charter's W9 entry says
+  "Rank not fixed at commissioning — W0 re-ranks"; this discharges it.
+- **A2-27 — strike W4's "case files gated on W1.5" status mark.** The
+  gate is satisfied in code (`evals/cases.py:27,53,144`).
+- **A3-27 — strike W3's media block.** C5 verified closed against files.
+- **A4-27 — HELD-OUT containment needs an owner attestation, because no
+  agent can check it.** The Barre-1 DEV media still lives on this runner
+  at `video/youtube/Ballet Barre 1`. C1 required the four HELD-OUT
+  exercises to be moved off the Air. **This session did not list that
+  directory and no session should**: with 12 exercises split 8 DEV / 4
+  HELD-OUT, listing the survivors names the held-out four by complement,
+  so the only available audit *is* the leak. Proposal: the owner appends
+  a dated one-line attestation to this ledger when he has confirmed the
+  removal, and the charter states plainly that agents must not enumerate
+  that directory. Right now the charter asks for containment it gives no
+  one a safe way to verify, and this is the third consecutive review to
+  handle it by looking away.
+- **A5-27 — "nod-first" has no workstream number.** The owner adopted it
+  at A8 (2026-08-24): head-nod kinematics precedes any gaze work. It is
+  parked inside W7, which is marked COMPLETE — and the selection rule is
+  "the highest-ranked workstream not BLOCKED", which can never reach a
+  note inside a finished workstream. As written, an owner-adopted
+  direction is unschedulable. Proposal: either commission it as **W10**
+  with a rank, or record explicitly that it is backlog and not a
+  workstream. Either is fine; silence is not.
+- **A6-27 — W6's condition cannot be drafted, and the charter assigns it
+  to me.** Rung 5 says "Condition to be finalized when rung 4's shape is
+  known — the meta-rung drafts it." Rung 4 is W5, which is owner-started
+  and unstarted, so this W0 deliverable is structurally blocked and will
+  be blocked at every future W0 until W5 moves. Named here so the next
+  meta-rung does not re-discover it. Flagged, not pressed: W6 also
+  contains the Feb-2026 model-comparison re-run, which does not depend on
+  rung 4's shape and could be split out as independent work if the owner
+  wants a nightly-eligible perception task.
+
+### 5. Plain-language summary, for the owner
+
+Nothing is broken. The tree is healthy — 252 tests pass, the full suite
+reports no outcome changes against the blessed baseline, and every number
+in this review was re-derived from committed files rather than copied
+from a previous entry.
+
+Two of your standing to-dos are done and nobody had noticed: the rig MP3s
+are on the Air (all 24), and the nightly job is running again. That
+quietly unblocks two things — the leftover half of the baseline benchmark,
+and the Barre-1 case files, which were waiting on eval plumbing that has
+since shipped.
+
+The real news is about your tempo hunch. You probed it on the wrong
+stream with a scratch estimator and said so honestly at the time. Checked
+against the shipping pipeline and the blessed scorecard, it is bigger
+than the probe suggested: **every clip in the corpus whose real tempo
+sits outside 70-140 BPM is scored wrong — five for five.** The pipeline
+pulls all five back inside the band. Removing the band does not simply
+win those five; three are octave errors it could plausibly recover, one
+is a genuine miss, and one is beyond reach. Call it three rows, 0.586 →
+0.690, with a risk to the in-band clips that has to be measured rather
+than assumed. That is W9's job and it is now ranked first.
+
+The uncomfortable part: your own Standing Lesson 2, written on day one
+and read aloud at the start of every session since, names this exact band
+as a mistake. It has been quoted eighteen days running while the code
+kept doing it. The lessons list has no mechanism for turning a lesson
+into scheduled work, and that is the process gap worth your attention
+more than the band itself.
+
+Four things want a ruling: W9's rank (proposed: first), the nod-first
+experiment having no workstream number, whether to commit the rig MP3s,
+and — the one that keeps getting deferred — a one-line attestation that
+the four held-out Barre-1 exercises really did leave this machine. No
+agent can check that without breaking the seal, so it can only come from
+you.
+
+Regressions and classifications: none. No pipeline, eval, grid, or case
+file touched. `git diff --stat main` covers `docs/research/agent-charter.md`
+and this ledger only.
+
+Lesson (durable, one paragraph): A standing lesson is only a rule if
+something schedules it — this loop has quoted "the old 70-140 band" as a
+named error at every session boot for eighteen days while three call
+sites kept it on the committed path, because the lessons list is read at
+boot and never consulted at ranking time, and no workstream owns
+"discharge the lessons." The second keeper is narrower and cost this
+session a wrong headline before it caught it: OE1/OE2 are log2 octave
+errors sitting in the same table as linear ±4%/±8% tolerances, and
+comparing them by eye inflated the failure count from 12 to 14 and
+invented two knife-edge rows that do not exist — a reviewer whose whole
+job is disbelieving other entries' numbers reproduced exactly the failure
+mode it exists to catch, and only re-deriving against the blessed summary
+caught it. Re-derivation is not a courtesy owed to other sessions; it is
+owed to the current one.
+
+Status: PROPOSED — re-ranking recorded, amendments A1-27 through A6-27
+for the owner's next batch review. The charter edit on this branch is the
+proposal and lands only if merged. Nothing here is blessed; no `evals
+bless` was run.
+
+## 2026-08-28 · rung M / W9 (tempo-estimator robustness: the 70-140 band) · agent/marathon · local (nightly, unattended) — PRE-REGISTRATION
+
+**Pipeline increment, measurement change (ADR-015 diagnosed-regression
+gate).** Workstream selected by rank: W0's 2026-08-27 re-ranking put W9
+first among non-BLOCKED workstreams. Writability probe (charter amendment
+2, first act): file written, committed, reduced to a no-op on
+`agent/marathon` before any other work — commit `fd9fd30`. Passed.
+
+Pre-run state on this branch, before any edit: `evals run --suite
+tier0,tier1,stage1` → **"no outcome changes vs baseline"**; tier-1 tempo
+17/29 committed (0.586), truth_in_family 3/12, Acc1 0.586@8% / Acc2
+0.690@8%; tier-0 tempo 25/25, meter_triple 24/25.
+
+### The diagnosis (measured, not assumed)
+
+A read-only probe (`scripts/w9-tempo-probe.py`) dumps, for all 30 tier-1
+cases, what each tempo arm reported *before* arbitration, which arm won,
+and how `normalize_tempo` folded it. Two facts come out of it:
+
+1. **Every one of the 17 currently-correct tempo rows has
+   `multiplier == 1`.** The ×2/×3/÷2/÷3 branch of `normalize_tempo` does
+   not produce a single correct answer anywhere on tier-1. It fires on
+   eight rows: three where the raw reading was *already right* and the
+   fold destroyed it (`frappe` 162.5→81.2 vs truth 160;
+   `rig-names-2-4-160-long` 156.6→78.3 vs 160;
+   `rig-numbers-4-4-60-halftempo` 61.5→123.0 vs 60), and five where the
+   answer is wrong before and after the fold.
+2. **The band inside `interpret_meter`'s arbitration is doing real work
+   and must not be touched in the same change.** All three rows where the
+   marker arm wins (`rig-numbers-3-4-90-clean`, `-104-duple`,
+   `-80-triplet`) are correct, and each wins *because* the onset reading
+   sits outside 70–140 (257.9, 205.6, 169.1 BPM — syllable level). Delete
+   the band there and all three become onset-driven and wrong. The
+   arbitration band is a **level discriminator**, not a fold; it is a
+   separate named question and stays for a later increment.
+
+So this increment is bounded to the fold: `normalize_tempo`.
+
+### The change
+
+Standing Lesson 2 — *"priors are priors, not post-processing… apply
+priors at level selection, multiplicatively, never to the raw
+measurement"* — implemented literally. `normalize_tempo` stops snapping
+into a hard interval and instead picks the metric level by MAP over the
+same candidate set `tempo_family` already generates:
+
+```
+score(k) = log N(log2(bpm_k) ; log2 T0, sigma)  +  log P(level k)
+T0    = sqrt(low*high) = 98.995      # the band's geometric centre
+sigma = 0.5*log2(high/low) = 0.5 oct # the band read as the +/-1 sigma interval
+P(fold by factor k) proportional to k^-2   # scale-free metric-distance penalty
+```
+
+Both prior parameters are *derived from the existing 70–140 band*, not
+introduced: the band is re-read as the central interval of the log-normal
+it was always approximating. The one genuinely free choice is the level-
+prior exponent.
+
+**Disclosed selection, because it is DEV-informed.** The admissible
+interval for the ÷2 log-cost, given that tier-0's two half-tempo cases
+(raw 52 and 48 BPM) *must* still fold and the three band-damaged tier-1
+rows must *not*, is (0.86, 1.72) nats. Exponent 1 gives 0.69 (too small —
+`frappe` folds); exponent 3 gives 2.08 (too large — tier-0 breaks);
+**exponent 2 is the only integer exponent that satisfies both**, at 1.386
+nats with a minimum margin of 0.33 nats. I checked those three candidates
+against tier-0 and DEV before choosing. Consequence to state plainly: the
+resulting "keep" band is **55.1–178.0 BPM** (1.7 octaves) rather than
+70–140 (1.0 octave), and the decision at 52 vs 61.5 BPM is decided by the
+prior alone — no acoustic evidence separates them, which is exactly the
+gap W5's joint posterior exists to close.
+
+Abstention is preserved by a 3σ rule: if the best candidate still sits
+more than 1.5 octaves from T0 (outside ≈35–280 BPM), `multiplier` is 0 and
+`interpret_meter` returns None, as today.
+
+### Pre-registered predictions
+
+- **P1** tier-1 tempo 17→**20** correct (0.586→0.690). Flips, all three:
+  `frappe`, `rig-names-2-4-160-long`, `rig-numbers-4-4-60-halftempo`.
+  **Zero tempo rows lost** — every currently-correct row has
+  `multiplier == 1` and its raw reading is inside the new keep band.
+- **P2** `truth_in_family` 3/12 → **0/9**: the three rescuable rows become
+  primary-correct, so the ADR-014 family has nothing left to rescue.
+- **P3** Acc1@8% 0.586→0.690; **Acc2@8% unchanged at 0.690** (this change
+  can only convert family hits into primary hits, never add new ones);
+  |OE2| median improves; between-levels rows 11→8.
+- **P4** tier-0 tempo stays **25/25** (raw 52 and 48 BPM are below the
+  55.1 fold threshold and still double).
+- **P5** tier-0 meter_triple stays **24/25**.
+- **P6** tier-1 meter_triple **11 → 11, 12 or 13; no losses are possible.**
+  Eight rows change multiplier. Five of them are bpm-wrong before and
+  after, and `score_meter_triple` requires `bpm_ok` for a correct — so
+  they are already wrong and cannot regress. The other three are the
+  tempo flips, which can only gain (`frappe` has meter unpinned, so at
+  most +2 from `rig-names-2-4-160-long` and `rig-numbers-4-4-60-halftempo`,
+  and only if Gemini's meter for those clips is right).
+- **P7** counts / sides / slot **unchanged** (structure path untouched);
+  stage1 **byte-identical** (the pulse extractor is untouched).
+- **P8** ECE: confidences are unchanged (arbitration untouched) while
+  accuracy rises, so ECE should move toward the confidence level, not
+  away. Reported, not asserted.
+
+Unit-test contract changes expected (precision layer, not eval files):
+`normalize_tempo(60.0)` now returns `(60.0, 1)` instead of `(120.0, 2)` —
+60 BPM is a plausible beat rate and the old test encoded the defect.
+
+Status: **PRE-REGISTERED** — results and scorecard in the completion
+entry below.
+
+## 2026-08-28 · rung M / W9 (tempo-estimator robustness: the 70-140 band) · agent/marathon · local (nightly, unattended) — RESULTS
+
+Same session as the pre-registration above; the predictions were committed
+in `d9c3e97` before a line of `tempo.py` was touched.
+
+### Headline
+
+| tier-1 field | before | after |
+|---|---|---|
+| tempo (committed acc) | 17/29 = **0.586** | 20/29 = **0.690** |
+| tempo mean credit | 0.567 | 0.667 |
+| meter_triple | 11/28 = 0.393 | 12/28 = **0.429** |
+| counts | 12/21 = 0.571 | 13/21 = **0.619** |
+| sides / slot | 1.0 / 1.0 | 1.0 / 1.0 |
+| **ECE** | 0.2654 | **0.1998** |
+| Acc1@4% / Acc1@8% | 0.379 / 0.586 | **0.483 / 0.690** |
+| Acc2@4% / Acc2@8% | 0.483 / 0.690 | 0.483 / 0.690 |
+| OE1 abs-median / max | 0.0710 / 1.0356 | **0.0604 / 0.7969** |
+| OE2 abs-median / max | 0.0604 / 0.491 | 0.0604 / 0.491 |
+| tier-0 tempo / meter | 25/25 · 24/25 | 25/25 · 24/25 |
+| stage1 aggregate_verified | P .334 R .449 F .383 | **identical** |
+
+Outcome changes vs baseline, complete list — six, on four clips:
+
+```
+frappe.counts:                          abstained -> correct
+frappe.tempo:                           wrong     -> correct
+rig-names-2-4-160-long.tempo:           wrong     -> correct
+rig-names-3-4-90-clean.counts:          wrong     -> abstained
+rig-numbers-4-4-60-halftempo.meter_triple: wrong  -> correct
+rig-numbers-4-4-60-halftempo.tempo:     wrong     -> correct
+```
+
+**Zero rows regressed at the outcome level, in any field.** None of the
+changed rows is provisional.
+
+### Prediction scorecard (ADR-015 discipline: scored honestly, misses first)
+
+- **P3 — PARTIAL MISS.** Acc1 and OE1 moved exactly as predicted. But I
+  predicted "between-levels rows 11→8" and they stayed at **11**, and I
+  predicted |OE2| median would improve and it did not move at all. The
+  reason is a fact about the metrics I should have known before writing
+  the prediction: **OE2 and `between_levels` are octave-folded by
+  construction, so no level-selection change can ever move them.** They
+  measure whether a reading sits *between* metric levels, which is
+  invariant to which level you pick. Recorded as a note for anyone reading
+  an OE column — the second such note in two sessions (W0's 2026-08-27
+  entry disclosed the log2-vs-linear units trap).
+- **P7 — MISS.** I predicted counts unchanged. Counts changed on two rows,
+  because `estimate_counts` takes the normalized BPM as one of its votes
+  (`precision/structure.py:139-142`, the `span_x_bpm` cast). I read the
+  tempo path and did not read its consumers. Both changes are diagnosed
+  below; the field net-improved, but the prediction was wrong.
+- **P6 — right, and right for the stated reason.** meter_triple 11→12, in
+  the predicted 11–13 range, with **no losses**, exactly as the argument
+  said: the five bpm-wrong rows could not regress because
+  `score_meter_triple` requires `bpm_ok`. The predicted "+2 at most" came
+  in at +1 — `rig-names-2-4-160-long` did not flip, and the reason is
+  visible in the artifact: Gemini calls that clip `4/4 duple` and the truth
+  is `2/4 none`. The fold was never what was wrong with that row's meter.
+- **P1 — exact.** 17→20, the three named clips, zero losses.
+- **P2 — exact.** truth_in_family 3/12 → 0/9.
+- **P4, P5 — exact.** tier-0 untouched at 25/25 and 24/25.
+- **P8 — right, and by more than claimed.** I predicted ECE would move
+  toward the confidences, not away, and declined to assert a size. It fell
+  **0.2654 → 0.1998**, a 25% reduction, because the three flipped rows were
+  confident *and* wrong before.
+- **Prediction not scored, stated for the record:** the pre-registration
+  said "eight rows change multiplier". Six did.
+  `adr006-8-counts-triple` (237.7) and `rig-mixed-4-4-104-quantities`
+  (183.1) still fold, because both sit above the new 178.0 BPM threshold.
+  Neither changes any outcome; I had simply miscounted which rows crossed.
+
+Six predictions landed, two missed. Both misses are of the same kind — I
+predicted the tempo module's behaviour correctly and its *surroundings*
+incorrectly (a metric's definition, a consumer's inputs).
+
+### The one regression, classified
+
+Nothing regressed at the outcome level, but one row lost partial credit and
+it should not pass unremarked:
+
+- **`rig-names-2-4-160-long`.meter_triple: credit 0.5 → 0.0**, outcome
+  `wrong` both times (so it never appears in `compare_outcomes`).
+  Classification: **genuine-trade.** Before, the pipeline said
+  `4/4 @78.3 duple`, whose *rhythmic surface* (156.6 onsets/min in twos)
+  matched the truth `2/4 @160 none` closely enough for ADR-007 partial
+  credit. Now it says `4/4 @156.6 duple` — surface 313.2 onsets/min, no
+  match. The cause is real and worth its own line: with `multiplier == 1`
+  the derivation table passes **Gemini's subdivision claim straight
+  through**, and Gemini made that claim while implicitly reading the clip
+  at a different metric level. Keeping the fast measurement is right;
+  stacking a level-conditional "duple" on top of it is not. Net on the row
+  is still +0.5 (tempo 0 → 1.0). **Backlog item W9-b: the derivation table
+  should re-derive subdivision when the selected level differs from the
+  one the observation was made under, rather than passing it through.**
+
+### The two counts changes, diagnosed
+
+- **`frappe` abstained → correct (64).** Genuine gain, downstream of the
+  tempo fix: with BPM at 162.5 instead of 81.2 the `span × bpm` vote agrees
+  with the phrase span and `estimate_counts` commits.
+- **`rig-names-3-4-90-clean` wrong (16) → abstained.** Not a regression
+  under Vision 08 §8.3 — a wrong commitment became an honest abstention,
+  and coverage is unchanged overall because `frappe` moved the other way.
+  Flag, in house style: this is the clip carrying the
+  transcription-hallucination guard (94 transcript tokens vs 52 voiced
+  onsets), and its tempo is wrong before (129.6) and after (64.8) against
+  a truth of 90. Nothing about this row is trustworthy in either
+  direction; do not quote the abstention as evidence of good calibration.
+
+### Second finding, negative, recorded so nobody repeats it
+
+**The band inside `interpret_meter`'s arbitration must NOT be removed, and
+the probe says so with per-clip evidence.** All three clips where the
+marker arm currently wins — `rig-numbers-3-4-90-clean` (onset 257.9),
+`-104-duple` (205.6), `-80-triplet` (169.1) — are **correct**, and each wins
+only because its onset reading falls outside 70–140 and hands over. Delete
+the band there and all three become onset-driven and wrong: −3 tempo rows,
+which would have cancelled this session's entire +3. There the band is a
+**level discriminator between two arms**, not a fold applied to a
+measurement; Standing Lesson 2 does not condemn it. A comment saying so now
+sits at `precision/tempo.py` above the arbitration block.
+
+### What this does not fix, stated plainly
+
+The two remaining tempo failure classes are untouched and neither is a band
+problem: five rows where the onset arm measures a genuinely wrong period
+(`rig-names-2-4-120-clean` 90.1 vs 120, `-4-4-104-coda` 74.0 vs 104,
+`-3-4-88-waltz` 102.6 vs 88, `-4-4-63-adagio` 72.0 vs 63,
+`-3-4-90-clean` 64.8 vs 90), and four where the marking is at a level the
+prior cannot recover (`adr006-8-counts-triple`, `adr007-plies-demo`,
+`rig-mixed-4-4-104-quantities`, `rig-names-6-8-100-clean`).
+
+And the honest limit of the method: **the 52-vs-61.5 BPM decision is made
+by the prior alone.** Tier-0's half-tempo case (raw 52) must fold and
+`rig-numbers-4-4-60-halftempo` (raw 61.5) must not, and no acoustic
+evidence in the pipeline separates them — only their distance from 99 BPM
+does. The admissible interval for the ÷2 log-cost is (0.86, 1.72) nats and
+the chosen value 1.386 sits inside it with 0.33 nats of margin, but a
+future clip landing between those two raws is not decidable by this
+mechanism at any parameter value. That is the gap W5's joint posterior
+exists to close, and it is now measured rather than asserted.
+
+### Constraints
+
+```
+$ git diff --stat main
+ docs/adr/014-tempo-metric-level-ambiguity.md |  10 +-
+ docs/research/RESEARCH-LOG.md                | 561 +++++++++++++++++++++++++++
+ docs/research/agent-charter.md               |  49 ++-
+ scripts/w9-tempo-probe.py                    |  59 +++
+ src/musical_perception/precision/tempo.py    | 137 +++++--
+ tests/test_tempo.py                          |  65 +++-
+ 6 files changed, 825 insertions(+), 56 deletions(-)
+```
+
+**Disclosed slip.** The first attempt at this commit used `git add -A` and
+swept in the 24 untracked `audio/rig/*.mp3` files (~11 MB) — the exact Path
+B decision W0's 2026-08-27 entry said was the owner's to take, not a
+session's. Caught by reading `git diff --stat main` rather than trusting
+the commit, removed with `git rm --cached -r audio` and the commit amended
+before any push. The MP3s are back to untracked; the `.gitignore` exception
+at lines 41-45 means they are *not* ignored, so any future `git add -A` on
+the Air will do the same thing. Whoever takes W3-remainder should stage
+explicit paths.
+
+No file under `evals/cases/`, `evals/traces/`, `evals/grids/` or
+`evals/baseline.json` is modified, and `src/musical_perception/evals/` is
+untouched — this is a pipeline workstream, not an EVAL-CHANGE. (The
+`agent-charter.md` line is W0's 2026-08-27 commit already on this branch,
+not this session's.) `evals/runs/` is gitignored. Branch:
+`agent/marathon`.
+
+`pytest`: **253 passed, 3 skipped, 1 failed** — the single failure is
+`test_tier1_outcomes_match_baseline_exactly`, which fails by design on any
+outcome-moving change and clears when the owner re-blesses. Four
+precision-layer unit tests changed contract, all of them tests that pinned
+the old fold: `normalize_tempo(60.0)` is now `(60.0, 1)`, and ADR-014's
+`PRIMARY_SWEEP` rows for clips 12 and 13 now keep their measured level.
+ADR-014's Status line carries a partial-supersession note.
+
+### BLOCKED — owner action needed
+
+**Re-bless the baseline.** This change moves six tier-1 outcomes (five
+improvements, one wrong→abstained) and cannot self-bless (charter rule 1).
+Until it is blessed the tier-1 pytest gate stays red on this branch and
+the nightly runner will report it as a failure. Recipe:
+
+```
+python -m musical_perception.evals run --suite tier0,tier1
+python -m musical_perception.evals bless
+```
+
+Status: **PROPOSED** — awaiting owner review and re-bless.
+
+## 2026-08-28 · rung M · agent/marathon · (one-line note: awaiting blessing)
+
+W9's increment is complete and pushed (`896339d`); the rung is now
+**awaiting owner blessing** — the baseline re-bless is an owner act under
+charter rule 1, so no further session work on W9 is possible until it
+lands, and the next scheduled session should take the next-ranked
+workstream (W4) rather than re-opening this one.

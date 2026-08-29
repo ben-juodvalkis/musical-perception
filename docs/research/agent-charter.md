@@ -84,7 +84,14 @@ flags, classified regressions).
     list lives on the main machine, never in this repository. "Weak"
     because the source is public and thus reconstructable in principle;
     the property being protected is *never iterated on*, which physical
-    removal provides.
+    removal provides. **Containment is not agent-auditable (W0
+    2026-08-27, PROPOSED):** the Barre-1 DEV media still lives on the
+    runner at `video/youtube/Ballet Barre 1`, and with the batch split
+    8 DEV / 4 HELD-OUT, *listing that directory names the held-out four
+    by complement*. Agents must therefore **never enumerate it** — the
+    only available audit is itself the leak. Confirmation that the four
+    exercises left the Air can come only from the owner, as a dated
+    one-line attestation appended to the ledger.
   - **DEV (the remainder):** ingested per the protocol above; truth
     labels agent-proposed `provisional` until owner-verified.
   - The four existing video demos stay as they are (frozen traces,
@@ -376,11 +383,14 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   capture ·
   W2 = rung 3, accent-periodicity meter votes *(COMPLETE 2026-08-20,
   negative — folded into W5)* · W3 = rung 6, baselines benchmark
-  *(COMPLETE 2026-08-21; raw-condition completion + optional BeatNet
-  queued behind media staging)* ·
+  *(COMPLETE 2026-08-21; raw-condition remainder — 24 rows + optional
+  BeatNet — **UNBLOCKED 2026-08-27**, W0 verified all 24 rig MP3s
+  present in `audio/rig/` on the runner, closing C5; ranked 3)* ·
   W4 = Ballet Barre 1 DEV ingestion (requires W1; the 8 remaining
   exercises only — 4 are HELD-OUT on the owner's machine) *(traces
-  frozen 2026-08-22; case files gated on W1.5)* · W5 = rung 4,
+  frozen 2026-08-22; **case files UNBLOCKED 2026-08-27** — W1.5's
+  `maturity` key is in the code at `evals/cases.py:27,53,144`, so
+  ruling A6's objection is discharged; ranked 2)* · W5 = rung 4,
   joint posterior (requires W2's evidence; **OWNER-STARTED — scheduled
   sessions must never take this workstream**: it runs in an
   owner-attended session on the top-tier model; if W5 is next and
@@ -410,12 +420,39 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   question, since `interpret_meter` gates arbitration on it and the
   probe shows it turning a correct 60.9 BPM reading into 121.7.
   Standard typed gate; it moves tier-1 outcomes, so it needs an owner
-  re-bless. **Rank not fixed at commissioning — W0 re-ranks.**
+  re-bless. **RANKED 1 by W0, 2026-08-27** (PROPOSED — see that ledger
+  entry §1): re-derived from `evals/baseline.json` on the shipping path
+  and the blessed metric, tier-1 committed tempo is **17/24 (0.708) when
+  the truth lies inside 70–140 and 0/5 (0.000) when it lies outside**,
+  every one of those five predictions folded back in-band. Five of the
+  twelve tempo failures are that shape; the honest ceiling from band work
+  alone is the three truth-in-family rows (0.586 → 0.690 = Acc2@8%), with
+  the in-band 0.708 the thing at risk. The band is hard-coded at
+  `precision/tempo.py:32-33`, `:124-125`, and inside `interpret_meter` at
+  `:249-259`, where **both** arbitration arms are conjoined with
+  `70.0 <= bpm <= 140.0` — confirming the probe's claim that it gates
+  arbitration, not merely normalization. Standing Lesson 2 has named this
+  exact band as an error since 2026-08-09.
   Policy: each
   session advances exactly one workstream — the highest-ranked one not
   BLOCKED; blocked workstreams get a BLOCKED ledger note (the owner's
   task queue) and the session moves on. The loop never idles while any
-  workstream is open. **W0 = the meta-rung, self-scheduling:** whenever
+  workstream is open.
+  **Standing ranking (W0, 2026-08-27, PROPOSED):** 1. **W9** (tempo
+  estimator + the 70–140 band) · 2. **W4** (Barre-1 provisional case
+  files) · 3. **W3-remainder** (raw-condition rows; must run on the Air
+  — the rig MP3s are present but untracked, `git ls-files audio` = 0) ·
+  4. **W6** (partly blocked: its condition is the meta-rung's to draft
+  "when rung 4's shape is known", and rung 4 is W5, owner-started and
+  unstarted — so that W0 deliverable is blocked at every future W0 until
+  W5 moves; the Feb-2026 model-comparison re-run inside W6 does *not*
+  depend on rung 4 and could be split out) · W5 BLOCKED-on-owner ·
+  W8 BLOCKED (after W5) · W1/W1.5/W2/W2.5/W7 COMPLETE.
+  **Unhomed direction (W0 2026-08-27, needs a ruling):** the owner's
+  "nod-first" adoption (ruling A8, 2026-08-24) is parked inside W7,
+  which is marked COMPLETE — so the "highest-ranked non-BLOCKED
+  workstream" rule can never select it. Commission it as **W10** with a
+  rank, or record that it is backlog and not a workstream. **W0 = the meta-rung, self-scheduling:** whenever
   the ledger's most recent meta-rung entry is older than 7 days (or none
   exists yet and the ledger carries ≥ 5 marathon entries — entries, not
   "sessions", per amendment 3, owner-ratified 2026-08-24), W0 outranks

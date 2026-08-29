@@ -5,6 +5,8 @@ KEEP — precision math that AI models won't replace.
 Pure functions: timestamps in, BPM out. No I/O, no models.
 """
 
+import math
+
 import numpy as np
 
 from musical_perception.types import (
@@ -19,12 +21,68 @@ from musical_perception.types import (
 # is reported: beat level first, then measure levels, then subdivisions.
 _METRIC_LEVELS = (1, 2, 3, -2, -3)
 
-# The family is generated over a broad absolute range, not the 70-140
-# comfort band — a genuinely slow (60 BPM marking) or genuinely fast
-# (160 BPM frappé) true tempo must still show up as a candidate even
-# though the band prior won't pick it as primary (ADR-014).
+# The absolute plausibility range for a beat rate, shared by the reported
+# family (ADR-014) and by level selection: a genuinely slow (60 BPM
+# marking) or genuinely fast (160 BPM frappé) tempo is a candidate, a
+# 900 BPM one is not.
 FAMILY_LOW = 20.0
 FAMILY_HIGH = 400.0
+
+
+# Level-selection prior (Standing Lesson 2: priors are priors, not
+# post-processing). The 70-140 "comfort band" was a hard indicator
+# function: a reading 2% outside it was folded by a whole metric level,
+# which destroyed correct out-of-band measurements (rung-2 checklist
+# clips frappe / rig-names-2-4-160-long / rig-numbers-4-4-60-halftempo).
+#
+# The same prior, softened: read [low, high] as the central interval of a
+# log-normal over beat rate — geometric centre T0 = sqrt(low*high), and
+# half its octave width as one standard deviation — and combine it with a
+# prior over metric distance before choosing a level. Nothing is snapped;
+# a level is chosen.
+#
+# LEVEL_PRIOR_EXPONENT 2 makes P(fold by factor k) proportional to k^-2:
+# scale-free in the fold factor, with no separate constant for x2 and x3.
+# It is the only integer exponent that both leaves a genuine 160 BPM
+# frappe alone and still lifts a genuine half-tempo marking (~52 BPM) to
+# the beat level; see the 2026-08-28 ledger entry for the admissible
+# interval and the disclosure that the three candidates were checked
+# against the corpus.
+LEVEL_PRIOR_EXPONENT = 2.0
+
+# Abstention: if even the best level sits further than this many sigma
+# from T0, no reading is plausible and the caller gets multiplier 0 — the
+# behaviour the old "no x2/x3 transform fits" branch provided.
+ABSTAIN_SIGMA = 3.0
+
+
+def _prior_shape(low: float, high: float) -> tuple[float, float]:
+    """(centre, sigma) of the log-normal the band [low, high] stands for."""
+    return math.sqrt(low * high), 0.5 * math.log2(high / low)
+
+
+def _level_scores(
+    bpm: float, low: float, high: float
+) -> list[tuple[float, float, int]]:
+    """(score, candidate_bpm, multiplier) for every plausible metric level.
+
+    Score is an unnormalized log posterior: log-normal tempo prior plus
+    log level prior. Candidates outside the absolute plausibility range
+    shared with `tempo_family` are not levels at all and are dropped.
+    """
+    t0, sigma = _prior_shape(low, high)
+    scored = []
+    for multiplier in _METRIC_LEVELS:
+        candidate = round(_apply_multiplier(bpm, multiplier), 1)
+        if not FAMILY_LOW <= candidate <= FAMILY_HIGH:
+            continue
+        octaves = math.log2(candidate / t0)
+        score = (
+            -0.5 * (octaves / sigma) ** 2
+            - LEVEL_PRIOR_EXPONENT * math.log(abs(multiplier))
+        )
+        scored.append((score, candidate, multiplier))
+    return scored
 
 
 def normalize_tempo(
@@ -33,46 +91,54 @@ def normalize_tempo(
     high: float = 140.0,
 ) -> tuple[float, int]:
     """
-    Snap a BPM value into the target range by multiplying or dividing by 2 or 3.
+    Choose the metric level of a raw pulse under a soft tempo prior.
 
-    Ballet class tempos almost always fall in the 70-140 BPM range at the beat
-    level. Values outside this range usually indicate the detector locked onto
-    a subdivision level (too fast) or a measure level (too slow).
+    From onset regularity alone, N BPM is indistinguishable from N×2, N×3,
+    N/2 or N/3 at the beat level (ADR-014). Something has to break the tie,
+    and the only thing available is a prior over absolute beat rate. This
+    function applies that prior *at level selection* — multiplicatively,
+    against every candidate level — instead of folding the measurement
+    into a fixed interval.
 
-    The multiplier tracks how the original pulse relates to the normalized beat:
+    `low`/`high` no longer bound the answer. They parameterize the prior:
+    the returned BPM may sit outside them when the measurement is good
+    enough that no fold is worth its metric-distance cost. With the 70-140
+    defaults the resulting "keep it as measured" range is about 55-178 BPM.
+
+    The multiplier tracks how the original pulse relates to the chosen beat:
     - multiplier=1: already at beat level
     - multiplier=2: original was at measure level (doubled to reach beat)
     - multiplier=3: original was at measure level in triple meter
     - multiplier=-2: original was at subdivision level (halved to reach beat)
     - multiplier=-3: original was at triplet subdivision level
-    - multiplier=0: could not normalize (BPM too extreme for any ×2/×3 transform)
+    - multiplier=0: no level is plausible (best candidate further than
+      ABSTAIN_SIGMA from the prior's centre, or nothing in family range)
 
     Args:
         bpm: Raw BPM value to normalize.
-        low: Lower bound of the target range (inclusive).
-        high: Upper bound of the target range (inclusive).
+        low: Lower edge of the prior's central interval.
+        high: Upper edge of the prior's central interval.
 
     Returns:
         (normalized_bpm, multiplier) tuple. When multiplier=0, the raw BPM is
         returned unchanged — the caller should treat it as unreliable.
     """
-    if low <= bpm <= high:
-        return round(bpm, 1), 1
+    if bpm <= 0 or low <= 0 or high <= low:
+        return round(bpm, 1), 0
 
-    # Try multiplying up (measure → beat)
-    for factor in (2, 3):
-        candidate = bpm * factor
-        if low <= candidate <= high:
-            return round(candidate, 1), factor
+    scored = _level_scores(bpm, low, high)
+    if not scored:
+        return round(bpm, 1), 0
 
-    # Try dividing down (subdivision → beat)
-    for factor in (2, 3):
-        candidate = bpm / factor
-        if low <= candidate <= high:
-            return round(candidate, 1), -factor
+    # Ties break toward _METRIC_LEVELS order (beat level first), which
+    # `max` gives for free: it keeps the first of equal scores.
+    _, candidate, multiplier = max(scored, key=lambda s: s[0])
 
-    # Nothing fits — BPM is too extreme to normalize
-    return round(bpm, 1), 0
+    t0, sigma = _prior_shape(low, high)
+    if abs(math.log2(candidate / t0)) > ABSTAIN_SIGMA * sigma:
+        return round(bpm, 1), 0
+
+    return candidate, multiplier
 
 
 def _apply_multiplier(bpm: float, multiplier: int) -> float:
@@ -131,9 +197,9 @@ def tempo_family(
     from N×2, N×3, N/2 or N/3 at the beat level: a teacher marking every
     other beat of a 124 BPM exercise and a teacher marking a genuinely slow
     62 BPM exercise produce identical audio. `normalize_tempo()` resolves
-    that with a fixed prior (the 70-140 band); this function reports the
-    whole family instead of collapsing it, so a true tempo outside the band
-    stays discoverable.
+    that by scoring the levels under a soft prior; this function reports
+    the whole family instead of collapsing it, so the levels that prior
+    did not pick stay visible.
 
     Members are generated over FAMILY_LOW-FAMILY_HIGH (a broad absolute
     plausibility range), ordered beat level → measure levels → subdivisions,
@@ -218,9 +284,10 @@ def interpret_meter(
     """
     Produce a coherent metric interpretation from raw tempo signals.
 
-    Picks the best raw BPM, normalizes it to 70-140, and derives meter
-    and subdivision from how the BPM was scaled. The multiplier encodes
-    the metric level of the raw pulse:
+    Picks the best raw BPM, chooses its metric level under the soft tempo
+    prior (`normalize_tempo`), and derives meter and subdivision from how
+    the BPM was scaled. The multiplier encodes the metric level of the raw
+    pulse:
 
     - multiplier=1: raw was already at beat level → trust Gemini meter/subdivision
     - multiplier=2: raw was at measure level, doubled → 4/4, no subdivision
@@ -247,6 +314,12 @@ def interpret_meter(
     # marker tempo sits INSIDE it, the markers are the beat-level signal
     # and win. Whenever onsets are already at beat level, ADR-006/007
     # behavior is preserved unchanged (issue-10 cross-ratio included).
+    #
+    # The band survives HERE on purpose (W9, 2026-08-28) while it was
+    # removed from normalize_tempo: here it is a level *discriminator*
+    # between two arms, not a fold applied to a measurement, and all three
+    # clips it hands to the markers are correct because of it. Softening
+    # it is a separate named question with its own evidence.
     onset_at_beat_level = (
         onset_tempo is not None
         and onset_tempo.confidence >= 0.3

@@ -105,10 +105,29 @@ def test_normalize_gemini_40bpm_case():
     assert mult == 2  # doubled from measure to beat level
 
 def test_normalize_prefers_double_over_triple():
-    """60 BPM: *2=120 (in range) and *3=180 (out). Should double."""
-    bpm, mult = normalize_tempo(60.0)
-    assert bpm == 120.0
+    """50 BPM is implausibly slow for a beat: x2=100 beats x3=150."""
+    bpm, mult = normalize_tempo(50.0)
+    assert bpm == 100.0
     assert mult == 2
+
+
+def test_normalize_keeps_a_plausible_slow_reading():
+    """W9: 60 BPM is a beat rate, not a measure rate.
+
+    The old hard 70-140 band doubled it to 120 because 60 sat two BPM
+    outside an interval edge. Under the soft prior a fold has to pay for
+    itself, and moving a 60 BPM reading a whole metric level does not.
+    """
+    assert normalize_tempo(60.0) == (60.0, 1)
+
+
+def test_normalize_soft_band_edges():
+    """The prior's keep range is ~55-178 BPM, and it is a threshold, not a
+    cliff: just inside it the measurement survives, just outside it folds."""
+    assert normalize_tempo(56.0)[1] == 1
+    assert normalize_tempo(54.0)[1] == 2
+    assert normalize_tempo(175.0)[1] == 1
+    assert normalize_tempo(181.0)[1] == -2
 
 def test_normalize_extreme_bpm_returns_sentinel():
     """BPM too extreme for any ×2/×3 transform returns multiplier=0."""
@@ -420,13 +439,18 @@ def test_family_drops_implausible_levels():
     assert tempo_family(0.0) == []
 
 
-# The primary answer is frozen: ADR-014 is additive, so every raw reading
-# must produce exactly the (bpm, multiplier, meter, subdivision) it did
-# before the family existed.
+# The primary answer, pinned. ADR-014 froze this sweep because the family
+# was additive; W9 (2026-08-28) is the one change licensed to move it, and
+# moved exactly the two rows ADR-014 had named as wrong. Everything else
+# below is byte-for-byte the ADR-014 sweep.
 PRIMARY_SWEEP = [
     # raw,    bpm,    multiplier, beats, subdivision
-    (62.2,   124.4,   2,  4, "none"),    # clip 12: genuinely slow, still doubled
-    (161.8,   80.9,  -2,  4, "duple"),   # clip 13: genuinely fast, still halved
+    # Clips 12 and 13 are the two rows ADR-014 documented and deliberately
+    # did not fix: a genuinely slow 62.2 and a genuinely fast 161.8 that the
+    # hard band folded away. W9 (2026-08-28) fixes them at the primary, so
+    # they now stay where they were measured.
+    (62.2,    62.2,    1,  4, "none"),   # clip 12: genuinely slow, kept
+    (161.8,  161.8,    1,  4, "none"),   # clip 13: genuinely fast, kept
     (104.0,  104.0,   1,  4, "none"),
     (70.0,    70.0,   1,  4, "none"),
     (140.0,  140.0,   1,  4, "none"),
@@ -437,7 +461,7 @@ PRIMARY_SWEEP = [
 ]
 
 
-def test_primary_selection_unchanged_across_sweep():
+def test_primary_selection_across_sweep():
     for raw, bpm, multiplier, beats, subdivision in PRIMARY_SWEEP:
         result = interpret_meter(
             onset_tempo=_onset(raw),
@@ -464,28 +488,35 @@ def test_interpret_reports_alternates_without_the_primary():
     assert [c.bpm for c in result.alternates] == [208.0, 312.0, 52.0, 34.7]
 
 
-def test_interpret_alternates_surface_the_slow_truth():
-    """Clip 12 end to end: primary unchanged at 124.4, truth discoverable."""
+def test_interpret_keeps_the_slow_truth_as_primary():
+    """Clip 12 end to end: the slow reading is now the primary (W9).
+
+    ADR-014 could only surface 62.2 as an alternate because
+    normalize_tempo folded the primary to 124.4. The soft prior selects
+    the measured level, and the folded reading becomes the alternate.
+    """
     result = interpret_meter(
         onset_tempo=_onset(62.2),
         gemini_tempo=None,
         gemini_meter=Meter(beats_per_measure=4, beat_unit=4),
         gemini_subdivision="none",
     )
-    assert result.bpm == 124.4          # unchanged by design
-    assert 62.2 in [c.bpm for c in result.alternates]
+    assert result.bpm == 62.2
+    assert result.tempo_multiplier == 1
+    assert 124.4 in [c.bpm for c in result.alternates]
 
 
-def test_interpret_alternates_surface_the_fast_truth():
-    """Clip 13 end to end: primary unchanged at 80.9, truth discoverable."""
+def test_interpret_keeps_the_fast_truth_as_primary():
+    """Clip 13 end to end: the fast reading is now the primary (W9)."""
     result = interpret_meter(
         onset_tempo=_onset(161.8),
         gemini_tempo=None,
         gemini_meter=Meter(beats_per_measure=4, beat_unit=4),
         gemini_subdivision="none",
     )
-    assert result.bpm == 80.9           # unchanged by design
-    assert 161.8 in [c.bpm for c in result.alternates]
+    assert result.bpm == 161.8
+    assert result.tempo_multiplier == 1
+    assert 80.9 in [c.bpm for c in result.alternates]
 
 
 def test_interpret_cross_signal_triple_has_no_duplicate_primary():
