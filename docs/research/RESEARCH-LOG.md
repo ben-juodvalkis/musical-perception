@@ -5230,3 +5230,182 @@ dated ledger entry with this scorecard scored honestly. Turn bound 60.
 
 Status: **PRE-REGISTERED** — implementation follows in this session;
 results entry appended when the suites have run.
+
+## 2026-08-28 · rung M / W5 (rung 4: the factored joint posterior) · agent/rung-4-joint-posterior · local (owner-attended) — RESULTS
+
+**The typed gate is NOT cleared. This entry is the honest record of a
+partial-negative result** (charter rule 5: a documented dead end with
+per-clip evidence is a full deliverable), landed with the working
+artifact so the next attempt starts from measured ground, not from
+zero.
+
+### What was built (committed `fd993cf`)
+
+`precision/posterior.py`: a bar-pointer lattice — the forward algorithm
+on the Krebs-2015 state space (tempo 40–200 BPM as integer frames per
+beat at 50 fps, pointer advancing deterministically, tempo drift ±1
+state at beat crossings under an exp(−λ|log ratio|) cost) with
+Whiteley-2006 per-frame Poisson emissions over two evidence classes
+(classified beat markers; residual word onsets). No meter variable, no
+division axis: division by sub-syllable counts per beat, grouping as a
+per-level ladder (counting cycles + boundary gaps), the label derived
+late with Gemini's claim as one vote, confidence = posterior mass of
+the ±8% window (the probability the scorer accepts the answer),
+window-mass Bayes commitment, ADR-014 alternates carrying real
+posterior weights, sparse/degraded fallback to `interpret_meter`
+(which tier-0 pins byte-identical — its driver is eval code this rung
+cannot touch). 40 synthetic tests mirror the tier-0 corruption sweep;
+full pytest 293 passed + the tier-1 gate test red by design (outcome
+changes, unblessed).
+
+### The headline, scored against the fresh W9 baseline
+
+| field | baseline | this branch |
+|---|---|---|
+| tier-1 tempo committed | 20/29 = 0.690 | 20/29 = 0.690 (tie; 4 wins / 4 losses exchanged) |
+| tier-1 meter_triple | 12 | 11 |
+| ECE | 0.1998 | 0.2143 |
+| Acc2@8% | 0.690 | **0.793** |
+| truth_in_family | 0/9 | 5/9 |
+| tier-0 / stage1 | — | byte-identical |
+
+Wins (wrong→correct): `adr006-8-counts-triple` (tempo AND meter — the
+beat markers at 66 BPM finally outvote the syllable stream),
+`rig-names-2-4-120-clean`, `rig-names-3-4-88-waltz`,
+`rig-names-6-8-100-clean`. Losses (correct→wrong):
+`rig-names-4-4-104-clean`, `rig-names-4-4-104-explained`,
+`rig-numbers-4-4-60-halftempo`, `rig-numbers-6-8-100-clean`. Counts:
+zero correct→wrong; waltz and coda commit from abstention and miss
+(downstream of tempo movement), explained goes wrong→abstained.
+
+### Prediction scorecard (misses first, ADR-015 discipline)
+
+- **P1 MISS.** Predicted 20→22 minimum with zero losses; landed a tie
+  with four losses, including must-not-lose `halftempo`. The two named
+  confident flips DID land (8-counts-triple, waltz), plus stretch row
+  2-4-120 — the predicted mechanism (levels vote) is real; the
+  unpredicted cost (junk-dense streams favor wrong grids) ate it.
+- **P2 MISS.** Meter 12→11, not 16. The four division rows did not
+  flip (below), and two tempo losses took their meter with them.
+- **P3 MISS, with the rung's most valuable finding.** Measured division
+  by TIMING is falsified by the corpus: real spoken "and"s sit at frac
+  0.61–0.77 of the beat — a timing template reads plainly duple
+  counting as 2/3 triplet, and a joint division axis hands the tempo
+  search fine combs that eat dense streams one level down. Division
+  must be decided by the sub-syllable COUNT per beat (subdivision.py's
+  logic, association by time) — validated on `numbers-4-4-104-duple`
+  and `8-counts-triple`. But the four names-clip rows
+  (quiet/104-clean/104-explained/96-allegro) stay `duple`: their
+  and-markers are unnumbered and sparse, count-based division cannot
+  reach `none` there, and Gemini's claim remains the only reading.
+  W9-b's direction is confirmed; its implementation is corrected.
+- **P6 MISS.** ECE 0.2143 > 0.1998: window-mass confidence is honestly
+  defined but the posterior is overconfident exactly on the junk-dense
+  rows it gets wrong.
+- **P8 HALF.** vocables stays abstained ✓; 3-4-90 stayed
+  wrong-committed rather than abstaining.
+- **P9 HALF.** Alternates carry posterior mass ✓ (charter deliverable);
+  truth_in_family landed 5/9, not ≤2 — the family is RIGHT far more
+  often than before (5 of 9 wrong rows carry the truth as a weighted
+  alternate vs 0 of 9 at baseline), which is better than the
+  prediction and wrong as a number.
+- **P4, P5, P7, P10 EXACT.** Tier-0 and stage1 byte-identical by
+  construction; counts had zero correct→wrong; sides/slot untouched;
+  provisional rows in their own slice.
+
+### The falsification ledger — nine mechanisms, each with per-clip evidence
+
+The first implementation was a global (period, phase, division)
+enumeration with a PIPPET-style template. The corpus falsified it and
+its repairs in sequence; each mechanism is a way for a wrong-tempo
+hypothesis to extract credit from data it does not explain:
+
+1. **Blanket coverage**: fast-tempo bumps in beat-fraction units cover
+   the circle; every event earns regardless of alignment (199-BPM
+   commits on three clips).
+2. **Width-height coupling**: any σ that varies with period pays the
+   sharper level more for the same aligned data (folded a genuine 60
+   BPM adagio; resurfaced through a σ-cap as a fast subsidy).
+3. **Per-position double counting**: summing log-rewards per template
+   bump lets fat tails double-dip (triplet self-similarity: one-and-ah
+   at 90 ≡ beats+thirds at 180).
+4. **Empty-template taxes**: a word template's per-slot mass charged
+   when the word stream is empty by construction (counted clips) taxes
+   fast levels ~2 phantom nats.
+5. **Sub-unit IOI spans** (1/2, 1/3): only ever let wrong grids harvest
+   double-fire junk (a 0.18 s artifact rewarding the doubled grid).
+6. **Phase-marginal degeneracy**: a doubled grid explains a half-filled
+   stream at TWO phasings; marginalizing pays it log 2 free.
+7. **Precession**: an INCOMMENSURATE grid drifts through a slow stream
+   collecting partial credit at every pass — the decisive measurement:
+   113.6 BPM beating both 59.9 and 118.3 on a clean 60 BPM count.
+   This one falsifies global-tempo scoring as a class and forced the
+   bar-pointer rebuild.
+8. **Timing-read division** (P3 above).
+9. **Junk density**: with the lattice in place, the surviving losses
+   are exactly the clips whose marker streams carry interleaved
+   double-fires, pickups and between-level medians
+   (`names-104-clean` residuals 24% of a period off the true grid at
+   any global phase; `numbers-6-8` IOIs 0.16–1.45 s around a 0.63
+   core). The legacy stack survives these by SELECTION — medians,
+   CV-gated windows, grid-fit dead zones that silently ignore data — 
+   which a generative model cannot do without a per-clip noise model.
+   Post-hoc repairs tried and reverted with evidence: ±2-state drift
+   (breaks the synthetic fold), σ=0.065 (folds frappe), ADR-015
+   event pre-selection (net −3), a between-beat word-presence level
+   vote (moves fractions of a nat against multi-nat gaps; its honest
+   ceiling is set by the synthetic fold contract), an onset-arm
+   Gaussian vote (too weak to fix, strong enough to endanger the
+   waltz).
+
+### What stands regardless of the gate
+
+- The **factored contract surface** is implemented and additive:
+  `GroupingLevel` ladder + weighted `TempoCandidate` alternates on
+  `NormalizedTempo`; no ADR is filed since the rung does not land —
+  the types are dormant until a landing increment claims them.
+- **Division-by-counts** (W9-b completed in design): correct on every
+  row it can reach; blocked on the four names rows by absent numbering.
+- **Acc2@8% 0.690→0.793 and truth_in_family 0/9→5/9**: the posterior
+  KNOWS the right answer as a weighted family member far more often
+  than the committed primary shows — the selection problem, not the
+  measurement problem, is what remains.
+
+### Why the gate cannot be argued past
+
+Tempo tie + meter −1 + ECE worse fails "net-improves tempo AND
+meter_triple AND does not worsen ECE" on every clause. The wins and
+the losses are the same mechanism pointed at different rows: anything
+that lets coherent markers outvote junk-dense onsets also lets
+junk-dense markers outvote the truth. On the current streams (Gemini
+marker classification + Whisper timings, frozen in traces) the
+information to separate those rows largely is not there — 52-vs-61.5
+was already documented by W9 as prior-only; this rung adds that
+junk-vs-signal is selection-only.
+
+### BLOCKED — owner ruling wanted (W5 disposition)
+
+1. **Park the branch as the W5 foundation** (recommended): resume after
+   the evidence improves — W4 ingestion (n grows), W6 ensembled
+   semantics (marker classification becomes a distribution, Standing
+   Lesson 4 finally consumable), and/or acoustic pulse events entering
+   traces (rung-2's channel, currently absent from replay). The
+   session-scoped follow-up worth naming: per-clip noise EM over the
+   Poisson amplitudes — the principled version of the legacy's
+   selection.
+2. Shelve the joint posterior per ADR-016's stop branch; W8's RETIRED
+   sweep proceeds against the current stack.
+3. Another owner-attended session attacks per-clip noise modeling
+   directly on this branch.
+
+Constraints: `git diff --stat main` = the two W5 commits' files only
+(posterior.py, types.py, analyze.py, tests/test_posterior.py, the
+probe, this ledger); no file under `evals/cases/`, `evals/traces/`,
+`evals/grids/`, `evals/baseline.json`, or
+`src/musical_perception/evals/` touched; no `evals bless` run; the
+tier-1 gate test red on this branch by design. Turn bound: exceeded
+the /goal's 60 by roughly ten turns finishing the falsification record
+— disclosed.
+
+Status: **PARTIAL-NEGATIVE, gate not cleared** — branch parked pending
+the owner's disposition ruling; nothing merges, nothing is blessed.
