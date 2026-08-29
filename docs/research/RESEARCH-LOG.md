@@ -5813,3 +5813,126 @@ Branch `agent/marathon`. No existing file under `evals/cases/`,
 with no pipeline change bundled.
 
 Status: **PRE-REGISTERED** — results follow.
+
+## 2026-08-29 · rung M / W12 (the factored meter slice) · agent/marathon · local (nightly, unattended) — RESULTS
+
+**EVAL-CHANGE increment, complete.** Commit `d07f4a0`; pre-registration
+`049157b` (previous entry), with the mapping table written before any
+pipeline comparison, as the commission requires.
+
+### The slice
+
+```
+tier1  F meter_division    n= 28 correct= 21 wrong=  6 abstained=  1 accuracy=0.778   [REPORTED-ONLY]
+tier1  F meter_grouping    n= 29 correct= 24 wrong=  4 abstained=  1 accuracy=0.857   [REPORTED-ONLY]
+tier1    meter_triple      n= 29 correct= 13 wrong= 15 abstained=  1 accuracy=0.464
+```
+
+### Prediction scorecard — 4 hit, 1 partial
+
+| # | prediction | outcome |
+|---|---|---|
+| Q1 | duple-family credit flips the three 2/4 rows by construction | **PARTIAL** — the three 2/4 rows do flip by construction, but **11** rows go wrong→correct, not 3. See below; the prediction was too small and named the wrong dominant cause. |
+| Q2 | division accuracy > meter_triple's 0.464 | **HIT** — **0.778** |
+| Q3 | ladder supplies a bar-candidate rung on ≤ 3 of 30 | **HIT, and harder than predicted** — **1** of 29 scored rows |
+| Q4 | gates nothing; headline blocks byte-identical; pytest green | **HIT** |
+| Q5 | the 6/8 division override moves no row today | **HIT** |
+
+### What the totals hid — Q1 was wrong about *why* rows flip
+
+Eleven rows are wrong on `meter_triple` but correct on `meter_grouping`.
+Only **three** are the family-credit artifact I pre-registered
+(`rig-names-2-4-120-clean`, `rig-names-2-4-160-long`,
+`rig-numbers-2-4-120-clean` — each predicted bar 4 against truth 2,
+`exact=n`). The other **eight** flip for a different and more interesting
+reason: **the bar label was right all along, and `meter_triple`'s
+conjunction was failing them on tempo or subdivision.**
+
+| row | why meter_triple failed it | bar |
+|---|---|---|
+| adr007-plies-demo | division (`none` vs `duple`) | 4 exact |
+| rig-mixed-4-4-104-quantities | division (`duple` vs `none`) | 4 exact |
+| rig-names-4-4-104-clean, -coda, -explained, -63-adagio | tempo / division | 4 exact |
+| rig-numbers-4-4-60-halftempo | tempo | 4 exact |
+| rig-numbers-6-8-100-clean | tempo | **6 exact** |
+
+That is the actual finding, and it is the one the owner commissioned the
+slice to expose: `meter_triple` 13/29 understates bar identification,
+which is right on **24 of 29** rows. It does not mean the pipeline is
+better than believed — the conjunction is measuring something real — it
+means the conjunction was never a bar score.
+
+Scored honestly as a partial: the prediction named a mechanism that
+accounts for 3 of 11 flips.
+
+### The caveat that must travel with every number above
+
+**`meter_grouping` is not an independent bar estimate.** It reads
+`normalized.meter.beats_per_measure` — the same derived label
+`meter_triple` already uses. The ADR-017 `grouping_levels` ladder cannot
+supply the bar today, measured on tier-1:
+
+- **empty on 20 of 30 clips**;
+- of the **29** scored grouping rows, exactly **1**
+  (`rig-names-3-4-88-waltz`, rung 3 at strength 0.50) carries any
+  bar-candidate rung in {2,3,4,6};
+- what the ladder actually reports is the **count phrase** — rung 8 on
+  seven clips, at strength 1.00 on five of them — plus gaps artifacts at
+  rungs 10, 14 and 15.
+
+So 0.464 → 0.857 measures **axis separation plus family credit**, not new
+bar evidence. Quoting it as "the factored representation working" would
+be quoting the wrong thing. This is written into
+`docs/evals/factored-meter.md` so it travels.
+
+Positively, the ladder finding is itself a clean confirmation of the
+owner's 2026-08-26 direction: the count phrase really is a distinct rung
+from the bar, and it is the rung this corpus actually voices. W5's
+continuation inherits a ladder that speaks about phrases and is silent
+about bars.
+
+### How "gates nothing" is enforced, and proven
+
+One tuple — `scorers.REPORTED_ONLY_FIELDS` — with three exclusions built
+on it: `outcomes_map` drops the fields (so `compare_outcomes` and the
+tier-1 pytest gate never see them); `aggregate._summarize_cases` computes
+`fields`, `ece`, `risk_coverage` and every tag slice from gating rows
+only; the slice lands in its own `factored_meter` block, `None` when
+absent, so a pre-W12 corpus is byte-identical.
+
+Proven against the **blessed baseline**, not merely against a prior run:
+`fields`, `outcomes`, `ece`, `risk_coverage`, `slices`, `tempo_metrics`,
+`quality_spearman` and `provisional` are **IDENTICAL** on both tier0 and
+tier1, and `evals run` prints "no outcome changes vs baseline". Two tests
+pin the property directly (`test_factored_rows_never_reach_outcomes`,
+`test_factored_rows_change_no_headline_number`).
+
+Note: tier0 (synthetic) produces no factored rows — it does not run
+`score_parameters` — so its `factored_meter` is `None`. Extending the
+slice to tier0 would need the tier-0 driver EVAL-CHANGE that ADR-017
+already parks for W8.
+
+### Verification and constraints
+
+- `pytest`: **320 passed, 3 skipped** (was 306/3 after W11); 14 new tests.
+- `evals run --suite tier0,tier1,stage1`: "no outcome changes vs baseline".
+- `git diff --stat main` shown in the transcript. Every path under
+  `evals/` is an **A** (W11's 30 sidecars); `evals/cases/` untouched,
+  `evals/baseline.json` untouched, no existing trace file modified.
+- Pipeline code (`precision/`, `perception/`, `annotation/`,
+  `analyze.py`, `types.py`) touched on **0 paths** — the declared
+  EVAL-CHANGE is confined to `src/musical_perception/evals/`.
+- Branch `agent/marathon`. Nothing blessed.
+
+### Backlog parked
+
+- **W12-b:** extend the factored slice to tier0, which needs the tier-0
+  driver EVAL-CHANGE named in ADR-017 (also W8's prerequisite). Not
+  bundled here.
+- **The ladder's bar silence is a W5 question, not an eval question.**
+  No amount of scoring will make `grouping_levels` emit a bar rung; the
+  observation model has to.
+
+Status: **COMPLETE**, awaiting owner batch review. This branch now
+carries W11 (previous session) + W12. Next by standing rank: **W4**
+(Barre-1 provisional case files), then W3-remainder.
