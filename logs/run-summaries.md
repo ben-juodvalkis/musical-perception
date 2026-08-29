@@ -143,3 +143,20 @@ is how the runner's permission failure was found.)*
 > Status is **PROPOSED** — the charter edit is the proposal and lands only if you merge it. Four things want a ruling: W9's rank, the nod-first workstream number, whether to commit the rig MP3s (they're present but untracked, so W3-remainder must run on the Air), and the held-out attestation.
 
 *Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
+
+## run 2026-08-28T09:00:03Z · main fc31ad0
+
+- **outcome:** success, shell exit 0
+- **turns:** 59 · **duration:** 14.4 min · **cost:** $6.09
+
+**Agent's closing message:**
+
+> …gent/marathon` (pushed, `fc31ad0`):
+> 
+> **Increment delivered — W9, the 70–140 band.** `normalize_tempo` now selects the metric level by MAP under a soft log-normal tempo prior instead of snapping the measurement into a fixed interval. tier-1 tempo 0.586 → **0.690**, meter_triple 0.393 → **0.429**, counts 0.571 → **0.619**, ECE 0.2654 → **0.1998**; tier-0 unchanged at 25/25 and 24/25; stage1 identical. Six outcome changes, zero outcome regressions.
+> 
+> **Constraints proven above:** `git diff --stat main` shows 6 files, none under `evals/cases/`, `evals/traces/`, `evals/baseline.json`, and `src/musical_perception/evals/` untouched (pipeline workstream, not EVAL-CHANGE). Work confined to `agent/marathon`. Two dated ledger entries appended — the pre-registration (committed before implementation) and the results entry with the scorecard.
+> 
+> **Awaiting owner action.** Per charter rule 1 the baseline re-bless is yours; until it lands `test_tier1_outcomes_match_baseline_exactly` stays red on this branch and the nightly runner will report it as a failure. The ledger's closing one-line note records the rung as awaiting blessing and directs the next scheduled session to W4 rather than re-opening W9.
+
+*Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
