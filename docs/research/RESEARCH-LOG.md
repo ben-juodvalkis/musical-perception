@@ -6026,3 +6026,182 @@ It is proposed as `meter: "3/4"` for that exercise's three files
   touched by this increment.
 
 Status: PRE-REGISTRATION (results entry follows in this session).
+
+## 2026-08-29 · rung M / W4 (Barre 1 DEV ingestion: the case files) · agent/marathon · local (nightly, unattended) — RESULTS
+
+**Complete as far as the evidence permits; the remainder is a BLOCKED
+note below.** Commits: pre-registration `3dc4a2d`, case files `f1914bc`.
+Not an EVAL-CHANGE increment — no metric, no suite, no scorer file
+touched (proof below).
+
+### What landed
+
+22 new case files under `evals/cases/`, every one
+`maturity: provisional`, one per frozen Barre-1 trace. The corpus is now
+**52 cases: 30 verified (gating) + 22 provisional (gating nothing)**.
+
+- **Tags** on all 22: `source: youtube`, `teacher: yt-barre1`, `lang: en`,
+  `count_style` (`step_names` on the 15 clips with speech, `none` on the
+  seven silent left-side takes), `explanation` (`interleaved` / `none`).
+- **`accompanied: accompaniment_only` on exactly 6** — owner ruling B5's
+  condition finally has rows. Criterion applied: no speech in the frozen
+  transcript **and** frozen model prose describing music or reporting no
+  dancer. Both signals required; one alone was not accepted.
+- **`expect` is empty on 19 of 22, deliberately.** The reasoning is in
+  the pre-registration (F1/F2) and repeated in each file's `notes`, so it
+  travels with the data rather than living only in this ledger.
+- **`expect: meter: "3/4"` on 3** — the one exercise whose demo has the
+  teacher stating the meter aloud *to the pianist*. A statement about the
+  music, not a count; inherited across that exercise's three files.
+- No `input.media` on any of the 22: this batch's media is `offrepo:`.
+
+### Prediction scorecard — 2 hit, 3 missed
+
+| # | prediction | outcome |
+|---|---|---|
+| J1 | 22/22 replay, zero `__error__` rows | **HIT** — 0 error rows in 52; 22 barre1 rows present |
+| J2 | every headline block identical to baseline; only `provisional` moves | **MISSED** — see below. The gate held, the prediction did not |
+| J3 | exactly 6 `accompaniment_only`, matching ruling B5 | **HIT** — 6: `barre1-{B,C,D,E,F,G}-el` |
+| J4 | the 3 meter rows score 2 correct / 1 wrong | **MISSED** — **1 correct, 1 wrong, 1 abstained** (accuracy 0.5). The abstention is the accompaniment-only take: with no speech there are no markers, so the pipeline commits to nothing. Predicting from the 08-22 table — which was recorded before W5 and W9 landed and which I flagged as stale in the pre-registration and then used anyway — is the error |
+| J5 | pytest unchanged at 320/3, "no code is touched" | **MISSED** — the first run was **1 failed, 319 passed**. See the tripwire section; final state is 320 passed, 3 skipped, but the prediction was wrong about the increment being code-free |
+
+### J2, corrected: what actually is invariant
+
+`outcomes` is a per-case map, so adding 22 cases *must* change it. That
+is arithmetic, and predicting otherwise was careless. The invariant that
+matters, and that holds:
+
+```
+tier1 outcomes restricted to the 30 blessed ids: IDENTICAL
+new ids added to the outcomes map: 22
+```
+
+Isolated against the previous run artifact (`run-…091713Z-049157b`, the
+W12 session) so W11/W12's own deltas do not muddy the picture, W4 changes
+**exactly two things** and nothing else:
+
+| block | tier0 | tier1 |
+|---|---|---|
+| fields, ece, risk_coverage, slices, tempo_metrics, quality_spearman, factored_meter | identical | identical |
+| outcomes | identical | **+22 ids; the 30 shared ids identical** |
+| provisional | identical (None) | **None → n=22** |
+
+`evals run --suite tier0,tier1,stage1` prints **`no outcome changes vs
+baseline`**, and the headline numbers are untouched: tempo 0.69,
+meter_triple 0.464, counts 0.591, `aggregate_verified: clips=28 F=0.383`.
+The provisional slice reports separately, as designed:
+`P meter_triple n=3 correct=1 wrong=1 abstained=1 accuracy=0.5`.
+
+### The W1.5 tripwire fired — recording it as the review event it is
+
+`tests/test_evals_maturity.py::test_every_committed_case_is_verified`
+asserted `len(cases) == 30`, with the docstring *"If a provisional case
+ever lands here, this test says so loudly — that is a review event, not a
+detail."* Tonight is that event, and the test failed on the first run
+exactly as its author intended. It was **not** deleted. It was replaced
+by `test_the_gating_corpus_is_exactly_the_blessed_thirty`, which pins the
+thing the tripwire was protecting and pins it harder: the verified ids
+must equal the id set in `evals/baseline.json`, so no session can grow the
+gating set by writing `maturity: verified` on agent-authored truth. A
+count check became an identity check. This is the one file outside
+`evals/cases/` that W4 touched, and it is flagged here rather than
+buried in a diff.
+
+### The finding: this batch cannot be labeled from its own audio
+
+Stated as a negative result with per-clip evidence (rule 5), because it
+is the substance of the session.
+
+1. **No clip contains a full counted eight.** All 22 transcripts were
+   read. What exists are fragments inside instruction — *"we're gonna go
+   eight times. five. six."*, *"port de bras, five, six, and"*, *"grand
+   plié, six, seven and eight"*, *"forward and back in eight counts"*.
+   The teacher instructs; the pianist keeps the time.
+2. **And those fragments count the phrase, not the bar.** On at least one
+   exercise the demo counts in eights while the same exercise's
+   accompaniment-only take is described by the frozen model pass as a
+   waltz — 8 *bars* of 3/4, not 8 beats of 4/4. So "counted in eights"
+   licenses nothing about the time signature **in this material**. Same
+   distinction W12 measured last night from the scoring side (the ladder
+   speaks about the count phrase and is silent about bars); here it is a
+   labeling constraint, arrived at independently.
+3. **Therefore tempo, meter and counts truth for 19 of 22 clips has to
+   come from the piano** — an owner-verified beat grid, per the rung-1.5
+   protocol, on media this runner does not hold. There is no honest
+   agent-authored substitute. Writing the pipeline's own reading into
+   `expect` would have produced 22 green provisional rows and taught
+   nobody anything; the 08-22 entry warned about exactly that table.
+4. **A second Standing-Lesson-8 hallucination is now in the corpus.** On
+   one accompaniment-only take Whisper emits 116 "words" that are a
+   number ramp (1, 2, 3 … 19, 19, 19 …) over music with no speech in it.
+   The first instance (clip 17, vocables) scored all-green; this one
+   scores nothing because the case carries no labels, but it is recorded
+   in that case's notes so the artifact is findable. Lesson 8 now has a
+   second, differently-shaped instance: hallucination on
+   **accompaniment-only** audio, not just on non-lexical speech.
+
+### Constraints verified
+
+- `git diff --stat main`: 65 files, 4,382 insertions, 21 deletions
+  (W11 + W12 + W4 together; `main` merged in first so the nightly
+  `logs/run-summaries.md` carve-out commits do not read as deletions).
+- `git diff --name-status main --diff-filter=MD -- evals/` → **empty**.
+  Nothing under `evals/` is modified or deleted anywhere on this branch;
+  every path there is an **A**.
+- `git diff --stat main -- evals/baseline.json` → **empty**.
+- `git diff --name-status main -- evals/cases/` → **22 A, 0 M**.
+- W4's own two content commits touch: 22 **A** under `evals/cases/`,
+  **M** `tests/test_evals_maturity.py`, **M** this ledger. **Zero** files
+  under `src/musical_perception/` — the scorer-code modifications visible
+  against `main` belong to W11 and W12, declared EVAL-CHANGE in their own
+  entries.
+- `pytest`: **320 passed, 3 skipped**. Branch `agent/marathon`. Nothing
+  blessed; `evals bless` never run.
+
+### BLOCKED — the owner half of W4
+
+1. **Verify the 22 provisional cases.** Nineteen need truth from the
+   piano; three need a yes/no on the proposed `meter: 3/4`. Flipping
+   `maturity: verified` is an owner act. Until then these rows gate
+   nothing, which is working as designed.
+2. **Beat grids for this batch need the media.** `annotation generate`
+   cannot run against `offrepo:`. Either the Barre-1 DEV media becomes
+   reachable to the annotator on the runner, or these clips stay
+   label-free indefinitely. Owner's call; note the enumeration
+   prohibition means an agent cannot go looking for it.
+3. **The one honest label may still be wrong.** *"in a three"* is read
+   here as an instruction to the pianist about the meter. A five-second
+   listen settles it.
+
+### PROPOSED (rule 9) — a containment question the owner should rule on
+
+This session's pre-registration quotes a transcript line that names a
+step, which is a (weak) exercise-identity signal in agent-authored repo
+prose — the thing the 08-24 amendment moved to opaque ids. The case files
+use a redacted form (`"a slow [step] in a three"`); the ledger entry does
+not, and the ledger is append-only. The same identities are already
+readable in the committed traces, which the amendment explicitly
+accepted, so the marginal leak is nil — but the *convention* deserves a
+ruling rather than a judgment call per session: **may agent-authored repo
+text quote transcript lines verbatim when they name steps?** Recommended
+answer: no, redact by default, since the cost is one bracket.
+
+### Backlog parked
+
+- **W4-b:** 29 of the 30 verified traces emit `replay: recomputed
+  onset_bpm X != frozen Y — the rhythm layer changed since recording` on
+  every run; only **three** reach the console because Python's default
+  warning filter dedupes. Checked per case tonight: **zero** of the 22
+  barre1 traces warn, so this is pre-existing drift from W5/W9, not
+  W4's doing. Nothing is wrong — the frozen Gemini response is replayed
+  regardless — but a warning that fires on 97% of the corpus and shows
+  3 lines is noise pretending to be a signal. Worth either re-freezing
+  `onset_bpm_sent` at bless time or downgrading the warning to a
+  reported count.
+- **W11-b stands** (sidecars for the barre1 traces need their media),
+  and is the same blocker as item 2 above.
+
+Status: **PROPOSED**, awaiting the owner's batch review. This branch now
+carries **W11 + W12 + W4**, all three unreviewed. Next by standing rank
+once these are cleared: **W3-remainder** (raw-condition rows + optional
+BeatNet), then W6's condition drafting.
