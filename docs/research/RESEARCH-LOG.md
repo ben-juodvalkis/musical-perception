@@ -5712,3 +5712,104 @@ Status: PROPOSED (agent increment on `agent/marathon`, ready for the
 owner's weekly batch review). W11's purpose — unblocking W5's
 pulse-fed continuation — is met: the events are frozen, checksum-bound,
 and loadable in one call.
+
+## 2026-08-29 · rung M / W12 (the factored meter slice) · agent/marathon · local (nightly, unattended) — PRE-REGISTRATION
+
+**EVAL-CHANGE increment.** W12 was commissioned 2026-08-28 and is rank 2
+on the standing ranking; **rank 1 (W11) is already COMPLETE** on this
+branch (`3164ed6`, previous entries). No pipeline code will be touched.
+
+**Session note, stated up front:** this session first executed W11 in
+full before discovering W11 was already done, on a branch cut from
+`origin/main` whose ledger could not see it. That duplicate is preserved
+on `agent/w11-duplicate-20260829` and is NOT proposed for merge; the
+collision, its root cause, a proposed boot-sequence amendment, and one
+verified correction to the W11 results entry are written up in that
+branch's ledger. The short form of the correction, repeated here because
+this branch is the one the owner reviews:
+
+> W11's anchoring headline (**769 of 895 matched pairs within 1 ms, 86%**,
+> pooled over all 30 clips) **reproduces exactly** — independently
+> confirmed. Its **P4b explanation does not**: "1,141 preds vs 895 for
+> peakRate" compares a prediction count to a *matched-pair* count and
+> gets the direction backwards. Measured from the committed run
+> artifacts — word starts emit **1309** (all 30) / **1078** (verified 28);
+> peakRate emits **1408** / **1199**. peakRate over-emits *more*, not
+> less. The P4b miss stands as a miss; only its post-hoc cause needs
+> withdrawing.
+
+### The mapping table — pre-registered, as the commission requires
+
+Factored truth is **DERIVED** from the existing `meter` + `subdivision`
+labels. Nothing is relabelled; no case file is touched.
+
+**Division** (scored as measured — duple / triplet / none):
+
+| truth meter | division truth |
+|---|---|
+| 6/8 | **`none`** — owner ruling R-6/8: the pulse IS the counted eighth, so there is no subdivision below it |
+| anything else | `= expect.subdivision`, verbatim |
+
+**Grouping** (bar rung, with duple-family credit per ruling R-bar-scoring):
+
+| truth meter | bar rung | accepted as correct | note |
+|---|---|---|---|
+| 2/4 | 2 | **{2, 4}** | duple family; exact bar informational |
+| 4/4 | 4 | **{2, 4}** | duple family; exact bar informational |
+| 3/4 | 3 | {3} | |
+| 6/8 | 6 | {6} | accent-every-3 = rung 3, reported informationally |
+
+A case with no `meter` in its `expect` block produces no factored row; a
+case with no `subdivision` produces no division row. Missing truth is
+absence, not a zero.
+
+### One design fact, measured before deciding (disclosed)
+
+A read-only probe of all 30 tier-1 cases shows **`grouping_levels` is
+empty on 20 of 30**, and where populated it carries the **count phrase**
+(`8:1.00(counting)` on seven clips) or a gaps artifact (10, 14, 15) —
+**not the bar**. Exactly two clips carry a plausible bar rung
+(`rig-names-3-4-88-waltz` 3:0.50, `frappe` 2:0.25).
+
+So the ADR-017 ladder **cannot supply the bar rung today**. Grouping is
+therefore read from `normalized.meter.beats_per_measure`, with the ladder
+reported alongside as informational. This must be stated plainly in the
+results: W12's grouping score is *not* an independent bar estimate — it
+is the same derived label `meter_triple` already uses, scored on its own
+axis with family credit. That is what the commission asked for; it is
+not evidence that the factored representation is producing new bar
+evidence, because it is not.
+
+### Pre-registered predictions
+
+**Disclosed:** the probe above ran before this pre-registration, so Q1,
+Q2 and Q5 are derived expectations, not blind ones. Q3 and Q4 are the
+load-bearing ones.
+
+- **Q1.** Duple-family credit flips the **three** 2/4 rows
+  (`rig-names-2-4-120-clean`, `rig-names-2-4-160-long`,
+  `rig-numbers-2-4-120-clean`) to correct on grouping, purely by
+  construction — the pipeline predicts bar 4 for essentially everything.
+  Reported as a construction artifact, never as a win.
+- **Q2.** Division committed accuracy exceeds `meter_triple`'s 13/28
+  (0.464), because division is one axis rather than a conjunction of
+  three.
+- **Q3.** `grouping_levels` supplies a bar-candidate rung ({2,3,4,6}) on
+  **≤ 3 of 30** clips; the count-phrase rung 8 is the ladder's dominant
+  output.
+- **Q4.** The factored slice **gates nothing and changes nothing**: the
+  run artifact's `fields`, `outcomes`, and `ece` blocks stay
+  byte-identical, `evals run` prints "no outcome changes vs baseline",
+  and pytest is green with new tests.
+- **Q5.** The 6/8 division override changes no row — both 6/8 cases
+  already carry `subdivision: none`, so the ruling is recorded in code
+  without moving a number today. It exists for future 6/8 material.
+
+### Constraints
+
+Branch `agent/marathon`. No existing file under `evals/cases/`,
+`evals/traces/`, or `evals/baseline.json` modified. Scorer code under
+`src/musical_perception/evals/` IS touched — the declared EVAL-CHANGE,
+with no pipeline change bundled.
+
+Status: **PRE-REGISTERED** — results follow.
