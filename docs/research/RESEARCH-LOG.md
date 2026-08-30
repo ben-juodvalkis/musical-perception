@@ -6221,3 +6221,99 @@ taking a second workstream tonight. The next scheduled session takes
 runner), not any of the three pending here.
 
 Status: PROPOSED (bookkeeping note; the substantive entry is above).
+
+## 2026-08-29 · rung M / W3-remainder (rung 6: the raw condition, completed) · agent/marathon · local (nightly, unattended) — PRE-REGISTRATION
+
+Attempted: **W3-remainder** — the 24 missing raw-condition rows of the
+Review-4 baseline benchmark, plus BeatNet (Review 4's optional sixth
+tool). Selected as the highest-ranked non-BLOCKED workstream: W11, W12
+and W4 are all complete and PROPOSED on this branch, awaiting the
+owner's weekly batch (charter rule 1 bars a session from advancing
+them); W5's continuation is owner-started and must never be taken by a
+scheduled session; W3-remainder is ranked 4 and was UNBLOCKED on
+2026-08-27, with the 24 rig MP3s committed to the repo on 2026-08-28.
+**W0 does not re-trigger**: its last entry is 2026-08-27, two days old
+against the 7-day rule.
+
+Verified before pre-registering, and the reason this is runnable at all:
+all 30 grids' `media` paths now resolve on this runner (24
+`audio/rig/*.mp3`, 3 `audio/counting/*.aif`, 3 `video/youtube/*`), where
+the 2026-08-21 session found only 6. The blocker that entry filed
+against the owner three times — "stage the DEV rig MP3s on the runner" —
+is discharged.
+
+**EVAL-CHANGE? No.** This is a `scripts/` + `docs/` measurement
+workstream. No pipeline code, no scorer code, no eval file touched; the
+tier suites must come back byte-identical, and that is proven below, not
+assumed.
+
+### Rule-3 disclosure
+
+These predictions are committed **before any tool is run in this
+session** — no smoke test, no partial table. The harness
+(`scripts/baseline_benchmark.py`) already exists from 2026-08-21 and is
+unchanged in substance; only the stale prose in `render_md` that says
+the rig media is absent will be corrected, after the run. `git log
+--oneline` on this branch shows this entry committed before the results
+commit.
+
+### What this session can newly measure
+
+The 08-21 result was a **5-verified-clip** raw condition, and its most
+interesting finding (B2, inverted) rested on a 5-clip overlap between
+conditions. With all 28 verified grids in both conditions, the
+raw-vs-markers comparison becomes a same-rows measurement at n=28 for
+the first time. Every prediction below is a re-test of an 08-21 claim at
+the new n, except R8.
+
+### Pre-registered predictions (R1–R9)
+
+- **R1** The 08-21 inversion **reproduces at n=28**: on the same verified
+  rows, mean F@70 ms is **higher on raw than on markers for at least 4 of
+  the 6 tools**. Reason: the click track removes fricative clutter but
+  keeps the word-onset bias (Standing Lesson 1) and hands the tracker a
+  stream whose periodicity is no better; the 5-clip result showed 5 of 6
+  tools losing. Risk: those 5 clips were the non-rig material (counting
+  `.aif` + video), acoustically unlike the 24 rig MP3s that now arrive.
+- **R2** **`nuclei_hybrid` does not top the raw-condition F table** at
+  n=28 — B6 stands. Reason: the diagnosed failure was the music DP
+  tracker bolted on top of the domain-native front end, which more clips
+  do not fix.
+- **R3** **No off-the-shelf tool beats the blessed pipeline's stage-1
+  pulse F** on the untrimmed, like-for-like comparison over the same 28
+  verified rows — B8 holds at full n. Reason: rung 2 measured the same
+  front end winning as a pulse channel. If one does beat it, that
+  sentence goes at the top of the report.
+- **R4** **AMLt > CMLt for every tool in the raw condition** at n=28.
+  Reason: B3 held wide on markers and was only thin on raw because n=5;
+  metric-level confusion is the corpus's dominant error mode.
+- **R5** **AMLt-with-triples > AMLt for at least two tools in raw**, and
+  the lifted rows are the triple-family clips. Reason: the raw condition
+  finally contains `rig-names-3-4-88-waltz`, both 6/8 rows, the 2/4 rows
+  and `rig-numbers-4-4-80-triplet` — the exact clips B4's extension was
+  built for, none of which were in the 5-clip raw set.
+- **R6** **B5's partial holds**: `madmom_dbn` at `min_bpm=40` still misses
+  `rig-names-4-4-63-adagio` (F < 0.4) in the raw condition, while
+  `rig-numbers-4-4-60-halftempo` scores better than it. Reason: slow
+  *and* sparse is the failure, not slow.
+- **R7** **Acc2 ≥ Acc1 for every tool** in the raw condition at n=28, and
+  `essentia_re2013` is again the tool where they are closest. Reason:
+  B7's shape; Essentia's 40–208 range means its tempo errors are not
+  octave errors.
+- **R8** **Beat This!'s abstention is a property of the speech, not of
+  the six clips it was seen on**: it emits **zero beats on at least 8 of
+  the 24 rig raw rows**. Reason: it abstained on 3 of 5 in 08-21, and
+  the rig clips are the sparsest, most speech-only material in the
+  corpus. This is the session's most falsifiable prediction and the one
+  whose failure would be most informative (it would mean the abstention
+  was about the video clips' room tone, not about voice).
+- **R9** **BeatNet installs and runs, or its exact failure is
+  documented.** No prediction is offered on its scores; Review 4 lists it
+  as optional and its only stated blocker (a working madmom environment)
+  now exists at `.venv-madmom` (madmom 0.17.dev0). Either outcome
+  satisfies the rung; a silent omission does not.
+
+Result: (see the RESULTS entry that follows)
+Regressions and classifications: (see RESULTS)
+Lesson (durable, one paragraph): (see RESULTS)
+Status: PRE-REGISTRATION (predictions committed before measurement).
