@@ -6548,3 +6548,24 @@ misled; (b) `nuclei_hybrid`'s +0.050 over the bare pulse channel is a
 cheap, already-implemented precision gain that nothing in the shipping
 pipeline consumes — a natural W5-continuation input, not a workstream
 of its own.
+
+## 2026-08-29 · rung M · agent/marathon · (one-line note: session increment complete, awaiting owner review)
+
+W3-remainder's increment is complete and pushed (`84dea9a`); this branch
+now carries **four unreviewed increments — W11, W12, W4 and
+W3-remainder — all PROPOSED and awaiting the owner's weekly batch
+review**, so no session work is possible on any of them under charter
+rule 1 (blessing is human). Rung M is a standing contract, never
+"complete": its per-session condition — one bounded increment on the
+highest-ranked non-BLOCKED workstream, constraints verified, dated
+ledger entry appended — is satisfied by the RESULTS entry above, and
+both charter rule 6 ("one bounded change per session") and the Rung M
+policy line ("each session advances exactly one workstream") bar taking
+a second workstream tonight. The next scheduled session takes **W6**
+(rung 5, ensembled semantics), whose condition the charter says the
+meta-rung drafts "when rung 4's shape is known" — it is known since W5
+phase 1 landed on 08-28, so drafting it is the first act — or **W10**
+(nod-kinematics) if the owner prefers a pipeline increment; W0 becomes
+due 2026-09-03 (7 days after the 08-27 meta entry).
+
+Status: PROPOSED (bookkeeping note; the substantive entry is above).
