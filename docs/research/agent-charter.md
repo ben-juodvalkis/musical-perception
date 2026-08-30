@@ -32,6 +32,14 @@ flags, classified regressions).
 2. Read [RESEARCH-LOG.md](RESEARCH-LOG.md) — at minimum the Standing
    Lessons section and the last five entries. Never re-attempt an approach
    the ledger records as falsified without new evidence.
+2a. **Read the ledger on the marathon branch too, before selecting a
+   workstream** (`git show origin/agent/marathon:docs/research/RESEARCH-LOG.md`).
+   *PROPOSED A3-30, 2026-08-30 — owner's to ratify.* A scheduled session
+   boots on `main` (`scripts/air-nightly.sh:64`), and a workstream that
+   is COMPLETE-but-awaiting-batch-review exists only on the branch, so
+   main's ledger cannot see it: on 2026-08-29 two sessions built W11 on
+   the same night for exactly this reason. Any workstream carrying a
+   RESULTS entry there is COMPLETE-pending-review and is not taken again.
 3. Read `docs/evals/baseline.md` (and `evals/baseline.json`) for the
    current blessed state.
 4. Confirm the CURRENT RUNG above and its prerequisites. If prerequisites
@@ -491,9 +499,14 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   optional BeatNet; runnable on **any** runner — the 24 rig MP3s are
   committed as of 2026-08-28; stage explicit paths,
   `audio/categories/` and `audio/counting/` remain untracked) ·
-  5. **W6** (partly blocked: its condition is the meta-rung's to draft
-  "when rung 4's shape is known"; rung 4's shape is now landed, so the
-  next W0 drafts it) · 6. **W10** (below) · W5 phase 1 LANDED,
+  5. **W6** — condition DRAFTED 2026-08-30 by W0 and **split**
+  (*PROPOSED A2-30*): **W6-a**, the consumption path — distributions
+  through `posterior.py`'s marker evidence class, gated on one-hot
+  byte-identity — is offline, key-free and **nightly-eligible, ranked 1
+  among open workstreams**; **W6-b**, the N ≥ 5 draws themselves, is
+  BLOCKED on `GEMINI_API_KEY` reaching the runner plus two owner
+  decisions (cost, and what the second "model family" is). Conditions in
+  the 2026-08-30 W0 ledger entry §1 · 6. **W10** (below) · W5 phase 1 LANDED,
   continuation OPEN (owner-started, after W11) · W8 BLOCKED (after
   W5's continuation and the tier-0 driver EVAL-CHANGE named in
   ADR-017) · W1/W1.5/W2/W2.5/W7/W9 COMPLETE.
@@ -510,6 +523,15 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   the workstreams, audit the BLOCKED queue, propose any charter
   amendments as a PROPOSED ledger entry, write a plain-language summary
   addressed to the owner) instead of a pipeline increment.
+  **Out-of-cadence W0 (*PROPOSED A1-30, 2026-08-30 — owner's to
+  ratify*):** the 7-day clause says when W0 *outranks* everything; it is
+  read here as a floor, not as exclusivity, so on a night when every
+  other workstream is BLOCKED, W0 is the highest-ranked non-BLOCKED
+  workstream and may be taken early rather than idling the loop. An
+  out-of-cadence W0 **does not reset the 7-day clock** — the next
+  scheduled meta-rung keeps its original date. Rule the other way and the
+  alternative is explicit: consecutive BLOCKED notes until the trigger
+  fires.
 - **Per-session condition** (what the standing contract resolves to):
   one complete increment on one workstream, committed on
   `agent/marathon`, evidence shown by full command output, constraints
