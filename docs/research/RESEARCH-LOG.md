@@ -6317,3 +6317,234 @@ Result: (see the RESULTS entry that follows)
 Regressions and classifications: (see RESULTS)
 Lesson (durable, one paragraph): (see RESULTS)
 Status: PRE-REGISTRATION (predictions committed before measurement).
+
+## 2026-08-29 · rung M / W3-remainder (rung 6: the raw condition, completed) · agent/marathon · local (nightly, unattended) — RESULTS
+
+### Headline
+
+**The 2026-08-21 benchmark's two most-quoted conclusions were artifacts
+of n=5 and both reverse at n=28.** B6 ("Review 4's core claim — the
+domain-native front end wins — is not supported") and B2 ("cleaning the
+front end does not help") were the previous run's signature findings.
+With the 24 rig clips present, `nuclei_hybrid` **tops the raw F table**
+(0.727, first of seven) and **every one of the seven tools does better
+on raw audio than on the click track**. The first is a reversal; the
+second is the same direction as 08-21's corrected B2 but far stronger.
+
+Full table: [baseline-benchmark.md](baseline-benchmark.md); per-clip
+rows in `baseline-benchmark.json`.
+
+```
+tool              cond       n       F   CMLt   AMLt  AMLt3   Acc1   Acc2
+librosa_dp        raw       28   0.562 0.503 0.604 0.604 0.536 0.607
+librosa_plp       raw       28   0.664 0.574 0.635 0.658 0.786 0.857
+beat_this         raw       28   0.416 0.279 0.375 0.375 0.700 0.950
+essentia_re2013   raw       28   0.706 0.635 0.699 0.699 0.821 0.893
+nuclei_hybrid     raw       28   0.727 0.584 0.637 0.641 0.571 0.714
+madmom_dbn        raw       28   0.639 0.492 0.599 0.599 0.571 0.679
+beatnet           raw       28   0.537 0.428 0.553 0.580 0.571 0.643
+librosa_dp        markers   28   0.382 0.313 0.467 0.467 0.571 0.607
+librosa_plp       markers   28   0.408 0.252 0.373 0.375 0.429 0.536
+beat_this         markers   28   0.378 0.188 0.282 0.294 0.037 0.148
+essentia_re2013   markers   28   0.414 0.313 0.416 0.416 0.429 0.464
+nuclei_hybrid     markers   28   0.324 0.281 0.497 0.498 0.444 0.519
+madmom_dbn        markers   28   0.335 0.153 0.455 0.458 0.214 0.500
+beatnet           markers   28   0.364 0.255 0.406 0.409 0.481 0.556
+```
+
+### Prediction scorecard (5 hit, 2 falsified, 2 partial)
+
+- **R1 — HIT, at the ceiling.** Predicted raw > markers for ≥ 4 of 6
+  tools on the same rows; the answer is **6 of 6** (7 of 7 with
+  BeatNet), deltas `nuclei_hybrid` **+0.404**, `madmom_dbn` +0.304,
+  `essentia` +0.291, `librosa_plp` +0.255, `librosa_dp` +0.180,
+  `beatnet` +0.173, `beat_this` +0.038. The marker stream — this
+  pipeline's own Whisper word starts, rendered as clicks — is a
+  **worse** input to every off-the-shelf tracker than the raw speech it
+  was extracted from. Standing Lesson 1 restated from the outside: the
+  word-onset bias is not noise a tracker can average away, it is a
+  systematic displacement that survives cleaning.
+- **R2 — FALSIFIED, and this is the entry's most consequential
+  reversal.** Predicted `nuclei_hybrid` would not top the raw table; it
+  does, at **0.727**, ahead of `essentia` 0.706 and `librosa_plp` 0.664.
+  **Review 4's core claim is supported at n=28 and was rejected at n=5.**
+  Two independent causes, separated below because conflating them would
+  overstate the corpus effect:
+  - *clip set* — on the **same 5 clips** 08-21 used, every other tool
+    reproduces to three decimals (`librosa_dp` 0.445, `librosa_plp`
+    0.539, `beat_this` 0.073, `essentia` 0.506, `madmom` 0.404) while
+    the 23 new rig clips score far higher for everyone (`essentia`
+    0.506→0.749, `madmom` 0.404→0.690, `beat_this` 0.073→0.491). The
+    old 5 were the hardest material in the corpus and were 100% of the
+    raw condition.
+  - *the extractor itself changed* — `nuclei_hybrid` on those same 5
+    clips is **0.463 (08-21) → 0.530 (today)**, because W2.5 dropped the
+    one-event-per-nucleus rule on 2026-08-26. So its win is part corpus
+    and part a real front-end improvement landed since. Disclosed rather
+    than folded into the corpus effect.
+- **R3 — HIT on the letter, and the letter is doing real work.** The
+  right comparator exists only since W11: `stage1-peakrate` scores the
+  rung-2 acoustic pulse channel at **F 0.686** on these 28 verified
+  grids (P 0.572 / R 0.855, asynchrony 0.6 ± 14.1 ms). Untrimmed,
+  like-for-like: `essentia` 0.676, `librosa_plp` 0.652, `madmom` 0.599,
+  `librosa_dp` 0.552, `beatnet` 0.491, `beat_this` 0.414 — **no
+  off-the-shelf tool beats 0.686**, and the nearest (Essentia, −0.010)
+  is inside Standing Lesson 7's noise, so it is a tie, not a win.
+  `nuclei_hybrid` **does** beat it at **0.736**, and is not off-the-shelf
+  — it is this project's own front end with librosa's DP tracker bolted
+  on. That +0.050 is the useful number in this entry (see below).
+- **R4 — HIT.** AMLt > CMLt for all seven tools in raw, without
+  exception. Metric-level confusion, not phase confusion, remains the
+  corpus's dominant error mode.
+- **R5 — PARTIAL, and the failing half is the informative half.** The
+  count clause held (three tools lift: `librosa_plp`, `nuclei_hybrid`,
+  `beatnet`), the content clause failed. Predicted the lifted rows would
+  be the triple-family clips the raw condition finally contains; of the
+  five lifts, only `adr006-8-counts-triple` (`librosa_plp`
+  0.000→0.636) is one. The rest are **4/4** rows —
+  `rig-names-4-4-63-adagio` twice, `rig-numbers-4-4-60-halftempo`
+  (`beatnet` 0.000→0.607) — and one 3/4 row lifting trivially
+  (0.033→0.100). The waltz, both 6/8 rows and the 2/4 rows, which lifted
+  under `markers` on 08-21, **do not lift under `raw` at all**: given
+  real audio the trackers already lock to a level standard AMLt covers.
+  The triple extension earns its keep on **slow 4/4 clips where a
+  tracker subdivides**, not on notated triple meters. That is a
+  different claim from B4's and corrects the impression B4 left.
+- **R6 — HIT.** `madmom_dbn` at `min_bpm=40` on raw:
+  `rig-names-4-4-63-adagio` **F 0.291** (< 0.4, predicted) reading 64.2
+  against the grid's 61.4, versus `rig-numbers-4-4-60-halftempo`
+  **F 0.765** at 57.7 against 60.2. Slow *and* sparse is the failure;
+  slow alone is not. B5's partial survives the move to real audio, and
+  note both readings are now tempo-correct — the adagio failure is
+  phase, not tempo.
+- **R7 — PARTIAL.** Acc2 ≥ Acc1 for all seven tools in raw (hit,
+  strictly greater everywhere). The named sub-clause failed: Essentia
+  was predicted to be the tool where they sit closest, and it is
+  **third** in a three-way tie — `librosa_dp` +0.071, `librosa_plp`
+  +0.071, `essentia` +0.072. On real audio Essentia's octave errors
+  behave like everyone else's; its 08-21 distinction (Acc1 == Acc2) was
+  a markers-condition property, not a tool property.
+- **R8 — FALSIFIED.** Predicted Beat This! would abstain (zero beats) on
+  **≥ 8 of the 24** rig raw rows; it abstains on **5**
+  (`rig-mixed-4-4-104-quantities`, both `-explained` rows,
+  `rig-numbers-4-4-104-prep`, `rig-numbers-6-8-100-clean`). The
+  prediction's own stated alternative is what the data supports: the
+  abstention concentrates on the **non-rig** material — 4 of 6 video and
+  counting clips, 67%, against 21% of the rig clips — and, within the
+  rig set, on exactly the clips carrying spoken explanation rather than
+  counting. So abstention tracks *how much of the clip is unmetred
+  speech*, which is a better-behaved rule than "voice" and a point in
+  Beat This!'s favour.
+- **R9 — HIT (BeatNet ran).** Installed and scored; exact install chain
+  in the report. Not in the prediction set for any other R, and reported
+  as its own tool. Raw F **0.537** (sixth of seven), **zero abstentions
+  on all 30 clips**, best per-clip rows `rig-numbers-4-4-104-clean`
+  1.000 and `rig-vocables-4-4-100-clean` 0.957 — the vocables clip that
+  is the corpus's hardest row for the shipping pipeline (stage-1 F
+  0.118 on Whisper words, 0.700 on peakRate). Worst rows
+  `rig-numbers-3-4-90-clean` and `rig-numbers-4-4-104-duple` at 0.000.
+  It is the most bimodal tool in the table: it never declines, and when
+  it is wrong it is wrong completely.
+
+### The number that matters for W5
+
+The pipeline's own acoustic pulse channel scores **0.686**. The same
+events, fed through librosa's DP beat tracker, score **0.736** — and the
+gain is precision, not recall: the pulse channel is P 0.572 / R 0.855,
+i.e. it already finds nearly all the beats and pays for it in false
+positives, exactly the events a periodicity model is built to prune.
+**+0.050 F for a tracker with no knowledge of this domain at all**,
+bolted onto the front end rung 2 blessed. On the AMLt column
+`nuclei_hybrid` is *not* top (0.637 vs Essentia's 0.699), so the pruning
+it buys is local rather than structural. Both halves of that point at
+W5's joint posterior: the missing capability is selection over a
+periodic hypothesis, and a generic tracker recovers only part of it.
+
+### Two things the totals hide
+
+**`essentia_re2013` is non-deterministic, and every Essentia number ever
+published from this harness — 08-21's and today's — is a single draw.**
+Three back-to-back calls on one markers wav
+(`rig-names-3-4-90-clean`) returned **93.8, 107.8 and 121.9 BPM** with
+68–69 beats. Five whole-suite repeats show the aggregates are
+nonetheless usable (raw F 0.697–0.706, sd 0.004; markers F 0.418–0.424),
+because per-clip chaos averages out — but the committed markers row
+(0.414, Acc1 0.429) sits *outside* the five-pass Acc1 spread
+(0.357–0.393), so single cells genuinely move. Every other tool in the
+table, checked two runs each on the same wav, is **bit-identical**:
+`librosa_dp`, `librosa_plp`, `beat_this`, `nuclei_hybrid`,
+`madmom_dbn`. The disclosure is now printed in the report document
+itself, not just here. This also explains the otherwise-mysterious
+`essentia/markers` drift from 08-21's 0.425 to today's 0.414 on
+unchanged inputs and unchanged code.
+
+**Beat This!'s Acc2 of 0.950 is again coverage wearing accuracy's
+clothes**, and now with an n to prove it: `n_tempo=20`, not 28, because
+its eight zero-beat rows produce no tempo at all. The 08-21 entry
+flagged this at n=2; it survives at n=20 and must keep its flag.
+
+### Verification and constraints
+
+- `pytest`: **320 passed, 3 skipped**.
+- `python -m musical_perception.evals run --suite tier0,tier1,stage1`:
+  **`no outcome changes vs baseline`**. `--suite stage1-peakrate`:
+  **`no outcome changes vs baseline`**. Expected — this workstream adds
+  no pipeline code and `scripts/` is not imported by the package.
+- `git diff --stat 7176213` (this session's changes alone): four files —
+  `docs/research/RESEARCH-LOG.md`, `docs/research/baseline-benchmark.{json,md}`,
+  `scripts/baseline_benchmark.py` — plus the new
+  `scripts/beatnet_worker.py`. `git diff --name-only 7176213 -- evals/
+  src/musical_perception/evals/` returns **zero lines**: this session
+  touched no eval file and no scorer code. `git diff --diff-filter=M
+  --name-only main -- evals/cases/ evals/traces/ evals/baseline.json`
+  is **empty** — nothing existing under those paths is modified on this
+  branch at all. (The branch's `git diff --stat main` also carries W11's
+  30 added `pulse.json` sidecars, W12's and W1.5's scorer changes and
+  W4's 22 added case files, all from the three earlier increments
+  awaiting review, all under their own declared EVAL-CHANGE carve-outs.)
+- **Not an EVAL-CHANGE.** `scripts/` + `docs/` only.
+- Turn bound: inside the 45-turn per-session bound.
+- Environment side effects, disclosed: `.venv-madmom` gained BeatNet
+  1.1.1, librosa, soundfile, torch 2.13 and pyaudio; Homebrew gained
+  `portaudio` 19.7.0. Nothing was installed into the project venv.
+
+Attempted: W3-remainder — the 24 missing raw-condition rows of the
+Review-4 baseline benchmark plus BeatNet, per the pre-registration
+entry above.
+Pre-registered expectations: R1–R9, committed at `d11eb11` before any
+tool was run this session.
+Result: raw condition 6 → 30 clips (5 → 28 verified); seven tools × two
+conditions; prediction scorecard **5 hit / 2 falsified / 2 partial**;
+two 08-21 headline conclusions reversed; Essentia non-determinism found
+and quantified; no pipeline outcome changed.
+Regressions and classifications: **none** — no pipeline behaviour
+changed, both suite runs report no outcome changes vs baseline.
+
+Lesson (durable, one paragraph): A benchmark's conclusions are a
+property of its rows, and a five-row benchmark is a hypothesis wearing a
+table's clothes. Everything the 08-21 session did was correct — the
+harness reproduces to three decimals on the rows it had, the arithmetic
+was right, the caveats were stated — and its two signature findings were
+still wrong, because the five clips it could reach were the five hardest
+and least representative in the corpus, and nothing inside the
+measurement could reveal that. The honest guard is not more caution in
+the prose but refusing to let an n-limited table settle a question: mark
+the finding provisional-on-n in the same way case rows are marked
+provisional-on-verification, and re-run it when the blocker clears
+rather than citing it. The corollary found the same day: a tool that
+returns a different answer each call (Essentia here) is publishing draws
+from a distribution, and a benchmark that never repeats a run cannot
+tell that apart from a measurement — repeat-and-report-the-spread
+belongs in the harness, not in a session's judgement.
+
+Status: PROPOSED. For owner review in the weekly batch, which now
+carries **four** unreviewed increments on this branch: W11 (08-28),
+W12 (08-29), W4 (08-29) and this. Two follow-ups worth an owner ruling,
+parked rather than taken (charter rule 6): (a) the 08-21 entry's B6/B2
+conclusions and `docs/research/baseline-benchmark.md`'s narrative are
+superseded by this entry — the ledger is append-only, so the correction
+lives here, but a reader landing on the 08-21 entry alone will be
+misled; (b) `nuclei_hybrid`'s +0.050 over the bare pulse channel is a
+cheap, already-implemented precision gain that nothing in the shipping
+pipeline consumes — a natural W5-continuation input, not a workstream
+of its own.
