@@ -196,3 +196,20 @@ is how the runner's permission failure was found.)*
 > Two things from the collision, in the branch ledger: a proposed **boot-sequence amendment** (read the ledger on `origin/agent/marathon`, not just main — a completed-but-unmerged workstream is invisible to the next session by construction, and W12 would have collided tomorrow), and a verified correction to W11's P4b explanation — its anchoring headline (769/895, 86%) reproduces exactly, but "1,141 preds vs 895 for peakRate" compares a prediction count to a matched-pair count and gets the direction backwards; peakRate emits **more** (1408/1309 all-30, 1199/1078 verified-28).
 
 *Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
+
+## run 2026-08-29T17:00:04Z · main fb1610b
+
+- **outcome:** success, shell exit 0
+- **turns:** 54 · **duration:** 13.4 min · **cost:** $4.77
+
+**Agent's closing message:**
+
+> Resolved on both readings of the condition.
+> 
+> The session's substantive deliverable stands: **W4 complete** — 22 provisional Barre-1 case files, constraints proven by command output (`evals/` has zero M/D paths, `evals/baseline.json` untouched, 22 A / 0 M under `evals/cases/`, W4's own commits touch nothing under `src/`), pytest 320 passed / 3 skipped, `no outcome changes vs baseline`, dated ledger entry appended.
+> 
+> And the ambiguity the hook named is now closed explicitly: rung M is a standing contract that is never "complete," so I appended the standalone one-line note the charter's own precedent uses for this state (`2026-08-28`, `2026-08-22`). It records that the branch carries three unreviewed increments (W11, W12, W4), that rule 1 makes further work on them impossible until you bless, that rule 6 bars taking a second workstream tonight, and that the next session takes W3-remainder.
+> 
+> Branch pushed at `fb1610b`. Nothing blessed; `evals bless` never run.
+
+*Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
