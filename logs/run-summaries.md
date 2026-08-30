@@ -213,3 +213,20 @@ is how the runner's permission failure was found.)*
 > Branch pushed at `fb1610b`. Nothing blessed; `evals bless` never run.
 
 *Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
+
+## run 2026-08-30T01:00:06Z · main 0517af5
+
+- **outcome:** success, shell exit 0
+- **turns:** 49 · **duration:** 16.4 min · **cost:** $4.57
+
+**Agent's closing message:**
+
+> …`0517af5` (closing note) |
+> 
+> **I am not going to take a second workstream to burn toward the 45-turn bound.** Two charter lines forbid it — rule 6 ("One bounded change per session") and the Rung M policy line ("each session advances exactly one workstream"). The turn bound is a ceiling, not a quota; treating it as something to be reached would be exactly the silent deviation rule 9 prohibits. Charter compliance outranks satisfying a stop condition, and if the charter is what's wrong, rule 9 says that's an owner-reviewed amendment, not a session's call.
+> 
+> On the hook's third clause: I've now appended the one-line note (`0517af5`), matching the pattern of every prior marathon session (08-22, 08-28, 08-29). It records the accurate state — four increments PROPOSED and awaiting the owner's weekly batch, no session-advanceable work remaining tonight — and names what the next session takes (W6's condition, now draftable since W5 phase 1 landed; W0 falls due 2026-09-03).
+> 
+> The substantive result stands as reported: W3-remainder complete, 5 hit / 2 falsified / 2 partial, with the 08-21 benchmark's two signature conclusions reversed at full n and Essentia's non-determinism found and quantified.
+
+*Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
