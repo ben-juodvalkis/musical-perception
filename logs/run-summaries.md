@@ -230,3 +230,22 @@ is how the runner's permission failure was found.)*
 > The substantive result stands as reported: W3-remainder complete, 5 hit / 2 falsified / 2 partial, with the 08-21 benchmark's two signature conclusions reversed at full n and Essentia's non-determinism found and quantified.
 
 *Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
+
+## run 2026-08-30T09:00:08Z · main 2f919c0
+
+- **outcome:** success, shell exit 0
+- **turns:** 49 · **duration:** 14.5 min · **cost:** $5.30
+
+**Agent's closing message:**
+
+> …or was a rank over candidates, which caps recall at 0.5 by construction and scored a perfectly recovered synthetic nod at F = 0.615. Replaced with a prominence floor anchored to the repo's own ratified peakRate `prominence_mad_k: 3.0`.
+> 
+> **N4 (the re-entry contrast) is untested, not falsified** — the verified grids contain 6 re-entry beats against a pre-declared floor of 8. The grids annotate counted stretches; the cueing moments live in the talking. That makes it a capture question, not an algorithm question.
+> 
+> Scorecard **5 hit / 1 falsified / 1 vacuous / 1 untested-by-design**.
+> 
+> **Proofs.** `pytest` 329 passed, 3 skipped · `evals run --suite tier0,tier1,stage1` → `no outcome changes vs baseline` · `git diff --stat main` shown · `git diff --diff-filter=MD --name-only main -- evals/` empty · `evals/baseline.json` untouched · this session's six files (1,984 insertions, 0 deletions) include no eval file and no scorer code. Committed on `agent/marathon` and pushed; dated ledger entry appended.
+> 
+> Three owner decisions are queued: accept the negative and fold movement into W5 as a weak vote; unblock W6 by drafting its condition; and whether the cueing question warrants a capture decision.
+
+*Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
