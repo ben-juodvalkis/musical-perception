@@ -6569,3 +6569,155 @@ phase 1 landed on 08-28, so drafting it is the first act — or **W10**
 due 2026-09-03 (7 days after the 08-27 meta entry).
 
 Status: PROPOSED (bookkeeping note; the substantive entry is above).
+
+## 2026-08-30 · rung M / W10 (nod-kinematics gesture channel) · agent/marathon · local (nightly, unattended) — PRE-REGISTRATION
+
+Attempted: W10 — head-nod kinematics and phrase-arrival segmentation on
+the committed pose traces, per the charter's W10 commissioning
+(2026-08-28, discharging A5-27) and the W7 entry's own recommendation:
+*"the next thing worth trying is not a better peak-picker but a different
+event definition — a dancer places phrase arrivals on the beat, which is
+a segmentation problem, not a periodicity problem."*
+
+### Workstream selection, and the blockers re-verified tonight
+
+Standing ranking (charter, owner-ratified 2026-08-28): W11 · W12 · W4 ·
+W3-remainder · W6 · W10. The first four are **complete and PROPOSED on
+this branch** (08-28 and 08-29 entries), awaiting the owner's weekly
+batch review; charter rule 1 bars a session from advancing them further.
+
+**BLOCKED — W6 (rung 5, ensembled semantics), ranked above this.** Its
+charter text says the condition is *"to be finalized when rung 4's shape
+is known — the meta-rung drafts it"*. Rung 4's shape has been known
+since W5 phase 1 landed (08-28), so the drafting is now possible, but
+drafting a rung condition is a **meta-rung** deliverable and the
+meta-rung *"never executes pipeline work itself"*; W0 is not due until
+2026-09-03 (7 days after the 08-27 meta entry). Taking W6 tonight would
+mean either executing a workstream with no condition or performing W0
+three days early — both charter deviations. **Owner action or the
+2026-09-03 W0 session is needed to unblock W6.** W5's continuation is
+OWNER-STARTED and scheduled sessions must never take it; W8 waits on
+W5's continuation plus ADR-017's tier-0-driver EVAL-CHANGE. That leaves
+W10, ranked last among open workstreams and the only one executable.
+
+### Established facts, probed before predicting (findings, not predictions)
+
+- **26 committed traces carry `pose.npz`**: the 22 Barre-1 traces and
+  four video demos (`exercise-1-demo`, `plies-demo`, `grande-battement`,
+  `frappe`). All four demos are 25 fps (the Barre-1 set is 50 fps).
+- **Exactly four of them also have a beat grid, and three of those are
+  owner-verified**: `exercise-1-demo` (41 beats), `grande-battement`
+  (36), `frappe` (55) — 132 verified beats total —
+  plus `plies-demo` (171 beats, `provisional: true`), which by charter
+  rule 2 is reported as its own slice and gates nothing.
+- **NaN gaps are present and uneven**: `exercise-1-demo` carries 5.18 %
+  NaN landmarks at `detection_rate` 0.948; the other three are ≤ 0.11 %.
+  W7's secondary finding (a NaN-poisoned median threshold silently zeroed
+  14 of 22 clips while `detection_rate` read 1.00) applies directly.
+
+**Stated up front, per the W3-remainder lesson of 2026-08-29: the
+verified evaluation set is n = 3 clips.** That is a hypothesis-sized
+corpus, not a table-sized one, and every clip-level conclusion in the
+results entry will be marked *provisional-on-n*. The design therefore
+puts the load-bearing claim on a **within-clip** contrast over the 132
+verified beats rather than on a between-clip average. The 22 Barre-1
+traces have no grids at all and are **diagnostic-only** here: coverage
+and event rates, never an accuracy number.
+
+### Design, frozen before any code
+
+**Signal.** Head centroid from MediaPipe nose (0), left ear (7), right
+ear (8), divided by the median shoulder-to-hip distance so the units are
+torso-lengths (as `gesture.py` does). A nod is vertical, so the primary
+series is the normalized **vertical** component; short NaN gaps are
+linearly interpolated and long ones excluded, with the excluded span
+reported per clip.
+
+**Three event definitions, all three pre-declared and all three
+reported** — no post-hoc winner-picking, significance Bonferroni-corrected
+at α = 0.05/3 = 0.0167:
+
+- **E1 — peak vertical acceleration.** Bishop & Goebl 2018 (Review 5 §c):
+  *"gesture acceleration patterns indicate beat position — specifically
+  peak acceleration, and the deceleration period following acceleration
+  peaks, in leaders' head-nodding gestures."* This is the literature's
+  primary claim and therefore this workstream's primary definition.
+- **E2 — nod bottom (the ictus).** Local minima of head vertical
+  position: the lowest point of the nod, the conductor's ictus analogue.
+- **E3 — head speed minima.** W7's falsified event definition, moved from
+  the limbs to the head. Included as a **control**: if W10 works, this is
+  the arm that says whether the change that mattered was the landmark set
+  or the kinematic quantity.
+
+**Truth and metric.** Owner-verified grid beats; `evals.stage1.score_pulse`
+imported read-only (no scorer code is touched) for P/R/F and signed
+asynchrony. **Primary tolerance ±0.15 s, declared a priori and with
+reason** — a visual channel synchronising with an auditory one does not
+hold the ±0.07 s mir_eval window, and Bishop & Goebl's synchronisation
+effects live at the 100 ms scale. The blessed ±0.07 s is reported beside
+it as the secondary number, never instead of it.
+
+**The null, chosen for power (W7's lesson).** Circular shift: the event
+train is rotated by a uniform random offset modulo clip duration, 500
+draws, preserving event count *and* every inter-onset interval and
+destroying only phase. This is the null that asks the actual question —
+"are the events at *these* beat positions" — and it is immune to the
+density inflation a wide tolerance would otherwise buy.
+
+**The phrase-arrival contrast, which is the real hypothesis.** Bishop &
+Goebl: *"visual cues at re-entry points after long pauses are especially
+salient."* A ballet class is re-entry after talk, every time. Grid beats
+are partitioned into **re-entry beats** (the first beat after a gap
+≥ 2.0 s with no beats in it) and **interior beats**, and recall is
+compared between the two partitions, pooled over verified clips. This is
+a within-clip contrast at beat-level n, which is why it, not the global
+F, carries the session's weight.
+
+### Pre-registered predictions (N1–N8)
+
+* **N1 — extraction works on the head.** All 26 pose traces yield a
+  normalized head series and ≥ 1 event under each of E1/E2/E3, with no
+  clip silently zeroed by NaN. *Predicted: 26/26.*
+* **N2 — global alignment fails, the honest low prior.** On the three
+  verified clips, **no** event definition beats its circular-shift null at
+  the corrected α on a majority (≥ 2 of 3) of clips at ±0.15 s.
+  *Predicted: FAIL to reject — i.e. no global beat-marking signal.*
+  Reasoning stated in advance: W7 found movement periodicity that
+  dissolved under scale change; Review 5's addressee-detection
+  counter-evidence tempers the visual channel generally; and Bishop &
+  Goebl's effect is about *cueing* gestures at entries, not continuous
+  beat-marking through an exercise. A pass here would be this session's
+  surprise and would be flagged as such rather than celebrated.
+* **N3 — the Bishop–Goebl ordering.** E1 (peak acceleration) ranks above
+  E3 (speed minima, W7's falsified form) by mean F at ±0.15 s.
+  *Predicted: E1 > E3.*
+* **N4 — the re-entry contrast, where the literature says the signal is.**
+  Pooled over verified clips, recall at re-entry beats exceeds recall at
+  interior beats by ≥ 0.10 absolute for E1. *Predicted: PASS.* Named
+  risk: re-entry beats may be rare in three short demos; `n_reentry` is
+  reported whatever the outcome, and a contrast resting on fewer than 8
+  re-entry beats will be declared underpowered rather than reported as a
+  result.
+* **N5 — the blessed tolerance is too tight for a visual channel.** No
+  definition beats its null on a majority of verified clips at ±0.07 s,
+  and mean F at 0.07 is below mean F at 0.15. *Predicted: PASS.*
+* **N6 — the positive control (mandatory, per W7's lesson).** A synthetic
+  sinusoidal head nod at 100 BPM, with 5 % NaN gaps injected, is
+  recovered against its own known grid at F ≥ 0.90 and p < 0.01 against
+  the circular-shift null. *Predicted: PASS.* The more confidently a
+  session expects a negative, the more it needs the control proving it
+  could have detected a positive.
+* **N7 — null calibration.** Circular-shifted (phase-destroyed) event
+  trains run back through the same test on real clips reject at no more
+  than 0.10 of ≥ 100 replicates at α = 0.05. *Predicted: PASS.*
+* **N8 — inertness.** The module is not wired into `analyze.py`; `pytest`
+  stays green and `evals run --suite tier0,tier1,stage1` reports `no
+  outcome changes vs baseline`. *Predicted: PASS.*
+
+Scoring of N1–N8 follows in this entry's RESULTS counterpart, appended
+after the run.
+
+Result: (pending — see the RESULTS entry below)
+Regressions and classifications: (pending)
+Lesson (durable, one paragraph): (pending)
+Status: PRE-REGISTRATION (committed before any W10 code exists).
