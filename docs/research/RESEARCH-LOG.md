@@ -6721,3 +6721,156 @@ Result: (pending — see the RESULTS entry below)
 Regressions and classifications: (pending)
 Lesson (durable, one paragraph): (pending)
 Status: PRE-REGISTRATION (committed before any W10 code exists).
+
+## 2026-08-30 · rung M / W10 (nod-kinematics gesture channel) · agent/marathon · local (nightly, unattended) — RESULTS
+
+Full method, tables and verdict:
+[w10-nod-kinematics.md](w10-nod-kinematics.md); per-clip JSON in
+`docs/research/w10-nod-results.json`; reproduce with
+`python scripts/w10-nod-kinematics-report.py` (read-only over committed
+traces and grids — no media, no models, no API key).
+
+### Prediction scorecard: 5 hit · 1 falsified · 1 hit-but-vacuous · 1 untested-by-design
+
+| | prediction | outcome |
+|---|---|---|
+| **N1** | events under all three definitions on 26/26 pose traces | **FALSIFIED** — E1 26/26 and E3 26/26, but **E2 (nod bottom) only 18/26, median 2 events per clip**. Diagnosis in §3.3 and below. |
+| **N2** | no global beat alignment survives the null | **HIT** — 0 of 18 verified cells significant; best p **0.633** at the primary tolerance, **0.086** at the secondary. |
+| **N3** | E1 (peak acceleration) ranks above E3 (W7's definition) | **HIT, and vacuous** — mean F 0.216 vs 0.097, but *both sit below their own null means* (0.249, 0.129). Ranking two chance-level detectors is grading the thermometer; scored as a hit because it was pre-registered, reported as meaningless because it is. |
+| **N4** | recall at re-entry beats exceeds interior by ≥ 0.10 | **UNTESTED** — the three verified clips carry **6 re-entry beats** at the pre-registered 2.0 s gap, below the pre-declared floor of 8. Declared underpowered by the rule written before the run, not after seeing it. |
+| **N5** | the blessed ±0.07 s window is too tight for a visual channel | **HIT** — mean F 0.139 at 0.07 vs 0.216 at 0.15 for E1; nothing significant at either. |
+| **N6** | positive control recovers a synthetic nod, F ≥ 0.90, p < 0.01 | **HIT** — F = 1.000 (E1, E2), 0.987 (E3); p < 0.01. |
+| **N7** | null calibration FPR ≤ 0.10 at α = 0.05 | **HIT** — 0.015–0.030 over 200 replicates per clip; conservative, not liberal. |
+| **N8** | inert: pytest green, suites byte-identical | **HIT** — `pytest` **329 passed, 3 skipped**; `evals run --suite tier0,tier1,stage1` → **`no outcome changes vs baseline`**. |
+
+### Result — W10 is a negative result, with one structural finding inside it
+
+Head-nod kinematics carry **no** recoverable beat-position information on
+this corpus, under three pre-declared event definitions, at a tolerance
+chosen generously in the channel's favour, against owner-verified grids.
+Zero of eighteen verified cells reach the corrected α, and at the primary
+tolerance **every arm scores below its own null mean**.
+
+The apparent F of 0.216 for peak acceleration is exactly why the null was
+the deliverable and not the F. Fifty events against 41 beats at a ±0.15 s
+window: a *random* train of the same events scores 0.249. Published
+without its null, 0.216 reads as a weak positive channel. It is slightly
+worse than chance.
+
+**The structural finding (N1's miss, and the night's actual content): on a
+dancing body, head height is a postural signal, not a nod signal.** E2 died
+not from missing landmarks — five of its eight zero-event clips carry
+< 0.5 % NaN — but because the robust scale of the vertical head series runs
+0.019–0.515 torso-lengths, and on a clip containing a plié no individual
+nod's prominence approaches 3 × MAD of a signal that already contains the
+plié. Double differentiation is the only reason E1 works at all: it
+high-passes the postural component away. Any future channel that reads a
+body landmark's *position* on this corpus inherits this problem, and
+`detection_rate` will not warn about it any more than it warned W7 about NaN.
+
+**The one property that held is coverage.** E1 extracts at 0.81–1.07 Hz on
+the seven `execution-left` takes — the ones W4 flagged as carrying ≤ 3
+transcribed words — against 0.95 Hz median across all 22 Barre-1 clips.
+Movement does not stop when the teacher does. The channel has coverage; it
+lacks content.
+
+**What this does not establish, so no future session over-reads it.** It
+does not test Bishop & Goebl's actual claim. Theirs is about *cueing
+gestures at entries*; a demo video where the teacher counts continuously is
+not that situation, and §3.2 shows why this corpus cannot supply it — the
+verified grids annotate the counted stretches, and the teacher does not
+pause for two seconds inside a counted stretch, so the re-entry moments
+their effect lives at are precisely the moments the grids do not cover.
+Testing it needs grids that extend across the talking, or capture aimed at
+the cue-in. That is a **capture** question, not an algorithm question.
+
+**Disclosures.** (i) The circular-shift null has a stated blind spot — a
+rotation by one beat period realigns against a perfectly isochronous
+reference — so the mean null F is printed for every cell and the positive
+control uses a deliberately non-isochronous synthetic grid. (ii) The
+post-hoc re-entry gap sweep in §3.2 is labelled post-hoc and is not a test;
+it points the opposite way from N4's prediction, which on a chance-level
+channel carries no information either. (iii) n = 3 verified clips. Per the
+W3-remainder lesson of 2026-08-29 this is a hypothesis-sized corpus and
+every clip-level number here is **provisional-on-n**; what is not
+n-limited is §3.3's postural finding, which reproduces across 26 traces.
+(iv) The 22 Barre-1 traces were used for coverage only — no accuracy number
+is computed on a clip without a grid.
+
+### BLOCKED — W6 (rung 5, ensembled semantics), ranked above this
+
+Restated here so it reaches the owner's queue rather than only the
+pre-registration: **W6 cannot be taken by a scheduled session until its
+condition is drafted**, and the charter assigns that drafting to the
+meta-rung, which is not due until 2026-09-03. Either the owner drafts the
+condition in the weekly batch review, or the 2026-09-03 W0 session does.
+Until then the marathon's executable queue is empty of pipeline work:
+W11/W12/W4/W3-remainder/W10 are all PROPOSED and awaiting review, W5's
+continuation is owner-started, W8 waits on W5 plus ADR-017's tier-0-driver
+EVAL-CHANGE.
+
+### Verification and constraints
+
+- `pytest`: **329 passed, 3 skipped**.
+- `python -m musical_perception.evals run --suite tier0,tier1,stage1`:
+  **`no outcome changes vs baseline`** (aggregate_verified F=0.383 over 28
+  clips, aggregate_provisional its own slice, both unchanged).
+- `git diff --stat 71d558c` (this session alone): **six files, 1,984
+  insertions, 0 deletions** — `docs/research/RESEARCH-LOG.md`,
+  `docs/research/w10-nod-kinematics.md`,
+  `docs/research/w10-nod-results.json`,
+  `scripts/w10-nod-kinematics-report.py`,
+  `src/musical_perception/precision/nod.py`, `tests/test_nod.py`. **None of
+  them is under `evals/` and none is scorer code.**
+- `git diff --diff-filter=MD --name-only main -- evals/` is **empty**:
+  nothing existing under `evals/` is modified or deleted anywhere on this
+  branch. `git diff --stat main -- evals/baseline.json` is **empty**.
+- **Not an EVAL-CHANGE.** `evals.stage1.score_pulse` and `match_events` are
+  *imported* read-only so the movement channel is scored with the same
+  metric as the acoustic one; no scorer code is touched. (`git diff
+  --name-only main -- src/musical_perception/evals/` does list six files:
+  every one of them is from the W1.5, W11 and W12 EVAL-CHANGE increments
+  already on this branch and already declared in their own entries, and
+  `git diff --name-only 71d558c -- src/musical_perception/evals/` is empty.)
+- Turn bound: inside the 45-turn per-session bound.
+- No environment side effects: nothing installed, no network, no API key.
+
+Attempted: W10 — head-nod kinematics and phrase-arrival segmentation on
+the committed pose traces, per the pre-registration entry above.
+Pre-registered expectations: N1–N8, committed at `1648cfd` before any W10
+code existed.
+Result: negative. 0 of 18 verified cells significant; all three arms below
+their own nulls at the primary tolerance; scorecard 5 hit / 1 falsified /
+1 vacuous / 1 untested-by-design; one structural finding (head position is
+postural, not nodal) that reproduces across all 26 pose traces.
+Regressions and classifications: **none** — the module is not wired into
+`analyze.py`, and both proof runs confirm it.
+
+Lesson (durable, one paragraph): A detector's floor is a hypothesis about
+what an event *is*, and getting it wrong is invisible in the results table
+— the first floor written here was a rank over candidates, "keep the top
+half of the extrema", which caps recall at 0.5 by construction and scored a
+perfectly recovered synthetic nod at F = 0.615; had the positive control
+not existed, that 0.615 would have been read as a weak channel and the
+night would have produced a plausible number instead of an answer. That is
+W7's lesson collecting a second payment, and it generalises past nulls to
+every threshold in a detector. The night's own new lesson is about *which
+derivative to read*: on a moving body, a landmark's position is dominated
+by posture and its acceleration is not, so a position-based event
+definition can be structurally undetectable while looking merely
+unsuccessful — E2 produced two events per clip and no summary field said
+why. Before believing a movement channel is silent, check whether the
+quantity being read is the one the body is using to speak; and before
+believing an alignment score, print what a random train scores against the
+same reference, because at a generous tolerance chance is not near zero.
+
+Status: PROPOSED. For owner review in the weekly batch, which now carries
+**five** unreviewed increments on this branch: W11 (08-28), W12 (08-29),
+W4 (08-29), W3-remainder (08-29) and this. Owner decisions requested:
+(a) accept W10 as a negative result folding movement into W5 as a weak
+vote, alongside W2 and W7 — with the coverage property in §3.4 recorded as
+the one thing worth keeping; (b) the W6 BLOCKED note above, which is now
+the only thing standing between the loop and an empty executable queue;
+(c) whether the cueing-gesture question is worth a **capture** decision
+(grids that extend across talking, or recording aimed at the cue-in),
+since §4 shows it cannot be asked of the present corpus.
