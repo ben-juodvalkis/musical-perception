@@ -7705,3 +7705,114 @@ Status: **TRACE LOCKED + COMMITTED, coda recorded** · W13(a) complete ·
 owner-reviewed in session and merged to main · W13(b) now has its human
 curve.
 
+
+## 2026-08-31 · rung M / W13(b) (the prefix-replay convergence twin) · agent/marathon · local (nightly, unattended) — PRE-REGISTRATION
+
+**Workstream selection.** Boot sequence run in order: charter (CURRENT
+RUNG M), Standing Lessons, the ledger **as it stands on
+`origin/agent/marathon`** (per the ratified step-2 amendment) plus main's
+copy, `docs/evals/baseline.md`. The standing ranking of 2026-08-30 puts
+**W13(b) first**; a grep for `W13(b)` across every remote branch finds it
+only in commissioning text, never in a RESULTS entry, so it is unstarted.
+W6 is BLOCKED (condition undrafted, decisions deferred to the 2026-09-03
+W0), W5's continuation is owner-started, W8 is BLOCKED. Writability probe
+(charter amendment 1–2): commit `fdfe23d` on `agent/marathon`, reverted in
+`d23cef2`.
+
+### What W13(b) is
+
+The machine-side twin of W13(a)'s human curve. W13(a) recorded, from an
+owner-attended trace, *when* the expert's answer to each field stopped
+moving: exercise ~3s, meter ~3s (reinforced ~6s), tempo ~9–12s, quality
+~9–12s, structure ~30–33s, on a 37.8s clip. This increment measures the
+same quantity for the pipeline: replay each frozen trace on **prefixes**
+and chart when each field's answer converges to its final value.
+
+### Instrument (read-only, offline)
+
+`scripts/w13b-prefix-replay.py`. No media, no models, no API key; frozen
+traces only. Nothing under `evals/` is written, and no scorer/harness code
+is touched — this is a research instrument in `scripts/`, the W7/W10/W3
+convention, not an eval suite. Case files are **read** (truth labels, for
+the correctness split) and never modified.
+
+- **Prefix grid = the distinct word END times of the trace.** Pipeline
+  output is a step function of the evidence, and the frozen evidence only
+  changes at word boundaries, so this grid is exact rather than quantized.
+  A word counts as heard only when it has finished.
+- **Condition A — "semantics granted" (primary).** Whisper words truncated
+  to `end <= t`; Gemini's per-word classifications filtered to the
+  surviving indices (so markers past `t` vanish); Gemini's clip-level
+  fields (exercise, meter, quality, structure, counting_structure) left
+  whole-clip, because the frozen trace holds exactly one whole-clip Gemini
+  answer and re-running it per prefix would need the live API.
+  **Caveat, stated up front:** this grants the semantic answer at t=0, so
+  every convergence time reported here is a **lower bound** (optimistic)
+  on the pipeline's true time-to-commitment.
+- **Condition B — "semantics withheld" (secondary, ablation).** Same
+  truncation, plus the clip-level Gemini fields suppressed: the timing-only
+  pessimistic side, and the direct probe of memo hypothesis H1 (does the
+  pipeline's meter answer arrive early *only* because Gemini read the whole
+  transcript?).
+- **Fields tracked:** `tempo_bpm` (`normalized_tempo.bpm`, the shipping
+  tier-1 field), `meter` (label), `division` (`normalized_tempo.subdivision`,
+  the W12 slice's axis), `grouping` (`beats_per_measure`, the W12 slice's
+  other axis), `counts` (`structure.counts`), `exercise`; plus the two
+  tempo sub-channels `marker_bpm` (`tempo.bpm`) and `onset_bpm`
+  (`onset_tempo.bpm`), free because `analyze()` already returns them.
+- **Convergence time t\*** = the smallest grid time such that the value
+  matches the final (full-prefix) value at that time and at every later
+  grid time. Numeric match = within **4%** relative (Standing Lesson 7:
+  sub-4% is noise by construction); categorical match = equality; `None`
+  matches only `None`. Reported in seconds and as a fraction of the clip's
+  voiced span (last word end). A field whose final value is `None`, or a
+  clip with fewer than 2 grid points, is excluded from that field's
+  aggregate and counted as excluded, never as zero.
+- **Slices:** verified (30) and provisional (22) cases reported
+  separately; the 22 provisional rows gate nothing here (nothing gates
+  here at all — this increment pins no outcome and changes no pipeline
+  code).
+
+### What this does NOT establish
+
+Convergence is not correctness. A field can converge at t=1s to a wrong
+answer, and that is a *worse* result than converging late to a right one.
+The report therefore splits convergence times by whether the final answer
+is correct against the case's truth label, and any headline claim about
+"time to commitment" is restricted to clips whose final answer is right.
+Neither condition is a live-streaming pipeline: Whisper and Gemini are
+frozen whole-clip artifacts, and a real online system would have worse
+transcripts early. This measures the *decision* layer's appetite for
+evidence, not end-to-end latency.
+
+### Predictions (scored honestly in the RESULTS entry)
+
+- **P1 (identity).** At the full prefix, every tracked field equals the
+  untruncated replay's value on all 52 traces. A miss is an instrument bug,
+  not a finding.
+- **P2 (the caveat, made visible).** In condition A, `exercise` converges
+  at the earliest grid point on ≥ 90% of clips with a non-`None` exercise
+  (median t\*/span ≤ 0.05) — the arithmetic consequence of granting
+  semantics, printed rather than argued.
+- **P3 (tempo is late).** `tempo_bpm` median t\*/span ≥ 0.50, and no more
+  than 25% of clips converge before 30% of the span. The owner's tempo
+  commitment sat at ~0.24–0.32 of his clip's span.
+- **P4 (structure is last).** `counts` has the highest median t\*/span of
+  the five committed fields — the machine-side echo of the owner's
+  structure-at-33s.
+- **P5 (H1 probe).** In condition B, the median t\*/span of `grouping`
+  rises by ≥ 0.10 versus condition A, **and** ≥ 1/3 of clips end at a
+  different final `grouping` value between conditions — i.e. Gemini's
+  whole-clip meter read is doing the early work, which is what H1 proposes
+  to replace with a declarative-count parser on the same transcript.
+- **P6 (channel split).** The onset arm converges earlier than the marker
+  arm: median t\*/span of `onset_bpm` < that of `marker_bpm`, because the
+  onset arm consumes every word while the marker arm waits for Gemini's
+  beat-classified tokens.
+
+Deliverables: `scripts/w13b-prefix-replay.py`,
+`docs/research/w13b-prefix-convergence.json` (per-clip, per-field, both
+conditions), `docs/research/w13b-prefix-convergence.md` (the curve laid
+against the owner's), and a RESULTS entry scoring P1–P6.
+
+Status: **PRE-REGISTERED** — implementation follows in this session.
