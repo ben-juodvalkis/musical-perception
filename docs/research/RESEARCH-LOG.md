@@ -7354,3 +7354,202 @@ a token list is where identity most plausibly breaks, and float
 summation of weights where integer `len()` stood is the second place.
 
 Status: PRE-REGISTRATION (results entry follows in this session).
+
+## 2026-08-30 · rung M / W6-a (rung 5: the consumption path) · agent/marathon · local (nightly, unattended) — RESULTS
+
+### Headline
+
+The socket is built and the gate held exactly: with the existing single
+draw fed as a one-hot belief, the `suites` payload of
+`evals run --suite tier0,tier1,stage1` is **byte-identical** to the
+before-run — `4c27815c7e39d5826004912ffbf7cb7cb043eddb1db0f33099aa513f229ed5d8`,
+99,791 bytes, both sides — and `no outcome changes vs baseline`.
+`pytest` **344 passed, 3 skipped** (329 before + 15 new; no existing
+test edited).
+
+The finding worth more than the plumbing came from the one prediction
+that was supposed to be a formality. **P4 was meant to check the socket
+was not decorative. It is not decorative; it is hot.** Fractional
+belief is spent per token and *summed*, so a minority spread across
+many tokens is not a minority in likelihood terms. On a synthetic clip
+whose on-beats are certain and whose offbeats carry `p(beat)`, the
+committed tempo flips from the beat to the half-beat at:
+
+| offbeat tokens carrying the minority mass | flip point |
+|---|---|
+| 24 | p = 0.132 |
+| 16 | p = 0.159 |
+| 12 | p = 0.185 |
+| 8  | p = 0.237 |
+
+**With N = 5 draws one dissenting draw is p = 0.2**, which is above the
+flip point for any clip with a dozen or more contested tokens. So an
+ensemble is not automatically more conservative than a single draw — on
+metric-level decisions it is *less* so, because it lets a 4–1 minority
+buy a level the majority rejected. Standing Lesson 4 says outvote the
+coin flip; this says the machinery for outvoting it does not, as built,
+implement voting. W6-b would have inherited that silently and read the
+result as evidence about ensembles rather than about the emission.
+
+### What was built
+
+- **`MarkerBelief` + `BELIEF_CLASSES`** (`types.py`): a distribution
+  per spoken token over `{beat, and, ah, e, none}`, with `map_class`
+  for the consumers that need a decision.
+- **`posterior.py` rewired to beliefs.** `estimate_rhythm` gains
+  `marker_beliefs=None`; the three time arrays it used to build by hand
+  are now `_weighted_stream` views of one token list, and
+  `_lattice_forward` takes `(times, weights)` per class, so
+  `events_c(f)` is a fractional count. `beliefs_from_markers` is the
+  one-hot constructor, and left at the default the whole path is the
+  old path.
+- **`evals/gemini_draws.py`**: the `gemini-draws.json` format, its
+  loader, and `beliefs_from_draws` (each draw votes 1/N). Add-only
+  under the 2026-08-28 sidecar carve-out, checksum-bound to the trace's
+  `media_sha256` exactly as `pulse.json` is, and additionally pinning
+  the transcript fingerprint the draws' indices address.
+- **`docs/evals/gemini-draws.md`**, including the flip-point table and
+  the consumer split below.
+- **No sidecar recorded, no live call made, `GEMINI_API_KEY` not
+  needed or present.** That is W6-b.
+
+### Prediction scorecard (misses first, ADR-015 discipline)
+
+**Partial — P4 (1 of 5, and it is the one that mattered).** Predicted:
+"the fractional emission produces a tempo posterior that differs from
+the MAP-only decode." The first fixture built to test it was
+**worthless and is disclosed rather than quietly replaced**: every
+half-beat was spoken, so all three conditions committed to 198.2–198.5
+BPM — railed against `T_MIN_FRAMES` at the top of the tempo axis — and
+the "difference" the test asserted was 198.2 vs 198.3 with confidence
+1.00 vs 0.97. That is a Standing-Lesson-7 non-difference dressed as a
+pass. The test would have been green and the claim would have been
+false. Rebuilt so the marker channel decides the level alone (offbeats
+carry `and` mass rather than falling into the word stream), and the
+answer is the flip-point table above: p = 0.0 → 100.2 BPM, p = 1.0 →
+198 BPM, and the crossing sits at 0.13–0.24 depending on how many
+tokens carry the mass. So P4 landed, but only after its first
+instrument was thrown away.
+
+**Hit — P1, the gate.** Byte-identical `suites` payload, twice
+(immediately after the posterior change and again after the sidecar and
+tests landed), same sha256 as the pre-change run.
+
+**Hit — P2.** 344 passed, 3 skipped. The 329 pre-existing tests are
+untouched; 15 are new.
+
+**Hit — P3.** Checked by script across every trace with a transcript —
+**51 clips, 2,909 belief tokens, 0 mismatches**: the beat, sub and word
+streams from beliefs equal the hard-label arrays element for element,
+the summed class weights equal the integer stream lengths exactly, and
+the MAP decode equals the hard partition. (52 trace directories exist;
+`barre1-C-el` has a transcript with no words and is skipped by the
+check, not by the code.)
+
+**Hit — P5.** Five refusals, each with a test asserting the raise:
+media-hash mismatch, transcript-fingerprint mismatch, index outside the
+transcript, a word with no index, an unknown class.
+
+**Correct in advance, for the record:** the pre-registration named the
+word-stream's timestamp join and the float-vs-`len()` summation as the
+two places identity would most plausibly break. Both survived — the
+timestamp join because `beliefs_from_markers` reproduces it verbatim,
+and the sums because N exact 1.0s add to exactly N.
+
+### The design decision the gate cannot see, declared
+
+One draw makes the MAP decode and the expected mass the same object, so
+byte-identity is **blind** to which of them a consumer reads. Stated
+plainly rather than left in the code:
+
+| consumer | reads | why |
+|---|---|---|
+| the Poisson emission | the mixture | a rate is defined under fractional mass |
+| `_stream_support` (robust IOI CV) | the MAP decode | no agreed weighted form |
+| `_division` (circular-concentration vet) | the MAP decode | no agreed weighted form |
+| `_grouping_ladder` (counted cycle) | the MAP decode | beat numbers are labels, not mass |
+
+Inventing a weighted robust-CV or a weighted circular resultant tonight
+would have shipped unmeasured machinery under cover of a gate that
+cannot see it. W6-b decides these three with draws in hand.
+
+The class list is **five**, not the four the condition named:
+`MarkerType.E` exists and today's code excludes E-tagged tokens from
+every stream, so folding E into `none` would push such a token into the
+word stream and break identity. Measured before writing code: 3,028
+classified tokens across 52 traces — `none` 1,663 / `beat` 1,077 /
+`and` 212 / `ah` 76, **`e` zero**. Precautionary, not load-bearing, and
+now a test.
+
+### Constraints
+
+- `git diff --name-status main --diff-filter=MD -- evals/` → **empty**;
+  `git diff --name-status main -- evals/` is **52 additions, 0
+  modifications, 0 deletions**. `git diff --stat main --
+  evals/baseline.json` → **empty**.
+- No file deleted anywhere on the branch
+  (`--diff-filter=D` empty); the 10k deletions in the whole-branch stat
+  are W3-remainder's rewrite of `docs/research/baseline-benchmark.json`,
+  reported in its own entry.
+- This session's own diff, `f67fabd..HEAD`: **6 files, +876 / −27** —
+  `types.py`, `precision/posterior.py`, `evals/gemini_draws.py` (new),
+  `tests/test_gemini_draws.py` (new), `docs/evals/gemini-draws.md`
+  (new), and this ledger.
+- **EVAL-CHANGE, declared** (add-only loader). A new module under
+  `src/musical_perception/evals/` plus one pipeline file. Rule 2 forbids
+  bundling because a behaviour delta could hide inside an infra delta;
+  here the pipeline delta is proven zero to the byte. Flagged for the
+  owner to rule on rather than left to be discovered. **No scorer,
+  metric, suite, aggregate or report code was touched** — the changed
+  files under `evals/` versus main all belong to the earlier W1.5 / W11
+  / W12 increments, and this session's own diff over that path is the
+  one new file.
+- Writability probe first (`c01e20b`, `f67fabd`). Branch
+  `agent/marathon`. `evals bless` never run. No live model call, no
+  network. The Barre-1 DEV media directory was not enumerated.
+- Turn bound: inside the 45-turn per-session bound.
+
+### BLOCKED — owner action needed (unchanged queue, plus one)
+
+Nothing new is asked of the owner tonight except the ruling below; the
+existing queue (six unreviewed increments, W6-b's three decisions,
+W11-b's media, the A1-30…A6-30 amendments) stands as the earlier W0
+entry left it.
+
+- **New, small: rule on the EVAL-CHANGE reading above** — whether a
+  provably-inert pipeline change may ride along with an add-only loader,
+  or whether the two must be separate branches even when byte-identity
+  is proven. Tonight assumed the former, declared under rule 9.
+
+Attempted: W6-a — the classified-marker evidence class generalized from
+a hard label to a distribution, plus the `gemini-draws.json` sidecar
+format and loader.
+Pre-registered expectations: P1 byte-identity under one-hot; P2 pytest
+green; P3 belief tokens reproduce the streams on all traces; P4 a split
+distribution changes the answer; P5 the loader refuses mismatched
+sidecars.
+Result: **4 hits, 1 partial (P4, whose first fixture was worthless and
+was discarded)**. Gate held to the byte: sha256
+`4c27815c…`, 99,791 bytes, before and after. 344 passed, 3 skipped.
+2,909 belief tokens across 51 clips reproduce the hard-label streams
+exactly. Flip-point table quantifies the emission's response to
+fractional mass.
+Regressions and classifications: **none** — the gate is byte-identity
+and it held, so there is nothing to classify.
+Lesson (durable, one paragraph): A gate can be perfectly rigorous and
+still be blind, and knowing exactly what it cannot see is part of
+passing it. Byte-identity under a one-hot belief proves the refactor is
+a refactor — but the degenerate case that makes the proof possible is
+precisely the case where the MAP decode and the expected mass coincide,
+so every choice between them passed the gate unexamined and had to be
+declared instead. The night's other lesson is about the shape of
+uncertainty once it is admitted: expected support is *linear per token
+and additive across tokens*, which means a 1-in-5 dissenting draw does
+not move the answer by a fifth — spread over sixteen contested tokens
+it moves it all the way, and the metric level flips at p ≈ 0.16. A
+channel that consumes distributions is not automatically more cautious
+than one that consumes decisions; it is more sensitive, in both
+directions, and the ensemble work now starts from a measured number
+instead of the assumption that averaging is safe.
+Status: PROPOSED — awaiting owner batch review (this makes **seven**
+unreviewed increments on this branch). Nothing blessed.
