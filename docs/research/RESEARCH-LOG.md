@@ -7691,9 +7691,16 @@ Deliverables:
   convergence curve as W13(b)'s human baseline; the W13(c) cue-nod
   absence-in-demo-context finding.
 
-Optional post-trace coda (pipeline run laid beside pass-1 answers) offered
-per protocol; recorded here as taken or declined when the owner decides.
-Nothing under `evals/` touched; no bless.
+Optional post-trace coda TAKEN (owner's request, same sitting, after the
+trace-lock commit): one plain full-clip pipeline run, laid beside pass-1
+in the memo's post-trace section. Headline: exercise hit (100%); quality
+direction aligned; tempo 109 vs the owner's 120; **meter 4/4 vs the
+owner's 6/4 — with the declarative six-count line demonstrably in the
+transcript, H1's gap observed on the first try**; structure under-counted
+(24 vs 8×6=48, no balance surfaced); the owner's 30–33s rhythm-break falls
+in a gap between onset segments (H4, circumstantial). No `--record-traces`;
+nothing under `evals/` touched; no bless.
 
-Status: **TRACE LOCKED + COMMITTED** · W13(a) complete pending owner
-review · W13(b) now has its human curve.
+Status: **TRACE LOCKED + COMMITTED, coda recorded** · W13(a) complete ·
+owner-reviewed in session and merged to main · W13(b) now has its human
+curve.

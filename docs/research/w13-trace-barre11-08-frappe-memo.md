@@ -140,9 +140,46 @@ lead-in rather than trimming to movement.
 | H4 | end-of-exercise = pulse-stream dropout + coincident announcement | current sidecars, new analysis |
 | — | per-field time-to-commitment is the right lens; human curve now on file | W13(b) instrument |
 
-## Post-trace comparison
+## POST-TRACE COMPARISON (coda — run after the trace was locked)
 
-Not run. The optional coda (fresh pipeline run on this clip laid beside the
-pass-1 answers and the enough-at moment) was offered per protocol and is
-recorded in the ledger entry as run or declined; if run later, its results
-belong in a clearly-labeled section appended here, never above this line.
+Run at the owner's request in the same sitting, after commit `ddbee78`
+locked the trace. One plain full-clip run (`python -m musical_perception
+<clip>`), no `--record-traces`, nothing under `evals/` touched. Transcript
+content in the pipeline's segment readout is paraphrased here per A5-30.
+The owner's pass-1 answers are the expert reference; disagreement below is
+a finding about the pipeline, and none of it fed back into the trace.
+
+| field | owner (pass 1) | pipeline (full clip) | read |
+|---|---|---|---|
+| tempo | 120 bpm | **109.0** committed (Gemini-based 107.0 @ 31% conf, 27 beats; onset-based 217.2 @ 75% — ~2× the committed level) | 9% low; inside the owner's pre-roll 100–120 prior but below his commitment |
+| meter | 6/4 | **4/4** | **miss** — see below |
+| division | (duple; "sharp") | subdivision: none, 0% confidence | abstained |
+| exercise | (from the ~3s line) | **Frappé, 100%** | hit |
+| quality | sharp and light | articulation 0.24 (toward staccato), weight 0.20 (light), energy 0.65 | direction aligned on all three |
+| structure | 8 sets of 6 + a balance | 24 counts, 2 sides | under-counted (8×6 = 48); no balance surfaced; "2 sides" for a one-side demo + balance |
+| enough-at | ~10 s of clip time | no analogue — consumes all 37.8s before answering | exactly the W13(b) gap |
+
+**The meter miss is H1's exact scenario, now observed.** The pipeline's own
+segment readout shows it transcribed the ~3s declarative lead-in line (the
+one that gave the owner the meter before any movement — its local
+onset-rate estimate for that 2.0–5.0s stretch was 240 bpm, i.e. the line
+was consumed as *timing material*), yet the meter answer came out 4/4. The
+declarative "six" was in the transcript and no channel treated it as a
+statement about grouping. That is the stated-structure channel's gap,
+demonstrated on the first try.
+
+Other segment-level notes (paraphrased content): the 5.5–18.0s demo window
+read 217 bpm at CV 0.12 — a clean metric level sitting 2× above the
+committed answer, consistent with the fast-6 feel; a 21.5–28.0s spoken
+stretch naming steps read 126 bpm; the closing 32.5–37.0s phrase naming
+steps read 210 bpm. The 30–33s rhythm-break the owner used as his end
+detector falls in the gap between those last two segments — the onset
+channel effectively *saw* the dropout (no coherent segment there) but
+nothing consumed the absence (H4).
+
+Scorecard against the trace's hypotheses: H1 directly evidenced (meter
+miss with the declaration in hand); H4 circumstantially evidenced (the
+break shows up as segment absence); H2/H3 not exercised by a single run.
+The owner's convergence curve (meter ~3s, tempo ~9–12s, structure ~33s)
+now has its machine counterpart pending — this run answers only *what*,
+never *when*; W13(b) charts the when.
