@@ -7603,3 +7603,37 @@ in place); W8 blocked. Twelve workstreams complete.
 
 Status: **ACCEPTED + MERGED** (`pytest` 329/3 green on main
 post-merge) · rulings recorded · W13 live.
+
+## 2026-08-30 · rung M · main · local (owner batch review, second sitting: W6-a accepted; A1-30/A5-30 ratified; W6-b deferred; cadence set)
+
+Two increments arrived DURING the first sitting — the out-of-cadence
+W0 (six amendments) and W6-a — proving A6-30's point in real time.
+Reviewed immediately under the new cadence ruling below.
+
+- **W6-a ACCEPTED and merged.** Verified locally: pytest **344 passed /
+  3 skipped** (15 new belief tests, no existing test edited), full
+  suites `no outcome changes vs baseline`. The **flip-point finding is
+  ratified as W6-b's design constraint**: summed fractional belief is
+  not voting — one dissent in five (p=0.2) exceeds the tempo flip
+  point on any clip with ≥12 contested tokens, so W6-b must implement
+  real voting or robust pooling, never mean-pooled belief.
+- **A1-30 RATIFIED**: out-of-cadence W0 permitted (floor, not
+  exclusive), never resets the 7-day clock; 2026-09-03 stands.
+- **A5-30 RATIFIED**: redaction by default for transcript quotes that
+  name steps (rule 7 amended).
+- **A3-30 / A4-30**: both had already been executed in the first
+  sitting (boot amendment ratified; duplicate branch deleted) —
+  convergence noted, the charter's step-2 text now carries the exact
+  command from A3-30. One honesty note: the duplicate branch was
+  deleted before its three optional graft items were read in full;
+  A4-30's summary preserves the provenance-gate idea, carried as W11-b
+  backlog.
+- **W6-b decisions DEFERRED** to the 2026-09-03 W0 (cost ceiling;
+  second model family; key delivery to the Air stays on the owner's
+  list).
+- **Cadence (A6-30 response)**: short attended reviews every ~2 days
+  while the burst runs; weekly W0 unchanged.
+
+Status: **ACCEPTED + MERGED** · thirteen workstreams complete · queue
+for the nightlies: W13(b) prefix-replay twin, then BLOCKED notes until
+09-03 unless the owner opens the attended W5 continuation first.
