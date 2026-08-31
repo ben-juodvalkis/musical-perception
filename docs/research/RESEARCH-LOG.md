@@ -7553,3 +7553,53 @@ directions, and the ensemble work now starts from a measured number
 instead of the assumption that averaging is safe.
 Status: PROPOSED — awaiting owner batch review (this makes **seven**
 unreviewed increments on this branch). Nothing blessed.
+## 2026-08-30 · rung M · main · local (owner batch review: burst batch accepted; W13 commissioned; collision amendment ratified)
+
+**Owner batch review of the 2026-08-29/30 burst output, in session.**
+Verification before any ruling: the branch was checked out with main
+merged in, `pytest` reproduced **329 passed / 3 skipped with zero
+failures** (itself proof that no blessed outcome moved), and the full
+suite run reproduced every claimed number — `no outcome changes vs
+baseline`, factored slice meter_division 0.778 / meter_grouping 0.857
+beside meter_triple 0.464 (reported-only), stage1-peakrate verified
+F=0.686 with its circularity caveat, the 22-case provisional slice
+reporting separately.
+
+### Rulings (owner, 2026-08-30)
+
+- **All five increments ACCEPTED and merged** (W11 sidecars, W12
+  factored slice, W4 case files, W3-remainder, W10): no re-bless owed —
+  the batch is outcome-neutral by construction and by measurement.
+- **Boot-sequence amendment RATIFIED** (charter step 2): sessions read
+  the ledger as it stands on `origin/agent/marathon`, not only main's —
+  the 08-29 W11 collision's root cause. The parked duplicate branch
+  `agent/w11-duplicate-20260829` is deleted; the collision record
+  stays in the ledger.
+- **W10 accepted as a controlled negative** (owner reviewed the
+  scorecard and the postural finding in session): the cue-nod
+  hypothesis — untested by design, a capture question — is **routed to
+  W13(c)**; movement remains a weak W5 vote per W7's earlier ruling.
+- **W13 COMMISSIONED (owner, in session): the expert information-timing
+  trace.** The owner's framing, recorded: as a professional
+  accompanist he gets the full picture from a few seconds of watching
+  closely, listening, and thinking — "finding the moments when the
+  teacher is packing the most relevant information, and discarding the
+  rest" — and proposes tracing exactly what parts of one demonstration
+  light up his brain, and what his thought process is. Charter entry
+  carries the three components: the owner-led trace session (clip
+  never HELD-OUT; two-pass protocol, timestamped light-up moments with
+  modality tags), the agent-runnable prefix-replay convergence twin
+  (the machine's time-to-commitment curve laid against the owner's),
+  and W10's routed cue-nod capture question. Provenance line noted:
+  this continues the introspection thread that produced the
+  factored-meter direction — the most productive direction of the
+  project to date (its slice measured 0.857 two days after landing).
+- **Burst KEPT until the 2026-09-03 W0 review** (new queue: W13(b), W6
+  condition drafting, the W0 itself), which recommends keep or revert.
+
+Standing ranking updated: W13(b) first; W6 blocked on its condition;
+W5 continuation open (owner-started — sidecars and factored slice now
+in place); W8 blocked. Twelve workstreams complete.
+
+Status: **ACCEPTED + MERGED** (`pytest` 329/3 green on main
+post-merge) · rulings recorded · W13 live.
