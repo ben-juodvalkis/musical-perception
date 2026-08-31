@@ -7816,3 +7816,135 @@ conditions), `docs/research/w13b-prefix-convergence.md` (the curve laid
 against the owner's), and a RESULTS entry scoring P1–P6.
 
 Status: **PRE-REGISTERED** — implementation follows in this session.
+
+## 2026-08-31 · rung M / W13(b) (the prefix-replay convergence twin) · agent/marathon · local (nightly, unattended) — RESULTS
+
+**The instrument exists and the curve is measured.** 52 frozen traces ×
+2 conditions × every word-end prefix = 104 clip-runs over 6,180 prefix
+replays, offline, in 82 seconds. Artifacts:
+`scripts/w13b-prefix-replay.py`,
+`docs/research/w13b-prefix-convergence.md` (the tables),
+`docs/research/w13b-prefix-convergence.json` (per-clip convergence times
+**plus the full change log** — every time an answer moved, with the value
+it moved to), `tests/test_w13b_prefix.py` (7 tests on the convergence
+arithmetic the identity check cannot see).
+
+Constraints held: `git diff --stat main` is **additive only** — 5 files,
+0 deletions, nothing under `evals/`, no scorer/harness code, no pipeline
+code. `pytest` **351 passed / 3 skipped** (344 before, +7 new). Suites:
+`no outcome changes vs baseline` on tier0, tier1, stage1 and
+stage1-peakrate. This increment measures; it moves nothing.
+
+### Prediction scorecard (pre-registered same session, above)
+
+| # | prediction | outcome | measured |
+|---|---|---|---|
+| P1 | full prefix == untruncated replay, all traces | **HOLDS** | 104/104 identical |
+| P2 | `exercise` converges at the earliest grid point on ≥90% of clips (median t\*/span ≤ 0.05) | **HOLDS** | 52/52 at t=0.0; median 0.0 |
+| P3 | `tempo_bpm` median t\*/span ≥ 0.50 and ≤25% converge before 0.30 | **HOLDS** | median **0.6035**; 6.9% before 0.30 (verified slice, n=29) |
+| P4 | `counts` has the highest median t\*/span of the committed fields | **FAILS** | counts 0.5728 < tempo 0.6035 — tempo is the last field to settle, not structure |
+| P5 | withholding semantics raises `grouping` median t\*/span by ≥0.10 **and** ≥1/3 of clips end at a different grouping | **FAILS, both clauses** | median 0.1881 → 0.1955 (+0.007); different final on **7/45 = 15.6%** |
+| P6 | onset arm converges earlier than marker arm | **HOLDS** | onset 0.5638 < marker 0.6619 (verified) |
+
+Four of six. P4 and P5 were both wrong in the same direction — I expected
+the semantic and structural channels to matter more than they do.
+
+### Finding 1 — the machine commits to tempo ~3× later than the owner
+
+Absolute seconds, granted condition (the **optimistic** bound), on the
+material closest to W13(a)'s 37.8s demo video:
+
+| field | owner (W13(a)) | 4 verified demo videos (median span 49.8s) | 7 Barre-1 demo takes (provisional, span 50.0s) |
+|---|---|---|---|
+| exercise | ~3s | 0.0s\* | 0.0s\* |
+| meter (label) | ~3s | 0.0s\* | 0.0s\* |
+| grouping (the bar rung) | ~3s, reinforced ~6s | **5.0s** | **6.1s** |
+| tempo | ~9–12s | **31.3s** | **41.7s** |
+| structure / counts | ~30–33s | **26.6s** | **29.1s** |
+
+\* granted-condition artifact, not a capability: the frozen trace holds one
+whole-clip Gemini answer, so `exercise` and the `meter` *label* are
+present before any evidence. `analyze()` falls back to Gemini's meter
+whenever `normalized_tempo` is None, which is why the label column reads
+0.0s while the derived `grouping` — the thing the posterior actually
+computes — reads 5–6s. That 5–6s figure is the honest one, and it is
+**already in the owner's ballpark**.
+
+The gap is **tempo**, and it is not subtle: the pipeline's BPM answer
+keeps moving until 60–88% of the clip is gone, on average **20–30 seconds
+after the owner had committed to everything**. Structure is the surprise —
+the machine's `counts` settles at 26.6s against the owner's 30–33s, i.e.
+the pipeline is *not* behind on the field everyone assumed was hardest.
+
+### Finding 2 — the answer thrashes; lateness is not slow convergence but repeated re-decision
+
+Median number of times an answer *moved* over a clip (verified slice):
+`exercise` 1, `meter` 1, `grouping` 1, `division` 2, `marker_bpm` 3,
+`onset_bpm` 4, **`tempo_bpm` 5**, **`counts` 6.5**. The change log shows
+what that looks like: `exercise-1-demo`'s BPM goes 149.8 → 159.3 → 142.6
+→ 97.9 → 105.4 → 111.6 → 142.7 → 117.6, crossing metric levels late in
+the clip. On **5 of 29** verified clips the tempo answer settles only in
+the final 5% of the span. Correctness is not the confound: restricted to
+the 20 clips whose final tempo is right, the median is 0.5934 — the same
+lateness.
+
+The design consequence: the missing thing is a **stopping rule**, not a
+better estimator. The lattice already carries posterior mass; nothing in
+the pipeline ever asks "is this answer stable enough to play to?" That is
+a concrete, cheap candidate for the W5 continuation, and W13(b) is the
+instrument that would score it.
+
+### Finding 3 (the P5 miss, and it is the important one) — the timing-only path never leaves 4
+
+With Gemini's clip-level fields suppressed, `grouping`'s final value is
+**4 on all 45 clips that produce one**. Every non-4 grouping the pipeline
+has ever emitted on this corpus — 3 on six clips, 6 on one — comes from
+one whole-clip Gemini read. Every other field is **bit-identical between
+conditions**: `tempo_bpm`, `division`, `counts`, `onset_bpm`, `marker_bpm`
+differ on **0 of 45** clips. Suppressing the entire semantic channel
+changes seven grouping answers and nothing else.
+
+So the prediction failed because I framed it as "Gemini makes meter
+*early*", when the truth is stronger and worse: Gemini makes meter
+*at all*. Read against Standing Lesson 4 (one temp-0 draw is a coin flip)
+and W2's negative (accent periodicity cannot separate 2/4 from 4/4), the
+pipeline's entire non-duple meter capability rests on a single LLM draw
+with no independent corroboration anywhere in the stack. This is the
+sharpest argument yet for memo hypothesis **H1** (parse declarative count
+announcements out of the transcript the pipeline already has): not because
+it would be *earlier* than Gemini, but because it would be the **second**
+meter channel — and for **W6-b**, whose N≥5 draws would at least turn the
+coin flip into a vote.
+
+### What this does not establish (restated, and one new limit)
+
+Convergence is not correctness — the correct-final split is reported
+beside every headline. Neither condition is a streaming pipeline: Whisper
+and Gemini are whole-clip frozen artifacts, so a live system would have
+*worse* early evidence and later convergence than the granted condition
+shows. The 22 Barre-1 rows carry no `expect` labels at all, so their
+correctness split is empty and their numbers are reported as their own
+provisional slice throughout. New limit found in the run: the granted
+condition cannot separate "Gemini would have answered this from 3 seconds
+of audio" from "Gemini answered this from 40 seconds" — measuring *that*
+needs live per-prefix Gemini calls, which is a W6-b-shaped question
+(`GEMINI_API_KEY` on the runner) and is parked, not attempted.
+
+### Backlog parked
+
+- **W13(b)-b:** the same curve over the rung-2 pulse sidecars (W11), once
+  a pulse→BPM path exists — the acoustic channel's own time-to-commitment,
+  which the memo asks for explicitly and this increment could not measure
+  (no estimator consumes the sidecars yet).
+- **Stopping-rule probe:** score `entropy < θ` (or k-stable-prefixes) as a
+  commitment criterion against this convergence data — cheap, needs no new
+  capture, and W13(b)'s JSON is already the scoring set.
+- **Reporting quirk (not a bug):** `MusicalParameters.meter` silently
+  falls back to Gemini's clip-level meter when `normalized_tempo` is None,
+  which makes the label look decided when the posterior has abstained.
+  Worth a look whenever someone next touches `analyze.py`.
+
+Status: **COMPLETE — awaiting owner review.** Nothing blessed, nothing
+gated, no eval file touched. W13(b) delivered; the owner's curve now has
+its machine twin, and the queue below it is: W6 (blocked on its condition,
+2026-09-03 W0), W5 continuation (owner-started), W8 (blocked).
