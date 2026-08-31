@@ -30,7 +30,11 @@ flags, classified regressions).
 
 1. Read this charter in full.
 2. Read [RESEARCH-LOG.md](RESEARCH-LOG.md) — at minimum the Standing
-   Lessons section and the last five entries. Never re-attempt an approach
+   Lessons section and the last five entries — **as it stands on
+   `origin/agent/marathon`, not only main's copy** (owner-ratified
+   2026-08-30): a completed-but-unmerged workstream is invisible from
+   main by construction, which is how W11 got executed twice on
+   2026-08-29. Never re-attempt an approach
    the ledger records as falsified without new evidence.
 3. Read `docs/evals/baseline.md` (and `evals/baseline.json`) for the
    current blessed state.
@@ -484,21 +488,47 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   bar rung 6, division none. Gates NOTHING until a separate future
   owner ruling; both metrics reported side by side. Mapping table
   pre-registered in the increment before any pipeline comparison. ·
-  **Standing ranking (owner-ratified 2026-08-28, post-W5 landing):**
-  1. **W11** · 2. **W12** (both quick EVAL-CHANGE increments that
-  unblock the attended W5 continuation) · 3. **W4** (Barre-1
-  provisional case files) · 4. **W3-remainder** (raw-condition rows +
-  optional BeatNet; runnable on **any** runner — the 24 rig MP3s are
-  committed as of 2026-08-28; stage explicit paths,
-  `audio/categories/` and `audio/counting/` remain untracked) ·
-  5. **W6** (partly blocked: its condition is the meta-rung's to draft
-  "when rung 4's shape is known"; rung 4's shape is now landed, so the
-  next W0 drafts it) · 6. **W10** (below) · W5 phase 1 LANDED,
-  continuation OPEN (owner-started, after W11) · W8 BLOCKED (after
-  W5's continuation and the tier-0 driver EVAL-CHANGE named in
-  ADR-017) · W1/W1.5/W2/W2.5/W7/W9 COMPLETE.
-  **W10 = nod-kinematics gesture channel (COMMISSIONED 2026-08-28 by
-  owner ruling, discharging A5-27):** head-nod kinematics /
+  **W13 = the expert information-timing trace (COMMISSIONED 2026-08-30
+  by the owner):** trace what the professional accompanist actually
+  uses — the owner reports extracting the full picture from a few
+  seconds of watching, listening and prior knowledge, by finding the
+  moments where the teacher packs the most information and discarding
+  the rest. Three components: **(a) the trace session** (owner-led,
+  attended-agent-supported): one video the owner's brain has not
+  already studied — NEVER a HELD-OUT exercise; a fresh clip or an
+  unstudied DEV Barre-1 take — watched once real-time (state the
+  playable answer and when it was known), then re-watched with
+  scrubbing to timestamp every light-up moment with what it revealed,
+  what was discarded around it, and a modality tag (heard / saw /
+  knew-from-context); deliverable is a research memo mapping each
+  moment onto pipeline hypotheses. **(b) The prefix-replay convergence
+  twin** (agent-runnable, nightly-eligible, read-only over frozen
+  traces): replay the pipeline on prefixes of each clip and chart when
+  each field's answer converges to its final value — the machine's
+  time-to-commitment curve, to lay against the owner's. **(c) The
+  cue-nod capture question routed from W10** (owner ruling 2026-08-30):
+  the trace records whether and when cueing gestures matter, informing
+  what future capture must cover. Provenance: owner introspection
+  2026-08-30, continuing the line that produced the factored-meter
+  direction. ·
+  **Standing ranking (owner-ratified 2026-08-30, post-burst batch
+  review):** 1. **W13(b)** (the prefix-replay twin) · W6 blocked until
+  its condition is drafted (the 2026-09-03 W0's task, or the owner's) ·
+  W13(a) owner-led, scheduled at the owner's convenience · W5
+  continuation OPEN (owner-started; sidecars and factored slice now in
+  place) · W8 BLOCKED (after W5's continuation and the tier-0 driver
+  EVAL-CHANGE named in ADR-017) ·
+  W1/W1.5/W2/W2.5/W3/W3r/W4/W7/W9/W10/W11/W12 COMPLETE.
+  **Burst schedule note (owner, 2026-08-30):** the Air's 3×/day burst
+  stays until the 2026-09-03 W0 review, which recommends keep or
+  revert; the revert procedure and plist backup are recorded in the
+  2026-08-28 air-service ledger entry.
+  **W10 = nod-kinematics gesture channel *(COMPLETE 2026-08-30,
+  negative — owner-accepted 2026-08-30: no beat-locked head movement
+  on this corpus under three event definitions with a working positive
+  control; head height is postural, not nodal, on a dancing body. The
+  untested cue-nod hypothesis is ROUTED TO W13(c); movement remains a
+  weak W5 vote per W7)*:** head-nod kinematics /
   phrase-arrival segmentation on the Barre 1 video — the owner's
   "nod-first" adoption (ruling A8, 2026-08-24), formerly unschedulable
   inside COMPLETE W7. Ranked last among open workstreams; a future W0
