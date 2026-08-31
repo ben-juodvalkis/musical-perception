@@ -1,0 +1,158 @@
+# W13(a) — expert information-timing trace
+# Owner-attended session, 2026-08-30. Agent acted as scribe/stage manager only.
+# Contamination held: no pipeline run, no transcription, no agent analysis of
+# the clip before this trace was locked. Teacher speech is PARAPHRASED
+# wherever it names steps (A5-30); the owner's own typed words are verbatim.
+schema: w13-trace/v1
+
+clip:
+  path: "video/youtube/ballet barre 11/Sections/08_frappe_demo.mp4"
+  batch: "Barre 11 (never ingested; no case file, no trace, no grid exists)"
+  duration_s: 37.8
+  containment:
+    - >-
+      This exercise (Barre 11, barre-order slot 08) is PERMANENTLY INELIGIBLE
+      for any future Barre-11 held-out draw: this session iterated on it.
+      Recorded in the 2026-08-30 W13(a) ledger entry.
+    - No pipeline run, transcription, or agent analysis before trace lock.
+    - Teacher spoken lines paraphrased per A5-30 (redaction by default).
+
+session:
+  date: 2026-08-30
+  mode: owner-attended (owner at keyboard; agent scribe via chat)
+  branch: agent/w13-trace-20260830
+  player: "QuickTime Player; playhead polled via osascript"
+  timestamps_note: >-
+    Owner-stated times are authoritative. The owner typed marks as free text
+    rather than pausing exactly on each moment, so agent playhead polls lag
+    his stated times slightly; polls are recorded beside each mark as
+    corroboration only.
+
+pre_roll:
+  # Asked before anything was opened, knowing only what the filename shows:
+  # a frappé demo, 8th section of a barre class.
+  verbatim:
+    - >-
+      fast and sharp. the meter could be duple or triplet equally. usually
+      wouldn't be in groupings of 3 or 6 pulses but it could be. I'd assume
+      it wouldn't be too long, and would maybe have 8 counts in betwee. it
+      would be light a sharp and quick
+    - "maybe 100-120bpm."   # elicited by a follow-up prompt (see deviations)
+  parsed:
+    tempo_bpm_range: [100, 120]
+    character: "fast, sharp, light, quick"
+    division_prior: "duple or triplet — explicitly equal, uncommitted"
+    grouping_prior: "usually NOT 3- or 6-pulse groupings, but possible"
+    phrase_prior: 'not too long; "maybe 8 counts in betwee[n]"'
+
+pass_1:
+  protocol: "single real-time play, no pausing (QuickTime, started by agent)"
+  enough_at:
+    verbatim: "i could start playing within 10 seconds."
+    parsed_s: 10   # "within 10 seconds" of clip time
+  would_play:
+    verbatim: "120bpm. 6/4. sharp and light. 8 sets of 6 followed by a balance"
+    parsed:
+      tempo_bpm: 120
+      meter: "6/4"
+      character: "sharp and light"
+      structure: "8 sets of 6, followed by a balance"
+  still_unsure:
+    verbatim: >-
+      at the end, i could have wondered whether there would be a balance, or
+      whether we go straight to the left without stopping, or if we pause
+      and restart on the left
+    parsed: "ending only: balance vs straight-to-left vs pause-and-restart"
+  prior_deltas:
+    - "6/4 commitment overrides the pre-roll grouping prior (usually not 3/6)"
+    - "120bpm sits at the top edge of the stated 100-120 prior range"
+    - '"8 sets" echoes the pre-roll "maybe 8 counts" phrase-shape prior'
+
+pass_2:
+  marks:
+    - id: 1
+      t_s: 3            # owner-stated; playhead poll read 4.17s
+      span: point
+      observation: >-
+        Teacher speaks a line announcing a six-count lead-in to the exercise
+        (paraphrased per A5-30; the line names the step). This lands BEFORE
+        any demonstration movement at all.
+      owner_verbatim:
+        - "at 3 seconds he says [six counts into the exercise — paraphrased]"
+        - "it's nefore any demonstration at all"
+        - "the exercise type and the meter. it was just audio. not much was discarded"
+      inference: "exercise type + the meter, settled from one spoken line"
+      discarded: "not much"
+      modality: heard
+    - id: 2
+      t_s: 6            # owner-stated span start; playhead poll read 5.71s
+      span: "from ~6s, resolved within 6 counts (owner: sure by then)"
+      observation: >-
+        Demonstration begins. Tempo arrives, the meter decision is
+        reinforced, and the quality arrives — carried by counting voice and
+        movement together, "both fused."
+      owner_verbatim:
+        - >-
+          starting at 6 seconds i get the tempo, reinforce the meter
+          decision, and get the quality, from both visual and audio. after 6
+          counts i'm  sure of everything besides form
+        - "both fused."
+        - "form is the structure."
+        - >-
+          i discard the actual name of each step, more just getting the
+          quality and rhythm
+      inference: "tempo; meter reinforcement; quality. Sure of everything except structure after 6 counts."
+      discarded: "the actual name of each step (keeps quality and rhythm, drops lexis)"
+      modality: heard+saw (fused)
+    - id: 3
+      t_s: 30           # owner-stated span 30-33s; playhead poll read 33.57s
+      span: "30-33s"
+      observation: >-
+        End of the exercise. The teacher BREAKS RHYTHM — stops keeping time —
+        and speaks a line announcing the balance (paraphrased per A5-30; the
+        owner's own report was already an approximation, not a quote).
+      owner_verbatim:
+        - >-
+          30-33 seconds is the end of the exercise so i learn how long it
+          is, and that we balance instead of go right to the other side
+        - >-
+          both. i discarded the actual individual steps. i knew it was over
+          because he broke rhtyhm and said something like [announcing the
+          balance — paraphrased] and he wasn't keeping rhtyhm anymore
+      inference: >-
+        Total length; ending = balance (not straight to the other side) —
+        resolves the pass-1 end-uncertainty. End detected by rhythm-break
+        plus announcement.
+      discarded: "the actual individual steps"
+      modality: heard+saw
+
+  negative_space:
+    verbatim: >-
+      basically once i got the tempo and the fact that it was in 6, i almost
+      totally stopped paying attention til the end. i did have to pay a
+      little bit to know how many total 6s there were
+    spans:
+      - span_s: [12, 30]
+        note: >-
+          Near-zero attention (derived: certainty landed ~6 counts after the
+          ~6s demo start). Exception: low-rate counting to learn the total
+          number of sets of 6.
+      - span_s: [33, 37.8]
+        note: "not characterized by the owner (not asked, not offered)"
+
+deviations:
+  - >-
+    Marks arrived as typed free text with owner-stated times instead of the
+    pause-then-type-"mark" flow; playhead polls ran anyway and are recorded
+    beside stated times (each poll within ~1.2s of the stated time or inside
+    the stated span).
+  - "Marks 2 and 3 are spans, not instants."
+  - >-
+    Pre-roll tempo-in-BPM was elicited by one follow-up prompt, not
+    spontaneous; all other pre-roll content was unprompted.
+  - >-
+    Pass-1 answers arrived across three messages (enough-at first, then
+    still-unsure, then would-play after two prompts) rather than one block.
+  - >-
+    One scribe clarification injected during mark 2 ("form" = structure or
+    body form?); answered "form is the structure."

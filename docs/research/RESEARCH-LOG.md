@@ -7637,3 +7637,70 @@ Reviewed immediately under the new cadence ruling below.
 Status: **ACCEPTED + MERGED** · thirteen workstreams complete · queue
 for the nightlies: W13(b) prefix-replay twin, then BLOCKED notes until
 09-03 unless the owner opens the attended W5 continuation first.
+
+## 2026-08-30 · rung M / W13(a) (expert information-timing trace) · agent/w13-trace-20260830 · local (owner-attended) — RESULTS
+
+**The trace session ran and is locked.** Clip: Barre 11, barre-order slot
+08, the frappé demo (37.8s) — a batch never ingested, so the owner's brain
+had not studied it, satisfying the charter's never-HELD-OUT rule by using
+fresh material instead. Two-pass protocol per commission: pre-roll schema
+interview (filename knowledge only), single real-time play with typed
+commitment + enough-at moment, then a scrubbing pass with timestamped
+marks, modality tags, and a negative-space question.
+
+**CONTAINMENT RULING (record for all future draws):** this exercise —
+**Barre 11, slot 08 — is permanently ineligible for any future Barre-11
+held-out draw.** This session iterated on it; if Barre 11 is ever split
+for ingestion, its held-out exercises must be drawn from the remaining
+eleven slots. (Standing rule also honored: the Ballet Barre 1 directory
+was never enumerated. A5-30 applied throughout: teacher spoken lines are
+paraphrased in the trace and memo wherever they name steps.)
+
+**Contamination held:** the pipeline was not run on the clip, nothing was
+transcribed, and the agent produced no analysis, tempo estimate, or
+expectation of its own before trace lock. The deliverable is the owner's
+process, uninfluenced.
+
+Headline shape of the trace (details in the YAML): meter and exercise type
+from one declarative spoken line at ~3s before any movement; tempo,
+meter-reinforcement and quality from a fused audio+visual window starting
+~6s, certain within 6 counts; structure and the balance ending from a
+rhythm-BREAK plus announcement at 30–33s; ~12–30s explicitly near-zero
+attention except counting sets. Step names actively discarded twice.
+Pass-1 commitment: 120bpm, 6/4, sharp and light, 8 sets of 6 + balance,
+playable within 10 seconds. No mark touched a cueing gesture — the W13(c)
+implication (demo context cannot exhibit a live-start cue; future capture
+must keep pre-exercise lead-in) is written up in the memo.
+
+**Protocol deviations (all minor, listed in the YAML):** marks arrived as
+typed free text with owner-stated times rather than the pause+"mark" flow
+(playhead polls recorded beside them as corroboration, each within ~1.2s
+or inside the stated span); marks 2–3 are spans; the pre-roll BPM figure
+was elicited by one follow-up prompt; pass-1 answers arrived across three
+messages; one scribe clarification ("form"?) during mark 2.
+
+Deliverables:
+- `docs/research/w13-trace-barre11-08-frappe.yaml` — the locked trace
+  (pre-roll, pass 1 + enough-at, marks with modality, negative space,
+  deviations).
+- `docs/research/w13-trace-barre11-08-frappe-memo.md` — mark-by-mark
+  mapping onto pipeline hypotheses: H1 stated-structure channel (current
+  capture, new parsing), H2 exercise-conditioned soft priors (pure prior),
+  H3 early audio-visual quality fusion (design), H4 pulse-dropout boundary
+  detector (current sidecars, new analysis); the owner's per-field
+  convergence curve as W13(b)'s human baseline; the W13(c) cue-nod
+  absence-in-demo-context finding.
+
+Optional post-trace coda TAKEN (owner's request, same sitting, after the
+trace-lock commit): one plain full-clip pipeline run, laid beside pass-1
+in the memo's post-trace section. Headline: exercise hit (100%); quality
+direction aligned; tempo 109 vs the owner's 120; **meter 4/4 vs the
+owner's 6/4 — with the declarative six-count line demonstrably in the
+transcript, H1's gap observed on the first try**; structure under-counted
+(24 vs 8×6=48, no balance surfaced); the owner's 30–33s rhythm-break falls
+in a gap between onset segments (H4, circumstantial). No `--record-traces`;
+nothing under `evals/` touched; no bless.
+
+Status: **TRACE LOCKED + COMMITTED, coda recorded** · W13(a) complete ·
+owner-reviewed in session and merged to main · W13(b) now has its human
+curve.
