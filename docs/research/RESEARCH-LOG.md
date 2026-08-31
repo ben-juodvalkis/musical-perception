@@ -7948,3 +7948,22 @@ Status: **COMPLETE — awaiting owner review.** Nothing blessed, nothing
 gated, no eval file touched. W13(b) delivered; the owner's curve now has
 its machine twin, and the queue below it is: W6 (blocked on its condition,
 2026-09-03 W0), W5 continuation (owner-started), W8 (blocked).
+
+## 2026-08-31 · rung M · agent/marathon · (one-line note: session increment complete, awaiting owner review)
+
+W13(b)'s increment is complete and pushed (`b0aa744`); the branch carries
+**one unreviewed increment — W13(b), PROPOSED and awaiting the owner's
+next attended review** (the ~2-day cadence set 2026-08-30, or the
+scheduled 2026-09-03 W0), so no further session work is possible on it
+under charter rule 8 (blessing is human). Rung M is a standing contract,
+never "complete": its per-session condition — one increment on the
+highest-ranked non-BLOCKED workstream, committed on `agent/marathon`,
+evidence by full command output, constraints verified, dated ledger entry
+— is satisfied by the PRE-REGISTRATION + RESULTS pair above. The queue
+below W13(b) is unchanged and every item is closed to a scheduled
+session: **W6** blocked on its condition (owner decisions deferred to the
+2026-09-03 W0), **W5 continuation** owner-started by charter rule, **W8**
+blocked behind W5. Recommendation, not a blessing: accept W13(b) as a
+measurement increment (it pins no outcome, gates nothing, and reproduces
+`no outcome changes vs baseline`), and rule on the two items it puts on
+the owner's queue — the stopping-rule probe and H1's second meter channel.
