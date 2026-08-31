@@ -7704,3 +7704,5 @@ nothing under `evals/` touched; no bless.
 Status: **TRACE LOCKED + COMMITTED, coda recorded** · W13(a) complete ·
 owner-reviewed in session and merged to main · W13(b) now has its human
 curve.
+
+<!-- writability probe 2026-08-31T09:00:54Z -->
