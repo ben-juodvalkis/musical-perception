@@ -52,7 +52,7 @@ from musical_perception.precision.tempo import (
 )
 from musical_perception.types import (
     GroupingLevel,
-    MarkerType,
+    MarkerBelief,
     Meter,
     NormalizedTempo,
     OnsetTempoResult,
@@ -143,10 +143,72 @@ def _stream_support(times: np.ndarray) -> float:
     return float(np.clip(1.0 - spread, 0.1, 1.0))
 
 
+def beliefs_from_markers(
+    words: list[TimestampedWord],
+    markers: list[TimedMarker],
+) -> list[MarkerBelief]:
+    """The single-draw partition, expressed as one-hot beliefs.
+
+    Exactly reproduces the three streams the hard-label code built: a
+    marker becomes a one-hot token of its own class (E included, which
+    is why E is a class — an E token belongs to no stream, and folding
+    it into `none` would enter it into the word stream); a word becomes
+    a `none` token unless a marker already stands at its timestamp or
+    its text is a subdivision vocable. Markers come first so the
+    grouping ladder reads beat numbers in the order the classifier
+    emitted them.
+    """
+    marker_ts = {round(m.timestamp, 4) for m in markers}
+    beliefs = [
+        MarkerBelief(
+            timestamp=m.timestamp,
+            probs={m.marker_type.value: 1.0},
+            beat_number=m.beat_number,
+            raw_word=m.raw_word,
+        )
+        for m in markers
+    ]
+    beliefs += [
+        MarkerBelief(timestamp=w.start, probs={"none": 1.0}, raw_word=w.word)
+        for w in words
+        if round(w.start, 4) not in marker_ts
+        and _normalize_text(w.word) not in _SUB_VOCAB
+    ]
+    return beliefs
+
+
+def _weighted_stream(
+    beliefs: list[MarkerBelief],
+    classes: tuple[str, ...],
+) -> tuple[np.ndarray, np.ndarray]:
+    """One evidence class as (times, expected counts), time-sorted.
+
+    Zero-mass tokens are dropped rather than carried at weight 0: a
+    point process with no rate contribution is not an event, and
+    keeping them would make `use_words` true on a clip whose words all
+    belong to some other class.
+    """
+    pairs = [
+        (b.timestamp, sum(b.p(c) for c in classes)) for b in beliefs
+    ]
+    pairs = sorted((t, w) for t, w in pairs if w > 0.0)
+    times = np.array([t for t, _ in pairs])
+    weights = np.array([w for _, w in pairs])
+    return times, weights
+
+
+def _map_times(beliefs: list[MarkerBelief], classes: tuple[str, ...]) -> np.ndarray:
+    """Times of the tokens the MAP decode assigns to `classes`."""
+    return np.array(sorted(
+        b.timestamp for b in beliefs if b.map_class in classes
+    ))
+
+
 def estimate_rhythm(
     words: list[TimestampedWord],
     markers: list[TimedMarker],
     *,
+    marker_beliefs: list[MarkerBelief] | None = None,
     gemini_meter: Meter | None = None,
     gemini_subdivision: str | None = None,
     onset_tempo: OnsetTempoResult | None = None,
@@ -166,20 +228,26 @@ def estimate_rhythm(
     Evidence-poor clips (fewer than MIN_BEAT_MARKERS classified beats or
     MIN_EVENTS events) and beat streams below SUPPORT_FLOOR fall back to
     `interpret_meter` unchanged.
+
+    `marker_beliefs` (W6-a) replaces the hard labels with a
+    distribution per token: the emission then charges expected support
+    instead of integer counts, so N disagreeing draws vote by mass
+    rather than by whichever one was sampled (Standing Lesson 4). Left
+    None, the beliefs are built one-hot from `markers` and the answer
+    is bit-for-bit the single-draw answer.
     """
-    beat_times = np.array(sorted(
-        m.timestamp for m in markers if m.marker_type == MarkerType.BEAT
-    ))
-    sub_times = np.array(sorted(
-        m.timestamp for m in markers
-        if m.marker_type in (MarkerType.AND, MarkerType.AH)
-    ))
-    marker_ts = {round(m.timestamp, 4) for m in markers}
-    word_times = np.array(sorted(
-        w.start for w in words
-        if round(w.start, 4) not in marker_ts
-        and _normalize_text(w.word) not in _SUB_VOCAB
-    ))
+    beliefs = (
+        marker_beliefs if marker_beliefs is not None
+        else beliefs_from_markers(words, markers)
+    )
+    # Two views of the same tokens: the MAP decode for the guard
+    # statistics (support, the division vet, the ladder), the expected
+    # mass for the emission. One draw makes them the same object.
+    beat_times = _map_times(beliefs, ("beat",))
+    sub_times = _map_times(beliefs, ("and", "ah"))
+    beat_ev = _weighted_stream(beliefs, ("beat",))
+    sub_ev = _weighted_stream(beliefs, ("and", "ah"))
+    word_ev = _weighted_stream(beliefs, ("none",))
 
     def fallback() -> NormalizedTempo | None:
         """Legacy arbitration, with division still measured, not
@@ -198,8 +266,9 @@ def estimate_rhythm(
             )
         return result
 
-    n_events = len(beat_times) + len(sub_times) + len(word_times)
-    if len(beat_times) < MIN_BEAT_MARKERS or n_events < MIN_EVENTS:
+    n_beat = float(beat_ev[1].sum())
+    n_events = n_beat + float(sub_ev[1].sum()) + float(word_ev[1].sum())
+    if n_beat < MIN_BEAT_MARKERS or n_events < MIN_EVENTS:
         return fallback()
 
     beat_support = _stream_support(beat_times)
@@ -207,7 +276,7 @@ def estimate_rhythm(
         return fallback()
 
     bpm_axis, log_marginal = _lattice_forward(
-        beat_times, word_times, A_BEAT * beat_support
+        beat_ev, word_ev, A_BEAT * beat_support
     )
     mass = np.exp(log_marginal - np.logaddexp.reduce(log_marginal))
 
@@ -232,7 +301,7 @@ def estimate_rhythm(
     alternates = _alternates(
         bpm_axis, mass, in_tol, map_bpm, gemini_meter, gemini_subdivision
     )
-    ladder = _grouping_ladder(markers, beat_times, 60.0 / map_bpm)
+    ladder = _grouping_ladder(beliefs, beat_times, 60.0 / map_bpm)
 
     return NormalizedTempo(
         bpm=round(map_bpm, 1),
@@ -247,8 +316,8 @@ def estimate_rhythm(
 
 
 def _lattice_forward(
-    beat_times: np.ndarray,
-    word_times: np.ndarray,
+    beat_ev: tuple[np.ndarray, np.ndarray],
+    word_ev: tuple[np.ndarray, np.ndarray],
     a_beat: float,
 ) -> tuple[np.ndarray, np.ndarray]:
     """Forward algorithm on the bar-pointer lattice.
@@ -260,20 +329,30 @@ def _lattice_forward(
     events_c(f)·log(rate_c(phi,T)) − rate_c(phi,T)·dt, with
     rate = bg_c + amp_c·N(0;sigma)·gauss(phi·dt; sigma). Returns
     (bpm per tempo state, final log tempo marginal).
+
+    Each stream arrives as (times, weights) — the expected number of
+    events that token contributes to that class (W6-a). `events_c(f)`
+    is therefore a fractional count, which is what a Poisson likelihood
+    wants from an uncertain observer: half a beat's worth of belief
+    buys half a beat's worth of log-rate credit and no more. One draw
+    makes every weight exactly 1.0 and the arithmetic is the old
+    integer arithmetic, bit for bit.
     """
+    beat_times, beat_w = beat_ev
+    word_times, word_w = word_ev
     t0 = float(beat_times[0]) - 0.2
     t1 = float(beat_times[-1]) + 0.2
     n_frames = max(int(math.ceil((t1 - t0) / DT)), T_MAX_FRAMES + 1)
 
-    def counts(times: np.ndarray) -> np.ndarray:
+    def counts(times: np.ndarray, weights: np.ndarray) -> np.ndarray:
         e = np.zeros(n_frames)
         if len(times):
             idx = np.clip(((times - t0) / DT).astype(int), 0, n_frames - 1)
-            np.add.at(e, idx, 1.0)
+            np.add.at(e, idx, weights)
         return e
 
-    e_beat = counts(beat_times)
-    e_word = counts(word_times)
+    e_beat = counts(beat_times, beat_w)
+    e_word = counts(word_times, word_w)
     use_words = len(word_times) > 0
 
     tempos = np.arange(T_MIN_FRAMES, T_MAX_FRAMES + 1)      # (K,)
@@ -476,7 +555,7 @@ def _alternates(
 
 
 def _grouping_ladder(
-    markers: list[TimedMarker],
+    beliefs: list[MarkerBelief],
     beat_times: np.ndarray,
     period: float,
 ) -> list[GroupingLevel]:
@@ -492,8 +571,8 @@ def _grouping_ladder(
     """
     levels: dict[int, GroupingLevel] = {}
 
-    nums = [m.beat_number for m in markers
-            if m.marker_type == MarkerType.BEAT and m.beat_number is not None]
+    nums = [b.beat_number for b in beliefs
+            if b.map_class == "beat" and b.beat_number is not None]
     if len(nums) >= 4:
         resets = [nums[i - 1] for i in range(1, len(nums)) if nums[i] < nums[i - 1]]
         if resets:

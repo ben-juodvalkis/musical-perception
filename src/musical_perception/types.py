@@ -19,6 +19,45 @@ class MarkerType(Enum):
     E = "e"        # "e" - for future 16th note support (1-e-and-a)
 
 
+# The classified-marker evidence class as a distribution (W6-a, rung 5).
+# Five classes, not four: MarkerType.E exists and the posterior excludes
+# E-tagged tokens from every stream — beat, sub and word alike — so
+# folding E into "none" would push such a token into the word stream.
+BELIEF_CLASSES = ("beat", "and", "ah", "e", "none")
+
+
+@dataclass(frozen=True)
+class MarkerBelief:
+    """One spoken token and what the classifier(s) think it is.
+
+    A single draw yields one-hot beliefs and reproduces the hard-label
+    partition exactly; N draws yield a mixture, which the posterior
+    consumes as expected support rather than as a decision. `probs` is
+    keyed by BELIEF_CLASSES and need not be normalized by the producer
+    — consumers read the mass they need and nothing renormalizes behind
+    their back.
+    """
+    timestamp: float
+    probs: dict[str, float]
+    beat_number: int | None = None
+    raw_word: str = ""
+
+    def p(self, cls: str) -> float:
+        return float(self.probs.get(cls, 0.0))
+
+    @property
+    def map_class(self) -> str:
+        """The argmax class, ties broken by BELIEF_CLASSES order.
+
+        The guard statistics (stream support, the subdivision vet, the
+        grouping ladder) read this rather than the mixture: a robust
+        IOI CV and a circular resultant have no agreed weighted form,
+        and W6-a declines to invent one where the one-hot gate cannot
+        see it (2026-08-30 pre-registration).
+        """
+        return max(BELIEF_CLASSES, key=lambda c: (self.p(c), -BELIEF_CLASSES.index(c)))
+
+
 @dataclass
 class TimestampedWord:
     """A word with its timing information from transcription."""

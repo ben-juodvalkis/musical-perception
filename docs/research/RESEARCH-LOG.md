@@ -6875,6 +6875,684 @@ the only thing standing between the loop and an empty executable queue;
 (grids that extend across talking, or recording aimed at the cue-in),
 since §4 shows it cannot be asked of the present corpus.
 
+## 2026-08-30 · rung M / W0 (the meta-rung, OUT OF CADENCE) · agent/marathon · local (nightly, unattended)
+
+**Meta-rung, not a pipeline increment.** No pipeline, eval, grid, case,
+trace or scorer file is touched. Writability probe (charter amendment 2,
+first act): a file was written and committed on `agent/marathon`, then
+removed in a second commit (`43c2d9a`, `fd19871`), before any substantive
+work.
+
+### 0. Trigger check — this W0 is four days early, and that is the first thing the owner should rule on
+
+The last meta-rung entry is **2026-08-27**; the 7-day rule makes W0 due
+**2026-09-03**. By the letter of the self-scheduling clause W0 does not
+outrank anything tonight. It was taken anyway, and the reasoning is
+stated here rather than buried:
+
+- The selection rule is *"the highest-ranked one not BLOCKED"*, and
+  **every other workstream is BLOCKED**: W11/W12/W4/W3-remainder/W10 are
+  COMPLETE-and-PROPOSED awaiting the owner's batch review (rule 1,
+  blessing is human); W5's continuation is owner-started, which scheduled
+  sessions "must never take"; W8 waits on W5 plus ADR-017's tier-0-driver
+  EVAL-CHANGE; W6 is blocked on a condition **the charter assigns to
+  W0 itself**.
+- W0 is not BLOCKED. It is merely not-yet-mandatory. The 7-day clause
+  says when W0 *outranks* everything; it does not say W0 is unavailable
+  before then. Under that reading W0 is the highest-ranked non-BLOCKED
+  workstream tonight by elimination.
+- The alternative is the charter's other branch — a one-line BLOCKED
+  note — repeated on **08-30, 08-31, 09-01 and 09-02**, four consecutive
+  nightly slots, until the 09-03 W0 finally drafts the one paragraph that
+  unblocks the queue. Rung M's own policy line says *"The loop never
+  idles while any workstream is open."*
+
+**This is declared, not silent (rule 9).** If the owner reads the 7-day
+clause as exclusive rather than as a floor, this entry is the deviation
+and A1-30 below is the place to say so. **Proposed either way: an
+out-of-cadence W0 does NOT reset the clock — the scheduled meta-rung
+still runs 2026-09-03**, when the batch review has (presumably) happened
+and a re-ranking can be made against decisions rather than around them.
+That is also why the re-ranking in §3 is deliberately thin: with five
+increments unreviewed, ranking is mostly the owner's to do, and §1 —
+W6's condition — is the part that is genuinely mine and genuinely
+unblocked.
+
+### 0.1 Pre-review state, verified on this branch before anything else
+
+- `pytest`: **329 passed, 3 skipped**.
+- `evals run --suite tier0,tier1,stage1`: **`no outcome changes vs
+  baseline`**. `aggregate_verified` clips=28 P=0.334 R=0.449 **F=0.383**
+  (macro 0.386), asynchrony median −19.4 ms; slices numbers 0.439 (n=14),
+  step_names 0.337 (n=13), vocables 0.118 (n=1);
+  `aggregate_provisional` clips=2 F=0.627 in its own slice; provisional
+  `P meter_triple n=3 accuracy=0.5`; 22 missing grids, all barre1.
+
+Every one of those numbers matches the W10 entry's, which matches W4's,
+which matches W12's. Five unreviewed increments have stacked without
+moving a blessed number — which is what "gates nothing" is supposed to
+look like, and is worth stating positively for once.
+
+### 1. The deliverable the charter assigns to W0, now unblocked: **W6's condition**
+
+Rung 5's charter text ends *"Condition to be finalized when rung 4's
+shape is known — the meta-rung drafts it."* A6-27 (2026-08-27) recorded
+that this was structurally impossible because W5 was unstarted. **W5
+phase 1 landed 2026-08-28 and ADR-017 is Accepted, so rung 4's shape is
+known and the obstruction is gone.** Drafting it is this entry's main
+content.
+
+ADR-017 names the consumption point precisely, in its own Consequences
+section: *"the named path to the tempo wins this ADR did not deliver:
+the acoustic pulse channel as a third evidence class (W11 sidecars), and
+ensembled semantics (W6) turning marker classification into a
+distribution."* So W6 is not a free-standing perception experiment any
+more — it has a defined socket: `posterior.py`'s **classified-beat-marker
+evidence class**, currently a hard label per word feeding a
+support-discounted Poisson emission.
+
+**The draft splits W6 in two, and the split is the recommendation.** The
+charter's rung 5 is marked *"live-perception rung: needs
+GEMINI_API_KEY"*, and the nightly runner has no key (every recent entry
+discloses "no network, no API key"). As one workstream, W6 is
+permanently nightly-ineligible. Split, its larger half is nightly-eligible
+tonight — and the split is what **Standing Lesson 9** prescribes anyway:
+*build the trace/replay path for a new channel before betting on the
+channel.* W11 is the precedent that this ordering works.
+
+#### W6-a — the consumption path (offline, key-free, nightly-eligible)
+
+```
+/goal Per docs/research/agent-charter.md W6-a (rung 5, the consumption
+path): precision/posterior.py's classified-marker evidence class accepts
+a per-marker DISTRIBUTION over {beat, and, ah, none} in place of a hard
+label, entering the Poisson emission as expected support; the existing
+single frozen Gemini draw is fed as a degenerate one-hot distribution and
+the full tier suite is BYTE-IDENTICAL under it — proven by complete
+pytest and `evals run --suite tier0,tier1,stage1` output plus an explicit
+before/after run-artifact comparison in the transcript. A
+`gemini-draws.json` sidecar format is specified and its loader written
+and tested against a synthetic multi-draw fixture: add-only under the
+2026-08-28 sidecar carve-out, checksum-bound to the trace's media_sha256
+exactly as pulse.json is, with per-draw model id and sampling params
+frozen inside it. No live model call; no GEMINI_API_KEY required; no
+sidecar is recorded (that is W6-b). docs/evals/ documents the format.
+Constraints: no existing file under evals/cases/, evals/traces/, or
+evals/baseline.json modified (prove with `git diff --stat main` AND
+`git diff --name-status main --diff-filter=MD -- evals/` empty); this is
+an EVAL-CHANGE only if evals/ scorer code is touched, declared as such if
+so; the one-hot byte-identity IS the gate — a non-identical run FAILS the
+goal and is not explained away; branch agent/marathon; dated
+RESEARCH-LOG.md entry with a pre-registered prediction scorecard. Or stop
+after 40 turns.
+```
+
+Rationale for the gate shape: one-hot byte-identity is the only honest
+way to prove the refactor is a refactor. If the degenerate case moves a
+number, the distribution machinery is doing something the single draw did
+not, and every W6-b measurement afterwards would be confounded by it.
+
+#### W6-b — the draws themselves (BLOCKED: needs GEMINI_API_KEY + owner)
+
+Requires W6-a. N ≥ 5 draws across ≥ 2 model families per clip, frozen as
+per-draw `gemini-draws.json` sidecars on the 30 verified traces; the
+distribution consumed through W6-a's socket and scored against the
+one-hot baseline on tier-1 under the **measurement-change** typed gate
+(ADR-015: net improvement on the primary metric AND ECE, every regression
+classified). Two things measured and reported whatever the gate does:
+**Standing Lesson 4's variance quantified on this corpus** (ADR-011's
+18/18/18/32 was one clip, four draws, in Feb 2026 — the ensemble's whole
+premise has never been measured at n=30), and the **Feb-2026 model
+comparison re-run**, which rung 5 already carries. The Qwen2-Audio-class
+local vote stays a backlog note, per the local-models policy.
+
+**Three things the owner must decide before W6-b is schedulable,** none
+of which an agent can settle: (i) whether the key reaches the runner at
+all, or W6-b is owner-attended like W5; (ii) cost — 30 clips × 5 draws ×
+2 families is 300 live calls per re-freeze, and the charter's
+accuracy-first posture puts cost out of scope but not out of the owner's
+wallet; (iii) whether the second family is a second Gemini configuration
+or a genuinely different vendor, which changes what "≥ 2 model families"
+buys.
+
+### 2. BLOCKED-queue audit — checked against files, as the meta-rung must
+
+**Verified against the filesystem this session:**
+
+- **Corpus shape.** `evals/cases/*.yaml` = **52**; `maturity:
+  provisional` = **22**. 30 verified / 22 provisional, exactly as W4
+  reported. The gating set is unchanged.
+- **Sidecars.** `evals/traces/*/pulse.json` = **30**; trace directories =
+  **52**; `evals/traces/barre1-*/` = **22** with **0** sidecars. **W11-b
+  is open and confirmed open by file count, not by assertion** — and it
+  is the same blocker as W4's owner item 2 (the Barre-1 media is
+  `offrepo:`). One owner decision closes both.
+- **W4-b reproduced tonight.** The `replay: recomputed onset_bpm 95.2 !=
+  frozen 84.7` warning fires in the pytest output above. Pre-existing
+  W5/W9 drift, nothing wrong, still noise pretending to be signal.
+- **A4-27 (HELD-OUT containment) — CLOSED** by the owner's 2026-08-28
+  attestation, now written into the charter at lines 94–96. The
+  enumeration prohibition stands and this session did not enumerate that
+  directory.
+- **A5-27 (nod-first had no workstream number) — CLOSED.** Commissioned
+  as W10 on 08-28; executed 08-30; negative.
+- **A6-27 (W6's condition undraftable) — CLOSED by §1 above.**
+
+**The item no one has ruled on, and it is invisible where the owner is
+looking:**
+
+- **`agent/w11-duplicate-20260829` is an orphan branch carrying a
+  process finding worth more than the code on it.** On 2026-08-29 two
+  autonomous sessions independently built W11 in full. The duplicate
+  session did the right thing — no force-push, work moved off
+  `agent/marathon`, both sides preserved, and it recommended adopting
+  *the other* implementation. Its **factual correction to W11's P4b
+  explanation** was carried onto this branch by the W12 session and the
+  owner will see it. Its **root-cause amendment was not** — the W12 entry
+  points at the orphan branch's ledger rather than restating it, so the
+  amendment reaches the owner only if he goes looking.
+
+  **Restated here so it lands in the queue, and verified against the
+  runner rather than taken on trust:** `scripts/air-nightly.sh:64` runs
+  `git checkout main` and then `git pull --ff-only origin main`, and the
+  standing contract in `agent-environment.md:82-93` says only "read the
+  charter and the ledger's Standing Lessons". **A scheduled session
+  therefore boots on `main`, whose ledger cannot see any completed
+  workstream still waiting on the branch** — and under rung M's
+  batch-review cadence that is *every* completed workstream. The contract
+  as written instructs the next session to rebuild whatever is pending.
+  It did.
+
+  It has not recurred on the four nights since (W12, W4, W3-remainder and
+  W10 each continued on `agent/marathon`) — but that is four sessions
+  exercising judgment the contract does not require of them, not a fix.
+  The hole is still open in writing. A3-30 proposes closing it.
+
+**Genuinely open, ranked in §3:** W6-a (new, §1) · W6-b, W11-b, W12-b,
+W5-continuation, W8 (all BLOCKED) · the five PROPOSED increments awaiting
+review.
+
+### 3. Re-ranking — deliberately thin, and here is why
+
+```
+1. W6-a   rung 5 consumption path: distributions in posterior.py   NEW (§1), nightly-eligible
+-  W6-b   the draws themselves                    BLOCKED on GEMINI_API_KEY + owner (§1)
+-  W5     joint-posterior continuation            BLOCKED-on-owner (charter rule; W11 done)
+-  W8     rung 7, RETIRED sweep                   BLOCKED (after W5 + tier-0 driver EVAL-CHANGE)
+-  W11-b  sidecars for the 22 barre1 traces       BLOCKED on media (= W4 owner item 2)
+-  W12-b  factored slice on tier0                 BLOCKED (same tier-0 driver EVAL-CHANGE)
+-  W11, W12, W4, W3-remainder, W10                COMPLETE — PROPOSED, awaiting batch review
+-  W1, W1.5, W2, W2.5, W3, W7, W9                 COMPLETE
+```
+
+**W6-a is rank 1 by elimination, not by force.** It is the only open item
+that a scheduled, key-less, unattended session can execute end to end,
+and it is on ADR-017's own named critical path. It cannot move a headline
+number — its gate is byte-identity — so ranking it first costs nothing
+that could have gone to a number-moving workstream, because there is no
+such workstream available to a scheduled session tonight.
+
+**The real finding of this re-ranking is that the ranking is no longer
+the bottleneck.** Five increments have completed in six days and none has
+been reviewed. Agent throughput is roughly one workstream per night; the
+review cadence is roughly weekly. **The queue is now review-limited, not
+work-limited**, and every additional unreviewed increment raises the cost
+of the eventual review and the chance of exactly the collision §2
+describes. That is a cadence question for the owner, not something a
+re-ranking can fix — noted here as amendment A6-30 rather than pretended
+away.
+
+### 4. Charter amendments PROPOSED (the branch edit is the proposal)
+
+- **A1-30 — rule on out-of-cadence W0.** Is the 7-day clause a floor
+  (W0 becomes *mandatory*) or exclusive (W0 becomes *permitted*)? Tonight
+  assumed floor. Proposed text either way: *an out-of-cadence W0 does not
+  reset the 7-day clock*, so 2026-09-03's scheduled meta-rung stands.
+- **A2-30 — commission W6-a and W6-b as separate workstreams** with §1's
+  conditions; rank W6-a 1 among nightly-eligible work; leave W6-b
+  BLOCKED pending the three decisions in §1.
+- **A3-30 — close the boot-sequence hole.** Add to the session boot
+  sequence, before workstream selection: *read the ledger on
+  `origin/agent/marathon`* (`git show
+  origin/agent/marathon:docs/research/RESEARCH-LOG.md`), and treat any
+  workstream carrying a RESULTS entry there as COMPLETE-pending-review.
+  One command. Credit to the duplicate session, which diagnosed its own
+  wasted night; verified independently against `air-nightly.sh:64` above.
+- **A4-30 — dispose of `agent/w11-duplicate-20260829`.** Its own
+  recommendation is to adopt this branch's W11 and delete it, optionally
+  grafting three items: an exact provenance gate (re-running extraction
+  at `events_per_nucleus="first"` reproduces `rung2-extractor-events.json`
+  event-for-event on 28/28, closing rung 2 → W2.5 → W11 by reproduction
+  rather than by argument), a `bless` guard refusing runs whose stage1
+  used a non-default pulse source, and dropping the recorder's `--force`.
+  This review endorses grafting the **bless guard** at minimum: it
+  protects an owner-only act from an agent-created diagnostic mode.
+- **A5-30 — the redaction question from W4, still unruled.** May
+  agent-authored repo text quote transcript lines verbatim when they name
+  steps? W4's recommendation was no, redact by default. Carried forward
+  because an unruled convention gets re-decided per session.
+- **A6-30 — the review cadence is now the binding constraint** (§3). Not
+  a rule change to propose, a scheduling fact for the owner: either
+  review more often, or accept that the loop will spend nights on
+  BLOCKED notes, since rule 1 correctly forbids sessions from building on
+  unblessed work.
+
+### 5. Plain-language summary, for the owner
+
+Nothing is broken and nothing has drifted. 329 tests pass, the suite
+reports no change against your blessed baseline, and the corpus is
+exactly what the last five entries said it was — 30 verified cases that
+count, 22 provisional ones that do not, 30 pulse sidecars.
+
+**You have five finished pieces of work waiting and none of them has been
+looked at**: the pulse sidecars, the factored meter slice, the Barre-1
+case files, the finished baseline benchmark, and last night's nod
+experiment. They have been deliberately built so that none of them can
+move a scored number without your say-so, and the run output confirms
+none has.
+
+**The loop has now run out of things it is allowed to do.** Everything
+else is either waiting on you, or waiting on the joint posterior you said
+you'd drive yourself. The single exception was rung 5 — the "ask the model
+five times instead of once" work — which was stuck because the charter
+says the weekly review has to write its instructions first, and the
+weekly review wasn't due until Wednesday. Rather than write "everything
+is blocked" four nights running, this session did the weekly review
+early, purely to unstick that one paragraph. If you'd rather it hadn't,
+say so and it won't happen again — but then the honest expectation is
+four idle nights.
+
+The rung-5 instructions are written, and the useful thing that came out
+of writing them is a **split**. Half that work needs your API key and
+costs real money (~300 model calls to refresh). The other half doesn't
+need a key at all: it is the plumbing that lets the pipeline consume five
+opinions instead of one, and it can be proven correct by showing that
+feeding it a single opinion changes literally nothing. That half can run
+unattended tomorrow. The expensive half then becomes a measurement rather
+than a leap.
+
+One thing genuinely needs you: **on Friday, two agents built the same
+thing on the same night.** Neither wasted anything of yours except a
+nightly slot, and the second one caught it, refused to overwrite the
+first, and recommended keeping the other's version — which was the right
+call. The cause is one line in the runner: a scheduled session starts on
+`main`, and finished-but-unreviewed work lives on a branch, so the
+session literally cannot see what was done the night before. It didn't
+happen again only because four sessions since used judgment the
+instructions don't ask for. One extra command in the boot sequence closes
+it, and it is A3-30.
+
+And the uncomfortable arithmetic, which is the flip side of the loop
+working: it now produces about one finished workstream a night and you
+review about once a week. Nothing is going wrong — the safety rules are
+doing exactly what they should by refusing to stack unblessed work — but
+the bottleneck has quietly moved from the agents to the review, and
+Friday's collision is the first symptom of it rather than a one-off.
+
+### 6. Verification and constraints
+
+- `pytest`: **329 passed, 3 skipped** (unchanged; nothing testable was
+  touched).
+- `evals run --suite tier0,tier1,stage1`: **`no outcome changes vs
+  baseline`**.
+- This session's own commits touch **two files**:
+  `docs/research/RESEARCH-LOG.md` and `docs/research/agent-charter.md`.
+  No pipeline file, no eval file, no scorer file, no grid, no case, no
+  trace.
+- `git diff --name-status main --diff-filter=MD -- evals/` → **empty**
+  across the whole branch: nothing existing under `evals/` is modified or
+  deleted. `git diff --stat main -- evals/baseline.json` → **empty**.
+- `git diff --name-only main -- src/musical_perception/evals/` lists
+  files from the W1.5/W11/W12 EVAL-CHANGE increments already declared in
+  their own entries; this session's own diff over that path is **empty**.
+- **Not an EVAL-CHANGE.** No metric, suite, or scorer touched.
+- The Barre-1 DEV media directory was **not enumerated**.
+- Turn bound: inside the 45-turn per-session bound.
+- Branch `agent/marathon`. Nothing blessed; `evals bless` never run.
+
+Attempted: W0, the meta-rung, taken four days ahead of its trigger
+because every other workstream is BLOCKED — declared in §0 as a rule-9
+matter for the owner rather than performed silently.
+Pre-registered expectations: n/a (review session; the charter defines
+W0's deliverables — re-rank, audit the BLOCKED queue, propose amendments,
+plain-language summary — and adds W6's condition specifically).
+Result: W6's condition drafted and split into a nightly-eligible W6-a and
+a key-dependent W6-b, discharging A6-27; BLOCKED queue audited against
+files with A4-27/A5-27/A6-27 closed and W11-b confirmed open by file
+count; an orphan branch's unheard root-cause amendment recovered and
+independently verified against `air-nightly.sh:64`; six amendments
+proposed.
+Regressions and classifications: **none** — no executable file touched,
+and both proof runs confirm it.
+
+Lesson (durable, one paragraph): A scheduling rule and a selection rule
+can disagree without either being wrong, and the loop has no tie-breaker
+— "W0 outranks everything after 7 days" and "take the highest-ranked
+workstream that is not BLOCKED" give opposite answers on a night when
+everything except W0 is blocked, and nothing in the charter says which
+governs, so the only honest move is to act, declare, and hand the reading
+to the owner. The night's larger lesson is about where work becomes
+invisible: this loop's memory is the ledger, the ledger lives in git, and
+git has branches — so "read the ledger" silently means "read *a* ledger,"
+and the one a scheduled session boots into is the one that by
+construction cannot contain last night's finished work. Friday's
+duplicate W11 was not a lapse of attention; it was a session following
+the contract exactly and being told something false by it. A memory that
+forks needs the boot sequence to say which fork, and until it does, every
+correctly-behaved session is one night from rebuilding what already
+exists.
+
+Status: **PROPOSED** — re-ranking, W6-a/W6-b conditions, and amendments
+A1-30 through A6-30 for the owner's batch review, which now carries
+**six** unreviewed items on this branch: W11 (08-28), W12 (08-29), W4
+(08-29), W3-remainder (08-29), W10 (08-30) and this. The charter edit on
+this branch is the proposal and lands only if merged. Nothing blessed.
+
+## 2026-08-30 · rung M / W6-a (rung 5: the consumption path) · agent/marathon · local (nightly, unattended) — PRE-REGISTRATION
+
+**Workstream selection.** Boot sequence run in full, including the
+PROPOSED A3-30 step — the ledger on `agent/marathon` was read before
+selecting, and the six increments carrying RESULTS entries there (W11,
+W12, W4, W3-remainder, W10, and tonight's earlier W0) were treated as
+COMPLETE-pending-review and not re-taken. That leaves **W6-a, ranked 1
+among open workstreams** by the W0 entry of this same date (§1, §3):
+the only open item a key-less unattended session can execute end to
+end. W5's continuation is owner-started and was not touched; W6-b,
+W11-b, W12-b and W8 are BLOCKED and get no work tonight.
+
+Writability probe (charter amendment 2, first act): `c01e20b` wrote a
+file on `agent/marathon` and `f67fabd` removed it, before any
+substantive work.
+
+**Declared scope flag.** This increment adds a new module under
+`src/musical_perception/evals/` (the trace-sidecar loader, beside
+`pulse_sidecar.py` where W11 put its own) and changes one pipeline file
+(`precision/posterior.py`). No scorer, metric, suite, aggregate or
+report code is touched. Rule 2 forbids bundling a pipeline change into
+an eval-infrastructure change because a real behaviour delta could hide
+inside the infra delta; here the pipeline delta is **proven zero** by
+the byte-identity gate below, which is the strongest form of the
+assurance the rule exists to obtain. Flagged **EVAL-CHANGE (add-only,
+loader)** so the owner can rule on the reading rather than discover it.
+
+### The socket, named precisely
+
+ADR-017's Consequences names ensembled semantics as one of the two
+un-delivered paths to the tempo wins, and `posterior.py` is where it
+would land. Today the classified-marker evidence class is a hard label
+per word: `estimate_rhythm` partitions its inputs into three time
+arrays — beat markers, and/ah markers, and the remaining words — and
+each array enters the per-frame Poisson emission as an integer count.
+One Gemini draw decides that partition outright, which is Standing
+Lesson 4 in the load-bearing position of the whole rhythm core.
+
+W6-a replaces the partition with a **belief per token**: a distribution
+over `{beat, and, ah, e, none}`, entering the emission as **expected
+support** (fractional counts) rather than integer counts. The class
+list is five, not the four the condition names, because `MarkerType.E`
+exists and today's code excludes E-tagged tokens from *every* stream —
+beat, sub, and word alike. Folding E into `none` would push such a
+token into the word stream and break identity. Measured on the corpus
+tonight before writing any code: 3028 classified tokens across 52
+traces, **`none` 1663 / `beat` 1077 / `and` 212 / `ah` 76, `e` zero**,
+every one carrying an index. So the fifth class is precautionary, not
+load-bearing — and that is a fact, not an assumption.
+
+**What consumes the distribution, and what deliberately does not.** The
+emission consumes it: a Poisson rate has a defined meaning under
+fractional mass. The three guard statistics — `_stream_support`'s
+robust IOI CV, `_division`'s circular-concentration vet, and
+`_grouping_ladder`'s counted-number cycle — consume the **MAP decode**
+instead. A weighted robust-CV and a weighted circular resultant have no
+agreed generalization, and inventing one tonight would ship unmeasured
+machinery under cover of a byte-identity gate that cannot see it (the
+one-hot case makes MAP and expectation the same object, so the gate is
+blind to exactly this choice). Declared here so W6-b revisits it with
+draws in hand rather than inheriting it silently.
+
+### The sidecar
+
+`gemini-draws.json`, add-only inside a trace directory under the
+2026-08-28 carve-out, checksum-bound to the trace's `media_sha256`
+exactly as `pulse.json` is, refusing to load when the hashes disagree.
+Each draw freezes its own model id and sampling params; the payload
+also pins the **transcript** the draws classified, because a draw is a
+list of `(index, marker_type, beat_number)` against a specific Whisper
+token sequence and indices into a different transcript are silently
+wrong rather than loudly wrong. **No sidecar is recorded tonight** —
+that needs live calls and is W6-b.
+
+### Pre-registered predictions
+
+- **P1 (the gate).** With the one-hot belief built from the existing
+  single draw, `evals run --suite tier0,tier1,stage1` reports `no
+  outcome changes vs baseline` AND the run artifact's `suites` payload
+  is **byte-identical** to the before-run captured at `f67fabd`
+  (sha256 `4c27815c…`). Not "equivalent", not "no outcome changes" —
+  identical bytes. A non-identical run FAILS this goal and will be
+  reported as a failure, not explained away.
+- **P2.** `pytest` stays green at **329 passed, 3 skipped** plus the
+  new W6-a tests, with no existing test edited.
+- **P3.** The belief-token count per clip equals `markers + words that
+  are neither at a marker timestamp nor in `_SUB_VOCAB``, and the
+  summed class weights reproduce the integer stream lengths exactly on
+  all 52 traces (checked by a script, not by argument).
+- **P4 (the socket is live, not decorative).** On a synthetic
+  five-draw fixture where the draws genuinely disagree, the fractional
+  emission produces a tempo posterior that differs from the MAP-only
+  decode of the same draws. If a split distribution changes nothing,
+  the machinery is ornamental and I will say so.
+- **P5.** The loader rejects a sidecar whose `media_sha256` disagrees
+  with the trace's, and rejects draws whose indices do not address the
+  pinned transcript — both proven by tests that assert the raise.
+
+**Expected to be hard:** nothing about P1 is guaranteed. The word
+stream is built today by a filter over `words` that excludes any word
+whose start rounds to a marker timestamp — a *timestamp* join, not an
+index join — and duplicates survive it. Rebuilding that partition from
+a token list is where identity most plausibly breaks, and float
+summation of weights where integer `len()` stood is the second place.
+
+Status: PRE-REGISTRATION (results entry follows in this session).
+
+## 2026-08-30 · rung M / W6-a (rung 5: the consumption path) · agent/marathon · local (nightly, unattended) — RESULTS
+
+### Headline
+
+The socket is built and the gate held exactly: with the existing single
+draw fed as a one-hot belief, the `suites` payload of
+`evals run --suite tier0,tier1,stage1` is **byte-identical** to the
+before-run — `4c27815c7e39d5826004912ffbf7cb7cb043eddb1db0f33099aa513f229ed5d8`,
+99,791 bytes, both sides — and `no outcome changes vs baseline`.
+`pytest` **344 passed, 3 skipped** (329 before + 15 new; no existing
+test edited).
+
+The finding worth more than the plumbing came from the one prediction
+that was supposed to be a formality. **P4 was meant to check the socket
+was not decorative. It is not decorative; it is hot.** Fractional
+belief is spent per token and *summed*, so a minority spread across
+many tokens is not a minority in likelihood terms. On a synthetic clip
+whose on-beats are certain and whose offbeats carry `p(beat)`, the
+committed tempo flips from the beat to the half-beat at:
+
+| offbeat tokens carrying the minority mass | flip point |
+|---|---|
+| 24 | p = 0.132 |
+| 16 | p = 0.159 |
+| 12 | p = 0.185 |
+| 8  | p = 0.237 |
+
+**With N = 5 draws one dissenting draw is p = 0.2**, which is above the
+flip point for any clip with a dozen or more contested tokens. So an
+ensemble is not automatically more conservative than a single draw — on
+metric-level decisions it is *less* so, because it lets a 4–1 minority
+buy a level the majority rejected. Standing Lesson 4 says outvote the
+coin flip; this says the machinery for outvoting it does not, as built,
+implement voting. W6-b would have inherited that silently and read the
+result as evidence about ensembles rather than about the emission.
+
+### What was built
+
+- **`MarkerBelief` + `BELIEF_CLASSES`** (`types.py`): a distribution
+  per spoken token over `{beat, and, ah, e, none}`, with `map_class`
+  for the consumers that need a decision.
+- **`posterior.py` rewired to beliefs.** `estimate_rhythm` gains
+  `marker_beliefs=None`; the three time arrays it used to build by hand
+  are now `_weighted_stream` views of one token list, and
+  `_lattice_forward` takes `(times, weights)` per class, so
+  `events_c(f)` is a fractional count. `beliefs_from_markers` is the
+  one-hot constructor, and left at the default the whole path is the
+  old path.
+- **`evals/gemini_draws.py`**: the `gemini-draws.json` format, its
+  loader, and `beliefs_from_draws` (each draw votes 1/N). Add-only
+  under the 2026-08-28 sidecar carve-out, checksum-bound to the trace's
+  `media_sha256` exactly as `pulse.json` is, and additionally pinning
+  the transcript fingerprint the draws' indices address.
+- **`docs/evals/gemini-draws.md`**, including the flip-point table and
+  the consumer split below.
+- **No sidecar recorded, no live call made, `GEMINI_API_KEY` not
+  needed or present.** That is W6-b.
+
+### Prediction scorecard (misses first, ADR-015 discipline)
+
+**Partial — P4 (1 of 5, and it is the one that mattered).** Predicted:
+"the fractional emission produces a tempo posterior that differs from
+the MAP-only decode." The first fixture built to test it was
+**worthless and is disclosed rather than quietly replaced**: every
+half-beat was spoken, so all three conditions committed to 198.2–198.5
+BPM — railed against `T_MIN_FRAMES` at the top of the tempo axis — and
+the "difference" the test asserted was 198.2 vs 198.3 with confidence
+1.00 vs 0.97. That is a Standing-Lesson-7 non-difference dressed as a
+pass. The test would have been green and the claim would have been
+false. Rebuilt so the marker channel decides the level alone (offbeats
+carry `and` mass rather than falling into the word stream), and the
+answer is the flip-point table above: p = 0.0 → 100.2 BPM, p = 1.0 →
+198 BPM, and the crossing sits at 0.13–0.24 depending on how many
+tokens carry the mass. So P4 landed, but only after its first
+instrument was thrown away.
+
+**Hit — P1, the gate.** Byte-identical `suites` payload, twice
+(immediately after the posterior change and again after the sidecar and
+tests landed), same sha256 as the pre-change run.
+
+**Hit — P2.** 344 passed, 3 skipped. The 329 pre-existing tests are
+untouched; 15 are new.
+
+**Hit — P3.** Checked by script across every trace with a transcript —
+**51 clips, 2,909 belief tokens, 0 mismatches**: the beat, sub and word
+streams from beliefs equal the hard-label arrays element for element,
+the summed class weights equal the integer stream lengths exactly, and
+the MAP decode equals the hard partition. (52 trace directories exist;
+`barre1-C-el` has a transcript with no words and is skipped by the
+check, not by the code.)
+
+**Hit — P5.** Five refusals, each with a test asserting the raise:
+media-hash mismatch, transcript-fingerprint mismatch, index outside the
+transcript, a word with no index, an unknown class.
+
+**Correct in advance, for the record:** the pre-registration named the
+word-stream's timestamp join and the float-vs-`len()` summation as the
+two places identity would most plausibly break. Both survived — the
+timestamp join because `beliefs_from_markers` reproduces it verbatim,
+and the sums because N exact 1.0s add to exactly N.
+
+### The design decision the gate cannot see, declared
+
+One draw makes the MAP decode and the expected mass the same object, so
+byte-identity is **blind** to which of them a consumer reads. Stated
+plainly rather than left in the code:
+
+| consumer | reads | why |
+|---|---|---|
+| the Poisson emission | the mixture | a rate is defined under fractional mass |
+| `_stream_support` (robust IOI CV) | the MAP decode | no agreed weighted form |
+| `_division` (circular-concentration vet) | the MAP decode | no agreed weighted form |
+| `_grouping_ladder` (counted cycle) | the MAP decode | beat numbers are labels, not mass |
+
+Inventing a weighted robust-CV or a weighted circular resultant tonight
+would have shipped unmeasured machinery under cover of a gate that
+cannot see it. W6-b decides these three with draws in hand.
+
+The class list is **five**, not the four the condition named:
+`MarkerType.E` exists and today's code excludes E-tagged tokens from
+every stream, so folding E into `none` would push such a token into the
+word stream and break identity. Measured before writing code: 3,028
+classified tokens across 52 traces — `none` 1,663 / `beat` 1,077 /
+`and` 212 / `ah` 76, **`e` zero**. Precautionary, not load-bearing, and
+now a test.
+
+### Constraints
+
+- `git diff --name-status main --diff-filter=MD -- evals/` → **empty**;
+  `git diff --name-status main -- evals/` is **52 additions, 0
+  modifications, 0 deletions**. `git diff --stat main --
+  evals/baseline.json` → **empty**.
+- No file deleted anywhere on the branch
+  (`--diff-filter=D` empty); the 10k deletions in the whole-branch stat
+  are W3-remainder's rewrite of `docs/research/baseline-benchmark.json`,
+  reported in its own entry.
+- This session's own diff, `f67fabd..HEAD`: **6 files, +876 / −27** —
+  `types.py`, `precision/posterior.py`, `evals/gemini_draws.py` (new),
+  `tests/test_gemini_draws.py` (new), `docs/evals/gemini-draws.md`
+  (new), and this ledger.
+- **EVAL-CHANGE, declared** (add-only loader). A new module under
+  `src/musical_perception/evals/` plus one pipeline file. Rule 2 forbids
+  bundling because a behaviour delta could hide inside an infra delta;
+  here the pipeline delta is proven zero to the byte. Flagged for the
+  owner to rule on rather than left to be discovered. **No scorer,
+  metric, suite, aggregate or report code was touched** — the changed
+  files under `evals/` versus main all belong to the earlier W1.5 / W11
+  / W12 increments, and this session's own diff over that path is the
+  one new file.
+- Writability probe first (`c01e20b`, `f67fabd`). Branch
+  `agent/marathon`. `evals bless` never run. No live model call, no
+  network. The Barre-1 DEV media directory was not enumerated.
+- Turn bound: inside the 45-turn per-session bound.
+
+### BLOCKED — owner action needed (unchanged queue, plus one)
+
+Nothing new is asked of the owner tonight except the ruling below; the
+existing queue (six unreviewed increments, W6-b's three decisions,
+W11-b's media, the A1-30…A6-30 amendments) stands as the earlier W0
+entry left it.
+
+- **New, small: rule on the EVAL-CHANGE reading above** — whether a
+  provably-inert pipeline change may ride along with an add-only loader,
+  or whether the two must be separate branches even when byte-identity
+  is proven. Tonight assumed the former, declared under rule 9.
+
+Attempted: W6-a — the classified-marker evidence class generalized from
+a hard label to a distribution, plus the `gemini-draws.json` sidecar
+format and loader.
+Pre-registered expectations: P1 byte-identity under one-hot; P2 pytest
+green; P3 belief tokens reproduce the streams on all traces; P4 a split
+distribution changes the answer; P5 the loader refuses mismatched
+sidecars.
+Result: **4 hits, 1 partial (P4, whose first fixture was worthless and
+was discarded)**. Gate held to the byte: sha256
+`4c27815c…`, 99,791 bytes, before and after. 344 passed, 3 skipped.
+2,909 belief tokens across 51 clips reproduce the hard-label streams
+exactly. Flip-point table quantifies the emission's response to
+fractional mass.
+Regressions and classifications: **none** — the gate is byte-identity
+and it held, so there is nothing to classify.
+Lesson (durable, one paragraph): A gate can be perfectly rigorous and
+still be blind, and knowing exactly what it cannot see is part of
+passing it. Byte-identity under a one-hot belief proves the refactor is
+a refactor — but the degenerate case that makes the proof possible is
+precisely the case where the MAP decode and the expected mass coincide,
+so every choice between them passed the gate unexamined and had to be
+declared instead. The night's other lesson is about the shape of
+uncertainty once it is admitted: expected support is *linear per token
+and additive across tokens*, which means a 1-in-5 dissenting draw does
+not move the answer by a fifth — spread over sixteen contested tokens
+it moves it all the way, and the metric level flips at p ≈ 0.16. A
+channel that consumes distributions is not automatically more cautious
+than one that consumes decisions; it is more sensitive, in both
+directions, and the ensemble work now starts from a measured number
+instead of the assumption that averaging is safe.
+Status: PROPOSED — awaiting owner batch review (this makes **seven**
+unreviewed increments on this branch). Nothing blessed.
 ## 2026-08-30 · rung M · main · local (owner batch review: burst batch accepted; W13 commissioned; collision amendment ratified)
 
 **Owner batch review of the 2026-08-29/30 burst output, in session.**
@@ -6925,3 +7603,37 @@ in place); W8 blocked. Twelve workstreams complete.
 
 Status: **ACCEPTED + MERGED** (`pytest` 329/3 green on main
 post-merge) · rulings recorded · W13 live.
+
+## 2026-08-30 · rung M · main · local (owner batch review, second sitting: W6-a accepted; A1-30/A5-30 ratified; W6-b deferred; cadence set)
+
+Two increments arrived DURING the first sitting — the out-of-cadence
+W0 (six amendments) and W6-a — proving A6-30's point in real time.
+Reviewed immediately under the new cadence ruling below.
+
+- **W6-a ACCEPTED and merged.** Verified locally: pytest **344 passed /
+  3 skipped** (15 new belief tests, no existing test edited), full
+  suites `no outcome changes vs baseline`. The **flip-point finding is
+  ratified as W6-b's design constraint**: summed fractional belief is
+  not voting — one dissent in five (p=0.2) exceeds the tempo flip
+  point on any clip with ≥12 contested tokens, so W6-b must implement
+  real voting or robust pooling, never mean-pooled belief.
+- **A1-30 RATIFIED**: out-of-cadence W0 permitted (floor, not
+  exclusive), never resets the 7-day clock; 2026-09-03 stands.
+- **A5-30 RATIFIED**: redaction by default for transcript quotes that
+  name steps (rule 7 amended).
+- **A3-30 / A4-30**: both had already been executed in the first
+  sitting (boot amendment ratified; duplicate branch deleted) —
+  convergence noted, the charter's step-2 text now carries the exact
+  command from A3-30. One honesty note: the duplicate branch was
+  deleted before its three optional graft items were read in full;
+  A4-30's summary preserves the provenance-gate idea, carried as W11-b
+  backlog.
+- **W6-b decisions DEFERRED** to the 2026-09-03 W0 (cost ceiling;
+  second model family; key delivery to the Air stays on the owner's
+  list).
+- **Cadence (A6-30 response)**: short attended reviews every ~2 days
+  while the burst runs; weekly W0 unchanged.
+
+Status: **ACCEPTED + MERGED** · thirteen workstreams complete · queue
+for the nightlies: W13(b) prefix-replay twin, then BLOCKED notes until
+09-03 unless the owner opens the attended W5 continuation first.

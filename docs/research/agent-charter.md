@@ -31,11 +31,14 @@ flags, classified regressions).
 1. Read this charter in full.
 2. Read [RESEARCH-LOG.md](RESEARCH-LOG.md) — at minimum the Standing
    Lessons section and the last five entries — **as it stands on
-   `origin/agent/marathon`, not only main's copy** (owner-ratified
-   2026-08-30): a completed-but-unmerged workstream is invisible from
-   main by construction, which is how W11 got executed twice on
-   2026-08-29. Never re-attempt an approach
-   the ledger records as falsified without new evidence.
+   `origin/agent/marathon`, not only main's copy**
+   (`git show origin/agent/marathon:docs/research/RESEARCH-LOG.md`;
+   owner-ratified 2026-08-30, converging with the same night's A3-30):
+   a completed-but-unmerged workstream is invisible from main by
+   construction — two sessions built W11 on the same night for exactly
+   this reason. Any workstream carrying a RESULTS entry on the branch
+   is COMPLETE-pending-review and is not taken again. Never re-attempt
+   an approach the ledger records as falsified without new evidence.
 3. Read `docs/evals/baseline.md` (and `evals/baseline.json`) for the
    current blessed state.
 4. Confirm the CURRENT RUNG above and its prerequisites. If prerequisites
@@ -145,7 +148,10 @@ flags, classified regressions).
    the rung's scope; park discoveries in the ledger's Backlog notes.
 7. **House honesty style.** Luck flags, disclosed retries, "the totals hid
    X" — follow the ADR record's example. A green earned by chance is
-   annotated as such in the case notes.
+   annotated as such in the case notes. **Redaction by default (A5-30,
+   owner-ratified 2026-08-30):** agent-authored repo text does not quote
+   transcript lines verbatim when they name steps — paraphrase or use
+   opaque ids, the same containment posture as the enumeration ban.
 8. **Blessing is human.** Recommend, don't bless.
 9. **Charter conflicts.** If evidence says a rung or rule is wrong, stop
    and write a ledger entry proposing the amendment — never silently
@@ -488,6 +494,19 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   bar rung 6, division none. Gates NOTHING until a separate future
   owner ruling; both metrics reported side by side. Mapping table
   pre-registered in the increment before any pipeline comparison. ·
+  **W6 — condition DRAFTED 2026-08-30 by the out-of-cadence W0 and
+  SPLIT (A2-30, owner-ratified 2026-08-30): W6-a**, the consumption
+  path — distributions through `posterior.py`'s marker evidence class,
+  gated on one-hot byte-identity — *(COMPLETE 2026-08-30, accepted at
+  the same day's second batch review; the flip-point finding stands as
+  W6-b's design constraint: summed fractional belief is NOT voting, and
+  a 1-of-5 dissent can buy a metric level on any clip with ≥12
+  contested tokens)*; **W6-b**, the N ≥ 5 draws themselves, BLOCKED on
+  `GEMINI_API_KEY` reaching the runner plus two owner decisions (cost
+  ceiling; the second model family — the 2026-08-09 backlog note
+  suggests a Qwen2-Audio-class local model), both DEFERRED by the owner
+  (2026-08-30) to the 2026-09-03 W0. Conditions in the 2026-08-30 W0
+  ledger entry §1. ·
   **W13 = the expert information-timing trace (COMMISSIONED 2026-08-30
   by the owner):** trace what the professional accompanist actually
   uses — the owner reports extracting the full picture from a few
@@ -522,7 +541,10 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   **Burst schedule note (owner, 2026-08-30):** the Air's 3×/day burst
   stays until the 2026-09-03 W0 review, which recommends keep or
   revert; the revert procedure and plist backup are recorded in the
-  2026-08-28 air-service ledger entry.
+  2026-08-28 air-service ledger entry. **Cadence ruling (A6-30
+  response, owner 2026-08-30):** while the burst runs, the owner holds
+  short attended reviews roughly every two days; the weekly W0 deep
+  pass is unchanged.
   **W10 = nod-kinematics gesture channel *(COMPLETE 2026-08-30,
   negative — owner-accepted 2026-08-30: no beat-locked head movement
   on this corpus under three event definitions with a working positive
@@ -539,7 +561,19 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   every other workstream — that session performs the weekly review (re-rank
   the workstreams, audit the BLOCKED queue, propose any charter
   amendments as a PROPOSED ledger entry, write a plain-language summary
-  addressed to the owner) instead of a pipeline increment.
+  addressed to the owner) instead of a pipeline increment. **The 7-day
+  clause is a floor, not exclusive (A1-30, owner-ratified 2026-08-30):**
+  an out-of-cadence W0 is permitted when circumstances warrant, and it
+  never resets the 7-day clock — the scheduled meta-rung stands.
+  **Out-of-cadence W0 (*PROPOSED A1-30, 2026-08-30 — owner's to
+  ratify*):** the 7-day clause says when W0 *outranks* everything; it is
+  read here as a floor, not as exclusivity, so on a night when every
+  other workstream is BLOCKED, W0 is the highest-ranked non-BLOCKED
+  workstream and may be taken early rather than idling the loop. An
+  out-of-cadence W0 **does not reset the 7-day clock** — the next
+  scheduled meta-rung keeps its original date. Rule the other way and the
+  alternative is explicit: consecutive BLOCKED notes until the trigger
+  fires.
 - **Per-session condition** (what the standing contract resolves to):
   one complete increment on one workstream, committed on
   `agent/marathon`, evidence shown by full command output, constraints
