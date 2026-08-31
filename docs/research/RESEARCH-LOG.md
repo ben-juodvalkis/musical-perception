@@ -7967,3 +7967,342 @@ blocked behind W5. Recommendation, not a blessing: accept W13(b) as a
 measurement increment (it pins no outcome, gates nothing, and reproduces
 `no outcome changes vs baseline`), and rule on the two items it puts on
 the owner's queue — the stopping-rule probe and H1's second meter channel.
+
+## 2026-08-31 · rung M / W0 (the meta-rung, OUT OF CADENCE — second in two days) · agent/marathon · local (unattended)
+
+**Meta-rung, not a pipeline increment.** No pipeline, eval, grid, case,
+trace or scorer file is touched; the only code executed was read-only
+inspection of frozen artifacts. Writability probe (charter amendment 2,
+first act): a marker line was written and committed on `agent/marathon`
+(`ecd3229`) and then reverted before any substantive work.
+
+### 0. Trigger check — this is the SECOND out-of-cadence W0 in two days, and it is declared, not slipped in
+
+The last meta-rung entry is **2026-08-30** (itself out of cadence); the
+last *scheduled* one is **2026-08-27**, so the 7-day clause still puts
+the mandatory W0 at **2026-09-03**. Under A1-30 (owner-ratified
+2026-08-30) the 7-day clause is a floor, and W0 may be taken on a night
+when every other workstream is BLOCKED rather than idling the loop.
+Tonight is such a night — §1 shows it by elimination. **This W0 does not
+reset the clock; the 2026-09-03 meta-rung stands.**
+
+Because 08-30 already re-ranked and already drafted W6's condition, this
+entry is **deliberately narrow**: it does not re-litigate the ranking.
+Its content is the one thing 08-30 could not do — size the two items that
+**W13(a) and W13(b) put on the owner's queue after that W0 ran** — and
+turn them into ratifiable conditions, so that 09-01 and 09-02 have
+something to take. Both sizings came back with results that change the
+recommendation, which is the argument for having done it tonight rather
+than on 09-03.
+
+### 0.1 Pre-review state, verified on this branch before anything else
+
+- `pytest`: **351 passed, 3 skipped** (up from 329 on 08-30: +15 W6-a,
+  +7 W13(b)).
+- `evals run --suite tier0,tier1,stage1,stage1-peakrate`: **`no outcome
+  changes vs baseline`**.
+- tier-0 tempo **25/25**, meter_triple **24/25**.
+- tier-1 committed accuracy: tempo **0.690** (20/9/1, truth_in_family
+  5/9), meter_triple **0.464** (13/15/1), counts **0.591** (13/9/6);
+  **ECE 0.1815**; Acc1 0.483@4% / 0.690@8%, Acc2 0.586@4% / 0.793@8%,
+  |OE2| median 0.0467, between-levels rows 6.
+- W12 factored slice (reported-only): meter_division **0.778**,
+  meter_grouping **0.857**.
+- stage1 `aggregate_verified` F=**0.383**; stage1-peakrate
+  `aggregate_verified` F=**0.686**. Corpus: 52 cases, 22 provisional /
+  30 verified; 30 grids; 30 `pulse.json` sidecars, **0 on the 22 barre1
+  traces** (W11-b still open, unchanged).
+
+Seven unreviewed increments have now stacked without moving a blessed
+number. That remains what "gates nothing" is supposed to look like.
+
+### 1. The finding that matters most tonight: the queue is empty for scheduled sessions
+
+Walking the standing ranking as written in the charter, tonight:
+
+| workstream | state tonight | takeable by a scheduled session? |
+|---|---|---|
+| W13(b) | COMPLETE 2026-08-31, PROPOSED, unreviewed | no — rule 8 |
+| W13(a) | COMPLETE, merged to main | no |
+| W6-a | COMPLETE, accepted 2026-08-30 | no |
+| W6-b | BLOCKED: two owner decisions, DEFERRED to 09-03 | no |
+| W5 continuation | OPEN but **owner-started** | no — charter says never |
+| W8 | BLOCKED behind W5 + ADR-017's tier-0-driver EVAL-CHANGE | no |
+| W11-b (barre1 sidecars) | BLOCKED: barre1 media is `offrepo:` | no |
+| everything else | COMPLETE | no |
+
+**Zero commissioned workstreams are available.** This is not a one-night
+accident: the same table holds on 09-01 and 09-02 unless something is
+commissioned, so the default outcome is three consecutive BLOCKED notes
+into the 09-03 review. Rung M's own policy line — *"the loop never idles
+while any workstream is open"* — is the reason this session went looking
+for work to commission rather than writing the fourth such note.
+
+### 2. Sizing audit A — the stopping-rule probe is real, and half of it is scoreable tonight
+
+W13(b) Finding 2 is the strongest design claim on the queue: lateness is
+**re-decision, not slow convergence** (median 5 tempo moves, 6.5 counts
+moves per clip; on 5 of 29 verified clips tempo settles only in the final
+5% of the span), so *"the missing thing is a stopping rule, not a better
+estimator."* Two families of stopping rule were named. They are **not**
+equally cheap, and the difference was not visible when the item was
+parked:
+
+- **k-stable-prefixes** (commit when the answer has not moved for k grid
+  points): **scoreable today, no re-run.** Every clip entry in
+  `docs/research/w13b-prefix-convergence.json` carries a `changes` array
+  of `{t, field, to}` records plus `span`, `n_grid`, `final` and the
+  per-field `convergence` time. Sweeping k and scoring
+  premature-commit-rate against wasted-wait is pure arithmetic over that
+  file.
+- **entropy < θ** (commit when posterior mass concentrates): **NOT
+  scoreable today.** Verified this session — `grep -n
+  "confidence\|entropy\|posterior" scripts/w13b-prefix-replay.py` returns
+  **nothing**, and the change records carry exactly three keys
+  (`field`, `t`, `to`). No confidence is recorded at any prefix. This
+  family needs one added field and a re-run of the replay (82 seconds,
+  additive, no new capture) **before** it can be scored at all.
+
+That asymmetry is the whole reason to draft the condition rather than
+leave the item as prose: a session that took "score entropy < θ" at face
+value would discover mid-night that its scoring set does not contain the
+quantity, and would either burn the night or quietly substitute the other
+family. **W14 below names the re-run as step one.**
+
+### 3. Sizing audit B — H1 is NOT the cheap win the W13(a) coda implied, and the corpus says so
+
+W13(b) Finding 3 (the timing-only path never leaves grouping 4; every
+non-duple meter this pipeline has ever emitted comes from one Gemini
+draw) and the W13(a) coda (meter 4/4 vs the owner's 6/4, *"with the
+declarative six-count line demonstrably in the transcript, H1's gap
+observed on the first try"*) converge on memo hypothesis **H1** — parse
+declarative count announcements out of the transcript the pipeline
+already has. Two independent lines pointing at one cheap-sounding change
+is exactly the moment to check the corpus before commissioning it.
+
+Read-only scan of all **52** frozen `whisper.json` transcripts for
+declarative structure phrases (`in <n>`, `<n> counts`, `counts of <n>`,
+`<n>/<n>`, `sets of <n>`, dance-form names). Per A5-30 only pattern
+identities and counts are reported — no transcript text, no step names:
+
+```
+traces scanned: 52   with >=1 declarative-structure hit: 7
+  barre1-D-d      total=6   in<n>=2  <n>counts=4      (provisional)
+  barre1-E-d      total=3   in<n>=1  <n>counts=2      (provisional)
+  barre1-E-er     total=1            <n>counts=1      (provisional)
+  barre1-H-d      total=2   in<n>=1  <n>counts=1      (provisional)
+  exercise-1-demo total=4   in<n>=2  <n>counts=2      (VERIFIED)
+  plies-demo      total=6   in<n>=2  <n>counts=4      (VERIFIED)
+  rig-mixed-4-4-104-quantities  total=1  <n>counts=1  (VERIFIED)
+pattern totals: in<n>=8  <n>counts=15  counts-of=0  n/n=0  sets-of=0  form-name=0
+```
+
+**Two findings, and the second is the one that changes the plan.**
+
+1. **Reach is 7 of 52 clips, and only 3 are verified.** Zero hits on 23
+   of the 24 rig clips — unsurprising, they are synthetic counting — so
+   H1 lives entirely in the video-demo material, which is also where
+   meter is worst (step_names slice meter_triple **0.231**, n=13). The
+   direction is right. The *gating* set is three rows.
+2. **On those three verified rows, reading the declared number as the bar
+   grouping agrees with the verified truth on 1 of 3.**
+
+   | clip | declared number(s) | verified truth | naive H1 verdict |
+   |---|---|---|---|
+   | `plies-demo` | four ×4 | meter 4/4 | **agrees** |
+   | `exercise-1-demo` | four ×2 | meter **3/4** | **disagrees** |
+   | `rig-mixed-4-4-104-quantities` | six ×1 | meter **4/4** | **disagrees** |
+
+   The confound is legible: a teacher saying "four counts" of a phrase in
+   3/4 is naming **repetitions or bars**, not beats-per-bar. Deciding
+   *what the number quantifies* is a semantics problem — which is the job
+   Gemini is already doing — not the parsing problem the memo framed.
+
+**Caveat, stated because the number is small and the instrument is
+crude** (rule 7): the regex conflates `in <n>` with `<n> counts`, cannot
+see whether a hit is declarative or incidental, and n = 3 is below any
+threshold Standing Lesson 7 would respect. This **sizes** H1; it does not
+falsify it. But it is enough to say that H1 must ship with a
+repetitions-vs-counts disambiguation and **cannot gate anything on the
+current verified corpus**, and that is a materially different commission
+from the one the coda's single-clip success implied.
+
+### 4. Two conditions DRAFTED, ready for owner ratification
+
+Both are offline, key-free, nightly-eligible, and measurement-only.
+Neither can move a blessed number. The charter edit on this branch adds
+them to the workstream list marked **PROPOSED** — same mechanism the
+08-30 W0 used for W6-a, which the owner accepted the same night.
+
+#### W14 — the commitment stopping rule (PROPOSED, ranked 1)
+
+```
+/goal Per docs/research/agent-charter.md W14 (the commitment stopping
+rule): scripts/w13b-prefix-replay.py records, at every prefix, the
+committed confidence the pipeline already computes for each field
+(posterior mass / normalized_tempo confidence), re-run additively into
+docs/research/w13b-prefix-convergence.json with the existing keys
+UNCHANGED and the previously-published convergence times reproduced
+EXACTLY (any change to an existing number fails the goal and is not
+explained away); then both stopping-rule families are scored over all 52
+clips x 2 conditions — k-stable-prefixes for k in a stated sweep, and
+confidence >= theta for theta in a stated sweep — reporting, per family
+and per field, premature-commit rate (committed value != final value),
+median committed-at time as a fraction of span, and the same numbers on
+the verified slice alone beside the provisional slice; the owner's
+W13(a) curve is laid against the best operating point of each family.
+REPORTED-ONLY: nothing in src/ changes, no metric is added to any eval
+suite, no outcome is pinned. Proven by complete pytest and
+`evals run --suite tier0,tier1,stage1,stage1-peakrate` output showing
+`no outcome changes vs baseline`, plus the results table in the
+transcript and a committed docs/research/w14-stopping-rule.md.
+Constraints: no existing file under evals/cases/, evals/traces/, or
+evals/baseline.json modified (prove with `git diff --stat main` AND
+`git diff --name-status main --diff-filter=MD -- evals/` empty); branch
+agent/marathon; dated RESEARCH-LOG.md entry with a pre-registered
+prediction scorecard. Or stop after 40 turns.
+```
+
+Why ranked 1: it is the only queued item whose scoring set already
+exists, it needs no capture and no key, it answers a design question W5's
+continuation will otherwise answer by guessing, and its gate (existing
+numbers reproduce exactly) is self-checking.
+
+#### W15 — the stated-structure channel, re-scoped (PROPOSED, ranked 2)
+
+```
+/goal Per docs/research/agent-charter.md W15 (the stated-structure
+channel, H1 re-scoped): a transcript parser extracts declarative
+structure announcements from the frozen whisper.json transcripts and
+emits, per clip, a typed claim {quantity: beats-per-bar | repetitions |
+bars | unknown, value: n, t: seconds} — the disambiguation is the
+deliverable, not the regex; every clip whose claim is `unknown` abstains
+rather than guessing. Scored REPORTED-ONLY against the verified meter and
+subdivision labels on the rows where it fires, reported beside the
+provisional barre1 rows in their own slice with their own n, and
+explicitly against the W0-2026-08-31 baseline of 1-of-3 naive agreement,
+which it must beat to be worth continuing. It gates NOTHING and is wired
+into no pipeline path in this increment (Standing Lesson 9: the replay
+path before the channel). If the disambiguation cannot be made to work on
+this corpus, a documented negative result with the per-clip table
+satisfies the goal in full. Proven by complete pytest and
+`evals run --suite tier0,tier1,stage1,stage1-peakrate` output showing
+`no outcome changes vs baseline`, plus the per-clip table in the
+transcript and a committed docs/research/w15-stated-structure.md.
+Redaction: A5-30 applies throughout — report pattern identities, counts
+and numbers, never transcript text that names steps. Constraints: eval
+files untouched (prove with `git diff --stat main`); branch
+agent/marathon; dated RESEARCH-LOG.md entry with a pre-registered
+prediction scorecard. Or stop after 40 turns.
+```
+
+Why ranked 2 and not 1: §3 says the reachable verified set is three rows.
+That is worth measuring — a second meter channel is the sharpest gap in
+the stack — but it is a **provisional-slice** result by construction until
+the barre1 rows are owner-verified, and its expected value is lower than
+W14's until then.
+
+### 5. BLOCKED-queue audit — deltas since 08-30 only
+
+- **W6-b blocker (i) is discharged by observation, and this is new.** The
+  08-30 W0 listed three owner decisions gating W6-b, the first being
+  *"whether the key reaches the runner at all."* **`GEMINI_API_KEY` is
+  present in this session's environment on this machine** (presence
+  checked; the value is not recorded here and must never be committed).
+  Two caveats keep the item open rather than closing it: `grep -rn
+  GEMINI_API_KEY scripts/` shows the key referenced only by four
+  Feb-2026 `try_gemini*` scripts and **not exported by
+  `scripts/air-nightly.sh`**, so whether an *unattended* nightly session
+  inherits it depends on the runner account's profile and was not
+  verified here; and blockers (ii) cost and (iii) the second model family
+  remain owner decisions the owner **deferred to 09-03**. Net: W6-b is
+  BLOCKED on two decisions, not three.
+- **W13(a), W13(b), W6-a** all landed after the 08-30 W0 and are the
+  reason this entry exists. W13(a) is merged; W6-a accepted; W13(b)
+  unreviewed.
+- **W11-b unchanged** — 22 barre1 trace dirs, 0 sidecars, media still
+  `offrepo:`. One owner decision closes it and W4's owner item 2.
+- **`agent/w11-duplicate-20260829` orphan branch** — still unruled, still
+  carrying the boot-on-`main` root-cause amendment restated in the 08-30
+  W0 §2. Carried forward, not re-argued.
+- **W4-b drift warning** reproduced again tonight in the pytest output
+  (`replay: recomputed onset_bpm 95.2 != frozen 84.7`). Pre-existing,
+  still noise pretending to be signal.
+
+### 6. Re-ranking
+
+Unchanged from 08-30 except for the two insertions and the completions:
+
+1. **W14** — the commitment stopping rule *(PROPOSED tonight)*
+2. **W15** — the stated-structure channel, H1 re-scoped *(PROPOSED tonight)*
+3. W6-b — BLOCKED on two owner decisions (deferred to 09-03)
+4. W5 continuation — OPEN, owner-started, never takeable by a scheduled session
+5. W11-b — BLOCKED on the barre1 media decision
+6. W8 — BLOCKED behind W5
+
+W13(a), W13(b), W6-a join the COMPLETE list.
+
+### 7. Plain-language summary, for the owner
+
+Nothing is broken and nothing moved. Tests are green (351), all four
+suites reproduce the blessed baseline exactly, and the branch is carrying
+one increment you have not seen yet — W13(b), the prefix-replay
+convergence twin, which measured the machine's time-to-commitment against
+the curve you gave it in W13(a).
+
+I took a second early meta-rung two nights running, and the reason is
+simple: **the queue is empty.** Every workstream is either finished,
+waiting on you, or reserved for you. Left alone, the next three nightly
+slots write "everything is blocked" and stop. So instead I sized the two
+things W13(b) put on your queue, and both came back with something you
+would want to know before you rule on them.
+
+**The stopping rule is the better bet than it looked.** W13(b) found the
+pipeline keeps changing its mind about tempo until most of the clip is
+gone — a median of five re-decisions per clip. The fix is plausibly a
+rule for *when to stop deciding*, not a better estimator. Half of that
+can be scored tonight from data already on disk; the other half needs one
+extra number recorded in an 82-second re-run. W14 drafts it.
+
+**The count-announcement idea is worse than it looked, and I would not
+have known that without checking.** After the frappé trace, parsing
+spoken count announcements looked like a free second opinion on meter.
+Across all 52 frozen transcripts it fires on only 7 clips, 3 of which
+have verified labels — and on those three, reading the spoken number as
+the meter is right **once**. A teacher saying "four counts" of a phrase
+in 3/4 means four repetitions, not four beats in a bar. The idea is not
+dead, but the hard part is deciding what the number is counting, which is
+the same judgement call we currently pay Gemini to make. W15 drafts it as
+a measurement with abstention, ranked second, with 1-of-3 as the bar it
+has to clear.
+
+One small thing worth knowing: your Gemini API key **is** present in the
+environment on this machine, which answers one of the three questions
+blocking the ensembled-semantics work (W6-b). The other two — what you are
+willing to spend, and whether the second opinion comes from a genuinely
+different vendor — are still yours, and you deferred them to 09-03.
+
+Two asks, both one-liners: **ratify or reject W14 and W15** so the loop
+has something to run on 09-01 and 09-02; and if you would rather it
+idled, say so and it will write the BLOCKED notes instead.
+
+### 8. Verification and constraints
+
+- Branch: `agent/marathon` (never `main`). `origin/main` merged in first
+  so the diff is purely additive.
+- `git diff --stat main`: docs and W13(b) artifacts only, **0 deletions**;
+  `git diff --name-status main --diff-filter=MD -- evals/` **empty**.
+- No file under `evals/cases/`, `evals/traces/`, `evals/baseline.json`
+  created or modified; no scorer/harness code touched; **not** an
+  EVAL-CHANGE.
+- No `evals bless`. No `--record-traces`. No live model call. No secret
+  written to any file.
+- The Ballet Barre 1 media directory was **not enumerated** at any point.
+  A5-30 redaction applied: the transcript scan reports pattern identities
+  and numbers only.
+- Charter edit on this branch = the amendment proposal (rule 9); it adds
+  W14 and W15 as PROPOSED and changes no existing rule.
+
+Status: **PROPOSED — meta-rung increment complete, awaiting owner
+review.** W0 executed no pipeline work. The 7-day clock is untouched:
+the scheduled meta-rung remains **2026-09-03**.

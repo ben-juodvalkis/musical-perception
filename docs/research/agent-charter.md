@@ -530,14 +530,47 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   what future capture must cover. Provenance: owner introspection
   2026-08-30, continuing the line that produced the factored-meter
   direction. ·
+  **W14 = the commitment stopping rule (*PROPOSED 2026-08-31 by the
+  out-of-cadence W0 — owner's to ratify*):** W13(b) measured that the
+  pipeline re-decides tempo a median of 5 times per clip and settles only
+  after 60–88% of the clip is gone, so the missing piece is a stopping
+  rule rather than a better estimator. REPORTED-ONLY, offline, key-free:
+  record committed confidence at every prefix (an additive re-run of
+  `scripts/w13b-prefix-replay.py`, existing published numbers must
+  reproduce exactly), then score both stopping-rule families —
+  k-stable-prefixes and confidence ≥ θ — for premature-commit rate and
+  committed-at time, laid against the owner's W13(a) curve. The
+  k-stable family is scoreable from the committed JSON today; the
+  confidence family is **not** — no confidence is recorded at any prefix
+  (verified 2026-08-31), which is why the re-run is step one. Condition
+  in the 2026-08-31 W0 ledger entry §4. ·
+  **W15 = the stated-structure channel (H1 re-scoped; *PROPOSED
+  2026-08-31 by the out-of-cadence W0 — owner's to ratify*):** parse
+  declarative structure announcements out of the frozen transcripts as a
+  second meter channel, emitting a typed claim (beats-per-bar /
+  repetitions / bars / unknown) with abstention — **the disambiguation
+  is the deliverable, not the regex.** Sized before commissioning: the
+  patterns fire on **7 of 52** traces, only **3 verified**, and on those
+  three, reading the spoken number as the bar grouping agrees with truth
+  on **1 of 3** (`plies-demo` yes; `exercise-1-demo` and
+  `rig-mixed-4-4-104-quantities` no — a teacher naming "four counts" of a
+  3/4 phrase is counting repetitions). REPORTED-ONLY, gates nothing,
+  wired into no pipeline path (Standing Lesson 9); 1-of-3 is the bar it
+  must clear. Condition in the 2026-08-31 W0 ledger entry §4. ·
   **Standing ranking (owner-ratified 2026-08-30, post-burst batch
-  review):** 1. **W13(b)** (the prefix-replay twin) · W6 blocked until
-  its condition is drafted (the 2026-09-03 W0's task, or the owner's) ·
-  W13(a) owner-led, scheduled at the owner's convenience · W5
-  continuation OPEN (owner-started; sidecars and factored slice now in
-  place) · W8 BLOCKED (after W5's continuation and the tier-0 driver
-  EVAL-CHANGE named in ADR-017) ·
-  W1/W1.5/W2/W2.5/W3/W3r/W4/W7/W9/W10/W11/W12 COMPLETE.
+  review; *amended-as-PROPOSED 2026-08-31 by the out-of-cadence W0*):**
+  1. **W14** *(PROPOSED)* · 2. **W15** *(PROPOSED)* · W6-b BLOCKED on two
+  owner decisions — cost and the second model family — both deferred to
+  the 2026-09-03 W0 (blocker (i), the key reaching the runner, is
+  discharged for owner-run local sessions; see the 2026-08-31 W0 §5) ·
+  W5 continuation OPEN (owner-started; sidecars and factored slice now in
+  place) · W11-b BLOCKED (barre1 media is `offrepo:`) · W8 BLOCKED (after
+  W5's continuation and the tier-0 driver EVAL-CHANGE named in ADR-017) ·
+  W1/W1.5/W2/W2.5/W3/W3r/W4/W6-a/W7/W9/W10/W11/W12/W13(a)/W13(b)
+  COMPLETE. **Why the ranking was amended at all:** on 2026-08-31 every
+  commissioned workstream was finished, owner-reserved, or blocked —
+  the queue was empty for scheduled sessions, and would have stayed empty
+  through 09-02.
   **Burst schedule note (owner, 2026-08-30):** the Air's 3×/day burst
   stays until the 2026-09-03 W0 review, which recommends keep or
   revert; the revert procedure and plist backup are recorded in the
