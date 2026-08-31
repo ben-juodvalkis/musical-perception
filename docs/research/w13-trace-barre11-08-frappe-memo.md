@@ -20,6 +20,14 @@ From the trace, per field, in clip time:
 | quality (sharp, light) | same window as tempo | fused, plus filename prior |
 | structure (8 sets of 6 + balance) | ~30–33s, with light counting through the middle | rhythm-break + spoken announcement |
 
+**Measured against the machine, 2026-08-31 (W13(b)):** the prefix-replay
+twin now exists — [w13b-prefix-convergence.md](w13b-prefix-convergence.md).
+On comparable demo material the pipeline's bar-grouping settles at ~5-6s
+(the owner's ~3-6s) and its structure at ~27s (his ~30-33s), but its tempo
+answer keeps moving until ~31-42s against his ~9-12s, and every non-duple
+meter it emits comes from Gemini's single whole-clip read. H1 and the
+stopping-rule idea are scored in that entry.
+
 Cross-check on his own numbers (not a measurement): 6 counts at his stated
 120bpm is ~3s, so "sure of everything besides form" lands ~9s — consistent
 with his pass-1 "within 10 seconds."
