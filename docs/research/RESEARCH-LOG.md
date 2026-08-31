@@ -7247,3 +7247,110 @@ A1-30 through A6-30 for the owner's batch review, which now carries
 **six** unreviewed items on this branch: W11 (08-28), W12 (08-29), W4
 (08-29), W3-remainder (08-29), W10 (08-30) and this. The charter edit on
 this branch is the proposal and lands only if merged. Nothing blessed.
+
+## 2026-08-30 · rung M / W6-a (rung 5: the consumption path) · agent/marathon · local (nightly, unattended) — PRE-REGISTRATION
+
+**Workstream selection.** Boot sequence run in full, including the
+PROPOSED A3-30 step — the ledger on `agent/marathon` was read before
+selecting, and the six increments carrying RESULTS entries there (W11,
+W12, W4, W3-remainder, W10, and tonight's earlier W0) were treated as
+COMPLETE-pending-review and not re-taken. That leaves **W6-a, ranked 1
+among open workstreams** by the W0 entry of this same date (§1, §3):
+the only open item a key-less unattended session can execute end to
+end. W5's continuation is owner-started and was not touched; W6-b,
+W11-b, W12-b and W8 are BLOCKED and get no work tonight.
+
+Writability probe (charter amendment 2, first act): `c01e20b` wrote a
+file on `agent/marathon` and `f67fabd` removed it, before any
+substantive work.
+
+**Declared scope flag.** This increment adds a new module under
+`src/musical_perception/evals/` (the trace-sidecar loader, beside
+`pulse_sidecar.py` where W11 put its own) and changes one pipeline file
+(`precision/posterior.py`). No scorer, metric, suite, aggregate or
+report code is touched. Rule 2 forbids bundling a pipeline change into
+an eval-infrastructure change because a real behaviour delta could hide
+inside the infra delta; here the pipeline delta is **proven zero** by
+the byte-identity gate below, which is the strongest form of the
+assurance the rule exists to obtain. Flagged **EVAL-CHANGE (add-only,
+loader)** so the owner can rule on the reading rather than discover it.
+
+### The socket, named precisely
+
+ADR-017's Consequences names ensembled semantics as one of the two
+un-delivered paths to the tempo wins, and `posterior.py` is where it
+would land. Today the classified-marker evidence class is a hard label
+per word: `estimate_rhythm` partitions its inputs into three time
+arrays — beat markers, and/ah markers, and the remaining words — and
+each array enters the per-frame Poisson emission as an integer count.
+One Gemini draw decides that partition outright, which is Standing
+Lesson 4 in the load-bearing position of the whole rhythm core.
+
+W6-a replaces the partition with a **belief per token**: a distribution
+over `{beat, and, ah, e, none}`, entering the emission as **expected
+support** (fractional counts) rather than integer counts. The class
+list is five, not the four the condition names, because `MarkerType.E`
+exists and today's code excludes E-tagged tokens from *every* stream —
+beat, sub, and word alike. Folding E into `none` would push such a
+token into the word stream and break identity. Measured on the corpus
+tonight before writing any code: 3028 classified tokens across 52
+traces, **`none` 1663 / `beat` 1077 / `and` 212 / `ah` 76, `e` zero**,
+every one carrying an index. So the fifth class is precautionary, not
+load-bearing — and that is a fact, not an assumption.
+
+**What consumes the distribution, and what deliberately does not.** The
+emission consumes it: a Poisson rate has a defined meaning under
+fractional mass. The three guard statistics — `_stream_support`'s
+robust IOI CV, `_division`'s circular-concentration vet, and
+`_grouping_ladder`'s counted-number cycle — consume the **MAP decode**
+instead. A weighted robust-CV and a weighted circular resultant have no
+agreed generalization, and inventing one tonight would ship unmeasured
+machinery under cover of a byte-identity gate that cannot see it (the
+one-hot case makes MAP and expectation the same object, so the gate is
+blind to exactly this choice). Declared here so W6-b revisits it with
+draws in hand rather than inheriting it silently.
+
+### The sidecar
+
+`gemini-draws.json`, add-only inside a trace directory under the
+2026-08-28 carve-out, checksum-bound to the trace's `media_sha256`
+exactly as `pulse.json` is, refusing to load when the hashes disagree.
+Each draw freezes its own model id and sampling params; the payload
+also pins the **transcript** the draws classified, because a draw is a
+list of `(index, marker_type, beat_number)` against a specific Whisper
+token sequence and indices into a different transcript are silently
+wrong rather than loudly wrong. **No sidecar is recorded tonight** —
+that needs live calls and is W6-b.
+
+### Pre-registered predictions
+
+- **P1 (the gate).** With the one-hot belief built from the existing
+  single draw, `evals run --suite tier0,tier1,stage1` reports `no
+  outcome changes vs baseline` AND the run artifact's `suites` payload
+  is **byte-identical** to the before-run captured at `f67fabd`
+  (sha256 `4c27815c…`). Not "equivalent", not "no outcome changes" —
+  identical bytes. A non-identical run FAILS this goal and will be
+  reported as a failure, not explained away.
+- **P2.** `pytest` stays green at **329 passed, 3 skipped** plus the
+  new W6-a tests, with no existing test edited.
+- **P3.** The belief-token count per clip equals `markers + words that
+  are neither at a marker timestamp nor in `_SUB_VOCAB``, and the
+  summed class weights reproduce the integer stream lengths exactly on
+  all 52 traces (checked by a script, not by argument).
+- **P4 (the socket is live, not decorative).** On a synthetic
+  five-draw fixture where the draws genuinely disagree, the fractional
+  emission produces a tempo posterior that differs from the MAP-only
+  decode of the same draws. If a split distribution changes nothing,
+  the machinery is ornamental and I will say so.
+- **P5.** The loader rejects a sidecar whose `media_sha256` disagrees
+  with the trace's, and rejects draws whose indices do not address the
+  pinned transcript — both proven by tests that assert the raise.
+
+**Expected to be hard:** nothing about P1 is guaranteed. The word
+stream is built today by a filter over `words` that excludes any word
+whose start rounds to a marker timestamp — a *timestamp* join, not an
+index join — and duplicates survive it. Rebuilding that partition from
+a token list is where identity most plausibly breaks, and float
+summation of weights where integer `len()` stood is the second place.
+
+Status: PRE-REGISTRATION (results entry follows in this session).
