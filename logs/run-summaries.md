@@ -290,3 +290,21 @@ is how the runner's permission failure was found.)*
 > Two things disclosed rather than smoothed over: P4's first test fixture was worthless (railed at the tempo-axis edge, asserting a 198.2-vs-198.3 "difference") and was rebuilt; and this increment is flagged EVAL-CHANGE with a new owner question — whether a provably-inert pipeline change may ride along with an add-only loader. Seven increments now await batch review.
 
 *Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
+
+## run 2026-08-31T09:00:03Z · main 9bad35f
+
+- **outcome:** success, shell exit 0
+- **turns:** 53 · **duration:** 15.5 min · **cost:** $4.84
+
+**Agent's closing message:**
+
+> Done. The awaiting-blessing note is appended and pushed (`9bad35f`).
+> 
+> Session end state:
+> 
+> - **Branch:** `agent/marathon`, pushed. `git diff --stat main` — 6 files, **22,340 insertions, 0 deletions**; nothing under `evals/cases/`, `evals/traces/`, or `evals/baseline.json` modified; no scorer code touched.
+> - **Ledger:** three dated 2026-08-31 entries — PRE-REGISTRATION (P1–P6), RESULTS (scorecard 4/6, three findings), and the one-line awaiting-review note.
+> - **Proofs run in transcript:** pytest 351 passed / 3 skipped; `evals run --suite tier0,tier1,stage1,stage1-peakrate` → `no outcome changes vs baseline`.
+> - **On the owner's queue:** accept/reject W13(b); rule on the stopping-rule probe and on H1's second meter channel (the timing-only path emitting 4 on 45/45 clips is the evidence). Everything below W13(b) is blocked or owner-started, so no further scheduled-session work is available on this branch.
+
+*Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
