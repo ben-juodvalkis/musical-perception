@@ -7,8 +7,10 @@ from pathlib import Path
 
 from musical_perception.evals.cases import Case, load_cases
 from musical_perception.evals.scorers import (
+    REPORTED_ONLY_FIELDS,
     CaseResult,
     score_counts,
+    score_meter_factored,
     score_meter_triple,
     score_quality,
     score_sides,
@@ -37,6 +39,11 @@ def score_parameters(result, case: Case) -> list:
             expect["meter"],
             case.expected_bpm,
             expect.get("subdivision"),
+        ))
+        # W12: the factored slice, reported beside meter_triple and
+        # gating nothing (REPORTED_ONLY_FIELDS).
+        scores.extend(score_meter_factored(
+            normalized, expect["meter"], expect.get("subdivision")
         ))
     if "counts" in expect:
         scores.append(score_counts(result.structure, expect["counts"]))
@@ -88,7 +95,9 @@ def run_tier1(evals_root: Path) -> list[CaseResult]:
 def run_suites(suites: list[str], evals_root: Path) -> dict:
     """Run the named suites. tier0 = synthetic sweep; tier1 = frozen traces;
     stage1 = pulse scoring against beat grids (returns its own summary dict
-    — provisional grids gate nothing)."""
+    — provisional grids gate nothing); stage1-peakrate = the same scoring
+    over W11's frozen acoustic pulse sidecars instead of word starts, as a
+    separate suite so `stage1` keeps meaning exactly what it meant."""
     from musical_perception.evals import stage1, synthetic
 
     results = {}
@@ -99,9 +108,14 @@ def run_suites(suites: list[str], evals_root: Path) -> dict:
             results["tier1"] = run_tier1(evals_root)
         elif suite == "stage1":
             results["stage1"] = stage1.run_stage1(Path(evals_root))
+        elif suite == "stage1-peakrate":
+            results["stage1-peakrate"] = stage1.run_stage1(
+                Path(evals_root), pulse_source=stage1.PULSE_SOURCE_PEAKRATE
+            )
         else:
             raise ValueError(
-                f"unknown suite {suite!r} (expected tier0, tier1, stage1)"
+                f"unknown suite {suite!r} (expected tier0, tier1, stage1, "
+                f"stage1-peakrate)"
             )
     return results
 
@@ -111,7 +125,10 @@ def outcomes_map(case_results: list[CaseResult]) -> dict:
     return {
         c.case_id: (
             {"__error__": c.error} if c.error
-            else {s.field: s.outcome for s in c.scores}
+            else {
+                s.field: s.outcome for s in c.scores
+                if s.field not in REPORTED_ONLY_FIELDS
+            }
         )
         for c in case_results
     }

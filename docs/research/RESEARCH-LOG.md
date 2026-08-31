@@ -5542,3 +5542,1335 @@ this attestation rests on.
 **A4-27 CLOSED.** The 08-27 review queue is now fully cleared.
 
 Status: **ATTESTED** (owner, 2026-08-28).
+
+## 2026-08-28 · rung M / W11 (pulse sidecars) · agent/marathon · local (nightly, unattended) — PRE-REGISTRATION
+
+**EVAL-CHANGE.** Declared under the owner-ratified sidecar carve-out
+(charter rule 2, 2026-08-28): this increment ADDS derived-evidence files
+inside existing trace directories and touches
+`src/musical_perception/evals/`. No pipeline code changes are bundled
+with it.
+
+Workstream: **W11, ranked 1** in the standing ranking of 2026-08-28
+(W11 · W12 · W4 · W3r · W6 · W10). W0 is not due — the last meta-rung
+entry is 2026-08-27, less than 7 days old.
+
+### What is being built
+
+1. `evals/traces/<clip>/pulse.json` for all 30 existing trace
+   directories: the rung-2 acoustic pulse event stream
+   (`precision/pulse.acoustic_pulse_events`, current defaults, i.e.
+   `events_per_nucleus="all"` after W2.5), recorded once, with the
+   extractor params and the media sha256 frozen alongside.
+2. A recorder that **refuses to write** unless the media file on disk
+   hashes to the trace's stored `media_sha256` — the carve-out's
+   checksum condition, enforced in code rather than by hand.
+3. A loader (`load_pulse_sidecar`) that re-checks the sidecar's recorded
+   `media_sha256` against `meta.json` at load time (offline, no media
+   needed) and raises on a mismatch.
+4. `stage1` gains a second pulse source, `peakrate-sidecar`, reachable
+   only through the NEW suite name `stage1-peakrate`. The existing
+   `stage1` suite keeps `whisper-word-starts` as its source and is not
+   touched.
+
+### Pre-registered predictions
+
+- **P1 — checksums.** All 30 media files hash equal to their trace's
+  `media_sha256`; 30/30 sidecars written, 0 skipped. *Risk:* the four
+  video files and two `.aif` files were hashed in Aug 2026 and could
+  have been re-encoded since. A mismatch is a finding, not a bug to
+  work around — the recorder must skip and say so.
+- **P2 — event counts vs the rung-2 cache.** The 28 clips cached in
+  `docs/research/rung2-extractor-events.json` were extracted before
+  W2.5 flipped `events_per_nucleus` to `"all"`, so that cache is the
+  `"first"` stream. Predict `n_sidecar >= n_cached` for **28/28**
+  clips, with strict inequality on **at least 20** of them. An
+  equality-everywhere result would mean W2.5's flip is inert on this
+  corpus, contradicting its measured +0.037 F_lc.
+- **P3 — byte-identical outcomes.** `evals run --suite
+  tier0,tier1,stage1` produces a `suites` block byte-identical to the
+  pre-change run (`run-20260829T054738Z-ab03527.json`), and
+  `no outcome changes vs baseline` still prints. Nothing consumes the
+  sidecars on the default path.
+- **P4 — what the peakRate source does to stage1's metrics.** stage1
+  scores plain mir_eval P/R/F at ±70 ms, **not** rung 2's blessed
+  level-collapsed pair, and peakRate emits a syllable-rate stream
+  against a tactus-rate reference. Predict: verified-aggregate
+  **recall up by ≥ 0.15 absolute** (0.449 → ≥ 0.60) and
+  **precision down** (from 0.334); the direction of pooled **F is not
+  predicted** — that is exactly the metric mismatch rung 2 was scored
+  around, and calling it either way afterwards would be hindsight. The
+  vocables clip is predicted to move from R=0.062 to R ≥ 0.80 (rung 2
+  measured 0.875 at tactus).
+- **P5 — tests.** pytest stays green; new tests cover checksum refusal,
+  load-time mismatch detection, and the source selection.
+
+### What this does NOT establish
+
+The `stage1-peakrate` numbers are a *reported* second source. They gate
+nothing, re-open nothing about rung 2's verdict (different metric), and
+no consumer reads `pulse.json` yet. W11's purpose is to make the
+acoustic stream replayable — Standing Lesson 9: build the replay path
+before betting on the channel — so that W5's continuation can consume
+it without re-deriving events from media on every run.
+
+Status: PRE-REGISTERED (results entry follows in this session).
+
+## 2026-08-28 · rung M / W11 (pulse sidecars) · agent/marathon · local (nightly, unattended) — RESULTS
+
+**EVAL-CHANGE**, declared in the pre-registration above. No pipeline code
+touched: the diff outside `src/musical_perception/evals/` is docs, tests,
+and the 30 added sidecar files.
+
+### What landed (`2b595b7`)
+
+- `evals/traces/<clip>/pulse.json` × **30**, add-only. Each carries the
+  event times, the frozen `AcousticPulseParams`, the media path, the
+  verified `media_sha256`, and the recording git sha.
+- `evals/pulse_sidecar.py` — the checksum contract in code:
+  `record_pulse_sidecar` hashes the media and **refuses to write** unless
+  it equals the trace's pin; `load_pulse_sidecar` re-checks the sidecar's
+  recorded hash against `meta.json` offline on every load and raises
+  `SidecarError` on drift.
+- `python -m musical_perception.evals record-pulse [--only …] [--force]`.
+- `stage1` gains the `peakrate-sidecar` source, reachable only through the
+  NEW suite `stage1-peakrate`. The `stage1` suite is untouched in meaning.
+- `docs/evals/pulse-sidecars.md`; CLAUDE.md pointer.
+
+### Prediction scorecard
+
+| # | prediction | outcome |
+|---|---|---|
+| P1 | 30/30 media hash equal to the trace pin; 0 skipped | **HELD** — `30 recorded, 0 already present, 0 skipped` |
+| P2 | `n_sidecar >= n_rung2_cache` on 28/28; strictly greater on ≥ 20 | **HELD** — 28/28 ≥, **23** strictly greater, 5 equal, 0 fewer |
+| P3 | default `tier0,tier1,stage1` `suites` block byte-identical | **HELD** — sha256 `fdd7f00f…` before and after; `no outcome changes vs baseline` |
+| P4a | verified-aggregate recall up by ≥ 0.15 | **HELD** — 0.449 → **0.855** (+0.406) |
+| P4b | verified-aggregate **precision down** | **WRONG** — 0.334 → **0.572** (+0.238). The reasoning was that a syllable-rate stream must over-emit against a tactus-rate reference; it ignored that the word-start stream *also* over-emits (1,141 preds vs 895 for peakRate) and mostly at wrong times. Recorded as a missed prediction, not re-explained away. |
+| P4c | pooled F direction deliberately not predicted | n/a — it rose 0.383 → 0.686 |
+| P4d | the vocables clip R 0.062 → ≥ 0.80 | **HELD** — **0.875**, matching rung 2's tactus measurement exactly |
+| P5 | pytest green with new coverage | **HELD** — **306 passed, 3 skipped** (was 294/3; +12 new tests) |
+
+Four of five families held; P4b is a clean miss and is scored as one.
+
+### The anchoring caveat, quantified — read this before quoting any number above
+
+`stage1-peakrate`'s verified aggregate (P 0.572 / R 0.855 / F 0.686) is
+**substantially circular** and must not be quoted as extractor quality.
+Most verified grids are `annotation_method: anchored` — seeded from this
+same detector's onsets, then corrected by the owner — so a matched pair
+is often the detector meeting its own frozen output:
+
+- **769 of 895 matched pairs (86%) coincide with a frozen onset to
+  within 1 ms.** That is what the `async=0.0±0.0ms` rows are.
+- The two `provisional` grids (`adr007-plies-demo`,
+  `rig-mixed-4-4-104-quantities`) were never owner-corrected, so their
+  `beats` **are** the detector's events: P=R=F=**1.000**, 171/171 and
+  38/38 exact. The `aggregate_provisional: F=1.0` line in the run output
+  is the detector scored against itself and means nothing.
+- The three `from_scratch` grids carry **0 of 94** exact coincidences.
+  They are the honest cohort:
+
+| clip (from_scratch) | F word-starts | F peakRate | async peakRate |
+|---|---|---|---|
+| adr006-exercise-1-demo | 0.213 | **0.316** | +4.5 ± 39.5 ms |
+| adr010-grande-battement | 0.209 | **0.409** | +9.9 ± 28.6 ms |
+| frappe | 0.474 | **0.484** | +9.0 ± 31.3 ms |
+
+peakRate ahead on all three, decisively on two and by 0.010 (noise, per
+Standing Lesson 7) on the third. That is the magnitude claim W11
+supports — not the 0.383 → 0.686 headline. This is the same caveat the
+charter carries at rung 2; W11 now attaches a number to it.
+
+Second honesty note: the sidecars are the **`events_per_nucleus="all"`**
+stream (W2.5's default flip), whereas
+`docs/research/rung2-extractor-events.json` is the older `"first"`
+stream. The two are not interchangeable, which is why P2 was framed as an
+inequality and why `params` is frozen inside every sidecar.
+
+### What this does NOT establish
+
+Nothing consumes `pulse.json` on the shipping path; no gate reads
+`stage1-peakrate`; rung 2's verdict is neither re-opened nor
+re-confirmed (different metric — plain mir_eval P/R/F here, blessed
+level-collapsed R@tac/P_lc there). The deliverable is replayability:
+the acoustic channel can now be scored, ablated, and consumed offline by
+anyone with the repo, on any runner, without the gitignored media.
+
+### Backlog parked
+
+- **W11-b:** the 22 Barre-1 trace directories have no sidecars — their
+  media is `offrepo:` and has no path to hash. When W4 lands their case
+  files, decide whether sidecars are recorded on the runner that holds
+  the media or skipped by design. Not in scope here; the recorder
+  iterates cases, so those dirs were never touched.
+- The `stage1-peakrate` suite is absent from `evals/baseline.json`, so
+  `compare_outcomes` skips it. It pins no outcomes anyway (dict suites
+  carry `outcomes: {}`), but a future owner who wants it pinned must
+  bless a run that includes the suite.
+
+Status: PROPOSED (agent increment on `agent/marathon`, ready for the
+owner's weekly batch review). W11's purpose — unblocking W5's
+pulse-fed continuation — is met: the events are frozen, checksum-bound,
+and loadable in one call.
+
+## 2026-08-29 · rung M / W12 (the factored meter slice) · agent/marathon · local (nightly, unattended) — PRE-REGISTRATION
+
+**EVAL-CHANGE increment.** W12 was commissioned 2026-08-28 and is rank 2
+on the standing ranking; **rank 1 (W11) is already COMPLETE** on this
+branch (`3164ed6`, previous entries). No pipeline code will be touched.
+
+**Session note, stated up front:** this session first executed W11 in
+full before discovering W11 was already done, on a branch cut from
+`origin/main` whose ledger could not see it. That duplicate is preserved
+on `agent/w11-duplicate-20260829` and is NOT proposed for merge; the
+collision, its root cause, a proposed boot-sequence amendment, and one
+verified correction to the W11 results entry are written up in that
+branch's ledger. The short form of the correction, repeated here because
+this branch is the one the owner reviews:
+
+> W11's anchoring headline (**769 of 895 matched pairs within 1 ms, 86%**,
+> pooled over all 30 clips) **reproduces exactly** — independently
+> confirmed. Its **P4b explanation does not**: "1,141 preds vs 895 for
+> peakRate" compares a prediction count to a *matched-pair* count and
+> gets the direction backwards. Measured from the committed run
+> artifacts — word starts emit **1309** (all 30) / **1078** (verified 28);
+> peakRate emits **1408** / **1199**. peakRate over-emits *more*, not
+> less. The P4b miss stands as a miss; only its post-hoc cause needs
+> withdrawing.
+
+### The mapping table — pre-registered, as the commission requires
+
+Factored truth is **DERIVED** from the existing `meter` + `subdivision`
+labels. Nothing is relabelled; no case file is touched.
+
+**Division** (scored as measured — duple / triplet / none):
+
+| truth meter | division truth |
+|---|---|
+| 6/8 | **`none`** — owner ruling R-6/8: the pulse IS the counted eighth, so there is no subdivision below it |
+| anything else | `= expect.subdivision`, verbatim |
+
+**Grouping** (bar rung, with duple-family credit per ruling R-bar-scoring):
+
+| truth meter | bar rung | accepted as correct | note |
+|---|---|---|---|
+| 2/4 | 2 | **{2, 4}** | duple family; exact bar informational |
+| 4/4 | 4 | **{2, 4}** | duple family; exact bar informational |
+| 3/4 | 3 | {3} | |
+| 6/8 | 6 | {6} | accent-every-3 = rung 3, reported informationally |
+
+A case with no `meter` in its `expect` block produces no factored row; a
+case with no `subdivision` produces no division row. Missing truth is
+absence, not a zero.
+
+### One design fact, measured before deciding (disclosed)
+
+A read-only probe of all 30 tier-1 cases shows **`grouping_levels` is
+empty on 20 of 30**, and where populated it carries the **count phrase**
+(`8:1.00(counting)` on seven clips) or a gaps artifact (10, 14, 15) —
+**not the bar**. Exactly two clips carry a plausible bar rung
+(`rig-names-3-4-88-waltz` 3:0.50, `frappe` 2:0.25).
+
+So the ADR-017 ladder **cannot supply the bar rung today**. Grouping is
+therefore read from `normalized.meter.beats_per_measure`, with the ladder
+reported alongside as informational. This must be stated plainly in the
+results: W12's grouping score is *not* an independent bar estimate — it
+is the same derived label `meter_triple` already uses, scored on its own
+axis with family credit. That is what the commission asked for; it is
+not evidence that the factored representation is producing new bar
+evidence, because it is not.
+
+### Pre-registered predictions
+
+**Disclosed:** the probe above ran before this pre-registration, so Q1,
+Q2 and Q5 are derived expectations, not blind ones. Q3 and Q4 are the
+load-bearing ones.
+
+- **Q1.** Duple-family credit flips the **three** 2/4 rows
+  (`rig-names-2-4-120-clean`, `rig-names-2-4-160-long`,
+  `rig-numbers-2-4-120-clean`) to correct on grouping, purely by
+  construction — the pipeline predicts bar 4 for essentially everything.
+  Reported as a construction artifact, never as a win.
+- **Q2.** Division committed accuracy exceeds `meter_triple`'s 13/28
+  (0.464), because division is one axis rather than a conjunction of
+  three.
+- **Q3.** `grouping_levels` supplies a bar-candidate rung ({2,3,4,6}) on
+  **≤ 3 of 30** clips; the count-phrase rung 8 is the ladder's dominant
+  output.
+- **Q4.** The factored slice **gates nothing and changes nothing**: the
+  run artifact's `fields`, `outcomes`, and `ece` blocks stay
+  byte-identical, `evals run` prints "no outcome changes vs baseline",
+  and pytest is green with new tests.
+- **Q5.** The 6/8 division override changes no row — both 6/8 cases
+  already carry `subdivision: none`, so the ruling is recorded in code
+  without moving a number today. It exists for future 6/8 material.
+
+### Constraints
+
+Branch `agent/marathon`. No existing file under `evals/cases/`,
+`evals/traces/`, or `evals/baseline.json` modified. Scorer code under
+`src/musical_perception/evals/` IS touched — the declared EVAL-CHANGE,
+with no pipeline change bundled.
+
+Status: **PRE-REGISTERED** — results follow.
+
+## 2026-08-29 · rung M / W12 (the factored meter slice) · agent/marathon · local (nightly, unattended) — RESULTS
+
+**EVAL-CHANGE increment, complete.** Commit `d07f4a0`; pre-registration
+`049157b` (previous entry), with the mapping table written before any
+pipeline comparison, as the commission requires.
+
+### The slice
+
+```
+tier1  F meter_division    n= 28 correct= 21 wrong=  6 abstained=  1 accuracy=0.778   [REPORTED-ONLY]
+tier1  F meter_grouping    n= 29 correct= 24 wrong=  4 abstained=  1 accuracy=0.857   [REPORTED-ONLY]
+tier1    meter_triple      n= 29 correct= 13 wrong= 15 abstained=  1 accuracy=0.464
+```
+
+### Prediction scorecard — 4 hit, 1 partial
+
+| # | prediction | outcome |
+|---|---|---|
+| Q1 | duple-family credit flips the three 2/4 rows by construction | **PARTIAL** — the three 2/4 rows do flip by construction, but **11** rows go wrong→correct, not 3. See below; the prediction was too small and named the wrong dominant cause. |
+| Q2 | division accuracy > meter_triple's 0.464 | **HIT** — **0.778** |
+| Q3 | ladder supplies a bar-candidate rung on ≤ 3 of 30 | **HIT, and harder than predicted** — **1** of 29 scored rows |
+| Q4 | gates nothing; headline blocks byte-identical; pytest green | **HIT** |
+| Q5 | the 6/8 division override moves no row today | **HIT** |
+
+### What the totals hid — Q1 was wrong about *why* rows flip
+
+Eleven rows are wrong on `meter_triple` but correct on `meter_grouping`.
+Only **three** are the family-credit artifact I pre-registered
+(`rig-names-2-4-120-clean`, `rig-names-2-4-160-long`,
+`rig-numbers-2-4-120-clean` — each predicted bar 4 against truth 2,
+`exact=n`). The other **eight** flip for a different and more interesting
+reason: **the bar label was right all along, and `meter_triple`'s
+conjunction was failing them on tempo or subdivision.**
+
+| row | why meter_triple failed it | bar |
+|---|---|---|
+| adr007-plies-demo | division (`none` vs `duple`) | 4 exact |
+| rig-mixed-4-4-104-quantities | division (`duple` vs `none`) | 4 exact |
+| rig-names-4-4-104-clean, -coda, -explained, -63-adagio | tempo / division | 4 exact |
+| rig-numbers-4-4-60-halftempo | tempo | 4 exact |
+| rig-numbers-6-8-100-clean | tempo | **6 exact** |
+
+That is the actual finding, and it is the one the owner commissioned the
+slice to expose: `meter_triple` 13/29 understates bar identification,
+which is right on **24 of 29** rows. It does not mean the pipeline is
+better than believed — the conjunction is measuring something real — it
+means the conjunction was never a bar score.
+
+Scored honestly as a partial: the prediction named a mechanism that
+accounts for 3 of 11 flips.
+
+### The caveat that must travel with every number above
+
+**`meter_grouping` is not an independent bar estimate.** It reads
+`normalized.meter.beats_per_measure` — the same derived label
+`meter_triple` already uses. The ADR-017 `grouping_levels` ladder cannot
+supply the bar today, measured on tier-1:
+
+- **empty on 20 of 30 clips**;
+- of the **29** scored grouping rows, exactly **1**
+  (`rig-names-3-4-88-waltz`, rung 3 at strength 0.50) carries any
+  bar-candidate rung in {2,3,4,6};
+- what the ladder actually reports is the **count phrase** — rung 8 on
+  seven clips, at strength 1.00 on five of them — plus gaps artifacts at
+  rungs 10, 14 and 15.
+
+So 0.464 → 0.857 measures **axis separation plus family credit**, not new
+bar evidence. Quoting it as "the factored representation working" would
+be quoting the wrong thing. This is written into
+`docs/evals/factored-meter.md` so it travels.
+
+Positively, the ladder finding is itself a clean confirmation of the
+owner's 2026-08-26 direction: the count phrase really is a distinct rung
+from the bar, and it is the rung this corpus actually voices. W5's
+continuation inherits a ladder that speaks about phrases and is silent
+about bars.
+
+### How "gates nothing" is enforced, and proven
+
+One tuple — `scorers.REPORTED_ONLY_FIELDS` — with three exclusions built
+on it: `outcomes_map` drops the fields (so `compare_outcomes` and the
+tier-1 pytest gate never see them); `aggregate._summarize_cases` computes
+`fields`, `ece`, `risk_coverage` and every tag slice from gating rows
+only; the slice lands in its own `factored_meter` block, `None` when
+absent, so a pre-W12 corpus is byte-identical.
+
+Proven against the **blessed baseline**, not merely against a prior run:
+`fields`, `outcomes`, `ece`, `risk_coverage`, `slices`, `tempo_metrics`,
+`quality_spearman` and `provisional` are **IDENTICAL** on both tier0 and
+tier1, and `evals run` prints "no outcome changes vs baseline". Two tests
+pin the property directly (`test_factored_rows_never_reach_outcomes`,
+`test_factored_rows_change_no_headline_number`).
+
+Note: tier0 (synthetic) produces no factored rows — it does not run
+`score_parameters` — so its `factored_meter` is `None`. Extending the
+slice to tier0 would need the tier-0 driver EVAL-CHANGE that ADR-017
+already parks for W8.
+
+### Verification and constraints
+
+- `pytest`: **320 passed, 3 skipped** (was 306/3 after W11); 14 new tests.
+- `evals run --suite tier0,tier1,stage1`: "no outcome changes vs baseline".
+- `git diff --stat main` shown in the transcript. Every path under
+  `evals/` is an **A** (W11's 30 sidecars); `evals/cases/` untouched,
+  `evals/baseline.json` untouched, no existing trace file modified.
+- Pipeline code (`precision/`, `perception/`, `annotation/`,
+  `analyze.py`, `types.py`) touched on **0 paths** — the declared
+  EVAL-CHANGE is confined to `src/musical_perception/evals/`.
+- Branch `agent/marathon`. Nothing blessed.
+
+### Backlog parked
+
+- **W12-b:** extend the factored slice to tier0, which needs the tier-0
+  driver EVAL-CHANGE named in ADR-017 (also W8's prerequisite). Not
+  bundled here.
+- **The ladder's bar silence is a W5 question, not an eval question.**
+  No amount of scoring will make `grouping_levels` emit a bar rung; the
+  observation model has to.
+
+Status: **COMPLETE**, awaiting owner batch review. This branch now
+carries W11 (previous session) + W12. Next by standing rank: **W4**
+(Barre-1 provisional case files), then W3-remainder.
+
+## 2026-08-29 · rung M / W4 (Barre 1 DEV ingestion: the case files) · agent/marathon · local (nightly, unattended) — PRE-REGISTRATION
+
+**Workstream selection.** Standing ranking (charter, owner-ratified
+2026-08-28): 1. W11 — **COMPLETE on this branch** (`3164ed6`);
+2. W12 — **COMPLETE on this branch** (`491fd54`); both PROPOSED and
+awaiting the owner's batch review, so both are BLOCKED-on-owner for a new
+increment. 3. **W4** — Barre-1 provisional case files, UNBLOCKED
+2026-08-27 when W1.5's `maturity` key landed (`evals/cases.py:27,53,144`).
+W0 does not pre-empt: its last entry is 2026-08-27, two days old against
+the 7-day rule. This session takes **W4**.
+
+Writability precondition (charter amendment 1–2): satisfied as the first
+act — `9ef2216` (write) + `1dbe142` (remove).
+
+**Add-only ingestion carve-out**, rule 2: new case files only, every one
+`maturity: provisional`. No existing eval file modified, no scorer code
+touched — this is *not* an EVAL-CHANGE increment, it adds no metric and
+no suite.
+
+### What the evidence says before any file is written
+
+The 22 frozen traces (08-22) were read offline tonight — all 22
+transcripts and all 22 `gemini.json` blocks. Two facts decide the shape
+of this increment, and both are findings, not predictions:
+
+* **F1 — the teacher never counts a phrase through.** Across 22 clips
+  there is not one run of counting numbers covering a full 8. What
+  exists are fragments spoken *inside instruction*: `"we're gonna go
+  eight times. five. six."`, `"port de bras, five, six, and"`,
+  `"grand plié, six, seven and eight"`, `"you take a port de bras front
+  in four counts"`, `"forward and back in eight counts"`. The material
+  is instruction over accompaniment, not voice-as-drum. (W4's 08-22
+  entry measured the same thing from the other side: median
+  counting-token fraction 0.254.)
+* **F2 — and those fragments do not establish a bar.** A ballet teacher
+  counting `"six, seven and eight"` is counting the **count phrase**,
+  which over waltz accompaniment is eight *bars* of 3/4, not eight beats
+  of 4/4. The traces contain the collision directly: on one exercise the
+  teacher's demo counts in eights while the same exercise's
+  accompaniment-only take is described by the model as a waltz. So
+  "counted in 8s" → 4/4 is an inference this corpus specifically
+  refutes. This is the same distinction W12 measured last night (the
+  ladder speaks about the count phrase and is silent about bars) and the
+  one the owner's 2026-08-26 factored direction is built on; here it
+  shows up as a *labeling* constraint.
+
+Consequence, stated before the files exist: **for 19 of 22 clips no
+truth label can be honestly proposed from the frozen evidence.** Tempo
+truth would have to come from the piano (no metronome label, no
+verified grid, media `offrepo:`); meter truth is blocked by F2; counts
+truth by F1. Copying the pipeline's own reading into `expect` would
+manufacture a green on rows that gate nothing but would still be quoted
+— exactly the error the 08-22 entry warned about when it published that
+table. Those 19 cases therefore ship with an **empty `expect`**: tags,
+provenance and a per-clip note saying which label is missing and why.
+
+The **one** exception is a clip where the teacher states the meter of the
+music out loud, as an instruction to the pianist — `"we'll go on with a
+slow chaté in a three, please, rex"`. That is a verbal statement about
+the music, not a count, and it is the only such statement in the batch.
+It is proposed as `meter: "3/4"` for that exercise's three files
+(demo + both execution takes — one exercise, one piece of music).
+
+### Pre-registered predictions
+
+* **J1** — all 22 new cases load and replay with **zero** `__error__`
+  rows in the tier-1 output.
+* **J2** — every headline block stays **identical to the blessed
+  baseline** on both tier0 and tier1 (`fields`, `outcomes`, `ece`,
+  `risk_coverage`, `slices`, `tempo_metrics`, `quality_spearman`), and
+  `evals run` prints `no outcome changes vs baseline`. The one block
+  that *must* change is `provisional`: it is `None` today (the corpus has
+  zero provisional cases) and becomes a 22-id block. Predicted: exactly
+  those two states, nothing else moves.
+* **J3** — exactly **6** rows carry `accompanied: accompaniment_only`,
+  matching owner ruling B5's "six pianist-playing Barre-1 takes". The
+  seventh left-side take is *not* one of them: its transcript is two
+  words but the model asserts a dancer is present, so the corroboration
+  the other six have (≤3 words **and** model prose describing music or
+  no dancer) is absent. Recorded as a disagreement, not resolved.
+* **J4** — the provisional slice reports **n=3 for `meter_triple`** and
+  **n=0 for `tempo` and `counts`**. Of the three, the 08-22 table (stale:
+  taken before W5 and W9 landed) read 4/4 on the demo and 3/4 on both
+  execution takes. Predicted **2 correct / 1 wrong**, and the wrong one
+  is the demo.
+* **J5** — `pytest` unchanged at **320 passed, 3 skipped**: no code is
+  touched by this increment.
+
+Status: PRE-REGISTRATION (results entry follows in this session).
+
+## 2026-08-29 · rung M / W4 (Barre 1 DEV ingestion: the case files) · agent/marathon · local (nightly, unattended) — RESULTS
+
+**Complete as far as the evidence permits; the remainder is a BLOCKED
+note below.** Commits: pre-registration `3dc4a2d`, case files `f1914bc`.
+Not an EVAL-CHANGE increment — no metric, no suite, no scorer file
+touched (proof below).
+
+### What landed
+
+22 new case files under `evals/cases/`, every one
+`maturity: provisional`, one per frozen Barre-1 trace. The corpus is now
+**52 cases: 30 verified (gating) + 22 provisional (gating nothing)**.
+
+- **Tags** on all 22: `source: youtube`, `teacher: yt-barre1`, `lang: en`,
+  `count_style` (`step_names` on the 15 clips with speech, `none` on the
+  seven silent left-side takes), `explanation` (`interleaved` / `none`).
+- **`accompanied: accompaniment_only` on exactly 6** — owner ruling B5's
+  condition finally has rows. Criterion applied: no speech in the frozen
+  transcript **and** frozen model prose describing music or reporting no
+  dancer. Both signals required; one alone was not accepted.
+- **`expect` is empty on 19 of 22, deliberately.** The reasoning is in
+  the pre-registration (F1/F2) and repeated in each file's `notes`, so it
+  travels with the data rather than living only in this ledger.
+- **`expect: meter: "3/4"` on 3** — the one exercise whose demo has the
+  teacher stating the meter aloud *to the pianist*. A statement about the
+  music, not a count; inherited across that exercise's three files.
+- No `input.media` on any of the 22: this batch's media is `offrepo:`.
+
+### Prediction scorecard — 2 hit, 3 missed
+
+| # | prediction | outcome |
+|---|---|---|
+| J1 | 22/22 replay, zero `__error__` rows | **HIT** — 0 error rows in 52; 22 barre1 rows present |
+| J2 | every headline block identical to baseline; only `provisional` moves | **MISSED** — see below. The gate held, the prediction did not |
+| J3 | exactly 6 `accompaniment_only`, matching ruling B5 | **HIT** — 6: `barre1-{B,C,D,E,F,G}-el` |
+| J4 | the 3 meter rows score 2 correct / 1 wrong | **MISSED** — **1 correct, 1 wrong, 1 abstained** (accuracy 0.5). The abstention is the accompaniment-only take: with no speech there are no markers, so the pipeline commits to nothing. Predicting from the 08-22 table — which was recorded before W5 and W9 landed and which I flagged as stale in the pre-registration and then used anyway — is the error |
+| J5 | pytest unchanged at 320/3, "no code is touched" | **MISSED** — the first run was **1 failed, 319 passed**. See the tripwire section; final state is 320 passed, 3 skipped, but the prediction was wrong about the increment being code-free |
+
+### J2, corrected: what actually is invariant
+
+`outcomes` is a per-case map, so adding 22 cases *must* change it. That
+is arithmetic, and predicting otherwise was careless. The invariant that
+matters, and that holds:
+
+```
+tier1 outcomes restricted to the 30 blessed ids: IDENTICAL
+new ids added to the outcomes map: 22
+```
+
+Isolated against the previous run artifact (`run-…091713Z-049157b`, the
+W12 session) so W11/W12's own deltas do not muddy the picture, W4 changes
+**exactly two things** and nothing else:
+
+| block | tier0 | tier1 |
+|---|---|---|
+| fields, ece, risk_coverage, slices, tempo_metrics, quality_spearman, factored_meter | identical | identical |
+| outcomes | identical | **+22 ids; the 30 shared ids identical** |
+| provisional | identical (None) | **None → n=22** |
+
+`evals run --suite tier0,tier1,stage1` prints **`no outcome changes vs
+baseline`**, and the headline numbers are untouched: tempo 0.69,
+meter_triple 0.464, counts 0.591, `aggregate_verified: clips=28 F=0.383`.
+The provisional slice reports separately, as designed:
+`P meter_triple n=3 correct=1 wrong=1 abstained=1 accuracy=0.5`.
+
+### The W1.5 tripwire fired — recording it as the review event it is
+
+`tests/test_evals_maturity.py::test_every_committed_case_is_verified`
+asserted `len(cases) == 30`, with the docstring *"If a provisional case
+ever lands here, this test says so loudly — that is a review event, not a
+detail."* Tonight is that event, and the test failed on the first run
+exactly as its author intended. It was **not** deleted. It was replaced
+by `test_the_gating_corpus_is_exactly_the_blessed_thirty`, which pins the
+thing the tripwire was protecting and pins it harder: the verified ids
+must equal the id set in `evals/baseline.json`, so no session can grow the
+gating set by writing `maturity: verified` on agent-authored truth. A
+count check became an identity check. This is the one file outside
+`evals/cases/` that W4 touched, and it is flagged here rather than
+buried in a diff.
+
+### The finding: this batch cannot be labeled from its own audio
+
+Stated as a negative result with per-clip evidence (rule 5), because it
+is the substance of the session.
+
+1. **No clip contains a full counted eight.** All 22 transcripts were
+   read. What exists are fragments inside instruction — *"we're gonna go
+   eight times. five. six."*, *"port de bras, five, six, and"*, *"grand
+   plié, six, seven and eight"*, *"forward and back in eight counts"*.
+   The teacher instructs; the pianist keeps the time.
+2. **And those fragments count the phrase, not the bar.** On at least one
+   exercise the demo counts in eights while the same exercise's
+   accompaniment-only take is described by the frozen model pass as a
+   waltz — 8 *bars* of 3/4, not 8 beats of 4/4. So "counted in eights"
+   licenses nothing about the time signature **in this material**. Same
+   distinction W12 measured last night from the scoring side (the ladder
+   speaks about the count phrase and is silent about bars); here it is a
+   labeling constraint, arrived at independently.
+3. **Therefore tempo, meter and counts truth for 19 of 22 clips has to
+   come from the piano** — an owner-verified beat grid, per the rung-1.5
+   protocol, on media this runner does not hold. There is no honest
+   agent-authored substitute. Writing the pipeline's own reading into
+   `expect` would have produced 22 green provisional rows and taught
+   nobody anything; the 08-22 entry warned about exactly that table.
+4. **A second Standing-Lesson-8 hallucination is now in the corpus.** On
+   one accompaniment-only take Whisper emits 116 "words" that are a
+   number ramp (1, 2, 3 … 19, 19, 19 …) over music with no speech in it.
+   The first instance (clip 17, vocables) scored all-green; this one
+   scores nothing because the case carries no labels, but it is recorded
+   in that case's notes so the artifact is findable. Lesson 8 now has a
+   second, differently-shaped instance: hallucination on
+   **accompaniment-only** audio, not just on non-lexical speech.
+
+### Constraints verified
+
+- `git diff --stat main`: 65 files, 4,382 insertions, 21 deletions
+  (W11 + W12 + W4 together; `main` merged in first so the nightly
+  `logs/run-summaries.md` carve-out commits do not read as deletions).
+- `git diff --name-status main --diff-filter=MD -- evals/` → **empty**.
+  Nothing under `evals/` is modified or deleted anywhere on this branch;
+  every path there is an **A**.
+- `git diff --stat main -- evals/baseline.json` → **empty**.
+- `git diff --name-status main -- evals/cases/` → **22 A, 0 M**.
+- W4's own two content commits touch: 22 **A** under `evals/cases/`,
+  **M** `tests/test_evals_maturity.py`, **M** this ledger. **Zero** files
+  under `src/musical_perception/` — the scorer-code modifications visible
+  against `main` belong to W11 and W12, declared EVAL-CHANGE in their own
+  entries.
+- `pytest`: **320 passed, 3 skipped**. Branch `agent/marathon`. Nothing
+  blessed; `evals bless` never run.
+
+### BLOCKED — the owner half of W4
+
+1. **Verify the 22 provisional cases.** Nineteen need truth from the
+   piano; three need a yes/no on the proposed `meter: 3/4`. Flipping
+   `maturity: verified` is an owner act. Until then these rows gate
+   nothing, which is working as designed.
+2. **Beat grids for this batch need the media.** `annotation generate`
+   cannot run against `offrepo:`. Either the Barre-1 DEV media becomes
+   reachable to the annotator on the runner, or these clips stay
+   label-free indefinitely. Owner's call; note the enumeration
+   prohibition means an agent cannot go looking for it.
+3. **The one honest label may still be wrong.** *"in a three"* is read
+   here as an instruction to the pianist about the meter. A five-second
+   listen settles it.
+
+### PROPOSED (rule 9) — a containment question the owner should rule on
+
+This session's pre-registration quotes a transcript line that names a
+step, which is a (weak) exercise-identity signal in agent-authored repo
+prose — the thing the 08-24 amendment moved to opaque ids. The case files
+use a redacted form (`"a slow [step] in a three"`); the ledger entry does
+not, and the ledger is append-only. The same identities are already
+readable in the committed traces, which the amendment explicitly
+accepted, so the marginal leak is nil — but the *convention* deserves a
+ruling rather than a judgment call per session: **may agent-authored repo
+text quote transcript lines verbatim when they name steps?** Recommended
+answer: no, redact by default, since the cost is one bracket.
+
+### Backlog parked
+
+- **W4-b:** 29 of the 30 verified traces emit `replay: recomputed
+  onset_bpm X != frozen Y — the rhythm layer changed since recording` on
+  every run; only **three** reach the console because Python's default
+  warning filter dedupes. Checked per case tonight: **zero** of the 22
+  barre1 traces warn, so this is pre-existing drift from W5/W9, not
+  W4's doing. Nothing is wrong — the frozen Gemini response is replayed
+  regardless — but a warning that fires on 97% of the corpus and shows
+  3 lines is noise pretending to be a signal. Worth either re-freezing
+  `onset_bpm_sent` at bless time or downgrading the warning to a
+  reported count.
+- **W11-b stands** (sidecars for the barre1 traces need their media),
+  and is the same blocker as item 2 above.
+
+Status: **PROPOSED**, awaiting the owner's batch review. This branch now
+carries **W11 + W12 + W4**, all three unreviewed. Next by standing rank
+once these are cleared: **W3-remainder** (raw-condition rows + optional
+BeatNet), then W6's condition drafting.
+
+## 2026-08-29 · rung M · agent/marathon · (one-line note: session increment complete, awaiting owner review)
+
+W4's increment is complete and pushed (`bdca335`); this branch now
+carries **three unreviewed increments — W11, W12, W4 — all PROPOSED and
+awaiting the owner's weekly batch review**, so no further session work is
+possible on any of them under charter rule 1 (blessing is human). Rung M
+is a standing contract, never "complete": its per-session condition —
+one bounded increment on the highest-ranked non-BLOCKED workstream,
+constraints verified, dated ledger entry appended — is satisfied by the
+entry above, and charter rule 6 (one bounded change per session) bars
+taking a second workstream tonight. The next scheduled session takes
+**W3-remainder** (raw-condition rows + optional BeatNet, runnable on any
+runner), not any of the three pending here.
+
+Status: PROPOSED (bookkeeping note; the substantive entry is above).
+
+## 2026-08-29 · rung M / W3-remainder (rung 6: the raw condition, completed) · agent/marathon · local (nightly, unattended) — PRE-REGISTRATION
+
+Attempted: **W3-remainder** — the 24 missing raw-condition rows of the
+Review-4 baseline benchmark, plus BeatNet (Review 4's optional sixth
+tool). Selected as the highest-ranked non-BLOCKED workstream: W11, W12
+and W4 are all complete and PROPOSED on this branch, awaiting the
+owner's weekly batch (charter rule 1 bars a session from advancing
+them); W5's continuation is owner-started and must never be taken by a
+scheduled session; W3-remainder is ranked 4 and was UNBLOCKED on
+2026-08-27, with the 24 rig MP3s committed to the repo on 2026-08-28.
+**W0 does not re-trigger**: its last entry is 2026-08-27, two days old
+against the 7-day rule.
+
+Verified before pre-registering, and the reason this is runnable at all:
+all 30 grids' `media` paths now resolve on this runner (24
+`audio/rig/*.mp3`, 3 `audio/counting/*.aif`, 3 `video/youtube/*`), where
+the 2026-08-21 session found only 6. The blocker that entry filed
+against the owner three times — "stage the DEV rig MP3s on the runner" —
+is discharged.
+
+**EVAL-CHANGE? No.** This is a `scripts/` + `docs/` measurement
+workstream. No pipeline code, no scorer code, no eval file touched; the
+tier suites must come back byte-identical, and that is proven below, not
+assumed.
+
+### Rule-3 disclosure
+
+These predictions are committed **before any tool is run in this
+session** — no smoke test, no partial table. The harness
+(`scripts/baseline_benchmark.py`) already exists from 2026-08-21 and is
+unchanged in substance; only the stale prose in `render_md` that says
+the rig media is absent will be corrected, after the run. `git log
+--oneline` on this branch shows this entry committed before the results
+commit.
+
+### What this session can newly measure
+
+The 08-21 result was a **5-verified-clip** raw condition, and its most
+interesting finding (B2, inverted) rested on a 5-clip overlap between
+conditions. With all 28 verified grids in both conditions, the
+raw-vs-markers comparison becomes a same-rows measurement at n=28 for
+the first time. Every prediction below is a re-test of an 08-21 claim at
+the new n, except R8.
+
+### Pre-registered predictions (R1–R9)
+
+- **R1** The 08-21 inversion **reproduces at n=28**: on the same verified
+  rows, mean F@70 ms is **higher on raw than on markers for at least 4 of
+  the 6 tools**. Reason: the click track removes fricative clutter but
+  keeps the word-onset bias (Standing Lesson 1) and hands the tracker a
+  stream whose periodicity is no better; the 5-clip result showed 5 of 6
+  tools losing. Risk: those 5 clips were the non-rig material (counting
+  `.aif` + video), acoustically unlike the 24 rig MP3s that now arrive.
+- **R2** **`nuclei_hybrid` does not top the raw-condition F table** at
+  n=28 — B6 stands. Reason: the diagnosed failure was the music DP
+  tracker bolted on top of the domain-native front end, which more clips
+  do not fix.
+- **R3** **No off-the-shelf tool beats the blessed pipeline's stage-1
+  pulse F** on the untrimmed, like-for-like comparison over the same 28
+  verified rows — B8 holds at full n. Reason: rung 2 measured the same
+  front end winning as a pulse channel. If one does beat it, that
+  sentence goes at the top of the report.
+- **R4** **AMLt > CMLt for every tool in the raw condition** at n=28.
+  Reason: B3 held wide on markers and was only thin on raw because n=5;
+  metric-level confusion is the corpus's dominant error mode.
+- **R5** **AMLt-with-triples > AMLt for at least two tools in raw**, and
+  the lifted rows are the triple-family clips. Reason: the raw condition
+  finally contains `rig-names-3-4-88-waltz`, both 6/8 rows, the 2/4 rows
+  and `rig-numbers-4-4-80-triplet` — the exact clips B4's extension was
+  built for, none of which were in the 5-clip raw set.
+- **R6** **B5's partial holds**: `madmom_dbn` at `min_bpm=40` still misses
+  `rig-names-4-4-63-adagio` (F < 0.4) in the raw condition, while
+  `rig-numbers-4-4-60-halftempo` scores better than it. Reason: slow
+  *and* sparse is the failure, not slow.
+- **R7** **Acc2 ≥ Acc1 for every tool** in the raw condition at n=28, and
+  `essentia_re2013` is again the tool where they are closest. Reason:
+  B7's shape; Essentia's 40–208 range means its tempo errors are not
+  octave errors.
+- **R8** **Beat This!'s abstention is a property of the speech, not of
+  the six clips it was seen on**: it emits **zero beats on at least 8 of
+  the 24 rig raw rows**. Reason: it abstained on 3 of 5 in 08-21, and
+  the rig clips are the sparsest, most speech-only material in the
+  corpus. This is the session's most falsifiable prediction and the one
+  whose failure would be most informative (it would mean the abstention
+  was about the video clips' room tone, not about voice).
+- **R9** **BeatNet installs and runs, or its exact failure is
+  documented.** No prediction is offered on its scores; Review 4 lists it
+  as optional and its only stated blocker (a working madmom environment)
+  now exists at `.venv-madmom` (madmom 0.17.dev0). Either outcome
+  satisfies the rung; a silent omission does not.
+
+Result: (see the RESULTS entry that follows)
+Regressions and classifications: (see RESULTS)
+Lesson (durable, one paragraph): (see RESULTS)
+Status: PRE-REGISTRATION (predictions committed before measurement).
+
+## 2026-08-29 · rung M / W3-remainder (rung 6: the raw condition, completed) · agent/marathon · local (nightly, unattended) — RESULTS
+
+### Headline
+
+**The 2026-08-21 benchmark's two most-quoted conclusions were artifacts
+of n=5 and both reverse at n=28.** B6 ("Review 4's core claim — the
+domain-native front end wins — is not supported") and B2 ("cleaning the
+front end does not help") were the previous run's signature findings.
+With the 24 rig clips present, `nuclei_hybrid` **tops the raw F table**
+(0.727, first of seven) and **every one of the seven tools does better
+on raw audio than on the click track**. The first is a reversal; the
+second is the same direction as 08-21's corrected B2 but far stronger.
+
+Full table: [baseline-benchmark.md](baseline-benchmark.md); per-clip
+rows in `baseline-benchmark.json`.
+
+```
+tool              cond       n       F   CMLt   AMLt  AMLt3   Acc1   Acc2
+librosa_dp        raw       28   0.562 0.503 0.604 0.604 0.536 0.607
+librosa_plp       raw       28   0.664 0.574 0.635 0.658 0.786 0.857
+beat_this         raw       28   0.416 0.279 0.375 0.375 0.700 0.950
+essentia_re2013   raw       28   0.706 0.635 0.699 0.699 0.821 0.893
+nuclei_hybrid     raw       28   0.727 0.584 0.637 0.641 0.571 0.714
+madmom_dbn        raw       28   0.639 0.492 0.599 0.599 0.571 0.679
+beatnet           raw       28   0.537 0.428 0.553 0.580 0.571 0.643
+librosa_dp        markers   28   0.382 0.313 0.467 0.467 0.571 0.607
+librosa_plp       markers   28   0.408 0.252 0.373 0.375 0.429 0.536
+beat_this         markers   28   0.378 0.188 0.282 0.294 0.037 0.148
+essentia_re2013   markers   28   0.414 0.313 0.416 0.416 0.429 0.464
+nuclei_hybrid     markers   28   0.324 0.281 0.497 0.498 0.444 0.519
+madmom_dbn        markers   28   0.335 0.153 0.455 0.458 0.214 0.500
+beatnet           markers   28   0.364 0.255 0.406 0.409 0.481 0.556
+```
+
+### Prediction scorecard (5 hit, 2 falsified, 2 partial)
+
+- **R1 — HIT, at the ceiling.** Predicted raw > markers for ≥ 4 of 6
+  tools on the same rows; the answer is **6 of 6** (7 of 7 with
+  BeatNet), deltas `nuclei_hybrid` **+0.404**, `madmom_dbn` +0.304,
+  `essentia` +0.291, `librosa_plp` +0.255, `librosa_dp` +0.180,
+  `beatnet` +0.173, `beat_this` +0.038. The marker stream — this
+  pipeline's own Whisper word starts, rendered as clicks — is a
+  **worse** input to every off-the-shelf tracker than the raw speech it
+  was extracted from. Standing Lesson 1 restated from the outside: the
+  word-onset bias is not noise a tracker can average away, it is a
+  systematic displacement that survives cleaning.
+- **R2 — FALSIFIED, and this is the entry's most consequential
+  reversal.** Predicted `nuclei_hybrid` would not top the raw table; it
+  does, at **0.727**, ahead of `essentia` 0.706 and `librosa_plp` 0.664.
+  **Review 4's core claim is supported at n=28 and was rejected at n=5.**
+  Two independent causes, separated below because conflating them would
+  overstate the corpus effect:
+  - *clip set* — on the **same 5 clips** 08-21 used, every other tool
+    reproduces to three decimals (`librosa_dp` 0.445, `librosa_plp`
+    0.539, `beat_this` 0.073, `essentia` 0.506, `madmom` 0.404) while
+    the 23 new rig clips score far higher for everyone (`essentia`
+    0.506→0.749, `madmom` 0.404→0.690, `beat_this` 0.073→0.491). The
+    old 5 were the hardest material in the corpus and were 100% of the
+    raw condition.
+  - *the extractor itself changed* — `nuclei_hybrid` on those same 5
+    clips is **0.463 (08-21) → 0.530 (today)**, because W2.5 dropped the
+    one-event-per-nucleus rule on 2026-08-26. So its win is part corpus
+    and part a real front-end improvement landed since. Disclosed rather
+    than folded into the corpus effect.
+- **R3 — HIT on the letter, and the letter is doing real work.** The
+  right comparator exists only since W11: `stage1-peakrate` scores the
+  rung-2 acoustic pulse channel at **F 0.686** on these 28 verified
+  grids (P 0.572 / R 0.855, asynchrony 0.6 ± 14.1 ms). Untrimmed,
+  like-for-like: `essentia` 0.676, `librosa_plp` 0.652, `madmom` 0.599,
+  `librosa_dp` 0.552, `beatnet` 0.491, `beat_this` 0.414 — **no
+  off-the-shelf tool beats 0.686**, and the nearest (Essentia, −0.010)
+  is inside Standing Lesson 7's noise, so it is a tie, not a win.
+  `nuclei_hybrid` **does** beat it at **0.736**, and is not off-the-shelf
+  — it is this project's own front end with librosa's DP tracker bolted
+  on. That +0.050 is the useful number in this entry (see below).
+- **R4 — HIT.** AMLt > CMLt for all seven tools in raw, without
+  exception. Metric-level confusion, not phase confusion, remains the
+  corpus's dominant error mode.
+- **R5 — PARTIAL, and the failing half is the informative half.** The
+  count clause held (three tools lift: `librosa_plp`, `nuclei_hybrid`,
+  `beatnet`), the content clause failed. Predicted the lifted rows would
+  be the triple-family clips the raw condition finally contains; of the
+  five lifts, only `adr006-8-counts-triple` (`librosa_plp`
+  0.000→0.636) is one. The rest are **4/4** rows —
+  `rig-names-4-4-63-adagio` twice, `rig-numbers-4-4-60-halftempo`
+  (`beatnet` 0.000→0.607) — and one 3/4 row lifting trivially
+  (0.033→0.100). The waltz, both 6/8 rows and the 2/4 rows, which lifted
+  under `markers` on 08-21, **do not lift under `raw` at all**: given
+  real audio the trackers already lock to a level standard AMLt covers.
+  The triple extension earns its keep on **slow 4/4 clips where a
+  tracker subdivides**, not on notated triple meters. That is a
+  different claim from B4's and corrects the impression B4 left.
+- **R6 — HIT.** `madmom_dbn` at `min_bpm=40` on raw:
+  `rig-names-4-4-63-adagio` **F 0.291** (< 0.4, predicted) reading 64.2
+  against the grid's 61.4, versus `rig-numbers-4-4-60-halftempo`
+  **F 0.765** at 57.7 against 60.2. Slow *and* sparse is the failure;
+  slow alone is not. B5's partial survives the move to real audio, and
+  note both readings are now tempo-correct — the adagio failure is
+  phase, not tempo.
+- **R7 — PARTIAL.** Acc2 ≥ Acc1 for all seven tools in raw (hit,
+  strictly greater everywhere). The named sub-clause failed: Essentia
+  was predicted to be the tool where they sit closest, and it is
+  **third** in a three-way tie — `librosa_dp` +0.071, `librosa_plp`
+  +0.071, `essentia` +0.072. On real audio Essentia's octave errors
+  behave like everyone else's; its 08-21 distinction (Acc1 == Acc2) was
+  a markers-condition property, not a tool property.
+- **R8 — FALSIFIED.** Predicted Beat This! would abstain (zero beats) on
+  **≥ 8 of the 24** rig raw rows; it abstains on **5**
+  (`rig-mixed-4-4-104-quantities`, both `-explained` rows,
+  `rig-numbers-4-4-104-prep`, `rig-numbers-6-8-100-clean`). The
+  prediction's own stated alternative is what the data supports: the
+  abstention concentrates on the **non-rig** material — 4 of 6 video and
+  counting clips, 67%, against 21% of the rig clips — and, within the
+  rig set, on exactly the clips carrying spoken explanation rather than
+  counting. So abstention tracks *how much of the clip is unmetred
+  speech*, which is a better-behaved rule than "voice" and a point in
+  Beat This!'s favour.
+- **R9 — HIT (BeatNet ran).** Installed and scored; exact install chain
+  in the report. Not in the prediction set for any other R, and reported
+  as its own tool. Raw F **0.537** (sixth of seven), **zero abstentions
+  on all 30 clips**, best per-clip rows `rig-numbers-4-4-104-clean`
+  1.000 and `rig-vocables-4-4-100-clean` 0.957 — the vocables clip that
+  is the corpus's hardest row for the shipping pipeline (stage-1 F
+  0.118 on Whisper words, 0.700 on peakRate). Worst rows
+  `rig-numbers-3-4-90-clean` and `rig-numbers-4-4-104-duple` at 0.000.
+  It is the most bimodal tool in the table: it never declines, and when
+  it is wrong it is wrong completely.
+
+### The number that matters for W5
+
+The pipeline's own acoustic pulse channel scores **0.686**. The same
+events, fed through librosa's DP beat tracker, score **0.736** — and the
+gain is precision, not recall: the pulse channel is P 0.572 / R 0.855,
+i.e. it already finds nearly all the beats and pays for it in false
+positives, exactly the events a periodicity model is built to prune.
+**+0.050 F for a tracker with no knowledge of this domain at all**,
+bolted onto the front end rung 2 blessed. On the AMLt column
+`nuclei_hybrid` is *not* top (0.637 vs Essentia's 0.699), so the pruning
+it buys is local rather than structural. Both halves of that point at
+W5's joint posterior: the missing capability is selection over a
+periodic hypothesis, and a generic tracker recovers only part of it.
+
+### Two things the totals hide
+
+**`essentia_re2013` is non-deterministic, and every Essentia number ever
+published from this harness — 08-21's and today's — is a single draw.**
+Three back-to-back calls on one markers wav
+(`rig-names-3-4-90-clean`) returned **93.8, 107.8 and 121.9 BPM** with
+68–69 beats. Five whole-suite repeats show the aggregates are
+nonetheless usable (raw F 0.697–0.706, sd 0.004; markers F 0.418–0.424),
+because per-clip chaos averages out — but the committed markers row
+(0.414, Acc1 0.429) sits *outside* the five-pass Acc1 spread
+(0.357–0.393), so single cells genuinely move. Every other tool in the
+table, checked two runs each on the same wav, is **bit-identical**:
+`librosa_dp`, `librosa_plp`, `beat_this`, `nuclei_hybrid`,
+`madmom_dbn`. The disclosure is now printed in the report document
+itself, not just here. This also explains the otherwise-mysterious
+`essentia/markers` drift from 08-21's 0.425 to today's 0.414 on
+unchanged inputs and unchanged code.
+
+**Beat This!'s Acc2 of 0.950 is again coverage wearing accuracy's
+clothes**, and now with an n to prove it: `n_tempo=20`, not 28, because
+its eight zero-beat rows produce no tempo at all. The 08-21 entry
+flagged this at n=2; it survives at n=20 and must keep its flag.
+
+### Verification and constraints
+
+- `pytest`: **320 passed, 3 skipped**.
+- `python -m musical_perception.evals run --suite tier0,tier1,stage1`:
+  **`no outcome changes vs baseline`**. `--suite stage1-peakrate`:
+  **`no outcome changes vs baseline`**. Expected — this workstream adds
+  no pipeline code and `scripts/` is not imported by the package.
+- `git diff --stat 7176213` (this session's changes alone): four files —
+  `docs/research/RESEARCH-LOG.md`, `docs/research/baseline-benchmark.{json,md}`,
+  `scripts/baseline_benchmark.py` — plus the new
+  `scripts/beatnet_worker.py`. `git diff --name-only 7176213 -- evals/
+  src/musical_perception/evals/` returns **zero lines**: this session
+  touched no eval file and no scorer code. `git diff --diff-filter=M
+  --name-only main -- evals/cases/ evals/traces/ evals/baseline.json`
+  is **empty** — nothing existing under those paths is modified on this
+  branch at all. (The branch's `git diff --stat main` also carries W11's
+  30 added `pulse.json` sidecars, W12's and W1.5's scorer changes and
+  W4's 22 added case files, all from the three earlier increments
+  awaiting review, all under their own declared EVAL-CHANGE carve-outs.)
+- **Not an EVAL-CHANGE.** `scripts/` + `docs/` only.
+- Turn bound: inside the 45-turn per-session bound.
+- Environment side effects, disclosed: `.venv-madmom` gained BeatNet
+  1.1.1, librosa, soundfile, torch 2.13 and pyaudio; Homebrew gained
+  `portaudio` 19.7.0. Nothing was installed into the project venv.
+
+Attempted: W3-remainder — the 24 missing raw-condition rows of the
+Review-4 baseline benchmark plus BeatNet, per the pre-registration
+entry above.
+Pre-registered expectations: R1–R9, committed at `d11eb11` before any
+tool was run this session.
+Result: raw condition 6 → 30 clips (5 → 28 verified); seven tools × two
+conditions; prediction scorecard **5 hit / 2 falsified / 2 partial**;
+two 08-21 headline conclusions reversed; Essentia non-determinism found
+and quantified; no pipeline outcome changed.
+Regressions and classifications: **none** — no pipeline behaviour
+changed, both suite runs report no outcome changes vs baseline.
+
+Lesson (durable, one paragraph): A benchmark's conclusions are a
+property of its rows, and a five-row benchmark is a hypothesis wearing a
+table's clothes. Everything the 08-21 session did was correct — the
+harness reproduces to three decimals on the rows it had, the arithmetic
+was right, the caveats were stated — and its two signature findings were
+still wrong, because the five clips it could reach were the five hardest
+and least representative in the corpus, and nothing inside the
+measurement could reveal that. The honest guard is not more caution in
+the prose but refusing to let an n-limited table settle a question: mark
+the finding provisional-on-n in the same way case rows are marked
+provisional-on-verification, and re-run it when the blocker clears
+rather than citing it. The corollary found the same day: a tool that
+returns a different answer each call (Essentia here) is publishing draws
+from a distribution, and a benchmark that never repeats a run cannot
+tell that apart from a measurement — repeat-and-report-the-spread
+belongs in the harness, not in a session's judgement.
+
+Status: PROPOSED. For owner review in the weekly batch, which now
+carries **four** unreviewed increments on this branch: W11 (08-28),
+W12 (08-29), W4 (08-29) and this. Two follow-ups worth an owner ruling,
+parked rather than taken (charter rule 6): (a) the 08-21 entry's B6/B2
+conclusions and `docs/research/baseline-benchmark.md`'s narrative are
+superseded by this entry — the ledger is append-only, so the correction
+lives here, but a reader landing on the 08-21 entry alone will be
+misled; (b) `nuclei_hybrid`'s +0.050 over the bare pulse channel is a
+cheap, already-implemented precision gain that nothing in the shipping
+pipeline consumes — a natural W5-continuation input, not a workstream
+of its own.
+
+## 2026-08-29 · rung M · agent/marathon · (one-line note: session increment complete, awaiting owner review)
+
+W3-remainder's increment is complete and pushed (`84dea9a`); this branch
+now carries **four unreviewed increments — W11, W12, W4 and
+W3-remainder — all PROPOSED and awaiting the owner's weekly batch
+review**, so no session work is possible on any of them under charter
+rule 1 (blessing is human). Rung M is a standing contract, never
+"complete": its per-session condition — one bounded increment on the
+highest-ranked non-BLOCKED workstream, constraints verified, dated
+ledger entry appended — is satisfied by the RESULTS entry above, and
+both charter rule 6 ("one bounded change per session") and the Rung M
+policy line ("each session advances exactly one workstream") bar taking
+a second workstream tonight. The next scheduled session takes **W6**
+(rung 5, ensembled semantics), whose condition the charter says the
+meta-rung drafts "when rung 4's shape is known" — it is known since W5
+phase 1 landed on 08-28, so drafting it is the first act — or **W10**
+(nod-kinematics) if the owner prefers a pipeline increment; W0 becomes
+due 2026-09-03 (7 days after the 08-27 meta entry).
+
+Status: PROPOSED (bookkeeping note; the substantive entry is above).
+
+## 2026-08-30 · rung M / W10 (nod-kinematics gesture channel) · agent/marathon · local (nightly, unattended) — PRE-REGISTRATION
+
+Attempted: W10 — head-nod kinematics and phrase-arrival segmentation on
+the committed pose traces, per the charter's W10 commissioning
+(2026-08-28, discharging A5-27) and the W7 entry's own recommendation:
+*"the next thing worth trying is not a better peak-picker but a different
+event definition — a dancer places phrase arrivals on the beat, which is
+a segmentation problem, not a periodicity problem."*
+
+### Workstream selection, and the blockers re-verified tonight
+
+Standing ranking (charter, owner-ratified 2026-08-28): W11 · W12 · W4 ·
+W3-remainder · W6 · W10. The first four are **complete and PROPOSED on
+this branch** (08-28 and 08-29 entries), awaiting the owner's weekly
+batch review; charter rule 1 bars a session from advancing them further.
+
+**BLOCKED — W6 (rung 5, ensembled semantics), ranked above this.** Its
+charter text says the condition is *"to be finalized when rung 4's shape
+is known — the meta-rung drafts it"*. Rung 4's shape has been known
+since W5 phase 1 landed (08-28), so the drafting is now possible, but
+drafting a rung condition is a **meta-rung** deliverable and the
+meta-rung *"never executes pipeline work itself"*; W0 is not due until
+2026-09-03 (7 days after the 08-27 meta entry). Taking W6 tonight would
+mean either executing a workstream with no condition or performing W0
+three days early — both charter deviations. **Owner action or the
+2026-09-03 W0 session is needed to unblock W6.** W5's continuation is
+OWNER-STARTED and scheduled sessions must never take it; W8 waits on
+W5's continuation plus ADR-017's tier-0-driver EVAL-CHANGE. That leaves
+W10, ranked last among open workstreams and the only one executable.
+
+### Established facts, probed before predicting (findings, not predictions)
+
+- **26 committed traces carry `pose.npz`**: the 22 Barre-1 traces and
+  four video demos (`exercise-1-demo`, `plies-demo`, `grande-battement`,
+  `frappe`). All four demos are 25 fps (the Barre-1 set is 50 fps).
+- **Exactly four of them also have a beat grid, and three of those are
+  owner-verified**: `exercise-1-demo` (41 beats), `grande-battement`
+  (36), `frappe` (55) — 132 verified beats total —
+  plus `plies-demo` (171 beats, `provisional: true`), which by charter
+  rule 2 is reported as its own slice and gates nothing.
+- **NaN gaps are present and uneven**: `exercise-1-demo` carries 5.18 %
+  NaN landmarks at `detection_rate` 0.948; the other three are ≤ 0.11 %.
+  W7's secondary finding (a NaN-poisoned median threshold silently zeroed
+  14 of 22 clips while `detection_rate` read 1.00) applies directly.
+
+**Stated up front, per the W3-remainder lesson of 2026-08-29: the
+verified evaluation set is n = 3 clips.** That is a hypothesis-sized
+corpus, not a table-sized one, and every clip-level conclusion in the
+results entry will be marked *provisional-on-n*. The design therefore
+puts the load-bearing claim on a **within-clip** contrast over the 132
+verified beats rather than on a between-clip average. The 22 Barre-1
+traces have no grids at all and are **diagnostic-only** here: coverage
+and event rates, never an accuracy number.
+
+### Design, frozen before any code
+
+**Signal.** Head centroid from MediaPipe nose (0), left ear (7), right
+ear (8), divided by the median shoulder-to-hip distance so the units are
+torso-lengths (as `gesture.py` does). A nod is vertical, so the primary
+series is the normalized **vertical** component; short NaN gaps are
+linearly interpolated and long ones excluded, with the excluded span
+reported per clip.
+
+**Three event definitions, all three pre-declared and all three
+reported** — no post-hoc winner-picking, significance Bonferroni-corrected
+at α = 0.05/3 = 0.0167:
+
+- **E1 — peak vertical acceleration.** Bishop & Goebl 2018 (Review 5 §c):
+  *"gesture acceleration patterns indicate beat position — specifically
+  peak acceleration, and the deceleration period following acceleration
+  peaks, in leaders' head-nodding gestures."* This is the literature's
+  primary claim and therefore this workstream's primary definition.
+- **E2 — nod bottom (the ictus).** Local minima of head vertical
+  position: the lowest point of the nod, the conductor's ictus analogue.
+- **E3 — head speed minima.** W7's falsified event definition, moved from
+  the limbs to the head. Included as a **control**: if W10 works, this is
+  the arm that says whether the change that mattered was the landmark set
+  or the kinematic quantity.
+
+**Truth and metric.** Owner-verified grid beats; `evals.stage1.score_pulse`
+imported read-only (no scorer code is touched) for P/R/F and signed
+asynchrony. **Primary tolerance ±0.15 s, declared a priori and with
+reason** — a visual channel synchronising with an auditory one does not
+hold the ±0.07 s mir_eval window, and Bishop & Goebl's synchronisation
+effects live at the 100 ms scale. The blessed ±0.07 s is reported beside
+it as the secondary number, never instead of it.
+
+**The null, chosen for power (W7's lesson).** Circular shift: the event
+train is rotated by a uniform random offset modulo clip duration, 500
+draws, preserving event count *and* every inter-onset interval and
+destroying only phase. This is the null that asks the actual question —
+"are the events at *these* beat positions" — and it is immune to the
+density inflation a wide tolerance would otherwise buy.
+
+**The phrase-arrival contrast, which is the real hypothesis.** Bishop &
+Goebl: *"visual cues at re-entry points after long pauses are especially
+salient."* A ballet class is re-entry after talk, every time. Grid beats
+are partitioned into **re-entry beats** (the first beat after a gap
+≥ 2.0 s with no beats in it) and **interior beats**, and recall is
+compared between the two partitions, pooled over verified clips. This is
+a within-clip contrast at beat-level n, which is why it, not the global
+F, carries the session's weight.
+
+### Pre-registered predictions (N1–N8)
+
+* **N1 — extraction works on the head.** All 26 pose traces yield a
+  normalized head series and ≥ 1 event under each of E1/E2/E3, with no
+  clip silently zeroed by NaN. *Predicted: 26/26.*
+* **N2 — global alignment fails, the honest low prior.** On the three
+  verified clips, **no** event definition beats its circular-shift null at
+  the corrected α on a majority (≥ 2 of 3) of clips at ±0.15 s.
+  *Predicted: FAIL to reject — i.e. no global beat-marking signal.*
+  Reasoning stated in advance: W7 found movement periodicity that
+  dissolved under scale change; Review 5's addressee-detection
+  counter-evidence tempers the visual channel generally; and Bishop &
+  Goebl's effect is about *cueing* gestures at entries, not continuous
+  beat-marking through an exercise. A pass here would be this session's
+  surprise and would be flagged as such rather than celebrated.
+* **N3 — the Bishop–Goebl ordering.** E1 (peak acceleration) ranks above
+  E3 (speed minima, W7's falsified form) by mean F at ±0.15 s.
+  *Predicted: E1 > E3.*
+* **N4 — the re-entry contrast, where the literature says the signal is.**
+  Pooled over verified clips, recall at re-entry beats exceeds recall at
+  interior beats by ≥ 0.10 absolute for E1. *Predicted: PASS.* Named
+  risk: re-entry beats may be rare in three short demos; `n_reentry` is
+  reported whatever the outcome, and a contrast resting on fewer than 8
+  re-entry beats will be declared underpowered rather than reported as a
+  result.
+* **N5 — the blessed tolerance is too tight for a visual channel.** No
+  definition beats its null on a majority of verified clips at ±0.07 s,
+  and mean F at 0.07 is below mean F at 0.15. *Predicted: PASS.*
+* **N6 — the positive control (mandatory, per W7's lesson).** A synthetic
+  sinusoidal head nod at 100 BPM, with 5 % NaN gaps injected, is
+  recovered against its own known grid at F ≥ 0.90 and p < 0.01 against
+  the circular-shift null. *Predicted: PASS.* The more confidently a
+  session expects a negative, the more it needs the control proving it
+  could have detected a positive.
+* **N7 — null calibration.** Circular-shifted (phase-destroyed) event
+  trains run back through the same test on real clips reject at no more
+  than 0.10 of ≥ 100 replicates at α = 0.05. *Predicted: PASS.*
+* **N8 — inertness.** The module is not wired into `analyze.py`; `pytest`
+  stays green and `evals run --suite tier0,tier1,stage1` reports `no
+  outcome changes vs baseline`. *Predicted: PASS.*
+
+Scoring of N1–N8 follows in this entry's RESULTS counterpart, appended
+after the run.
+
+Result: (pending — see the RESULTS entry below)
+Regressions and classifications: (pending)
+Lesson (durable, one paragraph): (pending)
+Status: PRE-REGISTRATION (committed before any W10 code exists).
+
+## 2026-08-30 · rung M / W10 (nod-kinematics gesture channel) · agent/marathon · local (nightly, unattended) — RESULTS
+
+Full method, tables and verdict:
+[w10-nod-kinematics.md](w10-nod-kinematics.md); per-clip JSON in
+`docs/research/w10-nod-results.json`; reproduce with
+`python scripts/w10-nod-kinematics-report.py` (read-only over committed
+traces and grids — no media, no models, no API key).
+
+### Prediction scorecard: 5 hit · 1 falsified · 1 hit-but-vacuous · 1 untested-by-design
+
+| | prediction | outcome |
+|---|---|---|
+| **N1** | events under all three definitions on 26/26 pose traces | **FALSIFIED** — E1 26/26 and E3 26/26, but **E2 (nod bottom) only 18/26, median 2 events per clip**. Diagnosis in §3.3 and below. |
+| **N2** | no global beat alignment survives the null | **HIT** — 0 of 18 verified cells significant; best p **0.633** at the primary tolerance, **0.086** at the secondary. |
+| **N3** | E1 (peak acceleration) ranks above E3 (W7's definition) | **HIT, and vacuous** — mean F 0.216 vs 0.097, but *both sit below their own null means* (0.249, 0.129). Ranking two chance-level detectors is grading the thermometer; scored as a hit because it was pre-registered, reported as meaningless because it is. |
+| **N4** | recall at re-entry beats exceeds interior by ≥ 0.10 | **UNTESTED** — the three verified clips carry **6 re-entry beats** at the pre-registered 2.0 s gap, below the pre-declared floor of 8. Declared underpowered by the rule written before the run, not after seeing it. |
+| **N5** | the blessed ±0.07 s window is too tight for a visual channel | **HIT** — mean F 0.139 at 0.07 vs 0.216 at 0.15 for E1; nothing significant at either. |
+| **N6** | positive control recovers a synthetic nod, F ≥ 0.90, p < 0.01 | **HIT** — F = 1.000 (E1, E2), 0.987 (E3); p < 0.01. |
+| **N7** | null calibration FPR ≤ 0.10 at α = 0.05 | **HIT** — 0.015–0.030 over 200 replicates per clip; conservative, not liberal. |
+| **N8** | inert: pytest green, suites byte-identical | **HIT** — `pytest` **329 passed, 3 skipped**; `evals run --suite tier0,tier1,stage1` → **`no outcome changes vs baseline`**. |
+
+### Result — W10 is a negative result, with one structural finding inside it
+
+Head-nod kinematics carry **no** recoverable beat-position information on
+this corpus, under three pre-declared event definitions, at a tolerance
+chosen generously in the channel's favour, against owner-verified grids.
+Zero of eighteen verified cells reach the corrected α, and at the primary
+tolerance **every arm scores below its own null mean**.
+
+The apparent F of 0.216 for peak acceleration is exactly why the null was
+the deliverable and not the F. Fifty events against 41 beats at a ±0.15 s
+window: a *random* train of the same events scores 0.249. Published
+without its null, 0.216 reads as a weak positive channel. It is slightly
+worse than chance.
+
+**The structural finding (N1's miss, and the night's actual content): on a
+dancing body, head height is a postural signal, not a nod signal.** E2 died
+not from missing landmarks — five of its eight zero-event clips carry
+< 0.5 % NaN — but because the robust scale of the vertical head series runs
+0.019–0.515 torso-lengths, and on a clip containing a plié no individual
+nod's prominence approaches 3 × MAD of a signal that already contains the
+plié. Double differentiation is the only reason E1 works at all: it
+high-passes the postural component away. Any future channel that reads a
+body landmark's *position* on this corpus inherits this problem, and
+`detection_rate` will not warn about it any more than it warned W7 about NaN.
+
+**The one property that held is coverage.** E1 extracts at 0.81–1.07 Hz on
+the seven `execution-left` takes — the ones W4 flagged as carrying ≤ 3
+transcribed words — against 0.95 Hz median across all 22 Barre-1 clips.
+Movement does not stop when the teacher does. The channel has coverage; it
+lacks content.
+
+**What this does not establish, so no future session over-reads it.** It
+does not test Bishop & Goebl's actual claim. Theirs is about *cueing
+gestures at entries*; a demo video where the teacher counts continuously is
+not that situation, and §3.2 shows why this corpus cannot supply it — the
+verified grids annotate the counted stretches, and the teacher does not
+pause for two seconds inside a counted stretch, so the re-entry moments
+their effect lives at are precisely the moments the grids do not cover.
+Testing it needs grids that extend across the talking, or capture aimed at
+the cue-in. That is a **capture** question, not an algorithm question.
+
+**Disclosures.** (i) The circular-shift null has a stated blind spot — a
+rotation by one beat period realigns against a perfectly isochronous
+reference — so the mean null F is printed for every cell and the positive
+control uses a deliberately non-isochronous synthetic grid. (ii) The
+post-hoc re-entry gap sweep in §3.2 is labelled post-hoc and is not a test;
+it points the opposite way from N4's prediction, which on a chance-level
+channel carries no information either. (iii) n = 3 verified clips. Per the
+W3-remainder lesson of 2026-08-29 this is a hypothesis-sized corpus and
+every clip-level number here is **provisional-on-n**; what is not
+n-limited is §3.3's postural finding, which reproduces across 26 traces.
+(iv) The 22 Barre-1 traces were used for coverage only — no accuracy number
+is computed on a clip without a grid.
+
+### BLOCKED — W6 (rung 5, ensembled semantics), ranked above this
+
+Restated here so it reaches the owner's queue rather than only the
+pre-registration: **W6 cannot be taken by a scheduled session until its
+condition is drafted**, and the charter assigns that drafting to the
+meta-rung, which is not due until 2026-09-03. Either the owner drafts the
+condition in the weekly batch review, or the 2026-09-03 W0 session does.
+Until then the marathon's executable queue is empty of pipeline work:
+W11/W12/W4/W3-remainder/W10 are all PROPOSED and awaiting review, W5's
+continuation is owner-started, W8 waits on W5 plus ADR-017's tier-0-driver
+EVAL-CHANGE.
+
+### Verification and constraints
+
+- `pytest`: **329 passed, 3 skipped**.
+- `python -m musical_perception.evals run --suite tier0,tier1,stage1`:
+  **`no outcome changes vs baseline`** (aggregate_verified F=0.383 over 28
+  clips, aggregate_provisional its own slice, both unchanged).
+- `git diff --stat 71d558c` (this session alone): **six files, 1,984
+  insertions, 0 deletions** — `docs/research/RESEARCH-LOG.md`,
+  `docs/research/w10-nod-kinematics.md`,
+  `docs/research/w10-nod-results.json`,
+  `scripts/w10-nod-kinematics-report.py`,
+  `src/musical_perception/precision/nod.py`, `tests/test_nod.py`. **None of
+  them is under `evals/` and none is scorer code.**
+- `git diff --diff-filter=MD --name-only main -- evals/` is **empty**:
+  nothing existing under `evals/` is modified or deleted anywhere on this
+  branch. `git diff --stat main -- evals/baseline.json` is **empty**.
+- **Not an EVAL-CHANGE.** `evals.stage1.score_pulse` and `match_events` are
+  *imported* read-only so the movement channel is scored with the same
+  metric as the acoustic one; no scorer code is touched. (`git diff
+  --name-only main -- src/musical_perception/evals/` does list six files:
+  every one of them is from the W1.5, W11 and W12 EVAL-CHANGE increments
+  already on this branch and already declared in their own entries, and
+  `git diff --name-only 71d558c -- src/musical_perception/evals/` is empty.)
+- Turn bound: inside the 45-turn per-session bound.
+- No environment side effects: nothing installed, no network, no API key.
+
+Attempted: W10 — head-nod kinematics and phrase-arrival segmentation on
+the committed pose traces, per the pre-registration entry above.
+Pre-registered expectations: N1–N8, committed at `1648cfd` before any W10
+code existed.
+Result: negative. 0 of 18 verified cells significant; all three arms below
+their own nulls at the primary tolerance; scorecard 5 hit / 1 falsified /
+1 vacuous / 1 untested-by-design; one structural finding (head position is
+postural, not nodal) that reproduces across all 26 pose traces.
+Regressions and classifications: **none** — the module is not wired into
+`analyze.py`, and both proof runs confirm it.
+
+Lesson (durable, one paragraph): A detector's floor is a hypothesis about
+what an event *is*, and getting it wrong is invisible in the results table
+— the first floor written here was a rank over candidates, "keep the top
+half of the extrema", which caps recall at 0.5 by construction and scored a
+perfectly recovered synthetic nod at F = 0.615; had the positive control
+not existed, that 0.615 would have been read as a weak channel and the
+night would have produced a plausible number instead of an answer. That is
+W7's lesson collecting a second payment, and it generalises past nulls to
+every threshold in a detector. The night's own new lesson is about *which
+derivative to read*: on a moving body, a landmark's position is dominated
+by posture and its acceleration is not, so a position-based event
+definition can be structurally undetectable while looking merely
+unsuccessful — E2 produced two events per clip and no summary field said
+why. Before believing a movement channel is silent, check whether the
+quantity being read is the one the body is using to speak; and before
+believing an alignment score, print what a random train scores against the
+same reference, because at a generous tolerance chance is not near zero.
+
+Status: PROPOSED. For owner review in the weekly batch, which now carries
+**five** unreviewed increments on this branch: W11 (08-28), W12 (08-29),
+W4 (08-29), W3-remainder (08-29) and this. Owner decisions requested:
+(a) accept W10 as a negative result folding movement into W5 as a weak
+vote, alongside W2 and W7 — with the coverage property in §3.4 recorded as
+the one thing worth keeping; (b) the W6 BLOCKED note above, which is now
+the only thing standing between the loop and an empty executable queue;
+(c) whether the cueing-gesture question is worth a **capture** decision
+(grids that extend across talking, or recording aimed at the cue-in),
+since §4 shows it cannot be asked of the present corpus.

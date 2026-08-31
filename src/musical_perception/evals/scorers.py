@@ -308,3 +308,98 @@ def score_quality(
             detail=f"abs_err={err:.2f}",
         ))
     return results
+
+
+# --- W12: the factored meter slice (EVAL-CHANGE, REPORTED-ONLY) ----------
+#
+# Owner ruling 2026-08-28 commissioned a factored meter score beside
+# meter_triple: division on its own axis, grouping on its own axis with
+# duple-family credit. Truth is DERIVED from the existing meter +
+# subdivision labels — nothing is relabelled and no case file changes.
+#
+# These fields are REPORTED-ONLY. They are excluded from `outcomes_map`,
+# from every headline `fields` block, and from ECE/risk-coverage, so they
+# gate nothing until a separate owner ruling says otherwise (charter W12).
+# The exclusion is enforced in one place — this tuple — and tested.
+
+MOTION_DIVISION = "meter_division"
+MOTION_GROUPING = "meter_grouping"
+REPORTED_ONLY_FIELDS = (MOTION_DIVISION, MOTION_GROUPING)
+
+# Bar rung -> the grouping values accepted as correct. Duple-family credit
+# (ruling R-bar-scoring): where truth is 2/4 or 4/4 both {2, 4} count,
+# because W2's salience-clock templates put 2/4 and 4/4 at r = 0.90 — the
+# question "which duple bar?" is ill-posed on this corpus. Exact bar is
+# reported in `detail`, informationally.
+GROUPING_FAMILIES = {
+    2: (2, 4),
+    4: (2, 4),
+    3: (3,),
+    6: (6,),
+}
+
+
+def factored_truth(expected_meter, expected_subdivision: str | None) -> dict:
+    """Derive (division, bar rung) truth from the existing labels.
+
+    Ruling R-6/8 (owner, by ear, 2026-08-28): in 6/8 the pulse IS the
+    counted eighth, so there is no division below it — division truth is
+    `none` regardless of the case's subdivision label, the accent every 3
+    is grouping rung 3, and the bar is rung 6.
+    """
+    bar = expected_meter.beats_per_measure
+    is_six_eight = bar == 6 and expected_meter.beat_unit == 8
+    return {
+        "division": "none" if is_six_eight else expected_subdivision,
+        "bar": bar,
+        "accepted": GROUPING_FAMILIES.get(bar, (bar,)),
+        "accent_rung": 3 if is_six_eight else None,
+    }
+
+
+def score_meter_factored(
+    predicted, expected_meter, expected_subdivision: str | None = None
+) -> list[ScoreResult]:
+    """The factored slice: division and grouping as two independent rows.
+
+    Returns 0-2 rows. A missing truth label produces no row at all —
+    absence is not a zero. `predicted is None` abstains, never fails.
+    """
+    truth = factored_truth(expected_meter, expected_subdivision)
+    rows: list[ScoreResult] = []
+
+    if truth["division"] is not None:
+        got = predicted.subdivision if predicted else None
+        rows.append(ScoreResult(
+            MOTION_DIVISION,
+            ABSTAINED if predicted is None
+            else (CORRECT if got == truth["division"] else WRONG),
+            1.0 if (predicted is not None and got == truth["division"]) else 0.0,
+            got, truth["division"],
+        ))
+
+    accepted = truth["accepted"]
+    got_bar = predicted.meter.beats_per_measure if predicted else None
+    # The ADR-017 ladder is reported, not scored: measured 2026-08-29, it
+    # is empty on 20 of 30 tier-1 clips and otherwise carries the count
+    # phrase (rung 8), not the bar. Scoring it would be scoring silence.
+    ladder = (
+        ",".join(f"{g.level}:{g.strength:.2f}" for g in predicted.grouping_levels)
+        if predicted and predicted.grouping_levels else ""
+    )
+    rows.append(ScoreResult(
+        MOTION_GROUPING,
+        ABSTAINED if predicted is None
+        else (CORRECT if got_bar in accepted else WRONG),
+        1.0 if (predicted is not None and got_bar in accepted) else 0.0,
+        got_bar, truth["bar"],
+        detail=(
+            f"accepted={list(accepted)}"
+            + (f" exact={'y' if got_bar == truth['bar'] else 'n'}"
+               if predicted else "")
+            + (f" ladder={ladder}" if ladder else "")
+            + (f" accent_rung={truth['accent_rung']}"
+               if truth["accent_rung"] else "")
+        ),
+    ))
+    return rows

@@ -284,24 +284,32 @@ TRACKERS = {
     "beat_this": track_beat_this,
     "essentia_re2013": track_essentia,
     "nuclei_hybrid": track_nuclei_hybrid,
-    # madmom_dbn is handled out-of-process; see run_madmom.
+    # madmom_dbn and beatnet are handled out-of-process; see run_worker.
 }
-ALL_TOOLS = list(TRACKERS) + ["madmom_dbn"]
+OUT_OF_PROCESS = {"madmom_dbn": "madmom_worker.py", "beatnet": "beatnet_worker.py"}
+ALL_TOOLS = list(TRACKERS) + list(OUT_OF_PROCESS)
 
 
-def run_madmom(wavs: dict[str, Path]) -> dict[str, tuple[np.ndarray, float | None]]:
-    """Batch madmom in its dedicated venv; one subprocess for all clips."""
+def run_worker(
+    worker: str, wavs: dict[str, Path]
+) -> dict[str, tuple[np.ndarray, float | None]]:
+    """Batch an out-of-process tracker in the dedicated venv.
+
+    madmom and BeatNet both need `.venv-madmom` (BeatNet's inference stage
+    *is* madmom's DBN), and both are batched one subprocess per tool so the
+    model loads once rather than per clip.
+    """
     if not MADMOM_PY.exists():
         raise RuntimeError(f"madmom venv absent at {MADMOM_PY}")
     paths = [str(p) for p in wavs.values()]
     proc = subprocess.run(
-        [str(MADMOM_PY), str(REPO / "scripts" / "madmom_worker.py")],
+        [str(MADMOM_PY), str(REPO / "scripts" / worker)],
         input=json.dumps(paths),
         text=True,
         capture_output=True,
     )
     if proc.returncode != 0:
-        raise RuntimeError(f"madmom worker exit {proc.returncode}: {proc.stderr[-400:]}")
+        raise RuntimeError(f"{worker} exit {proc.returncode}: {proc.stderr[-400:]}")
     raw = json.loads(proc.stdout)
     out = {}
     for key, path in wavs.items():
@@ -459,8 +467,8 @@ def main() -> int:
         for tool in tools:
             t0 = time.time()
             try:
-                if tool == "madmom_dbn":
-                    outputs = run_madmom(wavs[cond])
+                if tool in OUT_OF_PROCESS:
+                    outputs = run_worker(OUT_OF_PROCESS[tool], wavs[cond])
                 else:
                     fn = TRACKERS[tool]
                     outputs = {cid: fn(p) for cid, p in wavs[cond].items()}
@@ -532,10 +540,21 @@ def render_md(results: dict) -> None:
         "sees the marker stream on the same scale it sees audio.",
         "",
         f"`raw` covers **{len(meta['conditions'].get('raw', []))} of "
-        f"{meta['n_grids']}** clips: `audio/rig/*.mp3` is not on this runner "
-        "(see the 2026-08-21 ledger entry's BLOCKED note). `markers` covers "
-        f"**{len(meta['conditions'].get('markers', []))} of {meta['n_grids']}**, "
-        "because traces are committed and media is not.",
+        f"{meta['n_grids']}** clips and `markers` covers "
+        f"**{len(meta['conditions'].get('markers', []))} of {meta['n_grids']}**. "
+        "The 2026-08-21 run reached only 6 raw clips because `audio/rig/*.mp3` "
+        "was not on the runner; those 24 files were committed on 2026-08-28, "
+        "so both conditions now cover the same rows and are comparable "
+        "tool-for-tool. That comparison was invalid as printed in the "
+        "2026-08-21 table and is the main thing this run adds.",
+        "",
+        "**`essentia_re2013` is non-deterministic and its numbers are single "
+        "draws.** Three back-to-back calls on one *markers* wav returned 93.8, "
+        "107.8 and 121.9 BPM. Repeated whole-suite passes average out (raw "
+        "F 0.697-0.706 over 5 passes, sd 0.004; markers F 0.418-0.424), so the "
+        "aggregates below are usable, but no single Essentia cell should be "
+        "quoted as a measurement. Every other tool here is bit-identical "
+        "across repeat runs.",
         "",
         "## Summary — verified grids only",
         "",
