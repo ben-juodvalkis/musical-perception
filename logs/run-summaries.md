@@ -249,3 +249,27 @@ is how the runner's permission failure was found.)*
 > Three owner decisions are queued: accept the negative and fold movement into W5 as a weak vote; unblock W6 by drafting its condition; and whether the cueing question warrants a capture decision.
 
 *Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
+
+## run 2026-08-30T17:00:05Z · main a2ba619
+
+- **outcome:** success, shell exit 0
+- **turns:** 40 · **duration:** 8.1 min · **cost:** $3.58
+
+**Agent's closing message:**
+
+> …iterally cannot see last night's work. It hasn't recurred only because four sessions since exercised judgment the contract doesn't ask for. A3-30 closes it with one command.
+> 
+> **Six amendments proposed** (A1-30…A6-30), including A6-30, which isn't a rule change but an observation: the loop produces ~one workstream a night against a weekly review, so **the queue is now review-limited, not work-limited** — the collision is the first symptom of that, not a one-off.
+> 
+> ## Proof
+> 
+> - `pytest`: **329 passed, 3 skipped**
+> - `evals run --suite tier0,tier1,stage1`: **`no outcome changes vs baseline`**
+> - This session alone: **2 files** (`RESEARCH-LOG.md`, `agent-charter.md`), 398 insertions
+> - `git diff --name-status main --diff-filter=MD -- evals/` → **empty**; `evals/baseline.json` → **untouched**; zero file deletions branch-wide
+> - This session's diff over `src/musical_perception/` → **empty** (not an EVAL-CHANGE)
+> - Branch `agent/marathon`, pushed at `a2ba619`. Nothing blessed.
+> 
+> One caveat worth your attention: if you read the 7-day W0 clause as exclusive rather than as a floor, this entry is the deviation, and A1-30 is where to say so — the honest cost of ruling that way is the four idle nights.
+
+*Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
