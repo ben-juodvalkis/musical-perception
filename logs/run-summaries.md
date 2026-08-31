@@ -273,3 +273,20 @@ is how the runner's permission failure was found.)*
 > One caveat worth your attention: if you read the 7-day W0 clause as exclusive rather than as a floor, this entry is the deviation, and A1-30 is where to say so — the honest cost of ruling that way is the four idle nights.
 
 *Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
+
+## run 2026-08-31T01:00:07Z · main d1b613e
+
+- **outcome:** success, shell exit 0
+- **turns:** 61 · **duration:** 13.8 min · **cost:** $5.93
+
+**Agent's closing message:**
+
+> …ed, 3 skipped (329 + 15 new, none edited).
+> - 2,909 belief tokens across 51 clips reproduce the hard-label streams element-for-element.
+> - Constraints: `--diff-filter=MD -- evals/` empty, `evals/baseline.json` empty, 52 additions / 0 modifications under `evals/`, session diff 6 files +876/−27, branch `agent/marathon`, `bless` never run.
+> 
+> **The substantive finding**, which was not what the prediction expected: fractional belief is spent per token and summed, so the metric level flips from beat to half-beat at p ≈ 0.13–0.24 depending on how many tokens carry the minority mass. With N=5 draws one dissenting draw is p=0.2 — above that threshold on most clips. An ensemble is *less* conservative than a single draw on level decisions, not more. W6-b would have read that as evidence about ensembles rather than about the emission.
+> 
+> Two things disclosed rather than smoothed over: P4's first test fixture was worthless (railed at the tempo-axis edge, asserting a 198.2-vs-198.3 "difference") and was rebuilt; and this increment is flagged EVAL-CHANGE with a new owner question — whether a provably-inert pipeline change may ride along with an add-only loader. Seven increments now await batch review.
+
+*Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
