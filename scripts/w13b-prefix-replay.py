@@ -44,6 +44,23 @@ COMMITTED_FIELDS = ("exercise", "meter", "grouping", "division", "tempo_bpm", "c
 CHANNEL_FIELDS = ("onset_bpm", "marker_bpm")
 FIELDS = COMMITTED_FIELDS + CHANNEL_FIELDS
 NUMERIC_FIELDS = {"tempo_bpm", "onset_bpm", "marker_bpm"}
+# W14 (additive, 2026-08-31): the confidence the pipeline ALREADY computes.
+# Four streams, not eight: `meter`, `grouping`, `division` and `tempo_bpm`
+# are all read off one NormalizedTempo, whose single confidence is the
+# posterior mass of the committed +/-8% tempo neighbourhood (ADR-017).
+# `counts` has none - PhraseStructure carries no confidence field - so the
+# confidence stopping-rule family cannot score it, by construction.
+CONF_STREAMS = ("exercise", "normalized_tempo", "onset_tempo", "marker_tempo")
+FIELD_CONF_SOURCE = {
+    "exercise": "exercise",
+    "meter": "normalized_tempo",
+    "grouping": "normalized_tempo",
+    "division": "normalized_tempo",
+    "tempo_bpm": "normalized_tempo",
+    "counts": None,
+    "onset_bpm": "onset_tempo",
+    "marker_bpm": "marker_tempo",
+}
 # Teacher-demo material, the closest thing in the corpus to W13(a)'s clip
 # (a demo video, 37.8s). Named explicitly rather than tag-derived: the
 # Barre-1 takes carry no `expect` labels, and the four originals are the
@@ -106,6 +123,24 @@ def fields_of(params) -> dict:
     }
 
 
+def confs_of(params) -> dict:
+    """The confidence the pipeline reports at one prefix (W14, additive).
+
+    Read-only: no confidence is invented here. A stream is None when the
+    producing object is absent at this prefix.
+    """
+    nt = params.normalized_tempo
+    return {
+        "exercise": (round(float(params.exercise.confidence), 4)
+                     if params.exercise else None),
+        "normalized_tempo": (round(float(nt.confidence), 4) if nt else None),
+        "onset_tempo": (round(float(params.onset_tempo.confidence), 4)
+                        if params.onset_tempo else None),
+        "marker_tempo": (round(float(params.tempo.confidence), 4)
+                         if params.tempo else None),
+    }
+
+
 def matches(field: str, value, final) -> bool:
     if value is None or final is None:
         return value is None and final is None
@@ -156,10 +191,13 @@ def run_clip(name: str, condition: str) -> dict:
 
     def at(t):
         b = prefix_bundle(inner, t, withhold_semantics=withhold)
-        return fields_of(analyze("replay.wav", bundle=b))
+        params = analyze("replay.wav", bundle=b)
+        return fields_of(params), confs_of(params)
 
-    series = [at(t) for t in grid]
-    final_full = at(None)
+    pairs = [at(t) for t in grid]
+    series = [v for v, _ in pairs]
+    conf_series = [c for _, c in pairs]
+    final_full, final_conf = at(None)
     row = {
         "clip": name, "span": span, "n_grid": len(grid),
         "final": final_full,
@@ -173,6 +211,20 @@ def run_clip(name: str, condition: str) -> dict:
             else round(row["convergence"][f] / span, 4))
         for f in FIELDS
     }
+    # W14 additive keys. Everything above is unchanged and must reproduce
+    # the published artifact exactly.
+    row["grid"] = [round(t, 3) for t in grid]
+    row["conf"] = {c: [cs[c] for cs in conf_series] for c in CONF_STREAMS}
+    # The published `changes` log is a >4%-move log (Standing Lesson 7), which
+    # makes it LOSSY for the numeric fields: a chain of sub-threshold drifts
+    # records nothing while the value walks away from where it started. Exact
+    # per-prefix numeric values are therefore recorded directly. Non-numeric
+    # fields reconstruct exactly from `changes` and are not duplicated here.
+    row["series_num"] = {
+        f: [None if v[f] is None else round(v[f], 3) for v in series]
+        for f in NUMERIC_FIELDS
+    }
+    row["final_conf"] = final_conf
     return row
 
 
@@ -231,6 +283,7 @@ def main() -> None:
             "granted": "timed evidence truncated; Gemini clip-level fields whole-clip (LOWER bound)",
             "withheld": "timed evidence truncated; Gemini clip-level fields suppressed (ablation)",
         },
+        "conf_streams": FIELD_CONF_SOURCE,
         "truth": {k: {"case": v["case"], "provisional": v["provisional"]} for k, v in truth.items()},
         "clips": results,
     }

@@ -1,6 +1,6 @@
 # W13(b) — the machine's time-to-commitment curve
 
-Generated 2026-08-31T09:11:33+00:00 by `scripts/w13b-prefix-replay.py` (read-only over frozen traces; no media, no models, no API key). Pre-registered in the ledger, 2026-08-31.
+Generated 2026-09-01T01:08:39+00:00 by `scripts/w13b-prefix-replay.py` (read-only over frozen traces; no media, no models, no API key). Pre-registered in the ledger, 2026-08-31.
 
 Convergence time t\* = the earliest prefix from which a field's answer never leaves its final value again; normalized by the clip's voiced span (last word end). Numeric fields match within 4% (Standing Lesson 7).
 
