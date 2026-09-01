@@ -76,26 +76,17 @@ exercises:
   - clip: barre6-tendu-take1
     role: take1
     side: '1'
-    bpm: 112
+    bpm: 115
     meter: 4/4
-    counts: 64
-    music_seconds: 34.3
-    clip_seconds: 39
-    phrases: 8
+    counts: 96
+    music_seconds: 50.1
+    clip_seconds: 58
+    phrases: 12
     counts_per_phrase: 8
-    tail_role: balance (split off at 55, case removed)
-  - clip: barre6-tendu-take1-balance
-    role: take1
-    side: '1'
-    bpm: 55
-    meter: 4/4
-    counts: 16
-    music_seconds: 17.5
-    clip_seconds: 19
-    note: ritardando at the very end
-    case: "REMOVED 2026-09-01 \u2014 single-tempo corpus (owner ruling); structure kept here"
-    phrases: 2
-    counts_per_phrase: 8
+    tail_role: "balance (same tempo \u2014 split undone 2026-09-01)"
+    note: 8 phrases exercise + 4 balance. The balance was first heard as 55 and split off; measurement
+      showed one tempo (114.8 vs 117.5), so the counted rate halved, not the pulse. Both sides are now
+      12 phrases of 8.
   - clip: barre6-tendu-take2
     role: take2
     side: '2'

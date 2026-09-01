@@ -9839,9 +9839,38 @@ in-tempo span** — over the whole 41s clip the measurement is dominated by
 speech and finds nothing useful. This is the first consumer of the
 marking-span annotations.
 
+### The tendu split, undone — the owner saw the consequence I had missed
+
+Told that the tendu balance ran at the same pulse as its exercise, the
+owner asked the obvious next question: *"wouldn't flipping the tendu
+balance to 117 and 4 8s make it identical to the other side?"*
+
+It does, exactly:
+
+| | phrases | counts | music |
+|---|---|---|---|
+| `tendu-take1` (8 exercise + 4 balance) | 12 | 96 | 50.1s |
+| `tendu-take2` (8 exercise + 4 stretch) | 12 | 96 | 50.1s |
+
+**The exercise was symmetric all along and the split invented the
+asymmetry.** Reading the balance at the counted rate (55) instead of the
+pulse (117) made a 12-phrase side look like an 8-phrase side with a
+foreign tail, which then failed the single-tempo rule and was deleted.
+
+Undone: the clip is whole again (09:08-10:06), the case reads 96 counts
+at 115, and the separate balance clip, trace and grid are removed. The
+corpus is one case smaller and one exercise more coherent.
+
+**The general lesson, and it is the session's sharpest:** a metric-level
+error does not stay local. This one propagated into a clip boundary, a
+case deletion, and an apparent left/right asymmetry that would have been
+in the benchmark forever — three downstream artefacts from one number
+read at the wrong rung. The owner caught it by asking what the correction
+*implied*, which is a check no test performs.
+
 ### Status
 
-**PROPOSED.** All 26 cases `provisional` by deliberate choice — the owner
+**PROPOSED.** All 25 cases `provisional` by deliberate choice — the owner
 supplied every number but an agent typed them, and only the 22 take rows
 were read back. Promotion to `verified` is an owner act and should be
 taken cold. **Open question for that ruling:** `expected_bpm` prefers

@@ -22,140 +22,140 @@
    },
    {
     "word": "tandu",
-    "marker_type": "none",
-    "beat_number": null,
+    "marker_type": "beat",
+    "beat_number": 1,
     "index": 3
    },
    {
     "word": "front,",
-    "marker_type": "none",
-    "beat_number": null,
+    "marker_type": "beat",
+    "beat_number": 3,
     "index": 4
    },
    {
     "word": "one",
     "marker_type": "beat",
-    "beat_number": 1,
+    "beat_number": 5,
     "index": 5
    },
    {
     "word": "pli\u00e9,",
     "marker_type": "beat",
-    "beat_number": 2,
+    "beat_number": 7,
     "index": 6
    },
    {
     "word": "stay,",
     "marker_type": "beat",
-    "beat_number": 3,
+    "beat_number": 9,
     "index": 7
    },
    {
     "word": "stretch,",
     "marker_type": "beat",
-    "beat_number": 4,
+    "beat_number": 11,
     "index": 8
    },
    {
     "word": "and",
     "marker_type": "and",
-    "beat_number": 4,
+    "beat_number": 12,
     "index": 9
    },
    {
     "word": "one",
     "marker_type": "beat",
-    "beat_number": 5,
+    "beat_number": 13,
     "index": 10
    },
    {
     "word": "and",
     "marker_type": "and",
-    "beat_number": 5,
+    "beat_number": 14,
     "index": 11
    },
    {
     "word": "one,",
     "marker_type": "beat",
-    "beat_number": 6,
+    "beat_number": 15,
     "index": 12
    },
    {
     "word": "side,",
     "marker_type": "beat",
-    "beat_number": 1,
+    "beat_number": 17,
     "index": 13
    },
    {
     "word": "side,",
     "marker_type": "beat",
-    "beat_number": 2,
+    "beat_number": 19,
     "index": 14
    },
    {
     "word": "down,",
     "marker_type": "beat",
-    "beat_number": 3,
+    "beat_number": 21,
     "index": 15
    },
    {
     "word": "stay,",
     "marker_type": "beat",
-    "beat_number": 4,
+    "beat_number": 23,
     "index": 16
    },
    {
     "word": "and",
     "marker_type": "and",
-    "beat_number": 4,
+    "beat_number": 24,
     "index": 17
    },
    {
     "word": "to",
-    "marker_type": "beat",
-    "beat_number": 5,
+    "marker_type": "none",
+    "beat_number": null,
     "index": 18
    },
    {
     "word": "the",
-    "marker_type": "and",
-    "beat_number": 5,
+    "marker_type": "none",
+    "beat_number": null,
     "index": 19
    },
    {
     "word": "back,",
-    "marker_type": "beat",
-    "beat_number": 6,
+    "marker_type": "none",
+    "beat_number": null,
     "index": 20
    },
    {
     "word": "pli\u00e9,",
     "marker_type": "beat",
-    "beat_number": 1,
+    "beat_number": 25,
     "index": 21
    },
    {
     "word": "stay,",
     "marker_type": "beat",
-    "beat_number": 2,
+    "beat_number": 27,
     "index": 22
    },
    {
     "word": "stretch,",
     "marker_type": "beat",
-    "beat_number": 3,
+    "beat_number": 29,
     "index": 23
    },
    {
     "word": "and",
     "marker_type": "and",
-    "beat_number": 3,
+    "beat_number": 30,
     "index": 24
    },
    {
     "word": "two,",
     "marker_type": "beat",
-    "beat_number": 4,
+    "beat_number": 31,
     "index": 25
    },
    {
@@ -171,21 +171,21 @@
     "index": 27
    },
    {
-    "word": "sight.",
-    "marker_type": "beat",
-    "beat_number": 1,
+    "word": "side.",
+    "marker_type": "none",
+    "beat_number": null,
     "index": 28
    },
    {
     "word": "plie,",
     "marker_type": "beat",
-    "beat_number": 4,
+    "beat_number": 33,
     "index": 29
    },
    {
-    "word": "hop,",
+    "word": "hop.",
     "marker_type": "beat",
-    "beat_number": 5,
+    "beat_number": 35,
     "index": 30
    },
    {
@@ -225,23 +225,113 @@
     "index": 36
    },
    {
-    "word": "and...",
-    "marker_type": "none",
+    "word": "and",
+    "marker_type": "and",
     "beat_number": null,
     "index": 37
+   },
+   {
+    "word": "one.",
+    "marker_type": "beat",
+    "beat_number": 37,
+    "index": 38
+   },
+   {
+    "word": "up",
+    "marker_type": "beat",
+    "beat_number": 39,
+    "index": 39
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 40,
+    "index": 40
+   },
+   {
+    "word": "back.",
+    "marker_type": "beat",
+    "beat_number": 41,
+    "index": 41
+   },
+   {
+    "word": "rotate",
+    "marker_type": "beat",
+    "beat_number": 43,
+    "index": 42
+   },
+   {
+    "word": "out,",
+    "marker_type": "beat",
+    "beat_number": 45,
+    "index": 43
+   },
+   {
+    "word": "roll",
+    "marker_type": "beat",
+    "beat_number": 47,
+    "index": 44
+   },
+   {
+    "word": "through.",
+    "marker_type": "beat",
+    "beat_number": 49,
+    "index": 45
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 46
+   },
+   {
+    "word": "a",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 47
+   },
+   {
+    "word": "good",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 48
+   },
+   {
+    "word": "finish.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 49
+   },
+   {
+    "word": "arm,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 50
+   },
+   {
+    "word": "down,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 51
+   },
+   {
+    "word": "alt.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 52
    }
   ],
   "exercise": {
    "exercise_type": "tendu",
    "display_name": "Tendu",
-   "confidence": 0.95,
-   "reasoning": "The exercise primarily consists of tendus to the front, side, and back, often combined with pli\u00e9s, which is characteristic of a tendu exercise."
+   "confidence": 1.0,
+   "reasoning": "The teacher explicitly calls out 'tandu front', 'side', and 'back' while demonstrating tendu movements with pli\u00e9s."
   },
   "counting_structure": {
-   "total_counts": 32,
-   "prep_counts": null,
+   "total_counts": 50,
+   "prep_counts": "and",
    "subdivision_type": "duple",
-   "estimated_bpm": 80
+   "estimated_bpm": 107
   },
   "meter": {
    "beats_per_measure": 4,
@@ -250,7 +340,7 @@
   "quality": [
    {
     "phrase_number": 1,
-    "description": "The first phrase demonstrates tendus to the front with a pli\u00e9.",
+    "description": "The first phrase consists of two tendus to the front, each followed by a pli\u00e9 and stretch.",
     "articulation": 0.5,
     "weight": 0.45,
     "energy": 0.4,
@@ -258,7 +348,7 @@
    },
    {
     "phrase_number": 2,
-    "description": "The second phrase demonstrates tendus to the side with a pli\u00e9.",
+    "description": "The second phrase features one tendu to the side, followed by a pli\u00e9 and stretch, then one tendu to the back, followed by a pli\u00e9 and stretch.",
     "articulation": 0.5,
     "weight": 0.45,
     "energy": 0.4,
@@ -266,28 +356,28 @@
    },
    {
     "phrase_number": 3,
-    "description": "The third phrase demonstrates tendus to the back with a pli\u00e9.",
+    "description": "A brief, transitional tendu to the side with a pli\u00e9.",
     "articulation": 0.5,
     "weight": 0.45,
     "energy": 0.4,
-    "primary": true
+    "primary": false
    },
    {
     "phrase_number": 4,
-    "description": "The fourth phrase demonstrates tendus to the side again with a pli\u00e9.",
-    "articulation": 0.5,
-    "weight": 0.45,
-    "energy": 0.4,
-    "primary": true
+    "description": "A slow port de bras sequence moving forward, up, and back, concluding with a grand pli\u00e9 and roll through.",
+    "articulation": 0.8,
+    "weight": 0.6,
+    "energy": 0.25,
+    "primary": false
    }
   ],
   "structure": {
-   "counts": 8,
-   "sides": 4
+   "counts": 32,
+   "sides": 1
   }
  },
  "inputs": {
-  "onset_bpm_sent": 67.5,
+  "onset_bpm_sent": 117.5,
   "transcript_words_sent": [
    "thank",
    "you,",
@@ -317,16 +407,31 @@
    "two,",
    "last",
    "time,",
-   "sight.",
+   "side.",
    "plie,",
-   "hop,",
+   "hop.",
    "little",
    "slower",
    "to",
    "port",
    "de",
    "bras,",
-   "and..."
+   "and",
+   "one.",
+   "up",
+   "and",
+   "back.",
+   "rotate",
+   "out,",
+   "roll",
+   "through.",
+   "and",
+   "a",
+   "good",
+   "finish.",
+   "arm,",
+   "down,",
+   "alt."
   ]
  }
 }
