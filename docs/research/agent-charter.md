@@ -576,29 +576,52 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   3/4 phrase is counting repetitions). REPORTED-ONLY, gates nothing,
   wired into no pipeline path (Standing Lesson 9); 1-of-3 is the bar it
   must clear. Condition in the 2026-08-31 W0 ledger entry §4. ·
-  **Standing ranking (owner-ratified 2026-08-30, post-burst batch
-  review; *amended-as-PROPOSED 2026-08-31 by the out-of-cadence W0*):**
-  1. ~~W14~~ *(EXECUTED 2026-08-31, PROPOSED — awaiting owner review)* ·
-  2. **W15** *(PROPOSED, untaken — now ranked 1 for a scheduled
-  session)* · **W14-b** *(PROPOSED 2026-08-31 by the W14 increment: the
-  trajectory-shape stopping rule — commit when the answer stops
-  oscillating between metric levels, the failure mode W13(b) Finding 2
-  actually described; scoreable from the same artifact now that
-  `series_num` makes the trajectory replayable)* · W6-b BLOCKED on two
-  owner decisions — cost and the second model family — both deferred to
-  the 2026-09-03 W0 (blocker (i), the key reaching the runner, is
-  discharged for owner-run local sessions; see the 2026-08-31 W0 §5) ·
+  **W14-c = the confidence-calibration defect (COMMISSIONED and
+  COMPLETE 2026-09-01, owner-directed in an attended session; ACCEPTED
+  at that day's batch review).** W14's parked shipping-path finding.
+  `calculate_tempo` published `max(0, 1 - CV)` as confidence — 1.00 on a
+  single interval, dead 0.00 at CV ≥ 1 — and `interpret_meter`'s marker
+  arms relayed it into `NormalizedTempo.confidence` with no evidence
+  guard. The 1-CV number is kept unchanged as `TempoResult.regularity`,
+  which the arbitration gate now reads, so routing is preserved
+  bit-for-bit; `confidence` becomes P(true period within the scorer's
+  ±8% tolerance) and is monotone in evidence. Zero outcome changes; all
+  104 prefix clip-conditions reproduce. **The pre-registered gate
+  (tier1 ECE) FAILED — flat at 0.1815 — and the owner accepted on the
+  W14 F2 re-run instead** (operating points on `meter` and `grouping`
+  where none existed on any field). The gate mis-specification is
+  recorded in the ledger, not retroactively rewritten. ·
+  **W14-d = the prefix-time calibration slice (*PROPOSED 2026-09-01 by
+  the W14-c increment*):** W14-c proved the harness scores whole clips
+  only, so no suite can see a prefix-time confidence regression — the
+  defect was invisible to every existing metric. An **EVAL-CHANGE**
+  increment, never bundled with a pipeline change (rule 2). ·
+  **Standing ranking (owner-ratified 2026-09-01, batch review):**
+  1. **W15** *(**RATIFIED 2026-09-01** — commissioned, untaken, ranked
+  first for a scheduled session)* · 2. **W14-b** *(**RATIFIED
+  2026-09-01** — the trajectory-shape stopping rule: commit when the
+  answer stops oscillating between metric levels, the failure mode
+  W13(b) Finding 2 actually described; scoreable from the same artifact
+  now that `series_num` makes the trajectory replayable. Ranked second;
+  W14-c raises its value, since a calibrated confidence is now available
+  to combine with trajectory shape)* · 3. **W14-d** *(PROPOSED, EVAL-
+  CHANGE — owner's to rule)* · W6-b BLOCKED on two owner decisions —
+  cost and the second model family — both deferred to the 2026-09-03 W0
+  (blocker (i), the key reaching the runner, is discharged for owner-run
+  local sessions; see the 2026-08-31 W0 §5) ·
   W5 continuation OPEN (owner-started; sidecars and factored slice now in
   place) · W11-b BLOCKED (barre1 media is `offrepo:`) · W8 BLOCKED (after
   W5's continuation and the tier-0 driver EVAL-CHANGE named in ADR-017) ·
-  W1/W1.5/W2/W2.5/W3/W3r/W4/W6-a/W7/W9/W10/W11/W12/W13(a)/W13(b)
-  COMPLETE. **Why the ranking was amended at all:** on 2026-08-31 every
-  commissioned workstream was finished, owner-reserved, or blocked —
-  the queue was empty for scheduled sessions, and would have stayed empty
-  through 09-02.
+  W1/W1.5/W2/W2.5/W3/W3r/W4/W6-a/W7/W9/W10/W11/W12/W13(a)/W13(b)/W14/
+  W14-c COMPLETE. **Standing constraint named by W14-c, 2026-09-01:**
+  22 of 52 cases are `provisional` and 22 barre-1 clips have no beat
+  grid at all, so the benchmark's gating power is throttled by owner
+  verification, not by agent throughput. Ranking decisions should be
+  read against that.
   **Burst schedule note (owner, 2026-08-30):** the Air's 3×/day burst
   stays until the 2026-09-03 W0 review, which recommends keep or
-  revert; the revert procedure and plist backup are recorded in the
+  revert; **KEPT by owner ruling 2026-09-01, ahead of that review —
+  the 09-03 W0 no longer needs to re-open it;** the revert procedure and plist backup are recorded in the
   2026-08-28 air-service ledger entry. **Cadence ruling (A6-30
   response, owner 2026-08-30):** while the burst runs, the owner holds
   short attended reviews roughly every two days; the weekly W0 deep

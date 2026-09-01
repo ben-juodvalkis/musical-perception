@@ -8930,3 +8930,81 @@ and any consumer reading it at prefix time gets different numbers.
   than improving the fallback further.
 - **W14-b** (trajectory-shape family) is untouched and still parked.
 
+
+## 2026-09-01 · rung M · main · local (owner batch review: four increments accepted; W15/W14-b ratified; burst kept)
+
+**Owner-attended session.** All rulings below are the owner's, given in
+chat and recorded here verbatim in effect.
+
+### 1. Increments accepted
+
+| increment | ruling |
+|---|---|
+| **W13(b)** — prefix-replay convergence twin | **ACCEPTED** |
+| **W0** (out of cadence, 2026-08-31) | **ACCEPTED** |
+| **W14** — the commitment stopping rule (negative) | **ACCEPTED** |
+| **W14-c** — the confidence-calibration defect | **ACCEPTED — "follow the evidence"** |
+
+Merged to `main` as `0f7dcee` (W13(b) + W0 + W14) and `d728dfd`
+(W14-c). Post-merge on `main`: `pytest` **359 passed, 3 skipped**;
+`evals run --suite tier0,tier1,stage1,stage1-peakrate` → **`no outcome
+changes vs baseline`**.
+
+### 2. The W14-c ruling, and why it needs recording
+
+W14-c **failed its own pre-registered gate**. It was pre-registered to
+stand or fall on tier1 ECE; tier1 ECE was flat at 0.1815, and the entry
+reported the increment as failing rather than re-gating it after the
+fact. The owner overrode that gate and accepted on the W14 F2 re-run
+instead — the measurement that can actually see a prefix-time defect,
+where F2 gained operating points on `meter` and `grouping` (premature
+0.000, committing at 0.235 of span) having had none on any field.
+
+**This is the owner's prerogative and not a precedent for agents.** The
+discipline that held is the one that matters: the agent reported its
+gate as failed, disclosed that the gate was its own mis-specification,
+and declined to promote the favorable evidence to gate status after
+seeing it. **An agent session must still never do the promoting.**
+
+**The generalizable lesson (candidate Standing Lesson):** *choose the
+gate metric by asking which regime the change acts in, not by reaching
+for the suite that happens to exist.* W14-c acts at prefix time; every
+suite scores whole clips; the gate was therefore unreachable before a
+line of code was written, and that was knowable in advance.
+
+### 3. Ratifications
+
+- **W15** (the stated-structure channel) — **RATIFIED**, commissioned,
+  ranked 1 for the next scheduled session. Its pre-sizing stands as the
+  bar: patterns fire on 7 of 52 traces, 3 verified, 1 of 3 agreeing.
+- **W14-b** (the trajectory-shape stopping rule) — **RATIFIED**,
+  ranked 2. W14-c raises its value: a calibrated confidence is now
+  available to combine with trajectory shape, which was not true when
+  W14-b was parked.
+- **W14-d** (prefix-time calibration slice) — recorded as PROPOSED,
+  EVAL-CHANGE, still the owner's to rule.
+
+### 4. Standing decisions
+
+- **Burst schedule: KEPT** (owner, ahead of the 2026-09-03 W0). The
+  3×/day Air burst continues; the 09-03 W0 need not re-open it.
+- **`GEMINI_API_KEY` rotation: DECLINED** by the owner, who judged the
+  transcript exposure acceptable. Recorded so the 2026-08-31 run-summary
+  flag is not re-raised by a later session as though unaddressed.
+- **W6-b's two blockers (cost ceiling; second model family) remain
+  OPEN** and were discussed but not ruled at this sitting.
+
+### 5. Constraint named at this review
+
+**22 of 52 cases carry `maturity: provisional` and 22 barre-1 clips have
+no beat grid at all** (28 of 30 existing grids are owner-verified). The
+benchmark's gating power is therefore throttled by owner verification
+rather than by agent throughput — a workstream ranking that ignores this
+optimizes the wrong bottleneck. Added to the charter's standing ranking
+as a named constraint.
+
+### 6. Housekeeping
+
+`scripts/split_class_video.py` committed (`62f4491`) — the per-exercise
+class-video splitter, previously untracked in the working tree.
+
