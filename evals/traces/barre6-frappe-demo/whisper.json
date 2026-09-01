@@ -1,0 +1,639 @@
+{
+ "words": [
+  {
+   "word": "good,",
+   "start": 0.031,
+   "end": 0.712
+  },
+  {
+   "word": "we",
+   "start": 0.932,
+   "end": 1.072
+  },
+  {
+   "word": "go",
+   "start": 1.112,
+   "end": 1.252
+  },
+  {
+   "word": "seven",
+   "start": 1.352,
+   "end": 1.692
+  },
+  {
+   "word": "and",
+   "start": 2.133,
+   "end": 2.253
+  },
+  {
+   "word": "eight,",
+   "start": 2.293,
+   "end": 2.773
+  },
+  {
+   "word": "to",
+   "start": 2.793,
+   "end": 2.994
+  },
+  {
+   "word": "the",
+   "start": 3.014,
+   "end": 3.174
+  },
+  {
+   "word": "front,",
+   "start": 3.234,
+   "end": 3.474
+  },
+  {
+   "word": "frapp\u00e9,",
+   "start": 3.654,
+   "end": 4.315
+  },
+  {
+   "word": "the",
+   "start": 4.795,
+   "end": 4.955
+  },
+  {
+   "word": "fifth,",
+   "start": 5.036,
+   "end": 5.356
+  },
+  {
+   "word": "out,",
+   "start": 5.676,
+   "end": 5.896
+  },
+  {
+   "word": "fifth,",
+   "start": 5.976,
+   "end": 6.257
+  },
+  {
+   "word": "side,",
+   "start": 6.817,
+   "end": 7.197
+  },
+  {
+   "word": "double",
+   "start": 7.237,
+   "end": 7.618
+  },
+  {
+   "word": "frapp\u00e9,",
+   "start": 7.638,
+   "end": 8.038
+  },
+  {
+   "word": "double",
+   "start": 8.078,
+   "end": 8.439
+  },
+  {
+   "word": "frapp\u00e9,",
+   "start": 8.479,
+   "end": 8.879
+  },
+  {
+   "word": "double",
+   "start": 8.899,
+   "end": 9.279
+  },
+  {
+   "word": "frapp\u00e9,",
+   "start": 9.299,
+   "end": 9.7
+  },
+  {
+   "word": "to",
+   "start": 9.72,
+   "end": 9.9
+  },
+  {
+   "word": "the",
+   "start": 9.94,
+   "end": 10.1
+  },
+  {
+   "word": "back,",
+   "start": 10.16,
+   "end": 10.38
+  },
+  {
+   "word": "back,",
+   "start": 11.001,
+   "end": 11.241
+  },
+  {
+   "word": "fifth,",
+   "start": 11.842,
+   "end": 12.462
+  },
+  {
+   "word": "out,",
+   "start": 12.482,
+   "end": 12.682
+  },
+  {
+   "word": "fifth,",
+   "start": 12.762,
+   "end": 13.023
+  },
+  {
+   "word": "tendu,",
+   "start": 13.123,
+   "end": 13.583
+  },
+  {
+   "word": "side,",
+   "start": 13.603,
+   "end": 13.843
+  },
+  {
+   "word": "three,",
+   "start": 14.244,
+   "end": 14.464
+  },
+  {
+   "word": "double",
+   "start": 14.484,
+   "end": 14.844
+  },
+  {
+   "word": "to",
+   "start": 14.884,
+   "end": 15.045
+  },
+  {
+   "word": "the",
+   "start": 15.085,
+   "end": 15.245
+  },
+  {
+   "word": "side,",
+   "start": 15.305,
+   "end": 15.605
+  },
+  {
+   "word": "frapp\u00e9,",
+   "start": 15.685,
+   "end": 16.326
+  },
+  {
+   "word": "petit",
+   "start": 16.966,
+   "end": 17.667
+  },
+  {
+   "word": "bap,",
+   "start": 17.787,
+   "end": 18.207
+  },
+  {
+   "word": "ma,",
+   "start": 18.227,
+   "end": 18.508
+  },
+  {
+   "word": "keep",
+   "start": 18.588,
+   "end": 18.808
+  },
+  {
+   "word": "your",
+   "start": 18.828,
+   "end": 19.028
+  },
+  {
+   "word": "arms",
+   "start": 19.188,
+   "end": 19.408
+  },
+  {
+   "word": "side,",
+   "start": 19.448,
+   "end": 19.709
+  },
+  {
+   "word": "petit",
+   "start": 19.809,
+   "end": 20.169
+  },
+  {
+   "word": "bap,",
+   "start": 20.209,
+   "end": 20.509
+  },
+  {
+   "word": "ma,",
+   "start": 20.59,
+   "end": 20.89
+  },
+  {
+   "word": "goes",
+   "start": 20.97,
+   "end": 21.37
+  },
+  {
+   "word": "up",
+   "start": 21.55,
+   "end": 21.67
+  },
+  {
+   "word": "to",
+   "start": 21.751,
+   "end": 21.931
+  },
+  {
+   "word": "the",
+   "start": 21.951,
+   "end": 22.091
+  },
+  {
+   "word": "pass\u00e9,",
+   "start": 22.151,
+   "end": 22.771
+  },
+  {
+   "word": "pli\u00e9,",
+   "start": 22.872,
+   "end": 23.392
+  },
+  {
+   "word": "attitude,",
+   "start": 23.953,
+   "end": 24.453
+  },
+  {
+   "word": "three,",
+   "start": 24.973,
+   "end": 25.294
+  },
+  {
+   "word": "four,",
+   "start": 25.814,
+   "end": 26.034
+  },
+  {
+   "word": "find",
+   "start": 26.074,
+   "end": 26.195
+  },
+  {
+   "word": "your",
+   "start": 26.215,
+   "end": 26.295
+  },
+  {
+   "word": "balance",
+   "start": 26.355,
+   "end": 26.635
+  },
+  {
+   "word": "there,",
+   "start": 26.675,
+   "end": 26.895
+  },
+  {
+   "word": "six,",
+   "start": 27.516,
+   "end": 27.736
+  },
+  {
+   "word": "allong\u00e9,",
+   "start": 28.036,
+   "end": 28.557
+  },
+  {
+   "word": "we",
+   "start": 28.817,
+   "end": 29.097
+  },
+  {
+   "word": "close,",
+   "start": 29.237,
+   "end": 30.038
+  },
+  {
+   "word": "yeah,",
+   "start": 30.018,
+   "end": 30.84
+  },
+  {
+   "word": "so",
+   "start": 31.241,
+   "end": 31.401
+  },
+  {
+   "word": "two",
+   "start": 31.442,
+   "end": 31.582
+  },
+  {
+   "word": "frapp\u00e9,",
+   "start": 31.602,
+   "end": 31.923
+  },
+  {
+   "word": "front",
+   "start": 31.983,
+   "end": 32.203
+  },
+  {
+   "word": "to",
+   "start": 32.244,
+   "end": 32.344
+  },
+  {
+   "word": "start.",
+   "start": 32.364,
+   "end": 32.705
+  },
+  {
+   "word": "it's",
+   "start": 33.186,
+   "end": 33.306
+  },
+  {
+   "word": "front",
+   "start": 33.386,
+   "end": 33.687
+  },
+  {
+   "word": "and",
+   "start": 33.988,
+   "end": 34.088
+  },
+  {
+   "word": "front,",
+   "start": 34.269,
+   "end": 34.569
+  },
+  {
+   "word": "fifth,",
+   "start": 35.171,
+   "end": 35.451
+  },
+  {
+   "word": "out,",
+   "start": 35.712,
+   "end": 35.893
+  },
+  {
+   "word": "fifth,",
+   "start": 36.033,
+   "end": 36.434
+  },
+  {
+   "word": "tendu,",
+   "start": 36.454,
+   "end": 36.875
+  },
+  {
+   "word": "side,",
+   "start": 36.895,
+   "end": 37.637
+  },
+  {
+   "word": "a",
+   "start": 37.657,
+   "end": 37.717
+  },
+  {
+   "word": "double,",
+   "start": 37.737,
+   "end": 38.499
+  },
+  {
+   "word": "a",
+   "start": 38.519,
+   "end": 38.579
+  },
+  {
+   "word": "double,",
+   "start": 38.599,
+   "end": 38.98
+  },
+  {
+   "word": "a",
+   "start": 39.421,
+   "end": 39.481
+  },
+  {
+   "word": "double,",
+   "start": 39.501,
+   "end": 39.882
+  },
+  {
+   "word": "to",
+   "start": 39.902,
+   "end": 40.103
+  },
+  {
+   "word": "the",
+   "start": 40.143,
+   "end": 40.283
+  },
+  {
+   "word": "back,",
+   "start": 40.344,
+   "end": 40.584
+  },
+  {
+   "word": "back,",
+   "start": 41.206,
+   "end": 41.446
+  },
+  {
+   "word": "fifth,",
+   "start": 42.008,
+   "end": 42.288
+  },
+  {
+   "word": "out,",
+   "start": 42.589,
+   "end": 42.75
+  },
+  {
+   "word": "fifth,",
+   "start": 42.89,
+   "end": 43.151
+  },
+  {
+   "word": "side",
+   "start": 43.692,
+   "end": 44.193
+  },
+  {
+   "word": "with",
+   "start": 44.213,
+   "end": 44.313
+  },
+  {
+   "word": "the",
+   "start": 44.353,
+   "end": 44.494
+  },
+  {
+   "word": "double",
+   "start": 44.534,
+   "end": 44.875
+  },
+  {
+   "word": "frapp\u00e9,",
+   "start": 44.915,
+   "end": 45.336
+  },
+  {
+   "word": "side,",
+   "start": 45.356,
+   "end": 45.617
+  },
+  {
+   "word": "then",
+   "start": 46.459,
+   "end": 46.599
+  },
+  {
+   "word": "four",
+   "start": 46.699,
+   "end": 46.9
+  },
+  {
+   "word": "counts",
+   "start": 46.94,
+   "end": 47.16
+  },
+  {
+   "word": "petit",
+   "start": 47.201,
+   "end": 47.481
+  },
+  {
+   "word": "battement",
+   "start": 47.501,
+   "end": 47.882
+  },
+  {
+   "word": "in",
+   "start": 48.103,
+   "end": 48.183
+  },
+  {
+   "word": "le",
+   "start": 48.203,
+   "end": 48.283
+  },
+  {
+   "word": "coup",
+   "start": 48.323,
+   "end": 48.424
+  },
+  {
+   "word": "de",
+   "start": 48.444,
+   "end": 48.524
+  },
+  {
+   "word": "pied,",
+   "start": 48.544,
+   "end": 48.784
+  },
+  {
+   "word": "four",
+   "start": 49.286,
+   "end": 49.506
+  },
+  {
+   "word": "counts",
+   "start": 49.526,
+   "end": 49.747
+  },
+  {
+   "word": "of",
+   "start": 49.767,
+   "end": 49.827
+  },
+  {
+   "word": "petit",
+   "start": 49.847,
+   "end": 50.088
+  },
+  {
+   "word": "battement,",
+   "start": 50.108,
+   "end": 50.388
+  },
+  {
+   "word": "get",
+   "start": 50.408,
+   "end": 50.569
+  },
+  {
+   "word": "all",
+   "start": 50.649,
+   "end": 50.749
+  },
+  {
+   "word": "the",
+   "start": 50.789,
+   "end": 50.85
+  },
+  {
+   "word": "way",
+   "start": 50.89,
+   "end": 50.97
+  },
+  {
+   "word": "to",
+   "start": 51.01,
+   "end": 51.11
+  },
+  {
+   "word": "the",
+   "start": 51.15,
+   "end": 51.21
+  },
+  {
+   "word": "pass\u00e9,",
+   "start": 51.251,
+   "end": 52.173
+  },
+  {
+   "word": "you",
+   "start": 52.193,
+   "end": 52.333
+  },
+  {
+   "word": "lift",
+   "start": 52.413,
+   "end": 52.634
+  },
+  {
+   "word": "into",
+   "start": 52.694,
+   "end": 52.834
+  },
+  {
+   "word": "your",
+   "start": 52.875,
+   "end": 53.015
+  },
+  {
+   "word": "attitude.",
+   "start": 53.095,
+   "end": 53.536
+  },
+  {
+   "word": "frapp\u00e9s,",
+   "start": 54.358,
+   "end": 54.739
+  },
+  {
+   "word": "please.",
+   "start": 54.759,
+   "end": 55.08
+  }
+ ]
+}

@@ -1,0 +1,295 @@
+{
+ "model": "gemini-2.5-flash",
+ "raw_response": {
+  "words": [
+   {
+    "word": "four",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 0
+   },
+   {
+    "word": "one",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 1
+   },
+   {
+    "word": "two",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 2
+   },
+   {
+    "word": "three",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 3
+   },
+   {
+    "word": "reverse",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 4
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 5
+   },
+   {
+    "word": "let",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 6
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 7
+   },
+   {
+    "word": "body",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 8
+   },
+   {
+    "word": "go",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 9
+   },
+   {
+    "word": "inside",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 10
+   },
+   {
+    "word": "leg",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 11
+   },
+   {
+    "word": "stretch",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 12
+   },
+   {
+    "word": "one",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 13
+   },
+   {
+    "word": "four",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 14
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 15
+   },
+   {
+    "word": "back",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 16
+   },
+   {
+    "word": "into",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 17
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 18
+   },
+   {
+    "word": "arabesque",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 19
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 20
+   },
+   {
+    "word": "we'll",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 21
+   },
+   {
+    "word": "finish",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 22
+   },
+   {
+    "word": "there",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 23
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 24
+   },
+   {
+    "word": "closing",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 25
+   },
+   {
+    "word": "fifth",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 26
+   },
+   {
+    "word": "with",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 27
+   },
+   {
+    "word": "rex",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 28
+   },
+   {
+    "word": "thank",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 29
+   },
+   {
+    "word": "you",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 30
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 31
+   },
+   {
+    "word": "down",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 32
+   },
+   {
+    "word": "good",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 33
+   },
+   {
+    "word": "stuff",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 34
+   }
+  ],
+  "exercise": {
+   "exercise_type": "port_de_bras",
+   "display_name": "Port de Bras",
+   "confidence": 0.9,
+   "reasoning": "The dancer performs slow, flowing body bends forward, back, and to the side, characteristic of a port de bras exercise."
+  },
+  "counting_structure": {
+   "total_counts": 8,
+   "prep_counts": "4",
+   "subdivision_type": "none",
+   "estimated_bpm": 60
+  },
+  "meter": {
+   "beats_per_measure": 4,
+   "beat_unit": 4
+  },
+  "quality": [
+   {
+    "phrase_number": 1,
+    "description": "The dancer performs a slow port de bras bending forward and then extending the body back.",
+    "articulation": 0.9,
+    "weight": 0.6,
+    "energy": 0.2,
+    "primary": true
+   },
+   {
+    "phrase_number": 2,
+    "description": "The dancer performs a slow side stretch (port de bras) and then transitions into an arabesque.",
+    "articulation": 0.9,
+    "weight": 0.5,
+    "energy": 0.2,
+    "primary": true
+   }
+  ],
+  "structure": {
+   "counts": 8,
+   "sides": 1
+  }
+ },
+ "inputs": {
+  "onset_bpm_sent": 199.7,
+  "transcript_words_sent": [
+   "four,",
+   "one,",
+   "two,",
+   "three,",
+   "reverse,",
+   "and",
+   "let",
+   "the",
+   "body",
+   "go.",
+   "inside",
+   "leg",
+   "stretch,",
+   "one,",
+   "four,",
+   "and",
+   "back",
+   "into",
+   "the",
+   "arabesque",
+   "and",
+   "we'll",
+   "finish",
+   "there.",
+   "and",
+   "closing",
+   "fifth",
+   "with",
+   "rex.",
+   "thank",
+   "you.",
+   "and",
+   "down.",
+   "good",
+   "stuff."
+  ]
+ }
+}

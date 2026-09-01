@@ -1,0 +1,619 @@
+{
+ "model": "gemini-2.5-flash",
+ "raw_response": {
+  "words": [
+   {
+    "word": "to",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 0
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 1
+   },
+   {
+    "word": "other",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 2
+   },
+   {
+    "word": "side,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 3
+   },
+   {
+    "word": "please,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 4
+   },
+   {
+    "word": "port",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 5
+   },
+   {
+    "word": "de",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 6
+   },
+   {
+    "word": "bras",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 7
+   },
+   {
+    "word": "front",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 8
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 9
+   },
+   {
+    "word": "side",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 10
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 11
+   },
+   {
+    "word": "front",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 12
+   },
+   {
+    "word": "to",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 13
+   },
+   {
+    "word": "start.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 14
+   },
+   {
+    "word": "good",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 15
+   },
+   {
+    "word": "fifth",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 16
+   },
+   {
+    "word": "position.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 17
+   },
+   {
+    "word": "side",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 18
+   },
+   {
+    "word": "to",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 19
+   },
+   {
+    "word": "start.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 20
+   },
+   {
+    "word": "All",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 21
+   },
+   {
+    "word": "the",
+    "marker_type": "ah",
+    "beat_number": 1,
+    "index": 22
+   },
+   {
+    "word": "way",
+    "marker_type": "ah",
+    "beat_number": 1,
+    "index": 23
+   },
+   {
+    "word": "front.",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 24
+   },
+   {
+    "word": "through",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 25
+   },
+   {
+    "word": "the",
+    "marker_type": "ah",
+    "beat_number": 3,
+    "index": 26
+   },
+   {
+    "word": "pli\u00e9.",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 27
+   },
+   {
+    "word": "show",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 28
+   },
+   {
+    "word": "the",
+    "marker_type": "ah",
+    "beat_number": 5,
+    "index": 29
+   },
+   {
+    "word": "back.",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 30
+   },
+   {
+    "word": "grand",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 31
+   },
+   {
+    "word": "de",
+    "marker_type": "ah",
+    "beat_number": 7,
+    "index": 32
+   },
+   {
+    "word": "jambe.",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 33
+   },
+   {
+    "word": "one",
+    "marker_type": "beat",
+    "beat_number": 9,
+    "index": 34
+   },
+   {
+    "word": "more",
+    "marker_type": "beat",
+    "beat_number": 10,
+    "index": 35
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 10,
+    "index": 36
+   },
+   {
+    "word": "a",
+    "marker_type": "ah",
+    "beat_number": 10,
+    "index": 37
+   },
+   {
+    "word": "double",
+    "marker_type": "beat",
+    "beat_number": 11,
+    "index": 38
+   },
+   {
+    "word": "foot",
+    "marker_type": "beat",
+    "beat_number": 12,
+    "index": 39
+   },
+   {
+    "word": "to",
+    "marker_type": "ah",
+    "beat_number": 12,
+    "index": 40
+   },
+   {
+    "word": "foot,",
+    "marker_type": "beat",
+    "beat_number": 13,
+    "index": 41
+   },
+   {
+    "word": "bras",
+    "marker_type": "beat",
+    "beat_number": 14,
+    "index": 42
+   },
+   {
+    "word": "front",
+    "marker_type": "and",
+    "beat_number": 14,
+    "index": 43
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 14,
+    "index": 44
+   },
+   {
+    "word": "back,",
+    "marker_type": "beat",
+    "beat_number": 15,
+    "index": 45
+   },
+   {
+    "word": "up,",
+    "marker_type": "beat",
+    "beat_number": 16,
+    "index": 46
+   },
+   {
+    "word": "front,",
+    "marker_type": "beat",
+    "beat_number": 17,
+    "index": 47
+   },
+   {
+    "word": "closing",
+    "marker_type": "beat",
+    "beat_number": 18,
+    "index": 48
+   },
+   {
+    "word": "the",
+    "marker_type": "ah",
+    "beat_number": 18,
+    "index": 49
+   },
+   {
+    "word": "fifth",
+    "marker_type": "beat",
+    "beat_number": 19,
+    "index": 50
+   },
+   {
+    "word": "back,",
+    "marker_type": "beat",
+    "beat_number": 20,
+    "index": 51
+   },
+   {
+    "word": "port",
+    "marker_type": "beat",
+    "beat_number": 21,
+    "index": 52
+   },
+   {
+    "word": "bras",
+    "marker_type": "ah",
+    "beat_number": 21,
+    "index": 53
+   },
+   {
+    "word": "to",
+    "marker_type": "ah",
+    "beat_number": 21,
+    "index": 54
+   },
+   {
+    "word": "go.",
+    "marker_type": "beat",
+    "beat_number": 22,
+    "index": 55
+   },
+   {
+    "word": "up",
+    "marker_type": "beat",
+    "beat_number": 23,
+    "index": 56
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 23,
+    "index": 57
+   },
+   {
+    "word": "back,",
+    "marker_type": "beat",
+    "beat_number": 24,
+    "index": 58
+   },
+   {
+    "word": "pli\u00e9",
+    "marker_type": "beat",
+    "beat_number": 25,
+    "index": 59
+   },
+   {
+    "word": "back,",
+    "marker_type": "beat",
+    "beat_number": 26,
+    "index": 60
+   },
+   {
+    "word": "front,",
+    "marker_type": "beat",
+    "beat_number": 27,
+    "index": 61
+   },
+   {
+    "word": "shape,",
+    "marker_type": "beat",
+    "beat_number": 28,
+    "index": 62
+   },
+   {
+    "word": "shape,",
+    "marker_type": "beat",
+    "beat_number": 29,
+    "index": 63
+   },
+   {
+    "word": "one",
+    "marker_type": "beat",
+    "beat_number": 30,
+    "index": 64
+   },
+   {
+    "word": "more,",
+    "marker_type": "beat",
+    "beat_number": 31,
+    "index": 65
+   },
+   {
+    "word": "double",
+    "marker_type": "beat",
+    "beat_number": 32,
+    "index": 66
+   },
+   {
+    "word": "it,",
+    "marker_type": "ah",
+    "beat_number": 32,
+    "index": 67
+   },
+   {
+    "word": "bras",
+    "marker_type": "beat",
+    "beat_number": 33,
+    "index": 68
+   },
+   {
+    "word": "back",
+    "marker_type": "beat",
+    "beat_number": 34,
+    "index": 69
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 34,
+    "index": 70
+   },
+   {
+    "word": "front,",
+    "marker_type": "beat",
+    "beat_number": 35,
+    "index": 71
+   },
+   {
+    "word": "down,",
+    "marker_type": "beat",
+    "beat_number": 36,
+    "index": 72
+   },
+   {
+    "word": "up.",
+    "marker_type": "beat",
+    "beat_number": 37,
+    "index": 73
+   },
+   {
+    "word": "up.",
+    "marker_type": "beat",
+    "beat_number": 38,
+    "index": 74
+   },
+   {
+    "word": "interior",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 75
+   },
+   {
+    "word": "port",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 76
+   },
+   {
+    "word": "de",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 77
+   },
+   {
+    "word": "bras.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 78
+   }
+  ],
+  "exercise": {
+   "exercise_type": "plie_rond_de_jambe_combination",
+   "display_name": "Pli\u00e9 and Rond de Jambe Combination",
+   "confidence": 0.9,
+   "reasoning": "The teacher explicitly calls out 'pli\u00e9' and 'rond de jambe' and the movements clearly demonstrate these steps along with port de bras and tendu-like actions."
+  },
+  "counting_structure": {
+   "total_counts": 38,
+   "prep_counts": null,
+   "subdivision_type": "duple",
+   "estimated_bpm": 65
+  },
+  "meter": {
+   "beats_per_measure": 4,
+   "beat_unit": 4
+  },
+  "quality": [
+   {
+    "phrase_number": 1,
+    "description": "The phrase begins with port de bras, followed by a pli\u00e9 and a rond de jambe.",
+    "articulation": 0.7,
+    "weight": 0.6,
+    "energy": 0.4,
+    "primary": true
+   },
+   {
+    "phrase_number": 2,
+    "description": "This phrase continues with a double rond de jambe, a foot-to-foot movement, and port de bras front and back, closing in fifth position.",
+    "articulation": 0.6,
+    "weight": 0.5,
+    "energy": 0.5,
+    "primary": true
+   },
+   {
+    "phrase_number": 3,
+    "description": "Another port de bras sequence leads into a pli\u00e9 back, followed by a 'shape' (pose) and a double movement.",
+    "articulation": 0.6,
+    "weight": 0.55,
+    "energy": 0.55,
+    "primary": true
+   },
+   {
+    "phrase_number": 4,
+    "description": "The final rhythmic phrase concludes with port de bras back and front, then a controlled down and up movement.",
+    "articulation": 0.7,
+    "weight": 0.5,
+    "energy": 0.4,
+    "primary": true
+   }
+  ],
+  "structure": {
+   "counts": 38,
+   "sides": 2
+  }
+ },
+ "inputs": {
+  "onset_bpm_sent": 171.2,
+  "transcript_words_sent": [
+   "to",
+   "the",
+   "other",
+   "side,",
+   "please,",
+   "port",
+   "de",
+   "bras",
+   "front",
+   "and",
+   "side",
+   "and",
+   "front",
+   "to",
+   "start.",
+   "good",
+   "fifth",
+   "position.",
+   "side",
+   "to",
+   "start.",
+   "all",
+   "the",
+   "way",
+   "front.",
+   "through",
+   "the",
+   "pli\u00e9.",
+   "le",
+   "chode",
+   "back.",
+   "grand",
+   "de",
+   "jambe.",
+   "one",
+   "more",
+   "and",
+   "a",
+   "double.",
+   "foot",
+   "to",
+   "foot,",
+   "bras",
+   "front,",
+   "and",
+   "back,",
+   "up,",
+   "front,",
+   "closing",
+   "the",
+   "fifth",
+   "back,",
+   "harder",
+   "bras",
+   "to",
+   "go.",
+   "up",
+   "and",
+   "back,",
+   "pli\u00e9",
+   "back,",
+   "front,",
+   "shape,",
+   "shape,",
+   "one",
+   "more,",
+   "double",
+   "it,",
+   "bras",
+   "back",
+   "and",
+   "front,",
+   "down,",
+   "up.",
+   "up.",
+   "interior",
+   "port",
+   "de",
+   "bras."
+  ]
+ }
+}

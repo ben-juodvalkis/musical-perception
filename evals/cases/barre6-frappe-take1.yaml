@@ -1,0 +1,21 @@
+id: barre6-frappe-take1
+input:
+  trace: traces/barre6-frappe-take1/
+  media: "video/youtube/ballet barre 6/clips/barre6-frappe-take1.mp4"
+maturity: provisional
+tags:
+  source: youtube
+  teacher: yt-barre6
+  count_style: step_names
+  explanation: interleaved
+  lang: en
+  accompanied: true
+  clip_role: take
+expect:
+  performance_bpm: 79
+  meter: "4/4"
+  counts: 8
+notes: >-
+  Ballet Barre 6 ingestion 2026-09-01. Piano take — the ANSWER KEY for its
+  demo, never the input (owner ruling). Tempo is what the pianist played,
+  owner-heard. 4 sets of 8. Boundary owner-corrected: demo ran to 26:39

@@ -1,0 +1,30 @@
+id: barre6-rond-de-jambe-demo
+input:
+  trace: traces/barre6-rond-de-jambe-demo/
+  media: "video/youtube/ballet barre 6/clips/barre6-rond-de-jambe-demo.mp4"
+maturity: provisional
+tags:
+  source: youtube
+  teacher: yt-barre6
+  count_style: step_names
+  explanation: interleaved
+  lang: en
+  clip_role: demo
+expect:
+  marking_bpm: 96
+  performance_bpm: 95
+  meter: "3/4"
+  counts: 8
+notes: >-
+  Ballet Barre 6 ingestion 2026-09-01, owner-attended labelling session.
+  THE DEMO IS THE CASE (owner ruling): the accompanist must commit to
+  tempo and form before playing, so the input is the demonstration; the
+  piano take barre6-rond-de-jambe-take1 is the answer key, not the input.
+  marking_bpm 96 is the teacher's own marking tempo; performance_bpm 95 is
+  what the pianist played. Intended-tempo span within this demo:
+  11.2-32.0s; owner knew the tempo by 14.9s. SCORING NOTE: expected_bpm
+  prefers performance_bpm, so this row grades against what was played, not
+  against the marking. Owner labels; typed by an agent and not read back,
+  hence provisional. 4 sets of 8 bars of 3, then a port de bras section
+  the demo DOES specify as sets of 8 bars of 3 - breaks the
+  underdetermined-tail pattern

@@ -1,0 +1,334 @@
+{
+ "words": [
+  {
+   "word": "two",
+   "start": 0.031,
+   "end": 3.434
+  },
+  {
+   "word": "front,",
+   "start": 3.474,
+   "end": 5.616
+  },
+  {
+   "word": "and",
+   "start": 5.636,
+   "end": 5.756
+  },
+  {
+   "word": "foot,",
+   "start": 8.018,
+   "end": 8.539
+  },
+  {
+   "word": "foot,",
+   "start": 8.559,
+   "end": 8.819
+  },
+  {
+   "word": "foot,",
+   "start": 8.999,
+   "end": 9.68
+  },
+  {
+   "word": "same",
+   "start": 9.7,
+   "end": 9.94
+  },
+  {
+   "word": "side,",
+   "start": 9.98,
+   "end": 12.362
+  },
+  {
+   "word": "coup\u00e9,",
+   "start": 12.382,
+   "end": 12.843
+  },
+  {
+   "word": "chains,",
+   "start": 12.863,
+   "end": 13.183
+  },
+  {
+   "word": "one",
+   "start": 14.604,
+   "end": 14.764
+  },
+  {
+   "word": "front,",
+   "start": 14.804,
+   "end": 15.725
+  },
+  {
+   "word": "now",
+   "start": 15.745,
+   "end": 15.865
+  },
+  {
+   "word": "in",
+   "start": 15.945,
+   "end": 16.005
+  },
+  {
+   "word": "first,",
+   "start": 16.066,
+   "end": 16.586
+  },
+  {
+   "word": "foot,",
+   "start": 17.707,
+   "end": 18.167
+  },
+  {
+   "word": "foot,",
+   "start": 18.187,
+   "end": 18.668
+  },
+  {
+   "word": "heel,",
+   "start": 18.688,
+   "end": 20.049
+  },
+  {
+   "word": "to",
+   "start": 20.069,
+   "end": 20.289
+  },
+  {
+   "word": "the",
+   "start": 20.329,
+   "end": 20.49
+  },
+  {
+   "word": "back,",
+   "start": 20.65,
+   "end": 23.392
+  },
+  {
+   "word": "three",
+   "start": 23.412,
+   "end": 23.672
+  },
+  {
+   "word": "tendu,",
+   "start": 23.712,
+   "end": 24.493
+  },
+  {
+   "word": "back,",
+   "start": 24.513,
+   "end": 25.374
+  },
+  {
+   "word": "side,",
+   "start": 25.394,
+   "end": 25.734
+  },
+  {
+   "word": "chains",
+   "start": 27.796,
+   "end": 28.056
+  },
+  {
+   "word": "to",
+   "start": 28.136,
+   "end": 28.177
+  },
+  {
+   "word": "the",
+   "start": 28.197,
+   "end": 28.257
+  },
+  {
+   "word": "coup\u00e9,",
+   "start": 28.277,
+   "end": 28.697
+  },
+  {
+   "word": "and",
+   "start": 29.318,
+   "end": 29.418
+  },
+  {
+   "word": "whop,",
+   "start": 29.438,
+   "end": 29.818
+  },
+  {
+   "word": "and",
+   "start": 30.49,
+   "end": 31.011
+  },
+  {
+   "word": "one,",
+   "start": 31.131,
+   "end": 31.312
+  },
+  {
+   "word": "first,",
+   "start": 32.916,
+   "end": 33.216
+  },
+  {
+   "word": "first",
+   "start": 33.437,
+   "end": 33.858
+  },
+  {
+   "word": "heel,",
+   "start": 33.918,
+   "end": 35.121
+  },
+  {
+   "word": "two",
+   "start": 35.141,
+   "end": 35.321
+  },
+  {
+   "word": "eights,",
+   "start": 35.422,
+   "end": 35.762
+  },
+  {
+   "word": "please,",
+   "start": 35.782,
+   "end": 36.344
+  },
+  {
+   "word": "coup\u00e9,",
+   "start": 36.364,
+   "end": 36.805
+  },
+  {
+   "word": "up,",
+   "start": 36.945,
+   "end": 37.025
+  },
+  {
+   "word": "balance",
+   "start": 38.89,
+   "end": 39.27
+  },
+  {
+   "word": "long,",
+   "start": 39.391,
+   "end": 39.912
+  },
+  {
+   "word": "keep",
+   "start": 40.774,
+   "end": 40.914
+  },
+  {
+   "word": "rotating,",
+   "start": 40.974,
+   "end": 41.516
+  },
+  {
+   "word": "two",
+   "start": 42.498,
+   "end": 42.719
+  },
+  {
+   "word": "legs,",
+   "start": 42.779,
+   "end": 43.14
+  },
+  {
+   "word": "one",
+   "start": 44.102,
+   "end": 44.242
+  },
+  {
+   "word": "more",
+   "start": 44.282,
+   "end": 44.463
+  },
+  {
+   "word": "a2",
+   "start": 44.503,
+   "end": 44.623
+  },
+  {
+   "word": "balance,",
+   "start": 44.803,
+   "end": 45.184
+  },
+  {
+   "word": "and",
+   "start": 48.071,
+   "end": 48.151
+  },
+  {
+   "word": "a",
+   "start": 48.191,
+   "end": 48.211
+  },
+  {
+   "word": "good",
+   "start": 48.272,
+   "end": 48.392
+  },
+  {
+   "word": "finish,",
+   "start": 48.452,
+   "end": 48.973
+  },
+  {
+   "word": "seven",
+   "start": 50.437,
+   "end": 50.837
+  },
+  {
+   "word": "and",
+   "start": 51.258,
+   "end": 51.419
+  },
+  {
+   "word": "eight.",
+   "start": 52.221,
+   "end": 52.521
+  },
+  {
+   "word": "good",
+   "start": 54.887,
+   "end": 55.067
+  },
+  {
+   "word": "stuff,",
+   "start": 55.107,
+   "end": 55.368
+  },
+  {
+   "word": "make",
+   "start": 56.13,
+   "end": 56.25
+  },
+  {
+   "word": "sure",
+   "start": 56.27,
+   "end": 56.37
+  },
+  {
+   "word": "you",
+   "start": 56.411,
+   "end": 56.511
+  },
+  {
+   "word": "get",
+   "start": 56.531,
+   "end": 56.631
+  },
+  {
+   "word": "back",
+   "start": 56.671,
+   "end": 56.811
+  },
+  {
+   "word": "to",
+   "start": 56.852,
+   "end": 57.072
+  }
+ ]
+}

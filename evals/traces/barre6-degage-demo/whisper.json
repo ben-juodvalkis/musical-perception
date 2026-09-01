@@ -1,0 +1,704 @@
+{
+ "words": [
+  {
+   "word": "thank",
+   "start": 0.031,
+   "end": 0.211
+  },
+  {
+   "word": "you",
+   "start": 0.231,
+   "end": 0.291
+  },
+  {
+   "word": "rex,",
+   "start": 0.312,
+   "end": 0.512
+  },
+  {
+   "word": "great",
+   "start": 1.333,
+   "end": 1.534
+  },
+  {
+   "word": "stuff.",
+   "start": 1.554,
+   "end": 1.834
+  },
+  {
+   "word": "here",
+   "start": 2.556,
+   "end": 2.636
+  },
+  {
+   "word": "we",
+   "start": 2.676,
+   "end": 2.776
+  },
+  {
+   "word": "go,",
+   "start": 2.816,
+   "end": 2.916
+  },
+  {
+   "word": "seven",
+   "start": 3.057,
+   "end": 3.497
+  },
+  {
+   "word": "and",
+   "start": 3.758,
+   "end": 3.898
+  },
+  {
+   "word": "eight,",
+   "start": 4.018,
+   "end": 4.78
+  },
+  {
+   "word": "two",
+   "start": 4.8,
+   "end": 5.0
+  },
+  {
+   "word": "tendu,",
+   "start": 5.08,
+   "end": 5.541
+  },
+  {
+   "word": "to",
+   "start": 5.902,
+   "end": 6.182
+  },
+  {
+   "word": "the",
+   "start": 6.222,
+   "end": 6.403
+  },
+  {
+   "word": "front,",
+   "start": 6.463,
+   "end": 6.723
+  },
+  {
+   "word": "then",
+   "start": 7.044,
+   "end": 7.425
+  },
+  {
+   "word": "three,",
+   "start": 7.545,
+   "end": 7.785
+  },
+  {
+   "word": "tendu",
+   "start": 8.126,
+   "end": 8.627
+  },
+  {
+   "word": "front,",
+   "start": 8.687,
+   "end": 8.907
+  },
+  {
+   "word": "two",
+   "start": 9.228,
+   "end": 9.468
+  },
+  {
+   "word": "tendu,",
+   "start": 9.509,
+   "end": 9.969
+  },
+  {
+   "word": "to",
+   "start": 10.33,
+   "end": 10.591
+  },
+  {
+   "word": "the",
+   "start": 10.631,
+   "end": 10.891
+  },
+  {
+   "word": "side,",
+   "start": 11.212,
+   "end": 11.512
+  },
+  {
+   "word": "and",
+   "start": 11.592,
+   "end": 11.713
+  },
+  {
+   "word": "then",
+   "start": 11.753,
+   "end": 11.933
+  },
+  {
+   "word": "three,",
+   "start": 11.973,
+   "end": 12.194
+  },
+  {
+   "word": "tendu",
+   "start": 12.534,
+   "end": 13.035
+  },
+  {
+   "word": "side,",
+   "start": 13.075,
+   "end": 13.596
+  },
+  {
+   "word": "coup\u00e9,",
+   "start": 13.616,
+   "end": 14.077
+  },
+  {
+   "word": "change",
+   "start": 14.137,
+   "end": 14.378
+  },
+  {
+   "word": "one",
+   "start": 14.498,
+   "end": 14.618
+  },
+  {
+   "word": "to",
+   "start": 14.658,
+   "end": 14.879
+  },
+  {
+   "word": "the",
+   "start": 14.899,
+   "end": 15.059
+  },
+  {
+   "word": "front,",
+   "start": 15.139,
+   "end": 15.379
+  },
+  {
+   "word": "and",
+   "start": 15.48,
+   "end": 15.58
+  },
+  {
+   "word": "coup\u00e9,",
+   "start": 15.66,
+   "end": 16.121
+  },
+  {
+   "word": "change",
+   "start": 16.141,
+   "end": 16.401
+  },
+  {
+   "word": "one",
+   "start": 16.522,
+   "end": 16.642
+  },
+  {
+   "word": "to",
+   "start": 16.682,
+   "end": 16.902
+  },
+  {
+   "word": "the",
+   "start": 16.942,
+   "end": 17.143
+  },
+  {
+   "word": "side,",
+   "start": 17.183,
+   "end": 17.443
+  },
+  {
+   "word": "first,",
+   "start": 18.165,
+   "end": 18.465
+  },
+  {
+   "word": "first",
+   "start": 18.686,
+   "end": 18.986
+  },
+  {
+   "word": "heel,",
+   "start": 19.166,
+   "end": 19.547
+  },
+  {
+   "word": "and",
+   "start": 19.888,
+   "end": 20.028
+  },
+  {
+   "word": "first,",
+   "start": 20.248,
+   "end": 20.749
+  },
+  {
+   "word": "first",
+   "start": 20.769,
+   "end": 21.07
+  },
+  {
+   "word": "back,",
+   "start": 21.33,
+   "end": 21.551
+  },
+  {
+   "word": "to",
+   "start": 21.851,
+   "end": 22.092
+  },
+  {
+   "word": "the",
+   "start": 22.132,
+   "end": 22.312
+  },
+  {
+   "word": "back.",
+   "start": 22.412,
+   "end": 23.254
+  },
+  {
+   "word": "two",
+   "start": 23.234,
+   "end": 23.595
+  },
+  {
+   "word": "and",
+   "start": 24.275,
+   "end": 24.356
+  },
+  {
+   "word": "three,",
+   "start": 24.416,
+   "end": 24.636
+  },
+  {
+   "word": "tendu,",
+   "start": 24.696,
+   "end": 25.177
+  },
+  {
+   "word": "to",
+   "start": 25.217,
+   "end": 25.337
+  },
+  {
+   "word": "the",
+   "start": 25.357,
+   "end": 25.497
+  },
+  {
+   "word": "back,",
+   "start": 25.517,
+   "end": 25.938
+  },
+  {
+   "word": "to",
+   "start": 25.958,
+   "end": 26.198
+  },
+  {
+   "word": "the",
+   "start": 26.238,
+   "end": 26.418
+  },
+  {
+   "word": "side,",
+   "start": 26.519,
+   "end": 26.839
+  },
+  {
+   "word": "so",
+   "start": 27.32,
+   "end": 27.48
+  },
+  {
+   "word": "two",
+   "start": 27.58,
+   "end": 27.74
+  },
+  {
+   "word": "and",
+   "start": 28.441,
+   "end": 28.541
+  },
+  {
+   "word": "three,",
+   "start": 28.581,
+   "end": 28.842
+  },
+  {
+   "word": "tendu,",
+   "start": 29.122,
+   "end": 29.843
+  },
+  {
+   "word": "coup\u00e9,",
+   "start": 30.184,
+   "end": 30.644
+  },
+  {
+   "word": "change,",
+   "start": 30.684,
+   "end": 30.945
+  },
+  {
+   "word": "one",
+   "start": 31.025,
+   "end": 31.165
+  },
+  {
+   "word": "tendu,",
+   "start": 31.185,
+   "end": 31.706
+  },
+  {
+   "word": "back,",
+   "start": 31.746,
+   "end": 31.946
+  },
+  {
+   "word": "coup\u00e9,",
+   "start": 32.227,
+   "end": 32.667
+  },
+  {
+   "word": "change,",
+   "start": 32.727,
+   "end": 33.088
+  },
+  {
+   "word": "one",
+   "start": 33.108,
+   "end": 33.248
+  },
+  {
+   "word": "tendu,",
+   "start": 33.268,
+   "end": 33.809
+  },
+  {
+   "word": "side,",
+   "start": 33.829,
+   "end": 34.069
+  },
+  {
+   "word": "in",
+   "start": 34.69,
+   "end": 34.79
+  },
+  {
+   "word": "first,",
+   "start": 34.85,
+   "end": 35.111
+  },
+  {
+   "word": "first",
+   "start": 35.391,
+   "end": 35.671
+  },
+  {
+   "word": "heel,",
+   "start": 35.852,
+   "end": 36.272
+  },
+  {
+   "word": "and",
+   "start": 36.593,
+   "end": 36.733
+  },
+  {
+   "word": "first,",
+   "start": 36.953,
+   "end": 37.234
+  },
+  {
+   "word": "first",
+   "start": 37.474,
+   "end": 37.794
+  },
+  {
+   "word": "close,",
+   "start": 37.955,
+   "end": 38.335
+  },
+  {
+   "word": "and",
+   "start": 38.936,
+   "end": 38.996
+  },
+  {
+   "word": "then",
+   "start": 39.016,
+   "end": 39.096
+  },
+  {
+   "word": "we",
+   "start": 39.116,
+   "end": 39.216
+  },
+  {
+   "word": "go",
+   "start": 39.236,
+   "end": 39.337
+  },
+  {
+   "word": "into",
+   "start": 39.357,
+   "end": 39.617
+  },
+  {
+   "word": "a",
+   "start": 39.677,
+   "end": 39.697
+  },
+  {
+   "word": "coup",
+   "start": 39.757,
+   "end": 39.857
+  },
+  {
+   "word": "de",
+   "start": 39.877,
+   "end": 39.957
+  },
+  {
+   "word": "pied",
+   "start": 39.977,
+   "end": 40.138
+  },
+  {
+   "word": "balance",
+   "start": 40.178,
+   "end": 40.458
+  },
+  {
+   "word": "with",
+   "start": 40.478,
+   "end": 40.578
+  },
+  {
+   "word": "the",
+   "start": 40.618,
+   "end": 40.698
+  },
+  {
+   "word": "outside",
+   "start": 40.799,
+   "end": 41.139
+  },
+  {
+   "word": "leg.",
+   "start": 41.179,
+   "end": 41.8
+  },
+  {
+   "word": "so",
+   "start": 41.78,
+   "end": 41.961
+  },
+  {
+   "word": "it's",
+   "start": 41.981,
+   "end": 42.081
+  },
+  {
+   "word": "two",
+   "start": 42.162,
+   "end": 42.343
+  },
+  {
+   "word": "front",
+   "start": 42.403,
+   "end": 42.644
+  },
+  {
+   "word": "and",
+   "start": 42.684,
+   "end": 42.764
+  },
+  {
+   "word": "then",
+   "start": 42.805,
+   "end": 42.925
+  },
+  {
+   "word": "three",
+   "start": 43.006,
+   "end": 43.206
+  },
+  {
+   "word": "front,",
+   "start": 43.267,
+   "end": 43.528
+  },
+  {
+   "word": "two",
+   "start": 43.849,
+   "end": 44.01
+  },
+  {
+   "word": "side",
+   "start": 44.05,
+   "end": 44.271
+  },
+  {
+   "word": "and",
+   "start": 44.311,
+   "end": 44.392
+  },
+  {
+   "word": "then",
+   "start": 44.432,
+   "end": 44.593
+  },
+  {
+   "word": "three",
+   "start": 44.613,
+   "end": 45.216
+  },
+  {
+   "word": "side,",
+   "start": 45.276,
+   "end": 46.059
+  },
+  {
+   "word": "then",
+   "start": 46.079,
+   "end": 46.2
+  },
+  {
+   "word": "the",
+   "start": 46.26,
+   "end": 46.341
+  },
+  {
+   "word": "coup",
+   "start": 46.381,
+   "end": 46.521
+  },
+  {
+   "word": "de",
+   "start": 46.542,
+   "end": 46.582
+  },
+  {
+   "word": "pied",
+   "start": 46.602,
+   "end": 46.823
+  },
+  {
+   "word": "chains",
+   "start": 46.923,
+   "end": 47.245
+  },
+  {
+   "word": "one",
+   "start": 47.466,
+   "end": 47.566
+  },
+  {
+   "word": "front,",
+   "start": 47.647,
+   "end": 47.888
+  },
+  {
+   "word": "coup",
+   "start": 48.169,
+   "end": 48.269
+  },
+  {
+   "word": "de",
+   "start": 48.289,
+   "end": 48.37
+  },
+  {
+   "word": "pied",
+   "start": 48.39,
+   "end": 48.571
+  },
+  {
+   "word": "chains",
+   "start": 48.611,
+   "end": 48.852
+  },
+  {
+   "word": "one",
+   "start": 48.993,
+   "end": 49.113
+  },
+  {
+   "word": "side,",
+   "start": 49.173,
+   "end": 49.495
+  },
+  {
+   "word": "first",
+   "start": 50.198,
+   "end": 50.459
+  },
+  {
+   "word": "first",
+   "start": 50.54,
+   "end": 50.781
+  },
+  {
+   "word": "heel",
+   "start": 50.801,
+   "end": 51.082
+  },
+  {
+   "word": "down,",
+   "start": 51.142,
+   "end": 51.424
+  },
+  {
+   "word": "first",
+   "start": 51.966,
+   "end": 52.227
+  },
+  {
+   "word": "first,",
+   "start": 52.308,
+   "end": 52.589
+  },
+  {
+   "word": "you",
+   "start": 53.131,
+   "end": 53.252
+  },
+  {
+   "word": "close.",
+   "start": 53.272,
+   "end": 54.297
+  },
+  {
+   "word": "from",
+   "start": 54.317,
+   "end": 54.457
+  },
+  {
+   "word": "the",
+   "start": 54.497,
+   "end": 54.598
+  },
+  {
+   "word": "fifth,",
+   "start": 54.638,
+   "end": 54.859
+  },
+  {
+   "word": "please.",
+   "start": 54.899,
+   "end": 55.08
+  }
+ ]
+}

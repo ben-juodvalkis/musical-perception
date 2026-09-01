@@ -1,0 +1,24 @@
+id: barre6-developpe-take1
+input:
+  trace: traces/barre6-developpe-take1/
+  media: "video/youtube/ballet barre 6/clips/barre6-developpe-take1.mp4"
+maturity: provisional
+tags:
+  source: youtube
+  teacher: yt-barre6
+  count_style: step_names
+  explanation: interleaved
+  lang: en
+  accompanied: true
+  clip_role: take
+expect:
+  performance_bpm: 80
+  meter: "3/4"
+  counts: 8
+notes: >-
+  Ballet Barre 6 ingestion 2026-09-01. Piano take — the ANSWER KEY for its
+  demo, never the input (owner ruling). Tempo is what the pianist played,
+  owner-heard. 4 sets of 8 bars of 3. ACCELERANDO 80->100 within the take
+  (owner) - 80 is the tempo established at the top; 96 beats at the ~90
+  average = 64s of the 70s clip, which fits better than constant 80 (72s).
+  Does NOT cut off (owner-checked)

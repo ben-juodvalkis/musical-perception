@@ -1,0 +1,421 @@
+{
+ "model": "gemini-2.5-flash",
+ "raw_response": {
+  "words": [
+   {
+    "word": "down",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 0
+   },
+   {
+    "word": "this",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 1
+   },
+   {
+    "word": "one",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 2
+   },
+   {
+    "word": "first",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 3
+   },
+   {
+    "word": "to",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 4
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 5
+   },
+   {
+    "word": "other",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 6
+   },
+   {
+    "word": "side.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 7
+   },
+   {
+    "word": "thank",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 8
+   },
+   {
+    "word": "you.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 9
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 10
+   },
+   {
+    "word": "one,",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 11
+   },
+   {
+    "word": "one,",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 12
+   },
+   {
+    "word": "demi-down,",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 13
+   },
+   {
+    "word": "out,",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 14
+   },
+   {
+    "word": "two,",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 15
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 5,
+    "index": 16
+   },
+   {
+    "word": "one,",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 17
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 6,
+    "index": 18
+   },
+   {
+    "word": "one,",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 19
+   },
+   {
+    "word": "pli\u00e9,",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 20
+   },
+   {
+    "word": "out,",
+    "marker_type": "beat",
+    "beat_number": 9,
+    "index": 21
+   },
+   {
+    "word": "foot,",
+    "marker_type": "beat",
+    "beat_number": 10,
+    "index": 22
+   },
+   {
+    "word": "one,",
+    "marker_type": "beat",
+    "beat_number": 11,
+    "index": 23
+   },
+   {
+    "word": "right",
+    "marker_type": "beat",
+    "beat_number": 12,
+    "index": 24
+   },
+   {
+    "word": "behind",
+    "marker_type": "beat",
+    "beat_number": 13,
+    "index": 25
+   },
+   {
+    "word": "you,",
+    "marker_type": "beat",
+    "beat_number": 14,
+    "index": 26
+   },
+   {
+    "word": "one,",
+    "marker_type": "beat",
+    "beat_number": 15,
+    "index": 27
+   },
+   {
+    "word": "pli\u00e9,",
+    "marker_type": "beat",
+    "beat_number": 16,
+    "index": 28
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 29
+   },
+   {
+    "word": "last",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 30
+   },
+   {
+    "word": "time,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 31
+   },
+   {
+    "word": "tight",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 32
+   },
+   {
+    "word": "on,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 33
+   },
+   {
+    "word": "demi,",
+    "marker_type": "beat",
+    "beat_number": 17,
+    "index": 34
+   },
+   {
+    "word": "down,",
+    "marker_type": "beat",
+    "beat_number": 18,
+    "index": 35
+   },
+   {
+    "word": "stay",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 36
+   },
+   {
+    "word": "in",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 37
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 38
+   },
+   {
+    "word": "demi.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 39
+   },
+   {
+    "word": "good",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 40
+   },
+   {
+    "word": "stretch,",
+    "marker_type": "beat",
+    "beat_number": 19,
+    "index": 41
+   },
+   {
+    "word": "one.",
+    "marker_type": "beat",
+    "beat_number": 20,
+    "index": 42
+   },
+   {
+    "word": "up",
+    "marker_type": "beat",
+    "beat_number": 21,
+    "index": 43
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 21,
+    "index": 44
+   },
+   {
+    "word": "back.",
+    "marker_type": "beat",
+    "beat_number": 22,
+    "index": 45
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 46
+   },
+   {
+    "word": "rotate",
+    "marker_type": "beat",
+    "beat_number": 23,
+    "index": 47
+   },
+   {
+    "word": "out,",
+    "marker_type": "beat",
+    "beat_number": 24,
+    "index": 48
+   },
+   {
+    "word": "roll",
+    "marker_type": "beat",
+    "beat_number": 25,
+    "index": 49
+   },
+   {
+    "word": "through",
+    "marker_type": "beat",
+    "beat_number": 26,
+    "index": 50
+   },
+   {
+    "word": "your",
+    "marker_type": "beat",
+    "beat_number": 27,
+    "index": 51
+   },
+   {
+    "word": "feet.",
+    "marker_type": "beat",
+    "beat_number": 28,
+    "index": 52
+   }
+  ],
+  "exercise": {
+   "exercise_type": "plie_tendu",
+   "display_name": "Pli\u00e9 and Tendu",
+   "confidence": 0.9,
+   "reasoning": "The teacher demonstrates pli\u00e9s and tendus to the front and back, explicitly counting 'pli\u00e9' and 'foot one' (tendu)."
+  },
+  "counting_structure": {
+   "total_counts": 28,
+   "prep_counts": null,
+   "subdivision_type": "duple",
+   "estimated_bpm": 90
+  },
+  "meter": {
+   "beats_per_measure": 4,
+   "beat_unit": 4
+  },
+  "quality": [
+   {
+    "phrase_number": 1,
+    "description": "The first phrase consists of pli\u00e9s and tendus to the front, side, and back, performed with moderate energy.",
+    "articulation": 0.45,
+    "weight": 0.4,
+    "energy": 0.4,
+    "primary": true
+   },
+   {
+    "phrase_number": 2,
+    "description": "The second phrase involves a demi-pli\u00e9, followed by a gentle stretch and port de bras, concluding with a roll through the feet.",
+    "articulation": 0.7,
+    "weight": 0.55,
+    "energy": 0.25,
+    "primary": false
+   }
+  ],
+  "structure": {
+   "counts": 16,
+   "sides": 2
+  }
+ },
+ "inputs": {
+  "onset_bpm_sent": 119.8,
+  "transcript_words_sent": [
+   "down",
+   "this",
+   "one",
+   "first",
+   "to",
+   "the",
+   "other",
+   "side.",
+   "thank",
+   "you.",
+   "and",
+   "one,",
+   "one,",
+   "demi-down,",
+   "out,",
+   "two,",
+   "and",
+   "one,",
+   "and",
+   "one,",
+   "pli\u00e9,",
+   "out,",
+   "foot,",
+   "one,",
+   "right",
+   "behind",
+   "you,",
+   "one,",
+   "pli\u00e9,",
+   "and",
+   "last",
+   "time,",
+   "tight",
+   "on,",
+   "demi,",
+   "down,",
+   "stay",
+   "in",
+   "the",
+   "demi.",
+   "good",
+   "stretch,",
+   "one.",
+   "up",
+   "and",
+   "back.",
+   "and",
+   "rotate",
+   "out,",
+   "roll",
+   "through",
+   "your",
+   "feet."
+  ]
+ }
+}

@@ -1,0 +1,329 @@
+{
+ "words": [
+  {
+   "word": "thank",
+   "start": 0.031,
+   "end": 1.113
+  },
+  {
+   "word": "you,",
+   "start": 1.133,
+   "end": 1.273
+  },
+  {
+   "word": "rex,",
+   "start": 1.313,
+   "end": 1.473
+  },
+  {
+   "word": "en",
+   "start": 1.493,
+   "end": 1.573
+  },
+  {
+   "word": "dehors.",
+   "start": 1.594,
+   "end": 4.699
+  },
+  {
+   "word": "to",
+   "start": 4.719,
+   "end": 4.999
+  },
+  {
+   "word": "front.",
+   "start": 5.099,
+   "end": 8.164
+  },
+  {
+   "word": "down,",
+   "start": 8.184,
+   "end": 9.025
+  },
+  {
+   "word": "out.",
+   "start": 9.586,
+   "end": 11.89
+  },
+  {
+   "word": "down",
+   "start": 11.91,
+   "end": 12.211
+  },
+  {
+   "word": "on",
+   "start": 12.251,
+   "end": 12.431
+  },
+  {
+   "word": "flop,",
+   "start": 12.451,
+   "end": 12.872
+  },
+  {
+   "word": "pay,",
+   "start": 12.892,
+   "end": 13.853
+  },
+  {
+   "word": "turn,",
+   "start": 13.873,
+   "end": 14.855
+  },
+  {
+   "word": "turn.",
+   "start": 14.875,
+   "end": 16.217
+  },
+  {
+   "word": "pick",
+   "start": 16.237,
+   "end": 16.357
+  },
+  {
+   "word": "up",
+   "start": 16.377,
+   "end": 16.417
+  },
+  {
+   "word": "the",
+   "start": 16.437,
+   "end": 16.538
+  },
+  {
+   "word": "inside",
+   "start": 16.578,
+   "end": 16.818
+  },
+  {
+   "word": "leg,",
+   "start": 16.878,
+   "end": 17.239
+  },
+  {
+   "word": "clip.",
+   "start": 17.699,
+   "end": 19.883
+  },
+  {
+   "word": "all",
+   "start": 19.903,
+   "end": 20.043
+  },
+  {
+   "word": "from",
+   "start": 20.063,
+   "end": 20.183
+  },
+  {
+   "word": "their",
+   "start": 20.223,
+   "end": 20.384
+  },
+  {
+   "word": "back,",
+   "start": 20.424,
+   "end": 20.704
+  },
+  {
+   "word": "foot,",
+   "start": 21.506,
+   "end": 22.467
+  },
+  {
+   "word": "foot,",
+   "start": 22.487,
+   "end": 23.749
+  },
+  {
+   "word": "in,",
+   "start": 23.769,
+   "end": 24.39
+  },
+  {
+   "word": "out,",
+   "start": 24.41,
+   "end": 25.171
+  },
+  {
+   "word": "foot.",
+   "start": 25.191,
+   "end": 26.173
+  },
+  {
+   "word": "in,",
+   "start": 26.896,
+   "end": 28.037
+  },
+  {
+   "word": "en",
+   "start": 28.057,
+   "end": 28.097
+  },
+  {
+   "word": "flop\u00e9,",
+   "start": 28.117,
+   "end": 28.398
+  },
+  {
+   "word": "sou,",
+   "start": 28.918,
+   "end": 29.86
+  },
+  {
+   "word": "sou,",
+   "start": 29.88,
+   "end": 30.16
+  },
+  {
+   "word": "inside",
+   "start": 31.742,
+   "end": 32.002
+  },
+  {
+   "word": "leg,",
+   "start": 32.022,
+   "end": 32.763
+  },
+  {
+   "word": "coup\u00e9,",
+   "start": 32.783,
+   "end": 33.944
+  },
+  {
+   "word": "two-eighths,",
+   "start": 33.964,
+   "end": 34.345
+  },
+  {
+   "word": "two",
+   "start": 34.365,
+   "end": 34.565
+  },
+  {
+   "word": "balance,",
+   "start": 34.605,
+   "end": 35.026
+  },
+  {
+   "word": "en",
+   "start": 35.246,
+   "end": 35.366
+  },
+  {
+   "word": "accue",
+   "start": 35.426,
+   "end": 35.727
+  },
+  {
+   "word": "du",
+   "start": 35.747,
+   "end": 35.907
+  },
+  {
+   "word": "pied,",
+   "start": 35.927,
+   "end": 36.027
+  },
+  {
+   "word": "up.",
+   "start": 40.993,
+   "end": 41.053
+  },
+  {
+   "word": "keep",
+   "start": 41.073,
+   "end": 41.193
+  },
+  {
+   "word": "growing",
+   "start": 41.233,
+   "end": 41.513
+  },
+  {
+   "word": "out",
+   "start": 41.574,
+   "end": 41.674
+  },
+  {
+   "word": "of",
+   "start": 41.714,
+   "end": 41.754
+  },
+  {
+   "word": "your",
+   "start": 41.794,
+   "end": 41.914
+  },
+  {
+   "word": "right",
+   "start": 41.994,
+   "end": 42.114
+  },
+  {
+   "word": "hip,",
+   "start": 42.154,
+   "end": 42.334
+  },
+  {
+   "word": "nice",
+   "start": 42.354,
+   "end": 42.555
+  },
+  {
+   "word": "and",
+   "start": 42.575,
+   "end": 42.635
+  },
+  {
+   "word": "long,",
+   "start": 42.655,
+   "end": 42.895
+  },
+  {
+   "word": "one",
+   "start": 43.716,
+   "end": 43.816
+  },
+  {
+   "word": "more",
+   "start": 43.856,
+   "end": 43.956
+  },
+  {
+   "word": "eight.",
+   "start": 44.016,
+   "end": 44.237
+  },
+  {
+   "word": "and",
+   "start": 48.282,
+   "end": 48.382
+  },
+  {
+   "word": "a",
+   "start": 48.422,
+   "end": 48.442
+  },
+  {
+   "word": "good",
+   "start": 48.482,
+   "end": 48.622
+  },
+  {
+   "word": "finish,",
+   "start": 48.642,
+   "end": 50.044
+  },
+  {
+   "word": "seven,",
+   "start": 50.064,
+   "end": 50.364
+  },
+  {
+   "word": "down.",
+   "start": 51.926,
+   "end": 52.026
+  }
+ ]
+}
