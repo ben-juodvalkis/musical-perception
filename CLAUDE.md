@@ -4,6 +4,75 @@ Python package that extracts structured musical parameters from audio input.
 Part of the AI accompanist system — this is the perception + precision layers,
 without any playback.
 
+## Talking to Ben about this work
+
+Ben directs this research; he is a dance musician, not a coder. He can
+judge whether an approach is right — he cannot read a diff to find out.
+The documents in this repo (charter, ledger, eval specs) are written in a
+dense house style **for agents**, and they stay that way. **What you say
+back in chat is not written in that style.** Translate.
+
+Every reply:
+
+- **Lead with what the system now does differently**, in one or two plain
+  sentences, before any metric, file, or term of art. "It now finds the
+  beat where you'd tap on the frappé clips, but still loses it on
+  triplets" — not "R@tac 0.349→0.719 on the step_names slice."
+- **Every number gets a so-what.** Direction (better or worse), size in
+  human terms ("about 3 clips out of 25", "roughly half a beat late"),
+  and whether it's big enough to act on. A bare delta is not a result.
+- **Expand jargon on first use each session**, then the short form is
+  fine. Never send a paragraph built only out of repo vocabulary.
+- **Explain by behavior, not by code.** No function names, no
+  file-by-file tours, no syntax. Say what the pipeline does to audio now
+  that it didn't before.
+- **Detail on request, not by default.** Offer the per-clip table; don't
+  dump it.
+- **Answer the question he asked, in his words.** Don't silently
+  translate it into repo vocabulary and answer that one instead.
+
+None of this softens the findings. A negative result stays a negative
+result, stated plainly — plain language means clearer, not vaguer, and
+never rounder in his favor.
+
+### House vocabulary, in plain language
+
+- **rung / workstream (W-number)** — a numbered stage of the research
+  plan; a workstream is one session's experiment within it.
+- **the ledger** — `RESEARCH-LOG.md`, the running diary of every
+  experiment, failures included.
+- **pre-registration** — writing down what would count as success
+  *before* running the experiment, so the result can't be reinterpreted
+  after the fact.
+- **bless / baseline** — freezing today's scores as the official "where
+  we are." Only Ben does this; agents never self-bless.
+- **case / trace / beat grid** — a test clip plus its expected answers /
+  a frozen recording of a past run so it can be re-scored without the
+  media / a hand-tapped list of where the beats actually fall.
+- **DEV vs SEALED split** — clips agents may tune against, vs clips only
+  Ben scores, kept back so nothing gets quietly fitted to them.
+- **pulse / tactus** — the beat you'd tap or clap.
+- **onset** — the moment a sound starts.
+- **asynchrony** — how early or late our beat sits against the human tap,
+  in milliseconds; negative means early.
+- **precision / recall / F** — of the beats we called, how many were
+  real / of the real beats, how many we caught / one blended score.
+  `P_lc`, `R@tac`, `F_lc` are those three measured against hand-tapped
+  beats, with sub-beat syllables not counted against us.
+- **Acc1 / Acc2** — tempo correct / tempo correct *or* off by a metric
+  factor (double or half time).
+- **OE1 / OE2** — how far the tempo is off, measured in octaves: 0 is
+  exact, ±1 is double or half speed.
+- **posterior / lattice / arbitration** — the machinery that weighs
+  competing readings of the beat and commits to one.
+- **confidence / calibration / ECE** — whether the system's stated
+  confidence matches how often it is actually right. High ECE means it
+  is confidently wrong.
+- **abstention / coverage** — how often it declines to answer, and on
+  what share of clips it does answer.
+- **provisional vs verified** — labels Ben hasn't checked yet (they are
+  reported but never decide pass/fail) vs ones he has.
+
 ## Quick Start
 
 ```bash
