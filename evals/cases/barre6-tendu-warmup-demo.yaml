@@ -10,9 +10,10 @@ tags:
   explanation: interleaved
   lang: en
   clip_role: demo
+  answer_key: barre6-tendu-warmup-take1
+  played_bpm: 82
 expect:
   marking_bpm: 112
-  performance_bpm: 82
   meter: "3/4"
   counts: 8
 notes: >-

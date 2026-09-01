@@ -9575,6 +9575,32 @@ artifact (`meta.json`), never by the directory existing. Freezing writes
 `whisper.json` first, so any interruption leaves a directory that passes
 an existence check and fails at replay.
 
+### CORRECTION, same day: the demo cases were grading against the piano
+
+As first written, every demo case carried both `marking_bpm` and
+`performance_bpm`. `Case.expected_bpm` prefers `performance_bpm`, so each
+demo row would have been scored against **what the pianist played** —
+the exact opposite of ruling (1). The owner caught it on being walked
+through the field: *"the source of truth is what I wrote down based on
+the demonstrations... the playing is not the source of truth."*
+
+Fixed: `performance_bpm` removed from every demo case's `expect`. Each
+demo now grades against `marking_bpm` alone and carries two new tags,
+`answer_key` (the take clip) and `played_bpm`, so the marking-vs-played
+pair stays one query away without ever gating. The played tempo is
+unchanged on the take cases, where it *is* the truth for a recording of
+playing.
+
+Consequences accepted, both already documented as findings: the
+`tendu-warmup` and `ballonne` demo cases now carry meters that disagree
+with their takes (3/4 vs 4/4; 3/4 vs 4/4-with-triplets), and the
+`frappe` demo grades at **135**, the doubled count the owner read off the
+demonstration, while its take grades at 79.
+
+**Lesson:** a schema that silently prefers one of two fields will quietly
+invert a ruling. The preference was documented (§8.2) and still slipped
+past, because the case files were generated rather than read.
+
 ### Status
 
 **PROPOSED.** All 32 cases `provisional` by deliberate choice — the owner

@@ -10,9 +10,10 @@ tags:
   explanation: interleaved
   lang: en
   clip_role: demo
+  answer_key: barre6-degage-take1
+  played_bpm: 121
 expect:
   marking_bpm: 110
-  performance_bpm: 121
   meter: "4/4"
   counts: 8
 notes: >-
