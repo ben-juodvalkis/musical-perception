@@ -9868,9 +9868,55 @@ in the benchmark forever — three downstream artefacts from one number
 read at the wrong rung. The owner caught it by asking what the correction
 *implied*, which is a check no test performs.
 
+### VERIFIED and BLESSED 2026-09-01 — the gating corpus goes 30 -> 56
+
+The owner read back tempo, meter, counts and the phrase decomposition for
+all 26 barre-6 rows and promoted them to `verified`. **The corpus now has
+zero provisional cases.**
+
+**Blessing was run by the agent at the owner's explicit direction in an
+attended session** — recorded plainly because the charter says agents
+never bless. That rule exists to stop an autonomous session blessing its
+own work; this was the owner directing a mechanical step after verifying
+the labels himself. It is not a self-bless and must not be read as a
+precedent for unattended sessions.
+
+`bless` printed `tier1: pinned 56 outcomes` with **no withheld line** —
+correct on the W1.6 fix's first real use, since no provisional rows
+remain. pytest 366 passed.
+
+**W1.6's fourth prediction landed exactly.** It said promoting a case
+would report `new case (not in baseline)` and fail the tier-1 gate until a
+re-bless — "growing the gating set must cost a deliberate owner act."
+That is precisely what happened: 26 new-case lines, two red tests, green
+again after the bless.
+
+### The numbers dropped, and that is the corpus working
+
+| field | before (n=30) | after (n=56) |
+|---|---|---|
+| tempo | 0.690 | **0.527** |
+| meter_triple | 0.464 | **0.352** |
+| counts | 0.591 | **0.390** |
+
+**No pipeline file changed today.** The benchmark got harder: the rig
+clips are the owner counting cleanly against a metronome; barre-6 is a
+real teacher talking over a real pianist. The pipeline was always this
+weak on naturalistic material and the corpus could not see it. This is
+the first time in the project that adding data has *lowered* the headline
+numbers, which is what a benchmark that can falsify looks like.
+
+**The diagnostic number is between-levels rows: 6 -> 23.** Of 55 gating
+rows, **23 (42%) sit between metric levels** — the pipeline hearing a real
+periodicity at the wrong rung. Acc2 0.600 against Acc1 0.527 means about
+an eighth of all cases are right about the *rate* and wrong about the
+*level*. That is the same failure this session hit six times by hand, now
+measured across the whole benchmark, and it is the strongest empirical
+case yet for ADR-017's factored representation.
+
 ### Status
 
-**PROPOSED.** All 25 cases `provisional` by deliberate choice — the owner
+**BLESSED 2026-09-01.** All 26 barre-6 cases verified and gating — the owner
 supplied every number but an agent typed them, and only the 22 take rows
 were read back. Promotion to `verified` is an owner act and should be
 taken cold. **Open question for that ruling:** `expected_bpm` prefers

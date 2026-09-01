@@ -97,8 +97,8 @@ def test_unknown_maturity_is_an_error(tmp_path):
 
 
 @needs_yaml
-def test_the_gating_corpus_is_exactly_the_blessed_thirty():
-    """Every case that gates is owner-verified, and there are exactly 30.
+def test_the_gating_corpus_is_exactly_the_blessed_set():
+    """Every case that gates is owner-verified, and the baseline pins them all.
 
     W1.5 wrote this as a tripwire: "if a provisional case ever lands here,
     this test says so loudly — that is a review event, not a detail." W4's
@@ -108,8 +108,12 @@ def test_the_gating_corpus_is_exactly_the_blessed_thirty():
     set*, so the assertion moves to the thing itself and gets stricter: the
     verified ids must be exactly the ids the blessed baseline pins, so no
     session can grow the gating set by writing `maturity: verified` on
-    agent-authored truth. Everything beyond those 30 must be provisional
-    until the owner verifies it.
+    agent-authored truth.
+
+    2026-09-01: the owner read back and verified the 26 Ballet Barre 6 rows,
+    taking the gating set 30 -> 56. Promoting cases fires this tripwire by
+    design — it stays red until the owner re-blesses, which is the review
+    event W1.5 built it to announce.
     """
     from musical_perception.evals.cases import load_cases
 
@@ -119,7 +123,7 @@ def test_the_gating_corpus_is_exactly_the_blessed_thirty():
         json.loads((_REPO / "evals" / "baseline.json").read_text())
         ["suites"]["tier1"]["outcomes"]
     )
-    assert len(blessed) == 30
+    assert len(blessed) == 56
     assert verified == blessed
 
 

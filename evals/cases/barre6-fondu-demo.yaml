@@ -2,7 +2,7 @@ id: barre6-fondu-demo
 input:
   trace: traces/barre6-fondu-demo/
   media: "video/youtube/ballet barre 6/clips/barre6-fondu-demo.mp4"
-maturity: provisional
+maturity: verified
 tags:
   source: youtube
   teacher: yt-barre6

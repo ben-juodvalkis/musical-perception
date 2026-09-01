@@ -2,7 +2,7 @@ id: barre6-degage-demo
 input:
   trace: traces/barre6-degage-demo/
   media: "video/youtube/ballet barre 6/clips/barre6-degage-demo.mp4"
-maturity: provisional
+maturity: verified
 tags:
   source: youtube
   teacher: yt-barre6

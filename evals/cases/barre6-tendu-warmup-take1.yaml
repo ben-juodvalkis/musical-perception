@@ -2,7 +2,7 @@ id: barre6-tendu-warmup-take1
 input:
   trace: traces/barre6-tendu-warmup-take1/
   media: "video/youtube/ballet barre 6/clips/barre6-tendu-warmup-take1.mp4"
-maturity: provisional
+maturity: verified
 tags:
   source: youtube
   teacher: yt-barre6
