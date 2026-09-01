@@ -64,14 +64,23 @@ pins only owner-verified rows. A bless must print
 than 30 pinned is a stop.** The tier0 ECE delta from W14-c
 (0.0724 → 0.0752) is still uncarried and is what the next bless is for.
 
-**Agent-side:** **W11-b is still ranked 1** (opaque pulse sidecars for
-the 22 barre-1 DEV clips). **PROPOSED re-rank, owner's to rule:** barre-6
-now supersedes barre-1 as the naturalistic material — barre-1's 19
-unlabelled cases gate nothing and will not, whereas barre-6 has real
-labels — so W11-b's value has dropped relative to (a) promoting barre-6
-to verified and (b) the `structure:` schema increment
-(`docs/evals/structure-schema-proposal.md`). An agent must not act on
-this re-rank until the owner rules.
+**Agent-side: W11-b is RETIRED — its subject no longer exists.** It was
+commissioned to freeze opaque pulse sidecars for the 22 barre-1 DEV
+clips; the owner retired barre-1 on 2026-09-01 (same teacher and pianist
+as barre-6, 19 of 22 cases unlabelled, boundaries never owner-verified —
+see [barre1-reanalysis-plan.md](barre1-reanalysis-plan.md)). The cases
+and traces are removed; the media is untouched on the owner's machine and
+a re-analysis recipe is written down.
+
+**The enumeration ban on `video/youtube/Ballet Barre 1` STILL STANDS.**
+Retiring the DEV cases makes the 8/4 split dormant, not resolved — the
+4 held-out exercises are still off-repo and still nameable by complement.
+Only the owner can lift it.
+
+**Next agent increment, PROPOSED (owner's to rule):** the `structure:`
+schema block — [structure-schema-proposal.md](../evals/structure-schema-proposal.md).
+EVAL-CHANGE, REPORTED-ONLY, agent-runnable. It is the one open item that
+does not need owner time first.
 
 ## Mission
 
