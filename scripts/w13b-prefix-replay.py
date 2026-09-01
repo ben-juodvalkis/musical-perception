@@ -22,6 +22,7 @@ Nothing under evals/ is written; no scorer/harness code is touched.
 from __future__ import annotations
 
 import json
+import os
 import statistics
 import warnings
 from dataclasses import replace
@@ -35,8 +36,12 @@ from musical_perception.evals.traces import replay_bundle
 ROOT = Path(__file__).resolve().parent.parent
 TRACES = ROOT / "evals" / "traces"
 CASES = ROOT / "evals" / "cases"
-OUT_JSON = ROOT / "docs" / "research" / "w13b-prefix-convergence.json"
-OUT_MD = ROOT / "docs" / "research" / "w13b-prefix-convergence.md"
+# W14-c: a re-run under a changed pipeline must not overwrite the
+# artifact of an increment still awaiting owner review. Empty by default,
+# so the reproduction path published by W13(b) is unchanged.
+_SUF = os.environ.get("MP_ARTIFACT_SUFFIX", "")
+OUT_JSON = ROOT / "docs" / "research" / f"w13b-prefix-convergence{_SUF}.json"
+OUT_MD = ROOT / "docs" / "research" / f"w13b-prefix-convergence{_SUF}.md"
 
 NUMERIC_TOL = 0.04          # Standing Lesson 7: sub-4% is noise by construction
 CONDITIONS = ("granted", "withheld")

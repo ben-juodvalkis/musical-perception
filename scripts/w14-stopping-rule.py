@@ -17,14 +17,17 @@ into no pipeline path (Standing Lesson 9). Pre-registered in the ledger,
 from __future__ import annotations
 
 import json
+import os
 import statistics
 from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-IN_JSON = ROOT / "docs" / "research" / "w13b-prefix-convergence.json"
-OUT_JSON = ROOT / "docs" / "research" / "w14-stopping-rule.json"
-OUT_MD = ROOT / "docs" / "research" / "w14-stopping-rule.md"
+# W14-c: see the note in w13b-prefix-replay.py. Empty by default.
+_SUF = os.environ.get("MP_ARTIFACT_SUFFIX", "")
+IN_JSON = ROOT / "docs" / "research" / f"w13b-prefix-convergence{_SUF}.json"
+OUT_JSON = ROOT / "docs" / "research" / f"w14-stopping-rule{_SUF}.json"
+OUT_MD = ROOT / "docs" / "research" / f"w14-stopping-rule{_SUF}.md"
 
 NUMERIC_TOL = 0.04
 NUMERIC_FIELDS = {"tempo_bpm", "onset_bpm", "marker_bpm"}
@@ -282,10 +285,32 @@ def write_report(results, slices, conf_src, conf_rows):
     A("\n(θ shown every 0.10; the scored sweep steps by 0.05 and is complete in "
       "`w14-stopping-rule.json`.)\n")
 
-    A("\n## Why F2 fails: the confidence runs backwards\n")
-    A("F2 is nearly flat in θ, which a threshold sweep alone would not explain. "
-      "The reason is in the confidence stream itself, read straight off the "
-      "recorded prefixes (condition granted, verified slice):\n")
+    # W14-c: this section used to assert a fixed conclusion. The
+    # conclusion is a property of the data, so it is now read off the
+    # data — the same script must tell the truth before and after the
+    # calibration fix.
+    _nt_first, _nt_full = [], []
+    for _clip, _row in conf_rows:
+        _cs = [c for c in _row["conf"]["normalized_tempo"] if c is not None]
+        if _cs:
+            _nt_first.append(_cs[0])
+        if _row["final_conf"]["normalized_tempo"] is not None:
+            _nt_full.append(_row["final_conf"]["normalized_tempo"])
+    _backwards = (
+        bool(_nt_first) and bool(_nt_full)
+        and statistics.median(_nt_first) > statistics.median(_nt_full)
+    )
+    if _backwards:
+        A("\n## Why F2 fails: the confidence runs backwards\n")
+        A("F2 is nearly flat in θ, which a threshold sweep alone would not "
+          "explain. The reason is in the confidence stream itself, read "
+          "straight off the recorded prefixes (condition granted, verified "
+          "slice):\n")
+    else:
+        A("\n## The confidence stream behind F2\n")
+        A("F2 depends entirely on the confidence the pipeline already "
+          "computes, so that stream is reported here, read straight off the "
+          "recorded prefixes (condition granted, verified slice):\n")
     A("| stream | median at the FIRST prefix that has one | median on the FULL clip "
       "| clips already ≥0.90 at that first prefix | clips never reaching 0.50 |")
     A("|---|---|---|---|---|")
@@ -304,13 +329,20 @@ def write_report(results, slices, conf_src, conf_rows):
         A(f"| `{stream}` | {statistics.median(first):.3f} | "
           f"{statistics.median(full):.3f} | {sum(c >= 0.9 for c in first)}/{len(first)} "
           f"| {sum(m < 0.5 for m in mx)}/{len(mx)} |")
-    A("\nThe metric block's confidence is **at its maximum when the pipeline "
-      "knows the least** and *falls* as evidence arrives. That is not a "
-      "miscalibrated threshold; it is a signal pointing the wrong way — "
-      "consistency over two or three intervals is trivially perfect, and only "
-      "starts paying for its mistakes once there are enough intervals to "
-      "disagree. No θ can fix it, which is why the sweep is flat rather than "
-      "merely badly placed.\n")
+    if _backwards:
+        A("\nThe metric block's confidence is **at its maximum when the "
+          "pipeline knows the least** and *falls* as evidence arrives. That "
+          "is not a miscalibrated threshold; it is a signal pointing the "
+          "wrong way — consistency over two or three intervals is trivially "
+          "perfect, and only starts paying for its mistakes once there are "
+          "enough intervals to disagree. No θ can fix it, which is why the "
+          "sweep is flat rather than merely badly placed.\n")
+    else:
+        A("\nThe metric block's confidence **rises with evidence**: it is "
+          "lowest at the first prefix and higher on the full clip. A θ "
+          "threshold is therefore meaningful here, and the F2 columns above "
+          "are read as a real sweep rather than as an artifact of a signal "
+          "pointing the wrong way.\n")
 
     A("\n## The owner's curve, laid against the best operating points\n")
     A("W13(a): on a 37.8s demo the owner committed exercise ~3s, meter ~3s, "

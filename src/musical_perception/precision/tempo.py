@@ -236,12 +236,62 @@ def tempo_family(
     return candidates
 
 
+# Tolerance the answer is judged against (ADR-009 scorer, and the
+# posterior path's +-8% commitment window). `confidence` is the
+# probability of landing inside it, so both paths report the same
+# quantity on the same scale.
+_TEMPO_TOLERANCE = 0.08
+# Weak prior on spoken-count jitter, in units of the beat period, worth
+# _PRIOR_N pseudo-intervals. It exists so that one interval — whose
+# sample dispersion is exactly 0 — cannot claim certainty (W14-c).
+_PRIOR_CV = 0.12
+_PRIOR_N = 2.0
+# Asymptotic efficiency factor for the median's standard error under a
+# normal: sqrt(pi/2).
+_MEDIAN_SE_FACTOR = 1.2533
+
+
+def _tolerance_probability(intervals: list[float], median_interval: float) -> float:
+    """P(true beat period is within +-8% of the median interval).
+
+    The dispersion is pooled with a weak prior before the standard error
+    is taken, so confidence RISES with evidence instead of starting at
+    1.0 and falling. With a single interval the sample dispersion is 0
+    and the prior carries the whole estimate, which is the correct
+    answer to "how sure are you after one interval": not very.
+    """
+    n = len(intervals)
+    if n == 0 or median_interval <= 0:
+        return 0.0
+
+    sample_var = float(np.var(intervals))
+    prior_var = (_PRIOR_CV * median_interval) ** 2
+    # Shrink toward the prior; n-1 sample degrees of freedom, so one
+    # interval contributes no dispersion evidence at all.
+    dof = max(n - 1, 0)
+    pooled_var = (_PRIOR_N * prior_var + dof * sample_var) / (_PRIOR_N + dof)
+
+    se = _MEDIAN_SE_FACTOR * math.sqrt(pooled_var) / math.sqrt(n)
+    if se <= 0:
+        return 1.0
+
+    z = (_TEMPO_TOLERANCE * median_interval) / se
+    return math.erf(z / math.sqrt(2.0))
+
+
 def calculate_tempo(timestamps: list[float]) -> TempoResult | None:
     """
     Calculate tempo from a list of beat timestamps.
 
     Uses median interval for robustness to outliers.
-    Confidence is based on coefficient of variation (lower CV = higher confidence).
+
+    Two separate numbers come back (W14-c), because the old single number
+    was doing both jobs and got one of them backwards:
+
+    - `regularity` = 1 - CV, interval evenness. Maximal at one interval,
+      which is fine for "are these even?" and wrong for "are we sure?".
+    - `confidence` = P(true period within the scorer's +-8% tolerance),
+      which shrinks when the evidence is thin.
 
     Args:
         timestamps: Times (in seconds) when beats occurred
@@ -262,16 +312,21 @@ def calculate_tempo(timestamps: list[float]) -> TempoResult | None:
     median_interval = np.median(intervals)
     bpm = 60.0 / median_interval
 
-    # Confidence: lower standard deviation = higher confidence
+    # Regularity: lower standard deviation = more even intervals. This is
+    # the pre-W14-c `confidence`, preserved bit-for-bit because
+    # interpret_meter's arbitration is tuned against it.
     std_interval = np.std(intervals)
     cv = std_interval / median_interval if median_interval > 0 else 1.0
-    confidence = max(0.0, 1.0 - cv)
+    regularity = max(0.0, 1.0 - cv)
+
+    confidence = _tolerance_probability(intervals, float(median_interval))
 
     return TempoResult(
         bpm=round(bpm, 1),
         confidence=round(confidence, 2),
         beat_count=len(timestamps),
         intervals=intervals,
+        regularity=round(regularity, 2),
     )
 
 
@@ -325,9 +380,13 @@ def interpret_meter(
         and onset_tempo.confidence >= 0.3
         and 70.0 <= onset_tempo.bpm <= 140.0
     )
+    # Reads `regularity`, not `confidence` (W14-c): this gate asks "dense
+    # and even" — a regularity question — and 0.6 was tuned against the
+    # 1-CV number, which `regularity` still carries bit-for-bit. Every
+    # arbitration branch is therefore unchanged by the confidence fix.
     marker_at_beat_level = (
         gemini_tempo is not None
-        and gemini_tempo.confidence >= 0.6
+        and gemini_tempo.regularity >= 0.6
         and gemini_tempo.beat_count >= 8
         and 70.0 <= gemini_tempo.bpm <= 140.0
     )

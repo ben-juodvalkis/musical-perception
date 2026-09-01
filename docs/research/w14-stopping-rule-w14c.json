@@ -1,0 +1,6055 @@
+{
+ "generated_by": "scripts/w14-stopping-rule.py",
+ "source": "docs/research/w13b-prefix-convergence.json",
+ "premature_ceiling": 0.1,
+ "k_sweep": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8
+ ],
+ "theta_sweep": [
+  0.1,
+  0.15,
+  0.2,
+  0.25,
+  0.3,
+  0.35,
+  0.4,
+  0.45,
+  0.5,
+  0.55,
+  0.6,
+  0.65,
+  0.7,
+  0.75,
+  0.8,
+  0.85,
+  0.9
+ ],
+ "conf_streams": {
+  "exercise": "exercise",
+  "meter": "normalized_tempo",
+  "grouping": "normalized_tempo",
+  "division": "normalized_tempo",
+  "tempo_bpm": "normalized_tempo",
+  "counts": null,
+  "onset_bpm": "onset_tempo",
+  "marker_bpm": "marker_tempo"
+ },
+ "reconstruction_mismatches": [],
+ "results": {
+  "f1": {
+   "granted": {
+    "verified": {
+     "exercise": {
+      "1": {
+       "n": 30,
+       "committed": 30,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "2": {
+       "n": 30,
+       "committed": 30,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.1256
+      },
+      "3": {
+       "n": 30,
+       "committed": 29,
+       "no_commit_rate": 0.0333,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.1452
+      },
+      "4": {
+       "n": 30,
+       "committed": 29,
+       "no_commit_rate": 0.0333,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.1717
+      },
+      "5": {
+       "n": 30,
+       "committed": 29,
+       "no_commit_rate": 0.0333,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2196
+      },
+      "6": {
+       "n": 30,
+       "committed": 29,
+       "no_commit_rate": 0.0333,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2549
+      },
+      "7": {
+       "n": 30,
+       "committed": 29,
+       "no_commit_rate": 0.0333,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2835
+      },
+      "8": {
+       "n": 30,
+       "committed": 29,
+       "no_commit_rate": 0.0333,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.3222
+      }
+     },
+     "meter": {
+      "1": {
+       "n": 30,
+       "committed": 30,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "2": {
+       "n": 30,
+       "committed": 30,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.1256
+      },
+      "3": {
+       "n": 30,
+       "committed": 29,
+       "no_commit_rate": 0.0333,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.1576
+      },
+      "4": {
+       "n": 30,
+       "committed": 29,
+       "no_commit_rate": 0.0333,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.1852
+      },
+      "5": {
+       "n": 30,
+       "committed": 29,
+       "no_commit_rate": 0.0333,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2196
+      },
+      "6": {
+       "n": 30,
+       "committed": 29,
+       "no_commit_rate": 0.0333,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2549
+      },
+      "7": {
+       "n": 30,
+       "committed": 29,
+       "no_commit_rate": 0.0333,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2835
+      },
+      "8": {
+       "n": 30,
+       "committed": 29,
+       "no_commit_rate": 0.0333,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.3222
+      }
+     },
+     "grouping": {
+      "1": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "2": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2131
+      },
+      "3": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2549
+      },
+      "4": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2925
+      },
+      "5": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.3264
+      },
+      "6": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.3704
+      },
+      "7": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.4041
+      },
+      "8": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.4379
+      }
+     },
+     "division": {
+      "1": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3448,
+       "premature_n": 10,
+       "median_commit_norm": 0.1881
+      },
+      "2": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3103,
+       "premature_n": 9,
+       "median_commit_norm": 0.2131
+      },
+      "3": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3448,
+       "premature_n": 10,
+       "median_commit_norm": 0.2634
+      },
+      "4": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.2759,
+       "premature_n": 8,
+       "median_commit_norm": 0.2927
+      },
+      "5": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1724,
+       "premature_n": 5,
+       "median_commit_norm": 0.3506
+      },
+      "6": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1724,
+       "premature_n": 5,
+       "median_commit_norm": 0.3934
+      },
+      "7": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1379,
+       "premature_n": 4,
+       "median_commit_norm": 0.4502
+      },
+      "8": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.4734
+      }
+     },
+     "tempo_bpm": {
+      "1": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9655,
+       "premature_n": 28,
+       "median_commit_norm": 0.1881
+      },
+      "2": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.7241,
+       "premature_n": 21,
+       "median_commit_norm": 0.2594
+      },
+      "3": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.6552,
+       "premature_n": 19,
+       "median_commit_norm": 0.3546
+      },
+      "4": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.5172,
+       "premature_n": 15,
+       "median_commit_norm": 0.3966
+      },
+      "5": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.4483,
+       "premature_n": 13,
+       "median_commit_norm": 0.4587
+      },
+      "6": {
+       "n": 29,
+       "committed": 27,
+       "no_commit_rate": 0.069,
+       "premature_rate": 0.4444,
+       "premature_n": 12,
+       "median_commit_norm": 0.4732
+      },
+      "7": {
+       "n": 29,
+       "committed": 27,
+       "no_commit_rate": 0.069,
+       "premature_rate": 0.3704,
+       "premature_n": 10,
+       "median_commit_norm": 0.5708
+      },
+      "8": {
+       "n": 29,
+       "committed": 25,
+       "no_commit_rate": 0.1379,
+       "premature_rate": 0.4,
+       "premature_n": 10,
+       "median_commit_norm": 0.5148
+      }
+     },
+     "counts": {
+      "1": {
+       "n": 23,
+       "committed": 23,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.6087,
+       "premature_n": 14,
+       "median_commit_norm": 0.0
+      },
+      "2": {
+       "n": 23,
+       "committed": 23,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.6087,
+       "premature_n": 14,
+       "median_commit_norm": 0.1526
+      },
+      "3": {
+       "n": 23,
+       "committed": 23,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3043,
+       "premature_n": 7,
+       "median_commit_norm": 0.2979
+      },
+      "4": {
+       "n": 23,
+       "committed": 23,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3478,
+       "premature_n": 8,
+       "median_commit_norm": 0.3777
+      },
+      "5": {
+       "n": 23,
+       "committed": 22,
+       "no_commit_rate": 0.0435,
+       "premature_rate": 0.1818,
+       "premature_n": 4,
+       "median_commit_norm": 0.4949
+      },
+      "6": {
+       "n": 23,
+       "committed": 22,
+       "no_commit_rate": 0.0435,
+       "premature_rate": 0.1818,
+       "premature_n": 4,
+       "median_commit_norm": 0.5444
+      },
+      "7": {
+       "n": 23,
+       "committed": 21,
+       "no_commit_rate": 0.087,
+       "premature_rate": 0.1905,
+       "premature_n": 4,
+       "median_commit_norm": 0.5673
+      },
+      "8": {
+       "n": 23,
+       "committed": 20,
+       "no_commit_rate": 0.1304,
+       "premature_rate": 0.15,
+       "premature_n": 3,
+       "median_commit_norm": 0.6003
+      }
+     },
+     "onset_bpm": {
+      "1": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.931,
+       "premature_n": 27,
+       "median_commit_norm": 0.2927
+      },
+      "2": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.6552,
+       "premature_n": 19,
+       "median_commit_norm": 0.3489
+      },
+      "3": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.5517,
+       "premature_n": 16,
+       "median_commit_norm": 0.4041
+      },
+      "4": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.5517,
+       "premature_n": 16,
+       "median_commit_norm": 0.445
+      },
+      "5": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.4483,
+       "premature_n": 13,
+       "median_commit_norm": 0.4654
+      },
+      "6": {
+       "n": 29,
+       "committed": 27,
+       "no_commit_rate": 0.069,
+       "premature_rate": 0.4074,
+       "premature_n": 11,
+       "median_commit_norm": 0.5012
+      },
+      "7": {
+       "n": 29,
+       "committed": 27,
+       "no_commit_rate": 0.069,
+       "premature_rate": 0.4074,
+       "premature_n": 11,
+       "median_commit_norm": 0.5369
+      },
+      "8": {
+       "n": 29,
+       "committed": 25,
+       "no_commit_rate": 0.1379,
+       "premature_rate": 0.36,
+       "premature_n": 9,
+       "median_commit_norm": 0.5505
+      }
+     },
+     "marker_bpm": {
+      "1": {
+       "n": 26,
+       "committed": 26,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9231,
+       "premature_n": 24,
+       "median_commit_norm": 0.1799
+      },
+      "2": {
+       "n": 26,
+       "committed": 26,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.7692,
+       "premature_n": 20,
+       "median_commit_norm": 0.2313
+      },
+      "3": {
+       "n": 26,
+       "committed": 26,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.5769,
+       "premature_n": 15,
+       "median_commit_norm": 0.3241
+      },
+      "4": {
+       "n": 26,
+       "committed": 26,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.4615,
+       "premature_n": 12,
+       "median_commit_norm": 0.3954
+      },
+      "5": {
+       "n": 26,
+       "committed": 23,
+       "no_commit_rate": 0.1154,
+       "premature_rate": 0.3478,
+       "premature_n": 8,
+       "median_commit_norm": 0.4217
+      },
+      "6": {
+       "n": 26,
+       "committed": 22,
+       "no_commit_rate": 0.1538,
+       "premature_rate": 0.2727,
+       "premature_n": 6,
+       "median_commit_norm": 0.4492
+      },
+      "7": {
+       "n": 26,
+       "committed": 21,
+       "no_commit_rate": 0.1923,
+       "premature_rate": 0.2381,
+       "premature_n": 5,
+       "median_commit_norm": 0.5213
+      },
+      "8": {
+       "n": 26,
+       "committed": 19,
+       "no_commit_rate": 0.2692,
+       "premature_rate": 0.2632,
+       "premature_n": 5,
+       "median_commit_norm": 0.5265
+      }
+     }
+    },
+    "provisional": {
+     "exercise": {
+      "1": {
+       "n": 22,
+       "committed": 22,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "2": {
+       "n": 22,
+       "committed": 21,
+       "no_commit_rate": 0.0455,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0596
+      },
+      "3": {
+       "n": 22,
+       "committed": 21,
+       "no_commit_rate": 0.0455,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0751
+      },
+      "4": {
+       "n": 22,
+       "committed": 19,
+       "no_commit_rate": 0.1364,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0626
+      },
+      "5": {
+       "n": 22,
+       "committed": 16,
+       "no_commit_rate": 0.2727,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0448
+      },
+      "6": {
+       "n": 22,
+       "committed": 16,
+       "no_commit_rate": 0.2727,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0586
+      },
+      "7": {
+       "n": 22,
+       "committed": 16,
+       "no_commit_rate": 0.2727,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0785
+      },
+      "8": {
+       "n": 22,
+       "committed": 16,
+       "no_commit_rate": 0.2727,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.099
+      }
+     },
+     "meter": {
+      "1": {
+       "n": 22,
+       "committed": 22,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "2": {
+       "n": 22,
+       "committed": 21,
+       "no_commit_rate": 0.0455,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0596
+      },
+      "3": {
+       "n": 22,
+       "committed": 21,
+       "no_commit_rate": 0.0455,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0751
+      },
+      "4": {
+       "n": 22,
+       "committed": 19,
+       "no_commit_rate": 0.1364,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0626
+      },
+      "5": {
+       "n": 22,
+       "committed": 16,
+       "no_commit_rate": 0.2727,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0448
+      },
+      "6": {
+       "n": 22,
+       "committed": 16,
+       "no_commit_rate": 0.2727,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0586
+      },
+      "7": {
+       "n": 22,
+       "committed": 16,
+       "no_commit_rate": 0.2727,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0785
+      },
+      "8": {
+       "n": 22,
+       "committed": 16,
+       "no_commit_rate": 0.2727,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.1066
+      }
+     },
+     "grouping": {
+      "1": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "2": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1497
+      },
+      "3": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0625,
+       "premature_n": 1,
+       "median_commit_norm": 0.1634
+      },
+      "4": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0625,
+       "premature_n": 1,
+       "median_commit_norm": 0.1685
+      },
+      "5": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.1807
+      },
+      "6": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.1936
+      },
+      "7": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2022
+      },
+      "8": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.207
+      }
+     },
+     "division": {
+      "1": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.25,
+       "premature_n": 4,
+       "median_commit_norm": 0.1385
+      },
+      "2": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.25,
+       "premature_n": 4,
+       "median_commit_norm": 0.1497
+      },
+      "3": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3125,
+       "premature_n": 5,
+       "median_commit_norm": 0.1634
+      },
+      "4": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.25,
+       "premature_n": 4,
+       "median_commit_norm": 0.1766
+      },
+      "5": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1929
+      },
+      "6": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1975
+      },
+      "7": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.25,
+       "premature_n": 4,
+       "median_commit_norm": 0.2022
+      },
+      "8": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.25,
+       "premature_n": 4,
+       "median_commit_norm": 0.2112
+      }
+     },
+     "tempo_bpm": {
+      "1": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1385
+      },
+      "2": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.6875,
+       "premature_n": 11,
+       "median_commit_norm": 0.1631
+      },
+      "3": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.6875,
+       "premature_n": 11,
+       "median_commit_norm": 0.178
+      },
+      "4": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.625,
+       "premature_n": 10,
+       "median_commit_norm": 0.2009
+      },
+      "5": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.625,
+       "premature_n": 10,
+       "median_commit_norm": 0.2137
+      },
+      "6": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.625,
+       "premature_n": 10,
+       "median_commit_norm": 0.218
+      },
+      "7": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.6875,
+       "premature_n": 11,
+       "median_commit_norm": 0.2233
+      },
+      "8": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.5625,
+       "premature_n": 9,
+       "median_commit_norm": 0.2531
+      }
+     },
+     "counts": {
+      "1": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3571,
+       "premature_n": 5,
+       "median_commit_norm": 0.0
+      },
+      "2": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3571,
+       "premature_n": 5,
+       "median_commit_norm": 0.0804
+      },
+      "3": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3571,
+       "premature_n": 5,
+       "median_commit_norm": 0.0925
+      },
+      "4": {
+       "n": 14,
+       "committed": 13,
+       "no_commit_rate": 0.0714,
+       "premature_rate": 0.3846,
+       "premature_n": 5,
+       "median_commit_norm": 0.1166
+      },
+      "5": {
+       "n": 14,
+       "committed": 13,
+       "no_commit_rate": 0.0714,
+       "premature_rate": 0.3077,
+       "premature_n": 4,
+       "median_commit_norm": 0.1385
+      },
+      "6": {
+       "n": 14,
+       "committed": 13,
+       "no_commit_rate": 0.0714,
+       "premature_rate": 0.3077,
+       "premature_n": 4,
+       "median_commit_norm": 0.1665
+      },
+      "7": {
+       "n": 14,
+       "committed": 13,
+       "no_commit_rate": 0.0714,
+       "premature_rate": 0.3077,
+       "premature_n": 4,
+       "median_commit_norm": 0.17
+      },
+      "8": {
+       "n": 14,
+       "committed": 13,
+       "no_commit_rate": 0.0714,
+       "premature_rate": 0.2308,
+       "premature_n": 3,
+       "median_commit_norm": 0.179
+      }
+     },
+     "onset_bpm": {
+      "1": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1435
+      },
+      "2": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8125,
+       "premature_n": 13,
+       "median_commit_norm": 0.1631
+      },
+      "3": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.75,
+       "premature_n": 12,
+       "median_commit_norm": 0.1695
+      },
+      "4": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.75,
+       "premature_n": 12,
+       "median_commit_norm": 0.1946
+      },
+      "5": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.75,
+       "premature_n": 12,
+       "median_commit_norm": 0.207
+      },
+      "6": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.75,
+       "premature_n": 12,
+       "median_commit_norm": 0.2138
+      },
+      "7": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8125,
+       "premature_n": 13,
+       "median_commit_norm": 0.2171
+      },
+      "8": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.75,
+       "premature_n": 12,
+       "median_commit_norm": 0.2226
+      }
+     },
+     "marker_bpm": {
+      "1": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8571,
+       "premature_n": 12,
+       "median_commit_norm": 0.1551
+      },
+      "2": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.7857,
+       "premature_n": 11,
+       "median_commit_norm": 0.1883
+      },
+      "3": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8571,
+       "premature_n": 12,
+       "median_commit_norm": 0.1967
+      },
+      "4": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8571,
+       "premature_n": 12,
+       "median_commit_norm": 0.2466
+      },
+      "5": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8571,
+       "premature_n": 12,
+       "median_commit_norm": 0.2651
+      },
+      "6": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.7143,
+       "premature_n": 10,
+       "median_commit_norm": 0.3124
+      },
+      "7": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.7143,
+       "premature_n": 10,
+       "median_commit_norm": 0.3504
+      },
+      "8": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.7143,
+       "premature_n": 10,
+       "median_commit_norm": 0.4402
+      }
+     }
+    }
+   },
+   "withheld": {
+    "verified": {
+     "exercise": {
+      "1": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "2": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "3": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "4": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "5": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "6": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "7": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "8": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      }
+     },
+     "meter": {
+      "1": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "2": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2131
+      },
+      "3": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2549
+      },
+      "4": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2925
+      },
+      "5": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.3264
+      },
+      "6": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.3704
+      },
+      "7": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.4041
+      },
+      "8": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.4379
+      }
+     },
+     "grouping": {
+      "1": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "2": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2131
+      },
+      "3": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2549
+      },
+      "4": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2925
+      },
+      "5": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.3264
+      },
+      "6": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.3704
+      },
+      "7": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.4041
+      },
+      "8": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.4379
+      }
+     },
+     "division": {
+      "1": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3448,
+       "premature_n": 10,
+       "median_commit_norm": 0.1881
+      },
+      "2": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3448,
+       "premature_n": 10,
+       "median_commit_norm": 0.2131
+      },
+      "3": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3793,
+       "premature_n": 11,
+       "median_commit_norm": 0.2634
+      },
+      "4": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3103,
+       "premature_n": 9,
+       "median_commit_norm": 0.2927
+      },
+      "5": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.2069,
+       "premature_n": 6,
+       "median_commit_norm": 0.3506
+      },
+      "6": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.2069,
+       "premature_n": 6,
+       "median_commit_norm": 0.3934
+      },
+      "7": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1724,
+       "premature_n": 5,
+       "median_commit_norm": 0.4502
+      },
+      "8": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1379,
+       "premature_n": 4,
+       "median_commit_norm": 0.4734
+      }
+     },
+     "tempo_bpm": {
+      "1": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9655,
+       "premature_n": 28,
+       "median_commit_norm": 0.1881
+      },
+      "2": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.7241,
+       "premature_n": 21,
+       "median_commit_norm": 0.2594
+      },
+      "3": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.6552,
+       "premature_n": 19,
+       "median_commit_norm": 0.3546
+      },
+      "4": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.5172,
+       "premature_n": 15,
+       "median_commit_norm": 0.3966
+      },
+      "5": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.4483,
+       "premature_n": 13,
+       "median_commit_norm": 0.4587
+      },
+      "6": {
+       "n": 29,
+       "committed": 27,
+       "no_commit_rate": 0.069,
+       "premature_rate": 0.4444,
+       "premature_n": 12,
+       "median_commit_norm": 0.4732
+      },
+      "7": {
+       "n": 29,
+       "committed": 27,
+       "no_commit_rate": 0.069,
+       "premature_rate": 0.3704,
+       "premature_n": 10,
+       "median_commit_norm": 0.5708
+      },
+      "8": {
+       "n": 29,
+       "committed": 25,
+       "no_commit_rate": 0.1379,
+       "premature_rate": 0.4,
+       "premature_n": 10,
+       "median_commit_norm": 0.5148
+      }
+     },
+     "counts": {
+      "1": {
+       "n": 15,
+       "committed": 15,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9333,
+       "premature_n": 14,
+       "median_commit_norm": 0.1598
+      },
+      "2": {
+       "n": 15,
+       "committed": 15,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9333,
+       "premature_n": 14,
+       "median_commit_norm": 0.1896
+      },
+      "3": {
+       "n": 15,
+       "committed": 15,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.4667,
+       "premature_n": 7,
+       "median_commit_norm": 0.3007
+      },
+      "4": {
+       "n": 15,
+       "committed": 15,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.4667,
+       "premature_n": 7,
+       "median_commit_norm": 0.3248
+      },
+      "5": {
+       "n": 15,
+       "committed": 15,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.4,
+       "premature_n": 6,
+       "median_commit_norm": 0.3631
+      },
+      "6": {
+       "n": 15,
+       "committed": 15,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3333,
+       "premature_n": 5,
+       "median_commit_norm": 0.4704
+      },
+      "7": {
+       "n": 15,
+       "committed": 13,
+       "no_commit_rate": 0.1333,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.5673
+      },
+      "8": {
+       "n": 15,
+       "committed": 13,
+       "no_commit_rate": 0.1333,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.6079
+      }
+     },
+     "onset_bpm": {
+      "1": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.931,
+       "premature_n": 27,
+       "median_commit_norm": 0.2927
+      },
+      "2": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.6552,
+       "premature_n": 19,
+       "median_commit_norm": 0.3489
+      },
+      "3": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.5517,
+       "premature_n": 16,
+       "median_commit_norm": 0.4041
+      },
+      "4": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.5517,
+       "premature_n": 16,
+       "median_commit_norm": 0.445
+      },
+      "5": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.4483,
+       "premature_n": 13,
+       "median_commit_norm": 0.4654
+      },
+      "6": {
+       "n": 29,
+       "committed": 27,
+       "no_commit_rate": 0.069,
+       "premature_rate": 0.4074,
+       "premature_n": 11,
+       "median_commit_norm": 0.5012
+      },
+      "7": {
+       "n": 29,
+       "committed": 27,
+       "no_commit_rate": 0.069,
+       "premature_rate": 0.4074,
+       "premature_n": 11,
+       "median_commit_norm": 0.5369
+      },
+      "8": {
+       "n": 29,
+       "committed": 25,
+       "no_commit_rate": 0.1379,
+       "premature_rate": 0.36,
+       "premature_n": 9,
+       "median_commit_norm": 0.5505
+      }
+     },
+     "marker_bpm": {
+      "1": {
+       "n": 26,
+       "committed": 26,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9231,
+       "premature_n": 24,
+       "median_commit_norm": 0.1799
+      },
+      "2": {
+       "n": 26,
+       "committed": 26,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.7692,
+       "premature_n": 20,
+       "median_commit_norm": 0.2313
+      },
+      "3": {
+       "n": 26,
+       "committed": 26,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.5769,
+       "premature_n": 15,
+       "median_commit_norm": 0.3241
+      },
+      "4": {
+       "n": 26,
+       "committed": 26,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.4615,
+       "premature_n": 12,
+       "median_commit_norm": 0.3954
+      },
+      "5": {
+       "n": 26,
+       "committed": 23,
+       "no_commit_rate": 0.1154,
+       "premature_rate": 0.3478,
+       "premature_n": 8,
+       "median_commit_norm": 0.4217
+      },
+      "6": {
+       "n": 26,
+       "committed": 22,
+       "no_commit_rate": 0.1538,
+       "premature_rate": 0.2727,
+       "premature_n": 6,
+       "median_commit_norm": 0.4492
+      },
+      "7": {
+       "n": 26,
+       "committed": 21,
+       "no_commit_rate": 0.1923,
+       "premature_rate": 0.2381,
+       "premature_n": 5,
+       "median_commit_norm": 0.5213
+      },
+      "8": {
+       "n": 26,
+       "committed": 19,
+       "no_commit_rate": 0.2692,
+       "premature_rate": 0.2632,
+       "premature_n": 5,
+       "median_commit_norm": 0.5265
+      }
+     }
+    },
+    "provisional": {
+     "exercise": {
+      "1": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "2": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "3": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "4": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "5": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "6": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "7": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "8": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      }
+     },
+     "meter": {
+      "1": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "2": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1497
+      },
+      "3": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0625,
+       "premature_n": 1,
+       "median_commit_norm": 0.1634
+      },
+      "4": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0625,
+       "premature_n": 1,
+       "median_commit_norm": 0.1685
+      },
+      "5": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.1807
+      },
+      "6": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.1936
+      },
+      "7": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2022
+      },
+      "8": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.207
+      }
+     },
+     "grouping": {
+      "1": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "2": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1497
+      },
+      "3": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0625,
+       "premature_n": 1,
+       "median_commit_norm": 0.1634
+      },
+      "4": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0625,
+       "premature_n": 1,
+       "median_commit_norm": 0.1685
+      },
+      "5": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.1807
+      },
+      "6": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.1936
+      },
+      "7": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2022
+      },
+      "8": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.207
+      }
+     },
+     "division": {
+      "1": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.25,
+       "premature_n": 4,
+       "median_commit_norm": 0.1385
+      },
+      "2": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.25,
+       "premature_n": 4,
+       "median_commit_norm": 0.1497
+      },
+      "3": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3125,
+       "premature_n": 5,
+       "median_commit_norm": 0.1634
+      },
+      "4": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.25,
+       "premature_n": 4,
+       "median_commit_norm": 0.1766
+      },
+      "5": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1929
+      },
+      "6": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1975
+      },
+      "7": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.25,
+       "premature_n": 4,
+       "median_commit_norm": 0.2022
+      },
+      "8": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.25,
+       "premature_n": 4,
+       "median_commit_norm": 0.2112
+      }
+     },
+     "tempo_bpm": {
+      "1": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1385
+      },
+      "2": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.6875,
+       "premature_n": 11,
+       "median_commit_norm": 0.1631
+      },
+      "3": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.6875,
+       "premature_n": 11,
+       "median_commit_norm": 0.178
+      },
+      "4": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.625,
+       "premature_n": 10,
+       "median_commit_norm": 0.2009
+      },
+      "5": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.625,
+       "premature_n": 10,
+       "median_commit_norm": 0.2137
+      },
+      "6": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.625,
+       "premature_n": 10,
+       "median_commit_norm": 0.218
+      },
+      "7": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.6875,
+       "premature_n": 11,
+       "median_commit_norm": 0.2233
+      },
+      "8": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.5625,
+       "premature_n": 9,
+       "median_commit_norm": 0.2531
+      }
+     },
+     "counts": {
+      "1": {
+       "n": 2,
+       "committed": 2,
+       "no_commit_rate": 0.0,
+       "premature_rate": 1.0,
+       "premature_n": 2,
+       "median_commit_norm": 0.1215
+      },
+      "2": {
+       "n": 2,
+       "committed": 2,
+       "no_commit_rate": 0.0,
+       "premature_rate": 1.0,
+       "premature_n": 2,
+       "median_commit_norm": 0.1321
+      },
+      "3": {
+       "n": 2,
+       "committed": 2,
+       "no_commit_rate": 0.0,
+       "premature_rate": 1.0,
+       "premature_n": 2,
+       "median_commit_norm": 0.1486
+      },
+      "4": {
+       "n": 2,
+       "committed": 2,
+       "no_commit_rate": 0.0,
+       "premature_rate": 1.0,
+       "premature_n": 2,
+       "median_commit_norm": 0.1571
+      },
+      "5": {
+       "n": 2,
+       "committed": 2,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.5,
+       "premature_n": 1,
+       "median_commit_norm": 0.3945
+      },
+      "6": {
+       "n": 2,
+       "committed": 2,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.5,
+       "premature_n": 1,
+       "median_commit_norm": 0.4057
+      },
+      "7": {
+       "n": 2,
+       "committed": 2,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.5,
+       "premature_n": 1,
+       "median_commit_norm": 0.4208
+      },
+      "8": {
+       "n": 2,
+       "committed": 2,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.5,
+       "premature_n": 1,
+       "median_commit_norm": 0.426
+      }
+     },
+     "onset_bpm": {
+      "1": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1435
+      },
+      "2": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8125,
+       "premature_n": 13,
+       "median_commit_norm": 0.1631
+      },
+      "3": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.75,
+       "premature_n": 12,
+       "median_commit_norm": 0.1695
+      },
+      "4": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.75,
+       "premature_n": 12,
+       "median_commit_norm": 0.1946
+      },
+      "5": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.75,
+       "premature_n": 12,
+       "median_commit_norm": 0.207
+      },
+      "6": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.75,
+       "premature_n": 12,
+       "median_commit_norm": 0.2138
+      },
+      "7": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8125,
+       "premature_n": 13,
+       "median_commit_norm": 0.2171
+      },
+      "8": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.75,
+       "premature_n": 12,
+       "median_commit_norm": 0.2226
+      }
+     },
+     "marker_bpm": {
+      "1": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8571,
+       "premature_n": 12,
+       "median_commit_norm": 0.1551
+      },
+      "2": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.7857,
+       "premature_n": 11,
+       "median_commit_norm": 0.1883
+      },
+      "3": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8571,
+       "premature_n": 12,
+       "median_commit_norm": 0.1967
+      },
+      "4": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8571,
+       "premature_n": 12,
+       "median_commit_norm": 0.2466
+      },
+      "5": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8571,
+       "premature_n": 12,
+       "median_commit_norm": 0.2651
+      },
+      "6": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.7143,
+       "premature_n": 10,
+       "median_commit_norm": 0.3124
+      },
+      "7": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.7143,
+       "premature_n": 10,
+       "median_commit_norm": 0.3504
+      },
+      "8": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.7143,
+       "premature_n": 10,
+       "median_commit_norm": 0.4402
+      }
+     }
+    }
+   }
+  },
+  "f2": {
+   "granted": {
+    "verified": {
+     "exercise": {
+      "0.1": {
+       "n": 30,
+       "committed": 24,
+       "no_commit_rate": 0.2,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.15": {
+       "n": 30,
+       "committed": 22,
+       "no_commit_rate": 0.2667,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.2": {
+       "n": 30,
+       "committed": 22,
+       "no_commit_rate": 0.2667,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.25": {
+       "n": 30,
+       "committed": 22,
+       "no_commit_rate": 0.2667,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.3": {
+       "n": 30,
+       "committed": 22,
+       "no_commit_rate": 0.2667,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.35": {
+       "n": 30,
+       "committed": 22,
+       "no_commit_rate": 0.2667,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.4": {
+       "n": 30,
+       "committed": 22,
+       "no_commit_rate": 0.2667,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.45": {
+       "n": 30,
+       "committed": 22,
+       "no_commit_rate": 0.2667,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.5": {
+       "n": 30,
+       "committed": 22,
+       "no_commit_rate": 0.2667,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.55": {
+       "n": 30,
+       "committed": 21,
+       "no_commit_rate": 0.3,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.6": {
+       "n": 30,
+       "committed": 21,
+       "no_commit_rate": 0.3,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.65": {
+       "n": 30,
+       "committed": 20,
+       "no_commit_rate": 0.3333,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.7": {
+       "n": 30,
+       "committed": 20,
+       "no_commit_rate": 0.3333,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.75": {
+       "n": 30,
+       "committed": 19,
+       "no_commit_rate": 0.3667,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.8": {
+       "n": 30,
+       "committed": 19,
+       "no_commit_rate": 0.3667,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.85": {
+       "n": 30,
+       "committed": 14,
+       "no_commit_rate": 0.5333,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.9": {
+       "n": 30,
+       "committed": 14,
+       "no_commit_rate": 0.5333,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      }
+     },
+     "meter": {
+      "0.1": {
+       "n": 30,
+       "committed": 29,
+       "no_commit_rate": 0.0333,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "0.15": {
+       "n": 30,
+       "committed": 29,
+       "no_commit_rate": 0.0333,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "0.2": {
+       "n": 30,
+       "committed": 29,
+       "no_commit_rate": 0.0333,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "0.25": {
+       "n": 30,
+       "committed": 29,
+       "no_commit_rate": 0.0333,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "0.3": {
+       "n": 30,
+       "committed": 29,
+       "no_commit_rate": 0.0333,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "0.35": {
+       "n": 30,
+       "committed": 29,
+       "no_commit_rate": 0.0333,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "0.4": {
+       "n": 30,
+       "committed": 29,
+       "no_commit_rate": 0.0333,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "0.45": {
+       "n": 30,
+       "committed": 29,
+       "no_commit_rate": 0.0333,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.235
+      },
+      "0.5": {
+       "n": 30,
+       "committed": 29,
+       "no_commit_rate": 0.0333,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2484
+      },
+      "0.55": {
+       "n": 30,
+       "committed": 29,
+       "no_commit_rate": 0.0333,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2634
+      },
+      "0.6": {
+       "n": 30,
+       "committed": 28,
+       "no_commit_rate": 0.0667,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2751
+      },
+      "0.65": {
+       "n": 30,
+       "committed": 28,
+       "no_commit_rate": 0.0667,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2952
+      },
+      "0.7": {
+       "n": 30,
+       "committed": 26,
+       "no_commit_rate": 0.1333,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.3037
+      },
+      "0.75": {
+       "n": 30,
+       "committed": 24,
+       "no_commit_rate": 0.2,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.3479
+      },
+      "0.8": {
+       "n": 30,
+       "committed": 19,
+       "no_commit_rate": 0.3667,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.3506
+      },
+      "0.85": {
+       "n": 30,
+       "committed": 17,
+       "no_commit_rate": 0.4333,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.487
+      },
+      "0.9": {
+       "n": 30,
+       "committed": 15,
+       "no_commit_rate": 0.5,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.5254
+      }
+     },
+     "grouping": {
+      "0.1": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "0.15": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "0.2": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "0.25": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "0.3": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "0.35": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "0.4": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "0.45": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.235
+      },
+      "0.5": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2484
+      },
+      "0.55": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2634
+      },
+      "0.6": {
+       "n": 29,
+       "committed": 28,
+       "no_commit_rate": 0.0345,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2751
+      },
+      "0.65": {
+       "n": 29,
+       "committed": 28,
+       "no_commit_rate": 0.0345,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2952
+      },
+      "0.7": {
+       "n": 29,
+       "committed": 26,
+       "no_commit_rate": 0.1034,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.3037
+      },
+      "0.75": {
+       "n": 29,
+       "committed": 24,
+       "no_commit_rate": 0.1724,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.3479
+      },
+      "0.8": {
+       "n": 29,
+       "committed": 19,
+       "no_commit_rate": 0.3448,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.3506
+      },
+      "0.85": {
+       "n": 29,
+       "committed": 17,
+       "no_commit_rate": 0.4138,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.487
+      },
+      "0.9": {
+       "n": 29,
+       "committed": 15,
+       "no_commit_rate": 0.4828,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.5254
+      }
+     },
+     "division": {
+      "0.1": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3448,
+       "premature_n": 10,
+       "median_commit_norm": 0.1881
+      },
+      "0.15": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3448,
+       "premature_n": 10,
+       "median_commit_norm": 0.1881
+      },
+      "0.2": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3448,
+       "premature_n": 10,
+       "median_commit_norm": 0.1881
+      },
+      "0.25": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3448,
+       "premature_n": 10,
+       "median_commit_norm": 0.1881
+      },
+      "0.3": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3448,
+       "premature_n": 10,
+       "median_commit_norm": 0.1881
+      },
+      "0.35": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3448,
+       "premature_n": 10,
+       "median_commit_norm": 0.1881
+      },
+      "0.4": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3448,
+       "premature_n": 10,
+       "median_commit_norm": 0.1881
+      },
+      "0.45": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.2759,
+       "premature_n": 8,
+       "median_commit_norm": 0.235
+      },
+      "0.5": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3103,
+       "premature_n": 9,
+       "median_commit_norm": 0.2484
+      },
+      "0.55": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3103,
+       "premature_n": 9,
+       "median_commit_norm": 0.2634
+      },
+      "0.6": {
+       "n": 29,
+       "committed": 28,
+       "no_commit_rate": 0.0345,
+       "premature_rate": 0.2857,
+       "premature_n": 8,
+       "median_commit_norm": 0.2751
+      },
+      "0.65": {
+       "n": 29,
+       "committed": 28,
+       "no_commit_rate": 0.0345,
+       "premature_rate": 0.2857,
+       "premature_n": 8,
+       "median_commit_norm": 0.2952
+      },
+      "0.7": {
+       "n": 29,
+       "committed": 26,
+       "no_commit_rate": 0.1034,
+       "premature_rate": 0.2308,
+       "premature_n": 6,
+       "median_commit_norm": 0.3037
+      },
+      "0.75": {
+       "n": 29,
+       "committed": 24,
+       "no_commit_rate": 0.1724,
+       "premature_rate": 0.125,
+       "premature_n": 3,
+       "median_commit_norm": 0.3479
+      },
+      "0.8": {
+       "n": 29,
+       "committed": 19,
+       "no_commit_rate": 0.3448,
+       "premature_rate": 0.1053,
+       "premature_n": 2,
+       "median_commit_norm": 0.3506
+      },
+      "0.85": {
+       "n": 29,
+       "committed": 17,
+       "no_commit_rate": 0.4138,
+       "premature_rate": 0.0588,
+       "premature_n": 1,
+       "median_commit_norm": 0.487
+      },
+      "0.9": {
+       "n": 29,
+       "committed": 15,
+       "no_commit_rate": 0.4828,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.5254
+      }
+     },
+     "tempo_bpm": {
+      "0.1": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9655,
+       "premature_n": 28,
+       "median_commit_norm": 0.1881
+      },
+      "0.15": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9655,
+       "premature_n": 28,
+       "median_commit_norm": 0.1881
+      },
+      "0.2": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9655,
+       "premature_n": 28,
+       "median_commit_norm": 0.1881
+      },
+      "0.25": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9655,
+       "premature_n": 28,
+       "median_commit_norm": 0.1881
+      },
+      "0.3": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9655,
+       "premature_n": 28,
+       "median_commit_norm": 0.1881
+      },
+      "0.35": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9655,
+       "premature_n": 28,
+       "median_commit_norm": 0.1881
+      },
+      "0.4": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9655,
+       "premature_n": 28,
+       "median_commit_norm": 0.1881
+      },
+      "0.45": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8276,
+       "premature_n": 24,
+       "median_commit_norm": 0.235
+      },
+      "0.5": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.7931,
+       "premature_n": 23,
+       "median_commit_norm": 0.2484
+      },
+      "0.55": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.7931,
+       "premature_n": 23,
+       "median_commit_norm": 0.2634
+      },
+      "0.6": {
+       "n": 29,
+       "committed": 28,
+       "no_commit_rate": 0.0345,
+       "premature_rate": 0.7857,
+       "premature_n": 22,
+       "median_commit_norm": 0.2751
+      },
+      "0.65": {
+       "n": 29,
+       "committed": 28,
+       "no_commit_rate": 0.0345,
+       "premature_rate": 0.7143,
+       "premature_n": 20,
+       "median_commit_norm": 0.2952
+      },
+      "0.7": {
+       "n": 29,
+       "committed": 26,
+       "no_commit_rate": 0.1034,
+       "premature_rate": 0.5769,
+       "premature_n": 15,
+       "median_commit_norm": 0.3037
+      },
+      "0.75": {
+       "n": 29,
+       "committed": 24,
+       "no_commit_rate": 0.1724,
+       "premature_rate": 0.5833,
+       "premature_n": 14,
+       "median_commit_norm": 0.3479
+      },
+      "0.8": {
+       "n": 29,
+       "committed": 19,
+       "no_commit_rate": 0.3448,
+       "premature_rate": 0.4737,
+       "premature_n": 9,
+       "median_commit_norm": 0.3506
+      },
+      "0.85": {
+       "n": 29,
+       "committed": 17,
+       "no_commit_rate": 0.4138,
+       "premature_rate": 0.4118,
+       "premature_n": 7,
+       "median_commit_norm": 0.487
+      },
+      "0.9": {
+       "n": 29,
+       "committed": 15,
+       "no_commit_rate": 0.4828,
+       "premature_rate": 0.2667,
+       "premature_n": 4,
+       "median_commit_norm": 0.5254
+      }
+     },
+     "counts": null,
+     "onset_bpm": {
+      "0.1": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.931,
+       "premature_n": 27,
+       "median_commit_norm": 0.2927
+      },
+      "0.15": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.931,
+       "premature_n": 27,
+       "median_commit_norm": 0.2927
+      },
+      "0.2": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.931,
+       "premature_n": 27,
+       "median_commit_norm": 0.2927
+      },
+      "0.25": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.931,
+       "premature_n": 27,
+       "median_commit_norm": 0.2927
+      },
+      "0.3": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.931,
+       "premature_n": 27,
+       "median_commit_norm": 0.2927
+      },
+      "0.35": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.931,
+       "premature_n": 27,
+       "median_commit_norm": 0.2927
+      },
+      "0.4": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.931,
+       "premature_n": 27,
+       "median_commit_norm": 0.2927
+      },
+      "0.45": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.931,
+       "premature_n": 27,
+       "median_commit_norm": 0.2927
+      },
+      "0.5": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8966,
+       "premature_n": 26,
+       "median_commit_norm": 0.2927
+      },
+      "0.55": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8966,
+       "premature_n": 26,
+       "median_commit_norm": 0.2927
+      },
+      "0.6": {
+       "n": 29,
+       "committed": 28,
+       "no_commit_rate": 0.0345,
+       "premature_rate": 0.8929,
+       "premature_n": 25,
+       "median_commit_norm": 0.2953
+      },
+      "0.65": {
+       "n": 29,
+       "committed": 28,
+       "no_commit_rate": 0.0345,
+       "premature_rate": 0.8571,
+       "premature_n": 24,
+       "median_commit_norm": 0.3025
+      },
+      "0.7": {
+       "n": 29,
+       "committed": 26,
+       "no_commit_rate": 0.1034,
+       "premature_rate": 0.8462,
+       "premature_n": 22,
+       "median_commit_norm": 0.2953
+      },
+      "0.75": {
+       "n": 29,
+       "committed": 25,
+       "no_commit_rate": 0.1379,
+       "premature_rate": 0.72,
+       "premature_n": 18,
+       "median_commit_norm": 0.3096
+      },
+      "0.8": {
+       "n": 29,
+       "committed": 18,
+       "no_commit_rate": 0.3793,
+       "premature_rate": 0.5556,
+       "premature_n": 10,
+       "median_commit_norm": 0.3922
+      },
+      "0.85": {
+       "n": 29,
+       "committed": 10,
+       "no_commit_rate": 0.6552,
+       "premature_rate": 0.6,
+       "premature_n": 6,
+       "median_commit_norm": 0.4538
+      },
+      "0.9": {
+       "n": 29,
+       "committed": 4,
+       "no_commit_rate": 0.8621,
+       "premature_rate": 0.75,
+       "premature_n": 3,
+       "median_commit_norm": 0.5455
+      }
+     },
+     "marker_bpm": {
+      "0.1": {
+       "n": 26,
+       "committed": 26,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9231,
+       "premature_n": 24,
+       "median_commit_norm": 0.1799
+      },
+      "0.15": {
+       "n": 26,
+       "committed": 26,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9231,
+       "premature_n": 24,
+       "median_commit_norm": 0.1799
+      },
+      "0.2": {
+       "n": 26,
+       "committed": 26,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9231,
+       "premature_n": 24,
+       "median_commit_norm": 0.1799
+      },
+      "0.25": {
+       "n": 26,
+       "committed": 26,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9231,
+       "premature_n": 24,
+       "median_commit_norm": 0.1799
+      },
+      "0.3": {
+       "n": 26,
+       "committed": 26,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9231,
+       "premature_n": 24,
+       "median_commit_norm": 0.1799
+      },
+      "0.35": {
+       "n": 26,
+       "committed": 26,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9231,
+       "premature_n": 24,
+       "median_commit_norm": 0.1799
+      },
+      "0.4": {
+       "n": 26,
+       "committed": 26,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9231,
+       "premature_n": 24,
+       "median_commit_norm": 0.1799
+      },
+      "0.45": {
+       "n": 26,
+       "committed": 22,
+       "no_commit_rate": 0.1538,
+       "premature_rate": 0.8182,
+       "premature_n": 18,
+       "median_commit_norm": 0.2516
+      },
+      "0.5": {
+       "n": 26,
+       "committed": 22,
+       "no_commit_rate": 0.1538,
+       "premature_rate": 0.7273,
+       "premature_n": 16,
+       "median_commit_norm": 0.294
+      },
+      "0.55": {
+       "n": 26,
+       "committed": 21,
+       "no_commit_rate": 0.1923,
+       "premature_rate": 0.6667,
+       "premature_n": 14,
+       "median_commit_norm": 0.3017
+      },
+      "0.6": {
+       "n": 26,
+       "committed": 18,
+       "no_commit_rate": 0.3077,
+       "premature_rate": 0.6111,
+       "premature_n": 11,
+       "median_commit_norm": 0.2751
+      },
+      "0.65": {
+       "n": 26,
+       "committed": 14,
+       "no_commit_rate": 0.4615,
+       "premature_rate": 0.5,
+       "premature_n": 7,
+       "median_commit_norm": 0.3413
+      },
+      "0.7": {
+       "n": 26,
+       "committed": 12,
+       "no_commit_rate": 0.5385,
+       "premature_rate": 0.4167,
+       "premature_n": 5,
+       "median_commit_norm": 0.3382
+      },
+      "0.75": {
+       "n": 26,
+       "committed": 11,
+       "no_commit_rate": 0.5769,
+       "premature_rate": 0.0909,
+       "premature_n": 1,
+       "median_commit_norm": 0.3699
+      },
+      "0.8": {
+       "n": 26,
+       "committed": 8,
+       "no_commit_rate": 0.6923,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.3718
+      },
+      "0.85": {
+       "n": 26,
+       "committed": 6,
+       "no_commit_rate": 0.7692,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.3572
+      },
+      "0.9": {
+       "n": 26,
+       "committed": 5,
+       "no_commit_rate": 0.8077,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.4721
+      }
+     }
+    },
+    "provisional": {
+     "exercise": {
+      "0.1": {
+       "n": 22,
+       "committed": 18,
+       "no_commit_rate": 0.1818,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.15": {
+       "n": 22,
+       "committed": 18,
+       "no_commit_rate": 0.1818,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.2": {
+       "n": 22,
+       "committed": 18,
+       "no_commit_rate": 0.1818,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.25": {
+       "n": 22,
+       "committed": 18,
+       "no_commit_rate": 0.1818,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.3": {
+       "n": 22,
+       "committed": 18,
+       "no_commit_rate": 0.1818,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.35": {
+       "n": 22,
+       "committed": 18,
+       "no_commit_rate": 0.1818,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.4": {
+       "n": 22,
+       "committed": 18,
+       "no_commit_rate": 0.1818,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.45": {
+       "n": 22,
+       "committed": 18,
+       "no_commit_rate": 0.1818,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.5": {
+       "n": 22,
+       "committed": 18,
+       "no_commit_rate": 0.1818,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.55": {
+       "n": 22,
+       "committed": 18,
+       "no_commit_rate": 0.1818,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.6": {
+       "n": 22,
+       "committed": 18,
+       "no_commit_rate": 0.1818,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.65": {
+       "n": 22,
+       "committed": 18,
+       "no_commit_rate": 0.1818,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.7": {
+       "n": 22,
+       "committed": 18,
+       "no_commit_rate": 0.1818,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.75": {
+       "n": 22,
+       "committed": 18,
+       "no_commit_rate": 0.1818,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.8": {
+       "n": 22,
+       "committed": 18,
+       "no_commit_rate": 0.1818,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.85": {
+       "n": 22,
+       "committed": 16,
+       "no_commit_rate": 0.2727,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      },
+      "0.9": {
+       "n": 22,
+       "committed": 16,
+       "no_commit_rate": 0.2727,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.0
+      }
+     },
+     "meter": {
+      "0.1": {
+       "n": 22,
+       "committed": 16,
+       "no_commit_rate": 0.2727,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "0.15": {
+       "n": 22,
+       "committed": 16,
+       "no_commit_rate": 0.2727,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "0.2": {
+       "n": 22,
+       "committed": 16,
+       "no_commit_rate": 0.2727,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "0.25": {
+       "n": 22,
+       "committed": 16,
+       "no_commit_rate": 0.2727,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "0.3": {
+       "n": 22,
+       "committed": 16,
+       "no_commit_rate": 0.2727,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "0.35": {
+       "n": 22,
+       "committed": 16,
+       "no_commit_rate": 0.2727,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "0.4": {
+       "n": 22,
+       "committed": 16,
+       "no_commit_rate": 0.2727,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "0.45": {
+       "n": 22,
+       "committed": 16,
+       "no_commit_rate": 0.2727,
+       "premature_rate": 0.0625,
+       "premature_n": 1,
+       "median_commit_norm": 0.1435
+      },
+      "0.5": {
+       "n": 22,
+       "committed": 16,
+       "no_commit_rate": 0.2727,
+       "premature_rate": 0.0625,
+       "premature_n": 1,
+       "median_commit_norm": 0.1609
+      },
+      "0.55": {
+       "n": 22,
+       "committed": 16,
+       "no_commit_rate": 0.2727,
+       "premature_rate": 0.0625,
+       "premature_n": 1,
+       "median_commit_norm": 0.1826
+      },
+      "0.6": {
+       "n": 22,
+       "committed": 14,
+       "no_commit_rate": 0.3636,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.1645
+      },
+      "0.65": {
+       "n": 22,
+       "committed": 12,
+       "no_commit_rate": 0.4545,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.1961
+      },
+      "0.7": {
+       "n": 22,
+       "committed": 11,
+       "no_commit_rate": 0.5,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2192
+      },
+      "0.75": {
+       "n": 22,
+       "committed": 7,
+       "no_commit_rate": 0.6818,
+       "premature_rate": 0.1429,
+       "premature_n": 1,
+       "median_commit_norm": 0.2201
+      },
+      "0.8": {
+       "n": 22,
+       "committed": 5,
+       "no_commit_rate": 0.7727,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2201
+      },
+      "0.85": {
+       "n": 22,
+       "committed": 3,
+       "no_commit_rate": 0.8636,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.4117
+      },
+      "0.9": {
+       "n": 22,
+       "committed": 3,
+       "no_commit_rate": 0.8636,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.4629
+      }
+     },
+     "grouping": {
+      "0.1": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "0.15": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "0.2": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "0.25": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "0.3": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "0.35": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "0.4": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "0.45": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0625,
+       "premature_n": 1,
+       "median_commit_norm": 0.1435
+      },
+      "0.5": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0625,
+       "premature_n": 1,
+       "median_commit_norm": 0.1609
+      },
+      "0.55": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0625,
+       "premature_n": 1,
+       "median_commit_norm": 0.1826
+      },
+      "0.6": {
+       "n": 16,
+       "committed": 14,
+       "no_commit_rate": 0.125,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.1645
+      },
+      "0.65": {
+       "n": 16,
+       "committed": 12,
+       "no_commit_rate": 0.25,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.1961
+      },
+      "0.7": {
+       "n": 16,
+       "committed": 11,
+       "no_commit_rate": 0.3125,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2192
+      },
+      "0.75": {
+       "n": 16,
+       "committed": 7,
+       "no_commit_rate": 0.5625,
+       "premature_rate": 0.1429,
+       "premature_n": 1,
+       "median_commit_norm": 0.2201
+      },
+      "0.8": {
+       "n": 16,
+       "committed": 5,
+       "no_commit_rate": 0.6875,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2201
+      },
+      "0.85": {
+       "n": 16,
+       "committed": 3,
+       "no_commit_rate": 0.8125,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.4117
+      },
+      "0.9": {
+       "n": 16,
+       "committed": 3,
+       "no_commit_rate": 0.8125,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.4629
+      }
+     },
+     "division": {
+      "0.1": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.25,
+       "premature_n": 4,
+       "median_commit_norm": 0.1385
+      },
+      "0.15": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.25,
+       "premature_n": 4,
+       "median_commit_norm": 0.1385
+      },
+      "0.2": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.25,
+       "premature_n": 4,
+       "median_commit_norm": 0.1385
+      },
+      "0.25": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.25,
+       "premature_n": 4,
+       "median_commit_norm": 0.1385
+      },
+      "0.3": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.25,
+       "premature_n": 4,
+       "median_commit_norm": 0.1385
+      },
+      "0.35": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.25,
+       "premature_n": 4,
+       "median_commit_norm": 0.1385
+      },
+      "0.4": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.25,
+       "premature_n": 4,
+       "median_commit_norm": 0.1385
+      },
+      "0.45": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.4375,
+       "premature_n": 7,
+       "median_commit_norm": 0.1435
+      },
+      "0.5": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3125,
+       "premature_n": 5,
+       "median_commit_norm": 0.1609
+      },
+      "0.55": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3125,
+       "premature_n": 5,
+       "median_commit_norm": 0.1826
+      },
+      "0.6": {
+       "n": 16,
+       "committed": 14,
+       "no_commit_rate": 0.125,
+       "premature_rate": 0.3571,
+       "premature_n": 5,
+       "median_commit_norm": 0.1645
+      },
+      "0.65": {
+       "n": 16,
+       "committed": 12,
+       "no_commit_rate": 0.25,
+       "premature_rate": 0.1667,
+       "premature_n": 2,
+       "median_commit_norm": 0.1961
+      },
+      "0.7": {
+       "n": 16,
+       "committed": 11,
+       "no_commit_rate": 0.3125,
+       "premature_rate": 0.0909,
+       "premature_n": 1,
+       "median_commit_norm": 0.2192
+      },
+      "0.75": {
+       "n": 16,
+       "committed": 7,
+       "no_commit_rate": 0.5625,
+       "premature_rate": 0.1429,
+       "premature_n": 1,
+       "median_commit_norm": 0.2201
+      },
+      "0.8": {
+       "n": 16,
+       "committed": 5,
+       "no_commit_rate": 0.6875,
+       "premature_rate": 0.2,
+       "premature_n": 1,
+       "median_commit_norm": 0.2201
+      },
+      "0.85": {
+       "n": 16,
+       "committed": 3,
+       "no_commit_rate": 0.8125,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.4117
+      },
+      "0.9": {
+       "n": 16,
+       "committed": 3,
+       "no_commit_rate": 0.8125,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.4629
+      }
+     },
+     "tempo_bpm": {
+      "0.1": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1385
+      },
+      "0.15": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1385
+      },
+      "0.2": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1385
+      },
+      "0.25": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1385
+      },
+      "0.3": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1385
+      },
+      "0.35": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1385
+      },
+      "0.4": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1385
+      },
+      "0.45": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8125,
+       "premature_n": 13,
+       "median_commit_norm": 0.1435
+      },
+      "0.5": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1609
+      },
+      "0.55": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1826
+      },
+      "0.6": {
+       "n": 16,
+       "committed": 14,
+       "no_commit_rate": 0.125,
+       "premature_rate": 0.7857,
+       "premature_n": 11,
+       "median_commit_norm": 0.1645
+      },
+      "0.65": {
+       "n": 16,
+       "committed": 12,
+       "no_commit_rate": 0.25,
+       "premature_rate": 0.8333,
+       "premature_n": 10,
+       "median_commit_norm": 0.1961
+      },
+      "0.7": {
+       "n": 16,
+       "committed": 11,
+       "no_commit_rate": 0.3125,
+       "premature_rate": 0.7273,
+       "premature_n": 8,
+       "median_commit_norm": 0.2192
+      },
+      "0.75": {
+       "n": 16,
+       "committed": 7,
+       "no_commit_rate": 0.5625,
+       "premature_rate": 1.0,
+       "premature_n": 7,
+       "median_commit_norm": 0.2201
+      },
+      "0.8": {
+       "n": 16,
+       "committed": 5,
+       "no_commit_rate": 0.6875,
+       "premature_rate": 0.8,
+       "premature_n": 4,
+       "median_commit_norm": 0.2201
+      },
+      "0.85": {
+       "n": 16,
+       "committed": 3,
+       "no_commit_rate": 0.8125,
+       "premature_rate": 0.6667,
+       "premature_n": 2,
+       "median_commit_norm": 0.4117
+      },
+      "0.9": {
+       "n": 16,
+       "committed": 3,
+       "no_commit_rate": 0.8125,
+       "premature_rate": 0.6667,
+       "premature_n": 2,
+       "median_commit_norm": 0.4629
+      }
+     },
+     "counts": null,
+     "onset_bpm": {
+      "0.1": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1435
+      },
+      "0.15": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1435
+      },
+      "0.2": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1435
+      },
+      "0.25": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1435
+      },
+      "0.3": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1435
+      },
+      "0.35": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1435
+      },
+      "0.4": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1435
+      },
+      "0.45": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1435
+      },
+      "0.5": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9375,
+       "premature_n": 15,
+       "median_commit_norm": 0.1609
+      },
+      "0.55": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9375,
+       "premature_n": 15,
+       "median_commit_norm": 0.1609
+      },
+      "0.6": {
+       "n": 16,
+       "committed": 14,
+       "no_commit_rate": 0.125,
+       "premature_rate": 0.7857,
+       "premature_n": 11,
+       "median_commit_norm": 0.1645
+      },
+      "0.65": {
+       "n": 16,
+       "committed": 12,
+       "no_commit_rate": 0.25,
+       "premature_rate": 0.8333,
+       "premature_n": 10,
+       "median_commit_norm": 0.217
+      },
+      "0.7": {
+       "n": 16,
+       "committed": 11,
+       "no_commit_rate": 0.3125,
+       "premature_rate": 0.6364,
+       "premature_n": 7,
+       "median_commit_norm": 0.3618
+      },
+      "0.75": {
+       "n": 16,
+       "committed": 6,
+       "no_commit_rate": 0.625,
+       "premature_rate": 0.6667,
+       "premature_n": 4,
+       "median_commit_norm": 0.1773
+      },
+      "0.8": {
+       "n": 16,
+       "committed": 3,
+       "no_commit_rate": 0.8125,
+       "premature_rate": 1.0,
+       "premature_n": 3,
+       "median_commit_norm": 0.1291
+      },
+      "0.85": {
+       "n": 16,
+       "committed": 1,
+       "no_commit_rate": 0.9375,
+       "premature_rate": 1.0,
+       "premature_n": 1,
+       "median_commit_norm": 0.6033
+      },
+      "0.9": {
+       "n": 16,
+       "committed": 0,
+       "no_commit_rate": 1.0,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      }
+     },
+     "marker_bpm": {
+      "0.1": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8571,
+       "premature_n": 12,
+       "median_commit_norm": 0.1551
+      },
+      "0.15": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8571,
+       "premature_n": 12,
+       "median_commit_norm": 0.1551
+      },
+      "0.2": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8571,
+       "premature_n": 12,
+       "median_commit_norm": 0.1551
+      },
+      "0.25": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8571,
+       "premature_n": 12,
+       "median_commit_norm": 0.1551
+      },
+      "0.3": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8571,
+       "premature_n": 12,
+       "median_commit_norm": 0.1551
+      },
+      "0.35": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8571,
+       "premature_n": 12,
+       "median_commit_norm": 0.1551
+      },
+      "0.4": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8571,
+       "premature_n": 12,
+       "median_commit_norm": 0.1551
+      },
+      "0.45": {
+       "n": 14,
+       "committed": 8,
+       "no_commit_rate": 0.4286,
+       "premature_rate": 0.875,
+       "premature_n": 7,
+       "median_commit_norm": 0.1938
+      },
+      "0.5": {
+       "n": 14,
+       "committed": 7,
+       "no_commit_rate": 0.5,
+       "premature_rate": 0.8571,
+       "premature_n": 6,
+       "median_commit_norm": 0.1685
+      },
+      "0.55": {
+       "n": 14,
+       "committed": 7,
+       "no_commit_rate": 0.5,
+       "premature_rate": 0.8571,
+       "premature_n": 6,
+       "median_commit_norm": 0.2611
+      },
+      "0.6": {
+       "n": 14,
+       "committed": 4,
+       "no_commit_rate": 0.7143,
+       "premature_rate": 0.75,
+       "premature_n": 3,
+       "median_commit_norm": 0.1638
+      },
+      "0.65": {
+       "n": 14,
+       "committed": 2,
+       "no_commit_rate": 0.8571,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.4225
+      },
+      "0.7": {
+       "n": 14,
+       "committed": 2,
+       "no_commit_rate": 0.8571,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.4769
+      },
+      "0.75": {
+       "n": 14,
+       "committed": 1,
+       "no_commit_rate": 0.9286,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.1769
+      },
+      "0.8": {
+       "n": 14,
+       "committed": 1,
+       "no_commit_rate": 0.9286,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.1937
+      },
+      "0.85": {
+       "n": 14,
+       "committed": 1,
+       "no_commit_rate": 0.9286,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.1937
+      },
+      "0.9": {
+       "n": 14,
+       "committed": 1,
+       "no_commit_rate": 0.9286,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2146
+      }
+     }
+    }
+   },
+   "withheld": {
+    "verified": {
+     "exercise": {
+      "0.1": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.15": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.2": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.25": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.3": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.35": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.4": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.45": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.5": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.55": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.6": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.65": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.7": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.75": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.8": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.85": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.9": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      }
+     },
+     "meter": {
+      "0.1": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "0.15": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "0.2": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "0.25": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "0.3": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "0.35": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "0.4": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "0.45": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.235
+      },
+      "0.5": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2484
+      },
+      "0.55": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2634
+      },
+      "0.6": {
+       "n": 29,
+       "committed": 28,
+       "no_commit_rate": 0.0345,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2751
+      },
+      "0.65": {
+       "n": 29,
+       "committed": 28,
+       "no_commit_rate": 0.0345,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2952
+      },
+      "0.7": {
+       "n": 29,
+       "committed": 26,
+       "no_commit_rate": 0.1034,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.3037
+      },
+      "0.75": {
+       "n": 29,
+       "committed": 24,
+       "no_commit_rate": 0.1724,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.3479
+      },
+      "0.8": {
+       "n": 29,
+       "committed": 19,
+       "no_commit_rate": 0.3448,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.3506
+      },
+      "0.85": {
+       "n": 29,
+       "committed": 17,
+       "no_commit_rate": 0.4138,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.487
+      },
+      "0.9": {
+       "n": 29,
+       "committed": 15,
+       "no_commit_rate": 0.4828,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.5254
+      }
+     },
+     "grouping": {
+      "0.1": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "0.15": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "0.2": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "0.25": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "0.3": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "0.35": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "0.4": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1034,
+       "premature_n": 3,
+       "median_commit_norm": 0.1881
+      },
+      "0.45": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.235
+      },
+      "0.5": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2484
+      },
+      "0.55": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2634
+      },
+      "0.6": {
+       "n": 29,
+       "committed": 28,
+       "no_commit_rate": 0.0345,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2751
+      },
+      "0.65": {
+       "n": 29,
+       "committed": 28,
+       "no_commit_rate": 0.0345,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2952
+      },
+      "0.7": {
+       "n": 29,
+       "committed": 26,
+       "no_commit_rate": 0.1034,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.3037
+      },
+      "0.75": {
+       "n": 29,
+       "committed": 24,
+       "no_commit_rate": 0.1724,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.3479
+      },
+      "0.8": {
+       "n": 29,
+       "committed": 19,
+       "no_commit_rate": 0.3448,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.3506
+      },
+      "0.85": {
+       "n": 29,
+       "committed": 17,
+       "no_commit_rate": 0.4138,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.487
+      },
+      "0.9": {
+       "n": 29,
+       "committed": 15,
+       "no_commit_rate": 0.4828,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.5254
+      }
+     },
+     "division": {
+      "0.1": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3448,
+       "premature_n": 10,
+       "median_commit_norm": 0.1881
+      },
+      "0.15": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3448,
+       "premature_n": 10,
+       "median_commit_norm": 0.1881
+      },
+      "0.2": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3448,
+       "premature_n": 10,
+       "median_commit_norm": 0.1881
+      },
+      "0.25": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3448,
+       "premature_n": 10,
+       "median_commit_norm": 0.1881
+      },
+      "0.3": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3448,
+       "premature_n": 10,
+       "median_commit_norm": 0.1881
+      },
+      "0.35": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3448,
+       "premature_n": 10,
+       "median_commit_norm": 0.1881
+      },
+      "0.4": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3448,
+       "premature_n": 10,
+       "median_commit_norm": 0.1881
+      },
+      "0.45": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.2759,
+       "premature_n": 8,
+       "median_commit_norm": 0.235
+      },
+      "0.5": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3103,
+       "premature_n": 9,
+       "median_commit_norm": 0.2484
+      },
+      "0.55": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3103,
+       "premature_n": 9,
+       "median_commit_norm": 0.2634
+      },
+      "0.6": {
+       "n": 29,
+       "committed": 28,
+       "no_commit_rate": 0.0345,
+       "premature_rate": 0.2857,
+       "premature_n": 8,
+       "median_commit_norm": 0.2751
+      },
+      "0.65": {
+       "n": 29,
+       "committed": 28,
+       "no_commit_rate": 0.0345,
+       "premature_rate": 0.2857,
+       "premature_n": 8,
+       "median_commit_norm": 0.2952
+      },
+      "0.7": {
+       "n": 29,
+       "committed": 26,
+       "no_commit_rate": 0.1034,
+       "premature_rate": 0.2692,
+       "premature_n": 7,
+       "median_commit_norm": 0.3037
+      },
+      "0.75": {
+       "n": 29,
+       "committed": 24,
+       "no_commit_rate": 0.1724,
+       "premature_rate": 0.1667,
+       "premature_n": 4,
+       "median_commit_norm": 0.3479
+      },
+      "0.8": {
+       "n": 29,
+       "committed": 19,
+       "no_commit_rate": 0.3448,
+       "premature_rate": 0.1053,
+       "premature_n": 2,
+       "median_commit_norm": 0.3506
+      },
+      "0.85": {
+       "n": 29,
+       "committed": 17,
+       "no_commit_rate": 0.4138,
+       "premature_rate": 0.0588,
+       "premature_n": 1,
+       "median_commit_norm": 0.487
+      },
+      "0.9": {
+       "n": 29,
+       "committed": 15,
+       "no_commit_rate": 0.4828,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.5254
+      }
+     },
+     "tempo_bpm": {
+      "0.1": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9655,
+       "premature_n": 28,
+       "median_commit_norm": 0.1881
+      },
+      "0.15": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9655,
+       "premature_n": 28,
+       "median_commit_norm": 0.1881
+      },
+      "0.2": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9655,
+       "premature_n": 28,
+       "median_commit_norm": 0.1881
+      },
+      "0.25": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9655,
+       "premature_n": 28,
+       "median_commit_norm": 0.1881
+      },
+      "0.3": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9655,
+       "premature_n": 28,
+       "median_commit_norm": 0.1881
+      },
+      "0.35": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9655,
+       "premature_n": 28,
+       "median_commit_norm": 0.1881
+      },
+      "0.4": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9655,
+       "premature_n": 28,
+       "median_commit_norm": 0.1881
+      },
+      "0.45": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8276,
+       "premature_n": 24,
+       "median_commit_norm": 0.235
+      },
+      "0.5": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.7931,
+       "premature_n": 23,
+       "median_commit_norm": 0.2484
+      },
+      "0.55": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.7931,
+       "premature_n": 23,
+       "median_commit_norm": 0.2634
+      },
+      "0.6": {
+       "n": 29,
+       "committed": 28,
+       "no_commit_rate": 0.0345,
+       "premature_rate": 0.7857,
+       "premature_n": 22,
+       "median_commit_norm": 0.2751
+      },
+      "0.65": {
+       "n": 29,
+       "committed": 28,
+       "no_commit_rate": 0.0345,
+       "premature_rate": 0.7143,
+       "premature_n": 20,
+       "median_commit_norm": 0.2952
+      },
+      "0.7": {
+       "n": 29,
+       "committed": 26,
+       "no_commit_rate": 0.1034,
+       "premature_rate": 0.5769,
+       "premature_n": 15,
+       "median_commit_norm": 0.3037
+      },
+      "0.75": {
+       "n": 29,
+       "committed": 24,
+       "no_commit_rate": 0.1724,
+       "premature_rate": 0.5833,
+       "premature_n": 14,
+       "median_commit_norm": 0.3479
+      },
+      "0.8": {
+       "n": 29,
+       "committed": 19,
+       "no_commit_rate": 0.3448,
+       "premature_rate": 0.4737,
+       "premature_n": 9,
+       "median_commit_norm": 0.3506
+      },
+      "0.85": {
+       "n": 29,
+       "committed": 17,
+       "no_commit_rate": 0.4138,
+       "premature_rate": 0.4118,
+       "premature_n": 7,
+       "median_commit_norm": 0.487
+      },
+      "0.9": {
+       "n": 29,
+       "committed": 15,
+       "no_commit_rate": 0.4828,
+       "premature_rate": 0.2667,
+       "premature_n": 4,
+       "median_commit_norm": 0.5254
+      }
+     },
+     "counts": null,
+     "onset_bpm": {
+      "0.1": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.931,
+       "premature_n": 27,
+       "median_commit_norm": 0.2927
+      },
+      "0.15": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.931,
+       "premature_n": 27,
+       "median_commit_norm": 0.2927
+      },
+      "0.2": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.931,
+       "premature_n": 27,
+       "median_commit_norm": 0.2927
+      },
+      "0.25": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.931,
+       "premature_n": 27,
+       "median_commit_norm": 0.2927
+      },
+      "0.3": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.931,
+       "premature_n": 27,
+       "median_commit_norm": 0.2927
+      },
+      "0.35": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.931,
+       "premature_n": 27,
+       "median_commit_norm": 0.2927
+      },
+      "0.4": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.931,
+       "premature_n": 27,
+       "median_commit_norm": 0.2927
+      },
+      "0.45": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.931,
+       "premature_n": 27,
+       "median_commit_norm": 0.2927
+      },
+      "0.5": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8966,
+       "premature_n": 26,
+       "median_commit_norm": 0.2927
+      },
+      "0.55": {
+       "n": 29,
+       "committed": 29,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8966,
+       "premature_n": 26,
+       "median_commit_norm": 0.2927
+      },
+      "0.6": {
+       "n": 29,
+       "committed": 28,
+       "no_commit_rate": 0.0345,
+       "premature_rate": 0.8929,
+       "premature_n": 25,
+       "median_commit_norm": 0.2953
+      },
+      "0.65": {
+       "n": 29,
+       "committed": 28,
+       "no_commit_rate": 0.0345,
+       "premature_rate": 0.8571,
+       "premature_n": 24,
+       "median_commit_norm": 0.3025
+      },
+      "0.7": {
+       "n": 29,
+       "committed": 26,
+       "no_commit_rate": 0.1034,
+       "premature_rate": 0.8462,
+       "premature_n": 22,
+       "median_commit_norm": 0.2953
+      },
+      "0.75": {
+       "n": 29,
+       "committed": 25,
+       "no_commit_rate": 0.1379,
+       "premature_rate": 0.72,
+       "premature_n": 18,
+       "median_commit_norm": 0.3096
+      },
+      "0.8": {
+       "n": 29,
+       "committed": 18,
+       "no_commit_rate": 0.3793,
+       "premature_rate": 0.5556,
+       "premature_n": 10,
+       "median_commit_norm": 0.3922
+      },
+      "0.85": {
+       "n": 29,
+       "committed": 10,
+       "no_commit_rate": 0.6552,
+       "premature_rate": 0.6,
+       "premature_n": 6,
+       "median_commit_norm": 0.4538
+      },
+      "0.9": {
+       "n": 29,
+       "committed": 4,
+       "no_commit_rate": 0.8621,
+       "premature_rate": 0.75,
+       "premature_n": 3,
+       "median_commit_norm": 0.5455
+      }
+     },
+     "marker_bpm": {
+      "0.1": {
+       "n": 26,
+       "committed": 26,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9231,
+       "premature_n": 24,
+       "median_commit_norm": 0.1799
+      },
+      "0.15": {
+       "n": 26,
+       "committed": 26,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9231,
+       "premature_n": 24,
+       "median_commit_norm": 0.1799
+      },
+      "0.2": {
+       "n": 26,
+       "committed": 26,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9231,
+       "premature_n": 24,
+       "median_commit_norm": 0.1799
+      },
+      "0.25": {
+       "n": 26,
+       "committed": 26,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9231,
+       "premature_n": 24,
+       "median_commit_norm": 0.1799
+      },
+      "0.3": {
+       "n": 26,
+       "committed": 26,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9231,
+       "premature_n": 24,
+       "median_commit_norm": 0.1799
+      },
+      "0.35": {
+       "n": 26,
+       "committed": 26,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9231,
+       "premature_n": 24,
+       "median_commit_norm": 0.1799
+      },
+      "0.4": {
+       "n": 26,
+       "committed": 26,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9231,
+       "premature_n": 24,
+       "median_commit_norm": 0.1799
+      },
+      "0.45": {
+       "n": 26,
+       "committed": 22,
+       "no_commit_rate": 0.1538,
+       "premature_rate": 0.8182,
+       "premature_n": 18,
+       "median_commit_norm": 0.2516
+      },
+      "0.5": {
+       "n": 26,
+       "committed": 22,
+       "no_commit_rate": 0.1538,
+       "premature_rate": 0.7273,
+       "premature_n": 16,
+       "median_commit_norm": 0.294
+      },
+      "0.55": {
+       "n": 26,
+       "committed": 21,
+       "no_commit_rate": 0.1923,
+       "premature_rate": 0.6667,
+       "premature_n": 14,
+       "median_commit_norm": 0.3017
+      },
+      "0.6": {
+       "n": 26,
+       "committed": 18,
+       "no_commit_rate": 0.3077,
+       "premature_rate": 0.6111,
+       "premature_n": 11,
+       "median_commit_norm": 0.2751
+      },
+      "0.65": {
+       "n": 26,
+       "committed": 14,
+       "no_commit_rate": 0.4615,
+       "premature_rate": 0.5,
+       "premature_n": 7,
+       "median_commit_norm": 0.3413
+      },
+      "0.7": {
+       "n": 26,
+       "committed": 12,
+       "no_commit_rate": 0.5385,
+       "premature_rate": 0.4167,
+       "premature_n": 5,
+       "median_commit_norm": 0.3382
+      },
+      "0.75": {
+       "n": 26,
+       "committed": 11,
+       "no_commit_rate": 0.5769,
+       "premature_rate": 0.0909,
+       "premature_n": 1,
+       "median_commit_norm": 0.3699
+      },
+      "0.8": {
+       "n": 26,
+       "committed": 8,
+       "no_commit_rate": 0.6923,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.3718
+      },
+      "0.85": {
+       "n": 26,
+       "committed": 6,
+       "no_commit_rate": 0.7692,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.3572
+      },
+      "0.9": {
+       "n": 26,
+       "committed": 5,
+       "no_commit_rate": 0.8077,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.4721
+      }
+     }
+    },
+    "provisional": {
+     "exercise": {
+      "0.1": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.15": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.2": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.25": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.3": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.35": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.4": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.45": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.5": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.55": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.6": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.65": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.7": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.75": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.8": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.85": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      },
+      "0.9": {
+       "n": 0,
+       "committed": 0,
+       "no_commit_rate": null,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      }
+     },
+     "meter": {
+      "0.1": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "0.15": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "0.2": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "0.25": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "0.3": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "0.35": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "0.4": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "0.45": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0625,
+       "premature_n": 1,
+       "median_commit_norm": 0.1435
+      },
+      "0.5": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0625,
+       "premature_n": 1,
+       "median_commit_norm": 0.1609
+      },
+      "0.55": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0625,
+       "premature_n": 1,
+       "median_commit_norm": 0.1826
+      },
+      "0.6": {
+       "n": 16,
+       "committed": 14,
+       "no_commit_rate": 0.125,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.1645
+      },
+      "0.65": {
+       "n": 16,
+       "committed": 12,
+       "no_commit_rate": 0.25,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.1961
+      },
+      "0.7": {
+       "n": 16,
+       "committed": 11,
+       "no_commit_rate": 0.3125,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2192
+      },
+      "0.75": {
+       "n": 16,
+       "committed": 7,
+       "no_commit_rate": 0.5625,
+       "premature_rate": 0.1429,
+       "premature_n": 1,
+       "median_commit_norm": 0.2201
+      },
+      "0.8": {
+       "n": 16,
+       "committed": 5,
+       "no_commit_rate": 0.6875,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2201
+      },
+      "0.85": {
+       "n": 16,
+       "committed": 3,
+       "no_commit_rate": 0.8125,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.4117
+      },
+      "0.9": {
+       "n": 16,
+       "committed": 3,
+       "no_commit_rate": 0.8125,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.4629
+      }
+     },
+     "grouping": {
+      "0.1": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "0.15": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "0.2": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "0.25": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "0.3": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "0.35": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "0.4": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.1875,
+       "premature_n": 3,
+       "median_commit_norm": 0.1385
+      },
+      "0.45": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0625,
+       "premature_n": 1,
+       "median_commit_norm": 0.1435
+      },
+      "0.5": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0625,
+       "premature_n": 1,
+       "median_commit_norm": 0.1609
+      },
+      "0.55": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.0625,
+       "premature_n": 1,
+       "median_commit_norm": 0.1826
+      },
+      "0.6": {
+       "n": 16,
+       "committed": 14,
+       "no_commit_rate": 0.125,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.1645
+      },
+      "0.65": {
+       "n": 16,
+       "committed": 12,
+       "no_commit_rate": 0.25,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.1961
+      },
+      "0.7": {
+       "n": 16,
+       "committed": 11,
+       "no_commit_rate": 0.3125,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2192
+      },
+      "0.75": {
+       "n": 16,
+       "committed": 7,
+       "no_commit_rate": 0.5625,
+       "premature_rate": 0.1429,
+       "premature_n": 1,
+       "median_commit_norm": 0.2201
+      },
+      "0.8": {
+       "n": 16,
+       "committed": 5,
+       "no_commit_rate": 0.6875,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2201
+      },
+      "0.85": {
+       "n": 16,
+       "committed": 3,
+       "no_commit_rate": 0.8125,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.4117
+      },
+      "0.9": {
+       "n": 16,
+       "committed": 3,
+       "no_commit_rate": 0.8125,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.4629
+      }
+     },
+     "division": {
+      "0.1": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.25,
+       "premature_n": 4,
+       "median_commit_norm": 0.1385
+      },
+      "0.15": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.25,
+       "premature_n": 4,
+       "median_commit_norm": 0.1385
+      },
+      "0.2": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.25,
+       "premature_n": 4,
+       "median_commit_norm": 0.1385
+      },
+      "0.25": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.25,
+       "premature_n": 4,
+       "median_commit_norm": 0.1385
+      },
+      "0.3": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.25,
+       "premature_n": 4,
+       "median_commit_norm": 0.1385
+      },
+      "0.35": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.25,
+       "premature_n": 4,
+       "median_commit_norm": 0.1385
+      },
+      "0.4": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.25,
+       "premature_n": 4,
+       "median_commit_norm": 0.1385
+      },
+      "0.45": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.4375,
+       "premature_n": 7,
+       "median_commit_norm": 0.1435
+      },
+      "0.5": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3125,
+       "premature_n": 5,
+       "median_commit_norm": 0.1609
+      },
+      "0.55": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.3125,
+       "premature_n": 5,
+       "median_commit_norm": 0.1826
+      },
+      "0.6": {
+       "n": 16,
+       "committed": 14,
+       "no_commit_rate": 0.125,
+       "premature_rate": 0.3571,
+       "premature_n": 5,
+       "median_commit_norm": 0.1645
+      },
+      "0.65": {
+       "n": 16,
+       "committed": 12,
+       "no_commit_rate": 0.25,
+       "premature_rate": 0.1667,
+       "premature_n": 2,
+       "median_commit_norm": 0.1961
+      },
+      "0.7": {
+       "n": 16,
+       "committed": 11,
+       "no_commit_rate": 0.3125,
+       "premature_rate": 0.0909,
+       "premature_n": 1,
+       "median_commit_norm": 0.2192
+      },
+      "0.75": {
+       "n": 16,
+       "committed": 7,
+       "no_commit_rate": 0.5625,
+       "premature_rate": 0.1429,
+       "premature_n": 1,
+       "median_commit_norm": 0.2201
+      },
+      "0.8": {
+       "n": 16,
+       "committed": 5,
+       "no_commit_rate": 0.6875,
+       "premature_rate": 0.2,
+       "premature_n": 1,
+       "median_commit_norm": 0.2201
+      },
+      "0.85": {
+       "n": 16,
+       "committed": 3,
+       "no_commit_rate": 0.8125,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.4117
+      },
+      "0.9": {
+       "n": 16,
+       "committed": 3,
+       "no_commit_rate": 0.8125,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.4629
+      }
+     },
+     "tempo_bpm": {
+      "0.1": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1385
+      },
+      "0.15": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1385
+      },
+      "0.2": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1385
+      },
+      "0.25": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1385
+      },
+      "0.3": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1385
+      },
+      "0.35": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1385
+      },
+      "0.4": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1385
+      },
+      "0.45": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8125,
+       "premature_n": 13,
+       "median_commit_norm": 0.1435
+      },
+      "0.5": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1609
+      },
+      "0.55": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1826
+      },
+      "0.6": {
+       "n": 16,
+       "committed": 14,
+       "no_commit_rate": 0.125,
+       "premature_rate": 0.7857,
+       "premature_n": 11,
+       "median_commit_norm": 0.1645
+      },
+      "0.65": {
+       "n": 16,
+       "committed": 12,
+       "no_commit_rate": 0.25,
+       "premature_rate": 0.8333,
+       "premature_n": 10,
+       "median_commit_norm": 0.1961
+      },
+      "0.7": {
+       "n": 16,
+       "committed": 11,
+       "no_commit_rate": 0.3125,
+       "premature_rate": 0.7273,
+       "premature_n": 8,
+       "median_commit_norm": 0.2192
+      },
+      "0.75": {
+       "n": 16,
+       "committed": 7,
+       "no_commit_rate": 0.5625,
+       "premature_rate": 1.0,
+       "premature_n": 7,
+       "median_commit_norm": 0.2201
+      },
+      "0.8": {
+       "n": 16,
+       "committed": 5,
+       "no_commit_rate": 0.6875,
+       "premature_rate": 0.8,
+       "premature_n": 4,
+       "median_commit_norm": 0.2201
+      },
+      "0.85": {
+       "n": 16,
+       "committed": 3,
+       "no_commit_rate": 0.8125,
+       "premature_rate": 0.6667,
+       "premature_n": 2,
+       "median_commit_norm": 0.4117
+      },
+      "0.9": {
+       "n": 16,
+       "committed": 3,
+       "no_commit_rate": 0.8125,
+       "premature_rate": 0.6667,
+       "premature_n": 2,
+       "median_commit_norm": 0.4629
+      }
+     },
+     "counts": null,
+     "onset_bpm": {
+      "0.1": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1435
+      },
+      "0.15": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1435
+      },
+      "0.2": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1435
+      },
+      "0.25": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1435
+      },
+      "0.3": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1435
+      },
+      "0.35": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1435
+      },
+      "0.4": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1435
+      },
+      "0.45": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.875,
+       "premature_n": 14,
+       "median_commit_norm": 0.1435
+      },
+      "0.5": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9375,
+       "premature_n": 15,
+       "median_commit_norm": 0.1609
+      },
+      "0.55": {
+       "n": 16,
+       "committed": 16,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.9375,
+       "premature_n": 15,
+       "median_commit_norm": 0.1609
+      },
+      "0.6": {
+       "n": 16,
+       "committed": 14,
+       "no_commit_rate": 0.125,
+       "premature_rate": 0.7857,
+       "premature_n": 11,
+       "median_commit_norm": 0.1645
+      },
+      "0.65": {
+       "n": 16,
+       "committed": 12,
+       "no_commit_rate": 0.25,
+       "premature_rate": 0.8333,
+       "premature_n": 10,
+       "median_commit_norm": 0.217
+      },
+      "0.7": {
+       "n": 16,
+       "committed": 11,
+       "no_commit_rate": 0.3125,
+       "premature_rate": 0.6364,
+       "premature_n": 7,
+       "median_commit_norm": 0.3618
+      },
+      "0.75": {
+       "n": 16,
+       "committed": 6,
+       "no_commit_rate": 0.625,
+       "premature_rate": 0.6667,
+       "premature_n": 4,
+       "median_commit_norm": 0.1773
+      },
+      "0.8": {
+       "n": 16,
+       "committed": 3,
+       "no_commit_rate": 0.8125,
+       "premature_rate": 1.0,
+       "premature_n": 3,
+       "median_commit_norm": 0.1291
+      },
+      "0.85": {
+       "n": 16,
+       "committed": 1,
+       "no_commit_rate": 0.9375,
+       "premature_rate": 1.0,
+       "premature_n": 1,
+       "median_commit_norm": 0.6033
+      },
+      "0.9": {
+       "n": 16,
+       "committed": 0,
+       "no_commit_rate": 1.0,
+       "premature_rate": null,
+       "premature_n": 0,
+       "median_commit_norm": null
+      }
+     },
+     "marker_bpm": {
+      "0.1": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8571,
+       "premature_n": 12,
+       "median_commit_norm": 0.1551
+      },
+      "0.15": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8571,
+       "premature_n": 12,
+       "median_commit_norm": 0.1551
+      },
+      "0.2": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8571,
+       "premature_n": 12,
+       "median_commit_norm": 0.1551
+      },
+      "0.25": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8571,
+       "premature_n": 12,
+       "median_commit_norm": 0.1551
+      },
+      "0.3": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8571,
+       "premature_n": 12,
+       "median_commit_norm": 0.1551
+      },
+      "0.35": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8571,
+       "premature_n": 12,
+       "median_commit_norm": 0.1551
+      },
+      "0.4": {
+       "n": 14,
+       "committed": 14,
+       "no_commit_rate": 0.0,
+       "premature_rate": 0.8571,
+       "premature_n": 12,
+       "median_commit_norm": 0.1551
+      },
+      "0.45": {
+       "n": 14,
+       "committed": 8,
+       "no_commit_rate": 0.4286,
+       "premature_rate": 0.875,
+       "premature_n": 7,
+       "median_commit_norm": 0.1938
+      },
+      "0.5": {
+       "n": 14,
+       "committed": 7,
+       "no_commit_rate": 0.5,
+       "premature_rate": 0.8571,
+       "premature_n": 6,
+       "median_commit_norm": 0.1685
+      },
+      "0.55": {
+       "n": 14,
+       "committed": 7,
+       "no_commit_rate": 0.5,
+       "premature_rate": 0.8571,
+       "premature_n": 6,
+       "median_commit_norm": 0.2611
+      },
+      "0.6": {
+       "n": 14,
+       "committed": 4,
+       "no_commit_rate": 0.7143,
+       "premature_rate": 0.75,
+       "premature_n": 3,
+       "median_commit_norm": 0.1638
+      },
+      "0.65": {
+       "n": 14,
+       "committed": 2,
+       "no_commit_rate": 0.8571,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.4225
+      },
+      "0.7": {
+       "n": 14,
+       "committed": 2,
+       "no_commit_rate": 0.8571,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.4769
+      },
+      "0.75": {
+       "n": 14,
+       "committed": 1,
+       "no_commit_rate": 0.9286,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.1769
+      },
+      "0.8": {
+       "n": 14,
+       "committed": 1,
+       "no_commit_rate": 0.9286,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.1937
+      },
+      "0.85": {
+       "n": 14,
+       "committed": 1,
+       "no_commit_rate": 0.9286,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.1937
+      },
+      "0.9": {
+       "n": 14,
+       "committed": 1,
+       "no_commit_rate": 0.9286,
+       "premature_rate": 0.0,
+       "premature_n": 0,
+       "median_commit_norm": 0.2146
+      }
+     }
+    }
+   }
+  }
+ }
+}

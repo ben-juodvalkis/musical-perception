@@ -26,6 +26,12 @@ improvements that follow the rules below, survive owner-scored SEALED
 milestones, and are reported in the house style (pre-registration, luck
 flags, classified regressions).
 
+The house style governs the **written artifacts** — ledger entries, memos,
+result tables. It does not govern what the session says to the owner in
+chat: that summary is written in plain language per the "Talking to Ben
+about this work" section of the repo's [CLAUDE.md](../../CLAUDE.md).
+Same findings, no softening — just no jargon standing in for the answer.
+
 ## Session boot sequence (every session, before any work)
 
 1. Read this charter in full.
