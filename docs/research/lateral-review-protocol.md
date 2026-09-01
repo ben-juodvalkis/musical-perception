@@ -205,7 +205,11 @@ contradicted assumption is itself a finding and goes in the briefing.
 
 ### 3. Lateral generation — at least four lenses
 
-At least four distinct vantage points, each idea tagged with its lens:
+At least four distinct vantage points, each idea tagged with its lens.
+A find from the outward scan (§3a) lands under whichever lens fits — a
+beat-tracker library under the evaluation lens, an accompaniment product
+under the product lens, a transferable method under "another field" —
+not only under the last of these:
 
 - **The musician in the room** — what the accompanist does that the
   pipeline does not attempt (W13(a) is the seed).
