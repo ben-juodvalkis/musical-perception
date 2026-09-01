@@ -325,3 +325,20 @@ is how the runner's permission failure was found.)*
 > One thing to flag: my environment check printed the actual `GEMINI_API_KEY` value into this transcript. It is not in any commit (`git diff main | grep -c AIza` → 0), but if this transcript is shared or archived, rotate the key.
 
 *Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
+
+## run 2026-09-01T01:00:06Z · main 571a131
+
+- **outcome:** success, shell exit 0
+- **turns:** 45 · **duration:** 12.9 min · **cost:** $4.06
+
+**Agent's closing message:**
+
+> …. Its substance held more strongly than predicted; I didn't re-read it as a hit.
+> 
+> **A defect found and fixed additively:** the scorer's self-check failed on exactly the three numeric fields. W13(b)'s change log records only >4% moves, so sub-threshold drift accumulates unrecorded — the log is lossy for numbers (nothing W13(b) published is wrong; it computed on the true in-memory series). `series_num` now records exact per-prefix values. Standing Lesson 9 in miniature.
+> 
+> **Proof and constraints, all shown above:** P1 gate — 936/936 previously published values reproduced exactly, report line-identical bar its timestamp; `pytest` 359 passed / 3 skipped; `evals run --suite tier0,tier1,stage1,stage1-peakrate` → `no outcome changes vs baseline`; `git diff --stat main` docs/scripts/tests only, with `--diff-filter=MD -- evals/` and `-- src/` both empty. Not an EVAL-CHANGE. Barre-1 media never enumerated; A5-30 redaction throughout.
+> 
+> Two items parked for you: **W14-b** (the trajectory-shape family — the oscillation-between-metric-levels failure W13(b) actually described, now replayable), and the confidence-calibration defect, which is a shipping-path finding W14's own scope forbade touching.
+
+*Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
