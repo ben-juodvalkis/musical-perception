@@ -9725,6 +9725,45 @@ Residual uncertainty, stated rather than hidden:
   128 (beats of 4). Same exercise, two counting systems. Without
   `count_unit` a reader concludes the take is twice as long. It is not.
 
+### CORRECTION 3 (owner): a count is always a BEAT — and two invented tags die
+
+The owner, asked whether the session was overcomplicating, restated the
+structure in his own terms:
+
+> "For the plié, each bar has 3 counts. And the phrase is 8 sets of 3.
+> And there are 8 total phrases. So the total length is 3 counts per bar,
+> times 8 bars per phrase, times 8 phrases per exercise, for **192
+> counts**... the tendu is in 4/4, so it has 8 counts per phrase, and 8
+> phrases per exercise for **64 counts** total."
+
+**A count is one beat, always.** What differs between exercises is the
+phrase length (24 counts in the plié, 8 in the tendu), not the unit.
+
+This was simpler *and* corrected an error. The session had recorded
+`counts` sometimes in bars and sometimes in beats, and invented a
+**`count_unit`** tag to disambiguate. Under one consistent meaning the
+ambiguity does not exist, so the tag went with it. All eight 3/4 rows
+were x3 too small: plie 64 -> **192**, rond-de-jambe 32 -> **96**,
+ballonne-demo 32 -> **96**, tendu-warmup-demo 64 -> **192**. Every one
+still reconciles against its clip.
+
+**The error hid because it was invisible on two thirds of the corpus:**
+the eighteen 4/4 rows are identical under both framings. Only the eight
+3/4 rows disagreed.
+
+**`count_level` removed too** as premature: 3 cases, certainly
+under-applied (it appeared only where the owner happened to comment), and
+nothing consumed it. The observation — the teacher sometimes counts at
+half or double the music — stands in this ledger, which is the right home
+for it.
+
+Surviving invented tags: `clip_role`, `pianist_take`, `played_bpm` —
+bookkeeping that carries no judgement. **Three of five invented fields
+did not survive contact with the owner.**
+
+The structure record gains `counts_per_bar` / `bars_per_phrase` /
+`phrases`, which is his sentence written as fields.
+
 ### Status
 
 **PROPOSED.** All 26 cases `provisional` by deliberate choice — the owner

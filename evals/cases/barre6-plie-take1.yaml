@@ -10,12 +10,11 @@ tags:
   explanation: interleaved
   lang: en
   accompanied: true
-  count_unit: bar
   clip_role: take
 expect:
   performance_bpm: 116
   meter: "3/4"
-  counts: 64
+  counts: 192
 notes: >-
   Ballet Barre 6 ingestion 2026-09-01. Piano take — the ANSWER KEY for its
   demo, never the input (owner ruling). Tempo is what the pianist played,

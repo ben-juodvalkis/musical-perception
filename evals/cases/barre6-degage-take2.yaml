@@ -10,9 +10,7 @@ tags:
   explanation: interleaved
   lang: en
   accompanied: true
-  count_unit: beat
   clip_role: take
-  count_level: half
 expect:
   performance_bpm: 122
   meter: "4/4"

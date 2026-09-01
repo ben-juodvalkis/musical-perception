@@ -9,11 +9,9 @@ tags:
   count_style: step_names
   explanation: interleaved
   lang: en
-  count_unit: beat
   clip_role: demo
   pianist_take: barre6-frappe-take1
   played_bpm: 79
-  count_level: double
 expect:
   marking_bpm: 135
   meter: "4/4"

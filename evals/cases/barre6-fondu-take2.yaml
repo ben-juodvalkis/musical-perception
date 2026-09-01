@@ -10,7 +10,6 @@ tags:
   explanation: interleaved
   lang: en
   accompanied: true
-  count_unit: beat
   clip_role: take
 expect:
   performance_bpm: 74
