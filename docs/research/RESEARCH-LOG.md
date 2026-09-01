@@ -8445,3 +8445,203 @@ touched; **not** an EVAL-CHANGE. No `evals bless`, no `--record-traces`,
 no live model call. The Ballet Barre 1 media directory is not
 enumerated; A5-30 redaction applies (clip ids and numbers only, never
 transcript text naming steps).
+
+## 2026-08-31 · rung M / W14 (the commitment stopping rule) · agent/marathon · local (unattended) — RESULTS
+
+**Status: PROPOSED — increment complete, awaiting owner review.**
+REPORTED-ONLY and EVAL-NEUTRAL: nothing in `src/` changed, no eval suite
+gained a metric, no outcome is pinned. Artifacts:
+`docs/research/w14-stopping-rule.md` + `.json`,
+`scripts/w14-stopping-rule.py`, `tests/test_w14_stopping_rule.py`, and an
+additive re-run of `scripts/w13b-prefix-replay.py`.
+
+### Headline
+
+**Neither stopping-rule family has an operating point for tempo, and the
+reason F2 fails is not the threshold — it is that the pipeline's
+confidence runs backwards.** On the verified slice, condition granted,
+`normalized_tempo.confidence` has a median of **1.000 at the first prefix
+that produces one** and **0.780 on the full clip**; 23 of 29 clips are
+already ≥0.90 at that first prefix. Confidence is highest when the
+pipeline knows least and *falls* as evidence arrives, because it measures
+consistency over intervals and two or three intervals are trivially
+consistent. That is why the θ sweep is flat (tempo premature-commit rate
+0.966 → 0.929 across θ = 0.10 → 0.90) rather than merely badly placed: no
+threshold can rescue a signal pointing the wrong way.
+
+W13(b) Finding 2 said the missing piece is a stopping rule rather than a
+better estimator. W14's answer is narrower and more useful than either
+"yes" or "no": **a stopping rule is buildable from stability but not from
+confidence, and not for tempo at any k tried.**
+
+### The numbers that carry the verdict
+
+F1 (k-stable), `tempo_bpm`, granted, verified slice (n = 29):
+
+| k | premature-commit | median commit t/span | no-commit |
+|---|---|---|---|
+| 1 | 0.966 (28/29) | 0.188 | 0.000 |
+| 2 | 0.724 (21/29) | 0.259 | 0.000 |
+| 3 | 0.655 (19/29) | 0.355 | 0.000 |
+| 4 | 0.517 (15/29) | 0.397 | 0.000 |
+| 5 | 0.448 (13/29) | 0.459 | 0.000 |
+| 6 | 0.444 (12/27) | 0.473 | 0.069 |
+| 7 | 0.370 (10/27) | 0.571 | 0.069 |
+| 8 | 0.400 (10/25) | 0.515 | 0.138 |
+
+The curve is still at 0.37 premature when it has consumed 57% of the clip,
+and it stops improving monotonically at k = 7. The pre-registered ceiling
+is 0.10. **No k qualifies**, and the shape says a larger k would not
+either — it buys lateness faster than accuracy.
+
+Where a rule *does* exist (all granted/verified unless noted):
+
+| field | best k | premature | median t/span | note |
+|---|---|---|---|---|
+| `exercise` | 1 | 0.000 | 0.000 | degenerate — see P6 |
+| `meter` | 1 | 0.000 | 0.000 | degenerate — Gemini's meter granted at t=0 |
+| `grouping` | 2 | 0.000 | 0.213 | **the one honest F1 win** (n=29) |
+| `meter` (withheld) | 2 | 0.000 | 0.213 | timing-only, and it holds |
+| `counts` (withheld) | 7 | 0.000 | 0.567 | n=15 only, no-commit 0.133 |
+| `division` | — | — | — | best is 0.103 @ k=8 |
+| `counts` (granted) | — | — | — | best is 0.150 @ k=8 |
+
+`grouping` is the result worth keeping: a two-point stability rule commits
+at 21% of the clip and is **never wrong** on 29 verified clips, in both
+conditions. It is also, per W13(b) Finding 3, the field that never leaves
+4 on the timing-only path — so "never wrong" here means "reliably commits
+early to an answer that is right whenever duple is right." Stated plainly
+rather than banked (rule 7): this is a stability result, not an accuracy
+result, and the accuracy it inherits is the pipeline's existing
+duple-family bias.
+
+### Prediction scorecard (misses first, ADR-015 discipline)
+
+- **P4 — MISS, in the direction of the claim but not its letter.**
+  Predicted: at the ≤0.10 ceiling F1's best tempo operating point commits
+  later than 0.32 of span. Reality: **there is no operating point at
+  all** — the clause could not be evaluated as written, because the
+  quantity it names does not exist. The prediction's substance ("no
+  stopping rule on this evidence beats the human curve") is confirmed
+  more strongly than predicted; the prediction as *phrased* assumed a
+  qualifying k existed, and it does not. Scored as a miss, not quietly
+  re-read as a hit.
+- **P1 — HIT.** The additive re-run reproduced **936/936** published
+  values exactly (52 clips × 2 conditions × 9 keys: `final`,
+  `convergence`, `norm`, `changes`, `n_changes`, `identity_ok`, `clip`,
+  `span`, `n_grid`), and the published markdown report is line-identical
+  apart from its generated-at stamp. Added keys only: `conf_streams`
+  (top level), `grid`, `conf`, `final_conf`, `series_num` (per clip).
+- **P2 — HIT, and now pinned by a test.** At every θ, `meter`,
+  `grouping`, `division` and `tempo_bpm` commit at the identical prefix
+  (identical median commit times; they differ only in whether that
+  commitment is *right*). F2 is a metric-block rule, not a per-field one.
+  `test_w14_stopping_rule.py` asserts this so a future refactor that
+  silently splits the block is caught.
+- **P3 — HIT.** F1 at k = 3 on tempo, verified slice: premature-commit
+  **0.655**, well past the predicted > 0.30.
+- **P5 — HIT, decisively.** No θ clears the ceiling for any metric field,
+  and the F2 tempo sweep barely moves (0.966 → 0.929). The stated reason
+  (ECE 0.1815 ⇒ posterior mass is not a calibrated stopping signal) was
+  the right suspicion but understated the defect: the signal is not
+  merely uncalibrated, it is anti-correlated with evidence.
+- **P6 — HIT.** `exercise` in condition granted commits at t = 0.000 with
+  zero premature rate under both families — Gemini's whole-clip answer is
+  granted at the zero prefix. Reported and excluded from every claim. In
+  condition withheld the field has **no eligible clip** (n = 0), which
+  the report now distinguishes from "no qualifying setting" with an
+  explicit eligible-n column.
+- **P7 — HIT.** The provisional slice (22 barre1 rows) reproduces the
+  ordering and every sign: no tempo operating point, no F2 operating
+  point, `grouping` the one F1 win (k = 3, premature 0.062 @ 0.163).
+  Absolute numbers differ; the verdict does not. Provisional rows are
+  reported in their own slice with their own n and gate nothing.
+
+Six hits, one miss, and the miss is the one that was phrased to be
+falsifiable.
+
+### A defect found in the W13(b) artifact, and fixed additively
+
+The scorer's first run failed its own reconstruction self-check on
+exactly the three numeric fields. Cause: W13(b)'s `changes` log records a
+move only when the value shifts by more than 4% *from the previous
+prefix* (Standing Lesson 7), so a chain of sub-threshold drifts records
+nothing while the value walks away from where it started — the log is
+**lossy for numeric fields**, though exact for the rest. Nothing
+published by W13(b) is wrong: `convergence` and `norm` were computed on
+the true in-memory series, and `n_changes` is a >4%-move count by design.
+But the artifact could not be replayed for numbers, which W14 needed. The
+fix is additive: `series_num` records the exact per-prefix numeric values,
+and the scorer reads numbers from there and non-numeric fields from the
+change log, with the reconstruction checked on every clip/field (`OK`,
+0 mismatches) on every run. Standing Lesson 9 in miniature — the second
+consumer of a replay artifact is what proves it replayable.
+
+### The owner's curve, laid against it
+
+| field | owner t/span (W13(a)) | best machine operating point | verdict |
+|---|---|---|---|
+| `exercise` | 0.079 | 0.000 | earlier — but degenerate, see P6 |
+| `meter` | 0.079 | 0.000 granted / 0.213 withheld | granted is degenerate; the honest number is **0.213, ~2.7× the owner** |
+| `tempo_bpm` | 0.278 | none | **the machine has no defensible commit point at all** |
+| `counts` | 0.833 | none granted / 0.567 withheld (n=15) | the one place the machine is *earlier*, on a third of the corpus |
+
+The owner commits tempo at ~28% of the clip and is right. The pipeline at
+28% of the clip is wrong about tempo roughly half the time and has no way
+to know it. That gap — not the estimator's accuracy on the full clip — is
+what W13(a) was pointing at.
+
+### What this does NOT establish
+
+Prefix replay truncates timed evidence only; condition granted's times
+remain a **lower bound** (W13(b)'s standing caveat). Two families were
+tried, not the space of stopping rules — a rule reading the *shape* of the
+tempo trajectory (oscillation between metric levels, which W13(b) Finding
+2 describes) is untested and is the obvious next candidate. The `grouping`
+win is a stability result on a field with a known duple bias, and n = 29
+verified clips is small; Standing Lesson 7 applies to the differences
+between adjacent k values. Nothing here is wired into any pipeline path,
+and no claim is made about a streaming implementation.
+
+### Backlog parked (not taken — rule 6)
+
+- **W14-b, the trajectory-shape stopping rule.** Stability and confidence
+  both fail on tempo; the untested third family is "commit when the
+  answer stops *oscillating between metric levels*", which is the actual
+  failure mode W13(b) Finding 2 described. Scoreable from the same
+  artifact — `series_num` now makes the trajectory replayable.
+- **A calibration defect worth a pipeline workstream.** That
+  `normalized_tempo.confidence` *decreases* with evidence is a finding
+  about the shipping path, not about stopping rules. It plausibly touches
+  ECE (blessed 0.1815) and any downstream consumer that reads confidence
+  as trust. Sizing it is a W0 or owner call; W14 does not take it, and
+  W14's own scope forbids touching `src/`.
+
+### BLOCKED — owner action needed (queue unchanged apart from this entry)
+
+1. **Ratify or reject W14 and W15**, drafted PROPOSED by the 2026-08-31
+   W0. W14 was executed tonight ahead of that ratification, declared in
+   §0 of the pre-registration rather than slipped in; W15 remains
+   untaken.
+2. Unchanged from 08-31: W6-b's two deferred decisions (cost ceiling,
+   second model family); the barre1 media decision blocking W11-b and
+   W4's owner item 2; the `agent/w11-duplicate-20260829` orphan branch;
+   verification of the 22 provisional barre1 rows.
+
+### Verification and constraints
+
+- Branch `agent/marathon` (never `main`); `origin/main` merged first.
+- `pytest`: **359 passed, 3 skipped** (351 + 8 new W14 scorer tests).
+- `evals run --suite tier0,tier1,stage1,stage1-peakrate`: **`no outcome
+  changes vs baseline`**. stage1 `aggregate_verified` F = 0.686 on 28
+  clips, unchanged.
+- `git diff --stat main`: docs, scripts and tests only.
+  `git diff --name-status main --diff-filter=MD -- evals/` **empty**;
+  `git diff --name-status main -- src/` **empty** — no scorer or harness
+  code touched, and this is **not** an EVAL-CHANGE.
+- No file under `evals/cases/`, `evals/traces/` or `evals/baseline.json`
+  created or modified. No `evals bless`. No `--record-traces`. No live
+  model call. No secret read into any file.
+- The Ballet Barre 1 media directory was **not enumerated**. A5-30
+  redaction applied throughout: clip ids, pattern identities and numbers
+  only, never transcript text naming steps.
