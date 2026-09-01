@@ -11,7 +11,7 @@ tags:
   lang: en
   count_unit: beat
   clip_role: demo
-  answer_key: barre6-degage-take1
+  pianist_take: barre6-degage-take1
   played_bpm: 121
 expect:
   marking_bpm: 110

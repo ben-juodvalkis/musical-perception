@@ -11,7 +11,7 @@ tags:
   lang: en
   count_unit: bar
   clip_role: demo
-  answer_key: barre6-rond-de-jambe-take1
+  pianist_take: barre6-rond-de-jambe-take1
   played_bpm: 95
 expect:
   marking_bpm: 96

@@ -9682,6 +9682,49 @@ means.** Both were caught by the owner read-back, not by any test. That is
 the argument for the read-back being the verification act rather than a
 formality.
 
+### RULING (owner): the pianist has creative latitude; the marking is the spec
+
+`barre6-tendu-warmup` is the only exercise in the class where marking and
+performance disagree on **meter** — the teacher marks in 3/4 at 112, the
+pianist plays 4/4 at 82. Measurement supports both (the demo carries a
+bar-of-3 level at 1.61s, the take a clean duple ladder, and both share a
+~3.2s phrase unit). Owner ruling: *"we should just base it on the demo.
+The pianist was being creative, which is cool but we don't need to follow
+that."*
+
+**This is the sharpest statement yet of what the benchmark measures.** The
+target is not "what the pianist played" — the accompanist has latitude,
+and a different valid realization is not an error. The target is what the
+marking specifies. It is the strongest justification for removing
+`performance_bpm` from the demo cases' graded block, arrived at
+independently of that decision.
+
+**Consequence — a tag renamed.** `answer_key` was the wrong word, since it
+implies the take is the correct answer. Renamed **`pianist_take`** across
+all 9 demo cases, and the notes re-describe the take as *one valid
+realization*. `played_bpm` stays: it is what he played, not what was
+required.
+
+**Gap closed:** the `rond-de-jambe` demo's port de bras is **2 sets of 8
+bars of 3 = 16 counts** (owner). Recorded in the structure record as
+`states_port_de_bras_counts`. It sharpens F6 rather than closing it: that
+demo states the port de bras but **not** the balance that follows, so even
+the one demo that specifies its tail specifies only half of it.
+
+### Confidence audit of the counts
+
+All 26 checked verbatim against the session transcript: **0 mismatches**.
+Residual uncertainty, stated rather than hidden:
+
+- **6 cases rest on the owner saying "same structure"** for a second side.
+  A natural reading, but an inference, not a stated number.
+- **3 demo/take count differences are real, not errors** (degage demo 64 /
+  take 96; tendu demo 64 / take2 96) — the F6 underdetermination showing
+  up as arithmetic.
+- **1 pair is not comparable**: tendu-warmup demo 64 (bars of 3) vs take
+  128 (beats of 4). Same exercise, two counting systems. Without
+  `count_unit` a reader concludes the take is twice as long. It is not.
+
 ### Status
 
 **PROPOSED.** All 26 cases `provisional` by deliberate choice — the owner

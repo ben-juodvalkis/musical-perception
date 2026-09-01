@@ -192,8 +192,12 @@ exercises:
     count_unit: bar
     music_seconds: 60.0
     clip_seconds: 89
-    note: marking; port de bras length IS given
+    note: 'marking. The demo DOES state the port de bras: 2 sets of 8 bars of 3 (16 counts). It does NOT
+      state the balance that follows. counts=32 here is the exercise proper; the stated port de bras is
+      recorded as states_port_de_bras_counts.'
     describes: the exercise as stated in the marking, NOT this clip's content
+    states_port_de_bras_counts: 16
+    states_balance: false
   - clip: barre6-rond-de-jambe-take1
     role: take1
     side: '1'

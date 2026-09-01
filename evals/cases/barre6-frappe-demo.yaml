@@ -11,7 +11,7 @@ tags:
   lang: en
   count_unit: beat
   clip_role: demo
-  answer_key: barre6-frappe-take1
+  pianist_take: barre6-frappe-take1
   played_bpm: 79
   count_level: double
 expect:

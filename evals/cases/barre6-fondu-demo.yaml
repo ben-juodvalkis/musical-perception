@@ -11,7 +11,7 @@ tags:
   lang: en
   count_unit: beat
   clip_role: demo
-  answer_key: barre6-fondu-take1
+  pianist_take: barre6-fondu-take1
   played_bpm: 70
 expect:
   marking_bpm: 86
