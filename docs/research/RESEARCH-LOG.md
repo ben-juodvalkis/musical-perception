@@ -9654,6 +9654,34 @@ ingestion. The owner's position, recorded: *"if the schema needs to
 change, so be it... it's not the end of the world to throw out or repeat
 existing work that's lower value."*
 
+### CORRECTION 2: `counts` held a triviality, not the length
+
+Every barre6 case was first written with `counts: 8`. The owner caught it:
+*"it's super important for an accompanist to know the actual full length
+of the exercise. Are we throwing that out? Phrases in sets of 8 is
+trivial — it's always 8."*
+
+He is right, and the field already supported him: `PhraseStructure.counts`
+is *"counts in one full phrase"*, and the rig cases vary (8, 16, 32, 64)
+because they record real lengths. Writing 8 everywhere stored nothing.
+
+All 26 cases rewritten from the structure record — counts now span
+**32, 48, 64, 96, 128** — and each gained a **`count_unit`** tag.
+
+**A second derivation bug, caught by the same read-back:** `count_unit`
+was derived by fitting `counts x unit` against *clip duration*. That test
+is invalid on demo rows, because a demo clip is shorter than the exercise
+it describes. It mis-set exactly one row, `tendu-warmup-demo`, to `beat`
+in a 3/4 exercise — claiming 34s of music against a take that runs 94s.
+Corrected to `bar` by the meter rule: the demo then implies 102.9s
+against the take's 93.7s, the same exercise within 10%.
+
+**Both of today's field errors — `performance_bpm` and `counts` — came
+from generating case files from a table instead of reading what the field
+means.** Both were caught by the owner read-back, not by any test. That is
+the argument for the read-back being the verification act rather than a
+formality.
+
 ### Status
 
 **PROPOSED.** All 26 cases `provisional` by deliberate choice — the owner

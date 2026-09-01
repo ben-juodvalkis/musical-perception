@@ -10,8 +10,8 @@ exercises:
     bpm: 112
     meter: 3/4
     counts: 64
-    count_unit: beat
-    music_seconds: 34.3
+    count_unit: bar
+    music_seconds: 102.9
     clip_seconds: 55
     note: marking; sides continuous
     describes: the exercise as stated in the marking, NOT this clip's content
@@ -355,3 +355,7 @@ single_tempo_ruling: 'Owner, 2026-09-01: multiple tempi inside one exercise over
   run at a different tempo from the exercise they follow. Every surviving case holds ONE steady tempo.
   The tails are documented here and nowhere else: five of ten exercises had one, so a class-music model
   that assumes one tempo per exercise is wrong about half of them.'
+count_unit_rule: "3/4 exercises count the BAR, 4/4 count the BEAT \u2014 10/10 in this class, derived\
+  \ from clip duration on TAKE rows only. Demo rows take the rule, not the measurement: a demo clip is\
+  \ shorter than the exercise it describes, so fitting counts to demo clip length gives the wrong unit\
+  \ (it did, once, on tendu-warmup-demo)."

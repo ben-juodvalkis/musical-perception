@@ -9,13 +9,14 @@ tags:
   count_style: step_names
   explanation: interleaved
   lang: en
+  count_unit: bar
   clip_role: demo
   answer_key: barre6-rond-de-jambe-take1
   played_bpm: 95
 expect:
   marking_bpm: 96
   meter: "3/4"
-  counts: 8
+  counts: 32
 notes: >-
   Ballet Barre 6 ingestion 2026-09-01, owner-attended labelling session.
   THE DEMO IS THE CASE (owner ruling): the accompanist must commit to
