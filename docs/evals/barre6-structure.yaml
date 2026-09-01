@@ -1,0 +1,357 @@
+class: Ballet Barre 6
+source: Dutch National Ballet
+labelled: 2026-09-01, owner by ear
+maturity: provisional
+exercises:
+  tendu-warmup:
+  - clip: barre6-tendu-warmup-demo
+    role: demo
+    side: null
+    bpm: 112
+    meter: 3/4
+    counts: 64
+    count_unit: beat
+    music_seconds: 34.3
+    clip_seconds: 55
+    note: marking; sides continuous
+    describes: the exercise as stated in the marking, NOT this clip's content
+  - clip: barre6-tendu-warmup-take1
+    role: take1
+    side: both
+    bpm: 82
+    meter: 4/4
+    counts: 128
+    count_unit: beat
+    music_seconds: 93.7
+    clip_seconds: 111
+    note: 8 sets of 8 per side, sides continuous
+  plie:
+  - clip: barre6-plie-demo
+    role: demo
+    side: null
+    bpm: 120
+    meter: 3/4
+    counts: 64
+    count_unit: bar
+    music_seconds: 96.0
+    clip_seconds: 78
+    note: marking
+    describes: the exercise as stated in the marking, NOT this clip's content
+  - clip: barre6-plie-take1
+    role: take1
+    side: '1'
+    bpm: 116
+    meter: 3/4
+    counts: 64
+    count_unit: bar
+    music_seconds: 99.3
+    clip_seconds: 116
+  - clip: barre6-plie-take2
+    role: take2
+    side: '2'
+    bpm: 116
+    meter: 3/4
+    counts: 64
+    count_unit: bar
+    music_seconds: 99.3
+    clip_seconds: 113
+  tendu:
+  - clip: barre6-tendu-demo
+    role: demo
+    side: null
+    bpm: 102
+    meter: 4/4
+    counts: 64
+    count_unit: beat
+    music_seconds: 37.6
+    clip_seconds: 51
+    note: marking; tail not specified
+    describes: the exercise as stated in the marking, NOT this clip's content
+  - clip: barre6-tendu-take1
+    role: take1
+    side: '1'
+    bpm: 112
+    meter: 4/4
+    counts: 64
+    count_unit: beat
+    music_seconds: 34.3
+    clip_seconds: 39
+  - clip: barre6-tendu-take1-balance
+    role: take1
+    side: '1'
+    bpm: 55
+    meter: 4/4
+    counts: 16
+    count_unit: beat
+    music_seconds: 17.5
+    clip_seconds: 19
+    note: ritardando at the very end
+    case: "REMOVED 2026-09-01 \u2014 single-tempo corpus (owner ruling); structure kept here"
+  - clip: barre6-tendu-take2
+    role: take2
+    side: '2'
+    bpm: 115
+    meter: 4/4
+    counts: 96
+    count_unit: beat
+    music_seconds: 50.1
+    clip_seconds: 60
+    note: 8 sets then 4 more at the same tempo
+  degage:
+  - clip: barre6-degage-demo
+    role: demo
+    side: null
+    bpm: 110
+    meter: 4/4
+    counts: 64
+    count_unit: beat
+    music_seconds: 34.9
+    clip_seconds: 55
+    note: marking; balance length not given
+    describes: the exercise as stated in the marking, NOT this clip's content
+  - clip: barre6-degage-take1
+    role: take1
+    side: '1'
+    bpm: 121
+    meter: 4/4
+    counts: 96
+    count_unit: beat
+    music_seconds: 47.6
+    clip_seconds: 57
+    note: 8 sets + 4 of balance, same tempo
+  - clip: barre6-degage-take2
+    role: take2
+    side: '2'
+    bpm: 122
+    meter: 4/4
+    counts: 96
+    count_unit: beat
+    music_seconds: 47.2
+    clip_seconds: 56
+  ballonne:
+  - clip: barre6-ballonne-demo
+    role: demo
+    side: null
+    bpm: 160
+    meter: 3/4
+    counts: 32
+    count_unit: bar
+    music_seconds: 36.0
+    clip_seconds: 41
+    note: marking; teacher says "in 3"
+    describes: the exercise as stated in the marking, NOT this clip's content
+  - clip: barre6-ballonne-take1
+    role: take1
+    side: '1'
+    bpm: 63
+    meter: 4/4
+    counts: 48
+    count_unit: beat
+    music_seconds: 45.7
+    clip_seconds: 53
+    note: triplet subdivision; 4 sets + 2 balance
+  - clip: barre6-ballonne-take2
+    role: take2
+    side: '2'
+    bpm: 63
+    meter: 4/4
+    counts: 48
+    count_unit: beat
+    music_seconds: 45.7
+    clip_seconds: 57
+    note: triplet subdivision
+  coupe-barre:
+  - clip: barre6-coupe-barre-demo
+    role: demo
+    side: null
+    bpm: 108
+    meter: 4/4
+    counts: 64
+    count_unit: beat
+    music_seconds: 35.6
+    clip_seconds: 38
+    note: marking
+    describes: the exercise as stated in the marking, NOT this clip's content
+  - clip: barre6-coupe-barre-take1
+    role: take1
+    side: both
+    bpm: 120
+    meter: 4/4
+    counts: 64
+    count_unit: beat
+    music_seconds: 32.0
+    clip_seconds: 38
+    note: both sides continuous
+  rond-de-jambe:
+  - clip: barre6-rond-de-jambe-demo
+    role: demo
+    side: null
+    bpm: 96
+    meter: 3/4
+    counts: 32
+    count_unit: bar
+    music_seconds: 60.0
+    clip_seconds: 89
+    note: marking; port de bras length IS given
+    describes: the exercise as stated in the marking, NOT this clip's content
+  - clip: barre6-rond-de-jambe-take1
+    role: take1
+    side: '1'
+    bpm: 95
+    meter: 3/4
+    counts: 32
+    count_unit: bar
+    music_seconds: 60.6
+    clip_seconds: 66
+  - clip: barre6-rond-de-jambe-take1-portdebras
+    role: take1
+    side: '1'
+    bpm: 115
+    meter: 3/4
+    counts: 24
+    count_unit: bar
+    music_seconds: 37.6
+    clip_seconds: 40
+    note: 2 port de bras + 1 balance
+    case: "REMOVED 2026-09-01 \u2014 single-tempo corpus (owner ruling); structure kept here"
+  - clip: barre6-rond-de-jambe-take2
+    role: take2
+    side: '2'
+    bpm: 95
+    meter: 3/4
+    counts: 32
+    count_unit: bar
+    music_seconds: 60.6
+    clip_seconds: 69
+  - clip: barre6-rond-de-jambe-take2-portdebras
+    role: take2
+    side: '2'
+    bpm: 120
+    meter: 3/4
+    counts: 24
+    count_unit: bar
+    music_seconds: 36.0
+    clip_seconds: 36
+    note: faster than side 1's 115
+    case: "REMOVED 2026-09-01 \u2014 single-tempo corpus (owner ruling); structure kept here"
+  fondu:
+  - clip: barre6-fondu-demo
+    role: demo
+    side: null
+    bpm: 86
+    meter: 4/4
+    counts: 64
+    count_unit: beat
+    music_seconds: 44.7
+    clip_seconds: 51
+    note: marking; slows over the last few counts
+    describes: the exercise as stated in the marking, NOT this clip's content
+  - clip: barre6-fondu-take1
+    role: take1
+    side: '1'
+    bpm: 70
+    meter: 4/4
+    counts: 64
+    count_unit: beat
+    music_seconds: 54.9
+    clip_seconds: 64
+  - clip: barre6-fondu-take2
+    role: take2
+    side: '2'
+    bpm: 74
+    meter: 4/4
+    counts: 64
+    count_unit: beat
+    music_seconds: 51.9
+    clip_seconds: 68
+  frappe:
+  - clip: barre6-frappe-demo
+    role: demo
+    side: null
+    bpm: 135
+    meter: 4/4
+    counts: 64
+    count_unit: beat
+    music_seconds: 28.4
+    clip_seconds: 55
+    note: marking at DOUBLE the played count level
+    describes: the exercise as stated in the marking, NOT this clip's content
+  - clip: barre6-frappe-take1
+    role: take1
+    side: '1'
+    bpm: 79
+    meter: 4/4
+    counts: 32
+    count_unit: beat
+    music_seconds: 24.3
+    clip_seconds: 33
+  - clip: barre6-frappe-take2
+    role: take2
+    side: '2'
+    bpm: 74
+    meter: 4/4
+    counts: 32
+    count_unit: beat
+    music_seconds: 25.9
+    clip_seconds: 34
+  developpe:
+  - clip: barre6-developpe-demo
+    role: demo
+    side: null
+    bpm: 100
+    meter: 3/4
+    counts: 32
+    count_unit: bar
+    music_seconds: 57.6
+    clip_seconds: 49
+    note: marking, unstable; back length never stated
+    describes: the exercise as stated in the marking, NOT this clip's content
+    case: "REMOVED 2026-09-01 \u2014 single-tempo corpus (owner ruling); structure kept here"
+  - clip: barre6-developpe-take1
+    role: take1
+    side: '1'
+    bpm: 80
+    meter: 3/4
+    counts: 32
+    count_unit: bar
+    music_seconds: 72.0
+    clip_seconds: 70
+    note: accelerando 80 to ~100
+    describes: tempo drifts within the take; music_seconds assumes the opening tempo
+    case: "REMOVED 2026-09-01 \u2014 single-tempo corpus (owner ruling); structure kept here"
+  - clip: barre6-developpe-take2
+    role: take2
+    side: '2'
+    bpm: 104
+    meter: 3/4
+    counts: 32
+    count_unit: bar
+    music_seconds: 55.4
+    clip_seconds: 69
+    note: opens at the drifted tempo, not the marking
+    case: "REMOVED 2026-09-01 \u2014 single-tempo corpus (owner ruling); structure kept here"
+  releve-finish:
+  - clip: barre6-releve-finish-take1
+    role: take1
+    side: both
+    bpm: 109
+    meter: 4/4
+    counts: 128
+    count_unit: beat
+    music_seconds: 70.5
+    clip_seconds: 77
+    note: music starts 6s in
+reading_the_fields:
+  counts: "how many counted numbers the section runs \u2014 the length an accompanist must play"
+  count_unit: what ONE count spans. 3/4 exercises count the BAR; 4/4 count the BEAT. Verified 10/10 against
+    clip duration. Without it, counts is ambiguous by 3x.
+  music_seconds: "counts x count_unit at bpm \u2014 the derived length, checked against clip_seconds"
+  demo rows: describe the exercise the teacher STATES; the demo clip itself is shorter because marking
+    is abbreviated. music_seconds > clip_seconds is expected here.
+  role: demo | take | balance/portdebras tails are separate clips with their own tempo
+single_tempo_ruling: 'Owner, 2026-09-01: multiple tempi inside one exercise overcomplicate the model at
+  this stage. The developpe was removed entirely (accelerando 80->100 inside a take, no single true tempo).
+  The tendu''s balance and both rond-de-jambe port-de-bras sections were removed as cases because they
+  run at a different tempo from the exercise they follow. Every surviving case holds ONE steady tempo.
+  The tails are documented here and nowhere else: five of ten exercises had one, so a class-music model
+  that assumes one tempo per exercise is wrong about half of them.'

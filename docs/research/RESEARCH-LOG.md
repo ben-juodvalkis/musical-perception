@@ -9601,9 +9601,62 @@ demonstration, while its take grades at 79.
 invert a ruling. The preference was documented (§8.2) and still slipped
 past, because the case files were generated rather than read.
 
+### RULING (owner, same day): one tempo per case
+
+*"Having multiple tempos in one exercise is overcomplicating our model. I'd
+rather toss those exercises out and simplify."*
+
+Six cases removed, 32 -> **26**:
+
+- **`developpe` entirely** (3 cases). Its take accelerates 80 -> ~100
+  inside one clip, so no single tempo is true of it.
+- **`tendu-take1-balance`** and **both `rond-de-jambe-*-portdebras`**
+  sections (3 cases) — each steady in itself, but at a different tempo
+  from the exercise it follows.
+
+The cheaper cut was taken deliberately: dropping the three whole
+exercises would have cost 12 of 32 cases (38%); dropping only the
+offending clips cost 6 (19%) and leaves every surviving case
+single-tempo. Verified programmatically — **no case carries two tempi on
+the same side.** Where an exercise shows two numbers (tendu 112/115,
+fondu 70/74) they are opposite sides, separate clips, one steady tempo
+each.
+
+**The structure record keeps what the cases drop.** All 32 clips remain
+in `docs/evals/barre6-structure.yaml`, the removed six marked as such,
+because the observation is itself a finding: **five of ten exercises had
+a tail at a different tempo.** A class-music model that assumes one tempo
+per exercise is wrong about half the time, and that fact should not be
+deleted along with the cases.
+
+### The structure record, and why the schema is short a field
+
+`docs/evals/barre6-structure.yaml` holds every clip's tempo, meter,
+counts, and **`count_unit`** — with the derived music length checked
+against the measured clip length for all 32.
+
+`count_unit` is the field the schema has no room for and cannot do
+without: **in every 3/4 exercise one count spans a BAR; in every 4/4
+exercise it spans a BEAT** (10/10, derived from clip duration). Without
+it `counts: 64` is ambiguous by a factor of three, and a model generating
+music from it produces something three times too long.
+
+Two further gaps the record exposes: a section needs its **own** tempo (a
+single `bpm` per case cannot express a 112 exercise with a 55 balance),
+and **demo rows describe the exercise the teacher states, not the clip** —
+a demo states a 64-count exercise inside a 51-second clip, because
+marking is abbreviated.
+
+**PROPOSED, owner's to rule:** a `structure:` block in the case schema
+(§8.2 amendment + loader change; unknown top-level keys are currently a
+hard load error). EVAL-CHANGE, its own increment, never bundled with
+ingestion. The owner's position, recorded: *"if the schema needs to
+change, so be it... it's not the end of the world to throw out or repeat
+existing work that's lower value."*
+
 ### Status
 
-**PROPOSED.** All 32 cases `provisional` by deliberate choice — the owner
+**PROPOSED.** All 26 cases `provisional` by deliberate choice — the owner
 supplied every number but an agent typed them, and only the 22 take rows
 were read back. Promotion to `verified` is an owner act and should be
 taken cold. **Open question for that ruling:** `expected_bpm` prefers
