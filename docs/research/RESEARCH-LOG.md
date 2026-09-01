@@ -9176,3 +9176,70 @@ both sides, with the air-service entry placed **before** the W11
 pre-registration whose run it kicked off. Ledger entry count after
 merge: **82**, none lost.
 
+
+## 2026-09-01 · rung M · main · local (owner-attended: the bless provisional leak — tripwire fired, bless reverted, W1.6 commissioned)
+
+**A defect found by the owner running `evals bless` on the session's own
+recommendation.** The recommendation was mine and it was not checked
+first; that is recorded here as the session's error, not as a discovery.
+
+### What happened
+
+The session recommended blessing to carry W14-c's tier0 ECE delta
+(0.0724 → 0.0752) and re-ran the suite so the baseline would stamp at
+`HEAD`. The owner ran `bless`. W1.5's tripwire —
+`test_the_gating_corpus_is_exactly_the_blessed_thirty` — went red:
+
+    AssertionError: assert 52 == 30
+
+`bless` writes the **full** tier1 outcomes map into
+`evals/baseline.json`. The pinned gating set went **30 → 52**, and
+**22 of the added 22 are cases carrying `maturity: provisional`** — the
+barre-1 batch, whose truth labels are agent-authored and which the
+charter says must gate nothing and be reported only as a separate slice.
+
+### Not a regression — a path never walked before
+
+The previous baseline was blessed at `310a5f8`, which carried **zero**
+barre-1 case files (verified with `git ls-tree`). The barre-1 cases
+landed 2026-08-29. **This was the first bless since that ingestion**, so
+the defect has been latent since W4 and was never reachable until now.
+W1.5 wrote the tripwire for exactly this event and it worked.
+
+### What is and is not damaged
+
+**Nothing was committed and nothing was pushed.** Both `baseline.json`
+and `docs/evals/baseline.md` were modified in the working tree only. The
+owner's bless output was preserved to scratch before anything was
+touched, then both files restored with `git checkout`. Post-restore:
+tier1 pins **30** outcomes at `310a5f8`, `pytest` **359 passed, 3
+skipped**, working tree clean, `main` in sync with `origin/main`.
+
+**One nuance the fix must resolve rather than paper over:**
+`compare_outcomes` already accepts a `provisional` exclusion set at
+comparison time, and the baseline records which ids are provisional. So
+runtime gating may well have remained correct even with 52 pinned. The
+broken thing is W1.5's stated invariant — *the baseline pins exactly the
+owner-verified set* — which is the property that stops a session from
+growing the gating set by writing `maturity: verified` on agent-authored
+truth. Whether the guarantee is meant to live in the pinned set, in the
+comparison-time exclusion, or in both is the question **W1.6** has to
+answer explicitly.
+
+### Rulings
+
+- **W1.6 COMMISSIONED**, EVAL-CHANGE, **ranked 1** — above W11-b,
+  because a `bless` that cannot be run blocks every future increment
+  from reaching the baseline.
+- **Blessing is suspended** until W1.6 lands. Recorded in the charter's
+  OWNER QUEUE so a session cannot fail to mention it, together with the
+  fact that W14-c's ECE delta is not yet carried and is waiting on it.
+
+### Standing lesson candidate
+
+**Do not recommend an owner-only act without first checking the act's
+own preconditions.** `bless` had not been run since the corpus gained
+22 provisional cases; that was knowable from `baseline.json`'s own
+`git_sha` and a `git ls-tree`, both of which this session ran only
+*after* the tripwire fired.
+

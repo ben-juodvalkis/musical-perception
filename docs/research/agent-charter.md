@@ -42,6 +42,15 @@ never mark them done. Delete an item only when the owner says it is done.
    (28 are already owner-verified). Ten minutes, pure gain, no
    prerequisites.
 
+**DO NOT BLESS until W1.6 lands.** On 2026-09-01 the owner ran
+`evals bless` and it pinned all 52 tier1 cases — including the 22
+`provisional` ones, which the charter says must gate nothing. W1.5's
+tripwire caught it and the bless was reverted, uncommitted; the baseline
+still stands at `310a5f8`. The tier0 ECE delta from W14-c
+(0.0724 → 0.0752) is therefore **not yet carried**, and is waiting on
+W1.6. A session that finds the owner reaching for `bless` should say
+this out loud.
+
 **Agent-side, already queued and needing nothing from the owner:**
 **W11-b is ranked 1** and will freeze pulse sidecars for the 22 barre-1
 DEV clips behind an opaque media reference. It buys `stage1` coverage
@@ -661,17 +670,37 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   increment, never bundled with a pipeline change (rule 2). ·
   **Standing ranking (owner-ratified 2026-09-01, batch review; amended
   the same day after the barre-1 containment finding):**
-  1. **W11-b** *(COMMISSIONED 2026-09-01, EVAL-CHANGE — ranked first:
-  it is the only queue item whose blocker was just discharged, and its
-  containment design must land before anything else touches barre-1)* ·
-  2. **W15** *(**RATIFIED 2026-09-01** — commissioned, untaken)* ·
-  3. **W14-b** *(**RATIFIED
+  1. **W1.6 = the bless provisional-leak fix (COMMISSIONED 2026-09-01,
+  EVAL-CHANGE — ranked first because it blocks every future blessing).**
+  `bless` writes the FULL tier1 outcomes map into `evals/baseline.json`,
+  including cases whose `maturity` is `provisional`. The owner blessed on
+  2026-09-01 and the pinned set went **30 → 52, of which 22 are
+  provisional**; W1.5's tripwire
+  (`test_the_gating_corpus_is_exactly_the_blessed_thirty`) fired, and the
+  bless was reverted rather than committed. **Not a regression — a
+  never-exercised path:** the previous baseline was blessed at `310a5f8`,
+  which carried **zero** barre-1 case files, so this was the first bless
+  since the 2026-08-29 ingestion. **Deliverable:** `bless` excludes
+  provisional ids from the pinned outcomes map, restoring W1.5's
+  invariant that *the baseline pins exactly the owner-verified set* —
+  the property that stops a session from growing the gating set by
+  writing `maturity: verified` on agent-authored truth. Note that
+  `compare_outcomes` already takes a `provisional` exclusion at
+  comparison time; the defect is in what gets *pinned*, and the fix must
+  say which of the two is the intended guarantee rather than quietly
+  relying on both. **Gate:** the tripwire passes; a bless before and
+  after produces identical gating decisions on the 30 verified cases.
+  **Until this lands, do not bless** — say so to the owner. ·
+  2. **W11-b** *(COMMISSIONED 2026-09-01, EVAL-CHANGE — its containment
+  design must land before anything else touches barre-1)* ·
+  3. **W15** *(**RATIFIED 2026-09-01** — commissioned, untaken)* ·
+  4. **W14-b** *(**RATIFIED
   2026-09-01** — the trajectory-shape stopping rule: commit when the
   answer stops oscillating between metric levels, the failure mode
   W13(b) Finding 2 actually described; scoreable from the same artifact
   now that `series_num` makes the trajectory replayable. Ranked second;
   W14-c raises its value, since a calibrated confidence is now available
-  to combine with trajectory shape)* · 4. **W14-d** *(PROPOSED, EVAL-
+  to combine with trajectory shape)* · 5. **W14-d** *(PROPOSED, EVAL-
   CHANGE — owner's to rule)* · W6-b BLOCKED on two owner decisions —
   cost and the second model family — both deferred to the 2026-09-03 W0
   (blocker (i), the key reaching the runner, is discharged for owner-run
