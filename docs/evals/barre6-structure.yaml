@@ -83,6 +83,7 @@ exercises:
     clip_seconds: 39
     phrases: 8
     counts_per_phrase: 8
+    tail_role: balance (split off at 55, case removed)
   - clip: barre6-tendu-take1-balance
     role: take1
     side: '1'
@@ -103,9 +104,13 @@ exercises:
     counts: 96
     music_seconds: 50.1
     clip_seconds: 60
-    note: 8 sets then 4 more at the same tempo
+    note: "owner-verified 2026-09-01: 8 phrases of main exercise + 4 phrases of STRETCH at the same tempo\
+      \ (hence 12, and hence no split). Side 1 ends differently \u2014 2 phrases of BALANCE at 55, which\
+      \ was split off and then removed under the single-tempo ruling. The two sides have different tails\
+      \ in kind, length and tempo."
     phrases: 12
     counts_per_phrase: 8
+    tail_role: stretch
   degage:
   - clip: barre6-degage-demo
     role: demo
@@ -149,10 +154,12 @@ exercises:
     counts: 96
     music_seconds: 36.0
     clip_seconds: 41
-    note: marking; teacher says "in 3"
+    note: 'marking; teacher says "in 3". Owner-verified 2026-09-01: the demo does NOT state how long the
+      balance runs, which is why it shows 4 phrases where the take runs 6 (4 exercise + 2 balance).'
     describes: the exercise as stated in the marking, NOT this clip's content
     phrases: 4
     counts_per_phrase: 24
+    states_balance: false
   - clip: barre6-ballonne-take1
     role: take1
     side: '1'

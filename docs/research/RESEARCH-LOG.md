@@ -9764,6 +9764,81 @@ did not survive contact with the owner.**
 The structure record gains `counts_per_bar` / `bars_per_phrase` /
 `phrases`, which is his sentence written as fields.
 
+### FINDING: metric level, not tempo, explains almost every apparent contradiction
+
+Owner-verified read-back of all 26 counts, 2026-09-01: **0 errors** in the
+phrase decomposition. Two tails were named more precisely (the tendu's
+second side ends in a **stretch**, not a balance; the ballonne demo does
+not state its balance length, which is why demo shows 4 phrases and take
+shows 6). But the read-back turned up one substantive correction, and it
+is the sixth instance of a single pattern.
+
+**The tendu balance was never a tempo change.** It was labelled 55 against
+an exercise at 112 and split off, then removed under the single-tempo
+ruling. Measured: the balance clip's strongest periodicity is
+**117.5/min**, against the exercise's 114.8. **The pianist never slows
+down** — the *counted* rate halves while the pulse holds. The owner spotted
+it from the arithmetic ("115 and 55 are close to half/double octaves").
+
+Every apparent contradiction in this session resolved to metric level
+rather than tempo:
+
+| # | looked like | actually was |
+|---|---|---|
+| 1 | plié 116 vs 39 — two defensible tempi | one ladder, two rungs; the bar is acoustically flat |
+| 2 | ballonné "in 3" vs a 4/4 take | triple as *grouping* in the demo, as *division* in the take |
+| 3 | frappé marking 135 vs played 79 (+71%) | teacher counts at DOUBLE; level-corrected it is -14.6% |
+| 4 | dégagé "two eights" where four go by | teacher counts at HALF |
+| 5 | tendu balance 55 vs exercise 112 | same pulse (117), counted at half |
+| 6 | `counts` 3x too small on every 3/4 row | counts stored as bars in some rows, beats in others |
+
+**Six for six.** Not one turned out to be a genuine disagreement about
+rate. The corollary for the pipeline is direct: an estimator that reports
+a *rate* without committing to a *rung* has not answered the question, and
+most of what looks like tempo error in this corpus is level-selection
+error wearing a disguise. That is ADR-017's premise, arrived at from a
+labelling session rather than from theory.
+
+The rond-de-jambe port de bras (95 -> 115, ratio 1.21) and the développé
+accelerando are **genuine** tempo changes, correctly removed. Only the
+tendu balance was removed for a reason that was not true.
+
+### PROPOSED QC RULE: an out-of-band label is a trigger to measure, not a value to fold
+
+The owner asked twice why the 70-140 band was "thrown out". It was not:
+W9 replaced a **hard fold** (a reading 2% outside got moved a whole metric
+level) with a **soft log-normal prior** centred at sqrt(70*140) ~ 99. The
+hard version was removed because it destroyed the owner's own
+metronome-set ground truth — `rig-names-2-4-160-long` (160) and
+`rig-numbers-4-4-60-halftempo` (60) became 80 and 120.
+
+**But his instinct converts into something the softening did not cover.**
+Labels are not subject to any prior at all, and today one was wrong in
+exactly the way the band would have caught: the tendu balance was labelled
+**55** when the pulse was **117**.
+
+Proposed rule, tested on every out-of-band label in the batch:
+
+> An owner label outside 70-140 is a **flag**: measure whether that pulse
+> is actually present in the signal, **at the rung the label claims**.
+
+| label | verdict |
+|---|---|
+| `ballonne-take1` 63 | **present** (0.14), alongside its triplet level at 178 |
+| `ballonne-take2` 63 | **present** (0.16) |
+| `ballonne-demo` 160 | **present as the BAR** — 56/min measured, x3 = 168 ~ 160. The beat is never the strongest periodicity in a marking clip, because the teacher marks bars |
+| `tendu-take1-balance` 55 | **ABSENT** — the clip's strongest periodicity is 117.5, the same as the exercise. The label named the counted rate, not the beat |
+
+Three pass, one fails, and the failure is the one that was wrong. The rule
+costs one autocorrelation per out-of-band label and needs no schema
+change.
+
+**Note for whoever implements it:** the ballonne-demo case shows the check
+must run at the claimed rung and, on demo clips, **inside the annotated
+in-tempo span** — over the whole 41s clip the measurement is dominated by
+speech and finds nothing useful. This is the first consumer of the
+marking-span annotations.
+
 ### Status
 
 **PROPOSED.** All 26 cases `provisional` by deliberate choice — the owner
