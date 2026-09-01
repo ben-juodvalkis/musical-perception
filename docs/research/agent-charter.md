@@ -17,6 +17,37 @@
 > rule (eval files, provisional-never-gates, HELD-OUT/SEALED, no
 > self-blessing) is unchanged.
 
+## OWNER QUEUE — read this out to Ben first (set 2026-09-01)
+
+**Every session: surface this block to the owner before doing anything
+else, in plain language, then get on with the rung.** These are acts only
+the owner can perform; they are not agent workstreams and an agent must
+never mark them done. Delete an item only when the owner says it is done.
+
+1. **Capture a new batch, and author the truth labels while recording.**
+   The highest-value item by a distance. Every one of the 30 gating cases
+   is DEV — all have been in the iteration loop since capture, so nothing
+   in the corpus can currently falsify an improvement. Use
+   `scripts/split_class_video.py` to cut a class video into per-exercise
+   clips. Write down tempo, meter and counts *at capture time*, while the
+   answer is still known from having played it — that is the step the
+   barre-1 batch skipped, and why 19 of its 22 cases carry `expect: {}`.
+2. **Assign SEALED before the first trace is frozen.** At least one whole
+   exercise — better, one whole recording session or teacher — held on
+   the main machine, off-repo, never on the Air, never named in this
+   repository. **The ordering is unforgiving: a split made after
+   ingestion is not a split.** This costs nothing extra if it is decided
+   during (1), and cannot be recovered afterwards.
+3. **Verify the 2 provisional beat grids** among the 30 existing ones
+   (28 are already owner-verified). Ten minutes, pure gain, no
+   prerequisites.
+
+**Agent-side, already queued and needing nothing from the owner:**
+**W11-b is ranked 1** and will freeze pulse sidecars for the 22 barre-1
+DEV clips behind an opaque media reference. It buys `stage1` coverage
+only — it cannot buy tempo/meter/counts gating, because those cases have
+no truth labels. That is what item (1) is for.
+
 ## Mission
 
 Maximize honest performance of the perception + precision pipeline on the
@@ -34,7 +65,10 @@ Same findings, no softening — just no jargon standing in for the answer.
 
 ## Session boot sequence (every session, before any work)
 
-1. Read this charter in full.
+1. Read this charter in full. **Then surface the OWNER QUEUE block above
+   to the owner, in plain language, as the first thing you say** — before
+   any status report, any workstream selection, any tool call. It is at
+   the top of this file precisely so it cannot be reached past.
 2. Read [RESEARCH-LOG.md](RESEARCH-LOG.md) — at minimum the Standing
    Lessons section and the last five entries — **as it stands on
    `origin/agent/marathon`, not only main's copy**
@@ -489,6 +523,35 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   proven (nothing consumes the sidecars yet). Unblocks W5's
   continuation (the owner-probed between-beat discriminator, word-span
   de-confounded — see the 2026-08-28 rulings entry). ·
+  **W11-b = opaque sidecars for the Barre-1 DEV clips (COMMISSIONED
+  2026-09-01 by owner ruling; EVAL-CHANGE; RANKED 1 for agent
+  sessions).** UNBLOCKED — the 2026-09-01 session established that the
+  media is present on the owner's main machine (34 files, 1.1 GB under
+  `video/youtube/Ballet Barre 1`, gitignored), so `offrepo:` was never a
+  media-availability block. **The real block is a containment leak, and
+  it is the thing this workstream must design around:**
+  `record_pulse_sidecar` writes `"media": str(media_path)` into the
+  committed sidecar (existing sidecars show `video/youtube/Frappe.mov`).
+  Recording the 8 DEV exercises the ordinary way would commit their real
+  filenames, and **the 4 held-out exercises are then named by
+  complement** — exactly what the exercise-level split exists to
+  prevent, and what the barre-1 case files already refuse to do
+  ("agent-authored repo text carries opaque ids only").
+  **Deliverable:** teach the sidecar writer to record an *opaque* media
+  reference (`offrepo:<case-id>`) while still verifying the real file's
+  checksum against the trace's `media_sha256` pin — which is already
+  opaque and already committed. Then freeze sidecars for all 22 barre-1
+  DEV traces. **Locating the DEV files must be done by checksum match,
+  never by listing the directory:** hash the files, report only the 22
+  that match a trace pin, and never print or retain a non-matching name.
+  All 22 traces carry a `media_sha256` (verified 2026-09-01).
+  **Gate:** byte-identical outcomes on every existing suite; zero real
+  paths under `video/youtube/Ballet Barre 1` anywhere in the diff;
+  add-only under `evals/` per the sidecar carve-out.
+  **Honest ceiling, stated at commission:** 19 of the 22 barre-1 cases
+  carry `expect: {}` and 3 carry one key, so this buys `stage1` pulse
+  coverage and **cannot** buy tempo/meter/counts gating. Do not report
+  it as unlocking 22 cases' gating power. ·
   **W12 = the factored meter slice (COMMISSIONED 2026-08-28 by owner
   ruling; EVAL-CHANGE):** a REPORTED-ONLY factored meter score beside
   meter_triple — division scored as measured (duple/triplet/none),
@@ -596,21 +659,25 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   only, so no suite can see a prefix-time confidence regression — the
   defect was invisible to every existing metric. An **EVAL-CHANGE**
   increment, never bundled with a pipeline change (rule 2). ·
-  **Standing ranking (owner-ratified 2026-09-01, batch review):**
-  1. **W15** *(**RATIFIED 2026-09-01** — commissioned, untaken, ranked
-  first for a scheduled session)* · 2. **W14-b** *(**RATIFIED
+  **Standing ranking (owner-ratified 2026-09-01, batch review; amended
+  the same day after the barre-1 containment finding):**
+  1. **W11-b** *(COMMISSIONED 2026-09-01, EVAL-CHANGE — ranked first:
+  it is the only queue item whose blocker was just discharged, and its
+  containment design must land before anything else touches barre-1)* ·
+  2. **W15** *(**RATIFIED 2026-09-01** — commissioned, untaken)* ·
+  3. **W14-b** *(**RATIFIED
   2026-09-01** — the trajectory-shape stopping rule: commit when the
   answer stops oscillating between metric levels, the failure mode
   W13(b) Finding 2 actually described; scoreable from the same artifact
   now that `series_num` makes the trajectory replayable. Ranked second;
   W14-c raises its value, since a calibrated confidence is now available
-  to combine with trajectory shape)* · 3. **W14-d** *(PROPOSED, EVAL-
+  to combine with trajectory shape)* · 4. **W14-d** *(PROPOSED, EVAL-
   CHANGE — owner's to rule)* · W6-b BLOCKED on two owner decisions —
   cost and the second model family — both deferred to the 2026-09-03 W0
   (blocker (i), the key reaching the runner, is discharged for owner-run
   local sessions; see the 2026-08-31 W0 §5) ·
   W5 continuation OPEN (owner-started; sidecars and factored slice now in
-  place) · W11-b BLOCKED (barre1 media is `offrepo:`) · W8 BLOCKED (after
+  place) · W8 BLOCKED (after
   W5's continuation and the tier-0 driver EVAL-CHANGE named in ADR-017) ·
   W1/W1.5/W2/W2.5/W3/W3r/W4/W6-a/W7/W9/W10/W11/W12/W13(a)/W13(b)/W14/
   W14-c COMPLETE. **Standing constraint named by W14-c, 2026-09-01:**

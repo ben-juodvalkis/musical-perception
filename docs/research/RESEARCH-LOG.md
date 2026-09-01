@@ -9092,3 +9092,87 @@ as a named constraint.
 `scripts/split_class_video.py` committed (`62f4491`) — the per-exercise
 class-video splitter, previously untracked in the working tree.
 
+
+## 2026-09-01 · rung M · main · local (owner-attended, continued: barre-1 containment finding; W11-b commissioned; owner queue set; all branches merged)
+
+Continuation of the same attended sitting as the batch review above.
+
+### 1. The barre-1 finding, and a correction the session made to itself
+
+Asked to unblock beat-grid verification, the session reported that the
+Barre-1 DEV media was unavailable. **That was wrong and was corrected in
+the same sitting.** The media is present on the owner's main machine —
+**34 video files, 1.1 GB**, under `video/youtube/Ballet Barre 1`, which
+is gitignored (`.gitignore:24`, zero tracked files). The earlier claim
+rested on a top-level entry count of 2; those two entries are
+directories. `offrepo:` was never a statement about availability.
+
+**The real blocker is a containment leak in the sidecar writer.**
+`record_pulse_sidecar` writes `"media": str(media_path)` into the
+committed sidecar — existing sidecars carry `video/youtube/Frappe.mov`.
+Recording the 8 DEV exercises the ordinary way commits their real
+filenames, and with the batch split 8 DEV / 4 held-out at the exercise
+level, **the held-out four are then named by complement.** The barre-1
+case files already refuse exactly this, in their own words: *"agent-
+authored repo text carries opaque ids only."*
+
+The session stopped at that boundary and flagged rather than proceeding.
+Nothing was written; `record-pulse --only barre1-A-s` was run only far
+enough to confirm the tooling already refuses (`SKIP … case pins no
+media`), which is the containment working as designed, not a gap.
+
+**Enumeration discipline held throughout:** the directory was never
+listed. Presence was established by counts and total size only, and the
+DEV-file location plan is a checksum match — hash the files, report only
+the 22 that match a trace's `media_sha256` pin, never print or retain a
+non-matching name. All 22 barre-1 traces carry such a pin (verified).
+
+### 2. The second correction: what barre-1 is actually worth
+
+The session had claimed grid verification would "convert 22 of 52 cases
+from gating nothing to real gating power." **Also overstated.** Measured:
+**19 of the 22 barre-1 cases carry `expect: {}` and 3 carry a single
+key.** Fully annotated, they buy `stage1` pulse coverage and nothing
+else — tempo, meter and counts cannot gate on cases that state no
+expected value. The exercise-level split traded that detail away
+deliberately, and re-deriving it would undo the trade.
+
+Both corrections are recorded rather than quietly folded into a revised
+recommendation, because in each case the first answer had already been
+given to the owner and acted on.
+
+### 3. Rulings
+
+- **W11-b COMMISSIONED**, EVAL-CHANGE, **ranked 1** for agent sessions.
+  Scope, gate and honest ceiling written into the charter, including the
+  instruction that it must not be reported as unlocking 22 cases'
+  gating power.
+- **Owner's own next-session priorities set** (charter OWNER QUEUE):
+  (1) capture a new batch with truth labels authored at capture time,
+  (2) assign SEALED before the first trace is frozen, (3) verify the 2
+  provisional grids. Item (1) is the answer to §2 — the corpus needs
+  cases whose labels were known at capture, not reconstructed after.
+- **All outstanding branches merged to `main`** by owner ruling.
+
+### 4. The OWNER QUEUE mechanism
+
+A new block sits **above the Mission section** of the charter, and boot
+step 1 now requires every session to surface it to the owner in plain
+language *before any status report, workstream selection, or tool call*.
+Rationale: the owner-only acts in it are the corpus's actual bottleneck,
+and the previous arrangement surfaced them only if a session happened to
+reason its way there. Agents may never mark these items done — only the
+owner retires them.
+
+### 5. Merge
+
+`agent/air-service-20260828` was the only unmerged history in the repo:
+the 2026-08-28 entry recording the launchd burst arming, its
+byte-identical plist backup, and the revert procedure — **which the
+charter cites for the revert path, so until now that reference
+dangled.** Merged as `f1ff787`. The `RESEARCH-LOG.md` conflict (the
+branch predated every increment since 08-28) was resolved by keeping
+both sides, with the air-service entry placed **before** the W11
+pre-registration whose run it kicked off. Ledger entry count after
+merge: **82**, none lost.
+
