@@ -308,3 +308,20 @@ is how the runner's permission failure was found.)*
 > - **On the owner's queue:** accept/reject W13(b); rule on the stopping-rule probe and on H1's second meter channel (the timing-only path emitting 4 on 45/45 clips is the evidence). Everything below W13(b) is blocked or owner-started, so no further scheduled-session work is available on this branch.
 
 *Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
+
+## run 2026-08-31T17:00:05Z · main e172449
+
+- **outcome:** success, shell exit 0
+- **turns:** 40 · **duration:** 8.8 min · **cost:** $3.76
+
+**Agent's closing message:**
+
+> …disambiguation with abstention, ranked second, with 1-of-3 as its bar. Caveat stated in the entry: crude regex, n=3, this sizes H1 rather than falsifying it.
+> 
+> Also logged: W6-b's first blocker (key reaching the runner) is discharged by observation for owner-run local sessions, though `air-nightly.sh` doesn't export it so unattended inheritance is unverified; cost and second-model-family remain the owner's.
+> 
+> **Proof and constraints, all shown above:** `pytest` 351 passed / 3 skipped · `evals run --suite tier0,tier1,stage1,stage1-peakrate` → `no outcome changes vs baseline` · `git diff --stat main` docs-only (the 7 deletions are the charter's replaced ranking lines) · `git diff --name-status main --diff-filter=MD -- evals/` empty · no `src/` or `evals/` file touched · no bless, no live model call, Barre-1 directory never enumerated, A5-30 redaction applied throughout. Dated ledger entry appended; charter edit carries W14/W15 as PROPOSED for your ratification.
+> 
+> One thing to flag: my environment check printed the actual `GEMINI_API_KEY` value into this transcript. It is not in any commit (`git diff main | grep -c AIza` → 0), but if this transcript is shared or archived, rotate the key.
+
+*Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
