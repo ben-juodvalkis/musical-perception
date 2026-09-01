@@ -9243,3 +9243,38 @@ own preconditions.** `bless` had not been run since the corpus gained
 `git_sha` and a `git ls-tree`, both of which this session ran only
 *after* the tripwire fired.
 
+
+## 2026-09-01 · rung M · claude/fable-model-research-n8kgkm · cloud (owner-attended: the lateral review commissioned by the owner)
+
+Attempted: No pipeline, eval, grid, case, trace, or scorer file touched.
+The owner asked for a regular, high-effort, top-tier-model session that
+takes stock of the evidence and thinks laterally about new directions,
+because the project is early enough that no line of sight to the
+solution exists yet. Designed with him in conversation and recorded as
+`docs/research/lateral-review-protocol.md`, a PROPOSED charter note
+beside W0, an index pointer, and a cloud Routine named *Lateral review
+(on demand)* (no schedule; the owner fires it from the Routines list).
+Pre-registered expectations: n/a (process decision, not experiment).
+Result: Owner decisions, in his words where they carry a ruling:
+(1) format is a **conversation**, not a memo — the session reads
+unattended, briefs, asks its questions, and the owner answers live;
+(2) cadence is **on demand** — "sometimes I'm very available and do a
+lot of work; other times I have to put this project down for weeks" —
+so no calendar, and the session sizes its read to the gap; (3) token
+cost accepted by the owner; (4) the record is distilled from the
+conversation rather than a pasted transcript (A5-30 makes a raw
+transcript uncommittable), the owner's answers quoted as his;
+(5) the first run waits until the owner finishes his current video-
+labelling thread — nothing fired this session. Distinct from W0 by
+design: W0 re-ranks the list, LR asks whether it is the right list;
+LR commissions nothing.
+Regressions and classifications: none (no code or eval change).
+Lesson (durable, one paragraph): The best direction in this ledger so
+far (factored meter → W13) came from the owner's musician's
+introspection, not from any ranking pass — so a thinking session's
+highest-value output is the questions it puts to him, not the ideas it
+generates; the protocol is built around that, and around the two ways
+such a session goes wrong: ideas untethered from an observation, and a
+loop that starts commissioning its own work.
+Status: PROPOSED (charter note and protocol are the owner's to ratify;
+the Routine is live and idle until he fires it).
