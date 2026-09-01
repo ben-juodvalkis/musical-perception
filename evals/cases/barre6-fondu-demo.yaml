@@ -10,9 +10,10 @@ tags:
   explanation: interleaved
   lang: en
   clip_role: demo
+  answer_key: barre6-fondu-take1
+  played_bpm: 70
 expect:
   marking_bpm: 86
-  performance_bpm: 70
   meter: "4/4"
   counts: 8
 notes: >-

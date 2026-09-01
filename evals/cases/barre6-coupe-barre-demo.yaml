@@ -10,9 +10,10 @@ tags:
   explanation: interleaved
   lang: en
   clip_role: demo
+  answer_key: barre6-coupe-barre-take1
+  played_bpm: 120
 expect:
   marking_bpm: 108
-  performance_bpm: 120
   meter: "4/4"
   counts: 8
 notes: >-
