@@ -9243,3 +9243,115 @@ own preconditions.** `bless` had not been run since the corpus gained
 `git_sha` and a `git ls-tree`, both of which this session ran only
 *after* the tripwire fired.
 
+
+## 2026-09-01 · rung M / W11-b (opaque pulse sidecars for the Barre-1 DEV clips) · agent/w11b-opaque-sidecars · local (unattended) — PRE-REGISTRATION
+
+**EVAL-CHANGE.** No pipeline code is touched; the deliverable is the
+sidecar writer's media reference plus 22 add-only `pulse.json` files.
+
+### 0. Why this workstream, and why now
+
+Boot sequence: charter read in full, OWNER QUEUE surfaced to the owner in
+plain language before any workstream selection, Standing Lessons 1–10 and
+the ledger tails on both `origin/agent/marathon` and
+`origin/agent/w16-bless-provisional-leak` read.
+
+**W1.6 is ranked 1 but is not takeable:** it carries a RESULTS entry on
+`origin/agent/w16-bless-provisional-leak` (commit `37b2489`), which makes
+it COMPLETE-pending-review under boot step 2 — "any workstream carrying a
+RESULTS entry on the branch is not taken again". That branch's own charter
+edit already says so and re-ranks **W11-b to 1**. This session takes
+W11-b.
+
+Writability probe: `d1d6909` (write) / `9de45a3` (revert), first act of
+the session, per the 2026-08-24 amendment.
+
+### 1. The containment problem, restated precisely
+
+`record_pulse_sidecar` writes `"media": str(media_path)` into the
+committed sidecar. The Barre-1 batch is split 8 DEV / 4 held-out **at the
+exercise level**, and DEV and held-out media share one directory on the
+owner's machine, so a sidecar naming the 8 DEV exercises names the
+held-out 4 by complement. The barre-1 case files already refuse this in
+their own words ("agent-authored repo text carries opaque ids only").
+
+**The finding that makes the fix small.** Before writing any code this
+session measured what the sidecar's `media` field actually contains
+across the corpus:
+
+```
+sidecar media == trace meta media: 30 same, 0 differ, 22 traces without sidecar
+```
+
+All 30 existing sidecars already carry exactly the string their trace's
+`meta.json` carries. The field was never independent evidence — it is a
+copy of the trace's own reference, arrived at accidentally because the
+recorder was always handed the path the trace named. And the barre-1
+traces already pin an **opaque** reference: `"media": "offrepo:barre1-A-s"`,
+frozen 2026-08-22 and long committed.
+
+So the fix is not "invent an opaque id". It is **make the copy explicit**:
+the sidecar records the reference its trace records, and can therefore
+never name a file the trace did not already name. Opacity for barre-1
+falls out of a pin that is already in the repository.
+
+### 2. Locating the media without listing the directory
+
+The enumeration ban is absolute and permanent (charter, "Containment is
+not agent-auditable"). Lookup is therefore **content-addressed**: hash
+every regular file under a supplied media root, keep only those whose
+digest matches a trace's committed `media_sha256`, and discard every
+non-matching path on the spot — never returned, never stored, never
+printed, never placed in an error message. All 22 barre-1 traces carry a
+`media_sha256` pin (verified 2026-09-01).
+
+Two consequences accepted deliberately:
+
+- **Error messages from the recording loop are type-only when a media
+  root is in use.** A `CalledProcessError` from ffmpeg embeds the command
+  line, and the command line is a filename. Diagnostics that could name
+  media are withheld rather than redacted, because redaction that misses
+  once is worse than no diagnostic (rule 7's redaction-by-default posture).
+- Presence of the media was established this session by **counts and size
+  only** — 28 files, 919 MB, 23 of them `.mp4` — never by a listing.
+  (The 2026-09-01 attended session recorded 34 files / 1.1 GB for the same
+  directory; the discrepancy is noted, not investigated, since
+  investigating it means looking at names.)
+
+### 3. Predictions (scored honestly in the RESULTS entry)
+
+- **P1 — the mirror is byte-identical on the existing corpus.**
+  Re-recording an existing sidecar with `--force` reproduces its `media`
+  field exactly; no existing `pulse.json` changes. Confidence: high (30/30
+  already agree by measurement, above).
+- **P2 — all 22 barre-1 traces resolve by checksum.** The directory holds
+  23 `.mp4` against 22 wanted digests, so the margin is one file. Predict
+  22/22. If fewer resolve, the RESULTS entry reports **the count only**,
+  never which ids failed against which names.
+- **P3 — the 22 new sidecars carry `offrepo:barre1-<id>` and no
+  filesystem path.**
+- **P4 — zero real paths in the diff.** `git diff main` contains no
+  occurrence of `Ballet Barre 1`, no `.mp4`, and no `video/youtube/`
+  string outside the four pre-existing video traces' own untouched files.
+- **P5 — byte-identical outcomes on every existing suite.** tier0, tier1,
+  stage1 and stage1-peakrate produce identical output before and after.
+  Reason: stage1 scores only clips with beat grids and the barre-1 clips
+  have none — the before-run already prints `missing grids (22)` naming
+  exactly these 22. Nothing else consumes sidecars yet.
+- **P6 — add-only under `evals/`.** `git diff --stat main` shows 22 files
+  created under `evals/traces/*/pulse.json` and **zero** modified files
+  under `evals/cases/`, `evals/traces/`, or `evals/baseline.json`.
+- **P7 — pytest green**, including a new test asserting the writer records
+  the trace's reference rather than the supplied path.
+
+### 4. What this is worth, stated before running it
+
+19 of the 22 barre-1 cases carry `expect: {}` and 3 carry a single key.
+These sidecars buy **`stage1` pulse coverage only**, and only once the
+owner taps beat grids for the clips — which is why P5 predicts *no*
+change to any current number. This increment **cannot** buy
+tempo/meter/counts gating and must not be reported as unlocking 22 cases'
+gating power (charter, at commission). It is Standing Lesson 9 work: the
+replay path before the channel.
+
+Status: PRE-REGISTRATION (implementation follows in this session).
