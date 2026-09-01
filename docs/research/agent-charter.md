@@ -42,13 +42,17 @@ never mark them done. Delete an item only when the owner says it is done.
    (28 are already owner-verified). Ten minutes, pure gain, no
    prerequisites.
 
-**DO NOT BLESS until W1.6 lands.** On 2026-09-01 the owner ran
-`evals bless` and it pinned all 52 tier1 cases — including the 22
-`provisional` ones, which the charter says must gate nothing. W1.5's
-tripwire caught it and the bless was reverted, uncommitted; the baseline
-still stands at `310a5f8`. The tier0 ECE delta from W14-c
-(0.0724 → 0.0752) is therefore **not yet carried**, and is waiting on
-W1.6. A session that finds the owner reaching for `bless` should say
+**BLESSING: the fix is written and waiting on a merge.** On 2026-09-01
+the owner ran `evals bless` and it pinned all 52 tier1 cases — including
+the 22 `provisional` ones, which the charter says must gate nothing.
+W1.5's tripwire caught it and the bless was reverted, uncommitted; the
+baseline still stands at `310a5f8`, and the tier0 ECE delta from W14-c
+(0.0724 → 0.0752) is **not yet carried**. **W1.6 is COMPLETE (PROPOSED)
+on `agent/w16-bless-provisional-leak`** — `bless` now pins only
+owner-verified rows. Until that branch is merged, still do not bless;
+after it is merged, a bless must print
+`tier1: pinned 30 outcomes, withheld 22 provisional` and anything else is
+a stop. A session that finds the owner reaching for `bless` should say
 this out loud.
 
 **Agent-side, already queued and needing nothing from the owner:**
@@ -671,7 +675,14 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   **Standing ranking (owner-ratified 2026-09-01, batch review; amended
   the same day after the barre-1 containment finding):**
   1. **W1.6 = the bless provisional-leak fix (COMMISSIONED 2026-09-01,
-  EVAL-CHANGE — ranked first because it blocks every future blessing).**
+  EVAL-CHANGE — ranked first because it blocks every future blessing;
+  COMPLETE 2026-09-01, PROPOSED, on `agent/w16-bless-provisional-leak`
+  — 5/5 pre-registered predictions landed, `bless` now pins 30 and
+  withholds 22, pytest 366 passed / 3 skipped, zero files under `evals/`
+  touched. Ruling recorded: the pinned set is the guarantee of record,
+  the comparison-time skip is a separate runtime filter —
+  `docs/evals/case-maturity.md` §W1.6. **Ranked 1 for the next agent
+  session is therefore W11-b.**)**
   `bless` writes the FULL tier1 outcomes map into `evals/baseline.json`,
   including cases whose `maturity` is `provisional`. The owner blessed on
   2026-09-01 and the pinned set went **30 → 52, of which 22 are
@@ -692,7 +703,8 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   after produces identical gating decisions on the 30 verified cases.
   **Until this lands, do not bless** — say so to the owner. ·
   2. **W11-b** *(COMMISSIONED 2026-09-01, EVAL-CHANGE — its containment
-  design must land before anything else touches barre-1)* ·
+  design must land before anything else touches barre-1; **ranked 1 for
+  agent sessions now that W1.6 is written**)* ·
   3. **W15** *(**RATIFIED 2026-09-01** — commissioned, untaken)* ·
   4. **W14-b** *(**RATIFIED
   2026-09-01** — the trajectory-shape stopping rule: commit when the

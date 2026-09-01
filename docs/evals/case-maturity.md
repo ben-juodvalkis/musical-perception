@@ -1,6 +1,7 @@
 # Case maturity — whose truth is this row?
 
-**Status:** implemented 2026-08-25 (charter workstream W1.5, EVAL-CHANGE).
+**Status:** implemented 2026-08-25 (charter workstream W1.5, EVAL-CHANGE);
+the pinning rule below added 2026-09-01 (W1.6, EVAL-CHANGE).
 Companions: [beat grids](beat-grids.md) (the grid-level `provisional`
 flag this generalizes), [the annotation convention](annotation-convention.md),
 [the agent charter](../research/agent-charter.md) rule 2.
@@ -42,7 +43,8 @@ BLOCKED ledger note. An agent never promotes its own labels.
 | `compare_outcomes` / the tier-1 pytest gate | **excluded** |
 | tier-1 headline `fields`, `ece`, `slices`, `tempo_metrics`, `n_cases` | **excluded** |
 | the `provisional` block of the same summary | included, own n |
-| the run artifact's `outcomes` map | included (recorded, not gated) |
+| the **run** artifact's `outcomes` map | included (recorded, not gated) |
+| the **blessed baseline**'s `outcomes` map | **excluded** (W1.6) |
 | stage1 per-clip rows | included, flagged `provisional` |
 | stage1 `aggregate_verified` | **excluded** |
 
@@ -59,6 +61,36 @@ provisional ids and the baseline's own, read from
 A baseline blessed before W1.5 has no `provisional` key at all; that
 degrades to "nothing excluded", which is the correct reading of a
 corpus that was entirely verified.
+
+## Which exclusion is the guarantee (W1.6)
+
+There are two exclusions and they are **not** two implementations of one
+idea. Read them as a pair:
+
+- **Pinning time — `blessed_report`, in `runner.py`.** The baseline's
+  `outcomes` map *is* the gating corpus, so `bless` writes only
+  owner-verified rows into it and names what it withheld under
+  `outcomes_withheld_provisional`. **This is the guarantee of record:**
+  the gating set can only grow by the owner verifying a case *and*
+  re-blessing.
+- **Comparison time — `compare_outcomes(..., provisional=…)`.** A
+  runtime filter for rows that are provisional *in the current run* —
+  fresh ingestion the baseline has never seen — or whose maturity moved
+  since the bless. Necessary, but it bounds one comparison, not what the
+  baseline is allowed to claim.
+
+Why the distinction had to be written down: until 2026-09-01 only the
+second existed, and it hid the absence of the first. `bless` was
+`shutil.copyfile(run, baseline.json)`, so the first bless after the
+barre-1 ingestion pinned **52** rows, 22 of them agent-authored. Gating
+*decisions* were unaffected — which is exactly why nothing caught it
+except W1.5's tripwire,
+`test_the_gating_corpus_is_exactly_the_blessed_thirty`.
+
+**Consequence, by design:** the run after the owner verifies a case
+reports it as `new case (not in baseline)` and the tier-1 gate fails
+until a re-bless. That is not a regression. Growing the gating set is a
+review event and should cost a deliberate act.
 
 ## Stage-1: a row is only as verified as its weakest label
 

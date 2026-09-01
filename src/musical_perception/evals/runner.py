@@ -144,6 +144,58 @@ def provisional_ids(case_results: list[CaseResult]) -> list[str]:
     return sorted(c.case_id for c in case_results if c.provisional)
 
 
+def suite_provisional_ids(suite_block: dict | None) -> set[str]:
+    """Case ids a run (or the blessed baseline) recorded as provisional.
+
+    The run artifact carries its own list, so the baseline is
+    self-describing: comparing two runs never needs to re-read the case
+    files, and a row that changed maturity in either direction is excluded
+    by taking the union of both sides (charter W1.5).
+    """
+    prov = ((suite_block or {}).get("summary") or {}).get("provisional")
+    return set((prov or {}).get("case_ids") or ())
+
+
+def blessed_report(report: dict) -> dict:
+    """The run artifact as it must be written to `evals/baseline.json`.
+
+    **W1.6 — where the guarantee lives.** The baseline's `outcomes` map IS
+    the gating corpus: `tests/test_evals_replay.py` reads it, and W1.5's
+    tripwire asserts it equals the owner-verified case ids exactly. So the
+    exclusion has to happen *here*, at pinning time — a `bless` that copies
+    the run verbatim writes agent-authored truth into the gate, which is
+    what happened on 2026-09-01 (30 pinned -> 52, 22 of them provisional).
+
+    `compare_outcomes`'s `provisional=` skip is NOT this guarantee and does
+    not replace it. That one is a runtime filter for rows provisional in
+    the *current run* — fresh ingestion the baseline has never seen, or a
+    row whose maturity moved since the bless. Both exist, with distinct
+    jobs; only this one bounds what the baseline is allowed to claim.
+
+    Provisional rows stay fully **reported**: `summary` (with its own
+    slice and its own n) and `cases` are untouched, so the published
+    baseline still shows them. They stop being **pinned**, which is the
+    only thing that ever gated. Suites that pin no outcomes at all
+    (stage1) pass through unchanged.
+    """
+    out = dict(report)
+    out["suites"] = {}
+    for suite, block in report.get("suites", {}).items():
+        excluded = suite_provisional_ids(block) & set(block.get("outcomes") or {})
+        if not excluded:
+            out["suites"][suite] = block
+            continue
+        pinned = dict(block)
+        pinned["outcomes"] = {
+            cid: v for cid, v in block["outcomes"].items() if cid not in excluded
+        }
+        # Named in the artifact so a reader can tell a filtered map from a
+        # truncated one without re-deriving it from the case files.
+        pinned["outcomes_withheld_provisional"] = sorted(excluded)
+        out["suites"][suite] = pinned
+    return out
+
+
 def compare_outcomes(
     current: dict, baseline: dict, provisional: set[str] | None = None
 ) -> list[str]:

@@ -9243,3 +9243,161 @@ own preconditions.** `bless` had not been run since the corpus gained
 `git_sha` and a `git ls-tree`, both of which this session ran only
 *after* the tripwire fired.
 
+
+## 2026-09-01 · rung M / W1.6 (the bless provisional leak) · agent/w16-bless-provisional-leak · local — PRE-REGISTRATION
+
+**EVAL-CHANGE.** Ranked 1 by the owner ruling of this morning. No pipeline
+file is touched in this increment; no existing file under `evals/` is
+modified; `evals bless` is NOT run against the repo baseline (blessing is
+the owner's act — this session proves the fix against a scratch copy).
+
+### The defect, restated
+
+`_cmd_bless` is `shutil.copyfile(run, evals/baseline.json)`. The run
+artifact's `suites.tier1.outcomes` is the FULL outcomes map — every case
+the run scored. Today that is 52 cases, of which 22 carry
+`maturity: provisional`. So a bless writes agent-authored truth into the
+pinned gating set, and W1.5's tripwire
+(`test_the_gating_corpus_is_exactly_the_blessed_thirty`) goes red.
+
+### The question the charter says this increment must answer
+
+*Which of the two exclusions is the guarantee — the pinned set, or the
+comparison-time skip?* Answered here, and implemented so the answer is
+legible in the code rather than implied by two overlapping defenses:
+
+- **The pinned set is the guarantee of record.** `outcomes` in
+  `evals/baseline.json` IS the gating corpus. After this increment
+  `bless` cannot write a provisional id into it, so the gating set can
+  only grow by the owner verifying a case AND re-blessing. That is the
+  property W1.5 stated and the property the tripwire tests.
+- **The comparison-time skip is a runtime filter with a different job**,
+  and is retained: it excludes rows that are provisional *in the current
+  run* (fresh ingestion the baseline has never seen) and rows whose
+  maturity moved since the bless. It is no longer the only thing standing
+  between agent-authored truth and the gate.
+
+The two are not redundant; they were only *appearing* redundant because
+one of them was not implemented.
+
+### Pre-registered predictions
+
+- **P1 — the pinned set.** On a fresh run of today's 52-case corpus, a
+  blessed baseline written by the fixed `bless` pins exactly **30** tier1
+  outcomes, and that id set equals the verified-case id set. The tripwire
+  passes. *(Falsified if the count is anything but 30, or if the sets
+  differ.)*
+- **P2 — identical gating decisions.** For any current run, the change
+  list produced against the old (pre-fix, 52-pinned) baseline and against
+  the new (30-pinned) baseline are **equal**, when both are compared under
+  the union-of-provisional exclusion the harness already applies. Proven
+  on the real corpus and on a mutated synthetic run where a verified row
+  and a provisional row both flip.
+- **P3 — nothing else moves.** tier0 still pins 25; stage1 still pins 0
+  (it pins no outcomes by construction). The blessed markdown still
+  renders the provisional slice with its own n — provisional rows stay
+  *reported*, they stop being *pinned*.
+- **P4 — a newly verified row becomes a review event, not a silent
+  promotion.** After the owner flips one case to `verified`, the next run
+  reports it as `new case (not in baseline)` and the tier-1 gate fails
+  until a re-bless. Predicted as the CORRECT behavior, not a regression:
+  growing the gating set must cost a deliberate owner act.
+- **P5 — constraints.** `git diff --stat main` touches only
+  `src/musical_perception/evals/`, `tests/`, and `docs/`. Zero files under
+  `evals/cases/`, `evals/traces/`, `evals/grids/`; `evals/baseline.json`
+  byte-identical to main. pytest fully green.
+
+### Known risk, stated up front
+
+`suite_provisional_ids` currently lives in `__main__.py` while the fix
+belongs beside `outcomes_map`/`compare_outcomes` in `runner.py`. It is
+moved to `runner.py` and re-exported from `__main__` so both existing test
+imports keep working. That is a move inside this increment's own
+deliverable, not an opportunistic refactor (rule 6); if a reviewer reads
+it otherwise, the fix works identically with the accessor duplicated.
+
+## 2026-09-01 · rung M / W1.6 (the bless provisional leak) · agent/w16-bless-provisional-leak · local — RESULTS
+
+**EVAL-CHANGE. Prediction scorecard: 5/5 landed.** Blessing is unblocked.
+
+### What changed
+
+`bless` no longer copies the run artifact verbatim. It writes the run
+through a new `blessed_report()`, which drops every `maturity: provisional`
+id from each suite's pinned `outcomes` map and records what it dropped as
+`outcomes_withheld_provisional`. Provisional rows stay in `summary` (their
+own slice, own n) and in `cases`, so the published baseline still reports
+them — they stop being *pinned*, which is the only thing that ever gated.
+The CLI now prints the pinned/withheld count per suite so the owner sees
+it at bless time rather than from a red test afterwards.
+
+`suite_provisional_ids` moved from `__main__.py` to `runner.py`, beside
+the pinning it guards, and is re-exported from `__main__` (both existing
+import sites unchanged).
+
+### The ruling the charter asked for
+
+**The pinned set is the guarantee of record; the comparison-time skip is
+a separate runtime filter.** Written into `blessed_report`'s docstring and
+`docs/evals/case-maturity.md` §"Which exclusion is the guarantee (W1.6)"
+rather than left implied by two overlapping defenses. They are not
+redundant — one bounds what the baseline may *claim*, the other bounds one
+*comparison*. Until today only the second existed, and its correctness is
+precisely what hid the absence of the first.
+
+### Scorecard
+
+| # | Prediction | Result |
+|---|---|---|
+| P1 | fixed bless pins exactly 30, == the verified id set | **LANDED.** 52 → 30; `pinned == verified` True; 22 withheld |
+| P2 | gating decisions identical old baseline vs new | **LANDED.** Both `no changes` on the real corpus; equal on the mutated synthetic run where a verified and a provisional row both flip |
+| P3 | nothing else moves | **LANDED.** tier0 25→25, stage1 0→0; markdown still renders the provisional slice; summary still lists 22, `cases` still lists 52 |
+| P4 | verifying a case is a review event, not a silent promotion | **LANDED.** Next run reports `new case (not in baseline)` and the gate fails until a re-bless — asserted in a test, kept deliberately |
+| P5 | constraints | **LANDED.** `git diff --stat main` = `docs/`, `src/musical_perception/evals/`, `tests/` only; zero files under `evals/`; `evals/baseline.json` byte-identical to main |
+
+### Proof, executed
+
+The tripwire's own two assertions, run against a scratch-blessed baseline:
+
+    TRIPWIRE test_the_gating_corpus_is_exactly_the_blessed_thirty: PASS
+      (on 2026-09-01 the same two assertions gave: AssertionError: assert 52 == 30)
+
+Bless output (scratch root — **the repo baseline was never written to**):
+
+    tier0: pinned 25 outcomes
+    tier1: pinned 30 outcomes, withheld 22 provisional (reported, never gating)
+    stage1: pinned 0 outcomes
+
+`pytest`: **366 passed, 3 skipped** (359 before; +7 new W1.6 tests).
+`evals run --suite tier0,tier1,stage1`: **no outcome changes vs baseline**.
+
+### Regressions and classifications
+
+None. No pipeline file touched; no scored outcome moved on any suite.
+
+### Lesson (durable)
+
+A guard that is never exercised is indistinguishable from a guard that
+works. W1.5 wrote both the invariant and its tripwire, but the path that
+could violate it — a bless with provisional cases in the corpus — did not
+exist until W4 landed 22 of them four days ago, so for a week the harness
+*looked* correct because the only reachable code was correct. The general
+form: when two mechanisms appear to enforce the same property, check
+whether one of them has ever run. Here the redundancy was the tell.
+
+### Status
+
+**PROPOSED.** Owner acts, in order: (1) merge; (2) `evals run --suite
+tier0,tier1,stage1`; (3) `evals bless` — it will print
+`tier1: pinned 30 outcomes, withheld 22 provisional`, and anything else is
+a stop; (4) commit `evals/baseline.json` + `docs/evals/baseline.md`. That
+carries W14-c's tier0 ECE delta (0.0724 → 0.0752), which has been waiting
+on this. The OWNER QUEUE's "DO NOT BLESS" item can then be deleted.
+
+### Backlog note parked (not taken — rule 6)
+
+`_cmd_bless` hard-codes `BASELINE_MD = docs/evals/baseline.md` at module
+scope, so `--evals-root <scratch>` writes its JSON to the scratch root and
+its markdown into the repo. This session worked around it by patching the
+attribute; a future EVAL-CHANGE should derive the markdown path from the
+evals root so a rehearsal bless is genuinely side-effect-free.
