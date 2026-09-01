@@ -76,10 +76,17 @@ Read, in this order, all of it:
    its JSON wherever a claim rests on a number.
 6. `docs/evals/baseline.md`; `logs/run-summaries.md` (the nightly
    runner's own closing messages — the loop's unfiltered voice).
+7. `docs/vision/03-landscape.md` §3.6 ("what to watch") — the standing
+   list of external developments the project said it would keep an eye
+   on; the outward scan below checks each item.
 
-Then prepare, privately, the material of §Method below, and write the
-**briefing** (Phase 2). If the read would exhaust the turn budget, ledger
-and previous memo first; say in the briefing what was skipped.
+Then draft the anomalies (§1 of the Method) and the assumption ledger
+(§2), and **do the outward scan** (§3a) — outward *after* both, so the
+search is aimed by a named anomaly or a rated assumption rather than
+being a survey. Then prepare, privately, the rest of the Method and
+write the **briefing** (Phase 2). If the read would
+exhaust the turn budget, ledger and previous memo first; say in the
+briefing what was skipped.
 
 ### Phase 2 — the briefing (the session's first message to the owner)
 
@@ -152,7 +159,7 @@ finding, marked as his**, and the session's ideas are marked as proposals.
    next question followed; the pool questions not asked, with the reason
    (dropped as moot, or out of time); for each idea, the five
    house fields and his verdict (*run it / park it / killed by the owner
-   / not discussed*); then the full §1–§7 body of the Method below,
+   / not discussed*); then the full §1–§8 body of the Method below,
    updated by what he said.
 2. **The ledger entry** appended to `docs/research/RESEARCH-LOG.md`,
    headed `## YYYY-MM-DD · rung M / LR (the lateral review) ·
@@ -198,13 +205,18 @@ contradicted assumption is itself a finding and goes in the briefing.
 
 ### 3. Lateral generation — at least four lenses
 
-At least four distinct vantage points, each idea tagged with its lens:
+At least four distinct vantage points, each idea tagged with its lens.
+A find from the outward scan (§3a) lands under whichever lens fits — a
+beat-tracker library under the evaluation lens, an accompaniment product
+under the product lens, a transferable method under "another field" —
+not only under the last of these:
 
 - **The musician in the room** — what the accompanist does that the
   pipeline does not attempt (W13(a) is the seed).
 - **Another field's solved problem** — speech science, bioacoustics,
   conductor-gesture studies, sensor fusion, active learning, sports
-  officiating: anywhere a noisy human signal is read in real time.
+  officiating: anywhere a noisy human signal is read in real time —
+  fed by the outward scan (§3a).
 - **The evaluation** — is the harness measuring the thing? What is
   unmeasured that could be (W14-c: a defect invisible to every suite)?
   What would a hostile reviewer ask?
@@ -215,6 +227,46 @@ At least four distinct vantage points, each idea tagged with its lens:
   what perception must deliver.
 - **The inverse** — if the central bet is wrong, what does the project do
   the day after the joint posterior fails?
+
+### 3a. The outward scan — research, tools, products, adjacent fields
+
+The five literature reviews and `voice-as-drum-review.md` are the
+baseline, dated 2026-08; the scan is **what has appeared since, and what
+bears on this review's anomalies** — never a re-survey of what the
+reviews already cover (check them first; a find already in a review is
+not a find). Bounded: about a dozen searches, and no more than a fifth
+of the turn budget. Four directions, each aimed by a named anomaly or
+assumption:
+
+- **Research** — papers and preprints on the anomaly's topic (beat and
+  meter induction, speech rhythm and P-centres, online/streaming
+  inference and commitment, calibration, small-corpus evaluation, and
+  whatever the anomaly names). Note the venue and date.
+- **Tools, libraries, models** — anything that could be run against the
+  frozen artifacts (traces, grids, pulse sidecars) or the committed DEV
+  audio: beat trackers, speech-rhythm toolkits, audio-language models,
+  onset detectors. For each: licence, whether it installs in the repo's
+  environment (the cloud environment's network policy is set by the
+  owner to allow outbound access, so pages, PDFs and PyPI are all
+  reachable; if a fetch is nonetheless blocked, say so rather than
+  guessing at the content), and what it would take to score it
+  on the verified grids the way rung 6 scored the baselines.
+- **Products and systems** — anyone solving an analogous problem: score
+  following and automatic accompaniment, conductor and gesture
+  following, dance-class and rehearsal tools, live-music apps. What
+  they do that this pipeline does not attempt, and what they visibly
+  cannot do.
+- **Adjacent fields** — a solved problem elsewhere (bioacoustics,
+  sports officiating, sensor fusion, active learning) whose method
+  transfers. Say what transfers and what does not.
+
+Every find is recorded with a link, one line of what it claims, and a
+label — **abstract-only / read / ran-it** — and enters the ideas list
+only through the five fields below, tied to the observation it
+answers. Finds that were looked at and dismissed are listed with the
+reason, so the next review does not repeat the search. If the network
+is blocked, say so in the briefing and proceed on the reviews alone;
+never present a remembered claim as a search result.
 
 **Every idea carries, without exception:** (1) the **observation** that
 motivates it, cited by ledger date or path — no observation, no idea;
@@ -253,6 +305,13 @@ One paragraph: the direction the session would put first, with the
 honest counter-argument beside it — revised in the record by what the
 owner said.
 
+### 8. The outward scan, as a record
+
+What was searched (the queries, roughly), what was found and its label,
+what was dismissed and why, and which watch-list items in
+`docs/vision/03-landscape.md` §3.6 moved. This section exists so the
+next review starts where this one stopped.
+
 ## Rules that bind this session
 
 All charter rules of engagement apply; these are the ones a wide-ranging
@@ -272,8 +331,11 @@ session is most likely to test:
 - **Honesty style.** Relayed numbers are labelled relayed. A negative
   assessment of the plan is stated plainly; nothing is rounded in
   anyone's favour, and the owner is not flattered.
-- **No live model calls, no key use.** Web search for literature is
-  permitted where the environment allows; say when it did not.
+- **No live model calls, no key use.** Web search and fetching for the
+  outward scan are expected, not merely permitted, where the
+  environment allows them; say in the briefing when they did not work.
+  Installing a candidate tool from PyPI to try it on frozen artifacts
+  is allowed; committing it, or wiring it into the pipeline, is not.
 
 ## Owner controls
 
