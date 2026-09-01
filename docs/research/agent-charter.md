@@ -51,11 +51,15 @@ still stands at `310a5f8`. The tier0 ECE delta from W14-c
 W1.6. A session that finds the owner reaching for `bless` should say
 this out loud.
 
-**Agent-side, already queued and needing nothing from the owner:**
-**W11-b is ranked 1** and will freeze pulse sidecars for the 22 barre-1
-DEV clips behind an opaque media reference. It buys `stage1` coverage
-only — it cannot buy tempo/meter/counts gating, because those cases have
-no truth labels. That is what item (1) is for.
+**Agent-side status (updated 2026-09-01):** **W11-b is DONE** — the 22
+barre-1 DEV clips now carry frozen pulse sidecars behind an opaque media
+reference, on `agent/w11b-opaque-sidecars`, awaiting review. As stated at
+commission, it bought `stage1` coverage only; it cannot buy
+tempo/meter/counts gating, because those cases have no truth labels. That
+is what item (1) is for. **A fourth owner item is now live and cheap:**
+those 22 clips still have **no beat grid at all**, so `stage1` prints
+`missing grids (22)` — the sidecars are ready, the tapping is not.
+**W15** is the next workstream an agent session will take.
 
 ## Mission
 
@@ -672,6 +676,10 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   the same day after the barre-1 containment finding):**
   1. **W1.6 = the bless provisional-leak fix (COMMISSIONED 2026-09-01,
   EVAL-CHANGE — ranked first because it blocks every future blessing).**
+  **COMPLETE-pending-review 2026-09-01** on
+  `origin/agent/w16-bless-provisional-leak` (RESULTS entry at `37b2489`,
+  5/5 predictions landed) — not takeable again per boot step 2; the
+  bless block lifts when the owner merges it.
   `bless` writes the FULL tier1 outcomes map into `evals/baseline.json`,
   including cases whose `maturity` is `provisional`. The owner blessed on
   2026-09-01 and the pinned set went **30 → 52, of which 22 are
@@ -692,8 +700,19 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   after produces identical gating decisions on the 30 verified cases.
   **Until this lands, do not bless** — say so to the owner. ·
   2. **W11-b** *(COMMISSIONED 2026-09-01, EVAL-CHANGE — its containment
-  design must land before anything else touches barre-1)* ·
-  3. **W15** *(**RATIFIED 2026-09-01** — commissioned, untaken)* ·
+  design must land before anything else touches barre-1)* — **COMPLETE
+  2026-09-01 (PROPOSED)** on `agent/w11b-opaque-sidecars`: 22/22 barre-1
+  DEV traces carry `pulse.json` behind `offrepo:<case-id>`; the sidecar
+  writer now copies the trace's own committed media reference, so a
+  sidecar can never name a file its trace did not already name; off-repo
+  media is located by checksum under `--media-root`, never by listing.
+  Zero media filenames in the diff (0 of 23 media files, 0 of 28 files
+  overall); every suite byte-identical; add-only under `evals/`. **The
+  containment design has landed — barre-1 work may now proceed behind
+  it.** Honest ceiling holds: this buys `stage1` coverage only, and only
+  after the owner taps grids · **NEXT RANKED FOR AGENT SESSIONS:**
+  3. **W15** *(**RATIFIED 2026-09-01** — commissioned, untaken; now the
+  highest-ranked takeable workstream)* ·
   4. **W14-b** *(**RATIFIED
   2026-09-01** — the trajectory-shape stopping rule: commit when the
   answer stops oscillating between metric levels, the failure mode
@@ -708,8 +727,8 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   W5 continuation OPEN (owner-started; sidecars and factored slice now in
   place) · W8 BLOCKED (after
   W5's continuation and the tier-0 driver EVAL-CHANGE named in ADR-017) ·
-  W1/W1.5/W2/W2.5/W3/W3r/W4/W6-a/W7/W9/W10/W11/W12/W13(a)/W13(b)/W14/
-  W14-c COMPLETE. **Standing constraint named by W14-c, 2026-09-01:**
+  W1/W1.5/W2/W2.5/W3/W3r/W4/W6-a/W7/W9/W10/W11/W11-b/W12/W13(a)/
+  W13(b)/W14/W14-c COMPLETE. **Standing constraint named by W14-c, 2026-09-01:**
   22 of 52 cases are `provisional` and 22 barre-1 clips have no beat
   grid at all, so the benchmark's gating power is throttled by owner
   verification, not by agent throughput. Ranking decisions should be
