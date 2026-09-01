@@ -8645,3 +8645,127 @@ and no claim is made about a streaming implementation.
 - The Ballet Barre 1 media directory was **not enumerated**. A5-30
   redaction applied throughout: clip ids, pattern identities and numbers
   only, never transcript text naming steps.
+
+## 2026-09-01 · rung M / W14-c (the confidence-calibration defect) · agent/w14c-confidence-calibration · local (owner-attended) — PRE-REGISTRATION
+
+**Boot sequence complete:** charter in full (CURRENT RUNG M), Standing
+Lessons, the ledger as it stands on `origin/agent/marathon` (last five
+entries: the two 08-30 owner batch reviews, W13(a), W13(b) PRE-REG/
+RESULTS, the one-line note, the out-of-cadence W0 of 08-31, and W14
+PRE-REG/RESULTS), `docs/evals/baseline.md` + `evals/baseline.json`.
+Branch cut from `origin/agent/marathon` so W14's artifacts are present.
+
+### 0. Workstream selection
+
+**Owner-directed, in an attended session.** W14 parked the
+confidence-calibration defect explicitly as "a shipping-path finding
+W14's own scope forbade touching". The owner asked for it directly this
+session, which supplies the commission W14 could not give itself. This
+is the first W14 follow-up to touch `src/`; it is therefore a
+**pipeline increment under ADR-015 typed gates**, not REPORTED-ONLY.
+
+### 1. The defect, located
+
+W14's headline was that `normalized_tempo.confidence` is highest when the
+pipeline knows least (median 1.000 at the first prefix, 0.780 on the full
+clip). This session traced that to a single expression.
+
+`precision/tempo.py::calculate_tempo` sets
+
+    confidence = max(0.0, 1.0 - std(intervals) / median(intervals))
+
+which has two failure modes, both verified by direct call:
+
+1. **No sample-size term.** Two timestamps make one interval, whose
+   standard deviation is exactly 0, so CV = 0 and confidence = **1.00**.
+   `calculate_tempo([0.0, 0.5])` → `confidence=1.0, beat_count=2`.
+   Three evenly-spaced timestamps do the same.
+2. **A dead floor.** CV ≥ 1 clamps to exactly 0.0, carrying no
+   information below that point.
+
+**How it reaches the published contract.** `interpret_meter`'s third
+arbitration arm (`elif gemini_tempo is not None`) relays
+`gemini_tempo.confidence` straight into `NormalizedTempo.confidence`
+with **no `beat_count` guard** — unlike `marker_at_beat_level` directly
+above it, which does require `beat_count >= 8`. Measured over W14's own
+recorded prefix streams (granted condition, 45 clips with a
+`normalized_tempo` stream):
+
+- the first `normalized_tempo` confidence is **byte-identical** to
+  `marker_tempo`'s on **29/45** clips — the relay;
+- all **29** of those are exactly **1.00**;
+- **29/45** is also exactly the set of clips at ≥0.90 on the first
+  prefix. Every early-high confidence in the corpus is this relay.
+- `marker_tempo` is exactly 1.00 at its first prefix on **40/45** clips
+  and exactly 0.00 on the full clip on **16/45** (the CV ≥ 1 clamp).
+
+**The precedent this omission sits against.** `precision/rhythm.py::
+_compute_confidence` — the onset path — was hardened under ADR-015 with
+a `grid_support` factor whose docstring names this exact hazard: *"three
+surviving intervals fit any grid perfectly"*. That path behaves
+correctly in W14's data (median 0.740 at first prefix → 0.770 full clip,
+0/29 at ≥0.90 early). `calculate_tempo` never received the same
+treatment. W14's finding is the bill for that omission.
+
+### 2. The change
+
+**The old number is not deleted; it is renamed to what it measures.**
+`1 - CV` is a legitimate *regularity* statistic — "are these intervals
+even?" — and the routing gate that reads it (`>= 0.6` together with
+`beat_count >= 8`, i.e. "dense and regular") was tuned against it in
+that sense. It is only wrong as a *confidence*.
+
+- `TempoResult.regularity` (new field) carries the old
+  `max(0, 1 - CV)` value, unchanged, bit-for-bit.
+- `TempoResult.confidence` becomes the probability that the true beat
+  period lies within the scorer's ±8% tolerance of the reported one,
+  under a Student-t-style posterior over the period with a weak prior on
+  spoken-count jitter (`PRIOR_CV = 0.12` of the period, worth
+  `PRIOR_N = 2` pseudo-intervals), using the median's standard error
+  (`1.2533·s/√n`). It is monotone non-decreasing in evidence by
+  construction, and has no clamped floor.
+- `interpret_meter`'s `marker_at_beat_level` gate switches to
+  `.regularity >= 0.6` — **the same number it reads today**, so every
+  arbitration branch is preserved bit-for-bit.
+
+The onset path (`_compute_confidence`) is **not touched**, and neither
+is the posterior path's window-mass confidence (`posterior.py`), which
+W14's data shows is the well-behaved one.
+
+### 3. Why outcomes should not move
+
+Abstention in the harness is `predicted is None` only — verified by
+reading every `ABSTAINED` site in `evals/scorers.py`; no scorer gates on
+confidence. The only confidence-reading decision in the pipeline is
+`interpret_meter`'s arbitration, and that is held constant by the
+`regularity` split. `trigger.py`'s threshold reads `onset_tempo`, which
+is untouched. Confidence therefore moves **ECE and risk–coverage only**.
+
+### 4. Predictions (scored honestly in the RESULTS entry)
+
+- **P1.** Zero outcome changes on `tier0,tier1,stage1,stage1-peakrate`
+  vs the blessed baseline. Held by construction; a failure here means
+  the routing analysis above is wrong and the increment is void.
+- **P2.** tier1 ECE **improves** (falls) from **0.1815**. Reason: the
+  fallback path currently publishes ~1.00 on thin evidence, and tier1
+  tempo accuracy is 0.69 — that gap is overconfidence, and the new
+  number is ~0.49 where one interval is all there is.
+- **P3.** tier0 ECE **may worsen** from **0.0724**, and this is stated
+  before it is measured. tier0 accuracy is 1.00, so any downward move in
+  confidence on those rows is *under*confidence and costs ECE. If P2 and
+  P3 both land, the honest read is a trade, not a win.
+- **P4.** `calculate_tempo([0.0, 0.5]).confidence` is no longer 1.0.
+- **P5.** No clip reports a `marker_tempo` confidence of exactly 0.00
+  from the CV clamp; the 16/45 dead-floor rows take real values.
+- **P6.** `regularity` reproduces today's `confidence` exactly on every
+  frozen trace — a byte-identity check, not an approximation.
+
+### 5. Typed gate
+
+**Measurement change (ADR-015):** net improvement on the primary metric
+AND ECE, zero undiagnosed regressions. The primary metric is held
+constant by construction (P1), so this increment stands or falls on ECE
+alone. **If tier1 ECE does not improve, the finding is reported as
+negative and the change is not proposed for blessing.** No `bless` will
+be run under any outcome — that is the owner's act.
+
