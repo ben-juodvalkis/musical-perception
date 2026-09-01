@@ -13,18 +13,34 @@ which already holds all 32 clips in this shape.
 `expect` carries one `counts`, one `bpm` and one `meter` per case. Three
 things the barre-6 session established cannot be expressed in that:
 
-### 1. ~~`count_unit`~~ — WITHDRAWN 2026-09-01
+### 1. `phrases` — the one decomposition field that earns its place
 
-The proposal originally argued for a `count_unit` field, because `counts`
-was being stored sometimes in bars and sometimes in beats. **The owner
-removed the need rather than the symptom:** a count is always one beat,
-and what varies between exercises is the phrase length (24 counts in a
-3/4 exercise counted in 8 bars of 3; 8 counts in a 4/4 one). One meaning,
-no tag.
+`counts` alone cannot describe an exercise: **96 counts is 4 phrases of 24
+or 12 phrases of 8**, and those are different exercises. A generating
+model needs the phrase boundary — that is where a cadence goes.
 
-Kept here as a record of a field that looked load-bearing and was not.
-What survives is the weaker claim below: a section's length and tempo
-still cannot be expressed in one `counts` and one `bpm`.
+`counts` + `phrases` is the **minimal complete pair**. Everything else
+falls out: counts-per-phrase is `counts / phrases`; bars-per-phrase is
+that divided by the meter's numerator.
+
+Two neighbouring fields were tried and rejected, both for the same
+reason — they store what is already known:
+
+- **`counts_per_bar`** is the meter's numerator. Storing it repeats
+  `meter:` in a second column.
+- **`bars_per_phrase`** is derivable, and storing it *caused a real
+  error*: hardcoded to 8, it turned an 8-phrase tendu into 2. A phrase is
+  8 dance-counts, and in 4/4 the dancer counts the beat (8 counts, 2
+  bars) while in 3/4 he counts the bar (24 counts, 8 bars) — so the field
+  is not constant and cannot be assumed.
+- **`count_unit`** was proposed here in an earlier draft and is
+  **WITHDRAWN**. It existed because `counts` was being stored sometimes
+  in bars and sometimes in beats. The owner removed the need rather than
+  the symptom: a count is always one beat. One meaning, no tag.
+
+Kept as a record of three fields that looked load-bearing and were not.
+The session invented five tags; three did not survive contact with the
+owner.
 
 ### 2. Sections need their own tempo
 
