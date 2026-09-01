@@ -246,8 +246,10 @@ assumption:
   frozen artifacts (traces, grids, pulse sidecars) or the committed DEV
   audio: beat trackers, speech-rhythm toolkits, audio-language models,
   onset detectors. For each: licence, whether it installs in the repo's
-  environment (`pip install` from PyPI is reachable from cloud sessions;
-  arbitrary web hosts may not be), and what it would take to score it
+  environment (the cloud environment's network policy is set by the
+  owner to allow outbound access, so pages, PDFs and PyPI are all
+  reachable; if a fetch is nonetheless blocked, say so rather than
+  guessing at the content), and what it would take to score it
   on the verified grids the way rung 6 scored the baselines.
 - **Products and systems** — anyone solving an analogous problem: score
   following and automatic accompaniment, conductor and gesture
