@@ -8306,3 +8306,142 @@ idled, say so and it will write the BLOCKED notes instead.
 Status: **PROPOSED — meta-rung increment complete, awaiting owner
 review.** W0 executed no pipeline work. The 7-day clock is untouched:
 the scheduled meta-rung remains **2026-09-03**.
+
+## 2026-08-31 · rung M / W14 (the commitment stopping rule) · agent/marathon · local (unattended) — PRE-REGISTRATION
+
+**Boot sequence complete:** charter in full (CURRENT RUNG M), Standing
+Lessons, the ledger as it stands on `origin/agent/marathon` (last five
+entries: W6-a PRE-REG/RESULTS, the two 08-30 owner batch reviews, W13(a),
+W13(b) PRE-REG/RESULTS, the one-line note, and tonight's predecessor —
+the out-of-cadence W0 of 2026-08-31), `docs/evals/baseline.md` +
+`evals/baseline.json`. Writability probe (charter amendment 2, first
+act): marker written and committed on `agent/marathon` (`77fa9d5`) and
+reverted (`ee8d9e6`) before any substantive work.
+
+### 0. Workstream selection, and the honest caveat on it
+
+The 2026-08-31 W0 re-ranked the queue to **1. W14, 2. W15**, both marked
+**PROPOSED** — drafted by that session, not yet owner-ratified. Walking
+the ranking tonight: W14 (PROPOSED, ranked 1) · W15 (PROPOSED, ranked 2)
+· W6-b BLOCKED on two owner decisions deferred to 09-03 · W5 continuation
+owner-started, never takeable · W11-b BLOCKED on the barre1 media
+decision · W8 BLOCKED behind W5.
+
+**W14 is taken, and the deviation is declared rather than hidden**
+(rule 9 posture, rule 7 honesty). PROPOSED is not BLOCKED, and rung M's
+policy line is explicit — *"the loop never idles while any workstream is
+open"* — but the owner has not yet ruled on the commission, so this
+session is executing a workstream the owner drafted-by-proxy and has not
+signed. Three properties make that safe and reversible: W14 is
+**REPORTED-ONLY** (nothing in `src/` changes, no eval suite gains a
+metric, no outcome is pinned), it is **offline and key-free**, and its
+own gate is self-checking (previously published numbers must reproduce
+exactly). If the owner rejects the commission, the deliverable is a
+document and a re-run artifact that can be dropped with no trace in any
+blessed number. **Status will be PROPOSED, awaiting owner review.**
+
+### 1. What W14 is
+
+W13(b) Finding 2: the pipeline's lateness is **re-decision, not slow
+convergence** (median 5 tempo moves, 6.5 counts moves per clip; on 5 of
+29 verified clips tempo settles only in the final 5% of the span). The
+design claim that follows is that the missing part is a **stopping
+rule** — a criterion for when to stop deciding — not a better estimator.
+W14 scores two candidate families over the frozen prefix replay:
+
+- **F1, k-stable-prefixes:** commit when the answer has not moved for
+  `k` consecutive grid points. Sweep k = 1..8.
+- **F2, confidence ≥ θ:** commit when the confidence the pipeline
+  already computes for that field first reaches θ. Sweep θ = 0.10..0.90
+  in steps of 0.05.
+
+Metrics per family, per field, per condition (granted / withheld), on
+the **verified slice and the provisional slice reported separately**
+(charter rule 2 — provisional rows gate nothing and get their own n):
+**premature-commit rate** (committed value ≠ the clip's final value),
+**median committed-at time as a fraction of the voiced span**, and
+**no-commit rate** (the rule never fires). The owner's W13(a) curve —
+exercise ~3s, meter ~3s, tempo ~9–12s, structure ~30–33s on a 37.8s
+clip, i.e. normalized ≈ 0.08 / 0.08 / 0.24–0.32 / 0.79 — is laid against
+the best operating point of each family.
+
+**Best operating point is defined before seeing any result:** among
+sweep values whose premature-commit rate on the verified slice is
+**≤ 0.10**, the one with the smallest median committed-at time. If no
+sweep value clears 0.10, the family has **no operating point** and that
+is the reported result, not a relaxed ceiling.
+
+### 2. Two facts verified before predicting, so they are not dressed up as findings
+
+Read from `src/musical_perception/types.py` this session, before any
+scoring code existed:
+
+1. **`counts` has no pipeline-computed confidence.** `PhraseStructure`
+   carries `counts` and `sides` and nothing else. F2 therefore **cannot
+   be scored for `counts` at all** — it is an abstention by construction,
+   not a negative result. F1 still scores it.
+2. **Four of the six committed fields share one number.** `meter`,
+   `grouping`, `division` and `tempo_bpm` are all derived from
+   `NormalizedTempo`, whose single `confidence` is the posterior mass of
+   the committed ±8% tempo neighbourhood (ADR-017). `exercise` has its
+   own confidence; the two channel fields have theirs
+   (`OnsetTempoResult.confidence`, `TempoResult.confidence`).
+
+To keep the artifact honest about (2), the re-run records **four
+confidence streams** (`exercise`, `normalized_tempo`, `onset_tempo`,
+`marker_tempo`) rather than eight, with the field→stream mapping written
+into the payload. That is a smaller file and a truer description of what
+the pipeline actually knows.
+
+### 3. Pre-registered predictions (scored honestly in the RESULTS entry)
+
+- **P1 — reproduction.** The additive re-run reproduces every previously
+  published `final`, `convergence`, `norm`, `changes`, `n_changes` and
+  `identity_ok` value **exactly**, on all 52 clips × 2 conditions. Any
+  single difference fails the goal and is reported as a failure, not
+  explained away.
+- **P2 — F2 cannot discriminate the metric fields.** For any θ, the
+  commit prefix for `meter`, `grouping`, `division` and `tempo_bpm` is
+  **identical**, because they read one number. Confidence-thresholding
+  is therefore a *metric-block* stopping rule, not a per-field one.
+- **P3 — F1 at small k is badly premature on tempo.** At k = 3 on the
+  verified slice, condition granted, premature-commit rate for
+  `tempo_bpm` is **> 0.30**. (W13(b): median 5 moves per clip; a
+  three-point plateau mid-clip is common.)
+- **P4 — no stopping rule on this evidence beats the human curve.** At
+  the ≤ 0.10 ceiling, F1's best operating point for `tempo_bpm` commits
+  **later than 0.32 of span** — i.e. later than the owner's 9–12s on a
+  37.8s clip. Stated sharply so it can fail sharply.
+- **P5 — F2 is worse than F1 at matched premature rate on tempo.**
+  Either no θ clears the 0.10 ceiling, or the θ that does commits later
+  than F1's best k. Reason: `normalized_tempo.confidence` is posterior
+  mass, and the blessed tier-1 **ECE is 0.1815** — a number that is not
+  calibrated as an accuracy signal is unlikely to be calibrated as a
+  stopping signal.
+- **P6 — `exercise` is degenerate in condition granted.** Its
+  commit time is 0.0 for a large majority of clips under both families,
+  because the frozen trace grants Gemini's whole-clip answer at t=0.
+  Reported, then excluded from every claim; condition **withheld** is
+  the only honest read of that field.
+- **P7 — the provisional slice does not change the verdict.** The
+  ordering of families and the sign of P4 hold on the 22 barre1 rows as
+  well as the 30 verified ones, though the absolute numbers differ.
+
+### 4. What this cannot establish
+
+Prefix replay truncates *timed evidence* only; the trace holds exactly
+one whole-clip Gemini answer, so condition granted's times are a **lower
+bound** on true time-to-commitment (W13(b)'s standing caveat, unchanged).
+A stopping rule scored offline over frozen traces is not a streaming
+implementation and makes no claim about one. Nothing here is wired into
+any pipeline path (Standing Lesson 9: the replay path before the
+channel), and nothing here gates any eval outcome.
+
+### 5. Constraints for this increment
+
+Branch `agent/marathon`. No file under `evals/cases/`, `evals/traces/`
+or `evals/baseline.json` created or modified; no scorer/harness code
+touched; **not** an EVAL-CHANGE. No `evals bless`, no `--record-traces`,
+no live model call. The Ballet Barre 1 media directory is not
+enumerated; A5-30 redaction applies (clip ids and numbers only, never
+transcript text naming steps).
