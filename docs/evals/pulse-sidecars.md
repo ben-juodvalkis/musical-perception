@@ -29,6 +29,9 @@ channel nobody iterates on.
 }
 ```
 
+`media` is whatever the trace itself pins — a repo path as above, or an
+opaque off-repo reference such as `offrepo:barre1-B-d` (see W11-b below).
+
 `events` are `precision/pulse.acoustic_pulse_events` times in seconds,
 rounded to 0.1 ms — voiced-gated peakRate events filtered to syllable
 nuclei. `params` freezes the extractor constants that produced them, so
@@ -49,6 +52,49 @@ hash. That is enforced in code, not by hand:
   trace's. This is offline and needs no media, so every consumer gets
   the check for free. A mismatch raises `SidecarError`: which of the two
   files is the right one is not something this layer may guess.
+
+## The media reference is the trace's, never the recorder's (W11-b)
+
+A sidecar records **the reference its trace already records** — the
+`media` value from `meta.json`, copied verbatim. It is never the path
+the recorder was handed. Checksum equality already proves the two are
+the same bytes, so copying loses nothing, and it buys a hard property:
+*a sidecar can never name a file its trace did not already name.*
+
+This matters for the Ballet Barre 1 batch. That batch is split 8 DEV /
+4 held-out **at the exercise level**, and DEV and held-out media share
+one directory on the owner's machine. A sidecar naming the 8 DEV
+exercises names the held-out 4 by complement — the exact leak the
+charter's enumeration ban exists to prevent. Those traces pin
+`"media": "offrepo:<case-id>"`, frozen at ingestion, so the sidecars
+inherit an opaque reference for free.
+
+Verified before the change: all 30 pre-existing sidecars already carried
+exactly their trace's string, so making the copy explicit was
+byte-identical on the whole corpus.
+
+## Finding off-repo media: `--media-root`
+
+```bash
+python -m musical_perception.evals record-pulse --media-root "video/youtube/Ballet Barre 1"
+#   media root: 22/22 off-repo clips matched by checksum (filenames withheld)
+```
+
+For clips whose case file pins no media, `--media-root` searches a
+directory **by content**: every regular file under it is hashed, and a
+file whose digest matches no trace's committed `media_sha256` is
+discarded on the spot — never returned, stored, logged, or placed in an
+error message. Listing that directory is forbidden and content
+addressing is the only lookup that cannot leak, because it never has to
+say what it rejected.
+
+Two deliberate consequences:
+
+- **While a media root is in use, failures are reported by exception
+  type only.** An ffmpeg error embeds its command line, and the command
+  line is a filename. The diagnostic is withheld rather than redacted: a
+  redaction that misses once is worse than no diagnostic.
+- The summary reports **counts**, never ids-against-names.
 
 ## Recording
 

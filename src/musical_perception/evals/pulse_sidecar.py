@@ -59,6 +59,52 @@ def _trace_media_sha(trace_dir: Path) -> str | None:
     return meta.get("media_sha256")
 
 
+def trace_media_ref(trace_dir: Path) -> str | None:
+    """The reference the trace itself uses for its media (W11-b).
+
+    May be a repo path (`video/youtube/Frappe.mov`) or an opaque
+    off-repo reference (`offrepo:barre1-A-s`). Either way it is already
+    committed, so a sidecar that copies it names nothing new.
+    """
+    meta = json.loads((Path(trace_dir) / "meta.json").read_text())
+    return meta.get("media")
+
+
+def resolve_media_by_checksum(
+    media_root: Path, wanted: dict[str, str]
+) -> dict[str, Path]:
+    """Find media by content, never by name (W11-b).
+
+    `wanted` maps a trace's pinned `media_sha256` to the id it belongs
+    to; the return maps those ids to the files that hash to them.
+
+    Every regular file under `media_root` is hashed and a file whose
+    digest is not wanted is **discarded on the spot** — its path is
+    never returned, stored, logged, or put in an exception message. That
+    is the entire point. The Barre-1 batch is split at the exercise
+    level with DEV and held-out material sharing one directory, so
+    listing that directory names the held-out exercises by complement
+    (charter: "Containment is not agent-auditable — the only available
+    audit is itself the leak"). Content-addressed lookup is the one form
+    of search that cannot leak, because it never has to say what it
+    rejected.
+    """
+    from musical_perception.evals.traces import _sha256_file
+
+    found: dict[str, Path] = {}
+    for path in sorted(Path(media_root).rglob("*")):
+        if not path.is_file():
+            continue
+        try:
+            digest = _sha256_file(path)
+        except OSError:
+            continue                    # unreadable; say nothing about it
+        clip_id = wanted.get(digest)
+        if clip_id is not None and clip_id not in found:
+            found[clip_id] = path
+    return found
+
+
 def load_pulse_sidecar(trace_dir: Path) -> PulseSidecar | None:
     """The trace's pulse sidecar, or None when it has none.
 
@@ -145,7 +191,12 @@ def record_pulse_sidecar(
     payload = {
         "sidecar_format": SIDECAR_FORMAT,
         "extractor": EXTRACTOR,
-        "media": str(media_path),
+        # The trace's own reference, not the path we were handed (W11-b).
+        # Checksum equality already proves the two are the same bytes, so
+        # copying the committed reference loses nothing and guarantees a
+        # sidecar can never name a file its trace did not already name.
+        # For the Barre-1 traces that reference is `offrepo:<case-id>`.
+        "media": trace_media_ref(trace_dir) or str(media_path),
         "media_sha256": media_sha,
         "recorded_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "git_sha": _git_sha(),

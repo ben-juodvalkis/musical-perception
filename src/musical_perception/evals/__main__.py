@@ -3,6 +3,7 @@ Eval CLI:
 
     python -m musical_perception.evals run [--suite tier0,tier1,stage1]
     python -m musical_perception.evals record-pulse [--only ID ...] [--force]
+                                                    [--media-root DIR]
     python -m musical_perception.evals bless [--run PATH]
     python -m musical_perception.evals live-check --case ID [--runs 3]
 """
@@ -165,11 +166,20 @@ def _cmd_record_pulse(args) -> int:
     Add-only, per the sidecar carve-out: a clip whose media is absent or
     whose checksum disagrees with the trace is SKIPPED and named, never
     recorded from whatever audio happens to be on the runner.
+
+    `--media-root` (W11-b) covers the clips whose case file pins no
+    media because their media is off-repo: the directory is searched by
+    **content**, matching each trace's committed `media_sha256`, and no
+    filename from it is ever printed. While a media root is in use,
+    failures are reported by exception type only — an ffmpeg error
+    embeds its command line, and the command line is a filename.
     """
     from musical_perception.evals.cases import load_cases
     from musical_perception.evals.pulse_sidecar import (
         SidecarError,
+        _trace_media_sha,
         record_pulse_sidecar,
+        resolve_media_by_checksum,
         sidecar_path,
     )
 
@@ -183,6 +193,19 @@ def _cmd_record_pulse(args) -> int:
             return 2
         cases = [c for c in cases if c.id in wanted]
 
+    resolved: dict[str, Path] = {}
+    if args.media_root:
+        wanted = {}
+        for case in cases:
+            if case.media:
+                continue            # the case names its own media already
+            sha = _trace_media_sha(root / case.trace)
+            if sha:
+                wanted[sha] = case.id
+        resolved = resolve_media_by_checksum(Path(args.media_root), wanted)
+        print(f"  media root: {len(resolved)}/{len(wanted)} off-repo clips "
+              f"matched by checksum (filenames withheld)")
+
     written, skipped, failed = [], [], []
     for case in cases:
         trace_dir = root / case.trace
@@ -190,15 +213,26 @@ def _cmd_record_pulse(args) -> int:
             skipped.append(case.id)
             print(f"  exists   {case.id} (--force to re-record)")
             continue
-        if not case.media:
+        media = Path(case.media) if case.media else resolved.get(case.id)
+        opaque = media is not None and not case.media
+        if media is None:
             failed.append(f"{case.id}: case pins no media")
             print(f"  SKIP     {case.id}: case pins no media")
             continue
         try:
-            sidecar = record_pulse_sidecar(trace_dir, Path(case.media), force=args.force)
+            sidecar = record_pulse_sidecar(trace_dir, media, force=args.force)
         except SidecarError as e:
-            failed.append(str(e))
-            print(f"  SKIP     {e}")
+            # Withheld, not redacted: a redaction that misses once is
+            # worse than no diagnostic (charter rule 7).
+            detail = f"{type(e).__name__} (detail withheld — may name media)" if opaque else str(e)
+            failed.append(f"{case.id}: {detail}" if opaque else str(e))
+            print(f"  SKIP     {case.id}: {detail}" if opaque else f"  SKIP     {e}")
+            continue
+        except Exception as e:
+            if not opaque:
+                raise
+            failed.append(f"{case.id}: {type(e).__name__} (detail withheld — may name media)")
+            print(f"  SKIP     {case.id}: {type(e).__name__} (detail withheld — may name media)")
             continue
         written.append(case.id)
         print(f"  recorded {case.id}: {sidecar.n_events} events")
@@ -262,6 +296,11 @@ def main() -> int:
     )
     p_pulse.add_argument("--only", nargs="*", default=None, help="case ids")
     p_pulse.add_argument("--force", action="store_true", help="re-record existing")
+    p_pulse.add_argument(
+        "--media-root", default=None,
+        help="directory searched BY CHECKSUM for clips whose case pins no "
+             "media; no filename from it is ever printed",
+    )
     p_pulse.set_defaults(fn=_cmd_record_pulse)
 
     p_bless = sub.add_parser("bless", help="promote a run to the baseline")
