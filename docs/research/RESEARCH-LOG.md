@@ -8769,3 +8769,164 @@ alone. **If tier1 ECE does not improve, the finding is reported as
 negative and the change is not proposed for blessing.** No `bless` will
 be run under any outcome — that is the owner's act.
 
+
+## 2026-09-01 · rung M / W14-c (the confidence-calibration defect) · agent/w14c-confidence-calibration · local (owner-attended) — RESULTS
+
+**Status: PROPOSED — increment complete, awaiting owner review. No
+`bless` was run.** Pipeline change (`src/` touched), EVAL-NEUTRAL in
+outcomes. Artifacts: the code change, plus
+`docs/research/w13b-prefix-convergence-w14c.{json,md}` and
+`docs/research/w14-stopping-rule-w14c.{json,md}` — the W13(b) and W14
+measurements re-run under the fixed pipeline, written to **new files so
+that W14's own artifacts, still awaiting review, are untouched**.
+
+### Headline
+
+**The defect is real, the fix works, and the benchmark cannot see it.**
+Confidence now rises with evidence instead of falling: median at the
+first prefix **1.000 → 0.410** with the full-clip median unchanged at
+0.780; clips at ≥0.90 on the first prefix **29/45 → 0/45**; the CV-clamp
+dead floor **16/45 → 0/45**. But **tier1 ECE did not move at all**
+(0.1815 → 0.1815), because at full-clip length the arbitration arm that
+publishes the CV-derived number **never fires on this corpus** — so the
+pre-registered gate was measuring something the change cannot reach.
+
+### Scorecard against the pre-registration
+
+| | prediction | outcome |
+|---|---|---|
+| **P1** | zero outcome changes | **HELD** — `no outcome changes vs baseline` on `tier0,tier1,stage1,stage1-peakrate`; every field's (correct, wrong, abstained) triple identical; and all **104** prefix clip-conditions report `identity_ok` |
+| **P2** | tier1 ECE improves from 0.1815 | **FAILED** — 0.1815 → 0.1815, exactly flat. **0 of 63** confidence-bearing tier1 rows changed value |
+| **P3** | tier0 ECE may worsen | **HELD** (the stated risk landed) — 0.0724 → 0.0752, +0.0028, from **4 rows on 2 synthetic cases** |
+| **P4** | `calculate_tempo([0,0.5])` no longer 1.0 | **HELD** — 0.41 |
+| **P5** | no dead-floor 0.00 rows | **HELD** — 16/45 → 0/45 |
+| **P6** | `regularity` reproduces the old `confidence` exactly | **HELD** — 0 mismatches over 2,000 randomized interval sets |
+
+### Why P2 failed, which is the finding
+
+Instrumenting `interpret_meter`'s four arbitration arms across all of
+tier1 at full clip length:
+
+| arm | publishes | count |
+|---|---|---|
+| 1 · marker strong | the CV-derived number | **0** |
+| 2 · onset ≥ 0.3 | the onset number (untouched) | **19** |
+| 3 · marker fallthrough | the CV-derived number | **0** |
+| 4 · onset fallthrough | the onset number (untouched) | 0 |
+| — no usable signal | — | 7 |
+
+26 of 52 tier1 cases reach `interpret_meter` at all, and **every one of
+them publishes from the onset path**, which this increment does not
+touch and which W14's data already showed to be well-behaved
+(0.740 → 0.770). The marker arms fire at *short prefixes*, when onset
+evidence is still too thin to clear its own 0.3 gate. That is exactly
+where W14 found the 29/45 relays.
+
+**So the defect is a prefix-time phenomenon, and the harness scores whole
+clips only.** No ECE number computed over full clips can move in response
+to this fix — not because the fix is inert, but because the benchmark has
+no aperture on the regime where the defect lives. **This is a structural
+blind spot in the eval harness, and it is the most useful thing this
+session found.**
+
+### The measurement that can see it: W14's F2, re-run
+
+F2 (commit when confidence ≥ θ) had **no operating point on any field**
+in W14. Under the fixed confidence, at the same pre-registered ≤0.10
+premature ceiling, condition granted, verified slice:
+
+| field | F2 before | F2 after |
+|---|---|---|
+| `meter` | **none** | **θ=0.45, premature 0.000, commits at 0.235 of span**, no-commit 0.033 |
+| `grouping` | **none** | **θ=0.45, premature 0.000, commits at 0.235 of span**, no-commit 0.000 |
+| `division` | **none** | θ=0.85, premature 0.059, at 0.487 of span, no-commit 0.414 |
+| `marker_bpm` | **none** | θ=0.85, premature 0.000, at 0.357 of span, **no-commit 0.769** |
+| `tempo_bpm` | none | **still none** |
+| `onset_bpm` | none | **still none** |
+| `exercise` | θ=0.1 | θ=0.1 (unchanged) |
+
+Read honestly: **`meter` and `grouping` are the real wins** — zero
+premature commits, firing on essentially every clip, at under a quarter
+of the span. `division` and `marker_bpm` qualify but are weak
+(`marker_bpm` declines to commit on 77% of clips). **`tempo_bpm` still
+has no stopping rule**, so W14's central negative stands: this fix did
+not solve tempo. `onset_bpm` being unchanged is the control — the onset
+path was not touched, and its numbers did not move.
+
+F1 (k-stable) rows are identical before and after, as they must be: F1
+never reads confidence.
+
+### The gate, and the honest problem with it
+
+The pre-registration said this increment **"stands or falls on ECE
+alone"** and that a flat ECE means *report negative, do not propose for
+blessing*. tier1 ECE was flat. **By the gate as written, this increment
+fails, and it is reported as failing.**
+
+That gate was mis-specified, and the mis-specification is mine: I chose a
+whole-clip metric to score a prefix-time defect, and the arm-count table
+above shows it could not have moved. The W14 F2 re-run is the evidence
+that actually bears on the change, but it was **not pre-registered as the
+gate**, and promoting it to the gate after seeing it favorable is exactly
+the move ADR-015 discipline exists to prevent. So it is reported as
+supporting evidence and the pre-registered verdict stands as written.
+
+**This is the owner's call, and it is a real one**, because the change is
+not neutral: `NormalizedTempo.confidence` is a published contract field,
+and any consumer reading it at prefix time gets different numbers.
+
+### Regressions, classified
+
+- **tier0 ECE +0.0028** — `t0-4-4-jitter-duple` 0.94 → 1.00 (correct;
+  helps) and `t0-4-4-stress` 0.63 → 0.50 (correct; hurts). The second is
+  a clip whose evidence is genuinely thin; the answer happening to be
+  right does not make the evidence strong, so the lower number is the
+  honest one. **Classified genuine-trade**, at a magnitude two orders
+  below tier0's Wilson width.
+- No other regression of any kind.
+
+### Collateral disclosed rather than smoothed over
+
+1. I **overwrote W14's `w13b-prefix-convergence.*` and
+   `w14-stopping-rule.*` artifacts** on first re-run, before realizing an
+   unreviewed increment's artifacts are not mine to regenerate. They were
+   restored with `git checkout` and are byte-identical to W14's; the
+   re-run now writes to `*-w14c.*` via a new `MP_ARTIFACT_SUFFIX`
+   environment override that defaults to empty.
+2. `scripts/w14-stopping-rule.py` hard-coded the sentence *"the
+   confidence runs backwards"* as prose. Under the fixed pipeline the
+   script's own table contradicted its own paragraph. The section is now
+   **data-driven**: it computes whether first-prefix confidence exceeds
+   full-clip confidence and emits W14's original heading and paragraph
+   verbatim when it does, so **W14's artifact still reproduces exactly**,
+   and the corrected paragraph when it does not.
+3. `tests/test_tempo.py::_gemini_tempo` passed the 1-CV number as
+   `confidence`; it now also sets `regularity` from the same argument, so
+   every arbitration assertion keeps its original meaning. One test
+   (`test_arbitration_strong_markers_beat_syllable_onset`) failed before
+   that fixture change — the correct alarm, reported rather than hidden.
+
+### Proofs run, in this transcript
+
+- `pytest` — **359 passed, 3 skipped**
+- `evals run --suite tier0,tier1,stage1,stage1-peakrate` → **`no outcome
+  changes vs baseline`**
+- `git diff --name-status <base> --diff-filter=MD -- evals/` → **empty**;
+  `evals/baseline.json` untouched; no file under `evals/` added or
+  modified; no scorer/harness code touched
+- `bless` never run; no live model call; no API key used (both scripts
+  are offline over frozen traces)
+
+### What this leaves on the queue
+
+- **W14-d (proposed):** the harness scores whole clips only, so no suite
+  can currently see a prefix-time regression. A prefix-time calibration
+  slice would be an **EVAL-CHANGE** increment and must not be bundled
+  with a pipeline change (charter rule 2).
+- **`tempo_bpm` still has no stopping rule.** The remaining obstacle is
+  metric-level ambiguity, not period precision — a `NormalizedTempo`
+  confidence that folds in level ambiguity is the posterior path's
+  window-mass number, which suggests routing more clips onto it rather
+  than improving the fallback further.
+- **W14-b** (trajectory-shape family) is untouched and still parked.
+
