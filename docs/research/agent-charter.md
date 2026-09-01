@@ -763,7 +763,9 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   workstream, it neither counts toward nor resets W0's 7-day clock, and
   it commissions nothing — an owner's "run it" in conversation is
   willingness, ratified only through batch review or W0. Started by the
-  owner from the Routines list; no calendar. Protocol:
+  owner from the Routines list; no calendar. LR sessions never edit this
+  charter; this paragraph was written by the bootstrap session that
+  designed the protocol with the owner, the one exception. Protocol:
   [lateral-review-protocol.md](lateral-review-protocol.md).
 - **Per-session condition** (what the standing contract resolves to):
   one complete increment on one workstream, committed on

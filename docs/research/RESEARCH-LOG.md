@@ -9243,8 +9243,7 @@ own preconditions.** `bless` had not been run since the corpus gained
 `git_sha` and a `git ls-tree`, both of which this session ran only
 *after* the tripwire fired.
 
-
-## 2026-09-01 · rung M · claude/fable-model-research-n8kgkm · cloud (owner-attended: the lateral review commissioned by the owner)
+## 2026-09-01 · rung M · (owner conversation: the lateral review commissioned) · cloud (owner-attended)
 
 Attempted: No pipeline, eval, grid, case, trace, or scorer file touched.
 The owner asked for a regular, high-effort, top-tier-model session that
