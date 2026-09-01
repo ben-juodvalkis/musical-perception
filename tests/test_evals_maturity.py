@@ -123,7 +123,7 @@ def test_the_gating_corpus_is_exactly_the_blessed_set():
         json.loads((_REPO / "evals" / "baseline.json").read_text())
         ["suites"]["tier1"]["outcomes"]
     )
-    assert len(blessed) == 56
+    assert len(blessed) == 52
     assert verified == blessed
 
 
