@@ -9,7 +9,6 @@ Eval CLI:
 
 import argparse
 import json
-import shutil
 import sys
 from pathlib import Path
 
@@ -45,16 +44,10 @@ def _print_stage1(suite: str, summary: dict) -> None:
         print(f"    ERROR {err}")
 
 
-def suite_provisional_ids(suite_block: dict | None) -> set[str]:
-    """Case ids a run (or the blessed baseline) recorded as provisional.
-
-    The run artifact carries its own list, so the baseline is
-    self-describing: comparing two runs never needs to re-read the case
-    files, and a row that changed maturity in either direction is excluded
-    by taking the union of both sides (charter W1.5).
-    """
-    prov = ((suite_block or {}).get("summary") or {}).get("provisional")
-    return set((prov or {}).get("case_ids") or ())
+# Defined in runner.py beside the pinning it guards (W1.6); re-exported
+# here because the CLI and its tests have imported it from this module
+# since W1.5.
+from musical_perception.evals.runner import suite_provisional_ids  # noqa: E402
 
 
 def _print_provisional(suite: str, summary: dict, family_cell, tempo_metrics_line) -> None:
@@ -143,18 +136,31 @@ def _latest_run(runs_dir: Path) -> Path | None:
 
 
 def _cmd_bless(args) -> int:
+    """Promote a run to the baseline.
+
+    The pinned outcomes map is verified-only (W1.6): provisional rows are
+    reported in the artifact's summary and case list but never pinned, so
+    the gating set cannot grow without the owner verifying a case.
+    """
     from musical_perception.evals.report import render_markdown_baseline
+    from musical_perception.evals.runner import blessed_report
 
     root = Path(args.evals_root)
     run_path = Path(args.run) if args.run else _latest_run(root / "runs")
     if run_path is None or not run_path.is_file():
         print("no run to bless — do `evals run` first", file=sys.stderr)
         return 2
-    shutil.copyfile(run_path, root / BASELINE_NAME)
     report = json.loads(run_path.read_text())
+    pinned = blessed_report(report)
+    (root / BASELINE_NAME).write_text(json.dumps(pinned, indent=2) + "\n")
     BASELINE_MD.parent.mkdir(parents=True, exist_ok=True)
     BASELINE_MD.write_text(render_markdown_baseline(report))
     print(f"blessed {run_path.name} -> {root / BASELINE_NAME}")
+    for suite, block in pinned["suites"].items():
+        withheld = block.get("outcomes_withheld_provisional") or []
+        print(f"  {suite}: pinned {len(block.get('outcomes') or {})} outcomes"
+              + (f", withheld {len(withheld)} provisional (reported, never gating)"
+                 if withheld else ""))
     print(f"regenerated {BASELINE_MD}")
     return 0
 

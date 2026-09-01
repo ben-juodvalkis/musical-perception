@@ -329,3 +329,141 @@ def test_stage1_row_is_provisional_when_the_case_is(tmp_path):
     assert out["clips"][0]["provisional"] is True
     assert out["aggregate_verified"] is None
     assert out["aggregate_provisional"]["n_clips"] == 1
+
+
+# --- W1.6: what a bless is allowed to pin ------------------------------
+
+def _run_report(*results) -> dict:
+    """A run artifact of the shape `evals run` writes."""
+    return {
+        "schema": 1, "created_at": "2026-09-01T00:00:00+00:00",
+        "git_sha": "abc1234", "package_version": "0",
+        "suites": {"tier1": {
+            "summary": aggregate(list(results)),
+            "outcomes": outcomes_map(list(results)),
+            "cases": [{"case_id": r.case_id} for r in results],
+        }},
+    }
+
+
+def test_bless_pins_only_the_verified_rows():
+    """The defect of 2026-09-01, in one assertion: a run scoring 1 verified
+    and 2 provisional cases must bless a gating set of exactly 1."""
+    from musical_perception.evals.runner import blessed_report
+
+    report = _run_report(
+        _result("v1", provisional=False),
+        _result("p1", provisional=True, outcome=WRONG),
+        _result("p2", provisional=True, outcome=WRONG),
+    )
+    assert set(report["suites"]["tier1"]["outcomes"]) == {"v1", "p1", "p2"}
+    pinned = blessed_report(report)
+    assert set(pinned["suites"]["tier1"]["outcomes"]) == {"v1"}
+
+
+def test_bless_still_reports_the_rows_it_refuses_to_pin():
+    """Provisional stops being *pinned*; it does not stop being *reported*."""
+    from musical_perception.evals.runner import blessed_report
+
+    report = _run_report(
+        _result("v1", provisional=False),
+        _result("p1", provisional=True, outcome=WRONG),
+    )
+    block = blessed_report(report)["suites"]["tier1"]
+    assert block["summary"]["provisional"]["case_ids"] == ["p1"]
+    assert block["cases"] == report["suites"]["tier1"]["cases"]
+    assert block["outcomes_withheld_provisional"] == ["p1"]
+    assert "provisional slice" in render_markdown_baseline(report)
+
+
+def test_bless_of_a_verified_only_run_is_unchanged():
+    """Every baseline blessed before the barre-1 ingestion stays exactly
+    what it was — no withheld key, no reshaped outcomes."""
+    from musical_perception.evals.runner import blessed_report
+
+    report = _run_report(
+        _result("v1", provisional=False), _result("v2", provisional=False)
+    )
+    assert blessed_report(report) == report
+
+
+def test_bless_passes_through_a_suite_that_pins_nothing():
+    """stage1's summary has no `provisional` key and its outcomes map is
+    empty — the filter must not invent structure there."""
+    from musical_perception.evals.runner import blessed_report
+
+    report = {"suites": {"stage1": {
+        "summary": {"clips": [], "pulse_source": "whisper"},
+        "outcomes": {}, "cases": [],
+    }}}
+    assert blessed_report(report) == report
+
+
+def test_pinning_and_comparison_are_two_guarantees_not_one():
+    """W1.6's stated ruling, tested: the pinned set is what bounds the
+    gating corpus, and the comparison-time skip is a separate runtime
+    filter. Gating *decisions* are identical either way — which is why the
+    leak was invisible — but only the pinned set stops a provisional row
+    from ever being in the gate at all."""
+    from musical_perception.evals.runner import blessed_report
+
+    blessed_run = _run_report(
+        _result("v1", provisional=False), _result("p1", provisional=True)
+    )
+    leaky = blessed_run["suites"]["tier1"]["outcomes"]              # pre-W1.6
+    correct = blessed_report(blessed_run)["suites"]["tier1"]["outcomes"]
+
+    # a later run where BOTH a verified and a provisional row moved
+    later = _run_report(
+        _result("v1", provisional=False, outcome=WRONG),
+        _result("p1", provisional=True, outcome=WRONG),
+    )
+    current = later["suites"]["tier1"]["outcomes"]
+    excluded = {"p1"}
+    assert (compare_outcomes(current, leaky, provisional=excluded)
+            == compare_outcomes(current, correct, provisional=excluded)
+            == ["v1.tempo: correct -> wrong"])
+    # ...and the difference that matters:
+    assert "p1" in leaky and "p1" not in correct
+
+
+def test_verifying_a_case_is_a_review_event_not_a_silent_promotion():
+    """After the owner flips a row to verified, the gate fails until a
+    re-bless. That is the cost of growing the gating set, and it is the
+    point of pinning the verified set rather than the whole run."""
+    from musical_perception.evals.runner import blessed_report
+
+    pinned = blessed_report(_run_report(
+        _result("v1", provisional=False), _result("p1", provisional=True)
+    ))["suites"]["tier1"]["outcomes"]
+    # next run: the owner has verified p1, so nothing excludes it any more
+    now_verified = _run_report(
+        _result("v1", provisional=False), _result("p1", provisional=False)
+    )["suites"]["tier1"]["outcomes"]
+    assert compare_outcomes(now_verified, pinned, provisional=set()) == [
+        "p1: new case (not in baseline)"
+    ]
+
+
+def test_the_bless_command_writes_a_verified_only_baseline(tmp_path, monkeypatch):
+    """End to end through the CLI, since the defect lived in the command
+    and not in any function the unit tests could reach."""
+    import argparse
+
+    from musical_perception.evals import __main__ as cli
+
+    (tmp_path / "runs").mkdir()
+    report = _run_report(
+        _result("v1", provisional=False),
+        _result("p1", provisional=True, outcome=WRONG),
+    )
+    (tmp_path / "runs" / "run-2026-09-01.json").write_text(json.dumps(report))
+    monkeypatch.setattr(cli, "BASELINE_MD", tmp_path / "baseline.md")
+
+    rc = cli._cmd_bless(argparse.Namespace(evals_root=str(tmp_path), run=None))
+    assert rc == 0
+
+    written = json.loads((tmp_path / "baseline.json").read_text())
+    assert set(written["suites"]["tier1"]["outcomes"]) == {"v1"}
+    assert written["suites"]["tier1"]["outcomes_withheld_provisional"] == ["p1"]
+    assert "provisional slice" in (tmp_path / "baseline.md").read_text()

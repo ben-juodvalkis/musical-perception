@@ -9315,3 +9315,89 @@ moved to `runner.py` and re-exported from `__main__` so both existing test
 imports keep working. That is a move inside this increment's own
 deliverable, not an opportunistic refactor (rule 6); if a reviewer reads
 it otherwise, the fix works identically with the accessor duplicated.
+
+## 2026-09-01 · rung M / W1.6 (the bless provisional leak) · agent/w16-bless-provisional-leak · local — RESULTS
+
+**EVAL-CHANGE. Prediction scorecard: 5/5 landed.** Blessing is unblocked.
+
+### What changed
+
+`bless` no longer copies the run artifact verbatim. It writes the run
+through a new `blessed_report()`, which drops every `maturity: provisional`
+id from each suite's pinned `outcomes` map and records what it dropped as
+`outcomes_withheld_provisional`. Provisional rows stay in `summary` (their
+own slice, own n) and in `cases`, so the published baseline still reports
+them — they stop being *pinned*, which is the only thing that ever gated.
+The CLI now prints the pinned/withheld count per suite so the owner sees
+it at bless time rather than from a red test afterwards.
+
+`suite_provisional_ids` moved from `__main__.py` to `runner.py`, beside
+the pinning it guards, and is re-exported from `__main__` (both existing
+import sites unchanged).
+
+### The ruling the charter asked for
+
+**The pinned set is the guarantee of record; the comparison-time skip is
+a separate runtime filter.** Written into `blessed_report`'s docstring and
+`docs/evals/case-maturity.md` §"Which exclusion is the guarantee (W1.6)"
+rather than left implied by two overlapping defenses. They are not
+redundant — one bounds what the baseline may *claim*, the other bounds one
+*comparison*. Until today only the second existed, and its correctness is
+precisely what hid the absence of the first.
+
+### Scorecard
+
+| # | Prediction | Result |
+|---|---|---|
+| P1 | fixed bless pins exactly 30, == the verified id set | **LANDED.** 52 → 30; `pinned == verified` True; 22 withheld |
+| P2 | gating decisions identical old baseline vs new | **LANDED.** Both `no changes` on the real corpus; equal on the mutated synthetic run where a verified and a provisional row both flip |
+| P3 | nothing else moves | **LANDED.** tier0 25→25, stage1 0→0; markdown still renders the provisional slice; summary still lists 22, `cases` still lists 52 |
+| P4 | verifying a case is a review event, not a silent promotion | **LANDED.** Next run reports `new case (not in baseline)` and the gate fails until a re-bless — asserted in a test, kept deliberately |
+| P5 | constraints | **LANDED.** `git diff --stat main` = `docs/`, `src/musical_perception/evals/`, `tests/` only; zero files under `evals/`; `evals/baseline.json` byte-identical to main |
+
+### Proof, executed
+
+The tripwire's own two assertions, run against a scratch-blessed baseline:
+
+    TRIPWIRE test_the_gating_corpus_is_exactly_the_blessed_thirty: PASS
+      (on 2026-09-01 the same two assertions gave: AssertionError: assert 52 == 30)
+
+Bless output (scratch root — **the repo baseline was never written to**):
+
+    tier0: pinned 25 outcomes
+    tier1: pinned 30 outcomes, withheld 22 provisional (reported, never gating)
+    stage1: pinned 0 outcomes
+
+`pytest`: **366 passed, 3 skipped** (359 before; +7 new W1.6 tests).
+`evals run --suite tier0,tier1,stage1`: **no outcome changes vs baseline**.
+
+### Regressions and classifications
+
+None. No pipeline file touched; no scored outcome moved on any suite.
+
+### Lesson (durable)
+
+A guard that is never exercised is indistinguishable from a guard that
+works. W1.5 wrote both the invariant and its tripwire, but the path that
+could violate it — a bless with provisional cases in the corpus — did not
+exist until W4 landed 22 of them four days ago, so for a week the harness
+*looked* correct because the only reachable code was correct. The general
+form: when two mechanisms appear to enforce the same property, check
+whether one of them has ever run. Here the redundancy was the tell.
+
+### Status
+
+**PROPOSED.** Owner acts, in order: (1) merge; (2) `evals run --suite
+tier0,tier1,stage1`; (3) `evals bless` — it will print
+`tier1: pinned 30 outcomes, withheld 22 provisional`, and anything else is
+a stop; (4) commit `evals/baseline.json` + `docs/evals/baseline.md`. That
+carries W14-c's tier0 ECE delta (0.0724 → 0.0752), which has been waiting
+on this. The OWNER QUEUE's "DO NOT BLESS" item can then be deleted.
+
+### Backlog note parked (not taken — rule 6)
+
+`_cmd_bless` hard-codes `BASELINE_MD = docs/evals/baseline.md` at module
+scope, so `--evals-root <scratch>` writes its JSON to the scratch root and
+its markdown into the repo. This session worked around it by patching the
+attribute; a future EVAL-CHANGE should derive the markdown path from the
+evals root so a rehearsal bless is genuinely side-effect-free.
