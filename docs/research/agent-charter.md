@@ -24,14 +24,17 @@ else, in plain language, then get on with the rung.** These are acts only
 the owner can perform; they are not agent workstreams and an agent must
 never mark them done. Delete an item only when the owner says it is done.
 
-1. **Capture a new batch, and author the truth labels while recording.**
-   The highest-value item by a distance. Every one of the 30 gating cases
-   is DEV — all have been in the iteration loop since capture, so nothing
-   in the corpus can currently falsify an improvement. Use
-   `scripts/split_class_video.py` to cut a class video into per-exercise
-   clips. Write down tempo, meter and counts *at capture time*, while the
-   answer is still known from having played it — that is the step the
-   barre-1 batch skipped, and why 19 of its 22 cases carry `expect: {}`.
+1. **DONE 2026-09-01 in an attended session — Ballet Barre 6 (W4-b).**
+   A whole class cut into 35 clips and labelled by the owner's ear:
+   26 provisional cases (9 demo + 17 take), tempo/meter/counts on every
+   one. *The owner reserved a second class off-repo before any ingestion,
+   which discharges item (2) for this batch.* **Standing need is
+   unchanged:** the 30 *gating* cases are still all DEV, so the corpus
+   still cannot falsify an improvement until barre-6 rows are verified
+   (see the new item 4). Method that worked, for the next batch:
+   `scripts/split_class_video.py`, boundaries from the teacher's spoken
+   cues rather than audio energy, and labels authored *while analysing*
+   rather than back-filled.
 2. **Assign SEALED before the first trace is frozen.** At least one whole
    exercise — better, one whole recording session or teacher — held on
    the main machine, off-repo, never on the Air, never named in this
@@ -41,25 +44,34 @@ never mark them done. Delete an item only when the owner says it is done.
 3. **Verify the 2 provisional beat grids** among the 30 existing ones
    (28 are already owner-verified). Ten minutes, pure gain, no
    prerequisites.
+4. **Promote the barre-6 rows to `verified` (or correct them first).**
+   The binding constraint on the whole benchmark: 48 of 78 cases are
+   provisional and gate nothing. The owner supplied every barre-6 number
+   and read back the tempo, meter and counts columns; **not** yet read
+   back are the marking-span / time-to-know rows
+   (`docs/evals/barre6-marking-spans.md`) and the five tags this session
+   invented — `count_unit`, `count_level`, `clip_role`, `pianist_take`,
+   `played_bpm`. Two field errors were caught by that read-back and none
+   by any test, so it is the verification act, not a formality.
+5. **Tap the 26 provisional barre-6 beat grids.** peakRate pre-annotated
+   them at 0.6x-2.4x the expected beat count (it catches subdivisions and
+   speech onsets), so they need real correction before `stage1` means
+   anything on this class.
 
-**BLESSING: the fix is written and waiting on a merge.** On 2026-09-01
-the owner ran `evals bless` and it pinned all 52 tier1 cases — including
-the 22 `provisional` ones, which the charter says must gate nothing.
-W1.5's tripwire caught it and the bless was reverted, uncommitted; the
-baseline still stands at `310a5f8`, and the tier0 ECE delta from W14-c
-(0.0724 → 0.0752) is **not yet carried**. **W1.6 is COMPLETE (PROPOSED)
-on `agent/w16-bless-provisional-leak`** — `bless` now pins only
-owner-verified rows. Until that branch is merged, still do not bless;
-after it is merged, a bless must print
-`tier1: pinned 30 outcomes, withheld 22 provisional` and anything else is
-a stop. A session that finds the owner reaching for `bless` should say
-this out loud.
+**BLESSING IS UNBLOCKED (W1.6 merged to main 2026-09-01).** `bless` now
+pins only owner-verified rows. A bless must print
+`tier1: pinned 30 outcomes, withheld 48 provisional` — **anything other
+than 30 pinned is a stop.** The tier0 ECE delta from W14-c
+(0.0724 → 0.0752) is still uncarried and is what the next bless is for.
 
-**Agent-side, already queued and needing nothing from the owner:**
-**W11-b is ranked 1** and will freeze pulse sidecars for the 22 barre-1
-DEV clips behind an opaque media reference. It buys `stage1` coverage
-only — it cannot buy tempo/meter/counts gating, because those cases have
-no truth labels. That is what item (1) is for.
+**Agent-side:** **W11-b is still ranked 1** (opaque pulse sidecars for
+the 22 barre-1 DEV clips). **PROPOSED re-rank, owner's to rule:** barre-6
+now supersedes barre-1 as the naturalistic material — barre-1's 19
+unlabelled cases gate nothing and will not, whereas barre-6 has real
+labels — so W11-b's value has dropped relative to (a) promoting barre-6
+to verified and (b) the `structure:` schema increment
+(`docs/evals/structure-schema-proposal.md`). An agent must not act on
+this re-rank until the owner rules.
 
 ## Mission
 

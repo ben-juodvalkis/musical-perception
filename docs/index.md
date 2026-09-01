@@ -43,6 +43,9 @@ Read in order for the full argument, or jump by role below.
 
 - [Rig Capture Checklist](evals/capture-checklist.md) — the 24-clip recording program that grows the benchmark
 - [Eval Baseline](evals/baseline.md) — generated tier 0–1 numbers (`python -m musical_perception.evals run` → `bless`); the honest Gate A2 table
+- [Barre 6 structure record](evals/barre6-structure.yaml) — every clip's tempo, meter, counts and `count_unit`, with derived length checked against measured length
+- [Barre 6 marking spans](evals/barre6-marking-spans.md) — where a demo is at the tempo the teacher wants, and how long an expert needs to know it
+- [PROPOSED: a `structure:` block](evals/structure-schema-proposal.md) — the schema gap the barre-6 session exposed; owner's to rule
 - [Voice-as-Drum Literature Review](research/voice-as-drum-review.md) — what the beat-tracking / speech-rhythm / evaluation literature already knows (2026-08, companion to [ADR-016](adr/016-rhythm-core-reset.md))
 - [Agent Charter](research/agent-charter.md) · [Research Log](research/RESEARCH-LOG.md) · [Agent Environment](research/agent-environment.md) — the autonomous research loop: goal ladder, rules of engagement, ledger, and cloud setup for the ADR-016 reset
 - [Lateral Review Protocol](research/lateral-review-protocol.md) — the owner-attended, on-demand thinking session that widens the plan (W0 narrows it); memos land in `research/lateral/`
