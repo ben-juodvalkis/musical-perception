@@ -41,22 +41,29 @@ never mark them done. Delete an item only when the owner says it is done.
    repository. **The ordering is unforgiving: a split made after
    ingestion is not a split.** This costs nothing extra if it is decided
    during (1), and cannot be recovered afterwards.
-3. **Verify the 2 provisional beat grids** among the 30 existing ones
-   (28 are already owner-verified). Ten minutes, pure gain, no
-   prerequisites.
-4. **Promote the barre-6 rows to `verified` (or correct them first).**
-   The binding constraint on the whole benchmark: 48 of 78 cases are
-   provisional and gate nothing. The owner supplied every barre-6 number
-   and read back the tempo, meter and counts columns; **not** yet read
-   back are the marking-span / time-to-know rows
-   (`docs/evals/barre6-marking-spans.md`) and the five tags this session
-   invented — `count_unit`, `count_level`, `clip_role`, `pianist_take`,
-   `played_bpm`. Two field errors were caught by that read-back and none
-   by any test, so it is the verification act, not a formality.
-5. **Tap the 26 provisional barre-6 beat grids.** peakRate pre-annotated
-   them at 0.6x-2.4x the expected beat count (it catches subdivisions and
-   speech onsets), so they need real correction before `stage1` means
-   anything on this class.
+3. **RESOLVED 2026-09-01, not the way anyone expected.** The two
+   outstanding grids were attempted in an attended session and neither
+   was verifiable: `adr007-plies-demo` was **retired** with the other
+   three old video demos (its `4/4 duple` label was caught looking wrong
+   on the way out — owner taps imply a 3/4 bar), and
+   `rig-mixed-4-4-104-quantities` is **un-annotatable by design** — it is
+   the trap clip, whose numbers are quantities inside free-form phrasing,
+   so there is no tappable tactus. Its grid is marked deliberately
+   unverified; the case is unaffected and still gates on its metronome.
+4. **DONE 2026-09-01: barre-6 promoted to `verified`.** The owner read
+   back tempo, meter, counts and the phrase decomposition for all 26 rows.
+   **The corpus now has zero provisional cases** and exactly two
+   provenances: 26 rig clips in his own voice against a metronome, and
+   26 barre-6 clips from today. Everything else — barre-1 and the four old
+   video demos — is retired, each with a re-analysis recipe
+   ([barre1](barre1-reanalysis-plan.md),
+   [old video demos](old-video-demos-retired.md)).
+5. **Tap the 27 provisional beat grids** — 26 barre-6 plus the trap clip's
+   (which stays unverified). peakRate pre-annotated barre-6 at 0.6x-2.4x
+   the expected beat count, so `stage1` means nothing on this class until
+   they are corrected. **This is now the largest open owner item.**
+   Cheaper first move: tap three or four spanning the range and see how
+   far the detector is off before committing to all 26.
 
 **BLESSING IS UNBLOCKED (W1.6 merged to main 2026-09-01).** `bless` now
 pins only owner-verified rows. A bless must print
