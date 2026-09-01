@@ -79,9 +79,20 @@ class TimedMarker:
 class TempoResult:
     """Result of tempo extraction."""
     bpm: float
-    confidence: float  # 0-1, based on consistency of intervals
+    confidence: float  # 0-1; P(true beat period within the scorer's +-8%
+    #   tolerance of `bpm`), from the median interval's standard error
+    #   under a weak jitter prior. Monotone non-decreasing in evidence:
+    #   thin evidence reports LOW confidence (W14-c). Before W14-c this
+    #   field carried `regularity` below, which is maximal at one
+    #   interval — the defect W14 measured.
     beat_count: int    # number of beats detected
     intervals: list[float]  # raw intervals between beats
+    # Interval evenness, 1 - CV, clamped at 0. This is what `confidence`
+    # used to hold. It answers "are these intervals even?", not "how sure
+    # are we of the tempo" — one interval is trivially even. Kept because
+    # `interpret_meter`'s arbitration was tuned against it in the
+    # regularity sense and reads it still (W14-c).
+    regularity: float = 0.0
 
 
 @dataclass

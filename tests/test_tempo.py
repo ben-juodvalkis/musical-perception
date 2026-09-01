@@ -157,10 +157,17 @@ def _onset(bpm, confidence=0.8):
     )
 
 
-def _gemini_tempo(bpm, confidence=0.8, beat_count=8):
-    """Helper to create a TempoResult."""
+def _gemini_tempo(bpm, confidence=0.8, beat_count=8, regularity=None):
+    """Helper to create a TempoResult.
+
+    Before W14-c these tests passed the 1-CV number as `confidence`,
+    because that is what the field held and what arbitration read. That
+    number is now `regularity`, so it defaults to the value passed here
+    and every arbitration assertion keeps its original meaning.
+    """
     return TempoResult(bpm=bpm, confidence=confidence, beat_count=beat_count,
-                       intervals=[60.0 / bpm] * max(1, beat_count - 1))
+                       intervals=[60.0 / bpm] * max(1, beat_count - 1),
+                       regularity=confidence if regularity is None else regularity)
 
 
 def test_interpret_issue10_waltz():
