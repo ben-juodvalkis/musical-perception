@@ -19,8 +19,9 @@ divergent counterpart: an **owner-attended conversation** on the
 top-tier model, prepared by an unattended read of all the evidence, whose
 deliverables are **ideas tethered to evidence, each with the cheapest
 test that would kill it**, the owner's answers to questions only a dance
-musician can answer, and a distilled record of both. It proposes; it
-never commissions.
+musician can answer — asked **one at a time, each chosen in light of the
+last answer** — and a distilled record of both. It proposes; it never
+commissions.
 
 ## What it is not
 
@@ -90,10 +91,12 @@ so-what, behaviour not code. At most one screen. Contents, in order:
    anything that should worry him, stated plainly.
 2. The two or three anomalies worth his attention (from §1 of the
    Method), one or two sentences each.
-3. The **questions for him** (§6 of the Method) — three to five, each
-   answerable in a sentence, numbered so he can answer by number.
-4. One line: "Ideas are ready when you want them; answer any of the
-   questions first, or say 'ideas' to go straight there."
+3. **One question** — the opening question from the pool prepared in §6
+   of the Method, the one whose answer would most change what to ask
+   next. Not the list: the owner has asked for one question at a time,
+   with each following question shaped by his answer. Answerable in a
+   sentence.
+4. One line: "Say 'ideas' at any point to go straight to those."
 
 Ending the turn on the briefing is what notifies the owner's phone. The
 session then waits; it does not proceed on its own.
@@ -103,12 +106,24 @@ session then waits; it does not proceed on its own.
 The owner's answers are the evidence this session exists to collect.
 Conduct:
 
+- **One question per turn.** Never a numbered list of questions. Each
+  turn asks the single next question and nothing else that needs an
+  answer.
+- **The next question is chosen after the answer, not before.** The
+  prepared pool (§6 of the Method) is a starting stock, not a script.
+  After each answer, decide afresh: a follow-up that digs into what he
+  just said, a question from the pool that his answer made more
+  pointed, or one the answer made pointless and is dropped. Say in a
+  clause why this question follows from his last answer when that is
+  not obvious.
 - **Follow the answer, not the script.** A surprising answer earns a
   follow-up question before any idea is offered.
-- **Offer ideas one or two at a time**, each with its observation,
-  mechanism, cheapest kill test (data, duration, **owner hours**),
-  killing result, and cost of being wrong — in plain language, the house
-  fields kept for the record. Ask what he thinks before the next one.
+- **Offer ideas one at a time**, when his answers point at one or when
+  he asks — each with its observation, mechanism, cheapest kill test
+  (data, duration, **owner hours**), killing result, and cost of being
+  wrong — in plain language, the house fields kept for the record. Ask
+  what he thinks before the next one; his reaction to an idea is itself
+  an answer that shapes the next question.
 - **Take his corrections as rulings.** When the owner says a number, a
   label, or a premise is wrong, that is recorded as an owner finding,
   labelled as such, and the idea resting on it is dropped or amended in
@@ -133,7 +148,9 @@ finding, marked as his**, and the session's ideas are marked as proposals.
 
 1. **The memo** at `docs/research/lateral/YYYY-MM-DD.md`: the briefing as
    sent (plain language), then the conversation distilled — for each
-   question, his answer and what it changes; for each idea, the five
+   question asked, in order, his answer, what it changed, and why the
+   next question followed; the pool questions not asked, with the reason
+   (dropped as moot, or out of time); for each idea, the five
    house fields and his verdict (*run it / park it / killed by the owner
    / not discussed*); then the full §1–§7 body of the Method below,
    updated by what he said.
@@ -218,12 +235,17 @@ and what was cut.
 Anything consuming loop or owner effort that the evidence says is not
 paying, with the evidence. An empty section says "none found".
 
-### 6. Questions for the owner
+### 6. Questions for the owner — a pool, asked one at a time
 
-Three to five questions only a dance musician can answer, where the
-answer is missing evidence: introspection of the W13 kind ("when do you
-know the meter, and what told you?"), listening judgements, product
-rulings. Each answerable in a sentence. These often outvalue the ideas.
+A pool of six to ten questions only a dance musician can answer, where
+the answer is missing evidence: introspection of the W13 kind ("when do
+you know the meter, and what told you?"), listening judgements, product
+rulings. Each answerable in a sentence. For each, note privately what
+answer would change the plan and which questions it would open or
+close — that is what makes the next choice fast in conversation. Rank
+the pool by how much the answer would change what to ask next; the top
+one opens the briefing. Expect to ask perhaps half the pool and invent
+the rest live. These often outvalue the ideas.
 
 ### 7. If I could commission one thing
 

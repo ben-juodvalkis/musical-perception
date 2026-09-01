@@ -9265,7 +9265,10 @@ cost accepted by the owner; (4) the record is distilled from the
 conversation rather than a pasted transcript (A5-30 makes a raw
 transcript uncommittable), the owner's answers quoted as his;
 (5) the first run waits until the owner finishes his current video-
-labelling thread — nothing fired this session. Distinct from W0 by
+labelling thread — nothing fired this session; (6) added later in the
+same session at the owner's request: the questions are asked **one at a
+time**, and each following question is chosen in light of his answer —
+never a numbered list; the prepared questions are a pool, not a script. Distinct from W0 by
 design: W0 re-ranks the list, LR asks whether it is the right list;
 LR commissions nothing.
 Regressions and classifications: none (no code or eval change).
