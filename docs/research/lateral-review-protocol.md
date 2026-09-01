@@ -80,10 +80,11 @@ Read, in this order, all of it:
    list of external developments the project said it would keep an eye
    on; the outward scan below checks each item.
 
-Then draft the anomalies (§1 of the Method) and **do the outward scan**
-(§3a of the Method) — outward *after* the anomalies, so the search is
-aimed by them rather than a survey. Then prepare, privately, the rest of
-the Method and write the **briefing** (Phase 2). If the read would
+Then draft the anomalies (§1 of the Method) and the assumption ledger
+(§2), and **do the outward scan** (§3a) — outward *after* both, so the
+search is aimed by a named anomaly or a rated assumption rather than
+being a survey. Then prepare, privately, the rest of the Method and
+write the **briefing** (Phase 2). If the read would
 exhaust the turn budget, ledger and previous memo first; say in the
 briefing what was skipped.
 
