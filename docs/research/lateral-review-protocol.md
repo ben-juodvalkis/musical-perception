@@ -147,7 +147,9 @@ finding, marked as his**, and the session's ideas are marked as proposals.
    said; `Status: PROPOSED (owner-attended; nothing commissioned)`.
    Never any other status.
 3. **Commit, push, draft PR** titled `Lateral review YYYY-MM-DD`, whose
-   description is the memo's plain-language section verbatim.
+   description is the memo's plain-language section verbatim. A session
+   without a GitHub tool pushes the branch and hands the owner the
+   compare link instead of spending turns on the PR.
 4. **Closing chat message:** where the record is, plus the one-line list
    of ideas he said "run it" to, so he can carry them into his next
    batch review. Nothing else.
