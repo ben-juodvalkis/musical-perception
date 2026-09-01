@@ -9243,3 +9243,75 @@ own preconditions.** `bless` had not been run since the corpus gained
 `git_sha` and a `git ls-tree`, both of which this session ran only
 *after* the tripwire fired.
 
+
+## 2026-09-01 · rung M / W1.6 (the bless provisional leak) · agent/w16-bless-provisional-leak · local — PRE-REGISTRATION
+
+**EVAL-CHANGE.** Ranked 1 by the owner ruling of this morning. No pipeline
+file is touched in this increment; no existing file under `evals/` is
+modified; `evals bless` is NOT run against the repo baseline (blessing is
+the owner's act — this session proves the fix against a scratch copy).
+
+### The defect, restated
+
+`_cmd_bless` is `shutil.copyfile(run, evals/baseline.json)`. The run
+artifact's `suites.tier1.outcomes` is the FULL outcomes map — every case
+the run scored. Today that is 52 cases, of which 22 carry
+`maturity: provisional`. So a bless writes agent-authored truth into the
+pinned gating set, and W1.5's tripwire
+(`test_the_gating_corpus_is_exactly_the_blessed_thirty`) goes red.
+
+### The question the charter says this increment must answer
+
+*Which of the two exclusions is the guarantee — the pinned set, or the
+comparison-time skip?* Answered here, and implemented so the answer is
+legible in the code rather than implied by two overlapping defenses:
+
+- **The pinned set is the guarantee of record.** `outcomes` in
+  `evals/baseline.json` IS the gating corpus. After this increment
+  `bless` cannot write a provisional id into it, so the gating set can
+  only grow by the owner verifying a case AND re-blessing. That is the
+  property W1.5 stated and the property the tripwire tests.
+- **The comparison-time skip is a runtime filter with a different job**,
+  and is retained: it excludes rows that are provisional *in the current
+  run* (fresh ingestion the baseline has never seen) and rows whose
+  maturity moved since the bless. It is no longer the only thing standing
+  between agent-authored truth and the gate.
+
+The two are not redundant; they were only *appearing* redundant because
+one of them was not implemented.
+
+### Pre-registered predictions
+
+- **P1 — the pinned set.** On a fresh run of today's 52-case corpus, a
+  blessed baseline written by the fixed `bless` pins exactly **30** tier1
+  outcomes, and that id set equals the verified-case id set. The tripwire
+  passes. *(Falsified if the count is anything but 30, or if the sets
+  differ.)*
+- **P2 — identical gating decisions.** For any current run, the change
+  list produced against the old (pre-fix, 52-pinned) baseline and against
+  the new (30-pinned) baseline are **equal**, when both are compared under
+  the union-of-provisional exclusion the harness already applies. Proven
+  on the real corpus and on a mutated synthetic run where a verified row
+  and a provisional row both flip.
+- **P3 — nothing else moves.** tier0 still pins 25; stage1 still pins 0
+  (it pins no outcomes by construction). The blessed markdown still
+  renders the provisional slice with its own n — provisional rows stay
+  *reported*, they stop being *pinned*.
+- **P4 — a newly verified row becomes a review event, not a silent
+  promotion.** After the owner flips one case to `verified`, the next run
+  reports it as `new case (not in baseline)` and the tier-1 gate fails
+  until a re-bless. Predicted as the CORRECT behavior, not a regression:
+  growing the gating set must cost a deliberate owner act.
+- **P5 — constraints.** `git diff --stat main` touches only
+  `src/musical_perception/evals/`, `tests/`, and `docs/`. Zero files under
+  `evals/cases/`, `evals/traces/`, `evals/grids/`; `evals/baseline.json`
+  byte-identical to main. pytest fully green.
+
+### Known risk, stated up front
+
+`suite_provisional_ids` currently lives in `__main__.py` while the fix
+belongs beside `outcomes_map`/`compare_outcomes` in `runner.py`. It is
+moved to `runner.py` and re-exported from `__main__` so both existing test
+imports keep working. That is a move inside this increment's own
+deliverable, not an opportunistic refactor (rule 6); if a reviewer reads
+it otherwise, the fix works identically with the accessor duplicated.
