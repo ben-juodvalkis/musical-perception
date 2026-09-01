@@ -1,0 +1,904 @@
+{
+ "words": [
+  {
+   "word": "good,",
+   "start": 0.031,
+   "end": 0.572
+  },
+  {
+   "word": "good",
+   "start": 1.713,
+   "end": 1.854
+  },
+  {
+   "word": "stuff,",
+   "start": 1.874,
+   "end": 2.094
+  },
+  {
+   "word": "let's",
+   "start": 2.114,
+   "end": 2.254
+  },
+  {
+   "word": "go",
+   "start": 2.294,
+   "end": 2.374
+  },
+  {
+   "word": "into",
+   "start": 2.414,
+   "end": 2.615
+  },
+  {
+   "word": "our",
+   "start": 2.655,
+   "end": 2.755
+  },
+  {
+   "word": "pli\u00e9s,",
+   "start": 2.815,
+   "end": 3.175
+  },
+  {
+   "word": "prepare",
+   "start": 3.556,
+   "end": 3.836
+  },
+  {
+   "word": "with",
+   "start": 3.856,
+   "end": 3.957
+  },
+  {
+   "word": "your",
+   "start": 3.997,
+   "end": 4.117
+  },
+  {
+   "word": "arms",
+   "start": 4.197,
+   "end": 4.377
+  },
+  {
+   "word": "side,",
+   "start": 4.397,
+   "end": 4.658
+  },
+  {
+   "word": "with",
+   "start": 5.559,
+   "end": 5.679
+  },
+  {
+   "word": "a",
+   "start": 5.759,
+   "end": 5.799
+  },
+  {
+   "word": "demi-pli\u00e9",
+   "start": 5.819,
+   "end": 6.46
+  },
+  {
+   "word": "on",
+   "start": 6.56,
+   "end": 6.66
+  },
+  {
+   "word": "two",
+   "start": 6.76,
+   "end": 6.961
+  },
+  {
+   "word": "legs,",
+   "start": 7.001,
+   "end": 7.261
+  },
+  {
+   "word": "two,",
+   "start": 8.443,
+   "end": 8.723
+  },
+  {
+   "word": "then",
+   "start": 9.204,
+   "end": 9.324
+  },
+  {
+   "word": "with",
+   "start": 9.364,
+   "end": 9.464
+  },
+  {
+   "word": "a",
+   "start": 9.544,
+   "end": 9.564
+  },
+  {
+   "word": "demi-pointe",
+   "start": 9.604,
+   "end": 10.346
+  },
+  {
+   "word": "on",
+   "start": 11.407,
+   "end": 11.507
+  },
+  {
+   "word": "the",
+   "start": 11.547,
+   "end": 11.747
+  },
+  {
+   "word": "right,",
+   "start": 11.848,
+   "end": 12.108
+  },
+  {
+   "word": "into",
+   "start": 12.589,
+   "end": 12.809
+  },
+  {
+   "word": "a",
+   "start": 12.869,
+   "end": 12.889
+  },
+  {
+   "word": "grand",
+   "start": 12.949,
+   "end": 13.129
+  },
+  {
+   "word": "pli\u00e9,",
+   "start": 13.149,
+   "end": 14.491
+  },
+  {
+   "word": "six,",
+   "start": 14.511,
+   "end": 14.832
+  },
+  {
+   "word": "seven",
+   "start": 15.793,
+   "end": 16.214
+  },
+  {
+   "word": "and",
+   "start": 17.195,
+   "end": 17.315
+  },
+  {
+   "word": "eight,",
+   "start": 17.476,
+   "end": 17.816
+  },
+  {
+   "word": "two",
+   "start": 18.056,
+   "end": 18.177
+  },
+  {
+   "word": "day",
+   "start": 18.237,
+   "end": 18.317
+  },
+  {
+   "word": "port",
+   "start": 18.357,
+   "end": 18.477
+  },
+  {
+   "word": "de",
+   "start": 18.497,
+   "end": 18.557
+  },
+  {
+   "word": "bras",
+   "start": 18.577,
+   "end": 18.737
+  },
+  {
+   "word": "forward,",
+   "start": 18.777,
+   "end": 19.198
+  },
+  {
+   "word": "two,",
+   "start": 19.879,
+   "end": 20.8
+  },
+  {
+   "word": "three",
+   "start": 20.82,
+   "end": 21.161
+  },
+  {
+   "word": "and",
+   "start": 21.782,
+   "end": 21.942
+  },
+  {
+   "word": "four",
+   "start": 21.982,
+   "end": 22.182
+  },
+  {
+   "word": "and",
+   "start": 22.222,
+   "end": 22.322
+  },
+  {
+   "word": "a",
+   "start": 22.342,
+   "end": 22.382
+  },
+  {
+   "word": "port",
+   "start": 22.402,
+   "end": 22.523
+  },
+  {
+   "word": "de",
+   "start": 22.543,
+   "end": 22.603
+  },
+  {
+   "word": "bras",
+   "start": 22.623,
+   "end": 22.803
+  },
+  {
+   "word": "back,",
+   "start": 22.823,
+   "end": 23.524
+  },
+  {
+   "word": "six,",
+   "start": 23.504,
+   "end": 24.245
+  },
+  {
+   "word": "seven,",
+   "start": 25.005,
+   "end": 25.346
+  },
+  {
+   "word": "into",
+   "start": 25.966,
+   "end": 26.186
+  },
+  {
+   "word": "the",
+   "start": 26.227,
+   "end": 26.307
+  },
+  {
+   "word": "second,",
+   "start": 26.387,
+   "end": 26.707
+  },
+  {
+   "word": "also",
+   "start": 26.787,
+   "end": 27.007
+  },
+  {
+   "word": "demi-pli\u00e9,",
+   "start": 27.047,
+   "end": 27.828
+  },
+  {
+   "word": "on",
+   "start": 28.589,
+   "end": 28.689
+  },
+  {
+   "word": "two",
+   "start": 28.729,
+   "end": 28.949
+  },
+  {
+   "word": "legs,",
+   "start": 29.049,
+   "end": 29.249
+  },
+  {
+   "word": "then",
+   "start": 29.269,
+   "end": 29.369
+  },
+  {
+   "word": "you",
+   "start": 29.409,
+   "end": 29.55
+  },
+  {
+   "word": "use",
+   "start": 29.57,
+   "end": 29.67
+  },
+  {
+   "word": "the",
+   "start": 29.69,
+   "end": 29.75
+  },
+  {
+   "word": "demi-pointe",
+   "start": 29.79,
+   "end": 30.611
+  },
+  {
+   "word": "on",
+   "start": 31.291,
+   "end": 31.351
+  },
+  {
+   "word": "the",
+   "start": 31.391,
+   "end": 31.471
+  },
+  {
+   "word": "second",
+   "start": 31.511,
+   "end": 31.792
+  },
+  {
+   "word": "one.",
+   "start": 31.932,
+   "end": 32.032
+  },
+  {
+   "word": "grand",
+   "start": 32.432,
+   "end": 32.713
+  },
+  {
+   "word": "pli\u00e9,",
+   "start": 32.733,
+   "end": 33.333
+  },
+  {
+   "word": "six,",
+   "start": 33.353,
+   "end": 33.633
+  },
+  {
+   "word": "seven",
+   "start": 34.214,
+   "end": 34.594
+  },
+  {
+   "word": "and",
+   "start": 35.315,
+   "end": 35.435
+  },
+  {
+   "word": "eight.",
+   "start": 35.595,
+   "end": 35.735
+  },
+  {
+   "word": "we'll",
+   "start": 35.755,
+   "end": 35.896
+  },
+  {
+   "word": "go",
+   "start": 35.936,
+   "end": 35.996
+  },
+  {
+   "word": "with",
+   "start": 36.036,
+   "end": 36.136
+  },
+  {
+   "word": "the",
+   "start": 36.156,
+   "end": 36.236
+  },
+  {
+   "word": "tam-du,",
+   "start": 36.276,
+   "end": 36.957
+  },
+  {
+   "word": "port",
+   "start": 37.357,
+   "end": 37.577
+  },
+  {
+   "word": "de",
+   "start": 37.597,
+   "end": 37.677
+  },
+  {
+   "word": "bras",
+   "start": 37.697,
+   "end": 37.917
+  },
+  {
+   "word": "to",
+   "start": 37.937,
+   "end": 38.098
+  },
+  {
+   "word": "the",
+   "start": 38.118,
+   "end": 38.198
+  },
+  {
+   "word": "barre,",
+   "start": 38.238,
+   "end": 38.458
+  },
+  {
+   "word": "three,",
+   "start": 39.018,
+   "end": 39.339
+  },
+  {
+   "word": "transfer",
+   "start": 39.739,
+   "end": 40.3
+  },
+  {
+   "word": "away",
+   "start": 40.36,
+   "end": 40.68
+  },
+  {
+   "word": "from",
+   "start": 40.72,
+   "end": 40.84
+  },
+  {
+   "word": "the",
+   "start": 40.9,
+   "end": 40.96
+  },
+  {
+   "word": "barre,",
+   "start": 41.0,
+   "end": 41.22
+  },
+  {
+   "word": "five,",
+   "start": 42.021,
+   "end": 42.502
+  },
+  {
+   "word": "six,",
+   "start": 43.342,
+   "end": 43.643
+  },
+  {
+   "word": "seven",
+   "start": 44.544,
+   "end": 44.904
+  },
+  {
+   "word": "and",
+   "start": 45.845,
+   "end": 45.965
+  },
+  {
+   "word": "eight.",
+   "start": 46.005,
+   "end": 46.345
+  },
+  {
+   "word": "in",
+   "start": 46.405,
+   "end": 46.465
+  },
+  {
+   "word": "the",
+   "start": 46.485,
+   "end": 46.565
+  },
+  {
+   "word": "fourth,",
+   "start": 46.585,
+   "end": 46.786
+  },
+  {
+   "word": "same",
+   "start": 46.806,
+   "end": 46.966
+  },
+  {
+   "word": "thing,",
+   "start": 46.986,
+   "end": 47.186
+  },
+  {
+   "word": "demi,",
+   "start": 47.286,
+   "end": 47.787
+  },
+  {
+   "word": "you",
+   "start": 48.347,
+   "end": 48.467
+  },
+  {
+   "word": "stretch,",
+   "start": 48.487,
+   "end": 49.368
+  },
+  {
+   "word": "demi-pointe,",
+   "start": 49.388,
+   "end": 50.389
+  },
+  {
+   "word": "grand",
+   "start": 52.023,
+   "end": 52.384
+  },
+  {
+   "word": "pli\u00e9,",
+   "start": 52.404,
+   "end": 52.805
+  },
+  {
+   "word": "six,",
+   "start": 53.366,
+   "end": 53.667
+  },
+  {
+   "word": "seven",
+   "start": 54.248,
+   "end": 54.609
+  },
+  {
+   "word": "and",
+   "start": 55.411,
+   "end": 55.551
+  },
+  {
+   "word": "eight.",
+   "start": 55.591,
+   "end": 56.032
+  },
+  {
+   "word": "then",
+   "start": 56.313,
+   "end": 56.433
+  },
+  {
+   "word": "we",
+   "start": 56.453,
+   "end": 56.533
+  },
+  {
+   "word": "take",
+   "start": 56.573,
+   "end": 56.693
+  },
+  {
+   "word": "a",
+   "start": 56.754,
+   "end": 56.774
+  },
+  {
+   "word": "port",
+   "start": 56.794,
+   "end": 56.974
+  },
+  {
+   "word": "de",
+   "start": 56.994,
+   "end": 57.034
+  },
+  {
+   "word": "bras",
+   "start": 57.054,
+   "end": 57.154
+  },
+  {
+   "word": "front",
+   "start": 57.215,
+   "end": 57.515
+  },
+  {
+   "word": "for",
+   "start": 57.535,
+   "end": 57.696
+  },
+  {
+   "word": "four,",
+   "start": 57.756,
+   "end": 58.016
+  },
+  {
+   "word": "two,",
+   "start": 58.517,
+   "end": 59.279
+  },
+  {
+   "word": "three,",
+   "start": 59.299,
+   "end": 59.54
+  },
+  {
+   "word": "keep",
+   "start": 59.56,
+   "end": 59.72
+  },
+  {
+   "word": "the",
+   "start": 59.76,
+   "end": 59.82
+  },
+  {
+   "word": "leg",
+   "start": 59.86,
+   "end": 60.001
+  },
+  {
+   "word": "out",
+   "start": 60.061,
+   "end": 60.161
+  },
+  {
+   "word": "front",
+   "start": 60.221,
+   "end": 60.462
+  },
+  {
+   "word": "today",
+   "start": 60.502,
+   "end": 60.823
+  },
+  {
+   "word": "and",
+   "start": 61.223,
+   "end": 61.344
+  },
+  {
+   "word": "a",
+   "start": 61.364,
+   "end": 61.384
+  },
+  {
+   "word": "port",
+   "start": 61.424,
+   "end": 61.524
+  },
+  {
+   "word": "de",
+   "start": 61.544,
+   "end": 61.604
+  },
+  {
+   "word": "bras",
+   "start": 61.624,
+   "end": 61.765
+  },
+  {
+   "word": "back,",
+   "start": 61.785,
+   "end": 62.025
+  },
+  {
+   "word": "six,",
+   "start": 62.426,
+   "end": 62.687
+  },
+  {
+   "word": "seven",
+   "start": 63.028,
+   "end": 63.328
+  },
+  {
+   "word": "and",
+   "start": 63.408,
+   "end": 63.509
+  },
+  {
+   "word": "eight.",
+   "start": 63.549,
+   "end": 63.809
+  },
+  {
+   "word": "same",
+   "start": 64.25,
+   "end": 64.411
+  },
+  {
+   "word": "in",
+   "start": 64.431,
+   "end": 64.471
+  },
+  {
+   "word": "the",
+   "start": 64.511,
+   "end": 64.571
+  },
+  {
+   "word": "fifth,",
+   "start": 64.631,
+   "end": 64.811
+  },
+  {
+   "word": "demi-pli\u00e9,",
+   "start": 64.832,
+   "end": 65.533
+  },
+  {
+   "word": "demi-pli\u00e9",
+   "start": 65.874,
+   "end": 66.435
+  },
+  {
+   "word": "on",
+   "start": 66.535,
+   "end": 66.595
+  },
+  {
+   "word": "one",
+   "start": 66.756,
+   "end": 66.876
+  },
+  {
+   "word": "leg,",
+   "start": 66.916,
+   "end": 67.137
+  },
+  {
+   "word": "grand",
+   "start": 67.538,
+   "end": 67.938
+  },
+  {
+   "word": "pli\u00e9",
+   "start": 67.958,
+   "end": 68.299
+  },
+  {
+   "word": "six,",
+   "start": 68.359,
+   "end": 68.58
+  },
+  {
+   "word": "seven",
+   "start": 68.6,
+   "end": 68.881
+  },
+  {
+   "word": "and",
+   "start": 68.941,
+   "end": 69.021
+  },
+  {
+   "word": "eight,",
+   "start": 69.061,
+   "end": 69.362
+  },
+  {
+   "word": "port",
+   "start": 70.103,
+   "end": 70.324
+  },
+  {
+   "word": "de",
+   "start": 70.344,
+   "end": 70.424
+  },
+  {
+   "word": "bras",
+   "start": 70.444,
+   "end": 70.644
+  },
+  {
+   "word": "all",
+   "start": 70.665,
+   "end": 70.725
+  },
+  {
+   "word": "the",
+   "start": 70.765,
+   "end": 70.825
+  },
+  {
+   "word": "way",
+   "start": 70.865,
+   "end": 70.985
+  },
+  {
+   "word": "around",
+   "start": 71.045,
+   "end": 71.306
+  },
+  {
+   "word": "and",
+   "start": 71.847,
+   "end": 71.927
+  },
+  {
+   "word": "in",
+   "start": 71.967,
+   "end": 72.008
+  },
+  {
+   "word": "the",
+   "start": 72.048,
+   "end": 72.108
+  },
+  {
+   "word": "fifth",
+   "start": 72.188,
+   "end": 72.388
+  },
+  {
+   "word": "we",
+   "start": 72.428,
+   "end": 72.549
+  },
+  {
+   "word": "finish",
+   "start": 72.569,
+   "end": 72.869
+  },
+  {
+   "word": "on",
+   "start": 73.771,
+   "end": 73.832
+  },
+  {
+   "word": "the",
+   "start": 73.872,
+   "end": 73.952
+  },
+  {
+   "word": "demi-point.",
+   "start": 73.992,
+   "end": 74.553
+  },
+  {
+   "word": "demi-pli\u00e9",
+   "start": 75.916,
+   "end": 76.417
+  },
+  {
+   "word": "on",
+   "start": 76.457,
+   "end": 76.518
+  },
+  {
+   "word": "two",
+   "start": 76.558,
+   "end": 76.718
+  },
+  {
+   "word": "legs,",
+   "start": 76.738,
+   "end": 76.938
+  },
+  {
+   "word": "demi-pli\u00e9",
+   "start": 77.239,
+   "end": 77.64
+  },
+  {
+   "word": "with",
+   "start": 77.66,
+   "end": 77.74
+  },
+  {
+   "word": "the",
+   "start": 77.76,
+   "end": 77.82
+  },
+  {
+   "word": "demi-pointe,",
+   "start": 77.841,
+   "end": 78.081
+  }
+ ]
+}

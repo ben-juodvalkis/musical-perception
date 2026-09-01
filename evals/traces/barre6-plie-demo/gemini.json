@@ -1,0 +1,1326 @@
+{
+ "model": "gemini-2.5-flash",
+ "raw_response": {
+  "words": [
+   {
+    "word": "good,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 0
+   },
+   {
+    "word": "good",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 1
+   },
+   {
+    "word": "stuff,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 2
+   },
+   {
+    "word": "let's",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 3
+   },
+   {
+    "word": "go",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 4
+   },
+   {
+    "word": "into",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 5
+   },
+   {
+    "word": "our",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 6
+   },
+   {
+    "word": "pli\u00e9s,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 7
+   },
+   {
+    "word": "prepare",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 8
+   },
+   {
+    "word": "with",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 9
+   },
+   {
+    "word": "your",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 10
+   },
+   {
+    "word": "arms",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 11
+   },
+   {
+    "word": "side,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 12
+   },
+   {
+    "word": "with",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 13
+   },
+   {
+    "word": "a",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 14
+   },
+   {
+    "word": "demi-pli\u00e9",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 15
+   },
+   {
+    "word": "on",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 16
+   },
+   {
+    "word": "two",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 17
+   },
+   {
+    "word": "legs,",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 18
+   },
+   {
+    "word": "two,",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 19
+   },
+   {
+    "word": "then",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 20
+   },
+   {
+    "word": "with",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 21
+   },
+   {
+    "word": "a",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 22
+   },
+   {
+    "word": "demi-pointe",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 23
+   },
+   {
+    "word": "on",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 24
+   },
+   {
+    "word": "the",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 25
+   },
+   {
+    "word": "right,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 26
+   },
+   {
+    "word": "into",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 27
+   },
+   {
+    "word": "a",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 28
+   },
+   {
+    "word": "grand",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 29
+   },
+   {
+    "word": "pli\u00e9,",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 30
+   },
+   {
+    "word": "six,",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 31
+   },
+   {
+    "word": "seven",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 32
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 4,
+    "index": 33
+   },
+   {
+    "word": "eight.",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 34
+   },
+   {
+    "word": "two",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 35
+   },
+   {
+    "word": "day",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 36
+   },
+   {
+    "word": "port",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 37
+   },
+   {
+    "word": "de",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 38
+   },
+   {
+    "word": "bras",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 39
+   },
+   {
+    "word": "forward,",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 40
+   },
+   {
+    "word": "two,",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 41
+   },
+   {
+    "word": "three",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 42
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 4,
+    "index": 43
+   },
+   {
+    "word": "four",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 44
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 5,
+    "index": 45
+   },
+   {
+    "word": "a",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 46
+   },
+   {
+    "word": "port",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 47
+   },
+   {
+    "word": "de",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 48
+   },
+   {
+    "word": "bras",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 49
+   },
+   {
+    "word": "back,",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 50
+   },
+   {
+    "word": "six,",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 51
+   },
+   {
+    "word": "seven,",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 52
+   },
+   {
+    "word": "into",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 53
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 54
+   },
+   {
+    "word": "second,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 55
+   },
+   {
+    "word": "also",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 56
+   },
+   {
+    "word": "demi-pli\u00e9,",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 57
+   },
+   {
+    "word": "on",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 58
+   },
+   {
+    "word": "two",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 59
+   },
+   {
+    "word": "legs,",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 60
+   },
+   {
+    "word": "then",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 61
+   },
+   {
+    "word": "you",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 62
+   },
+   {
+    "word": "use",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 63
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 64
+   },
+   {
+    "word": "demi-pointe",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 65
+   },
+   {
+    "word": "on",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 66
+   },
+   {
+    "word": "the",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 67
+   },
+   {
+    "word": "second",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 68
+   },
+   {
+    "word": "one.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 69
+   },
+   {
+    "word": "grand",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 70
+   },
+   {
+    "word": "pli\u00e9,",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 71
+   },
+   {
+    "word": "six,",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 72
+   },
+   {
+    "word": "seven",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 73
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 4,
+    "index": 74
+   },
+   {
+    "word": "eight.",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 75
+   },
+   {
+    "word": "we'll",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 76
+   },
+   {
+    "word": "go",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 77
+   },
+   {
+    "word": "with",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 78
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 79
+   },
+   {
+    "word": "tam-du,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 80
+   },
+   {
+    "word": "port",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 81
+   },
+   {
+    "word": "de",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 82
+   },
+   {
+    "word": "bras",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 83
+   },
+   {
+    "word": "to",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 84
+   },
+   {
+    "word": "the",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 85
+   },
+   {
+    "word": "barre,",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 86
+   },
+   {
+    "word": "three,",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 87
+   },
+   {
+    "word": "transfer",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 88
+   },
+   {
+    "word": "away",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 89
+   },
+   {
+    "word": "from",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 90
+   },
+   {
+    "word": "the",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 91
+   },
+   {
+    "word": "barre,",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 92
+   },
+   {
+    "word": "five,",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 93
+   },
+   {
+    "word": "six,",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 94
+   },
+   {
+    "word": "seven",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 95
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 4,
+    "index": 96
+   },
+   {
+    "word": "eight.",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 97
+   },
+   {
+    "word": "in",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 98
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 99
+   },
+   {
+    "word": "fourth,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 100
+   },
+   {
+    "word": "same",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 101
+   },
+   {
+    "word": "thing,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 102
+   },
+   {
+    "word": "demi,",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 103
+   },
+   {
+    "word": "you",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 104
+   },
+   {
+    "word": "stretch,",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 105
+   },
+   {
+    "word": "demi-pointe,",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 106
+   },
+   {
+    "word": "grand",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 107
+   },
+   {
+    "word": "pli\u00e9,",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 108
+   },
+   {
+    "word": "six,",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 109
+   },
+   {
+    "word": "seven",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 110
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 8,
+    "index": 111
+   },
+   {
+    "word": "eight.",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 112
+   },
+   {
+    "word": "then",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 113
+   },
+   {
+    "word": "we",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 114
+   },
+   {
+    "word": "take",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 115
+   },
+   {
+    "word": "a",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 116
+   },
+   {
+    "word": "port",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 117
+   },
+   {
+    "word": "de",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 118
+   },
+   {
+    "word": "bras",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 119
+   },
+   {
+    "word": "front",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 120
+   },
+   {
+    "word": "for",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 121
+   },
+   {
+    "word": "four,",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 122
+   },
+   {
+    "word": "two,",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 123
+   },
+   {
+    "word": "three,",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 124
+   },
+   {
+    "word": "keep",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 125
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 126
+   },
+   {
+    "word": "leg",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 127
+   },
+   {
+    "word": "out",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 128
+   },
+   {
+    "word": "front",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 129
+   },
+   {
+    "word": "today",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 130
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 1,
+    "index": 131
+   },
+   {
+    "word": "a",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 132
+   },
+   {
+    "word": "port",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 133
+   },
+   {
+    "word": "de",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 134
+   },
+   {
+    "word": "bras",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 135
+   },
+   {
+    "word": "back,",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 136
+   },
+   {
+    "word": "six,",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 137
+   },
+   {
+    "word": "seven",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 138
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 7,
+    "index": 139
+   },
+   {
+    "word": "eight.",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 140
+   },
+   {
+    "word": "same",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 141
+   },
+   {
+    "word": "in",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 142
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 143
+   },
+   {
+    "word": "fifth,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 144
+   },
+   {
+    "word": "demi-pli\u00e9,",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 145
+   },
+   {
+    "word": "demi-pli\u00e9",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 146
+   },
+   {
+    "word": "on",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 147
+   },
+   {
+    "word": "one",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 148
+   },
+   {
+    "word": "leg,",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 149
+   },
+   {
+    "word": "grand",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 150
+   },
+   {
+    "word": "pli\u00e9",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 151
+   },
+   {
+    "word": "six,",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 152
+   },
+   {
+    "word": "seven",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 153
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 1,
+    "index": 154
+   },
+   {
+    "word": "eight,",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 155
+   },
+   {
+    "word": "port",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 156
+   },
+   {
+    "word": "de",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 157
+   },
+   {
+    "word": "bras",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 158
+   },
+   {
+    "word": "all",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 159
+   },
+   {
+    "word": "the",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 160
+   },
+   {
+    "word": "way",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 161
+   },
+   {
+    "word": "around",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 162
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 1,
+    "index": 163
+   },
+   {
+    "word": "in",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 164
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 165
+   },
+   {
+    "word": "fifth",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 166
+   },
+   {
+    "word": "we",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 167
+   },
+   {
+    "word": "finish",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 168
+   },
+   {
+    "word": "on",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 169
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 170
+   },
+   {
+    "word": "demi-point.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 171
+   },
+   {
+    "word": "demi-pli\u00e9",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 172
+   },
+   {
+    "word": "on",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 173
+   },
+   {
+    "word": "two",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 174
+   },
+   {
+    "word": "legs,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 175
+   },
+   {
+    "word": "demi-pli\u00e9",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 176
+   },
+   {
+    "word": "with",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 177
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 178
+   },
+   {
+    "word": "demi-pointe,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 179
+   }
+  ],
+  "exercise": {
+   "exercise_type": "plie",
+   "display_name": "Pli\u00e9",
+   "confidence": 1.0,
+   "reasoning": "The exercise clearly demonstrates demi-pli\u00e9s and grand pli\u00e9s in 1st, 2nd, 4th, and 5th positions, interspersed with port de bras, which is characteristic of a pli\u00e9 exercise at the barre."
+  },
+  "counting_structure": {
+   "total_counts": 104,
+   "prep_counts": null,
+   "subdivision_type": "duple",
+   "estimated_bpm": 125
+  },
+  "meter": {
+   "beats_per_measure": 4,
+   "beat_unit": 4
+  },
+  "quality": [
+   {
+    "phrase_number": 1,
+    "description": "The first phrase consists of demi-pli\u00e9s and a grand pli\u00e9 in 1st position, followed by port de bras forward and back.",
+    "articulation": 0.6,
+    "weight": 0.6,
+    "energy": 0.4,
+    "primary": true
+   },
+   {
+    "phrase_number": 2,
+    "description": "The second phrase features demi-pli\u00e9s and a grand pli\u00e9 in 2nd position, followed by port de bras to and away from the barre.",
+    "articulation": 0.6,
+    "weight": 0.6,
+    "energy": 0.4,
+    "primary": true
+   },
+   {
+    "phrase_number": 3,
+    "description": "The third phrase includes demi-pli\u00e9s and a grand pli\u00e9 in 4th position, followed by port de bras forward and back.",
+    "articulation": 0.6,
+    "weight": 0.6,
+    "energy": 0.4,
+    "primary": true
+   },
+   {
+    "phrase_number": 4,
+    "description": "The final phrase presents demi-pli\u00e9s and a grand pli\u00e9 in 5th position, concluding with a port de bras all the way around.",
+    "articulation": 0.6,
+    "weight": 0.6,
+    "energy": 0.4,
+    "primary": true
+   }
+  ],
+  "structure": {
+   "counts": 104,
+   "sides": 1
+  }
+ },
+ "inputs": {
+  "onset_bpm_sent": 124.9,
+  "transcript_words_sent": [
+   "good,",
+   "good",
+   "stuff,",
+   "let's",
+   "go",
+   "into",
+   "our",
+   "pli\u00e9s,",
+   "prepare",
+   "with",
+   "your",
+   "arms",
+   "side,",
+   "with",
+   "a",
+   "demi-pli\u00e9",
+   "on",
+   "two",
+   "legs,",
+   "two,",
+   "then",
+   "with",
+   "a",
+   "demi-pointe",
+   "on",
+   "the",
+   "right,",
+   "into",
+   "a",
+   "grand",
+   "pli\u00e9,",
+   "six,",
+   "seven",
+   "and",
+   "eight,",
+   "two",
+   "day",
+   "port",
+   "de",
+   "bras",
+   "forward,",
+   "two,",
+   "three",
+   "and",
+   "four",
+   "and",
+   "a",
+   "port",
+   "de",
+   "bras",
+   "back,",
+   "six,",
+   "seven,",
+   "into",
+   "the",
+   "second,",
+   "also",
+   "demi-pli\u00e9,",
+   "on",
+   "two",
+   "legs,",
+   "then",
+   "you",
+   "use",
+   "the",
+   "demi-pointe",
+   "on",
+   "the",
+   "second",
+   "one.",
+   "grand",
+   "pli\u00e9,",
+   "six,",
+   "seven",
+   "and",
+   "eight.",
+   "we'll",
+   "go",
+   "with",
+   "the",
+   "tam-du,",
+   "port",
+   "de",
+   "bras",
+   "to",
+   "the",
+   "barre,",
+   "three,",
+   "transfer",
+   "away",
+   "from",
+   "the",
+   "barre,",
+   "five,",
+   "six,",
+   "seven",
+   "and",
+   "eight.",
+   "in",
+   "the",
+   "fourth,",
+   "same",
+   "thing,",
+   "demi,",
+   "you",
+   "stretch,",
+   "demi-pointe,",
+   "grand",
+   "pli\u00e9,",
+   "six,",
+   "seven",
+   "and",
+   "eight.",
+   "then",
+   "we",
+   "take",
+   "a",
+   "port",
+   "de",
+   "bras",
+   "front",
+   "for",
+   "four,",
+   "two,",
+   "three,",
+   "keep",
+   "the",
+   "leg",
+   "out",
+   "front",
+   "today",
+   "and",
+   "a",
+   "port",
+   "de",
+   "bras",
+   "back,",
+   "six,",
+   "seven",
+   "and",
+   "eight.",
+   "same",
+   "in",
+   "the",
+   "fifth,",
+   "demi-pli\u00e9,",
+   "demi-pli\u00e9",
+   "on",
+   "one",
+   "leg,",
+   "grand",
+   "pli\u00e9",
+   "six,",
+   "seven",
+   "and",
+   "eight,",
+   "port",
+   "de",
+   "bras",
+   "all",
+   "the",
+   "way",
+   "around",
+   "and",
+   "in",
+   "the",
+   "fifth",
+   "we",
+   "finish",
+   "on",
+   "the",
+   "demi-point.",
+   "demi-pli\u00e9",
+   "on",
+   "two",
+   "legs,",
+   "demi-pli\u00e9",
+   "with",
+   "the",
+   "demi-pointe,"
+  ]
+ }
+}

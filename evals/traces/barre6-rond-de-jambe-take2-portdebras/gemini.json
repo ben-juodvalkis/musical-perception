@@ -1,0 +1,402 @@
+{
+ "model": "gemini-2.5-flash",
+ "raw_response": {
+  "words": [
+   {
+    "word": "reverse",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 0
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 1
+   },
+   {
+    "word": "port",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 2
+   },
+   {
+    "word": "de",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 3
+   },
+   {
+    "word": "bras,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 4
+   },
+   {
+    "word": "five.",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 5
+   },
+   {
+    "word": "release",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 6
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 7
+   },
+   {
+    "word": "inside",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 8
+   },
+   {
+    "word": "leg",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 9
+   },
+   {
+    "word": "back",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 10
+   },
+   {
+    "word": "into",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 11
+   },
+   {
+    "word": "your",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 12
+   },
+   {
+    "word": "lunge.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 13
+   },
+   {
+    "word": "come",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 14
+   },
+   {
+    "word": "back",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 15
+   },
+   {
+    "word": "up,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 16
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 17
+   },
+   {
+    "word": "a",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 18
+   },
+   {
+    "word": "little",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 19
+   },
+   {
+    "word": "port",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 20
+   },
+   {
+    "word": "de",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 21
+   },
+   {
+    "word": "bras",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 22
+   },
+   {
+    "word": "back.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 23
+   },
+   {
+    "word": "lift",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 24
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 25
+   },
+   {
+    "word": "leg",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 26
+   },
+   {
+    "word": "from",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 27
+   },
+   {
+    "word": "there",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 28
+   },
+   {
+    "word": "into",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 29
+   },
+   {
+    "word": "your",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 30
+   },
+   {
+    "word": "arabesque",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 31
+   },
+   {
+    "word": "line.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 32
+   },
+   {
+    "word": "little",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 33
+   },
+   {
+    "word": "time",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 34
+   },
+   {
+    "word": "to",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 35
+   },
+   {
+    "word": "balance.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 36
+   },
+   {
+    "word": "four,",
+    "marker_type": "beat",
+    "beat_number": 27,
+    "index": 37
+   },
+   {
+    "word": "closing",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 38
+   },
+   {
+    "word": "down",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 39
+   },
+   {
+    "word": "in",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 40
+   },
+   {
+    "word": "fifth.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 41
+   },
+   {
+    "word": "open",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 42
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 43
+   },
+   {
+    "word": "arms,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 44
+   },
+   {
+    "word": "six.",
+    "marker_type": "beat",
+    "beat_number": 36,
+    "index": 45
+   },
+   {
+    "word": "and,",
+    "marker_type": "and",
+    "beat_number": 39,
+    "index": 46
+   },
+   {
+    "word": "yeah.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 47
+   }
+  ],
+  "exercise": {
+   "exercise_type": "adagio",
+   "display_name": "Adagio",
+   "confidence": 0.9,
+   "reasoning": "The dancer performs a slow, sustained combination including port de bras, fondu, and arabesque, characteristic of an adagio exercise."
+  },
+  "counting_structure": {
+   "total_counts": 39,
+   "prep_counts": null,
+   "subdivision_type": "duple",
+   "estimated_bpm": 67
+  },
+  "meter": {
+   "beats_per_measure": 3,
+   "beat_unit": 4
+  },
+  "quality": [
+   {
+    "phrase_number": 1,
+    "description": "The dancer performs a port de bras, moving arms up and down, preparing for the next movement.",
+    "articulation": 0.8,
+    "weight": 0.4,
+    "energy": 0.3,
+    "primary": false
+   },
+   {
+    "phrase_number": 2,
+    "description": "The dancer executes a deep fondu or lunge with the back leg extended, then returns to standing.",
+    "articulation": 0.6,
+    "weight": 0.6,
+    "energy": 0.5,
+    "primary": true
+   },
+   {
+    "phrase_number": 3,
+    "description": "The dancer lifts the leg into an arabesque line and holds it.",
+    "articulation": 0.7,
+    "weight": 0.4,
+    "energy": 0.6,
+    "primary": true
+   },
+   {
+    "phrase_number": 4,
+    "description": "The dancer closes the leg to fifth position and performs a final port de bras.",
+    "articulation": 0.8,
+    "weight": 0.4,
+    "energy": 0.3,
+    "primary": false
+   }
+  ],
+  "structure": {
+   "counts": 20,
+   "sides": 1
+  }
+ },
+ "inputs": {
+  "onset_bpm_sent": 164.7,
+  "transcript_words_sent": [
+   "reverse",
+   "the",
+   "port",
+   "de",
+   "bras,",
+   "five.",
+   "release",
+   "the",
+   "inside",
+   "leg",
+   "back",
+   "into",
+   "your",
+   "lunge.",
+   "come",
+   "back",
+   "up,",
+   "and",
+   "a",
+   "little",
+   "port",
+   "de",
+   "bras",
+   "back.",
+   "lift",
+   "the",
+   "leg",
+   "from",
+   "there",
+   "into",
+   "your",
+   "arabesque",
+   "line.",
+   "little",
+   "time",
+   "to",
+   "balance.",
+   "four,",
+   "closing",
+   "down",
+   "in",
+   "fifth.",
+   "open",
+   "the",
+   "arms,",
+   "six.",
+   "and,",
+   "yeah."
+  ]
+ }
+}

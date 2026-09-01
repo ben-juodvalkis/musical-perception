@@ -1,0 +1,931 @@
+{
+ "model": "gemini-2.5-flash",
+ "raw_response": {
+  "words": [
+   {
+    "word": "tandu",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 0
+   },
+   {
+    "word": "front",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 1
+   },
+   {
+    "word": "two",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 2
+   },
+   {
+    "word": "start.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 3
+   },
+   {
+    "word": "one,",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 4
+   },
+   {
+    "word": "two,",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 5
+   },
+   {
+    "word": "slow,",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 6
+   },
+   {
+    "word": "flex,",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 7
+   },
+   {
+    "word": "push,",
+    "marker_type": "beat",
+    "beat_number": 9,
+    "index": 8
+   },
+   {
+    "word": "point",
+    "marker_type": "beat",
+    "beat_number": 11,
+    "index": 9
+   },
+   {
+    "word": "away,",
+    "marker_type": "beat",
+    "beat_number": 13,
+    "index": 10
+   },
+   {
+    "word": "toe-tandu,",
+    "marker_type": "beat",
+    "beat_number": 15,
+    "index": 11
+   },
+   {
+    "word": "to",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 12
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 13
+   },
+   {
+    "word": "front,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 14
+   },
+   {
+    "word": "same",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 15
+   },
+   {
+    "word": "to",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 16
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 17
+   },
+   {
+    "word": "side,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 18
+   },
+   {
+    "word": "slow,",
+    "marker_type": "beat",
+    "beat_number": 17,
+    "index": 19
+   },
+   {
+    "word": "in",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 20
+   },
+   {
+    "word": "first,",
+    "marker_type": "beat",
+    "beat_number": 19,
+    "index": 21
+   },
+   {
+    "word": "slow,",
+    "marker_type": "beat",
+    "beat_number": 21,
+    "index": 22
+   },
+   {
+    "word": "in",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 23
+   },
+   {
+    "word": "first,",
+    "marker_type": "beat",
+    "beat_number": 23,
+    "index": 24
+   },
+   {
+    "word": "flex,",
+    "marker_type": "beat",
+    "beat_number": 25,
+    "index": 25
+   },
+   {
+    "word": "point",
+    "marker_type": "beat",
+    "beat_number": 27,
+    "index": 26
+   },
+   {
+    "word": "away,",
+    "marker_type": "beat",
+    "beat_number": 29,
+    "index": 27
+   },
+   {
+    "word": "two,",
+    "marker_type": "beat",
+    "beat_number": 31,
+    "index": 28
+   },
+   {
+    "word": "to",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 29
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 30
+   },
+   {
+    "word": "back,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 31
+   },
+   {
+    "word": "same",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 32
+   },
+   {
+    "word": "thing,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 33
+   },
+   {
+    "word": "tandu,",
+    "marker_type": "beat",
+    "beat_number": 33,
+    "index": 34
+   },
+   {
+    "word": "tendu,",
+    "marker_type": "beat",
+    "beat_number": 35,
+    "index": 35
+   },
+   {
+    "word": "long",
+    "marker_type": "beat",
+    "beat_number": 37,
+    "index": 36
+   },
+   {
+    "word": "flex,",
+    "marker_type": "beat",
+    "beat_number": 39,
+    "index": 37
+   },
+   {
+    "word": "point",
+    "marker_type": "beat",
+    "beat_number": 41,
+    "index": 38
+   },
+   {
+    "word": "away,",
+    "marker_type": "beat",
+    "beat_number": 43,
+    "index": 39
+   },
+   {
+    "word": "now",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 40
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 41
+   },
+   {
+    "word": "port",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 42
+   },
+   {
+    "word": "de",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 43
+   },
+   {
+    "word": "bras,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 44
+   },
+   {
+    "word": "and",
+    "marker_type": "beat",
+    "beat_number": 45,
+    "index": 45
+   },
+   {
+    "word": "roll",
+    "marker_type": "beat",
+    "beat_number": 49,
+    "index": 46
+   },
+   {
+    "word": "through",
+    "marker_type": "beat",
+    "beat_number": 51,
+    "index": 47
+   },
+   {
+    "word": "your",
+    "marker_type": "beat",
+    "beat_number": 53,
+    "index": 48
+   },
+   {
+    "word": "feet,",
+    "marker_type": "beat",
+    "beat_number": 55,
+    "index": 49
+   },
+   {
+    "word": "five,",
+    "marker_type": "beat",
+    "beat_number": 57,
+    "index": 50
+   },
+   {
+    "word": "press",
+    "marker_type": "beat",
+    "beat_number": 59,
+    "index": 51
+   },
+   {
+    "word": "the",
+    "marker_type": "beat",
+    "beat_number": 61,
+    "index": 52
+   },
+   {
+    "word": "floor",
+    "marker_type": "beat",
+    "beat_number": 63,
+    "index": 53
+   },
+   {
+    "word": "away,",
+    "marker_type": "beat",
+    "beat_number": 65,
+    "index": 54
+   },
+   {
+    "word": "little",
+    "marker_type": "beat",
+    "beat_number": 67,
+    "index": 55
+   },
+   {
+    "word": "balance,",
+    "marker_type": "beat",
+    "beat_number": 69,
+    "index": 56
+   },
+   {
+    "word": "all",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 57
+   },
+   {
+    "word": "to",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 58
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 59
+   },
+   {
+    "word": "left",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 60
+   },
+   {
+    "word": "please,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 61
+   },
+   {
+    "word": "slow",
+    "marker_type": "beat",
+    "beat_number": 71,
+    "index": 62
+   },
+   {
+    "word": "tendu,",
+    "marker_type": "beat",
+    "beat_number": 73,
+    "index": 63
+   },
+   {
+    "word": "one,",
+    "marker_type": "beat",
+    "beat_number": 75,
+    "index": 64
+   },
+   {
+    "word": "one,",
+    "marker_type": "beat",
+    "beat_number": 77,
+    "index": 65
+   },
+   {
+    "word": "two,",
+    "marker_type": "beat",
+    "beat_number": 79,
+    "index": 66
+   },
+   {
+    "word": "flex,",
+    "marker_type": "beat",
+    "beat_number": 81,
+    "index": 67
+   },
+   {
+    "word": "push",
+    "marker_type": "beat",
+    "beat_number": 83,
+    "index": 68
+   },
+   {
+    "word": "away,",
+    "marker_type": "beat",
+    "beat_number": 85,
+    "index": 69
+   },
+   {
+    "word": "two",
+    "marker_type": "beat",
+    "beat_number": 87,
+    "index": 70
+   },
+   {
+    "word": "on",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 71
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 72
+   },
+   {
+    "word": "end,",
+    "marker_type": "beat",
+    "beat_number": 89,
+    "index": 73
+   },
+   {
+    "word": "same",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 74
+   },
+   {
+    "word": "size,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 75
+   },
+   {
+    "word": "tandu",
+    "marker_type": "beat",
+    "beat_number": 91,
+    "index": 76
+   },
+   {
+    "word": "out,",
+    "marker_type": "beat",
+    "beat_number": 93,
+    "index": 77
+   },
+   {
+    "word": "out.",
+    "marker_type": "beat",
+    "beat_number": 95,
+    "index": 78
+   },
+   {
+    "word": "flex,",
+    "marker_type": "beat",
+    "beat_number": 97,
+    "index": 79
+   },
+   {
+    "word": "rotate,",
+    "marker_type": "beat",
+    "beat_number": 99,
+    "index": 80
+   },
+   {
+    "word": "first",
+    "marker_type": "beat",
+    "beat_number": 101,
+    "index": 81
+   },
+   {
+    "word": "point",
+    "marker_type": "beat",
+    "beat_number": 103,
+    "index": 82
+   },
+   {
+    "word": "away,",
+    "marker_type": "beat",
+    "beat_number": 105,
+    "index": 83
+   },
+   {
+    "word": "and",
+    "marker_type": "beat",
+    "beat_number": 107,
+    "index": 84
+   },
+   {
+    "word": "two,",
+    "marker_type": "beat",
+    "beat_number": 109,
+    "index": 85
+   },
+   {
+    "word": "same",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 86
+   },
+   {
+    "word": "to",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 87
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 88
+   },
+   {
+    "word": "back,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 89
+   },
+   {
+    "word": "and",
+    "marker_type": "beat",
+    "beat_number": 111,
+    "index": 90
+   },
+   {
+    "word": "one.",
+    "marker_type": "beat",
+    "beat_number": 113,
+    "index": 91
+   },
+   {
+    "word": "one,",
+    "marker_type": "beat",
+    "beat_number": 115,
+    "index": 92
+   },
+   {
+    "word": "really",
+    "marker_type": "beat",
+    "beat_number": 117,
+    "index": 93
+   },
+   {
+    "word": "using",
+    "marker_type": "beat",
+    "beat_number": 119,
+    "index": 94
+   },
+   {
+    "word": "the",
+    "marker_type": "beat",
+    "beat_number": 121,
+    "index": 95
+   },
+   {
+    "word": "floor,",
+    "marker_type": "beat",
+    "beat_number": 123,
+    "index": 96
+   },
+   {
+    "word": "brush",
+    "marker_type": "beat",
+    "beat_number": 125,
+    "index": 97
+   },
+   {
+    "word": "through",
+    "marker_type": "beat",
+    "beat_number": 127,
+    "index": 98
+   },
+   {
+    "word": "the",
+    "marker_type": "beat",
+    "beat_number": 129,
+    "index": 99
+   },
+   {
+    "word": "flex,",
+    "marker_type": "beat",
+    "beat_number": 131,
+    "index": 100
+   },
+   {
+    "word": "pointing",
+    "marker_type": "beat",
+    "beat_number": 133,
+    "index": 101
+   },
+   {
+    "word": "out.",
+    "marker_type": "beat",
+    "beat_number": 135,
+    "index": 102
+   },
+   {
+    "word": "two",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 103
+   },
+   {
+    "word": "on",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 104
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 105
+   },
+   {
+    "word": "end.",
+    "marker_type": "beat",
+    "beat_number": 137,
+    "index": 106
+   },
+   {
+    "word": "stretch",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 107
+   },
+   {
+    "word": "it",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 108
+   },
+   {
+    "word": "out,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 109
+   },
+   {
+    "word": "pour",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 110
+   },
+   {
+    "word": "de",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 111
+   },
+   {
+    "word": "bras.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 112
+   },
+   {
+    "word": "and",
+    "marker_type": "beat",
+    "beat_number": 139,
+    "index": 113
+   },
+   {
+    "word": "roll",
+    "marker_type": "beat",
+    "beat_number": 141,
+    "index": 114
+   },
+   {
+    "word": "through,",
+    "marker_type": "beat",
+    "beat_number": 143,
+    "index": 115
+   },
+   {
+    "word": "press.",
+    "marker_type": "beat",
+    "beat_number": 145,
+    "index": 116
+   },
+   {
+    "word": "lowering",
+    "marker_type": "beat",
+    "beat_number": 147,
+    "index": 117
+   },
+   {
+    "word": "down.",
+    "marker_type": "beat",
+    "beat_number": 149,
+    "index": 118
+   }
+  ],
+  "exercise": {
+   "exercise_type": "tendu",
+   "display_name": "Tendu",
+   "confidence": 0.95,
+   "reasoning": "The dancer performs slow tendus to the front, side, and back, followed by a port de bras, which is characteristic of a tendu exercise."
+  },
+  "counting_structure": {
+   "total_counts": 149,
+   "prep_counts": null,
+   "subdivision_type": "none",
+   "estimated_bpm": 72
+  },
+  "meter": {
+   "beats_per_measure": 4,
+   "beat_unit": 4
+  },
+  "quality": [
+   {
+    "phrase_number": 1,
+    "description": "Slow tendus to the front with the right leg, extending the foot and flexing/pointing.",
+    "articulation": 0.6,
+    "weight": 0.5,
+    "energy": 0.4,
+    "primary": true
+   },
+   {
+    "phrase_number": 2,
+    "description": "Slow tendus to the side with the right leg, extending the foot and flexing/pointing.",
+    "articulation": 0.6,
+    "weight": 0.5,
+    "energy": 0.4,
+    "primary": true
+   },
+   {
+    "phrase_number": 3,
+    "description": "Slow tendus to the back with the right leg, extending the foot and flexing/pointing.",
+    "articulation": 0.6,
+    "weight": 0.5,
+    "energy": 0.4,
+    "primary": true
+   },
+   {
+    "phrase_number": 4,
+    "description": "A slow port de bras with the right arm, moving up and down with a slight body bend.",
+    "articulation": 0.8,
+    "weight": 0.3,
+    "energy": 0.2,
+    "primary": false
+   },
+   {
+    "phrase_number": 5,
+    "description": "Slow tendus to the front with the left leg, extending the foot and flexing/pointing.",
+    "articulation": 0.6,
+    "weight": 0.5,
+    "energy": 0.4,
+    "primary": true
+   },
+   {
+    "phrase_number": 6,
+    "description": "Slow tendus to the side with the left leg, extending the foot and flexing/pointing.",
+    "articulation": 0.6,
+    "weight": 0.5,
+    "energy": 0.4,
+    "primary": true
+   },
+   {
+    "phrase_number": 7,
+    "description": "Slow tendus to the back with the left leg, extending the foot and flexing/pointing.",
+    "articulation": 0.6,
+    "weight": 0.5,
+    "energy": 0.4,
+    "primary": true
+   },
+   {
+    "phrase_number": 8,
+    "description": "A slow port de bras with the left arm, moving up and down with a slight body bend.",
+    "articulation": 0.8,
+    "weight": 0.3,
+    "energy": 0.2,
+    "primary": false
+   }
+  ],
+  "structure": {
+   "counts": 64,
+   "sides": 2
+  }
+ },
+ "inputs": {
+  "onset_bpm_sent": 147.3,
+  "transcript_words_sent": [
+   "tandu,",
+   "front,",
+   "two,",
+   "start.",
+   "one,",
+   "two,",
+   "slow,",
+   "flex,",
+   "push,",
+   "point",
+   "away,",
+   "toe-tandu,",
+   "to",
+   "the",
+   "front,",
+   "same",
+   "to",
+   "the",
+   "side,",
+   "slow,",
+   "in",
+   "first,",
+   "slow,",
+   "in",
+   "first,",
+   "flex,",
+   "point",
+   "away,",
+   "two,",
+   "to",
+   "the",
+   "back,",
+   "same",
+   "thing,",
+   "tandu,",
+   "tendu,",
+   "long",
+   "flex,",
+   "point",
+   "away,",
+   "now",
+   "the",
+   "port",
+   "de",
+   "bras,",
+   "and",
+   "roll",
+   "through",
+   "your",
+   "feet,",
+   "five,",
+   "press",
+   "the",
+   "floor",
+   "away,",
+   "little",
+   "balance,",
+   "all",
+   "to",
+   "the",
+   "left",
+   "please,",
+   "slow",
+   "tendu,",
+   "one,",
+   "one,",
+   "two,",
+   "flex,",
+   "push",
+   "away,",
+   "two",
+   "on",
+   "the",
+   "end,",
+   "same",
+   "size,",
+   "tendu",
+   "out,",
+   "out.",
+   "flex,",
+   "rotate,",
+   "first",
+   "point",
+   "away,",
+   "and",
+   "two,",
+   "same",
+   "to",
+   "the",
+   "back,",
+   "and",
+   "one.",
+   "one,",
+   "really",
+   "using",
+   "the",
+   "floor,",
+   "brush",
+   "through",
+   "the",
+   "flex,",
+   "pointing",
+   "out.",
+   "two",
+   "on",
+   "the",
+   "end.",
+   "stretch",
+   "it",
+   "out,",
+   "pour",
+   "de",
+   "bras.",
+   "and",
+   "roll",
+   "through,",
+   "press.",
+   "lowering",
+   "down."
+  ]
+ }
+}

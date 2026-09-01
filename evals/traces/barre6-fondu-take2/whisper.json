@@ -1,0 +1,339 @@
+{
+ "words": [
+  {
+   "word": "other",
+   "start": 0.031,
+   "end": 0.692
+  },
+  {
+   "word": "side,",
+   "start": 0.732,
+   "end": 1.012
+  },
+  {
+   "word": "turn",
+   "start": 1.152,
+   "end": 1.292
+  },
+  {
+   "word": "out",
+   "start": 1.352,
+   "end": 1.453
+  },
+  {
+   "word": "two",
+   "start": 1.513,
+   "end": 1.653
+  },
+  {
+   "word": "legs",
+   "start": 1.693,
+   "end": 1.853
+  },
+  {
+   "word": "on",
+   "start": 1.933,
+   "end": 1.973
+  },
+  {
+   "word": "your",
+   "start": 2.013,
+   "end": 2.133
+  },
+  {
+   "word": "fondus.",
+   "start": 2.173,
+   "end": 2.614
+  },
+  {
+   "word": "and...",
+   "start": 3.875,
+   "end": 6.518
+  },
+  {
+   "word": "fondue,",
+   "start": 6.538,
+   "end": 6.838
+  },
+  {
+   "word": "coup",
+   "start": 6.858,
+   "end": 6.959
+  },
+  {
+   "word": "de",
+   "start": 6.979,
+   "end": 7.059
+  },
+  {
+   "word": "pied.",
+   "start": 7.119,
+   "end": 7.339
+  },
+  {
+   "word": "down.",
+   "start": 10.783,
+   "end": 11.443
+  },
+  {
+   "word": "fondue",
+   "start": 13.105,
+   "end": 13.486
+  },
+  {
+   "word": "front.",
+   "start": 13.526,
+   "end": 13.826
+  },
+  {
+   "word": "pli\u00e9",
+   "start": 15.928,
+   "end": 16.309
+  },
+  {
+   "word": "front.",
+   "start": 16.329,
+   "end": 17.15
+  },
+  {
+   "word": "quarter",
+   "start": 17.17,
+   "end": 17.57
+  },
+  {
+   "word": "rond.",
+   "start": 17.59,
+   "end": 17.91
+  },
+  {
+   "word": "single,",
+   "start": 18.791,
+   "end": 19.052
+  },
+  {
+   "word": "double,",
+   "start": 19.072,
+   "end": 19.312
+  },
+  {
+   "word": "rond",
+   "start": 19.332,
+   "end": 19.432
+  },
+  {
+   "word": "de",
+   "start": 19.452,
+   "end": 19.532
+  },
+  {
+   "word": "jambe.",
+   "start": 19.552,
+   "end": 21.314
+  },
+  {
+   "word": "two",
+   "start": 21.334,
+   "end": 21.494
+  },
+  {
+   "word": "fondue",
+   "start": 21.534,
+   "end": 21.775
+  },
+  {
+   "word": "side,",
+   "start": 21.795,
+   "end": 22.015
+  },
+  {
+   "word": "please.",
+   "start": 22.055,
+   "end": 22.355
+  },
+  {
+   "word": "flick",
+   "start": 27.02,
+   "end": 27.261
+  },
+  {
+   "word": "up",
+   "start": 27.301,
+   "end": 27.361
+  },
+  {
+   "word": "to",
+   "start": 27.401,
+   "end": 27.481
+  },
+  {
+   "word": "your",
+   "start": 27.521,
+   "end": 27.601
+  },
+  {
+   "word": "pass\u00e9",
+   "start": 27.661,
+   "end": 27.981
+  },
+  {
+   "word": "back.",
+   "start": 28.021,
+   "end": 28.502
+  },
+  {
+   "word": "let",
+   "start": 29.832,
+   "end": 31.234
+  },
+  {
+   "word": "go",
+   "start": 31.254,
+   "end": 31.394
+  },
+  {
+   "word": "of",
+   "start": 31.454,
+   "end": 31.534
+  },
+  {
+   "word": "the",
+   "start": 31.574,
+   "end": 31.654
+  },
+  {
+   "word": "barre,",
+   "start": 31.674,
+   "end": 33.877
+  },
+  {
+   "word": "all",
+   "start": 33.897,
+   "end": 34.017
+  },
+  {
+   "word": "from",
+   "start": 34.057,
+   "end": 34.157
+  },
+  {
+   "word": "the",
+   "start": 34.197,
+   "end": 34.277
+  },
+  {
+   "word": "back,",
+   "start": 34.317,
+   "end": 34.618
+  },
+  {
+   "word": "coup\u00e9,",
+   "start": 36.78,
+   "end": 37.481
+  },
+  {
+   "word": "fifth,",
+   "start": 40.265,
+   "end": 40.385
+  },
+  {
+   "word": "fondu,",
+   "start": 40.405,
+   "end": 40.905
+  },
+  {
+   "word": "to",
+   "start": 41.306,
+   "end": 41.466
+  },
+  {
+   "word": "the",
+   "start": 41.486,
+   "end": 41.606
+  },
+  {
+   "word": "back,",
+   "start": 41.646,
+   "end": 41.867
+  },
+  {
+   "word": "pli\u00e9,",
+   "start": 43.409,
+   "end": 43.869
+  },
+  {
+   "word": "single",
+   "start": 45.211,
+   "end": 45.471
+  },
+  {
+   "word": "double,",
+   "start": 45.491,
+   "end": 47.513
+  },
+  {
+   "word": "two",
+   "start": 47.534,
+   "end": 47.714
+  },
+  {
+   "word": "fondu",
+   "start": 47.734,
+   "end": 48.034
+  },
+  {
+   "word": "sides,",
+   "start": 48.054,
+   "end": 48.355
+  },
+  {
+   "word": "and",
+   "start": 53.961,
+   "end": 54.081
+  },
+  {
+   "word": "right",
+   "start": 54.222,
+   "end": 54.482
+  },
+  {
+   "word": "away",
+   "start": 54.522,
+   "end": 54.682
+  },
+  {
+   "word": "into",
+   "start": 54.702,
+   "end": 54.882
+  },
+  {
+   "word": "your",
+   "start": 54.922,
+   "end": 55.003
+  },
+  {
+   "word": "balance,",
+   "start": 55.023,
+   "end": 55.343
+  },
+  {
+   "word": "pass\u00e9,",
+   "start": 55.363,
+   "end": 56.304
+  },
+  {
+   "word": "finish",
+   "start": 58.287,
+   "end": 58.547
+  },
+  {
+   "word": "with",
+   "start": 58.587,
+   "end": 58.727
+  },
+  {
+   "word": "rex,",
+   "start": 58.807,
+   "end": 59.468
+  }
+ ]
+}

@@ -1,0 +1,484 @@
+{
+ "model": "gemini-2.5-flash",
+ "raw_response": {
+  "words": [
+   {
+    "word": "front",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 0
+   },
+   {
+    "word": "to",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 1
+   },
+   {
+    "word": "start.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 2
+   },
+   {
+    "word": "thanks.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 3
+   },
+   {
+    "word": "fondue",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 4
+   },
+   {
+    "word": "down.",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 5
+   },
+   {
+    "word": "one",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 6
+   },
+   {
+    "word": "front.",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 7
+   },
+   {
+    "word": "pli\u00e9,",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 8
+   },
+   {
+    "word": "quarter",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 9
+   },
+   {
+    "word": "rond.",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 10
+   },
+   {
+    "word": "single",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 11
+   },
+   {
+    "word": "double.",
+    "marker_type": "beat",
+    "beat_number": 9,
+    "index": 12
+   },
+   {
+    "word": "two",
+    "marker_type": "beat",
+    "beat_number": 10,
+    "index": 13
+   },
+   {
+    "word": "fondue",
+    "marker_type": "beat",
+    "beat_number": 11,
+    "index": 14
+   },
+   {
+    "word": "side,",
+    "marker_type": "beat",
+    "beat_number": 12,
+    "index": 15
+   },
+   {
+    "word": "please.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 16
+   },
+   {
+    "word": "flick",
+    "marker_type": "beat",
+    "beat_number": 13,
+    "index": 17
+   },
+   {
+    "word": "up",
+    "marker_type": "beat",
+    "beat_number": 14,
+    "index": 18
+   },
+   {
+    "word": "to",
+    "marker_type": "beat",
+    "beat_number": 15,
+    "index": 19
+   },
+   {
+    "word": "passe,",
+    "marker_type": "beat",
+    "beat_number": 16,
+    "index": 20
+   },
+   {
+    "word": "down",
+    "marker_type": "beat",
+    "beat_number": 17,
+    "index": 21
+   },
+   {
+    "word": "up.",
+    "marker_type": "beat",
+    "beat_number": 18,
+    "index": 22
+   },
+   {
+    "word": "find",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 23
+   },
+   {
+    "word": "your",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 24
+   },
+   {
+    "word": "balance",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 25
+   },
+   {
+    "word": "there,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 26
+   },
+   {
+    "word": "lengthen",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 27
+   },
+   {
+    "word": "through",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 28
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 29
+   },
+   {
+    "word": "fifth,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 30
+   },
+   {
+    "word": "coup\u00e9",
+    "marker_type": "beat",
+    "beat_number": 19,
+    "index": 31
+   },
+   {
+    "word": "down,",
+    "marker_type": "beat",
+    "beat_number": 20,
+    "index": 32
+   },
+   {
+    "word": "coup\u00e9,",
+    "marker_type": "beat",
+    "beat_number": 21,
+    "index": 33
+   },
+   {
+    "word": "fondu",
+    "marker_type": "beat",
+    "beat_number": 22,
+    "index": 34
+   },
+   {
+    "word": "to",
+    "marker_type": "beat",
+    "beat_number": 23,
+    "index": 35
+   },
+   {
+    "word": "the",
+    "marker_type": "beat",
+    "beat_number": 24,
+    "index": 36
+   },
+   {
+    "word": "back,",
+    "marker_type": "beat",
+    "beat_number": 25,
+    "index": 37
+   },
+   {
+    "word": "pli\u00e9,",
+    "marker_type": "beat",
+    "beat_number": 26,
+    "index": 38
+   },
+   {
+    "word": "quarter",
+    "marker_type": "beat",
+    "beat_number": 27,
+    "index": 39
+   },
+   {
+    "word": "rond,",
+    "marker_type": "beat",
+    "beat_number": 28,
+    "index": 40
+   },
+   {
+    "word": "single",
+    "marker_type": "beat",
+    "beat_number": 29,
+    "index": 41
+   },
+   {
+    "word": "double,",
+    "marker_type": "beat",
+    "beat_number": 30,
+    "index": 42
+   },
+   {
+    "word": "two",
+    "marker_type": "beat",
+    "beat_number": 31,
+    "index": 43
+   },
+   {
+    "word": "fondu",
+    "marker_type": "beat",
+    "beat_number": 32,
+    "index": 44
+   },
+   {
+    "word": "sides,",
+    "marker_type": "beat",
+    "beat_number": 33,
+    "index": 45
+   },
+   {
+    "word": "now",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 46
+   },
+   {
+    "word": "flick",
+    "marker_type": "beat",
+    "beat_number": 34,
+    "index": 47
+   },
+   {
+    "word": "up",
+    "marker_type": "beat",
+    "beat_number": 35,
+    "index": 48
+   },
+   {
+    "word": "to",
+    "marker_type": "beat",
+    "beat_number": 36,
+    "index": 49
+   },
+   {
+    "word": "your",
+    "marker_type": "beat",
+    "beat_number": 37,
+    "index": 50
+   },
+   {
+    "word": "pass\u00e9,",
+    "marker_type": "beat",
+    "beat_number": 38,
+    "index": 51
+   },
+   {
+    "word": "balance",
+    "marker_type": "beat",
+    "beat_number": 39,
+    "index": 52
+   },
+   {
+    "word": "there,",
+    "marker_type": "beat",
+    "beat_number": 40,
+    "index": 53
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 54
+   },
+   {
+    "word": "we'll",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 55
+   },
+   {
+    "word": "finish",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 56
+   },
+   {
+    "word": "there,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 57
+   },
+   {
+    "word": "out,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 58
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 59
+   },
+   {
+    "word": "thank",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 60
+   },
+   {
+    "word": "you.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 61
+   }
+  ],
+  "exercise": {
+   "exercise_type": "fondu",
+   "display_name": "Fondu",
+   "confidence": 1.0,
+   "reasoning": "The teacher explicitly names 'fondu' multiple times and demonstrates the fondu movement throughout the exercise."
+  },
+  "counting_structure": {
+   "total_counts": 40,
+   "prep_counts": "Fondu down (beats 1-2), Coup\u00e9 down coup\u00e9 (beats 19-21)",
+   "subdivision_type": "none",
+   "estimated_bpm": 48
+  },
+  "meter": {
+   "beats_per_measure": 3,
+   "beat_unit": 4
+  },
+  "quality": [
+   {
+    "phrase_number": 1,
+    "description": "The dancer performs a fondu to the front, a pli\u00e9, a quarter rond de jambe, single and double fondus to the side, and finishes with a flick to pass\u00e9.",
+    "articulation": 0.6,
+    "weight": 0.6,
+    "energy": 0.5,
+    "primary": true
+   },
+   {
+    "phrase_number": 2,
+    "description": "The dancer performs a fondu to the back, a pli\u00e9, a quarter rond de jambe, single and double fondus to the side, and finishes with a flick to pass\u00e9 and a balance.",
+    "articulation": 0.6,
+    "weight": 0.6,
+    "energy": 0.5,
+    "primary": true
+   }
+  ],
+  "structure": {
+   "counts": 16,
+   "sides": 2
+  }
+ },
+ "inputs": {
+  "onset_bpm_sent": 172.9,
+  "transcript_words_sent": [
+   "front",
+   "to",
+   "start.",
+   "thanks.",
+   "fondue",
+   "down.",
+   "one",
+   "front.",
+   "pli\u00e9,",
+   "quarter",
+   "rond.",
+   "single",
+   "double.",
+   "two",
+   "fondue",
+   "side,",
+   "please.",
+   "flick",
+   "up",
+   "to",
+   "passe,",
+   "down",
+   "up.",
+   "find",
+   "your",
+   "balance",
+   "there,",
+   "lengthen",
+   "through",
+   "the",
+   "fifth,",
+   "coup\u00e9",
+   "down,",
+   "coup\u00e9,",
+   "fondu",
+   "to",
+   "the",
+   "back,",
+   "pli\u00e9,",
+   "quarter",
+   "rond,",
+   "single",
+   "double,",
+   "two",
+   "fondu",
+   "sides,",
+   "now",
+   "flick",
+   "up",
+   "to",
+   "your",
+   "pass\u00e9,",
+   "balance",
+   "there,",
+   "and",
+   "we'll",
+   "finish",
+   "there,",
+   "out,",
+   "and",
+   "thank",
+   "you."
+  ]
+ }
+}

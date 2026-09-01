@@ -1,0 +1,724 @@
+{
+ "model": "gemini-2.5-flash",
+ "raw_response": {
+  "words": [
+   {
+    "word": "thank",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 0
+   },
+   {
+    "word": "you.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 1
+   },
+   {
+    "word": "we",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 2
+   },
+   {
+    "word": "take",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 3
+   },
+   {
+    "word": "a",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 4
+   },
+   {
+    "word": "fondu,",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 5
+   },
+   {
+    "word": "coup",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 6
+   },
+   {
+    "word": "de",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 7
+   },
+   {
+    "word": "pied,",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 8
+   },
+   {
+    "word": "then",
+    "marker_type": "and",
+    "beat_number": 4,
+    "index": 9
+   },
+   {
+    "word": "a",
+    "marker_type": "and",
+    "beat_number": 4,
+    "index": 10
+   },
+   {
+    "word": "fondu",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 11
+   },
+   {
+    "word": "to",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 12
+   },
+   {
+    "word": "the",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 13
+   },
+   {
+    "word": "front,",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 14
+   },
+   {
+    "word": "pli\u00e9,",
+    "marker_type": "beat",
+    "beat_number": 9,
+    "index": 15
+   },
+   {
+    "word": "bring",
+    "marker_type": "beat",
+    "beat_number": 11,
+    "index": 16
+   },
+   {
+    "word": "it",
+    "marker_type": "beat",
+    "beat_number": 11,
+    "index": 17
+   },
+   {
+    "word": "side,",
+    "marker_type": "beat",
+    "beat_number": 11,
+    "index": 18
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 12,
+    "index": 19
+   },
+   {
+    "word": "a",
+    "marker_type": "and",
+    "beat_number": 12,
+    "index": 20
+   },
+   {
+    "word": "single",
+    "marker_type": "beat",
+    "beat_number": 13,
+    "index": 21
+   },
+   {
+    "word": "double",
+    "marker_type": "beat",
+    "beat_number": 15,
+    "index": 22
+   },
+   {
+    "word": "rond,",
+    "marker_type": "beat",
+    "beat_number": 15,
+    "index": 23
+   },
+   {
+    "word": "a",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 24
+   },
+   {
+    "word": "fondu",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 25
+   },
+   {
+    "word": "to",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 26
+   },
+   {
+    "word": "the",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 27
+   },
+   {
+    "word": "side,",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 28
+   },
+   {
+    "word": "a",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 29
+   },
+   {
+    "word": "fondu",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 30
+   },
+   {
+    "word": "to",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 31
+   },
+   {
+    "word": "the",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 32
+   },
+   {
+    "word": "side,",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 33
+   },
+   {
+    "word": "flick",
+    "marker_type": "beat",
+    "beat_number": 9,
+    "index": 34
+   },
+   {
+    "word": "up",
+    "marker_type": "beat",
+    "beat_number": 9,
+    "index": 35
+   },
+   {
+    "word": "to",
+    "marker_type": "beat",
+    "beat_number": 9,
+    "index": 36
+   },
+   {
+    "word": "the",
+    "marker_type": "beat",
+    "beat_number": 9,
+    "index": 37
+   },
+   {
+    "word": "pass\u00e9,",
+    "marker_type": "beat",
+    "beat_number": 9,
+    "index": 38
+   },
+   {
+    "word": "six,",
+    "marker_type": "beat",
+    "beat_number": 11,
+    "index": 39
+   },
+   {
+    "word": "seven,",
+    "marker_type": "beat",
+    "beat_number": 13,
+    "index": 40
+   },
+   {
+    "word": "close",
+    "marker_type": "beat",
+    "beat_number": 15,
+    "index": 41
+   },
+   {
+    "word": "in,",
+    "marker_type": "beat",
+    "beat_number": 15,
+    "index": 42
+   },
+   {
+    "word": "fifth,",
+    "marker_type": "beat",
+    "beat_number": 15,
+    "index": 43
+   },
+   {
+    "word": "one",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 44
+   },
+   {
+    "word": "fondu,",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 45
+   },
+   {
+    "word": "coup",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 46
+   },
+   {
+    "word": "de",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 47
+   },
+   {
+    "word": "pied,",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 48
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 4,
+    "index": 49
+   },
+   {
+    "word": "a",
+    "marker_type": "and",
+    "beat_number": 4,
+    "index": 50
+   },
+   {
+    "word": "fondu",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 51
+   },
+   {
+    "word": "to",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 52
+   },
+   {
+    "word": "the",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 53
+   },
+   {
+    "word": "back,",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 54
+   },
+   {
+    "word": "lengthen",
+    "marker_type": "beat",
+    "beat_number": 9,
+    "index": 55
+   },
+   {
+    "word": "it",
+    "marker_type": "beat",
+    "beat_number": 9,
+    "index": 56
+   },
+   {
+    "word": "out,",
+    "marker_type": "beat",
+    "beat_number": 9,
+    "index": 57
+   },
+   {
+    "word": "quarter",
+    "marker_type": "beat",
+    "beat_number": 11,
+    "index": 58
+   },
+   {
+    "word": "rond,",
+    "marker_type": "beat",
+    "beat_number": 11,
+    "index": 59
+   },
+   {
+    "word": "a",
+    "marker_type": "beat",
+    "beat_number": 13,
+    "index": 60
+   },
+   {
+    "word": "single,",
+    "marker_type": "beat",
+    "beat_number": 13,
+    "index": 61
+   },
+   {
+    "word": "double",
+    "marker_type": "beat",
+    "beat_number": 15,
+    "index": 62
+   },
+   {
+    "word": "rond,",
+    "marker_type": "beat",
+    "beat_number": 15,
+    "index": 63
+   },
+   {
+    "word": "fondu,",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 64
+   },
+   {
+    "word": "to",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 65
+   },
+   {
+    "word": "the",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 66
+   },
+   {
+    "word": "side,",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 67
+   },
+   {
+    "word": "fondu,",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 68
+   },
+   {
+    "word": "to",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 69
+   },
+   {
+    "word": "the",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 70
+   },
+   {
+    "word": "side,",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 71
+   },
+   {
+    "word": "flick",
+    "marker_type": "beat",
+    "beat_number": 9,
+    "index": 72
+   },
+   {
+    "word": "up",
+    "marker_type": "beat",
+    "beat_number": 9,
+    "index": 73
+   },
+   {
+    "word": "to",
+    "marker_type": "beat",
+    "beat_number": 9,
+    "index": 74
+   },
+   {
+    "word": "the",
+    "marker_type": "beat",
+    "beat_number": 9,
+    "index": 75
+   },
+   {
+    "word": "pass\u00e9,",
+    "marker_type": "beat",
+    "beat_number": 9,
+    "index": 76
+   },
+   {
+    "word": "find",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 77
+   },
+   {
+    "word": "your",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 78
+   },
+   {
+    "word": "balance,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 79
+   },
+   {
+    "word": "seven",
+    "marker_type": "beat",
+    "beat_number": 13,
+    "index": 80
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 13,
+    "index": 81
+   },
+   {
+    "word": "eight,",
+    "marker_type": "beat",
+    "beat_number": 15,
+    "index": 82
+   },
+   {
+    "word": "yeah,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 83
+   },
+   {
+    "word": "fondu,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 84
+   },
+   {
+    "word": "cou-de-pied,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 85
+   },
+   {
+    "word": "into",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 86
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 87
+   },
+   {
+    "word": "fifth",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 88
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 89
+   },
+   {
+    "word": "then",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 90
+   },
+   {
+    "word": "a",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 91
+   },
+   {
+    "word": "normal",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 92
+   },
+   {
+    "word": "fondu,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 93
+   }
+  ],
+  "exercise": {
+   "exercise_type": "fondu",
+   "display_name": "Fondu",
+   "confidence": 0.9,
+   "reasoning": "The teacher explicitly names 'fondu' and demonstrates various fondu movements (fondu front, side, back, coup de pied, pass\u00e9) throughout the exercise."
+  },
+  "counting_structure": {
+   "total_counts": 60,
+   "prep_counts": null,
+   "subdivision_type": "duple",
+   "estimated_bpm": 120
+  },
+  "meter": {
+   "beats_per_measure": 4,
+   "beat_unit": 4
+  },
+  "quality": [
+   {
+    "phrase_number": 1,
+    "description": "The dancer performs a fondu coup de pied, extends to fondu front, then pli\u00e9s and brings the leg to the side for a single double rond.",
+    "articulation": 0.6,
+    "weight": 0.5,
+    "energy": 0.4,
+    "primary": true
+   },
+   {
+    "phrase_number": 2,
+    "description": "The dancer performs two fondu to the side, then flicks the working leg to pass\u00e9, holds a balance, and closes in fifth.",
+    "articulation": 0.6,
+    "weight": 0.45,
+    "energy": 0.4,
+    "primary": true
+   },
+   {
+    "phrase_number": 3,
+    "description": "The dancer performs a fondu coup de pied, extends to fondu back, then performs a quarter rond and a single double rond.",
+    "articulation": 0.6,
+    "weight": 0.5,
+    "energy": 0.4,
+    "primary": true
+   },
+   {
+    "phrase_number": 4,
+    "description": "The dancer performs two fondu to the side, then flicks the working leg to pass\u00e9 and holds a balance before closing.",
+    "articulation": 0.6,
+    "weight": 0.45,
+    "energy": 0.4,
+    "primary": true
+   }
+  ],
+  "structure": {
+   "counts": 16,
+   "sides": 2
+  }
+ },
+ "inputs": {
+  "onset_bpm_sent": 101.0,
+  "transcript_words_sent": [
+   "thank",
+   "you.",
+   "we",
+   "take",
+   "a",
+   "fondu,",
+   "coup",
+   "de",
+   "pied,",
+   "then",
+   "a",
+   "fondu",
+   "to",
+   "the",
+   "front,",
+   "pli\u00e9,",
+   "bring",
+   "it",
+   "side,",
+   "and",
+   "a",
+   "single",
+   "double",
+   "rond,",
+   "a",
+   "fondu",
+   "to",
+   "the",
+   "side,",
+   "a",
+   "fondu",
+   "to",
+   "the",
+   "side,",
+   "flick",
+   "up",
+   "to",
+   "the",
+   "pass\u00e9,",
+   "six,",
+   "seven,",
+   "close",
+   "in,",
+   "fifth,",
+   "one",
+   "fondu,",
+   "coup",
+   "de",
+   "pied,",
+   "and",
+   "a",
+   "fondu",
+   "to",
+   "the",
+   "back,",
+   "lengthen",
+   "it",
+   "out,",
+   "quarter",
+   "rond,",
+   "a",
+   "single,",
+   "double",
+   "rond,",
+   "fondu,",
+   "to",
+   "the",
+   "side,",
+   "fondu,",
+   "to",
+   "the",
+   "side,",
+   "flick",
+   "up",
+   "to",
+   "the",
+   "pass\u00e9,",
+   "find",
+   "your",
+   "balance,",
+   "seven",
+   "and",
+   "eight,",
+   "yeah,",
+   "fondu,",
+   "cou-de-pied,",
+   "into",
+   "the",
+   "fifth",
+   "and",
+   "then",
+   "a",
+   "normal",
+   "fondu,"
+  ]
+ }
+}

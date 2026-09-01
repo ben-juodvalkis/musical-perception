@@ -1,0 +1,24 @@
+id: barre6-degage-take2
+input:
+  trace: traces/barre6-degage-take2/
+  media: "video/youtube/ballet barre 6/clips/barre6-degage-take2.mp4"
+maturity: provisional
+tags:
+  source: youtube
+  teacher: yt-barre6
+  count_style: step_names
+  explanation: interleaved
+  lang: en
+  accompanied: true
+  clip_role: take
+  count_level: half
+expect:
+  performance_bpm: 122
+  meter: "4/4"
+  counts: 8
+notes: >-
+  Ballet Barre 6 ingestion 2026-09-01. Piano take — the ANSWER KEY for its
+  demo, never the input (owner ruling). Tempo is what the pianist played,
+  owner-heard. same structure as take1: 8 sets of 8 then 4 sets of 8
+  balance, same tempo, no split. count_level=half. Boundary owner-
+  corrected (was cut mid-balance at 13:38)

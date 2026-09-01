@@ -1,0 +1,787 @@
+{
+ "model": "gemini-2.5-flash",
+ "raw_response": {
+  "words": [
+   {
+    "word": "we'll",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 0
+   },
+   {
+    "word": "go",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 1
+   },
+   {
+    "word": "in",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 2
+   },
+   {
+    "word": "at",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 3
+   },
+   {
+    "word": "three",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 4
+   },
+   {
+    "word": "please,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 5
+   },
+   {
+    "word": "to",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 6
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 7
+   },
+   {
+    "word": "front,",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 8
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 1,
+    "index": 9
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 10
+   },
+   {
+    "word": "front,",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 11
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 2,
+    "index": 12
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 13
+   },
+   {
+    "word": "ballonet,",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 14
+   },
+   {
+    "word": "bring",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 15
+   },
+   {
+    "word": "it",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 16
+   },
+   {
+    "word": "side,",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 17
+   },
+   {
+    "word": "to",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 18
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 19
+   },
+   {
+    "word": "side,",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 20
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 6,
+    "index": 21
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 22
+   },
+   {
+    "word": "side,",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 23
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 24
+   },
+   {
+    "word": "ballonet,",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 25
+   },
+   {
+    "word": "bring",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 26
+   },
+   {
+    "word": "it",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 27
+   },
+   {
+    "word": "back,",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 28
+   },
+   {
+    "word": "envelop\u00e9,",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 29
+   },
+   {
+    "word": "un",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 30
+   },
+   {
+    "word": "croix,",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 31
+   },
+   {
+    "word": "from",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 32
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 33
+   },
+   {
+    "word": "back,",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 34
+   },
+   {
+    "word": "this",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 35
+   },
+   {
+    "word": "time,",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 36
+   },
+   {
+    "word": "then",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 37
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 38
+   },
+   {
+    "word": "coup",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 39
+   },
+   {
+    "word": "de",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 40
+   },
+   {
+    "word": "pied,",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 41
+   },
+   {
+    "word": "release",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 42
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 43
+   },
+   {
+    "word": "inside",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 44
+   },
+   {
+    "word": "leg,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 45
+   },
+   {
+    "word": "up",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 46
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 1,
+    "index": 47
+   },
+   {
+    "word": "down,",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 48
+   },
+   {
+    "word": "two,",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 49
+   },
+   {
+    "word": "chass\u00e9,",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 50
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 51
+   },
+   {
+    "word": "back,",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 52
+   },
+   {
+    "word": "good",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 53
+   },
+   {
+    "word": "ballonet,",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 54
+   },
+   {
+    "word": "hold",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 55
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 56
+   },
+   {
+    "word": "side,",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 57
+   },
+   {
+    "word": "side,",
+    "marker_type": "beat",
+    "beat_number": 8,
+    "index": 58
+   },
+   {
+    "word": "two,",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 59
+   },
+   {
+    "word": "ballonet,",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 60
+   },
+   {
+    "word": "bring",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 61
+   },
+   {
+    "word": "it",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 62
+   },
+   {
+    "word": "front,",
+    "marker_type": "beat",
+    "beat_number": 3,
+    "index": 63
+   },
+   {
+    "word": "then",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 64
+   },
+   {
+    "word": "envelop\u00e9,",
+    "marker_type": "beat",
+    "beat_number": 4,
+    "index": 65
+   },
+   {
+    "word": "un",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 66
+   },
+   {
+    "word": "croix,",
+    "marker_type": "beat",
+    "beat_number": 5,
+    "index": 67
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 5,
+    "index": 68
+   },
+   {
+    "word": "three.",
+    "marker_type": "beat",
+    "beat_number": 6,
+    "index": 69
+   },
+   {
+    "word": "four,",
+    "marker_type": "beat",
+    "beat_number": 7,
+    "index": 70
+   },
+   {
+    "word": "inside",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 71
+   },
+   {
+    "word": "leg",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 72
+   },
+   {
+    "word": "releases",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 73
+   },
+   {
+    "word": "down,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 74
+   },
+   {
+    "word": "bring",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 75
+   },
+   {
+    "word": "it",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 76
+   },
+   {
+    "word": "up",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 77
+   },
+   {
+    "word": "to",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 78
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 79
+   },
+   {
+    "word": "coup",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 80
+   },
+   {
+    "word": "de",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 81
+   },
+   {
+    "word": "pied,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 82
+   },
+   {
+    "word": "and",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 83
+   },
+   {
+    "word": "in",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 84
+   },
+   {
+    "word": "that",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 85
+   },
+   {
+    "word": "last",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 86
+   },
+   {
+    "word": "coup",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 87
+   },
+   {
+    "word": "de",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 88
+   },
+   {
+    "word": "pied,",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 89
+   },
+   {
+    "word": "we'll",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 90
+   },
+   {
+    "word": "find",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 91
+   },
+   {
+    "word": "our",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 92
+   },
+   {
+    "word": "balance.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 93
+   },
+   {
+    "word": "touche",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 94
+   },
+   {
+    "word": "\u00e0",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 95
+   },
+   {
+    "word": "t\u00eate",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 96
+   },
+   {
+    "word": "front,",
+    "marker_type": "beat",
+    "beat_number": 1,
+    "index": 97
+   },
+   {
+    "word": "and",
+    "marker_type": "and",
+    "beat_number": 1,
+    "index": 98
+   },
+   {
+    "word": "then",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 99
+   },
+   {
+    "word": "the",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 100
+   },
+   {
+    "word": "ballonet,",
+    "marker_type": "beat",
+    "beat_number": 2,
+    "index": 101
+   },
+   {
+    "word": "please.",
+    "marker_type": "none",
+    "beat_number": null,
+    "index": 102
+   }
+  ],
+  "exercise": {
+   "exercise_type": "chasse_coupe_ballonne",
+   "display_name": "Chass\u00e9 Coup\u00e9 Ballonn\u00e9",
+   "confidence": 0.9,
+   "reasoning": "The teacher demonstrates chass\u00e9 coup\u00e9/pass\u00e9 movements in various directions, combined with ballonn\u00e9, and explicitly names 'chass\u00e9' and 'ballonet' as rhythmic cues."
+  },
+  "counting_structure": {
+   "total_counts": 31,
+   "prep_counts": "three please",
+   "subdivision_type": "duple",
+   "estimated_bpm": 105
+  },
+  "meter": {
+   "beats_per_measure": 4,
+   "beat_unit": 4
+  },
+  "quality": [
+   {
+    "phrase_number": 1,
+    "description": "Chass\u00e9 coup\u00e9/pass\u00e9 to the front, then to the side, with a ballonn\u00e9.",
+    "articulation": 0.5,
+    "weight": 0.45,
+    "energy": 0.4,
+    "primary": true
+   },
+   {
+    "phrase_number": 2,
+    "description": "Chass\u00e9 coup\u00e9/pass\u00e9 to the back, then starting to the side.",
+    "articulation": 0.5,
+    "weight": 0.45,
+    "energy": 0.4,
+    "primary": true
+   },
+   {
+    "phrase_number": 3,
+    "description": "Chass\u00e9 to the back, followed by a ballonn\u00e9.",
+    "articulation": 0.3,
+    "weight": 0.35,
+    "energy": 0.5,
+    "primary": true
+   },
+   {
+    "phrase_number": 4,
+    "description": "Chass\u00e9 to the front, followed by an envelop\u00e9 and un croix.",
+    "articulation": 0.3,
+    "weight": 0.35,
+    "energy": 0.5,
+    "primary": true
+   }
+  ],
+  "structure": {
+   "counts": 32,
+   "sides": 1
+  }
+ },
+ "inputs": {
+  "onset_bpm_sent": 194.1,
+  "transcript_words_sent": [
+   "we'll",
+   "go",
+   "in",
+   "at",
+   "three",
+   "please,",
+   "to",
+   "the",
+   "front,",
+   "and",
+   "the",
+   "front,",
+   "and",
+   "the",
+   "ballonet,",
+   "bring",
+   "it",
+   "side,",
+   "to",
+   "the",
+   "side,",
+   "and",
+   "the",
+   "side,",
+   "the",
+   "ballonet,",
+   "bring",
+   "it",
+   "back,",
+   "envelop\u00e9,",
+   "un",
+   "croix,",
+   "from",
+   "the",
+   "back,",
+   "this",
+   "time,",
+   "then",
+   "the",
+   "coup",
+   "de",
+   "pied,",
+   "release",
+   "the",
+   "inside",
+   "leg,",
+   "up",
+   "and",
+   "down,",
+   "two,",
+   "chass\u00e9,",
+   "the",
+   "back,",
+   "good",
+   "ballonet,",
+   "hold",
+   "the",
+   "side,",
+   "side,",
+   "two,",
+   "ballonet,",
+   "bring",
+   "it",
+   "front,",
+   "then",
+   "envelop\u00e9,",
+   "un",
+   "croix,",
+   "and",
+   "three.",
+   "four,",
+   "inside",
+   "leg",
+   "releases",
+   "down,",
+   "bring",
+   "it",
+   "up",
+   "to",
+   "the",
+   "coup",
+   "de",
+   "pied,",
+   "and",
+   "in",
+   "that",
+   "last",
+   "coup",
+   "de",
+   "pied,",
+   "we'll",
+   "find",
+   "our",
+   "balance.",
+   "touche",
+   "\u00e0",
+   "t\u00eate",
+   "front,",
+   "and",
+   "then",
+   "the",
+   "ballonet,",
+   "please."
+  ]
+ }
+}

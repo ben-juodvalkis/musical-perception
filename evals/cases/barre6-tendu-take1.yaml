@@ -1,0 +1,23 @@
+id: barre6-tendu-take1
+input:
+  trace: traces/barre6-tendu-take1/
+  media: "video/youtube/ballet barre 6/clips/barre6-tendu-take1.mp4"
+maturity: provisional
+tags:
+  source: youtube
+  teacher: yt-barre6
+  count_style: step_names
+  explanation: interleaved
+  lang: en
+  accompanied: true
+  clip_role: take
+expect:
+  performance_bpm: 112
+  meter: "4/4"
+  counts: 8
+notes: >-
+  Ballet Barre 6 ingestion 2026-09-01. Piano take — the ANSWER KEY for its
+  demo, never the input (owner ruling). Tempo is what the pianist played,
+  owner-heard. 8 sets of 8; balance tail split off at 09:47 per owner
+  (option 1); acoustic tempo tracker did NOT see the change - reads
+  112-126 throughout

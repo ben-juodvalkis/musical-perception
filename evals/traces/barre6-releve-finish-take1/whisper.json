@@ -1,0 +1,399 @@
+{
+ "words": [
+  {
+   "word": "good.",
+   "start": 0.031,
+   "end": 0.371
+  },
+  {
+   "word": "and",
+   "start": 0.472,
+   "end": 0.532
+  },
+  {
+   "word": "finishing,",
+   "start": 0.552,
+   "end": 0.972
+  },
+  {
+   "word": "as",
+   "start": 1.012,
+   "end": 1.072
+  },
+  {
+   "word": "we",
+   "start": 1.112,
+   "end": 1.212
+  },
+  {
+   "word": "always",
+   "start": 1.252,
+   "end": 1.473
+  },
+  {
+   "word": "do,",
+   "start": 1.493,
+   "end": 1.633
+  },
+  {
+   "word": "with",
+   "start": 1.973,
+   "end": 2.114
+  },
+  {
+   "word": "our",
+   "start": 2.174,
+   "end": 2.234
+  },
+  {
+   "word": "rightes,",
+   "start": 2.294,
+   "end": 2.634
+  },
+  {
+   "word": "please.",
+   "start": 2.674,
+   "end": 2.915
+  },
+  {
+   "word": "thanks,",
+   "start": 3.375,
+   "end": 3.575
+  },
+  {
+   "word": "rex.",
+   "start": 3.615,
+   "end": 3.816
+  },
+  {
+   "word": "on",
+   "start": 7.48,
+   "end": 7.58
+  },
+  {
+   "word": "the",
+   "start": 7.62,
+   "end": 7.82
+  },
+  {
+   "word": "right.",
+   "start": 7.961,
+   "end": 8.181
+  },
+  {
+   "word": "here",
+   "start": 8.241,
+   "end": 8.682
+  },
+  {
+   "word": "we",
+   "start": 8.742,
+   "end": 8.922
+  },
+  {
+   "word": "go.",
+   "start": 9.002,
+   "end": 9.603
+  },
+  {
+   "word": "then",
+   "start": 9.623,
+   "end": 10.203
+  },
+  {
+   "word": "up.",
+   "start": 10.384,
+   "end": 17.512
+  },
+  {
+   "word": "four",
+   "start": 17.532,
+   "end": 17.953
+  },
+  {
+   "word": "more",
+   "start": 18.073,
+   "end": 18.233
+  },
+  {
+   "word": "on",
+   "start": 18.273,
+   "end": 18.333
+  },
+  {
+   "word": "the",
+   "start": 18.373,
+   "end": 18.433
+  },
+  {
+   "word": "right.",
+   "start": 18.473,
+   "end": 18.714
+  },
+  {
+   "word": "same",
+   "start": 25.963,
+   "end": 26.123
+  },
+  {
+   "word": "on",
+   "start": 26.163,
+   "end": 26.223
+  },
+  {
+   "word": "the",
+   "start": 26.263,
+   "end": 26.343
+  },
+  {
+   "word": "left,",
+   "start": 26.363,
+   "end": 26.703
+  },
+  {
+   "word": "please.",
+   "start": 27.224,
+   "end": 28.305
+  },
+  {
+   "word": "and",
+   "start": 28.325,
+   "end": 28.466
+  },
+  {
+   "word": "up.",
+   "start": 28.666,
+   "end": 28.806
+  },
+  {
+   "word": "quicker",
+   "start": 32.127,
+   "end": 32.487
+  },
+  {
+   "word": "up",
+   "start": 32.528,
+   "end": 32.588
+  },
+  {
+   "word": "than",
+   "start": 32.628,
+   "end": 32.768
+  },
+  {
+   "word": "down.",
+   "start": 32.808,
+   "end": 33.048
+  },
+  {
+   "word": "good.",
+   "start": 37.054,
+   "end": 37.434
+  },
+  {
+   "word": "rotate",
+   "start": 43.062,
+   "end": 43.523
+  },
+  {
+   "word": "out,",
+   "start": 43.683,
+   "end": 43.883
+  },
+  {
+   "word": "coup",
+   "start": 44.304,
+   "end": 44.604
+  },
+  {
+   "word": "de",
+   "start": 44.624,
+   "end": 44.784
+  },
+  {
+   "word": "pied,",
+   "start": 44.864,
+   "end": 45.485
+  },
+  {
+   "word": "down,",
+   "start": 45.505,
+   "end": 46.166
+  },
+  {
+   "word": "up,",
+   "start": 46.266,
+   "end": 46.386
+  },
+  {
+   "word": "up,",
+   "start": 48.509,
+   "end": 48.63
+  },
+  {
+   "word": "lower,",
+   "start": 49.471,
+   "end": 49.811
+  },
+  {
+   "word": "also",
+   "start": 49.931,
+   "end": 50.212
+  },
+  {
+   "word": "eight.",
+   "start": 50.292,
+   "end": 54.097
+  },
+  {
+   "word": "one",
+   "start": 59.364,
+   "end": 59.464
+  },
+  {
+   "word": "last",
+   "start": 59.524,
+   "end": 59.685
+  },
+  {
+   "word": "time",
+   "start": 59.725,
+   "end": 59.845
+  },
+  {
+   "word": "on",
+   "start": 59.885,
+   "end": 59.945
+  },
+  {
+   "word": "the",
+   "start": 59.985,
+   "end": 60.065
+  },
+  {
+   "word": "left.",
+   "start": 60.105,
+   "end": 60.666
+  },
+  {
+   "word": "left",
+   "start": 61.658,
+   "end": 61.959
+  },
+  {
+   "word": "side,",
+   "start": 62.02,
+   "end": 62.341
+  },
+  {
+   "word": "and",
+   "start": 62.944,
+   "end": 63.084
+  },
+  {
+   "word": "one.",
+   "start": 63.365,
+   "end": 63.506
+  },
+  {
+   "word": "make",
+   "start": 67.564,
+   "end": 67.684
+  },
+  {
+   "word": "sure",
+   "start": 67.704,
+   "end": 67.825
+  },
+  {
+   "word": "your",
+   "start": 67.865,
+   "end": 67.965
+  },
+  {
+   "word": "coutique",
+   "start": 67.986,
+   "end": 68.307
+  },
+  {
+   "word": "is",
+   "start": 68.327,
+   "end": 68.407
+  },
+  {
+   "word": "nicely",
+   "start": 68.488,
+   "end": 68.869
+  },
+  {
+   "word": "under",
+   "start": 68.97,
+   "end": 69.13
+  },
+  {
+   "word": "your",
+   "start": 69.171,
+   "end": 69.311
+  },
+  {
+   "word": "calf,",
+   "start": 69.351,
+   "end": 69.733
+  },
+  {
+   "word": "not",
+   "start": 70.677,
+   "end": 70.818
+  },
+  {
+   "word": "too",
+   "start": 70.858,
+   "end": 71.039
+  },
+  {
+   "word": "high.",
+   "start": 71.079,
+   "end": 71.4
+  },
+  {
+   "word": "we're",
+   "start": 75.337,
+   "end": 75.438
+  },
+  {
+   "word": "going",
+   "start": 75.458,
+   "end": 75.599
+  },
+  {
+   "word": "to",
+   "start": 75.639,
+   "end": 75.739
+  },
+  {
+   "word": "finish",
+   "start": 75.799,
+   "end": 76.041
+  },
+  {
+   "word": "in",
+   "start": 76.081,
+   "end": 76.121
+  },
+  {
+   "word": "a",
+   "start": 76.181,
+   "end": 76.201
+  },
+  {
+   "word": "nice",
+   "start": 76.262,
+   "end": 76.442
+  },
+  {
+   "word": "demi-pli\u00e9,",
+   "start": 76.462,
+   "end": 77.085
+  }
+ ]
+}

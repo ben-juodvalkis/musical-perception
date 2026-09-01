@@ -9440,3 +9440,149 @@ scope, so `--evals-root <scratch>` writes its JSON to the scratch root and
 its markdown into the repo. This session worked around it by patching the
 attribute; a future EVAL-CHANGE should derive the markdown path from the
 evals root so a rehearsal bless is genuinely side-effect-free.
+
+## 2026-09-01 · rung M / W4-b (Ballet Barre 6 ingestion) · agent/barre6-ingestion · local (owner-attended) — RESULTS
+
+**A new DEV class, cut and fully labelled by the owner's ear in one
+attended session.** Not a pipeline change: no file under
+`src/musical_perception/` is touched. Add-only under `evals/` per the
+ingestion carve-out; every new case carries `maturity: provisional`.
+
+### What landed
+
+Dutch National Ballet barre class, 34:57, teacher + pianist, no students.
+Cut into **35 contiguous clips** (QC PASS: every clip within 0.25s of
+plan, planned + dropped reconciles to the source exactly). 10 exercise
+demos, 22 piano takes, 1 excluded span, intro/outro.
+
+**32 new provisional cases** — 10 demo cases and 22 take cases. Verified
+gating set unchanged at **30**; W1.5's tripwire invariant holds.
+
+### Owner rulings (each recorded with its reasoning)
+
+1. **The demo is the case; the take is the answer key.** An accompanist
+   commits to tempo and form *before* playing, so the input is the
+   demonstration. Demo cases carry `marking_bpm` (the teacher's own
+   tempo) and `performance_bpm` (what the pianist played) — the pair
+   Vision 08 §8.2 calls "a novel research result: nobody has quantified
+   the marking-tempo gap." **These are the first 10 cases in the corpus
+   to use `performance_bpm`; all 30 existing cases use `marking_bpm`.**
+   The reframing *explains* the rig clips rather than orphaning them:
+   owner counting to a metronome is the degenerate case where the gap is
+   zero by construction.
+2. **Tempo truth stays at the tactus,** not the teacher's counting level;
+   the level is recorded as a new free-form tag `count_level`
+   (`half` | `double`). Reason: all 26 rig clips are metronome-labelled,
+   so a teacher-aligned label would make `marking_bpm` mean two different
+   things across the corpus.
+3. **Balance/port-de-bras tails split off** as their own clips when the
+   tempo changes; kept whole and ungraded-for-tempo when the change is a
+   gradual ritardando.
+4. **Grand battement EXCLUDED** — owner heard source glitches ~31:30. Cut
+   anyway and named `barre6-EXCLUDED-grand-battement` so the exclusion is
+   visible rather than a silent hole.
+5. **"Should dance material be 8/4?"** — resolved no: the 8 already lives
+   in `counts`, and ADR-017's ladder makes the 8 and the 4 different
+   rungs. **Parked proposal:** promote the count phrase to a first-class
+   scored field. It is the first proposal this corpus's own measurements
+   (W2's lag-8 result) actively support.
+
+### Findings
+
+**F1 — There is no consistent marking-tempo offset.** Eight comparable
+pairs span **-14.6% to +25.0%, mean +1.2%**. A fixed `tempo_offset` prior
+(Vision 05 §5.6) cannot model this.
+
+**F2 — Pre-registered prediction FAILED, 0 for 3.** At n=5 the gap
+appeared to split by meter (3/4 ~+2%, 4/4 ~-9%); predictions were written
+down before the last three demos were heard (63 / 72 / 82) and the
+actuals were **86 / 135 / 100**. The split was coincidence. Recorded as a
+falsified hypothesis, not quietly dropped.
+
+**F3 — The demo carries the tempo but not the RUNG.** Four instances in
+one session: the plié's 116-vs-39 (both defensible, every bar level
+acoustically flat); the ballonné's spoken **"in 3"** (demo groups in 3,
+take divides in 3 — a system emitting `meter: 3/4` from that phrase would
+be wrong); the frappé's double count (marking 135 vs played 79 reads as
++71% raw, **-14.6% level-corrected**, in line with its neighbours); the
+dégagé's half count. The strongest data-derived argument yet for
+ADR-017's factored representation, and a concrete W15 constraint: the
+claim "in 3" licenses is *triple structure somewhere on the ladder*, not
+a time signature.
+
+**F4 — The tempo-bearing window is short and unpredictable.** All 10
+demos annotated for their intended-tempo span (Vision 08's "marking
+segmentation" metric, never before annotated in this corpus). The
+in-tempo fraction runs **5% to 79%**. On `plie-demo` it is **3.6s of 78s
+— seven beats.** A system estimating tempo across a whole demo is reading
+explanation 95% of the time on that clip. Owner also separated *in tempo*
+from *at the intended tempo*: on `degage-demo`, 60% of the clip is
+metrical but only 31% is at the tempo he wants — a distinction the grid
+format has no region kind for (**proposed 4th kind**, `silent_beat` /
+`free_time` / `excluded_explanation` do not cover it).
+
+**F5 — The expert commits 2-12x earlier than the pipeline.** Time-to-know
+measured on 4 demos: **3.0s / 11.6s / 14.9s / 17.2s = 5% / 24% / 17% /
+34%** of clip. W13(b) measured the machine settling at **60-88%**. The
+owner's worst case is inside the machine's best; the distributions do not
+overlap. **This is the comparison W13 was commissioned to produce.** One
+correction was made and is recorded: the développé was first logged at
+24.8s, which was the end of his steady stretch, not time-to-know.
+
+**F6 — The ceiling: tacit knowledge the recording does not contain.** On
+`developpe-demo` the teacher shows the front as 4 sets of 8 and then
+*speeds through the back*; the owner knows the back is the same length
+and **the video never says so**. Four of ten demos underdetermine the
+answer (side continuity, port-de-bras tempo, balance length, back
+length). A demo-only benchmark must supply these as priors or leave them
+unscored, or it measures whether a system knows ballet rather than
+whether it can hear.
+
+**F7 — Between-sides tempo drift is real and unsigned.** fondu 70→74,
+frappé 79→74, rond-de-jambe port de bras 115→120, and développé 80
+(drifting to ~100) → **104**, where the second side *inherited* the
+drifted tempo rather than resetting to the marking. A system given only
+the demo could not produce 104 and should not be graded as if it could.
+
+### Method note — both boundary detectors failed, in opposite directions
+
+Boundaries were first derived from piano harmonic energy. The owner
+falsified that three ways in ten minutes: missed quiet piano at 17:20
+(25 dB below the other takes), wanted to split continuous music at 2:00,
+cut a take 23s short at 16:02. Rebuilt on the teacher's spoken cues —
+which then failed on **silent balances**, cutting `degage-take2` into a
+17-second held balance and `fondu-take2` into an 11-second one. **A held
+balance is quiet in both modalities.** Twelve clips were recut and three
+extended after the owner heard them cut off. Final boundaries are
+owner-verified by ear, and the EDL was rebuilt from the cut boundaries
+and checked against every file on disk.
+
+### Method note 2 — a half-written trace looks present
+
+Four traces ended up as directories holding only `whisper.json`, with no
+`gemini.json` and no `meta.json`. A `trace_dir.is_dir()` check called them
+present; they would have replayed weeks later as unexplained case errors.
+
+Root cause was the session's own shell bug, recorded so it is not
+repeated: `while read b; do python ...; done < todo.txt` lets the Python
+process read from the **same stdin as the loop**, so it consumed
+characters out of the filename list — the log shows the corrupted names
+`rre6-rond-de-jambe-take2` and `arre6-tendu-warmup-demo`. Fixed with a
+`for` loop and `</dev/null`.
+
+**Standing lesson candidate:** verify a frozen trace by its *terminal*
+artifact (`meta.json`), never by the directory existing. Freezing writes
+`whisper.json` first, so any interruption leaves a directory that passes
+an existence check and fails at replay.
+
+### Status
+
+**PROPOSED.** All 32 cases `provisional` by deliberate choice — the owner
+supplied every number but an agent typed them, and only the 22 take rows
+were read back. Promotion to `verified` is an owner act and should be
+taken cold. **Open question for that ruling:** `expected_bpm` prefers
+`performance_bpm`, so a demo case grades against what was *played*, not
+against the marking — which sits in tension with ruling (1)'s "the demo
+is the source of truth". Worth settling before any of these gate.
+
+Not blessed, and cannot be: blessing stays blocked until W1.6 merges.

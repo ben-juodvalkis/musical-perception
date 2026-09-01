@@ -1,0 +1,389 @@
+{
+ "words": [
+  {
+   "word": "to",
+   "start": 0.031,
+   "end": 0.191
+  },
+  {
+   "word": "the",
+   "start": 5.436,
+   "end": 6.137
+  },
+  {
+   "word": "barre,",
+   "start": 6.257,
+   "end": 8.319
+  },
+  {
+   "word": "and",
+   "start": 8.339,
+   "end": 8.519
+  },
+  {
+   "word": "forward",
+   "start": 10.581,
+   "end": 11.062
+  },
+  {
+   "word": "from",
+   "start": 11.102,
+   "end": 11.202
+  },
+  {
+   "word": "the",
+   "start": 11.242,
+   "end": 11.322
+  },
+  {
+   "word": "back",
+   "start": 11.362,
+   "end": 11.522
+  },
+  {
+   "word": "of",
+   "start": 11.542,
+   "end": 11.582
+  },
+  {
+   "word": "your",
+   "start": 11.602,
+   "end": 11.683
+  },
+  {
+   "word": "legs,",
+   "start": 11.723,
+   "end": 12.003
+  },
+  {
+   "word": "now",
+   "start": 13.985,
+   "end": 14.285
+  },
+  {
+   "word": "through",
+   "start": 14.345,
+   "end": 14.565
+  },
+  {
+   "word": "the",
+   "start": 14.605,
+   "end": 14.706
+  },
+  {
+   "word": "pli\u00e9,",
+   "start": 14.746,
+   "end": 15.166
+  },
+  {
+   "word": "pli\u00e9,",
+   "start": 16.667,
+   "end": 17.348
+  },
+  {
+   "word": "hold",
+   "start": 17.568,
+   "end": 17.769
+  },
+  {
+   "word": "it",
+   "start": 17.849,
+   "end": 17.909
+  },
+  {
+   "word": "back,",
+   "start": 17.969,
+   "end": 20.051
+  },
+  {
+   "word": "front,",
+   "start": 20.071,
+   "end": 20.691
+  },
+  {
+   "word": "front,",
+   "start": 21.953,
+   "end": 22.313
+  },
+  {
+   "word": "one",
+   "start": 22.413,
+   "end": 22.513
+  },
+  {
+   "word": "more",
+   "start": 22.553,
+   "end": 22.733
+  },
+  {
+   "word": "on",
+   "start": 22.753,
+   "end": 22.814
+  },
+  {
+   "word": "the",
+   "start": 22.854,
+   "end": 22.954
+  },
+  {
+   "word": "jam,",
+   "start": 22.974,
+   "end": 23.935
+  },
+  {
+   "word": "good",
+   "start": 23.955,
+   "end": 24.195
+  },
+  {
+   "word": "double,",
+   "start": 24.235,
+   "end": 24.535
+  },
+  {
+   "word": "foot,",
+   "start": 25.116,
+   "end": 25.816
+  },
+  {
+   "word": "foot,",
+   "start": 25.837,
+   "end": 27.338
+  },
+  {
+   "word": "front,",
+   "start": 27.358,
+   "end": 28.699
+  },
+  {
+   "word": "and",
+   "start": 28.719,
+   "end": 28.9
+  },
+  {
+   "word": "back,",
+   "start": 29.24,
+   "end": 29.38
+  },
+  {
+   "word": "up,",
+   "start": 30.625,
+   "end": 31.046
+  },
+  {
+   "word": "on",
+   "start": 32.247,
+   "end": 32.367
+  },
+  {
+   "word": "the",
+   "start": 32.407,
+   "end": 32.507
+  },
+  {
+   "word": "floor,",
+   "start": 32.567,
+   "end": 33.028
+  },
+  {
+   "word": "up,",
+   "start": 34.33,
+   "end": 34.51
+  },
+  {
+   "word": "close",
+   "start": 35.491,
+   "end": 35.951
+  },
+  {
+   "word": "in,",
+   "start": 36.012,
+   "end": 36.272
+  },
+  {
+   "word": "fifths,",
+   "start": 36.292,
+   "end": 37.614
+  },
+  {
+   "word": "side",
+   "start": 37.654,
+   "end": 37.794
+  },
+  {
+   "word": "and",
+   "start": 37.874,
+   "end": 37.954
+  },
+  {
+   "word": "back.",
+   "start": 37.994,
+   "end": 38.214
+  },
+  {
+   "word": "through",
+   "start": 44.202,
+   "end": 44.542
+  },
+  {
+   "word": "the",
+   "start": 44.562,
+   "end": 44.662
+  },
+  {
+   "word": "pli\u00e9,",
+   "start": 44.682,
+   "end": 44.922
+  },
+  {
+   "word": "please,",
+   "start": 44.962,
+   "end": 45.864
+  },
+  {
+   "word": "pli\u00e9,",
+   "start": 45.884,
+   "end": 47.205
+  },
+  {
+   "word": "front,",
+   "start": 47.225,
+   "end": 47.846
+  },
+  {
+   "word": "two",
+   "start": 48.086,
+   "end": 48.327
+  },
+  {
+   "word": "rounds,",
+   "start": 48.467,
+   "end": 50.749
+  },
+  {
+   "word": "one",
+   "start": 50.77,
+   "end": 50.89
+  },
+  {
+   "word": "more",
+   "start": 50.93,
+   "end": 51.07
+  },
+  {
+   "word": "and",
+   "start": 51.13,
+   "end": 51.19
+  },
+  {
+   "word": "a",
+   "start": 51.23,
+   "end": 51.25
+  },
+  {
+   "word": "double,",
+   "start": 51.31,
+   "end": 52.612
+  },
+  {
+   "word": "one,",
+   "start": 52.632,
+   "end": 52.832
+  },
+  {
+   "word": "foot,",
+   "start": 53.553,
+   "end": 54.274
+  },
+  {
+   "word": "foot,",
+   "start": 54.294,
+   "end": 54.534
+  },
+  {
+   "word": "brushing",
+   "start": 54.694,
+   "end": 55.135
+  },
+  {
+   "word": "back,",
+   "start": 55.175,
+   "end": 55.515
+  },
+  {
+   "word": "quick,",
+   "start": 55.876,
+   "end": 56.236
+  },
+  {
+   "word": "and",
+   "start": 56.997,
+   "end": 57.197
+  },
+  {
+   "word": "through,",
+   "start": 57.338,
+   "end": 58.319
+  },
+  {
+   "word": "down,",
+   "start": 58.339,
+   "end": 59.3
+  },
+  {
+   "word": "up,",
+   "start": 59.34,
+   "end": 59.4
+  },
+  {
+   "word": "down,",
+   "start": 61.591,
+   "end": 62.319
+  },
+  {
+   "word": "up.",
+   "start": 62.421,
+   "end": 64.404
+  },
+  {
+   "word": "pour",
+   "start": 64.687,
+   "end": 64.788
+  },
+  {
+   "word": "de",
+   "start": 64.808,
+   "end": 64.889
+  },
+  {
+   "word": "bras",
+   "start": 64.91,
+   "end": 65.031
+  },
+  {
+   "word": "all",
+   "start": 65.051,
+   "end": 65.152
+  },
+  {
+   "word": "the",
+   "start": 65.193,
+   "end": 65.254
+  },
+  {
+   "word": "way",
+   "start": 65.294,
+   "end": 65.395
+  },
+  {
+   "word": "around,",
+   "start": 65.456,
+   "end": 65.921
+  },
+  {
+   "word": "in.",
+   "start": 65.942,
+   "end": 66.083
+  }
+ ]
+}

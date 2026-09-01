@@ -1,0 +1,674 @@
+{
+ "words": [
+  {
+   "word": "thanks",
+   "start": 0.031,
+   "end": 0.792
+  },
+  {
+   "word": "guys,",
+   "start": 0.832,
+   "end": 1.072
+  },
+  {
+   "word": "into",
+   "start": 1.493,
+   "end": 1.753
+  },
+  {
+   "word": "a",
+   "start": 1.793,
+   "end": 1.833
+  },
+  {
+   "word": "slow",
+   "start": 1.853,
+   "end": 2.053
+  },
+  {
+   "word": "tendu,",
+   "start": 2.093,
+   "end": 2.373
+  },
+  {
+   "word": "front",
+   "start": 2.393,
+   "end": 2.574
+  },
+  {
+   "word": "first,",
+   "start": 2.614,
+   "end": 2.974
+  },
+  {
+   "word": "today",
+   "start": 2.994,
+   "end": 3.455
+  },
+  {
+   "word": "we",
+   "start": 3.535,
+   "end": 3.635
+  },
+  {
+   "word": "go",
+   "start": 3.675,
+   "end": 3.835
+  },
+  {
+   "word": "front,",
+   "start": 3.955,
+   "end": 4.916
+  },
+  {
+   "word": "and",
+   "start": 4.936,
+   "end": 5.056
+  },
+  {
+   "word": "you",
+   "start": 5.096,
+   "end": 5.237
+  },
+  {
+   "word": "close,",
+   "start": 5.297,
+   "end": 5.897
+  },
+  {
+   "word": "and",
+   "start": 6.157,
+   "end": 6.398
+  },
+  {
+   "word": "front",
+   "start": 6.598,
+   "end": 6.838
+  },
+  {
+   "word": "to",
+   "start": 6.958,
+   "end": 7.259
+  },
+  {
+   "word": "the",
+   "start": 7.619,
+   "end": 7.779
+  },
+  {
+   "word": "pli\u00e9,",
+   "start": 7.839,
+   "end": 8.16
+  },
+  {
+   "word": "stay,",
+   "start": 8.46,
+   "end": 8.64
+  },
+  {
+   "word": "pli\u00e9,",
+   "start": 9.041,
+   "end": 9.581
+  },
+  {
+   "word": "two",
+   "start": 9.641,
+   "end": 10.002
+  },
+  {
+   "word": "legs",
+   "start": 10.102,
+   "end": 10.282
+  },
+  {
+   "word": "stretch,",
+   "start": 10.302,
+   "end": 10.602
+  },
+  {
+   "word": "then",
+   "start": 11.203,
+   "end": 11.423
+  },
+  {
+   "word": "two",
+   "start": 11.463,
+   "end": 11.643
+  },
+  {
+   "word": "tendu",
+   "start": 11.783,
+   "end": 12.184
+  },
+  {
+   "word": "on",
+   "start": 12.264,
+   "end": 12.344
+  },
+  {
+   "word": "the",
+   "start": 12.364,
+   "end": 12.504
+  },
+  {
+   "word": "end,",
+   "start": 12.724,
+   "end": 12.905
+  },
+  {
+   "word": "the",
+   "start": 13.045,
+   "end": 13.225
+  },
+  {
+   "word": "tendu",
+   "start": 13.445,
+   "end": 13.725
+  },
+  {
+   "word": "side,",
+   "start": 13.766,
+   "end": 14.326
+  },
+  {
+   "word": "you",
+   "start": 14.346,
+   "end": 14.807
+  },
+  {
+   "word": "close,",
+   "start": 14.947,
+   "end": 15.287
+  },
+  {
+   "word": "and",
+   "start": 15.988,
+   "end": 16.088
+  },
+  {
+   "word": "one,",
+   "start": 16.248,
+   "end": 16.388
+  },
+  {
+   "word": "two,",
+   "start": 16.649,
+   "end": 17.069
+  },
+  {
+   "word": "the",
+   "start": 17.129,
+   "end": 17.249
+  },
+  {
+   "word": "pli\u00e9,",
+   "start": 17.309,
+   "end": 17.67
+  },
+  {
+   "word": "stay",
+   "start": 17.69,
+   "end": 17.95
+  },
+  {
+   "word": "in",
+   "start": 17.99,
+   "end": 18.05
+  },
+  {
+   "word": "your",
+   "start": 18.07,
+   "end": 18.21
+  },
+  {
+   "word": "pli\u00e9,",
+   "start": 18.27,
+   "end": 18.651
+  },
+  {
+   "word": "two",
+   "start": 18.951,
+   "end": 19.131
+  },
+  {
+   "word": "legs",
+   "start": 19.171,
+   "end": 19.371
+  },
+  {
+   "word": "stretch,",
+   "start": 19.532,
+   "end": 20.072
+  },
+  {
+   "word": "and",
+   "start": 20.593,
+   "end": 20.733
+  },
+  {
+   "word": "two",
+   "start": 20.953,
+   "end": 21.193
+  },
+  {
+   "word": "tendu,",
+   "start": 21.894,
+   "end": 22.375
+  },
+  {
+   "word": "a",
+   "start": 23.196,
+   "end": 23.296
+  },
+  {
+   "word": "back,",
+   "start": 23.316,
+   "end": 23.676
+  },
+  {
+   "word": "you",
+   "start": 23.825,
+   "end": 24.406
+  },
+  {
+   "word": "close",
+   "start": 24.506,
+   "end": 25.027
+  },
+  {
+   "word": "and",
+   "start": 25.468,
+   "end": 25.628
+  },
+  {
+   "word": "back",
+   "start": 25.828,
+   "end": 26.009
+  },
+  {
+   "word": "to",
+   "start": 26.389,
+   "end": 26.77
+  },
+  {
+   "word": "the",
+   "start": 26.85,
+   "end": 26.95
+  },
+  {
+   "word": "pli\u00e9,",
+   "start": 27.01,
+   "end": 27.371
+  },
+  {
+   "word": "stay",
+   "start": 27.391,
+   "end": 27.591
+  },
+  {
+   "word": "in",
+   "start": 27.631,
+   "end": 27.671
+  },
+  {
+   "word": "your",
+   "start": 27.711,
+   "end": 27.852
+  },
+  {
+   "word": "pli\u00e9,",
+   "start": 27.932,
+   "end": 28.453
+  },
+  {
+   "word": "two",
+   "start": 28.873,
+   "end": 29.034
+  },
+  {
+   "word": "legs",
+   "start": 29.054,
+   "end": 29.234
+  },
+  {
+   "word": "stretch",
+   "start": 29.314,
+   "end": 29.695
+  },
+  {
+   "word": "at",
+   "start": 29.735,
+   "end": 29.775
+  },
+  {
+   "word": "the",
+   "start": 29.795,
+   "end": 29.875
+  },
+  {
+   "word": "same",
+   "start": 29.915,
+   "end": 30.075
+  },
+  {
+   "word": "time,",
+   "start": 30.115,
+   "end": 30.296
+  },
+  {
+   "word": "two",
+   "start": 30.716,
+   "end": 30.917
+  },
+  {
+   "word": "tendu,",
+   "start": 31.518,
+   "end": 31.918
+  },
+  {
+   "word": "same",
+   "start": 31.938,
+   "end": 32.079
+  },
+  {
+   "word": "last",
+   "start": 32.119,
+   "end": 32.279
+  },
+  {
+   "word": "time",
+   "start": 32.319,
+   "end": 32.459
+  },
+  {
+   "word": "side,",
+   "start": 32.499,
+   "end": 33.341
+  },
+  {
+   "word": "two,",
+   "start": 33.361,
+   "end": 33.581
+  },
+  {
+   "word": "one",
+   "start": 34.262,
+   "end": 34.403
+  },
+  {
+   "word": "to",
+   "start": 34.443,
+   "end": 34.563
+  },
+  {
+   "word": "the",
+   "start": 34.603,
+   "end": 34.683
+  },
+  {
+   "word": "pli\u00e9,",
+   "start": 34.723,
+   "end": 35.084
+  },
+  {
+   "word": "stay",
+   "start": 35.364,
+   "end": 35.685
+  },
+  {
+   "word": "in",
+   "start": 35.725,
+   "end": 35.765
+  },
+  {
+   "word": "the",
+   "start": 35.805,
+   "end": 35.865
+  },
+  {
+   "word": "pli\u00e9,",
+   "start": 35.905,
+   "end": 36.165
+  },
+  {
+   "word": "two",
+   "start": 36.206,
+   "end": 36.366
+  },
+  {
+   "word": "legs",
+   "start": 36.386,
+   "end": 36.586
+  },
+  {
+   "word": "stretch,",
+   "start": 36.646,
+   "end": 37.027
+  },
+  {
+   "word": "then",
+   "start": 37.508,
+   "end": 37.688
+  },
+  {
+   "word": "two",
+   "start": 37.768,
+   "end": 37.988
+  },
+  {
+   "word": "tendu",
+   "start": 38.369,
+   "end": 38.69
+  },
+  {
+   "word": "on",
+   "start": 38.79,
+   "end": 38.87
+  },
+  {
+   "word": "the",
+   "start": 38.91,
+   "end": 39.01
+  },
+  {
+   "word": "end.",
+   "start": 39.17,
+   "end": 39.331
+  },
+  {
+   "word": "like",
+   "start": 39.811,
+   "end": 39.992
+  },
+  {
+   "word": "we're",
+   "start": 40.032,
+   "end": 40.212
+  },
+  {
+   "word": "used",
+   "start": 40.292,
+   "end": 40.453
+  },
+  {
+   "word": "to,",
+   "start": 40.493,
+   "end": 40.633
+  },
+  {
+   "word": "port",
+   "start": 40.993,
+   "end": 41.134
+  },
+  {
+   "word": "de",
+   "start": 41.194,
+   "end": 41.234
+  },
+  {
+   "word": "bras",
+   "start": 41.274,
+   "end": 41.454
+  },
+  {
+   "word": "front",
+   "start": 41.474,
+   "end": 41.735
+  },
+  {
+   "word": "and",
+   "start": 41.755,
+   "end": 41.835
+  },
+  {
+   "word": "back,",
+   "start": 41.875,
+   "end": 42.095
+  },
+  {
+   "word": "two",
+   "start": 42.516,
+   "end": 42.696
+  },
+  {
+   "word": "fins",
+   "start": 42.756,
+   "end": 43.037
+  },
+  {
+   "word": "with",
+   "start": 43.077,
+   "end": 43.197
+  },
+  {
+   "word": "a",
+   "start": 43.277,
+   "end": 43.317
+  },
+  {
+   "word": "nice",
+   "start": 43.397,
+   "end": 43.698
+  },
+  {
+   "word": "roll",
+   "start": 44.439,
+   "end": 44.8
+  },
+  {
+   "word": "through",
+   "start": 44.82,
+   "end": 45.12
+  },
+  {
+   "word": "to",
+   "start": 45.14,
+   "end": 45.24
+  },
+  {
+   "word": "the",
+   "start": 45.281,
+   "end": 45.361
+  },
+  {
+   "word": "demi-point",
+   "start": 45.381,
+   "end": 45.902
+  },
+  {
+   "word": "at",
+   "start": 45.922,
+   "end": 45.962
+  },
+  {
+   "word": "the",
+   "start": 46.002,
+   "end": 46.082
+  },
+  {
+   "word": "end.",
+   "start": 46.182,
+   "end": 46.302
+  },
+  {
+   "word": "one",
+   "start": 47.003,
+   "end": 47.104
+  },
+  {
+   "word": "slow,",
+   "start": 47.144,
+   "end": 47.404
+  },
+  {
+   "word": "one",
+   "start": 47.444,
+   "end": 47.544
+  },
+  {
+   "word": "to",
+   "start": 47.584,
+   "end": 47.685
+  },
+  {
+   "word": "the",
+   "start": 47.705,
+   "end": 47.785
+  },
+  {
+   "word": "pli\u00e9,",
+   "start": 47.825,
+   "end": 48.105
+  },
+  {
+   "word": "then",
+   "start": 48.125,
+   "end": 48.225
+  },
+  {
+   "word": "you",
+   "start": 48.266,
+   "end": 48.406
+  },
+  {
+   "word": "stay",
+   "start": 48.486,
+   "end": 48.806
+  },
+  {
+   "word": "in",
+   "start": 48.867,
+   "end": 48.907
+  },
+  {
+   "word": "the",
+   "start": 48.947,
+   "end": 49.027
+  },
+  {
+   "word": "pli\u00e9",
+   "start": 49.067,
+   "end": 49.367
+  },
+  {
+   "word": "for",
+   "start": 49.407,
+   "end": 49.528
+  },
+  {
+   "word": "the",
+   "start": 49.568,
+   "end": 49.628
+  },
+  {
+   "word": "third",
+   "start": 49.688,
+   "end": 49.968
+  },
+  {
+   "word": "tendu.",
+   "start": 49.988,
+   "end": 50.389
+  }
+ ]
+}

@@ -1,0 +1,314 @@
+{
+ "words": [
+  {
+   "word": "front",
+   "start": 0.031,
+   "end": 0.251
+  },
+  {
+   "word": "to",
+   "start": 0.271,
+   "end": 0.411
+  },
+  {
+   "word": "start.",
+   "start": 0.432,
+   "end": 0.732
+  },
+  {
+   "word": "thanks.",
+   "start": 1.573,
+   "end": 1.853
+  },
+  {
+   "word": "fondue",
+   "start": 6.279,
+   "end": 6.98
+  },
+  {
+   "word": "down.",
+   "start": 7.06,
+   "end": 12.367
+  },
+  {
+   "word": "one",
+   "start": 12.387,
+   "end": 12.507
+  },
+  {
+   "word": "front.",
+   "start": 12.547,
+   "end": 12.867
+  },
+  {
+   "word": "pli\u00e9,",
+   "start": 13.729,
+   "end": 14.209
+  },
+  {
+   "word": "quarter",
+   "start": 15.27,
+   "end": 15.791
+  },
+  {
+   "word": "rond.",
+   "start": 15.831,
+   "end": 16.152
+  },
+  {
+   "word": "single",
+   "start": 17.513,
+   "end": 17.754
+  },
+  {
+   "word": "double.",
+   "start": 17.774,
+   "end": 19.576
+  },
+  {
+   "word": "two",
+   "start": 19.596,
+   "end": 19.796
+  },
+  {
+   "word": "fondue",
+   "start": 19.836,
+   "end": 20.217
+  },
+  {
+   "word": "side,",
+   "start": 20.297,
+   "end": 20.617
+  },
+  {
+   "word": "please.",
+   "start": 20.637,
+   "end": 20.918
+  },
+  {
+   "word": "flick",
+   "start": 26.805,
+   "end": 27.166
+  },
+  {
+   "word": "up",
+   "start": 27.206,
+   "end": 27.286
+  },
+  {
+   "word": "to",
+   "start": 27.326,
+   "end": 27.446
+  },
+  {
+   "word": "passe,",
+   "start": 27.486,
+   "end": 27.847
+  },
+  {
+   "word": "down",
+   "start": 28.167,
+   "end": 28.648
+  },
+  {
+   "word": "up.",
+   "start": 28.688,
+   "end": 29.008
+  },
+  {
+   "word": "find",
+   "start": 29.883,
+   "end": 30.103
+  },
+  {
+   "word": "your",
+   "start": 30.143,
+   "end": 30.243
+  },
+  {
+   "word": "balance",
+   "start": 30.283,
+   "end": 30.544
+  },
+  {
+   "word": "there,",
+   "start": 30.584,
+   "end": 30.764
+  },
+  {
+   "word": "lengthen",
+   "start": 32.686,
+   "end": 33.066
+  },
+  {
+   "word": "through",
+   "start": 33.086,
+   "end": 33.287
+  },
+  {
+   "word": "the",
+   "start": 33.307,
+   "end": 33.427
+  },
+  {
+   "word": "fifth,",
+   "start": 33.527,
+   "end": 33.907
+  },
+  {
+   "word": "coup\u00e9",
+   "start": 34.468,
+   "end": 34.808
+  },
+  {
+   "word": "down,",
+   "start": 34.848,
+   "end": 35.049
+  },
+  {
+   "word": "coup\u00e9,",
+   "start": 35.409,
+   "end": 35.709
+  },
+  {
+   "word": "fondu",
+   "start": 38.753,
+   "end": 39.233
+  },
+  {
+   "word": "to",
+   "start": 39.253,
+   "end": 39.333
+  },
+  {
+   "word": "the",
+   "start": 39.373,
+   "end": 39.433
+  },
+  {
+   "word": "back,",
+   "start": 39.473,
+   "end": 41.776
+  },
+  {
+   "word": "pli\u00e9,",
+   "start": 41.796,
+   "end": 42.316
+  },
+  {
+   "word": "quarter",
+   "start": 42.356,
+   "end": 42.637
+  },
+  {
+   "word": "rond,",
+   "start": 42.697,
+   "end": 42.897
+  },
+  {
+   "word": "single",
+   "start": 44.138,
+   "end": 44.379
+  },
+  {
+   "word": "double,",
+   "start": 44.399,
+   "end": 44.719
+  },
+  {
+   "word": "two",
+   "start": 46.681,
+   "end": 46.841
+  },
+  {
+   "word": "fondu",
+   "start": 46.861,
+   "end": 47.142
+  },
+  {
+   "word": "sides,",
+   "start": 47.162,
+   "end": 47.482
+  },
+  {
+   "word": "now",
+   "start": 52.888,
+   "end": 53.008
+  },
+  {
+   "word": "flick",
+   "start": 53.048,
+   "end": 53.428
+  },
+  {
+   "word": "up",
+   "start": 53.488,
+   "end": 53.549
+  },
+  {
+   "word": "to",
+   "start": 53.589,
+   "end": 53.649
+  },
+  {
+   "word": "your",
+   "start": 53.689,
+   "end": 53.789
+  },
+  {
+   "word": "pass\u00e9,",
+   "start": 53.809,
+   "end": 54.189
+  },
+  {
+   "word": "balance",
+   "start": 54.229,
+   "end": 54.55
+  },
+  {
+   "word": "there,",
+   "start": 54.57,
+   "end": 54.79
+  },
+  {
+   "word": "and",
+   "start": 55.951,
+   "end": 56.031
+  },
+  {
+   "word": "we'll",
+   "start": 56.051,
+   "end": 56.231
+  },
+  {
+   "word": "finish",
+   "start": 56.251,
+   "end": 56.552
+  },
+  {
+   "word": "there,",
+   "start": 56.572,
+   "end": 56.832
+  },
+  {
+   "word": "out,",
+   "start": 57.353,
+   "end": 57.633
+  },
+  {
+   "word": "and",
+   "start": 58.574,
+   "end": 59.535
+  },
+  {
+   "word": "thank",
+   "start": 63.278,
+   "end": 63.666
+  },
+  {
+   "word": "you.",
+   "start": 63.71,
+   "end": 64.077
+  }
+ ]
+}

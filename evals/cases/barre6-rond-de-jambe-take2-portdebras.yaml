@@ -1,0 +1,24 @@
+id: barre6-rond-de-jambe-take2-portdebras
+input:
+  trace: traces/barre6-rond-de-jambe-take2-portdebras/
+  media: "video/youtube/ballet barre 6/clips/barre6-rond-de-jambe-take2-portdebras.mp4"
+maturity: provisional
+tags:
+  source: youtube
+  teacher: yt-barre6
+  count_style: step_names
+  explanation: interleaved
+  lang: en
+  accompanied: true
+  clip_role: take
+expect:
+  performance_bpm: 120
+  meter: "3/4"
+  counts: 8
+notes: >-
+  Ballet Barre 6 ingestion 2026-09-01. Piano take — the ANSWER KEY for its
+  demo, never the input (owner ruling). Tempo is what the pianist played,
+  owner-heard. 3 sets of 8 bars of 3 (2 port de bras + 1 balance). Clip
+  EXTENDED 2s to 22:41 - owner heard a final beat cut off; 72 beats at 120
+  = 36.0s exactly. First side of the same section labelled 115 - a real
+  between-sides tempo difference, not a measurement error

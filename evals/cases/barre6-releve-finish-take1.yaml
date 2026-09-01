@@ -1,0 +1,23 @@
+id: barre6-releve-finish-take1
+input:
+  trace: traces/barre6-releve-finish-take1/
+  media: "video/youtube/ballet barre 6/clips/barre6-releve-finish-take1.mp4"
+maturity: provisional
+tags:
+  source: youtube
+  teacher: yt-barre6
+  count_style: step_names
+  explanation: interleaved
+  lang: en
+  accompanied: true
+  clip_role: take
+expect:
+  performance_bpm: 109
+  meter: "4/4"
+  counts: 8
+notes: >-
+  Ballet Barre 6 ingestion 2026-09-01. Piano take — the ANSWER KEY for its
+  demo, never the input (owner ruling). Tempo is what the pianist played,
+  owner-heard. 16 sets of 8; music starts 6s in. Clip EXTENDED to 34:19 -
+  owner heard it cut off a few seconds early; 128 beats at 109 plus 6s cue
+  = 76.5s, clip was 73s

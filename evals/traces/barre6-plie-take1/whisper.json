@@ -1,0 +1,604 @@
+{
+ "words": [
+  {
+   "word": "here",
+   "start": 0.031,
+   "end": 1.052
+  },
+  {
+   "word": "we",
+   "start": 1.112,
+   "end": 1.192
+  },
+  {
+   "word": "go.",
+   "start": 1.232,
+   "end": 1.373
+  },
+  {
+   "word": "head",
+   "start": 5.838,
+   "end": 6.199
+  },
+  {
+   "word": "and",
+   "start": 6.319,
+   "end": 6.419
+  },
+  {
+   "word": "arm",
+   "start": 6.739,
+   "end": 6.98
+  },
+  {
+   "word": "to",
+   "start": 7.861,
+   "end": 8.201
+  },
+  {
+   "word": "prepare,",
+   "start": 8.221,
+   "end": 8.922
+  },
+  {
+   "word": "demi-down,",
+   "start": 10.204,
+   "end": 13.408
+  },
+  {
+   "word": "demi-pointe,",
+   "start": 13.428,
+   "end": 14.89
+  },
+  {
+   "word": "allong\u00e9,",
+   "start": 15.35,
+   "end": 15.811
+  },
+  {
+   "word": "du",
+   "start": 15.871,
+   "end": 15.931
+  },
+  {
+   "word": "go,",
+   "start": 15.991,
+   "end": 16.151
+  },
+  {
+   "word": "grand",
+   "start": 16.191,
+   "end": 18.013
+  },
+  {
+   "word": "pli\u00e9,",
+   "start": 18.033,
+   "end": 21.898
+  },
+  {
+   "word": "port",
+   "start": 21.918,
+   "end": 22.018
+  },
+  {
+   "word": "de",
+   "start": 22.038,
+   "end": 22.119
+  },
+  {
+   "word": "bras",
+   "start": 22.139,
+   "end": 22.299
+  },
+  {
+   "word": "front",
+   "start": 22.339,
+   "end": 22.539
+  },
+  {
+   "word": "and",
+   "start": 22.559,
+   "end": 22.659
+  },
+  {
+   "word": "back,",
+   "start": 22.679,
+   "end": 23.04
+  },
+  {
+   "word": "one,",
+   "start": 24.662,
+   "end": 24.942
+  },
+  {
+   "word": "lift",
+   "start": 27.183,
+   "end": 27.623
+  },
+  {
+   "word": "your",
+   "start": 27.643,
+   "end": 27.784
+  },
+  {
+   "word": "arm",
+   "start": 27.864,
+   "end": 28.024
+  },
+  {
+   "word": "to",
+   "start": 28.064,
+   "end": 28.204
+  },
+  {
+   "word": "fifth,",
+   "start": 28.244,
+   "end": 28.624
+  },
+  {
+   "word": "and",
+   "start": 29.425,
+   "end": 29.545
+  },
+  {
+   "word": "port",
+   "start": 29.585,
+   "end": 29.726
+  },
+  {
+   "word": "de",
+   "start": 29.746,
+   "end": 29.806
+  },
+  {
+   "word": "bras",
+   "start": 29.826,
+   "end": 29.986
+  },
+  {
+   "word": "back.",
+   "start": 30.006,
+   "end": 33.93
+  },
+  {
+   "word": "tendu",
+   "start": 33.95,
+   "end": 34.35
+  },
+  {
+   "word": "to",
+   "start": 34.39,
+   "end": 34.49
+  },
+  {
+   "word": "second,",
+   "start": 34.53,
+   "end": 34.911
+  },
+  {
+   "word": "demi-one.",
+   "start": 36.452,
+   "end": 37.734
+  },
+  {
+   "word": "with",
+   "start": 39.175,
+   "end": 39.355
+  },
+  {
+   "word": "the",
+   "start": 39.375,
+   "end": 39.455
+  },
+  {
+   "word": "demi-pointe,",
+   "start": 39.495,
+   "end": 40.056
+  },
+  {
+   "word": "allong\u00e9e,",
+   "start": 41.477,
+   "end": 41.838
+  },
+  {
+   "word": "grand",
+   "start": 43.159,
+   "end": 43.7
+  },
+  {
+   "word": "pli\u00e9.",
+   "start": 43.72,
+   "end": 44.12
+  },
+  {
+   "word": "tendu",
+   "start": 46.883,
+   "end": 47.243
+  },
+  {
+   "word": "with",
+   "start": 47.263,
+   "end": 47.363
+  },
+  {
+   "word": "your",
+   "start": 47.403,
+   "end": 47.544
+  },
+  {
+   "word": "right,",
+   "start": 47.624,
+   "end": 47.964
+  },
+  {
+   "word": "port",
+   "start": 48.204,
+   "end": 48.404
+  },
+  {
+   "word": "de",
+   "start": 48.424,
+   "end": 48.484
+  },
+  {
+   "word": "bras",
+   "start": 48.504,
+   "end": 48.645
+  },
+  {
+   "word": "to",
+   "start": 48.665,
+   "end": 48.765
+  },
+  {
+   "word": "the",
+   "start": 48.805,
+   "end": 48.865
+  },
+  {
+   "word": "barre.",
+   "start": 48.905,
+   "end": 49.205
+  },
+  {
+   "word": "now",
+   "start": 51.548,
+   "end": 51.708
+  },
+  {
+   "word": "transfer",
+   "start": 51.848,
+   "end": 52.288
+  },
+  {
+   "word": "away",
+   "start": 52.348,
+   "end": 52.749
+  },
+  {
+   "word": "from",
+   "start": 52.829,
+   "end": 53.049
+  },
+  {
+   "word": "the",
+   "start": 53.089,
+   "end": 53.189
+  },
+  {
+   "word": "barre,",
+   "start": 53.209,
+   "end": 54.931
+  },
+  {
+   "word": "and",
+   "start": 54.951,
+   "end": 55.091
+  },
+  {
+   "word": "port",
+   "start": 55.131,
+   "end": 55.311
+  },
+  {
+   "word": "de",
+   "start": 55.351,
+   "end": 55.471
+  },
+  {
+   "word": "bras.",
+   "start": 55.492,
+   "end": 55.992
+  },
+  {
+   "word": "in",
+   "start": 58.807,
+   "end": 59.127
+  },
+  {
+   "word": "your",
+   "start": 59.147,
+   "end": 59.288
+  },
+  {
+   "word": "fourth",
+   "start": 59.308,
+   "end": 59.508
+  },
+  {
+   "word": "position,",
+   "start": 59.528,
+   "end": 59.948
+  },
+  {
+   "word": "please.",
+   "start": 60.049,
+   "end": 61.35
+  },
+  {
+   "word": "demi",
+   "start": 61.37,
+   "end": 61.691
+  },
+  {
+   "word": "on",
+   "start": 61.751,
+   "end": 61.811
+  },
+  {
+   "word": "two",
+   "start": 61.871,
+   "end": 62.011
+  },
+  {
+   "word": "legs.",
+   "start": 62.071,
+   "end": 64.894
+  },
+  {
+   "word": "demi-pointe,",
+   "start": 64.914,
+   "end": 66.156
+  },
+  {
+   "word": "allong\u00e9,",
+   "start": 66.757,
+   "end": 68.399
+  },
+  {
+   "word": "grand",
+   "start": 68.419,
+   "end": 68.859
+  },
+  {
+   "word": "pli\u00e9.",
+   "start": 68.879,
+   "end": 69.36
+  },
+  {
+   "word": "tendu",
+   "start": 72.504,
+   "end": 72.744
+  },
+  {
+   "word": "front,",
+   "start": 72.804,
+   "end": 73.225
+  },
+  {
+   "word": "forward",
+   "start": 73.245,
+   "end": 73.685
+  },
+  {
+   "word": "stretch.",
+   "start": 73.725,
+   "end": 74.206
+  },
+  {
+   "word": "keep",
+   "start": 77.93,
+   "end": 78.09
+  },
+  {
+   "word": "the",
+   "start": 78.131,
+   "end": 78.211
+  },
+  {
+   "word": "tendu",
+   "start": 78.251,
+   "end": 78.631
+  },
+  {
+   "word": "front",
+   "start": 78.731,
+   "end": 79.112
+  },
+  {
+   "word": "as",
+   "start": 79.152,
+   "end": 79.232
+  },
+  {
+   "word": "you",
+   "start": 79.272,
+   "end": 79.352
+  },
+  {
+   "word": "go",
+   "start": 79.412,
+   "end": 79.512
+  },
+  {
+   "word": "back.",
+   "start": 79.572,
+   "end": 79.873
+  },
+  {
+   "word": "last",
+   "start": 83.417,
+   "end": 83.757
+  },
+  {
+   "word": "time",
+   "start": 83.797,
+   "end": 83.938
+  },
+  {
+   "word": "in",
+   "start": 83.958,
+   "end": 83.998
+  },
+  {
+   "word": "the",
+   "start": 84.018,
+   "end": 84.078
+  },
+  {
+   "word": "fifth,",
+   "start": 84.118,
+   "end": 84.338
+  },
+  {
+   "word": "please.",
+   "start": 84.358,
+   "end": 84.638
+  },
+  {
+   "word": "good",
+   "start": 85.339,
+   "end": 85.499
+  },
+  {
+   "word": "demi-pli\u00e9.",
+   "start": 85.52,
+   "end": 87.582
+  },
+  {
+   "word": "demi-pointe,",
+   "start": 90.228,
+   "end": 92.393
+  },
+  {
+   "word": "grand",
+   "start": 92.413,
+   "end": 92.834
+  },
+  {
+   "word": "pli\u00e9,",
+   "start": 92.854,
+   "end": 93.255
+  },
+  {
+   "word": "five.",
+   "start": 93.415,
+   "end": 93.936
+  },
+  {
+   "word": "now",
+   "start": 96.101,
+   "end": 96.242
+  },
+  {
+   "word": "all",
+   "start": 96.462,
+   "end": 96.583
+  },
+  {
+   "word": "the",
+   "start": 96.643,
+   "end": 96.703
+  },
+  {
+   "word": "way",
+   "start": 96.743,
+   "end": 96.843
+  },
+  {
+   "word": "around",
+   "start": 96.903,
+   "end": 97.164
+  },
+  {
+   "word": "in",
+   "start": 97.244,
+   "end": 97.324
+  },
+  {
+   "word": "four",
+   "start": 97.364,
+   "end": 97.665
+  },
+  {
+   "word": "counts.",
+   "start": 97.765,
+   "end": 99.609
+  },
+  {
+   "word": "one.",
+   "start": 99.629,
+   "end": 103.498
+  },
+  {
+   "word": "rise",
+   "start": 103.518,
+   "end": 103.919
+  },
+  {
+   "word": "into",
+   "start": 103.979,
+   "end": 104.2
+  },
+  {
+   "word": "the",
+   "start": 104.22,
+   "end": 104.28
+  },
+  {
+   "word": "demi-pointe,",
+   "start": 104.3,
+   "end": 104.942
+  },
+  {
+   "word": "five.",
+   "start": 105.162,
+   "end": 107.407
+  },
+  {
+   "word": "and",
+   "start": 107.427,
+   "end": 107.548
+  },
+  {
+   "word": "a",
+   "start": 107.588,
+   "end": 107.608
+  },
+  {
+   "word": "little",
+   "start": 107.668,
+   "end": 107.908
+  },
+  {
+   "word": "balance.",
+   "start": 107.948,
+   "end": 115.225
+  },
+  {
+   "word": "thank",
+   "start": 115.245,
+   "end": 115.566
+  },
+  {
+   "word": "you,",
+   "start": 115.586,
+   "end": 115.766
+  },
+  {
+   "word": "rex.",
+   "start": 115.806,
+   "end": 116.067
+  }
+ ]
+}

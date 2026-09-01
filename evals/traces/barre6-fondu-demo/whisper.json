@@ -1,0 +1,474 @@
+{
+ "words": [
+  {
+   "word": "thank",
+   "start": 4.064,
+   "end": 4.304
+  },
+  {
+   "word": "you.",
+   "start": 4.324,
+   "end": 4.484
+  },
+  {
+   "word": "we",
+   "start": 5.545,
+   "end": 5.746
+  },
+  {
+   "word": "take",
+   "start": 5.826,
+   "end": 6.006
+  },
+  {
+   "word": "a",
+   "start": 6.086,
+   "end": 6.166
+  },
+  {
+   "word": "fondu,",
+   "start": 6.346,
+   "end": 6.947
+  },
+  {
+   "word": "coup",
+   "start": 7.627,
+   "end": 7.828
+  },
+  {
+   "word": "de",
+   "start": 7.848,
+   "end": 7.988
+  },
+  {
+   "word": "pied,",
+   "start": 8.028,
+   "end": 8.969
+  },
+  {
+   "word": "then",
+   "start": 8.989,
+   "end": 9.189
+  },
+  {
+   "word": "a",
+   "start": 9.269,
+   "end": 9.349
+  },
+  {
+   "word": "fondu",
+   "start": 9.469,
+   "end": 10.05
+  },
+  {
+   "word": "to",
+   "start": 10.13,
+   "end": 10.47
+  },
+  {
+   "word": "the",
+   "start": 10.51,
+   "end": 10.67
+  },
+  {
+   "word": "front,",
+   "start": 10.811,
+   "end": 11.111
+  },
+  {
+   "word": "pli\u00e9,",
+   "start": 12.012,
+   "end": 12.692
+  },
+  {
+   "word": "bring",
+   "start": 12.772,
+   "end": 13.113
+  },
+  {
+   "word": "it",
+   "start": 13.233,
+   "end": 13.353
+  },
+  {
+   "word": "side,",
+   "start": 13.433,
+   "end": 13.713
+  },
+  {
+   "word": "and",
+   "start": 14.254,
+   "end": 14.414
+  },
+  {
+   "word": "a",
+   "start": 14.494,
+   "end": 14.554
+  },
+  {
+   "word": "single",
+   "start": 14.714,
+   "end": 15.095
+  },
+  {
+   "word": "double",
+   "start": 15.675,
+   "end": 15.976
+  },
+  {
+   "word": "rond,",
+   "start": 16.016,
+   "end": 17.037
+  },
+  {
+   "word": "a",
+   "start": 17.057,
+   "end": 17.137
+  },
+  {
+   "word": "fondu",
+   "start": 17.257,
+   "end": 17.817
+  },
+  {
+   "word": "to",
+   "start": 18.238,
+   "end": 18.398
+  },
+  {
+   "word": "the",
+   "start": 18.418,
+   "end": 18.558
+  },
+  {
+   "word": "side,",
+   "start": 18.598,
+   "end": 18.918
+  },
+  {
+   "word": "a",
+   "start": 19.699,
+   "end": 19.779
+  },
+  {
+   "word": "fondu",
+   "start": 19.859,
+   "end": 20.44
+  },
+  {
+   "word": "to",
+   "start": 20.86,
+   "end": 21.02
+  },
+  {
+   "word": "the",
+   "start": 21.04,
+   "end": 21.141
+  },
+  {
+   "word": "side,",
+   "start": 21.201,
+   "end": 21.441
+  },
+  {
+   "word": "flick",
+   "start": 21.781,
+   "end": 22.001
+  },
+  {
+   "word": "up",
+   "start": 22.061,
+   "end": 22.122
+  },
+  {
+   "word": "to",
+   "start": 22.162,
+   "end": 22.242
+  },
+  {
+   "word": "the",
+   "start": 22.282,
+   "end": 22.362
+  },
+  {
+   "word": "pass\u00e9,",
+   "start": 22.422,
+   "end": 22.802
+  },
+  {
+   "word": "six,",
+   "start": 23.543,
+   "end": 23.883
+  },
+  {
+   "word": "seven,",
+   "start": 24.764,
+   "end": 25.365
+  },
+  {
+   "word": "close",
+   "start": 25.445,
+   "end": 25.965
+  },
+  {
+   "word": "in,",
+   "start": 25.985,
+   "end": 26.125
+  },
+  {
+   "word": "fifth,",
+   "start": 26.226,
+   "end": 27.206
+  },
+  {
+   "word": "one",
+   "start": 27.226,
+   "end": 27.427
+  },
+  {
+   "word": "fondu,",
+   "start": 27.607,
+   "end": 28.147
+  },
+  {
+   "word": "coup",
+   "start": 28.668,
+   "end": 28.848
+  },
+  {
+   "word": "de",
+   "start": 28.868,
+   "end": 28.968
+  },
+  {
+   "word": "pied,",
+   "start": 28.988,
+   "end": 29.248
+  },
+  {
+   "word": "and",
+   "start": 29.869,
+   "end": 30.029
+  },
+  {
+   "word": "a",
+   "start": 30.129,
+   "end": 30.209
+  },
+  {
+   "word": "fondu",
+   "start": 30.329,
+   "end": 30.93
+  },
+  {
+   "word": "to",
+   "start": 31.01,
+   "end": 31.33
+  },
+  {
+   "word": "the",
+   "start": 31.37,
+   "end": 31.571
+  },
+  {
+   "word": "back,",
+   "start": 31.691,
+   "end": 31.911
+  },
+  {
+   "word": "lengthen",
+   "start": 32.245,
+   "end": 32.907
+  },
+  {
+   "word": "it",
+   "start": 32.927,
+   "end": 32.987
+  },
+  {
+   "word": "out,",
+   "start": 33.088,
+   "end": 33.228
+  },
+  {
+   "word": "quarter",
+   "start": 33.87,
+   "end": 34.231
+  },
+  {
+   "word": "rond,",
+   "start": 34.251,
+   "end": 34.492
+  },
+  {
+   "word": "a",
+   "start": 35.354,
+   "end": 35.434
+  },
+  {
+   "word": "single,",
+   "start": 35.555,
+   "end": 35.976
+  },
+  {
+   "word": "double",
+   "start": 36.478,
+   "end": 36.839
+  },
+  {
+   "word": "rond,",
+   "start": 36.859,
+   "end": 37.16
+  },
+  {
+   "word": "fondu,",
+   "start": 38.002,
+   "end": 38.524
+  },
+  {
+   "word": "to",
+   "start": 39.005,
+   "end": 39.146
+  },
+  {
+   "word": "the",
+   "start": 39.186,
+   "end": 39.266
+  },
+  {
+   "word": "side,",
+   "start": 39.326,
+   "end": 39.627
+  },
+  {
+   "word": "fondu,",
+   "start": 40.53,
+   "end": 41.091
+  },
+  {
+   "word": "to",
+   "start": 41.533,
+   "end": 41.673
+  },
+  {
+   "word": "the",
+   "start": 41.713,
+   "end": 41.773
+  },
+  {
+   "word": "side,",
+   "start": 41.834,
+   "end": 42.114
+  },
+  {
+   "word": "flick",
+   "start": 42.395,
+   "end": 42.596
+  },
+  {
+   "word": "up",
+   "start": 42.676,
+   "end": 42.716
+  },
+  {
+   "word": "to",
+   "start": 42.736,
+   "end": 42.857
+  },
+  {
+   "word": "the",
+   "start": 42.877,
+   "end": 42.957
+  },
+  {
+   "word": "pass\u00e9,",
+   "start": 43.037,
+   "end": 43.418
+  },
+  {
+   "word": "find",
+   "start": 43.86,
+   "end": 44.04
+  },
+  {
+   "word": "your",
+   "start": 44.06,
+   "end": 44.201
+  },
+  {
+   "word": "balance,",
+   "start": 44.241,
+   "end": 44.602
+  },
+  {
+   "word": "seven",
+   "start": 45.344,
+   "end": 45.805
+  },
+  {
+   "word": "and",
+   "start": 46.287,
+   "end": 46.387
+  },
+  {
+   "word": "eight,",
+   "start": 46.427,
+   "end": 47.29
+  },
+  {
+   "word": "yeah,",
+   "start": 47.791,
+   "end": 48.012
+  },
+  {
+   "word": "fondu,",
+   "start": 48.433,
+   "end": 48.754
+  },
+  {
+   "word": "cou-de-pied,",
+   "start": 48.774,
+   "end": 49.456
+  },
+  {
+   "word": "into",
+   "start": 49.476,
+   "end": 49.677
+  },
+  {
+   "word": "the",
+   "start": 49.697,
+   "end": 49.757
+  },
+  {
+   "word": "fifth",
+   "start": 49.817,
+   "end": 50.038
+  },
+  {
+   "word": "and",
+   "start": 50.138,
+   "end": 50.198
+  },
+  {
+   "word": "then",
+   "start": 50.218,
+   "end": 50.319
+  },
+  {
+   "word": "a",
+   "start": 50.399,
+   "end": 50.439
+  },
+  {
+   "word": "normal",
+   "start": 50.459,
+   "end": 50.76
+  },
+  {
+   "word": "fondu,",
+   "start": 50.78,
+   "end": 51.081
+  }
+ ]
+}
