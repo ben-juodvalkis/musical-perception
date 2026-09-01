@@ -13,15 +13,18 @@ which already holds all 32 clips in this shape.
 `expect` carries one `counts`, one `bpm` and one `meter` per case. Three
 things the barre-6 session established cannot be expressed in that:
 
-### 1. `count_unit` — without it, `counts` is ambiguous by 3x
+### 1. ~~`count_unit`~~ — WITHDRAWN 2026-09-01
 
-In this class, **every 3/4 exercise counts the BAR and every 4/4 exercise
-counts the BEAT** — 10 of 10, derived from clip duration on take rows.
+The proposal originally argued for a `count_unit` field, because `counts`
+was being stored sometimes in bars and sometimes in beats. **The owner
+removed the need rather than the symptom:** a count is always one beat,
+and what varies between exercises is the phrase length (24 counts in a
+3/4 exercise counted in 8 bars of 3; 8 counts in a 4/4 one). One meaning,
+no tag.
 
-So `counts: 64` means 64 bars in the plié (99 seconds of music) and 64
-beats in the tendu (34 seconds). A consumer that assumes one reading
-produces music three times the wrong length. This is not a refinement;
-it is the difference between the field being usable and not.
+Kept here as a record of a field that looked load-bearing and was not.
+What survives is the weaker claim below: a section's length and tempo
+still cannot be expressed in one `counts` and one `bpm`.
 
 ### 2. Sections need their own tempo
 
@@ -84,14 +87,31 @@ all 32 clips and it caught two real errors.
 - **Scoring:** none initially. **REPORTED-ONLY** — it gates nothing until a
   separate owner ruling, per the W12 precedent.
 
-## What it is not
+## What it is not — and the deferred question
 
 Not a phrase-shape representation. It says how long each section is and
 at what tempo, not what happens inside it — no front/side/back, no
-direction, no figure. That is a **separate** open question: whether a
-music-generating model needs the *shape* of a phrase or only its length.
-The owner is best placed to answer it, since he would hear whether the
-output was shaped right or merely the correct length.
+direction, no figure.
+
+**DEFERRED by the owner, 2026-09-01.** A directional pass was offered
+(ten exercises, ~15 minutes of his ear: "two eights front, two side, two
+back, two side") and he chose to skip it for now. Recorded so a future
+session does not re-litigate it, and so the reason is legible:
+
+- It is **owner-only work.** Direction was mentioned in passing on two
+  exercises and never as a full sequence; an agent filling it in would be
+  inventing ballet, not transcribing it.
+- It is **additive.** `sections` can gain a `phrases:` list later without
+  touching anything above it, so nothing here forecloses it.
+- The question it answers is **whether a generating model needs phrase
+  shape or only phrase length** — whether a uniform 64 counts would sound
+  wrong to a dancer, or whether a competent accompanist could play a
+  generic 64 and have it work. That is an empirical question best settled
+  by *listening to a model's output*, not by annotating in advance.
+
+**Revisit when:** a model is generating class music and its output is the
+right length but sounds wrong. That symptom is the trigger; until it
+appears, the annotation has no consumer.
 
 ## Owner's position on record (2026-09-01)
 

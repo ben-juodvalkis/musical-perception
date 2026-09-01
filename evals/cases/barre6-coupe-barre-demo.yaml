@@ -9,7 +9,6 @@ tags:
   count_style: step_names
   explanation: interleaved
   lang: en
-  count_unit: beat
   clip_role: demo
   pianist_take: barre6-coupe-barre-take1
   played_bpm: 120
