@@ -342,3 +342,20 @@ is how the runner's permission failure was found.)*
 > Two items parked for you: **W14-b** (the trajectory-shape family — the oscillation-between-metric-levels failure W13(b) actually described, now replayable), and the confidence-calibration defect, which is a shipping-path finding W14's own scope forbade touching.
 
 *Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
+
+## run 2026-09-01T17:00:09Z · main 59846cc
+
+- **outcome:** success, shell exit 0
+- **turns:** 66 · **duration:** 9.7 min · **cost:** $5.16
+
+**Agent's closing message:**
+
+> …ng suites produce byte-identical results before and after — expected and predicted, because nothing reads these files yet. Full test suite green: 363 passed.
+> 
+> **Honest limit, as promised at commission:** this buys nothing for tempo, meter or counts. 19 of those 22 clips have no expected answers written down at all. And they still have no hand-tapped beat maps — the scorer prints "missing grids (22)". The recordings are ready; the tapping isn't. That's a fourth item for your queue, and it's the only thing standing between this work and it being worth something.
+> 
+> One prediction I got wrong, worth a sentence: I pre-registered "the diff will contain no occurrence of `Ballet Barre 1`" — which my own pre-registration then violated, since you can't explain a containment rule without naming the folder. I scored it as a miss and tested the real property instead. Lesson written into the ledger: predict the property, then pick the test.
+> 
+> Branch `agent/w11b-opaque-sidecars` is pushed with the pre-registration, results and charter update. **The bless block still stands** — W1.6 is written and waiting on a branch for you; until you merge it, `bless` will freeze agent-written answers as official.
+
+*Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
