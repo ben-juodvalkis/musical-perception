@@ -53,6 +53,10 @@ class CaseResult:
     # W1.5: agent-proposed truth. Provisional rows are scored and reported,
     # but they leave every headline aggregate and every gate alone.
     provisional: bool = False
+    # Reset 2026-09-01: owner-demoted rows (piano takes). Same reporting,
+    # same exclusions, different reason — the truth is verified but the
+    # row is out of the benchmark by ruling, not by epistemic status.
+    reference: bool = False
 
 
 _METRIC_LEVELS = [(2.0, "metric_level_x2"), (3.0, "metric_level_x3"),

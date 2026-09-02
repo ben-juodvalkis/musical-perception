@@ -114,17 +114,22 @@ def test_the_gating_corpus_is_exactly_the_blessed_set():
     taking the gating set 30 -> 56. Promoting cases fires this tripwire by
     design — it stays red until the owner re-blesses, which is the review
     event W1.5 built it to announce.
+
+    Reset 2026-09-01 (owner-attended, evening): the demo is the case, so
+    the 17 piano takes are demoted to a reference slice that never gates
+    and is never pinned. The gating set is therefore *verified minus
+    reference*: 26 rig/counting clips + 9 barre-6 demos = 35.
     """
     from musical_perception.evals.cases import load_cases
 
     cases = load_cases(_REPO / "evals" / "cases")
-    verified = {c.id for c in cases if not c.provisional}
+    gating = {c.id for c in cases if not c.provisional and not c.reference}
     blessed = set(
         json.loads((_REPO / "evals" / "baseline.json").read_text())
         ["suites"]["tier1"]["outcomes"]
     )
-    assert len(blessed) == 52
-    assert verified == blessed
+    assert len(blessed) == 35
+    assert gating == blessed
 
 
 # --- the tag vocabulary (owner ruling B5) -------------------------------
@@ -471,3 +476,113 @@ def test_the_bless_command_writes_a_verified_only_baseline(tmp_path, monkeypatch
     assert set(written["suites"]["tier1"]["outcomes"]) == {"v1"}
     assert written["suites"]["tier1"]["outcomes_withheld_provisional"] == ["p1"]
     assert "provisional slice" in (tmp_path / "baseline.md").read_text()
+
+
+# --- the reference slice (owner reset 2026-09-01: takes out of the benchmark)
+
+
+def _rref(case_id, *, reference, provisional=False, outcome=CORRECT, bpm=104.0):
+    return CaseResult(
+        case_id=case_id,
+        tags={"count_style": "numbers"},
+        provisional=provisional,
+        reference=reference,
+        scores=[ScoreResult(
+            field="tempo", outcome=outcome,
+            credit=1.0 if outcome == CORRECT else 0.0,
+            predicted=bpm, expected=104.0, confidence=0.8,
+        )],
+    )
+
+
+@needs_yaml
+def test_reference_keys_on_the_clip_role_tag(tmp_path):
+    """The demotion is tag-keyed: `clip_role: take` and nothing else."""
+    from musical_perception.evals.cases import load_cases
+
+    body = yaml.safe_load(_case_yaml("t1"))
+    body["tags"]["clip_role"] = "take"
+    (tmp_path / "t1.yaml").write_text(yaml.safe_dump(body))
+    body2 = yaml.safe_load(_case_yaml("d1"))
+    body2["tags"]["clip_role"] = "demo"
+    (tmp_path / "d1.yaml").write_text(yaml.safe_dump(body2))
+    (tmp_path / "v1.yaml").write_text(_case_yaml("v1"))
+    by_id = {c.id: c for c in load_cases(tmp_path)}
+    assert by_id["t1"].reference is True
+    assert by_id["d1"].reference is False
+    assert by_id["v1"].reference is False
+
+
+def test_reference_rows_leave_every_headline_number_alone():
+    verified = [_result("v1", provisional=False), _result("v2", provisional=False)]
+    headline = aggregate(verified)
+    with_reference = aggregate(verified + [
+        _rref("t1", reference=True, outcome=WRONG, bpm=52.0),
+        _rref("t2", reference=True, outcome=WRONG, bpm=52.0),
+    ])
+    for key in ("n_cases", "fields", "tempo_metrics", "ece", "slices",
+                "risk_coverage", "quality_spearman", "errors"):
+        assert with_reference[key] == headline[key], f"{key} moved"
+    ref = with_reference["reference"]
+    assert ref["case_ids"] == ["t1", "t2"]
+    assert ref["n_cases"] == 2
+    assert with_reference["provisional"] is None
+
+
+def test_reference_beats_provisional_for_slotting():
+    """A row both provisional and reference lands in the reference slice
+    (demotion is the stronger exclusion), never in both."""
+    summary = aggregate([
+        _result("v1", provisional=False),
+        _rref("t1", reference=True, provisional=True),
+    ])
+    assert summary["provisional"] is None
+    assert summary["reference"]["case_ids"] == ["t1"]
+    assert summary["n_cases"] == 1
+
+
+def test_bless_withholds_reference_rows_under_their_own_key():
+    from musical_perception.evals.runner import blessed_report
+
+    results = [
+        _result("v1", provisional=False),
+        _result("p1", provisional=True),
+        _rref("t1", reference=True),
+    ]
+    report = {"suites": {"tier1": {
+        "summary": aggregate(results), "outcomes": outcomes_map(results),
+    }}}
+    pinned = blessed_report(report)["suites"]["tier1"]
+    assert set(pinned["outcomes"]) == {"v1"}
+    assert pinned["outcomes_withheld_provisional"] == ["p1"]
+    assert pinned["outcomes_withheld_reference"] == ["t1"]
+
+
+def test_suite_reference_ids_reads_a_run_or_baseline_block():
+    """Self-describing artifact; a pre-reset baseline (no reference key)
+    degrades to 'nothing excluded' rather than crashing."""
+    from musical_perception.evals.runner import reference_ids, suite_reference_ids
+
+    results = [_rref("t1", reference=True), _result("v1", provisional=False)]
+    assert reference_ids(results) == ["t1"]
+    block = {"summary": aggregate(results), "outcomes": outcomes_map(results)}
+    assert suite_reference_ids(block) == {"t1"}
+    assert suite_reference_ids({"summary": {"reference": None}}) == set()
+    assert suite_reference_ids({"summary": {}}) == set()
+    assert suite_reference_ids(None) == set()
+
+
+def test_reports_name_the_reference_slice_when_one_exists():
+    results = [_result("v1", provisional=False), _rref("t1", reference=True)]
+    report = {
+        "schema": 1, "created_at": "2026-09-01T00:00:00+00:00", "git_sha": "x",
+        "package_version": None,
+        "suites": {"tier1": {
+            "summary": aggregate(results), "outcomes": outcomes_map(results),
+            "cases": [],
+        }},
+    }
+    html = render_html(report)
+    md = render_markdown_baseline(report)
+    assert "reference slice" in html and "t1" in html
+    assert "reference slice" in md and "t1" in md

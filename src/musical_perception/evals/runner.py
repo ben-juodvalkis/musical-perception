@@ -79,12 +79,14 @@ def run_case(case: Case, evals_root: Path) -> CaseResult:
             case_id=case.id, tags=dict(case.tags),
             scores=score_parameters(result, case),
             provisional=case.provisional,
+            reference=case.reference,
         )
     except Exception as e:  # a broken trace is a reportable row, not a crash
         return CaseResult(
             case_id=case.id, tags=dict(case.tags),
             error=f"{type(e).__name__}: {e}",
             provisional=case.provisional,
+            reference=case.reference,
         )
 
 
@@ -156,6 +158,21 @@ def suite_provisional_ids(suite_block: dict | None) -> set[str]:
     return set((prov or {}).get("case_ids") or ())
 
 
+def reference_ids(case_results: list[CaseResult]) -> list[str]:
+    """Case ids the owner demoted to the reference slice (reset 2026-09-01).
+
+    Sorted for the same reason as `provisional_ids`: the run artifact —
+    and therefore the blessed baseline — stays self-describing."""
+    return sorted(c.case_id for c in case_results if c.reference)
+
+
+def suite_reference_ids(suite_block: dict | None) -> set[str]:
+    """Case ids a run (or the baseline) recorded as reference-slice rows,
+    read from the artifact so comparisons never re-read the case files."""
+    ref = ((suite_block or {}).get("summary") or {}).get("reference")
+    return set((ref or {}).get("case_ids") or ())
+
+
 def blessed_report(report: dict) -> dict:
     """The run artifact as it must be written to `evals/baseline.json`.
 
@@ -181,17 +198,27 @@ def blessed_report(report: dict) -> dict:
     out = dict(report)
     out["suites"] = {}
     for suite, block in report.get("suites", {}).items():
-        excluded = suite_provisional_ids(block) & set(block.get("outcomes") or {})
-        if not excluded:
+        present = set(block.get("outcomes") or {})
+        prov = suite_provisional_ids(block) & present
+        # Reset 2026-09-01: reference rows (owner-demoted piano takes) are
+        # withheld from pinning for the same reason provisional rows are —
+        # the pinned map IS the gating corpus — under their own key, so a
+        # reader can tell the two withholdings apart.
+        ref = suite_reference_ids(block) & present
+        if not prov and not ref:
             out["suites"][suite] = block
             continue
         pinned = dict(block)
         pinned["outcomes"] = {
-            cid: v for cid, v in block["outcomes"].items() if cid not in excluded
+            cid: v for cid, v in block["outcomes"].items()
+            if cid not in prov and cid not in ref
         }
         # Named in the artifact so a reader can tell a filtered map from a
         # truncated one without re-deriving it from the case files.
-        pinned["outcomes_withheld_provisional"] = sorted(excluded)
+        if prov:
+            pinned["outcomes_withheld_provisional"] = sorted(prov)
+        if ref:
+            pinned["outcomes_withheld_reference"] = sorted(ref)
         out["suites"][suite] = pinned
     return out
 
