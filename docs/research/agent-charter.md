@@ -7,15 +7,30 @@
 [RESEARCH-LOG.md](RESEARCH-LOG.md) (the memory),
 [agent-environment.md](agent-environment.md) (cloud setup).
 
-> **CURRENT RUNG: M — the marathon (COMMISSIONED 2026-08-14 at the
-> rung-2 verdict: PASS).** Rung 2 blessed and merged — all four §2 gate
-> conditions held with wide margins (step_names R@tac 0.349→0.719 with
-> 12/13 clips improved and zero losses; vocables 0.062→0.875; numbers
-> F_lc 0.577→0.926). Sessions now execute Rung M's per-session contract:
-> one increment on the highest-ranked non-BLOCKED workstream. The owner
-> reviews in weekly batches and clears the BLOCKED queue; every hard
-> rule (eval files, provisional-never-gates, HELD-OUT/SEALED, no
-> self-blessing) is unchanged.
+> **CURRENT RUNG: RESET STEP ONE — pulse tempo from the demo
+> (owner-directed reset, 2026-09-01 evening, ratified in session).**
+> The owner's charge, his words: *"start over, toss out all
+> assumptions."* The target is the DEMO alone — reach the tempo, meter,
+> structure and style he reaches by watching a teacher demonstrate.
+> Piano takes are OUT of the benchmark (the `reference` slice:
+> scored, reported, never gating, never pinned). Step one is the PULSE
+> only: its tempo, defined as the metric level inside **70–140 BPM**,
+> the other levels kept alongside and never folded (Standing Lesson 2
+> unchanged). Scored on the **34-row gating set**: 26 rig/counting
+> clips (three relabeled to the in-band level by owner ear:
+> 60→120, 160→80, 63→126) + 8 barre-6 demos with owner-tapped verified
+> grids; `barre6-ballonne-demo` is DEFERRED (fast triple: beat 160 /
+> bar ~53, no honest in-band level) until the meter step.
+> **Pre-registered pass criterion (owner-ratified with this
+> amendment): committed pulse within ±8% of the in-band truth,
+> reported beside Acc2@8% and the between-levels count.** Baseline at
+> the reset bless: tempo 0.606, Acc2@8% 0.697, between-levels 10 of 33
+> committed. Meter, structure and style are steps two–four, in that
+> order, unscoped, gating nothing in step one. Rules of engagement
+> unchanged. First candidate increment (owner's "run it" in session,
+> uncommissioned until batch review): the **steady window** — find the
+> short in-tempo stretch by rhythmic regularity and movement quality,
+> measure the pulse only inside it.
 
 ## OWNER QUEUE — read this out to Ben first (set 2026-09-01)
 
@@ -58,18 +73,23 @@ never mark them done. Delete an item only when the owner says it is done.
    video demos — is retired, each with a re-analysis recipe
    ([barre1](barre1-reanalysis-plan.md),
    [old video demos](old-video-demos-retired.md)).
-5. **Tap the 27 provisional beat grids** — 26 barre-6 plus the trap clip's
-   (which stays unverified). peakRate pre-annotated barre-6 at 0.6x-2.4x
-   the expected beat count, so `stage1` means nothing on this class until
-   they are corrected. **This is now the largest open owner item.**
-   Cheaper first move: tap three or four spanning the range and see how
-   far the detector is off before committing to all 26.
+5. **LARGELY DONE 2026-09-01 (evening reset session): 8 of 9 barre-6
+   demo grids owner-tapped and verified** — live-tap-from-scratch
+   workflow (no peakRate seed; the seeds were 0.6x-2.4x off), every
+   grid QC-run with owner-resolved flags in its notes. Remaining
+   provisional grids, none urgent for step one: `barre6-ballonne-demo`
+   (deferred with its case to the meter step), the 17 take grids (the
+   cases are reference-slice now), and the trap clip's (deliberately
+   unverified, by design).
 
-**BLESSING IS UNBLOCKED (W1.6 merged to main 2026-09-01).** `bless` now
-pins only owner-verified rows. A bless must print
-`tier1: pinned 30 outcomes, withheld 48 provisional` — **anything other
-than 30 pinned is a stop.** The tier0 ECE delta from W14-c
-(0.0724 → 0.0752) is still uncarried and is what the next bless is for.
+**BLESSING IS UNBLOCKED (W1.6 merged to main 2026-09-01).** `bless`
+pins only owner-verified, non-reference rows. As of the 2026-09-01
+evening reset bless, a bless must print
+`tier1: pinned 34 outcomes, withheld 18 reference` — **anything other
+than 34 pinned is a stop** until the owner changes the gating set.
+(The earlier "30 pinned / 48 provisional" figure was the pre-barre-6
+state; superseded twice on 2026-09-01, by the barre-6 promotion and
+then the reset.)
 
 **Agent-side: W11-b is RETIRED — its subject no longer exists.** It was
 commissioned to freeze opaque pulse sidecars for the 22 barre-1 DEV
@@ -238,7 +258,31 @@ Same findings, no softening — just no jargon standing in for the answer.
    and write a ledger entry proposing the amendment — never silently
    deviate. Charter changes are owner-reviewed PRs.
 
-## The goal ladder
+## The goal ladder — reset 2026-09-01 (owner-ratified in session)
+
+The reset replaces the rung ladder below as the plan of record. The
+target is the DEMO alone; each step gates nothing for the steps after
+it until commissioned.
+
+- **Step one — PULSE (CURRENT).** Tempo of the demo's pulse at the
+  in-band (70–140) level, other levels always reported as the family.
+  Scoring set and pre-registered pass criterion are in the CURRENT RUNG
+  block at the top of this file. First candidate increment: the steady
+  window (owner's "run it", uncommissioned until batch review).
+- **Step two — METER.** Unscoped. Takes back the ballonné-demo
+  deferral: fast triple meters get their felt level named here.
+- **Step three — STRUCTURE.** Unscoped.
+- **Step four — STYLE.** Unscoped.
+
+**Supersession marks (text retained, nothing deleted):** the rung
+ladder below and its workstream ranking are historical context. **W15**
+and **W14-b** are **superseded-pending-review** by this reset — W15's
+completed, unreviewed increment sits on `origin/agent/marathon` (its
+own headline: the teacher never states the meter, 0 of 52 clips) and
+waits for batch review; neither is taken by any session while this
+mark stands.
+
+## The goal ladder (pre-reset, retained for the record)
 
 Each rung below has prerequisites, deliverables, and a ready-to-paste
 `/goal` condition (for interactive or `claude -p` sessions). Scheduled
@@ -733,9 +777,13 @@ strategy (rung 2: PASS). Rung M replaces per-rung blessing with
   2. **W11-b** *(COMMISSIONED 2026-09-01, EVAL-CHANGE — its containment
   design must land before anything else touches barre-1; **ranked 1 for
   agent sessions now that W1.6 is written**)* ·
-  3. **W15** *(**RATIFIED 2026-09-01** — commissioned, untaken)* ·
-  4. **W14-b** *(**RATIFIED
-  2026-09-01** — the trajectory-shape stopping rule: commit when the
+  3. **W15** *(**SUPERSEDED-PENDING-REVIEW by the 2026-09-01 reset** —
+  taken and COMPLETED unattended 2026-09-02 on `origin/agent/marathon`,
+  unreviewed: verdict negative as a meter channel, the meter is never
+  stated; awaits batch review under the supersession mark)* ·
+  4. **W14-b** *(**SUPERSEDED-PENDING-REVIEW by the 2026-09-01 reset**;
+  was RATIFIED
+  2026-09-01 — the trajectory-shape stopping rule: commit when the
   answer stops oscillating between metric levels, the failure mode
   W13(b) Finding 2 actually described; scoreable from the same artifact
   now that `series_num` makes the trajectory replayable. Ranked second;
