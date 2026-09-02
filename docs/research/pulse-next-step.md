@@ -241,5 +241,3 @@ this whole benchmark remains owner-verified corpus growth.
   algorithm chose with what tempo it read in each. Import the audio, then
   File → Import → Labels.
 - `scripts/sw1-steady-window-sweep.py`, `scripts/w2-reopen-prominence-audit.py`.
-
-<!-- writability probe 2026-09-02 -->
