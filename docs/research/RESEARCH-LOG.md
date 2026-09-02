@@ -11384,3 +11384,57 @@ not be added.
 
 Status: PROPOSED, REPORTED-ONLY. pytest 373 passed / 3 skipped; nothing
 under `src/` or `evals/`.
+
+## 2026-09-02 · rung M · agent/estimator-bakeoff · local (owner-attended) — Review 6 written, and the handoff refreshed
+
+**Owner-requested literature review**, written before EB-1 and used to
+design it: [Review 6 — how a pulse is recovered when events don't sit on
+it](review-6-syncopation-and-pulse-reconstruction.md). It covers the two
+things [Review 3](review-3-beat-meter-models.md) does not — the
+perceptual evidence that humans recover a pulse with no acoustic energy
+at the pulse frequency (Tal et al. 2017's missing-pulse MEG; Nozaradan's
+frequency-tagging, with the PNAS entrainment-vs-ERP caveat), and which
+algorithms actually do that (Velasco & Large's nonlinear resonance with
+published parameters; GrFNN/pyGrFNN; Inner Metric Analysis; the
+syncopation measures, which need the beat already and are diagnostics
+only).
+
+Three things it contributes beyond citations:
+
+1. **It refused the frame it was asked for.** §1 argues our failures are
+   *clutter*, *sparse sampling* and *drift* — not syncopation — and that
+   importing syncopation machinery would solve the wrong problem. EB-1
+   then measured it and confirmed it.
+2. **Snyder & Krumhansl (2001) is the most transferable result found.**
+   Pulse finding in syncopated ragtime survived flattening every pitch,
+   but collapsed when the regular left-hand part was removed. Syncopated
+   pulse finding works because *something* in the texture is steady. **Our
+   demo has no left hand** — which argues for a second regular stream
+   (movement; the count words) over a cleverer estimator on one cluttered
+   channel.
+3. **Fitch & Rosenfeld (2007):** past a complexity threshold listeners
+   *reset the phase* and re-hear the rhythm as less syncopated. The human
+   answer to an unresolvable stream is a switched hypothesis, not a
+   refined estimate — which supports `posterior.py` over any point
+   estimator and partially rehabilitates W13(b)'s "re-decides tempo a
+   median of 5 times per clip" as correct behaviour rather than pure
+   instability.
+
+**Standing Lesson 6 tension, flagged not amended** (owner's to rule):
+"silence is evidence — a hypothesis predicting a strong beat where nothing
+was voiced pays for it" is, read literally, the opposite of the
+missing-pulse finding. Proposed wording: a cost that better explanation
+elsewhere can outweigh, never a veto.
+
+[pulse-next-step.md](pulse-next-step.md) refreshed to the post-EB-1 state:
+the diagnosis is now measured rather than inferred, the regime table is
+in, the do-not list gained "do not build the oscillator" and "do not
+re-run the bake-off", and a new §10 records the single adoption candidate
+(replacing `calculate_tempo`'s median) as an uncommissioned logic change
+needing its own increment and re-bless — explicitly **not** to be bundled
+with the prior-table ablation.
+
+The owner's blind prior table (§6) remains the standing next step and is
+better motivated by EB-1, not less.
+
+Status: PROPOSED, REPORTED-ONLY.

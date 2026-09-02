@@ -5,8 +5,12 @@ This is the handoff document: a fresh agent thread should read this file,
 the charter's CURRENT RUNG block, and the Standing Lessons, and it will
 have the picture without re-reading the whole ledger.
 
-**The next step is an owner action, described in §6. Nothing else starts
-until that table exists.**
+**The next step is an owner action, described in §6.**
+
+**Updated 2026-09-02 after EB-1 and Review 6** — §3 and §5 changed
+materially: the beat/syllable diagnosis is now *measured* rather than
+inferred, a concrete estimator fix is on the table, and the syncopation
+hypothesis is closed. §8's do-not list grew.
 
 ---
 
@@ -45,7 +49,28 @@ clip. Full results: [sw1-steady-window-sweep.md](sw1-steady-window-sweep.md).
   spans recover the label within 3 % on three of the five clips a naive
   probe can read. See the ledger correction of 2026-09-02.
 
-## 3. The diagnosis: nothing separates beats from syllables
+### EB-1: the estimator, and it is the biggest lever found so far
+
+[eb1-estimator-bakeoff.md](eb1-estimator-bakeoff.md). Five estimators on
+one fixed peakRate event stream, so only the arithmetic varies:
+
+| estimator | pass /34 | demo /8 | rig /26 | between-levels |
+|---|---|---|---|---|
+| `median-consec` *(ships today)* | 16 | 4 | 12 | 21 |
+| **`all-pairs`** | **28** | 4 | **24** | **7** |
+| **`comb`** | **28** | **5** | 23 | 8 |
+| `povel-essens` | 27 | 5 | 22 | 8 |
+| `hopf` (nonlinear resonance) | 19 | 2 | 17 | 20 |
+
+Blessed pipeline on the same rows: 20. **Changing only the arithmetic is
+worth 12 rows**, and nearly all of it is rig-side (12 → 24 of 26); the
+demos move 4 → 5. `all-pairs` and `comb` are not separable at n = 34.
+
+Also measured: `librosa_plp`, off the shelf on raw audio, scores **5/8 on
+the demos** — equal to the best thing we do on our own event stream.
+`beat_this` returned no usable beats on 5 of 8.
+
+## 3. The diagnosis, now measured rather than inferred
 
 This is the finding the session converged on, and it is not subtle.
 
@@ -72,6 +97,21 @@ The methods Standing Lesson 3 already names — harmonic summing,
 ratio-reinforced IOI clustering, comb/grid scoring — all work on all-pairs
 or on testing candidate periods against the whole event train, and none
 of them care how many syllables sit between two beats.
+
+**EB-1 Arm C settled which regime we are in** — the measurement Review 6
+§1 said had never been run. Dominant periodicity in the event stream,
+divided by the true beat:
+
+| demo | ratio | reading |
+|---|---|---|
+| coupé-barre · dégagé · frappé · plié · tendu | 2.00 · 2.13 · 2.10 · 2.50 · 2.85 | **clutter** — the syllable rate wins, at a *non-integer* multiple, so no ×/÷{2,3} recovers the beat |
+| fondu | 0.54 | ≈ a 2-beat group |
+| rond-de-jambe · tendu-warmup | 0.35 · 0.35 | **the 3/4 bar** — voiced 1-and-3, so the bar is the strongest rhythm and ×3 is exactly right |
+
+**On 0 of 8 demos is the beat the dominant periodicity** (it sits 7.6–29.4
+dB below the peak). **And this is NOT a missing-pulse corpus:** if it were,
+the nonlinear oscillator would recover what linear methods cannot. It came
+last. The syncopation hypothesis is closed — see §8.
 
 Supporting measurements (all on the 8 demos, owner taps as truth):
 
@@ -159,6 +199,13 @@ them without touching the front end.
 The charter's rung 4 already anticipated this — "exercise-conditioned
 priors at level selection only" — and it was never built.
 
+**EB-1 strengthened this, and named the clips it would fix.**
+Rond-de-jambe and tendu-warmup are the two demos whose strongest rhythm is
+the bar at ⅓ the beat rate: on those, ×3 is exactly the right projection
+and only knowledge of the exercise supplies it. On the other five the
+dominant rate is a *non-integer* multiple of the beat, which no projection
+can fix and only a prior over plausible tempos can break.
+
 ## 6. NEXT STEP — the owner writes the prior table (blind)
 
 **This is an owner action. No agent may author this table, and no agent
@@ -201,7 +248,8 @@ can:
 Once the table exists, the increment is a **REPORTED-ONLY ablation**,
 pre-registered before it runs:
 
-- **Arm A:** the current estimator alone. (Known: 20/34, 4/8 on demos.)
+- **Arm A:** the current estimator alone. (Known: 20/34 shipping,
+  4/8 on demos; 16/34 for the bare median on the EB-1 event stream.)
 - **Arm B:** the same estimator, with the tempo prior conditioned on the
   exercise label — using **Gemini's own guess, errors included, no
   oracle**, so the 6-of-8 naming accuracy is part of the measured result.
@@ -228,6 +276,12 @@ this whole benchmark remains owner-verified corpus growth.
 - Do not cite SW-1's F3 for "the owner does not read audio regularity."
   That conclusion is withdrawn (§2).
 - Do not author the prior table or infer it from the corpus (§6).
+- **Do not build the nonlinear oscillator / GrFNN.** EB-1 measured it: this
+  is not a missing-pulse corpus and the Hopf bank came last (19/34, 2/8 on
+  demos). Review 6 §3 explains the mechanism; §8 ranks it last for a reason.
+- **Do not re-run the estimator bake-off.** EB-1 answered it. `all-pairs`
+  and `comb` tie at 28/34 and are not separable at this n — that needs more
+  verified rows, not more analysis.
 
 ## 9. Artifacts from this session
 
@@ -240,4 +294,25 @@ this whole benchmark remains owner-verified corpus growth.
   starts, the owner's beats the machine missed, and the windows the
   algorithm chose with what tempo it read in each. Import the audio, then
   File → Import → Labels.
-- `scripts/sw1-steady-window-sweep.py`, `scripts/w2-reopen-prominence-audit.py`.
+- [eb1-estimator-bakeoff.md](eb1-estimator-bakeoff.md) + `.json`, and
+  `eb1-arm-b-trackers.json` — the estimator bake-off, the regime
+  diagnostic, and the off-the-shelf trackers on the demos.
+- [review-6-syncopation-and-pulse-reconstruction.md](review-6-syncopation-and-pulse-reconstruction.md)
+  — how a pulse is recovered when events don't sit on it, with transfer
+  verdicts per algorithm.
+- `scripts/sw1-steady-window-sweep.py`, `scripts/w2-reopen-prominence-audit.py`,
+  `scripts/eb1-estimator-bakeoff.py`, `scripts/eb1-arm-b-trackers.py`.
+
+## 10. The one adoption candidate now on the table
+
+Unlike SW-1, EB-1 produced something worth adopting later: **replacing
+`calculate_tempo`'s median of consecutive gaps with an all-pairs or comb
+period estimate.** It is worth 12 rows on the gating set and cuts
+between-levels rows from 21 to 7.
+
+It is a **logic change** under ADR-015's zero-regression gate, it moves
+scored outcomes, and it therefore needs its own pre-registration, its own
+increment, and an owner re-bless. **It is not commissioned.** Do not bundle
+it with the prior-table ablation (§7) — one bounded change per session
+(rule 6), and bundling them would make it impossible to say which one
+worked.
