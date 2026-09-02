@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "created_at": "2026-09-01T23:48:38+00:00",
-  "git_sha": "0b29864588b6bdff3da43535159689b3a30d9dd3",
+  "created_at": "2026-09-02T02:16:55+00:00",
+  "git_sha": "145948fb475dada55feb9b801d777867d6900a5e",
   "package_version": "0.1.0",
   "suites": {
     "tier0": {
@@ -578,7 +578,8 @@
           }
         },
         "factored_meter": null,
-        "provisional": null
+        "provisional": null,
+        "reference": null
       },
       "outcomes": {
         "t0-2-4-clean": {
@@ -715,7 +716,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "t0-3-4-clean",
@@ -749,7 +751,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "t0-4-4-clean",
@@ -783,7 +786,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "t0-6-8-clean",
@@ -817,7 +821,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "t0-2-4-clean-duple",
@@ -851,7 +856,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "t0-3-4-clean-duple",
@@ -885,7 +891,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "t0-4-4-clean-duple",
@@ -919,7 +926,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "t0-6-8-clean-duple",
@@ -953,7 +961,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "t0-4-4-clean-triplet",
@@ -987,7 +996,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "t0-2-4-clean-triplet",
@@ -1021,7 +1031,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "t0-3-4-jitter",
@@ -1055,7 +1066,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "t0-4-4-jitter",
@@ -1089,7 +1101,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "t0-4-4-jitter-duple",
@@ -1123,7 +1136,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "t0-2-4-jitter",
@@ -1157,7 +1171,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "t0-4-4-dropped",
@@ -1191,7 +1206,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "t0-3-4-dropped-duple",
@@ -1225,7 +1241,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "t0-4-4-explained",
@@ -1259,7 +1276,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "t0-3-4-explained",
@@ -1293,7 +1311,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "t0-4-4-explained-duple",
@@ -1327,7 +1346,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "t0-4-4-prep",
@@ -1361,7 +1381,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "t0-2-4-prep",
@@ -1395,7 +1416,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "t0-4-4-half",
@@ -1429,7 +1451,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "t0-3-4-half",
@@ -1463,7 +1486,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "t0-4-4-stress",
@@ -1497,7 +1521,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "t0-3-4-swing-triplet",
@@ -1531,50 +1556,51 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         }
       ]
     },
     "tier1": {
       "summary": {
-        "n_cases": 52,
+        "n_cases": 34,
         "errors": [],
         "fields": {
           "counts": {
-            "n": 52,
-            "correct": 14,
-            "wrong": 25,
-            "abstained": 13,
-            "coverage": 0.75,
-            "accuracy": 0.359,
+            "n": 34,
+            "correct": 12,
+            "wrong": 13,
+            "abstained": 9,
+            "coverage": 0.735,
+            "accuracy": 0.48,
             "accuracy_wilson95": [
-              0.227,
-              0.516
+              0.3,
+              0.665
             ],
-            "mean_credit": 0.269,
+            "mean_credit": 0.353,
             "truth_in_family": null,
             "truth_in_family_n": null,
             "failure_modes": {
-              "counts_wrong": 25
+              "counts_wrong": 13
             }
           },
           "meter_triple": {
-            "n": 52,
-            "correct": 17,
-            "wrong": 34,
+            "n": 34,
+            "correct": 14,
+            "wrong": 19,
             "abstained": 1,
-            "coverage": 0.981,
-            "accuracy": 0.333,
+            "coverage": 0.971,
+            "accuracy": 0.424,
             "accuracy_wilson95": [
-              0.22,
-              0.47
+              0.272,
+              0.592
             ],
-            "mean_credit": 0.337,
+            "mean_credit": 0.426,
             "truth_in_family": null,
             "truth_in_family_n": null,
             "failure_modes": {
-              "meter_wrong": 16,
-              "tempo_wrong": 17,
+              "tempo_wrong": 10,
+              "meter_wrong": 8,
               "equivalent_reading": 1
             }
           },
@@ -1595,50 +1621,49 @@
             "failure_modes": {}
           },
           "tempo": {
-            "n": 52,
-            "correct": 26,
-            "wrong": 25,
+            "n": 34,
+            "correct": 20,
+            "wrong": 13,
             "abstained": 1,
-            "coverage": 0.981,
-            "accuracy": 0.51,
+            "coverage": 0.971,
+            "accuracy": 0.606,
             "accuracy_wilson95": [
-              0.377,
-              0.641
+              0.437,
+              0.753
             ],
-            "mean_credit": 0.5,
-            "truth_in_family": 9,
-            "truth_in_family_n": 25,
+            "mean_credit": 0.588,
+            "truth_in_family": 5,
+            "truth_in_family_n": 13,
             "failure_modes": {
-              "metric_level_div3": 1,
-              "tempo_error": 21,
-              "metric_level_div2": 1,
-              "metric_level_x2": 2
+              "tempo_error": 10,
+              "metric_level_x2": 2,
+              "metric_level_div2": 1
             }
           }
         },
         "tempo_metrics": {
-          "n_committed": 51,
+          "n_committed": 33,
           "acc1": {
-            "tol_04": 0.373,
-            "tol_08": 0.51
+            "tol_04": 0.515,
+            "tol_08": 0.606
           },
           "acc2": {
-            "tol_04": 0.431,
-            "tol_08": 0.588
+            "tol_04": 0.576,
+            "tol_08": 0.697
           },
           "oe1": {
-            "mean": 0.0877,
-            "median": 0.0,
-            "abs_median": 0.1165,
-            "max_abs": 1.5275
+            "mean": 0.0041,
+            "median": -0.0043,
+            "abs_median": 0.0577,
+            "max_abs": 1.0618
           },
           "oe2": {
-            "mean": 0.0093,
-            "median": -0.0033,
-            "abs_median": 0.0618,
-            "max_abs": 0.4838
+            "mean": 0.0344,
+            "median": -0.0029,
+            "abs_median": 0.0534,
+            "max_abs": 0.4739
           },
-          "between_levels": 22,
+          "between_levels": 10,
           "per_case": [
             {
               "case": "adr006-8-counts-2x",
@@ -1655,39 +1680,11 @@
               "oe2": -0.0467
             },
             {
-              "case": "barre6-ballonne-demo",
-              "predicted": 55.5,
-              "expected": 160.0,
-              "oe1": -1.5275,
-              "oe2": 0.0575
-            },
-            {
-              "case": "barre6-ballonne-take1",
-              "predicted": 88.1,
-              "expected": 63.0,
-              "oe1": 0.4838,
-              "oe2": 0.4838
-            },
-            {
-              "case": "barre6-ballonne-take2",
-              "predicted": 102.2,
-              "expected": 63.0,
-              "oe1": 0.698,
-              "oe2": -0.302
-            },
-            {
               "case": "barre6-coupe-barre-demo",
               "predicted": 150.0,
               "expected": 108.0,
               "oe1": 0.4739,
               "oe2": 0.4739
-            },
-            {
-              "case": "barre6-coupe-barre-take1",
-              "predicted": 139.2,
-              "expected": 120.0,
-              "oe1": 0.2141,
-              "oe2": 0.2141
             },
             {
               "case": "barre6-degage-demo",
@@ -1697,39 +1694,11 @@
               "oe2": -0.0534
             },
             {
-              "case": "barre6-degage-take1",
-              "predicted": 122.3,
-              "expected": 121.0,
-              "oe1": 0.0154,
-              "oe2": 0.0154
-            },
-            {
-              "case": "barre6-degage-take2",
-              "predicted": 120.2,
-              "expected": 122.0,
-              "oe1": -0.0214,
-              "oe2": -0.0214
-            },
-            {
               "case": "barre6-fondu-demo",
               "predicted": 101.0,
               "expected": 86.0,
               "oe1": 0.2319,
               "oe2": 0.2319
-            },
-            {
-              "case": "barre6-fondu-take1",
-              "predicted": 172.9,
-              "expected": 70.0,
-              "oe1": 1.3045,
-              "oe2": -0.2805
-            },
-            {
-              "case": "barre6-fondu-take2",
-              "predicted": 115.3,
-              "expected": 74.0,
-              "oe1": 0.6398,
-              "oe2": -0.3602
             },
             {
               "case": "barre6-frappe-demo",
@@ -1739,46 +1708,11 @@
               "oe2": -0.0043
             },
             {
-              "case": "barre6-frappe-take1",
-              "predicted": 104.2,
-              "expected": 79.0,
-              "oe1": 0.3994,
-              "oe2": 0.3994
-            },
-            {
-              "case": "barre6-frappe-take2",
-              "predicted": 111.4,
-              "expected": 74.0,
-              "oe1": 0.5902,
-              "oe2": -0.4098
-            },
-            {
               "case": "barre6-plie-demo",
               "predicted": 124.9,
               "expected": 120.0,
               "oe1": 0.0577,
               "oe2": 0.0577
-            },
-            {
-              "case": "barre6-plie-take1",
-              "predicted": 107.0,
-              "expected": 116.0,
-              "oe1": -0.1165,
-              "oe2": -0.1165
-            },
-            {
-              "case": "barre6-plie-take2",
-              "predicted": 95.7,
-              "expected": 116.0,
-              "oe1": -0.2775,
-              "oe2": -0.2775
-            },
-            {
-              "case": "barre6-releve-finish-take1",
-              "predicted": 103.2,
-              "expected": 109.0,
-              "oe1": -0.0789,
-              "oe2": -0.0789
             },
             {
               "case": "barre6-rond-de-jambe-demo",
@@ -1788,20 +1722,6 @@
               "oe2": 0.1792
             },
             {
-              "case": "barre6-rond-de-jambe-take1",
-              "predicted": 55.7,
-              "expected": 95.0,
-              "oe1": -0.7703,
-              "oe2": 0.2297
-            },
-            {
-              "case": "barre6-rond-de-jambe-take2",
-              "predicted": 171.2,
-              "expected": 95.0,
-              "oe1": 0.8497,
-              "oe2": -0.1503
-            },
-            {
               "case": "barre6-tendu-demo",
               "predicted": 120.4,
               "expected": 102.0,
@@ -1809,32 +1729,11 @@
               "oe2": 0.2393
             },
             {
-              "case": "barre6-tendu-take1",
-              "predicted": 117.5,
-              "expected": 115.0,
-              "oe1": 0.031,
-              "oe2": 0.031
-            },
-            {
-              "case": "barre6-tendu-take2",
-              "predicted": 119.8,
-              "expected": 115.0,
-              "oe1": 0.059,
-              "oe2": 0.059
-            },
-            {
               "case": "barre6-tendu-warmup-demo",
               "predicted": 123.4,
               "expected": 112.0,
               "oe1": 0.1398,
               "oe2": 0.1398
-            },
-            {
-              "case": "barre6-tendu-warmup-take1",
-              "predicted": 147.3,
-              "expected": 82.0,
-              "oe1": 0.8451,
-              "oe2": -0.1549
             },
             {
               "case": "rig-mixed-4-4-104-quantities",
@@ -1853,8 +1752,8 @@
             {
               "case": "rig-names-2-4-160-long",
               "predicted": 167.0,
-              "expected": 160.0,
-              "oe1": 0.0618,
+              "expected": 80.0,
+              "oe1": 1.0618,
               "oe2": 0.0618
             },
             {
@@ -1902,8 +1801,8 @@
             {
               "case": "rig-names-4-4-63-adagio",
               "predicted": 72.0,
-              "expected": 63.0,
-              "oe1": 0.1926,
+              "expected": 126.0,
+              "oe1": -0.8074,
               "oe2": 0.1926
             },
             {
@@ -1979,8 +1878,8 @@
             {
               "case": "rig-numbers-4-4-60-halftempo",
               "predicted": 119.1,
-              "expected": 60.0,
-              "oe1": 0.9891,
+              "expected": 120.0,
+              "oe1": -0.0109,
               "oe2": -0.0109
             },
             {
@@ -2000,517 +1899,337 @@
           ]
         },
         "quality_spearman": null,
-        "ece": 0.2635,
+        "ece": 0.2145,
         "risk_coverage": [
           {
             "threshold": 0.99,
-            "coverage": 0.01,
+            "coverage": 0.015,
             "risk": 0.0
           },
           {
             "threshold": 0.99,
-            "coverage": 0.02,
+            "coverage": 0.03,
             "risk": 0.0
           },
           {
             "threshold": 0.99,
-            "coverage": 0.029,
+            "coverage": 0.045,
             "risk": 0.0
           },
           {
             "threshold": 0.99,
-            "coverage": 0.039,
+            "coverage": 0.061,
             "risk": 0.0
           },
           {
             "threshold": 0.98,
-            "coverage": 0.049,
+            "coverage": 0.076,
             "risk": 0.0
           },
           {
             "threshold": 0.98,
-            "coverage": 0.059,
+            "coverage": 0.091,
             "risk": 0.0
           },
           {
             "threshold": 0.97,
-            "coverage": 0.069,
+            "coverage": 0.106,
             "risk": 0.0
           },
           {
             "threshold": 0.97,
-            "coverage": 0.078,
+            "coverage": 0.121,
             "risk": 0.0
           },
           {
             "threshold": 0.97,
-            "coverage": 0.088,
+            "coverage": 0.136,
             "risk": 0.0
           },
           {
             "threshold": 0.97,
-            "coverage": 0.098,
+            "coverage": 0.152,
             "risk": 0.0
           },
           {
             "threshold": 0.97,
-            "coverage": 0.108,
+            "coverage": 0.167,
             "risk": 0.0
           },
           {
             "threshold": 0.97,
-            "coverage": 0.118,
+            "coverage": 0.182,
             "risk": 0.083
           },
           {
             "threshold": 0.97,
-            "coverage": 0.127,
+            "coverage": 0.197,
             "risk": 0.077
           },
           {
             "threshold": 0.97,
-            "coverage": 0.137,
+            "coverage": 0.212,
             "risk": 0.071
           },
           {
             "threshold": 0.96,
-            "coverage": 0.147,
+            "coverage": 0.227,
             "risk": 0.067
           },
           {
             "threshold": 0.96,
-            "coverage": 0.157,
+            "coverage": 0.242,
             "risk": 0.062
           },
           {
             "threshold": 0.96,
-            "coverage": 0.167,
+            "coverage": 0.258,
             "risk": 0.059
           },
           {
             "threshold": 0.96,
-            "coverage": 0.176,
+            "coverage": 0.273,
             "risk": 0.056
           },
           {
             "threshold": 0.92,
-            "coverage": 0.186,
+            "coverage": 0.288,
             "risk": 0.053
           },
           {
             "threshold": 0.92,
-            "coverage": 0.196,
+            "coverage": 0.303,
             "risk": 0.1
           },
           {
             "threshold": 0.85,
-            "coverage": 0.206,
+            "coverage": 0.318,
             "risk": 0.095
           },
           {
             "threshold": 0.85,
-            "coverage": 0.216,
+            "coverage": 0.333,
             "risk": 0.091
           },
           {
             "threshold": 0.84,
-            "coverage": 0.225,
-            "risk": 0.087
+            "coverage": 0.348,
+            "risk": 0.13
           },
           {
             "threshold": 0.84,
-            "coverage": 0.235,
-            "risk": 0.125
+            "coverage": 0.364,
+            "risk": 0.167
           },
           {
             "threshold": 0.84,
-            "coverage": 0.245,
-            "risk": 0.16
+            "coverage": 0.379,
+            "risk": 0.2
           },
           {
             "threshold": 0.84,
-            "coverage": 0.255,
-            "risk": 0.192
+            "coverage": 0.394,
+            "risk": 0.231
           },
           {
             "threshold": 0.78,
-            "coverage": 0.265,
-            "risk": 0.222
+            "coverage": 0.409,
+            "risk": 0.259
           },
           {
             "threshold": 0.78,
-            "coverage": 0.275,
-            "risk": 0.25
+            "coverage": 0.424,
+            "risk": 0.286
           },
           {
             "threshold": 0.78,
-            "coverage": 0.284,
-            "risk": 0.276
+            "coverage": 0.439,
+            "risk": 0.31
           },
           {
             "threshold": 0.78,
-            "coverage": 0.294,
-            "risk": 0.3
+            "coverage": 0.455,
+            "risk": 0.333
           },
           {
             "threshold": 0.78,
-            "coverage": 0.304,
-            "risk": 0.29
+            "coverage": 0.47,
+            "risk": 0.323
           },
           {
             "threshold": 0.78,
-            "coverage": 0.314,
-            "risk": 0.281
+            "coverage": 0.485,
+            "risk": 0.312
           },
           {
             "threshold": 0.77,
-            "coverage": 0.324,
-            "risk": 0.273
+            "coverage": 0.5,
+            "risk": 0.303
           },
           {
             "threshold": 0.77,
-            "coverage": 0.333,
-            "risk": 0.265
+            "coverage": 0.515,
+            "risk": 0.294
           },
           {
             "threshold": 0.75,
-            "coverage": 0.343,
-            "risk": 0.257
+            "coverage": 0.53,
+            "risk": 0.286
           },
           {
             "threshold": 0.75,
-            "coverage": 0.353,
-            "risk": 0.25
+            "coverage": 0.545,
+            "risk": 0.278
           },
           {
             "threshold": 0.74,
-            "coverage": 0.363,
+            "coverage": 0.561,
             "risk": 0.27
           },
           {
             "threshold": 0.74,
-            "coverage": 0.373,
-            "risk": 0.289
+            "coverage": 0.576,
+            "risk": 0.263
           },
           {
             "threshold": 0.68,
-            "coverage": 0.382,
+            "coverage": 0.591,
             "risk": 0.282
           },
           {
             "threshold": 0.68,
-            "coverage": 0.392,
-            "risk": 0.275
+            "coverage": 0.606,
+            "risk": 0.3
           },
           {
-            "threshold": 0.68,
-            "coverage": 0.402,
-            "risk": 0.293
+            "threshold": 0.65,
+            "coverage": 0.621,
+            "risk": 0.317
           },
           {
-            "threshold": 0.68,
-            "coverage": 0.412,
-            "risk": 0.31
+            "threshold": 0.65,
+            "coverage": 0.636,
+            "risk": 0.333
           },
           {
-            "threshold": 0.67,
-            "coverage": 0.422,
+            "threshold": 0.61,
+            "coverage": 0.652,
             "risk": 0.326
-          },
-          {
-            "threshold": 0.67,
-            "coverage": 0.431,
-            "risk": 0.341
-          },
-          {
-            "threshold": 0.66,
-            "coverage": 0.441,
-            "risk": 0.356
-          },
-          {
-            "threshold": 0.66,
-            "coverage": 0.451,
-            "risk": 0.37
-          },
-          {
-            "threshold": 0.65,
-            "coverage": 0.461,
-            "risk": 0.362
-          },
-          {
-            "threshold": 0.65,
-            "coverage": 0.471,
-            "risk": 0.375
-          },
-          {
-            "threshold": 0.65,
-            "coverage": 0.48,
-            "risk": 0.388
-          },
-          {
-            "threshold": 0.65,
-            "coverage": 0.49,
-            "risk": 0.4
-          },
-          {
-            "threshold": 0.65,
-            "coverage": 0.5,
-            "risk": 0.412
-          },
-          {
-            "threshold": 0.65,
-            "coverage": 0.51,
-            "risk": 0.423
-          },
-          {
-            "threshold": 0.64,
-            "coverage": 0.52,
-            "risk": 0.434
-          },
-          {
-            "threshold": 0.64,
-            "coverage": 0.529,
-            "risk": 0.444
-          },
-          {
-            "threshold": 0.63,
-            "coverage": 0.539,
-            "risk": 0.455
-          },
-          {
-            "threshold": 0.63,
-            "coverage": 0.549,
-            "risk": 0.464
-          },
-          {
-            "threshold": 0.63,
-            "coverage": 0.559,
-            "risk": 0.456
-          },
-          {
-            "threshold": 0.63,
-            "coverage": 0.569,
-            "risk": 0.448
-          },
-          {
-            "threshold": 0.62,
-            "coverage": 0.578,
-            "risk": 0.458
-          },
-          {
-            "threshold": 0.62,
-            "coverage": 0.588,
-            "risk": 0.467
-          },
-          {
-            "threshold": 0.62,
-            "coverage": 0.598,
-            "risk": 0.459
-          },
-          {
-            "threshold": 0.62,
-            "coverage": 0.608,
-            "risk": 0.452
-          },
-          {
-            "threshold": 0.62,
-            "coverage": 0.618,
-            "risk": 0.444
-          },
-          {
-            "threshold": 0.62,
-            "coverage": 0.627,
-            "risk": 0.438
-          },
-          {
-            "threshold": 0.61,
-            "coverage": 0.637,
-            "risk": 0.446
-          },
-          {
-            "threshold": 0.61,
-            "coverage": 0.647,
-            "risk": 0.455
-          },
-          {
-            "threshold": 0.61,
-            "coverage": 0.657,
-            "risk": 0.463
           },
           {
             "threshold": 0.61,
             "coverage": 0.667,
-            "risk": 0.471
-          },
-          {
-            "threshold": 0.61,
-            "coverage": 0.676,
-            "risk": 0.464
-          },
-          {
-            "threshold": 0.61,
-            "coverage": 0.686,
-            "risk": 0.471
-          },
-          {
-            "threshold": 0.6,
-            "coverage": 0.696,
-            "risk": 0.465
-          },
-          {
-            "threshold": 0.6,
-            "coverage": 0.706,
-            "risk": 0.472
+            "risk": 0.341
           },
           {
             "threshold": 0.59,
-            "coverage": 0.716,
-            "risk": 0.479
+            "coverage": 0.682,
+            "risk": 0.356
           },
           {
             "threshold": 0.59,
-            "coverage": 0.725,
-            "risk": 0.486
+            "coverage": 0.697,
+            "risk": 0.37
           },
           {
             "threshold": 0.57,
-            "coverage": 0.735,
-            "risk": 0.493
+            "coverage": 0.712,
+            "risk": 0.383
           },
           {
             "threshold": 0.57,
-            "coverage": 0.745,
-            "risk": 0.5
-          },
-          {
-            "threshold": 0.57,
-            "coverage": 0.755,
-            "risk": 0.506
-          },
-          {
-            "threshold": 0.57,
-            "coverage": 0.765,
-            "risk": 0.513
+            "coverage": 0.727,
+            "risk": 0.396
           },
           {
             "threshold": 0.55,
-            "coverage": 0.775,
-            "risk": 0.506
+            "coverage": 0.742,
+            "risk": 0.388
           },
           {
             "threshold": 0.55,
-            "coverage": 0.784,
-            "risk": 0.5
+            "coverage": 0.758,
+            "risk": 0.38
           },
           {
             "threshold": 0.54,
-            "coverage": 0.794,
-            "risk": 0.506
+            "coverage": 0.773,
+            "risk": 0.392
           },
           {
             "threshold": 0.54,
-            "coverage": 0.804,
-            "risk": 0.512
+            "coverage": 0.788,
+            "risk": 0.404
           },
           {
             "threshold": 0.54,
-            "coverage": 0.814,
-            "risk": 0.518
+            "coverage": 0.803,
+            "risk": 0.415
           },
           {
             "threshold": 0.54,
-            "coverage": 0.824,
-            "risk": 0.524
+            "coverage": 0.818,
+            "risk": 0.426
           },
           {
-            "threshold": 0.53,
+            "threshold": 0.51,
             "coverage": 0.833,
-            "risk": 0.529
-          },
-          {
-            "threshold": 0.53,
-            "coverage": 0.843,
-            "risk": 0.535
+            "risk": 0.436
           },
           {
             "threshold": 0.51,
-            "coverage": 0.853,
-            "risk": 0.54
+            "coverage": 0.848,
+            "risk": 0.446
           },
           {
             "threshold": 0.51,
-            "coverage": 0.863,
-            "risk": 0.545
+            "coverage": 0.864,
+            "risk": 0.439
           },
           {
             "threshold": 0.51,
-            "coverage": 0.873,
-            "risk": 0.539
+            "coverage": 0.879,
+            "risk": 0.448
           },
           {
             "threshold": 0.51,
-            "coverage": 0.882,
-            "risk": 0.544
+            "coverage": 0.894,
+            "risk": 0.458
           },
           {
             "threshold": 0.51,
-            "coverage": 0.892,
-            "risk": 0.549
-          },
-          {
-            "threshold": 0.51,
-            "coverage": 0.902,
-            "risk": 0.554
-          },
-          {
-            "threshold": 0.51,
-            "coverage": 0.912,
-            "risk": 0.559
-          },
-          {
-            "threshold": 0.51,
-            "coverage": 0.922,
-            "risk": 0.564
+            "coverage": 0.909,
+            "risk": 0.467
           },
           {
             "threshold": 0.38,
-            "coverage": 0.931,
-            "risk": 0.558
+            "coverage": 0.924,
+            "risk": 0.459
           },
           {
             "threshold": 0.38,
-            "coverage": 0.941,
-            "risk": 0.562
-          },
-          {
-            "threshold": 0.36,
-            "coverage": 0.951,
-            "risk": 0.567
-          },
-          {
-            "threshold": 0.36,
-            "coverage": 0.961,
-            "risk": 0.571
+            "coverage": 0.939,
+            "risk": 0.468
           },
           {
             "threshold": 0.33,
-            "coverage": 0.971,
-            "risk": 0.576
+            "coverage": 0.955,
+            "risk": 0.476
           },
           {
             "threshold": 0.33,
-            "coverage": 0.98,
-            "risk": 0.58
+            "coverage": 0.97,
+            "risk": 0.484
           },
           {
             "threshold": 0.3,
-            "coverage": 0.99,
-            "risk": 0.574
+            "coverage": 0.985,
+            "risk": 0.477
           },
           {
             "threshold": 0.3,
             "coverage": 1.0,
-            "risk": 0.578
+            "risk": 0.485
           }
         ],
         "slices": {
@@ -2587,22 +2306,22 @@
               },
               "meter_triple": {
                 "n": 13,
-                "correct": 9,
-                "wrong": 4,
+                "correct": 10,
+                "wrong": 3,
                 "abstained": 0,
                 "coverage": 1.0,
-                "accuracy": 0.692,
+                "accuracy": 0.769,
                 "accuracy_wilson95": [
-                  0.424,
-                  0.873
+                  0.497,
+                  0.918
                 ],
-                "mean_credit": 0.731,
+                "mean_credit": 0.808,
                 "truth_in_family": null,
                 "truth_in_family_n": null,
                 "failure_modes": {
                   "meter_wrong": 1,
                   "equivalent_reading": 1,
-                  "tempo_wrong": 2
+                  "tempo_wrong": 1
                 }
               },
               "sides": {
@@ -2623,78 +2342,78 @@
               },
               "tempo": {
                 "n": 13,
-                "correct": 11,
-                "wrong": 2,
+                "correct": 12,
+                "wrong": 1,
                 "abstained": 0,
                 "coverage": 1.0,
-                "accuracy": 0.846,
+                "accuracy": 0.923,
                 "accuracy_wilson95": [
-                  0.578,
-                  0.957
+                  0.667,
+                  0.986
                 ],
-                "mean_credit": 0.846,
-                "truth_in_family": 1,
-                "truth_in_family_n": 2,
+                "mean_credit": 0.923,
+                "truth_in_family": 0,
+                "truth_in_family_n": 1,
                 "failure_modes": {
-                  "metric_level_x2": 2
+                  "metric_level_x2": 1
                 }
               }
             },
             "step_names": {
               "counts": {
-                "n": 37,
-                "correct": 4,
-                "wrong": 22,
-                "abstained": 11,
-                "coverage": 0.703,
-                "accuracy": 0.154,
+                "n": 19,
+                "correct": 2,
+                "wrong": 10,
+                "abstained": 7,
+                "coverage": 0.632,
+                "accuracy": 0.167,
                 "accuracy_wilson95": [
-                  0.061,
-                  0.335
+                  0.047,
+                  0.448
                 ],
-                "mean_credit": 0.108,
+                "mean_credit": 0.105,
                 "truth_in_family": null,
                 "truth_in_family_n": null,
                 "failure_modes": {
-                  "counts_wrong": 22
+                  "counts_wrong": 10
                 }
               },
               "meter_triple": {
-                "n": 37,
-                "correct": 8,
-                "wrong": 29,
+                "n": 19,
+                "correct": 4,
+                "wrong": 15,
                 "abstained": 0,
                 "coverage": 1.0,
-                "accuracy": 0.216,
+                "accuracy": 0.211,
                 "accuracy_wilson95": [
-                  0.114,
-                  0.372
+                  0.085,
+                  0.433
                 ],
-                "mean_credit": 0.216,
+                "mean_credit": 0.211,
                 "truth_in_family": null,
                 "truth_in_family_n": null,
                 "failure_modes": {
-                  "meter_wrong": 15,
-                  "tempo_wrong": 14
+                  "tempo_wrong": 8,
+                  "meter_wrong": 7
                 }
               },
               "tempo": {
-                "n": 37,
-                "correct": 15,
-                "wrong": 22,
+                "n": 19,
+                "correct": 8,
+                "wrong": 11,
                 "abstained": 0,
                 "coverage": 1.0,
-                "accuracy": 0.405,
+                "accuracy": 0.421,
                 "accuracy_wilson95": [
-                  0.263,
-                  0.565
+                  0.231,
+                  0.637
                 ],
-                "mean_credit": 0.405,
-                "truth_in_family": 8,
-                "truth_in_family_n": 22,
+                "mean_credit": 0.421,
+                "truth_in_family": 5,
+                "truth_in_family_n": 11,
                 "failure_modes": {
-                  "metric_level_div3": 1,
-                  "tempo_error": 20,
+                  "tempo_error": 9,
+                  "metric_level_x2": 1,
                   "metric_level_div2": 1
                 }
               }
@@ -2763,20 +2482,20 @@
               },
               "meter_triple": {
                 "n": 26,
-                "correct": 11,
-                "wrong": 14,
+                "correct": 12,
+                "wrong": 13,
                 "abstained": 1,
                 "coverage": 0.962,
-                "accuracy": 0.44,
+                "accuracy": 0.48,
                 "accuracy_wilson95": [
-                  0.267,
-                  0.629
+                  0.3,
+                  0.665
                 ],
-                "mean_credit": 0.442,
+                "mean_credit": 0.481,
                 "truth_in_family": null,
                 "truth_in_family_n": null,
                 "failure_modes": {
-                  "tempo_wrong": 7,
+                  "tempo_wrong": 6,
                   "meter_wrong": 6,
                   "equivalent_reading": 1
                 }
@@ -2809,70 +2528,69 @@
                   0.828
                 ],
                 "mean_credit": 0.654,
-                "truth_in_family": 5,
+                "truth_in_family": 4,
                 "truth_in_family_n": 8,
                 "failure_modes": {
                   "tempo_error": 5,
-                  "metric_level_div2": 1,
-                  "metric_level_x2": 2
+                  "metric_level_x2": 2,
+                  "metric_level_div2": 1
                 }
               }
             },
             "youtube": {
               "counts": {
-                "n": 26,
-                "correct": 3,
-                "wrong": 16,
-                "abstained": 7,
-                "coverage": 0.731,
-                "accuracy": 0.158,
+                "n": 8,
+                "correct": 1,
+                "wrong": 4,
+                "abstained": 3,
+                "coverage": 0.625,
+                "accuracy": 0.2,
                 "accuracy_wilson95": [
-                  0.055,
-                  0.376
+                  0.036,
+                  0.624
                 ],
-                "mean_credit": 0.115,
+                "mean_credit": 0.125,
                 "truth_in_family": null,
                 "truth_in_family_n": null,
                 "failure_modes": {
-                  "counts_wrong": 16
+                  "counts_wrong": 4
                 }
               },
               "meter_triple": {
-                "n": 26,
-                "correct": 6,
-                "wrong": 20,
+                "n": 8,
+                "correct": 2,
+                "wrong": 6,
                 "abstained": 0,
                 "coverage": 1.0,
-                "accuracy": 0.231,
+                "accuracy": 0.25,
                 "accuracy_wilson95": [
-                  0.11,
-                  0.421
+                  0.071,
+                  0.591
                 ],
-                "mean_credit": 0.231,
+                "mean_credit": 0.25,
                 "truth_in_family": null,
                 "truth_in_family_n": null,
                 "failure_modes": {
-                  "meter_wrong": 10,
-                  "tempo_wrong": 10
+                  "tempo_wrong": 4,
+                  "meter_wrong": 2
                 }
               },
               "tempo": {
-                "n": 26,
-                "correct": 9,
-                "wrong": 17,
+                "n": 8,
+                "correct": 3,
+                "wrong": 5,
                 "abstained": 0,
                 "coverage": 1.0,
-                "accuracy": 0.346,
+                "accuracy": 0.375,
                 "accuracy_wilson95": [
-                  0.194,
-                  0.538
+                  0.137,
+                  0.694
                 ],
-                "mean_credit": 0.346,
-                "truth_in_family": 4,
-                "truth_in_family_n": 17,
+                "mean_credit": 0.375,
+                "truth_in_family": 1,
+                "truth_in_family_n": 5,
                 "failure_modes": {
-                  "metric_level_div3": 1,
-                  "tempo_error": 16
+                  "tempo_error": 5
                 }
               }
             }
@@ -2899,20 +2617,20 @@
               },
               "meter_triple": {
                 "n": 26,
-                "correct": 11,
-                "wrong": 14,
+                "correct": 12,
+                "wrong": 13,
                 "abstained": 1,
                 "coverage": 0.962,
-                "accuracy": 0.44,
+                "accuracy": 0.48,
                 "accuracy_wilson95": [
-                  0.267,
-                  0.629
+                  0.3,
+                  0.665
                 ],
-                "mean_credit": 0.442,
+                "mean_credit": 0.481,
                 "truth_in_family": null,
                 "truth_in_family_n": null,
                 "failure_modes": {
-                  "tempo_wrong": 7,
+                  "tempo_wrong": 6,
                   "meter_wrong": 6,
                   "equivalent_reading": 1
                 }
@@ -2945,12 +2663,12 @@
                   0.828
                 ],
                 "mean_credit": 0.654,
-                "truth_in_family": 5,
+                "truth_in_family": 4,
                 "truth_in_family_n": 8,
                 "failure_modes": {
                   "tempo_error": 5,
-                  "metric_level_div2": 1,
-                  "metric_level_x2": 2
+                  "metric_level_x2": 2,
+                  "metric_level_div2": 1
                 }
               }
             }
@@ -2958,39 +2676,613 @@
         },
         "factored_meter": {
           "meter_division": {
-            "n": 28,
+            "n": 26,
             "correct": 20,
-            "wrong": 7,
+            "wrong": 5,
             "abstained": 1,
-            "coverage": 0.964,
-            "accuracy": 0.741,
+            "coverage": 0.962,
+            "accuracy": 0.8,
             "accuracy_wilson95": [
-              0.553,
-              0.868
+              0.609,
+              0.911
             ],
-            "mean_credit": 0.714,
+            "mean_credit": 0.769,
             "truth_in_family": null,
             "truth_in_family_n": null,
             "failure_modes": {}
           },
           "meter_grouping": {
-            "n": 52,
-            "correct": 37,
-            "wrong": 14,
+            "n": 34,
+            "correct": 27,
+            "wrong": 6,
             "abstained": 1,
-            "coverage": 0.981,
-            "accuracy": 0.725,
+            "coverage": 0.971,
+            "accuracy": 0.818,
             "accuracy_wilson95": [
-              0.591,
-              0.829
+              0.656,
+              0.914
             ],
-            "mean_credit": 0.712,
+            "mean_credit": 0.794,
             "truth_in_family": null,
             "truth_in_family_n": null,
             "failure_modes": {}
           }
         },
-        "provisional": null
+        "provisional": null,
+        "reference": {
+          "case_ids": [
+            "barre6-ballonne-demo",
+            "barre6-ballonne-take1",
+            "barre6-ballonne-take2",
+            "barre6-coupe-barre-take1",
+            "barre6-degage-take1",
+            "barre6-degage-take2",
+            "barre6-fondu-take1",
+            "barre6-fondu-take2",
+            "barre6-frappe-take1",
+            "barre6-frappe-take2",
+            "barre6-plie-take1",
+            "barre6-plie-take2",
+            "barre6-releve-finish-take1",
+            "barre6-rond-de-jambe-take1",
+            "barre6-rond-de-jambe-take2",
+            "barre6-tendu-take1",
+            "barre6-tendu-take2",
+            "barre6-tendu-warmup-take1"
+          ],
+          "n_cases": 18,
+          "errors": [],
+          "fields": {
+            "counts": {
+              "n": 18,
+              "correct": 2,
+              "wrong": 12,
+              "abstained": 4,
+              "coverage": 0.778,
+              "accuracy": 0.143,
+              "accuracy_wilson95": [
+                0.04,
+                0.399
+              ],
+              "mean_credit": 0.111,
+              "truth_in_family": null,
+              "truth_in_family_n": null,
+              "failure_modes": {
+                "counts_wrong": 12
+              }
+            },
+            "meter_triple": {
+              "n": 18,
+              "correct": 4,
+              "wrong": 14,
+              "abstained": 0,
+              "coverage": 1.0,
+              "accuracy": 0.222,
+              "accuracy_wilson95": [
+                0.09,
+                0.452
+              ],
+              "mean_credit": 0.222,
+              "truth_in_family": null,
+              "truth_in_family_n": null,
+              "failure_modes": {
+                "meter_wrong": 8,
+                "tempo_wrong": 6
+              }
+            },
+            "tempo": {
+              "n": 18,
+              "correct": 6,
+              "wrong": 12,
+              "abstained": 0,
+              "coverage": 1.0,
+              "accuracy": 0.333,
+              "accuracy_wilson95": [
+                0.163,
+                0.563
+              ],
+              "mean_credit": 0.333,
+              "truth_in_family": 3,
+              "truth_in_family_n": 12,
+              "failure_modes": {
+                "metric_level_div3": 1,
+                "tempo_error": 11
+              }
+            }
+          },
+          "tempo_metrics": {
+            "n_committed": 18,
+            "acc1": {
+              "tol_04": 0.167,
+              "tol_08": 0.333
+            },
+            "acc2": {
+              "tol_04": 0.167,
+              "tol_08": 0.389
+            },
+            "oe1": {
+              "mean": 0.1854,
+              "median": 0.1366,
+              "abs_median": 0.4416,
+              "max_abs": 1.5275
+            },
+            "oe2": {
+              "mean": -0.0368,
+              "median": -0.0502,
+              "abs_median": 0.1845,
+              "max_abs": 0.4838
+            },
+            "between_levels": 12,
+            "per_case": [
+              {
+                "case": "barre6-ballonne-demo",
+                "predicted": 55.5,
+                "expected": 160.0,
+                "oe1": -1.5275,
+                "oe2": 0.0575
+              },
+              {
+                "case": "barre6-ballonne-take1",
+                "predicted": 88.1,
+                "expected": 63.0,
+                "oe1": 0.4838,
+                "oe2": 0.4838
+              },
+              {
+                "case": "barre6-ballonne-take2",
+                "predicted": 102.2,
+                "expected": 63.0,
+                "oe1": 0.698,
+                "oe2": -0.302
+              },
+              {
+                "case": "barre6-coupe-barre-take1",
+                "predicted": 139.2,
+                "expected": 120.0,
+                "oe1": 0.2141,
+                "oe2": 0.2141
+              },
+              {
+                "case": "barre6-degage-take1",
+                "predicted": 122.3,
+                "expected": 121.0,
+                "oe1": 0.0154,
+                "oe2": 0.0154
+              },
+              {
+                "case": "barre6-degage-take2",
+                "predicted": 120.2,
+                "expected": 122.0,
+                "oe1": -0.0214,
+                "oe2": -0.0214
+              },
+              {
+                "case": "barre6-fondu-take1",
+                "predicted": 172.9,
+                "expected": 70.0,
+                "oe1": 1.3045,
+                "oe2": -0.2805
+              },
+              {
+                "case": "barre6-fondu-take2",
+                "predicted": 115.3,
+                "expected": 74.0,
+                "oe1": 0.6398,
+                "oe2": -0.3602
+              },
+              {
+                "case": "barre6-frappe-take1",
+                "predicted": 104.2,
+                "expected": 79.0,
+                "oe1": 0.3994,
+                "oe2": 0.3994
+              },
+              {
+                "case": "barre6-frappe-take2",
+                "predicted": 111.4,
+                "expected": 74.0,
+                "oe1": 0.5902,
+                "oe2": -0.4098
+              },
+              {
+                "case": "barre6-plie-take1",
+                "predicted": 107.0,
+                "expected": 116.0,
+                "oe1": -0.1165,
+                "oe2": -0.1165
+              },
+              {
+                "case": "barre6-plie-take2",
+                "predicted": 95.7,
+                "expected": 116.0,
+                "oe1": -0.2775,
+                "oe2": -0.2775
+              },
+              {
+                "case": "barre6-releve-finish-take1",
+                "predicted": 103.2,
+                "expected": 109.0,
+                "oe1": -0.0789,
+                "oe2": -0.0789
+              },
+              {
+                "case": "barre6-rond-de-jambe-take1",
+                "predicted": 55.7,
+                "expected": 95.0,
+                "oe1": -0.7703,
+                "oe2": 0.2297
+              },
+              {
+                "case": "barre6-rond-de-jambe-take2",
+                "predicted": 171.2,
+                "expected": 95.0,
+                "oe1": 0.8497,
+                "oe2": -0.1503
+              },
+              {
+                "case": "barre6-tendu-take1",
+                "predicted": 117.5,
+                "expected": 115.0,
+                "oe1": 0.031,
+                "oe2": 0.031
+              },
+              {
+                "case": "barre6-tendu-take2",
+                "predicted": 119.8,
+                "expected": 115.0,
+                "oe1": 0.059,
+                "oe2": 0.059
+              },
+              {
+                "case": "barre6-tendu-warmup-take1",
+                "predicted": 147.3,
+                "expected": 82.0,
+                "oe1": 0.8451,
+                "oe2": -0.1549
+              }
+            ]
+          },
+          "quality_spearman": null,
+          "ece": 0.3256,
+          "risk_coverage": [
+            {
+              "threshold": 0.68,
+              "coverage": 0.028,
+              "risk": 0.0
+            },
+            {
+              "threshold": 0.68,
+              "coverage": 0.056,
+              "risk": 0.0
+            },
+            {
+              "threshold": 0.67,
+              "coverage": 0.083,
+              "risk": 0.333
+            },
+            {
+              "threshold": 0.67,
+              "coverage": 0.111,
+              "risk": 0.5
+            },
+            {
+              "threshold": 0.66,
+              "coverage": 0.139,
+              "risk": 0.6
+            },
+            {
+              "threshold": 0.66,
+              "coverage": 0.167,
+              "risk": 0.667
+            },
+            {
+              "threshold": 0.65,
+              "coverage": 0.194,
+              "risk": 0.571
+            },
+            {
+              "threshold": 0.65,
+              "coverage": 0.222,
+              "risk": 0.625
+            },
+            {
+              "threshold": 0.65,
+              "coverage": 0.25,
+              "risk": 0.667
+            },
+            {
+              "threshold": 0.65,
+              "coverage": 0.278,
+              "risk": 0.7
+            },
+            {
+              "threshold": 0.64,
+              "coverage": 0.306,
+              "risk": 0.727
+            },
+            {
+              "threshold": 0.64,
+              "coverage": 0.333,
+              "risk": 0.75
+            },
+            {
+              "threshold": 0.63,
+              "coverage": 0.361,
+              "risk": 0.769
+            },
+            {
+              "threshold": 0.63,
+              "coverage": 0.389,
+              "risk": 0.786
+            },
+            {
+              "threshold": 0.63,
+              "coverage": 0.417,
+              "risk": 0.733
+            },
+            {
+              "threshold": 0.63,
+              "coverage": 0.444,
+              "risk": 0.688
+            },
+            {
+              "threshold": 0.62,
+              "coverage": 0.472,
+              "risk": 0.706
+            },
+            {
+              "threshold": 0.62,
+              "coverage": 0.5,
+              "risk": 0.722
+            },
+            {
+              "threshold": 0.62,
+              "coverage": 0.528,
+              "risk": 0.684
+            },
+            {
+              "threshold": 0.62,
+              "coverage": 0.556,
+              "risk": 0.65
+            },
+            {
+              "threshold": 0.62,
+              "coverage": 0.583,
+              "risk": 0.619
+            },
+            {
+              "threshold": 0.62,
+              "coverage": 0.611,
+              "risk": 0.591
+            },
+            {
+              "threshold": 0.61,
+              "coverage": 0.639,
+              "risk": 0.609
+            },
+            {
+              "threshold": 0.61,
+              "coverage": 0.667,
+              "risk": 0.625
+            },
+            {
+              "threshold": 0.61,
+              "coverage": 0.694,
+              "risk": 0.64
+            },
+            {
+              "threshold": 0.61,
+              "coverage": 0.722,
+              "risk": 0.654
+            },
+            {
+              "threshold": 0.6,
+              "coverage": 0.75,
+              "risk": 0.63
+            },
+            {
+              "threshold": 0.6,
+              "coverage": 0.778,
+              "risk": 0.643
+            },
+            {
+              "threshold": 0.57,
+              "coverage": 0.806,
+              "risk": 0.655
+            },
+            {
+              "threshold": 0.57,
+              "coverage": 0.833,
+              "risk": 0.667
+            },
+            {
+              "threshold": 0.53,
+              "coverage": 0.861,
+              "risk": 0.677
+            },
+            {
+              "threshold": 0.53,
+              "coverage": 0.889,
+              "risk": 0.688
+            },
+            {
+              "threshold": 0.51,
+              "coverage": 0.917,
+              "risk": 0.697
+            },
+            {
+              "threshold": 0.51,
+              "coverage": 0.944,
+              "risk": 0.706
+            },
+            {
+              "threshold": 0.36,
+              "coverage": 0.972,
+              "risk": 0.714
+            },
+            {
+              "threshold": 0.36,
+              "coverage": 1.0,
+              "risk": 0.722
+            }
+          ],
+          "slices": {
+            "count_style": {
+              "step_names": {
+                "counts": {
+                  "n": 18,
+                  "correct": 2,
+                  "wrong": 12,
+                  "abstained": 4,
+                  "coverage": 0.778,
+                  "accuracy": 0.143,
+                  "accuracy_wilson95": [
+                    0.04,
+                    0.399
+                  ],
+                  "mean_credit": 0.111,
+                  "truth_in_family": null,
+                  "truth_in_family_n": null,
+                  "failure_modes": {
+                    "counts_wrong": 12
+                  }
+                },
+                "meter_triple": {
+                  "n": 18,
+                  "correct": 4,
+                  "wrong": 14,
+                  "abstained": 0,
+                  "coverage": 1.0,
+                  "accuracy": 0.222,
+                  "accuracy_wilson95": [
+                    0.09,
+                    0.452
+                  ],
+                  "mean_credit": 0.222,
+                  "truth_in_family": null,
+                  "truth_in_family_n": null,
+                  "failure_modes": {
+                    "meter_wrong": 8,
+                    "tempo_wrong": 6
+                  }
+                },
+                "tempo": {
+                  "n": 18,
+                  "correct": 6,
+                  "wrong": 12,
+                  "abstained": 0,
+                  "coverage": 1.0,
+                  "accuracy": 0.333,
+                  "accuracy_wilson95": [
+                    0.163,
+                    0.563
+                  ],
+                  "mean_credit": 0.333,
+                  "truth_in_family": 3,
+                  "truth_in_family_n": 12,
+                  "failure_modes": {
+                    "metric_level_div3": 1,
+                    "tempo_error": 11
+                  }
+                }
+              }
+            },
+            "source": {
+              "youtube": {
+                "counts": {
+                  "n": 18,
+                  "correct": 2,
+                  "wrong": 12,
+                  "abstained": 4,
+                  "coverage": 0.778,
+                  "accuracy": 0.143,
+                  "accuracy_wilson95": [
+                    0.04,
+                    0.399
+                  ],
+                  "mean_credit": 0.111,
+                  "truth_in_family": null,
+                  "truth_in_family_n": null,
+                  "failure_modes": {
+                    "counts_wrong": 12
+                  }
+                },
+                "meter_triple": {
+                  "n": 18,
+                  "correct": 4,
+                  "wrong": 14,
+                  "abstained": 0,
+                  "coverage": 1.0,
+                  "accuracy": 0.222,
+                  "accuracy_wilson95": [
+                    0.09,
+                    0.452
+                  ],
+                  "mean_credit": 0.222,
+                  "truth_in_family": null,
+                  "truth_in_family_n": null,
+                  "failure_modes": {
+                    "meter_wrong": 8,
+                    "tempo_wrong": 6
+                  }
+                },
+                "tempo": {
+                  "n": 18,
+                  "correct": 6,
+                  "wrong": 12,
+                  "abstained": 0,
+                  "coverage": 1.0,
+                  "accuracy": 0.333,
+                  "accuracy_wilson95": [
+                    0.163,
+                    0.563
+                  ],
+                  "mean_credit": 0.333,
+                  "truth_in_family": 3,
+                  "truth_in_family_n": 12,
+                  "failure_modes": {
+                    "metric_level_div3": 1,
+                    "tempo_error": 11
+                  }
+                }
+              }
+            }
+          },
+          "factored_meter": {
+            "meter_division": {
+              "n": 2,
+              "correct": 0,
+              "wrong": 2,
+              "abstained": 0,
+              "coverage": 1.0,
+              "accuracy": 0.0,
+              "accuracy_wilson95": [
+                0.0,
+                0.658
+              ],
+              "mean_credit": 0.0,
+              "truth_in_family": null,
+              "truth_in_family_n": null,
+              "failure_modes": {}
+            },
+            "meter_grouping": {
+              "n": 18,
+              "correct": 10,
+              "wrong": 8,
+              "abstained": 0,
+              "coverage": 1.0,
+              "accuracy": 0.556,
+              "accuracy_wilson95": [
+                0.337,
+                0.754
+              ],
+              "mean_credit": 0.556,
+              "truth_in_family": null,
+              "truth_in_family_n": null,
+              "failure_modes": {}
+            }
+          }
+        }
       },
       "outcomes": {
         "adr006-8-counts-2x": {
@@ -3003,107 +3295,32 @@
           "meter_triple": "correct",
           "counts": "correct"
         },
-        "barre6-ballonne-demo": {
-          "tempo": "wrong",
-          "meter_triple": "wrong",
-          "counts": "wrong"
-        },
-        "barre6-ballonne-take1": {
-          "tempo": "wrong",
-          "meter_triple": "wrong",
-          "counts": "wrong"
-        },
-        "barre6-ballonne-take2": {
-          "tempo": "wrong",
-          "meter_triple": "wrong",
-          "counts": "correct"
-        },
         "barre6-coupe-barre-demo": {
           "tempo": "wrong",
           "meter_triple": "wrong",
           "counts": "wrong"
-        },
-        "barre6-coupe-barre-take1": {
-          "tempo": "wrong",
-          "meter_triple": "wrong",
-          "counts": "abstained"
         },
         "barre6-degage-demo": {
           "tempo": "correct",
           "meter_triple": "correct",
           "counts": "correct"
         },
-        "barre6-degage-take1": {
-          "tempo": "correct",
-          "meter_triple": "correct",
-          "counts": "wrong"
-        },
-        "barre6-degage-take2": {
-          "tempo": "correct",
-          "meter_triple": "correct",
-          "counts": "wrong"
-        },
         "barre6-fondu-demo": {
           "tempo": "wrong",
           "meter_triple": "wrong",
           "counts": "abstained"
-        },
-        "barre6-fondu-take1": {
-          "tempo": "wrong",
-          "meter_triple": "wrong",
-          "counts": "wrong"
-        },
-        "barre6-fondu-take2": {
-          "tempo": "wrong",
-          "meter_triple": "wrong",
-          "counts": "wrong"
         },
         "barre6-frappe-demo": {
           "tempo": "correct",
           "meter_triple": "correct",
           "counts": "wrong"
         },
-        "barre6-frappe-take1": {
-          "tempo": "wrong",
-          "meter_triple": "wrong",
-          "counts": "wrong"
-        },
-        "barre6-frappe-take2": {
-          "tempo": "wrong",
-          "meter_triple": "wrong",
-          "counts": "correct"
-        },
         "barre6-plie-demo": {
           "tempo": "correct",
           "meter_triple": "wrong",
           "counts": "wrong"
         },
-        "barre6-plie-take1": {
-          "tempo": "correct",
-          "meter_triple": "wrong",
-          "counts": "wrong"
-        },
-        "barre6-plie-take2": {
-          "tempo": "wrong",
-          "meter_triple": "wrong",
-          "counts": "wrong"
-        },
-        "barre6-releve-finish-take1": {
-          "tempo": "correct",
-          "meter_triple": "wrong",
-          "counts": "abstained"
-        },
         "barre6-rond-de-jambe-demo": {
-          "tempo": "wrong",
-          "meter_triple": "wrong",
-          "counts": "abstained"
-        },
-        "barre6-rond-de-jambe-take1": {
-          "tempo": "wrong",
-          "meter_triple": "wrong",
-          "counts": "wrong"
-        },
-        "barre6-rond-de-jambe-take2": {
           "tempo": "wrong",
           "meter_triple": "wrong",
           "counts": "abstained"
@@ -3113,22 +3330,7 @@
           "meter_triple": "wrong",
           "counts": "abstained"
         },
-        "barre6-tendu-take1": {
-          "tempo": "correct",
-          "meter_triple": "correct",
-          "counts": "wrong"
-        },
-        "barre6-tendu-take2": {
-          "tempo": "correct",
-          "meter_triple": "correct",
-          "counts": "abstained"
-        },
         "barre6-tendu-warmup-demo": {
-          "tempo": "wrong",
-          "meter_triple": "wrong",
-          "counts": "wrong"
-        },
-        "barre6-tendu-warmup-take1": {
           "tempo": "wrong",
           "meter_triple": "wrong",
           "counts": "wrong"
@@ -3144,7 +3346,7 @@
           "counts": "wrong"
         },
         "rig-names-2-4-160-long": {
-          "tempo": "correct",
+          "tempo": "wrong",
           "meter_triple": "wrong",
           "counts": "wrong"
         },
@@ -3235,8 +3437,8 @@
           "counts": "correct"
         },
         "rig-numbers-4-4-60-halftempo": {
-          "tempo": "wrong",
-          "meter_triple": "wrong",
+          "tempo": "correct",
+          "meter_triple": "correct",
           "counts": "correct"
         },
         "rig-numbers-4-4-80-triplet": {
@@ -3325,7 +3527,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "adr006-8-counts-triple",
@@ -3396,7 +3599,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "barre6-ballonne-demo",
@@ -3408,7 +3612,8 @@
             "lang": "en",
             "clip_role": "demo",
             "pianist_take": "barre6-ballonne-take1",
-            "played_bpm": 63
+            "played_bpm": 63,
+            "step_one": "deferred"
           },
           "scores": [
             {
@@ -3457,7 +3662,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": true
         },
         {
           "case_id": "barre6-ballonne-take1",
@@ -3528,7 +3734,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": true
         },
         {
           "case_id": "barre6-ballonne-take2",
@@ -3599,7 +3806,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": true
         },
         {
           "case_id": "barre6-coupe-barre-demo",
@@ -3660,7 +3868,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "barre6-coupe-barre-take1",
@@ -3720,7 +3929,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": true
         },
         {
           "case_id": "barre6-degage-demo",
@@ -3781,7 +3991,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "barre6-degage-take1",
@@ -3841,7 +4052,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": true
         },
         {
           "case_id": "barre6-degage-take2",
@@ -3901,7 +4113,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": true
         },
         {
           "case_id": "barre6-fondu-demo",
@@ -3962,7 +4175,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "barre6-fondu-take1",
@@ -4022,7 +4236,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": true
         },
         {
           "case_id": "barre6-fondu-take2",
@@ -4082,7 +4297,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": true
         },
         {
           "case_id": "barre6-frappe-demo",
@@ -4143,7 +4359,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "barre6-frappe-take1",
@@ -4203,7 +4420,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": true
         },
         {
           "case_id": "barre6-frappe-take2",
@@ -4263,7 +4481,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": true
         },
         {
           "case_id": "barre6-plie-demo",
@@ -4324,7 +4543,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "barre6-plie-take1",
@@ -4384,7 +4604,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": true
         },
         {
           "case_id": "barre6-plie-take2",
@@ -4444,7 +4665,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": true
         },
         {
           "case_id": "barre6-releve-finish-take1",
@@ -4504,7 +4726,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": true
         },
         {
           "case_id": "barre6-rond-de-jambe-demo",
@@ -4565,7 +4788,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "barre6-rond-de-jambe-take1",
@@ -4625,7 +4849,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": true
         },
         {
           "case_id": "barre6-rond-de-jambe-take2",
@@ -4685,7 +4910,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": true
         },
         {
           "case_id": "barre6-tendu-demo",
@@ -4746,7 +4972,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "barre6-tendu-take1",
@@ -4806,7 +5033,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": true
         },
         {
           "case_id": "barre6-tendu-take2",
@@ -4866,7 +5094,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": true
         },
         {
           "case_id": "barre6-tendu-warmup-demo",
@@ -4927,7 +5156,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "barre6-tendu-warmup-take1",
@@ -4987,7 +5217,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": true
         },
         {
           "case_id": "rig-mixed-4-4-104-quantities",
@@ -5059,7 +5290,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "rig-names-2-4-120-clean",
@@ -5131,7 +5363,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "rig-names-2-4-160-long",
@@ -5148,21 +5381,21 @@
           "scores": [
             {
               "field": "tempo",
-              "outcome": "correct",
-              "credit": 1.0,
+              "outcome": "wrong",
+              "credit": 0.0,
               "predicted": 167.0,
-              "expected": 160.0,
+              "expected": 80.0,
               "confidence": 0.84,
-              "failure_mode": null,
-              "detail": "rel_err=0.044",
-              "truth_in_family": null
+              "failure_mode": "metric_level_x2",
+              "detail": "answer sits at 2\u00d7 the expected tempo; truth absent from family [167.0, 150.0, 187.5]",
+              "truth_in_family": false
             },
             {
               "field": "meter_triple",
               "outcome": "wrong",
               "credit": 0.0,
               "predicted": "4/4 @167 none",
-              "expected": "2/4 @160 none",
+              "expected": "2/4 @80 none",
               "confidence": 0.84,
               "failure_mode": "meter_wrong",
               "detail": "",
@@ -5203,7 +5436,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "rig-names-3-4-88-waltz",
@@ -5275,7 +5509,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "rig-names-3-4-90-clean",
@@ -5347,7 +5582,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "rig-names-4-4-100-quiet",
@@ -5419,7 +5655,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "rig-names-4-4-104-clean",
@@ -5491,7 +5728,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "rig-names-4-4-104-coda",
@@ -5563,7 +5801,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "rig-names-4-4-104-explained",
@@ -5635,7 +5874,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "rig-names-4-4-63-adagio",
@@ -5655,10 +5895,10 @@
               "outcome": "wrong",
               "credit": 0.0,
               "predicted": 72.0,
-              "expected": 63.0,
+              "expected": 126.0,
               "confidence": 0.68,
               "failure_mode": "tempo_error",
-              "detail": "rel_err=0.143; truth absent from family [72.0, 144.0, 216.0, 36.0, 24.0]",
+              "detail": "rel_err=0.429; truth absent from family [72.0, 144.0, 216.0, 36.0, 24.0]",
               "truth_in_family": false
             },
             {
@@ -5666,7 +5906,7 @@
               "outcome": "wrong",
               "credit": 0.0,
               "predicted": "4/4 @72 none",
-              "expected": "4/4 @63 none",
+              "expected": "4/4 @126 none",
               "confidence": 0.68,
               "failure_mode": "tempo_wrong",
               "detail": "",
@@ -5707,7 +5947,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "rig-names-4-4-96-allegro",
@@ -5779,7 +6020,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "rig-names-6-8-100-clean",
@@ -5851,7 +6093,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "rig-numbers-2-4-120-clean",
@@ -5923,7 +6166,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "rig-numbers-3-4-90-clean",
@@ -5995,7 +6239,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "rig-numbers-4-4-104-bothsides",
@@ -6078,7 +6323,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "rig-numbers-4-4-104-clean",
@@ -6150,7 +6396,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "rig-numbers-4-4-104-duple",
@@ -6222,7 +6469,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "rig-numbers-4-4-104-explained",
@@ -6294,7 +6542,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "rig-numbers-4-4-104-fourx8",
@@ -6366,7 +6615,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "rig-numbers-4-4-104-prep",
@@ -6438,7 +6688,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "rig-numbers-4-4-60-halftempo",
@@ -6455,23 +6706,23 @@
           "scores": [
             {
               "field": "tempo",
-              "outcome": "wrong",
-              "credit": 0.0,
+              "outcome": "correct",
+              "credit": 1.0,
               "predicted": 119.1,
-              "expected": 60.0,
+              "expected": 120.0,
               "confidence": 0.74,
-              "failure_mode": "metric_level_x2",
-              "detail": "answer sits at 2\u00d7 the expected tempo; truth in family as 60",
-              "truth_in_family": true
+              "failure_mode": null,
+              "detail": "rel_err=0.008",
+              "truth_in_family": null
             },
             {
               "field": "meter_triple",
-              "outcome": "wrong",
-              "credit": 0.0,
+              "outcome": "correct",
+              "credit": 1.0,
               "predicted": "4/4 @119.1 none",
-              "expected": "4/4 @60 none",
+              "expected": "4/4 @120 none",
               "confidence": 0.74,
-              "failure_mode": "tempo_wrong",
+              "failure_mode": null,
               "detail": "",
               "truth_in_family": null
             },
@@ -6510,7 +6761,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "rig-numbers-4-4-80-triplet",
@@ -6582,7 +6834,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "rig-numbers-6-8-100-clean",
@@ -6654,7 +6907,8 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         },
         {
           "case_id": "rig-vocables-4-4-100-clean",
@@ -6726,8 +6980,29 @@
             }
           ],
           "error": null,
-          "provisional": false
+          "provisional": false,
+          "reference": false
         }
+      ],
+      "outcomes_withheld_reference": [
+        "barre6-ballonne-demo",
+        "barre6-ballonne-take1",
+        "barre6-ballonne-take2",
+        "barre6-coupe-barre-take1",
+        "barre6-degage-take1",
+        "barre6-degage-take2",
+        "barre6-fondu-take1",
+        "barre6-fondu-take2",
+        "barre6-frappe-take1",
+        "barre6-frappe-take2",
+        "barre6-plie-take1",
+        "barre6-plie-take2",
+        "barre6-releve-finish-take1",
+        "barre6-rond-de-jambe-take1",
+        "barre6-rond-de-jambe-take2",
+        "barre6-tendu-take1",
+        "barre6-tendu-take2",
+        "barre6-tendu-warmup-take1"
       ]
     },
     "stage1": {
@@ -6808,17 +7083,17 @@
           },
           {
             "case_id": "barre6-coupe-barre-demo",
-            "provisional": true,
+            "provisional": false,
             "count_style": "step_names",
-            "n_ref": 98,
+            "n_ref": 52,
             "n_pred": 99,
-            "matched": 55,
-            "precision": 0.556,
-            "recall": 0.561,
-            "f_measure": 0.558,
-            "asynchrony_mean_ms": -3.4,
-            "asynchrony_median_ms": -5.5,
-            "asynchrony_sd_ms": 28.7
+            "matched": 13,
+            "precision": 0.131,
+            "recall": 0.25,
+            "f_measure": 0.172,
+            "asynchrony_mean_ms": -5.4,
+            "asynchrony_median_ms": -14.4,
+            "asynchrony_sd_ms": 34.6
           },
           {
             "case_id": "barre6-coupe-barre-take1",
@@ -6836,17 +7111,17 @@
           },
           {
             "case_id": "barre6-degage-demo",
-            "provisional": true,
+            "provisional": false,
             "count_style": "step_names",
-            "n_ref": 133,
+            "n_ref": 61,
             "n_pred": 140,
-            "matched": 93,
-            "precision": 0.664,
-            "recall": 0.699,
-            "f_measure": 0.681,
-            "asynchrony_mean_ms": -6.8,
-            "asynchrony_median_ms": -9.2,
-            "asynchrony_sd_ms": 30.1
+            "matched": 8,
+            "precision": 0.057,
+            "recall": 0.131,
+            "f_measure": 0.08,
+            "asynchrony_mean_ms": -35.5,
+            "asynchrony_median_ms": -49.1,
+            "asynchrony_sd_ms": 32.6
           },
           {
             "case_id": "barre6-degage-take1",
@@ -6878,17 +7153,17 @@
           },
           {
             "case_id": "barre6-fondu-demo",
-            "provisional": true,
+            "provisional": false,
             "count_style": "step_names",
-            "n_ref": 112,
+            "n_ref": 44,
             "n_pred": 94,
-            "matched": 55,
-            "precision": 0.585,
-            "recall": 0.491,
-            "f_measure": 0.534,
-            "asynchrony_mean_ms": -5.8,
-            "asynchrony_median_ms": -9.3,
-            "asynchrony_sd_ms": 27.0
+            "matched": 11,
+            "precision": 0.117,
+            "recall": 0.25,
+            "f_measure": 0.159,
+            "asynchrony_mean_ms": -6.4,
+            "asynchrony_median_ms": -22.5,
+            "asynchrony_sd_ms": 47.8
           },
           {
             "case_id": "barre6-fondu-take1",
@@ -6920,17 +7195,17 @@
           },
           {
             "case_id": "barre6-frappe-demo",
-            "provisional": true,
+            "provisional": false,
             "count_style": "step_names",
-            "n_ref": 145,
+            "n_ref": 57,
             "n_pred": 127,
-            "matched": 96,
-            "precision": 0.756,
-            "recall": 0.662,
-            "f_measure": 0.706,
-            "asynchrony_mean_ms": -5.7,
-            "asynchrony_median_ms": -11.6,
-            "asynchrony_sd_ms": 29.4
+            "matched": 12,
+            "precision": 0.094,
+            "recall": 0.211,
+            "f_measure": 0.13,
+            "asynchrony_mean_ms": 14.6,
+            "asynchrony_median_ms": 22.2,
+            "asynchrony_sd_ms": 38.8
           },
           {
             "case_id": "barre6-frappe-take1",
@@ -6962,17 +7237,17 @@
           },
           {
             "case_id": "barre6-plie-demo",
-            "provisional": true,
+            "provisional": false,
             "count_style": "step_names",
-            "n_ref": 178,
+            "n_ref": 43,
             "n_pred": 180,
-            "matched": 107,
-            "precision": 0.594,
-            "recall": 0.601,
-            "f_measure": 0.598,
-            "asynchrony_mean_ms": -1.1,
-            "asynchrony_median_ms": 1.0,
-            "asynchrony_sd_ms": 34.5
+            "matched": 11,
+            "precision": 0.061,
+            "recall": 0.256,
+            "f_measure": 0.099,
+            "asynchrony_mean_ms": -12.8,
+            "asynchrony_median_ms": -12.9,
+            "asynchrony_sd_ms": 37.2
           },
           {
             "case_id": "barre6-plie-take1",
@@ -7018,17 +7293,17 @@
           },
           {
             "case_id": "barre6-rond-de-jambe-demo",
-            "provisional": true,
+            "provisional": false,
             "count_style": "step_names",
-            "n_ref": 186,
+            "n_ref": 74,
             "n_pred": 163,
-            "matched": 101,
-            "precision": 0.62,
-            "recall": 0.543,
-            "f_measure": 0.579,
-            "asynchrony_mean_ms": 5.3,
-            "asynchrony_median_ms": 11.5,
-            "asynchrony_sd_ms": 34.2
+            "matched": 25,
+            "precision": 0.153,
+            "recall": 0.338,
+            "f_measure": 0.211,
+            "asynchrony_mean_ms": -6.4,
+            "asynchrony_median_ms": -10.4,
+            "asynchrony_sd_ms": 37.8
           },
           {
             "case_id": "barre6-rond-de-jambe-take1",
@@ -7060,17 +7335,17 @@
           },
           {
             "case_id": "barre6-tendu-demo",
-            "provisional": true,
+            "provisional": false,
             "count_style": "step_names",
-            "n_ref": 124,
+            "n_ref": 42,
             "n_pred": 134,
-            "matched": 71,
-            "precision": 0.53,
-            "recall": 0.573,
-            "f_measure": 0.55,
-            "asynchrony_mean_ms": -4.0,
-            "asynchrony_median_ms": -9.6,
-            "asynchrony_sd_ms": 33.7
+            "matched": 8,
+            "precision": 0.06,
+            "recall": 0.19,
+            "f_measure": 0.091,
+            "asynchrony_mean_ms": 2.1,
+            "asynchrony_median_ms": 6.8,
+            "asynchrony_sd_ms": 34.1
           },
           {
             "case_id": "barre6-tendu-take1",
@@ -7102,17 +7377,17 @@
           },
           {
             "case_id": "barre6-tendu-warmup-demo",
-            "provisional": true,
+            "provisional": false,
             "count_style": "step_names",
-            "n_ref": 124,
+            "n_ref": 46,
             "n_pred": 118,
-            "matched": 75,
-            "precision": 0.636,
-            "recall": 0.605,
-            "f_measure": 0.62,
-            "asynchrony_mean_ms": -7.9,
-            "asynchrony_median_ms": -6.3,
-            "asynchrony_sd_ms": 34.9
+            "matched": 14,
+            "precision": 0.119,
+            "recall": 0.304,
+            "f_measure": 0.171,
+            "asynchrony_mean_ms": 2.2,
+            "asynchrony_median_ms": 17.1,
+            "asynchrony_sd_ms": 38.6
           },
           {
             "case_id": "barre6-tendu-warmup-take1",
@@ -7466,30 +7741,30 @@
           }
         ],
         "aggregate_provisional": {
-          "n_clips": 27,
-          "n_ref": 3489,
-          "n_pred": 2381,
-          "matched": 1501,
-          "precision": 0.63,
-          "recall": 0.43,
-          "f_measure": 0.511,
-          "f_measure_macro": 0.499,
-          "asynchrony_mean_ms": -0.0,
-          "asynchrony_median_ms": -0.7,
-          "asynchrony_sd_ms": 34.0
+          "n_clips": 19,
+          "n_ref": 2389,
+          "n_pred": 1326,
+          "matched": 848,
+          "precision": 0.64,
+          "recall": 0.355,
+          "f_measure": 0.457,
+          "f_measure_macro": 0.455,
+          "asynchrony_mean_ms": 2.5,
+          "asynchrony_median_ms": 1.7,
+          "asynchrony_sd_ms": 35.0
         },
         "aggregate_verified": {
-          "n_clips": 25,
-          "n_ref": 670,
-          "n_pred": 732,
-          "matched": 289,
-          "precision": 0.395,
-          "recall": 0.431,
-          "f_measure": 0.412,
-          "f_measure_macro": 0.397,
-          "asynchrony_mean_ms": -16.0,
-          "asynchrony_median_ms": -20.0,
-          "asynchrony_sd_ms": 30.6
+          "n_clips": 33,
+          "n_ref": 1089,
+          "n_pred": 1787,
+          "matched": 391,
+          "precision": 0.219,
+          "recall": 0.359,
+          "f_measure": 0.272,
+          "f_measure_macro": 0.334,
+          "asynchrony_mean_ms": -13.1,
+          "asynchrony_median_ms": -17.7,
+          "asynchrony_sd_ms": 33.6
         },
         "slices": {
           "numbers": {
@@ -7506,17 +7781,17 @@
             "asynchrony_sd_ms": 29.9
           },
           "step_names": {
-            "n_clips": 11,
-            "n_ref": 330,
-            "n_pred": 305,
-            "matched": 108,
-            "precision": 0.354,
-            "recall": 0.327,
-            "f_measure": 0.34,
-            "f_measure_macro": 0.322,
-            "asynchrony_mean_ms": -12.2,
-            "asynchrony_median_ms": -14.3,
-            "asynchrony_sd_ms": 31.4
+            "n_clips": 19,
+            "n_ref": 749,
+            "n_pred": 1360,
+            "matched": 210,
+            "precision": 0.154,
+            "recall": 0.28,
+            "f_measure": 0.199,
+            "f_measure_macro": 0.245,
+            "asynchrony_mean_ms": -8.7,
+            "asynchrony_median_ms": -12.4,
+            "asynchrony_sd_ms": 35.9
           },
           "vocables": {
             "n_clips": 1,
