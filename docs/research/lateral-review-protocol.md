@@ -337,6 +337,53 @@ session is most likely to test:
   Installing a candidate tool from PyPI to try it on frozen artifacts
   is allowed; committing it, or wiring it into the pipeline, is not.
 
+## Session notes that live here, not in the Routine prompt
+
+- **Web access.** The Routine runs in the *musical perception research*
+  cloud environment, whose network policy the owner set to full outbound
+  access on 2026-09-01. `WebSearch` works; `WebFetch` should fetch pages
+  and PDFs. If a fetch is blocked anyway, say so in the briefing and
+  never guess at a paper's content.
+- **Pull request.** If the session has a GitHub tool that can open pull
+  requests, open the draft PR itself. If not, do not spend turns on it:
+  push the branch and hand the owner the compare link GitHub prints on
+  push (`https://github.com/ben-juodvalkis/musical-perception/pull/new/agent/lateral-YYYY-MM-DD`).
+- **Held-out containment and redaction** are charter rules and apply in
+  full; they are restated under *Rules that bind this session* above.
+
+## The Routine prompt (paste-ready)
+
+The Routine is created from the claude.ai Routines page — **not** from
+inside a session — so that it carries the repository: a Routine minted
+from a session starts its fresh session with no repository attached
+(observed 2026-09-01: the setup script found no files, and the protocol
+would have been missing too). Settings: repository
+`ben-juodvalkis/musical-perception`, branch `main`; environment
+*musical perception research*; the top-tier model; no schedule (fired by
+hand); push notification on. The prompt:
+
+```
+You are running the LATERAL REVIEW for the musical-perception research
+loop. Ben (the owner, a dance musician, not a coder) fired this by hand
+and will join once you have briefed him. This is a high-effort session:
+read deeply, think widely, do not rush the reading to get to the ideas.
+
+Read docs/research/lateral-review-protocol.md in full FIRST and follow
+it exactly; it is the source of truth. If it is missing, stop and say so.
+Then: branch agent/lateral-YYYY-MM-DD from origin/main and do the
+write-and-commit probe; the unattended read; the anomalies and the
+assumption ledger; the outward scan; the ideas, the graveyard check and
+the ranked question pool; then ONE plain-language briefing (per the
+"Talking to Ben about this work" section of CLAUDE.md) ending in exactly
+ONE question — never a numbered list — and END YOUR TURN there, which is
+what notifies his phone. Then one question per turn, each chosen after
+his answer. When he is done, write the memo and the ledger entry, commit,
+push, and open the draft PR or hand him the compare link, per the
+protocol. It commissions nothing; touches no file under src/, evals/,
+scripts/ or tests/; never edits the charter; never enumerates the
+Barre 1 video directory; no live model calls; stop after 80 turns.
+```
+
 ## Owner controls
 
 - **Start one:** fire *Lateral review (on demand)* from the Routines
