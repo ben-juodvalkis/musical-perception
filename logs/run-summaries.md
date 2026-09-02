@@ -376,3 +376,24 @@ is how the runner's permission failure was found.)*
 > Everything is on `agent/marathon` and pushed: 384 tests green (up 18), all eval suites report **no outcome changes vs baseline**, nothing under `evals/` or the pipeline source was touched. Ledger entry written with the full scorecard; the per-clip tables are in `docs/research/w15-stated-structure.md` if you want them.
 
 *Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
+
+## run 2026-09-02T09:00:08Z · main 6a011ea
+
+- **outcome:** success, shell exit 0
+- **turns:** 37 · **duration:** 11.8 min · **cost:** $4.60
+
+**Agent's closing message:**
+
+> … deliberately did **not** patch either of those. Picking a fix after seeing which fix would have helped isn't a prediction, it's fitting. They're written up as things to test properly next time.
+> 
+> I also checked the obvious way the big rig number could be fake: those clips were recorded against a metronome, so the method could just be finding the click. It isn't — your notes say the metronome was in one earbud, never in the recording.
+> 
+> ## Where that leaves your queue
+> 
+> Unchanged. **The blind prior table is still the thing that gates the exercise-prior work**, and nothing here substitutes for it. My earlier note about the draft table already in `docs/vision/` still stands as something you might red-pen instead of writing from scratch — your call whether looking at it spoils the blindness.
+> 
+> I scored my own predictions 3 out of 7. I predicted the fix would show up on the demos; it showed up on your counting clips instead. Direction right, location wrong.
+> 
+> Branch `agent/step-one-blocked-20260902` is pushed — pre-registration written before the code, results, the full memo, and the script. Tests green, 373 passed. No test case, no ground truth, no scorer, and no pipeline file was touched.
+
+*Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
