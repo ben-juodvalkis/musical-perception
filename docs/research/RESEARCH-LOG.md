@@ -10484,3 +10484,159 @@ only if audio regularity alone cannot find the window).
 
 Status: COMMISSIONED. The Air session executes; adoption decisions wait
 for the owner's batch review.
+
+## 2026-09-02 · rung M / W2-reopen (PR-1: the barre-6 half) · agent/sw1-pr1-air · local (Air, unattended) — RESULTS ADDENDUM
+
+**Headline: the blocked half ran, on all 26 clips, and it is the first
+place in this line of work where measuring the teacher's loudness finds
+the bar. On the eight demo grids the owner tapped, loudness beats a
+shuffle null at the bar on `barre6-degage-demo` (p = 0.005) and the
+combined prominence channel does on dégagé and frappé (p ≈ 0.045 — at
+the false-positive floor); W2's timing-only channels find the bar on
+0 of those 8. On the 18 grids that are still peakRate guesses, every
+prominence channel finds the bar on 0 of 18, exactly as the
+pre-registration said it would. Two clips out of eight is not a
+detector, and the 4/4-versus-2/4 contrast is still absent — 0 of 5
+demo 4/4 clips beats the null on the template margin.**
+
+Deliverables: `docs/research/w2-reopen-prominence-audit-barre6.json`
+(the commissioned command, seed 20260902, 400-draw null) and
+`docs/research/w2-reopen-prominence-audit-barre6-whistress.json` (the
+`--whistress` run, below). Coverage: **26 of 26 barre-6 grids scored,
+0 skipped, 0 checksum mismatches** — every grid's `media_sha256`
+verified against the staged file before it was read.
+
+### Scoring P1-b honestly: the verifiable population is 8, not 26
+
+P1-b was written on 2026-09-02 expecting all 26 grids tapped. They are
+not. The 2026-09-01 evening reset tapped and verified **8 demo grids**;
+`barre6-ballonne-demo` and the 17 take grids remain `provisional:
+true` — peakRate pre-annotations at 0.6×–2.4× the true beat count. On a
+mis-scaled grid "lag 4" is not the bar, so those 18 rows cannot answer
+the question at all. They are reported as their own slice and excluded
+from every claim below.
+
+**P1-b as written is not scoreable at its own denominator**: ≥ 10 of 26
+requires 26 tapped grids, and 8 exist. Scored as a MISS on the letter,
+with the population it can actually be asked of reported beside it. Its
+second half — *intensity bar-lag significant on more takes than demos* —
+is **falsified in the available data** (0 takes vs 1 demo), but that
+comparison is confounded by grid maturity, not a clean test: the takes
+are still provisional. It becomes askable when take grids are tapped.
+
+### The three slices
+
+| slice | channel | any sig lag (p<.05) | at p<.01 | sig AT the bar lag | at p<.01 |
+|---|---|---|---|---|---|
+| **verified demos (n=8)** | W2 (timing) | 0/8 | 0 | **0/8** | 0 |
+| | intensity | 2/8 | 2 | **1/8** | **1** |
+| | f0 | 2/8 | 0 | **1/8** | 0 |
+| | combined | 4/8 | 0 | **2/8** | 0 |
+| **provisional (n=18)** | W2 (timing) | 4/18 | 2 | 0/18 | 0 |
+| | intensity | 2/18 | 0 | 0/18 | 0 |
+| | f0 | 2/18 | 1 | 0/18 | 0 |
+| | combined | 1/18 | 1 | 0/18 | 0 |
+| **all barre-6 (n=26)** | combined | 5/26 | 1 | 2/26 | 0 |
+
+Every bar-lag hit in the whole run, by name:
+
+| clip | channel | bar lag | on-minus-off (z) | p | grid |
+|---|---|---|---|---|---|
+| `barre6-degage-demo` | intensity | 4 | +0.735 | **0.005** | verified |
+| `barre6-degage-demo` | combined | 4 | +0.542 | 0.045 | verified |
+| `barre6-frappe-demo` | f0 | 4 | +0.778 | 0.030 | verified |
+| `barre6-frappe-demo` | combined | 4 | +0.550 | 0.045 | verified |
+
+Five lags are tested per clip with no correction, so the p<.05 floor is
+roughly one clip in five by chance: 2 of 8 is **at** that floor. Only
+the dégagé intensity hit clears p<.01, and it is one clip.
+
+### P1 and the scorecard
+
+| # | prediction | outcome |
+|---|---|---|
+| P1 | barre-6 combined bar-lag ≤ 8/26 on provisional grids | **HIT** — 2/26 (and 0/18 within the provisional slice itself) |
+| P1-b | ≥ 10/26 once tapped; intensity on more takes than demos | **MISS as written** — denominator does not exist (8 tapped, not 26); on the verifiable 8: intensity 1/8, combined 2/8; the takes-vs-demos half falsified but confounded by grid maturity |
+| P5 (barre-6 restatement) | 4/4 template margin over 2/4 | **holds** — on the 5 verified 4/4 demos, margin ≥ 0.05 on 2/5 (intensity) but **0/5 beat the shuffle null**; best p = 0.070 (frappé, f0). Across all 18 4/4 barre-6 rows: 0/18 (intensity), 1/18 (f0) |
+| P6 | WhiStress adds < 2 bar-lag clips over intensity | **RAN, and it adds 0 — but for a coverage reason, not an evidence reason** (below) |
+| P7 | containment | **HIT** — `git diff --stat origin/main` below; nothing under `evals/` or `src/`; pytest green |
+
+### P6 — WhiStress is no longer BLOCKED, and it is not usable as shipped
+
+The cloud runner could not reach GitHub; **this machine can**. WhiStress
+cloned, its weights downloaded from Hugging Face, and the adapter that
+shipped untested on 2026-09-02 ran on all 26 clips with **zero
+failures**. That closes the BLOCKED-on-network state by name.
+
+What it produced is another matter, and the number is the finding:
+**WhiStress labelled 427 of 2,770 beats (15 %)**, and its channel is
+*constant* — no contrast at all — on **10 of 26 clips**. The cause is
+not the adapter's word alignment, which matches almost perfectly where
+labels exist (e.g. `barre6-tendu-demo`: 19 of the 20 returned words
+aligned to the trace). The stock `WhiStressInferenceClient` simply
+returns only the first **16–27 words of each clip, covering the first
+≈ 6–8 seconds**, regardless of clip length (tendu-demo: 20 words to
+t = 8.2 s of a 50 s clip; plié-demo: 16 words to t = 6.5 s of 78 s;
+frappé-demo: 17 words to t = 8.0 s of 55 s). Its result — 0 of 26 at
+any lag — is therefore **not evidence about stress and the bar**; it is
+a report that the channel is 85 % empty. Testing P6 properly needs a
+chunked-inference adapter that walks the clip in windows. Parked, not
+attempted here (rule 6).
+
+Fidelity caveat, disclosed: WhiStress pins `torch==2.5.1`,
+`transformers==4.52.2`, `numpy==2.0.2`; installing those would have
+downgraded this repo's environment mid-session, so it was run against
+the installed `torch 2.8.0` / `transformers 4.57.6` from a clone outside
+the repository. It loaded and ran without error, but this is not the
+authors' pinned environment and its labels are not verified against
+their reference output.
+
+### Two script changes, disclosed
+
+`scripts/w2-reopen-prominence-audit.py` was written where the only media
+was rig MP3s, which `soundfile` reads directly. **Every barre-6 clip is
+an MP4, which `soundfile` refuses** ("Format not recognised"), so the
+commissioned command failed on its first call. Two changes, both plumbing
+and neither touching the measurement:
+
+1. `_load_media` routes video through `ffmpeg -vn -ac 1` to a temporary
+   WAV at the file's native rate before librosa reads it — the same
+   extraction `annotation/__main__.py:_load_audio` already uses. The same
+   samples reach parselmouth either way.
+2. The same extraction (at 16 kHz) is handed to WhiStress, which loads
+   the media itself; and the WhiStress client is now loaded **once per
+   process** instead of once per clip.
+
+No channel definition, window, detrend, null, seed or lag set changed.
+The W2 timing channel and the template matrix reproduce exactly
+(0.90 / 0.93; `barre6` W2 bar-lag 0/26 both before and after).
+
+### What this does and does not establish
+
+**Establishes:** on the material the owner described — a teacher over a
+pianist — measuring genuine loudness at each tapped beat finds bar-level
+periodicity where W2's timing-only channels found none (1–2 of 8 vs
+0 of 8). The cue is not absent. It is also not yet a detector: one clip
+at p<.01, two at the five-lag false-positive floor, n = 8.
+
+**Does not establish:** anything about the 17 takes, whose grids are
+peakRate guesses — the intensity channel there would in any case hear
+the *pianist's* downbeat, the caveat carried from the pre-registration.
+Nor anything about 4/4 versus 2/4: the medium third beat is still not
+louder, on any channel, on any demo (0/5 beat the null). W2's Finding 2
+survives on this population too.
+
+### Recommendation to the owner
+
+1. The cheapest next move is unchanged and is now better aimed: **tap
+   the take grids for dégagé and frappé** — the two clips where loudness
+   already finds the bar on the demo — and re-run this command. Two
+   grids turn a 2-of-8 observation into a testable claim about whether
+   the cue survives the piano.
+2. WhiStress needs a chunked adapter before it says anything. It is a
+   half-hour of work and it is not commissioned; it is parked here.
+3. No pipeline change follows. Accent periodicity remains one
+   observation channel inside W5, as ruled 2026-08-24.
+
+Status: PROPOSED, REPORTED-ONLY. Nothing under `src/` or `evals/` was
+touched.
