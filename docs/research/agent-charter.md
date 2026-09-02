@@ -27,10 +27,17 @@
 > the reset bless: tempo 0.606, Acc2@8% 0.697, between-levels 10 of 33
 > committed. Meter, structure and style are steps two–four, in that
 > order, unscoped, gating nothing in step one. Rules of engagement
-> unchanged. First candidate increment (owner's "run it" in session,
-> uncommissioned until batch review): the **steady window** — find the
-> short in-tempo stretch by rhythmic regularity and movement quality,
-> measure the pulse only inside it.
+> unchanged. **SW-1 COMMISSIONED (owner, 2026-09-01 late evening, in
+> session): the steady-window sweep** — REPORTED-ONLY, a pre-registered
+> comparison table over a search space FROZEN in the commissioning
+> ledger entry of that date; audio-regularity half only (the movement
+> half is deferred, stated loudly, per W7/W10); the winner is adopted
+> only in a separate owner-reviewed increment. **PR-1 also
+> commissioned:** the barre-6 half of the W2-reopen prominence audit —
+> its media was staged to the Air and checksum-verified 26/26 the same
+> evening. The owner authorized bundling both REPORTED-ONLY diagnostics
+> into one Air session (rule-6 exception, owner's word; two ledger
+> deliverables, one branch).
 
 ## OWNER QUEUE — read this out to Ben first (set 2026-09-01)
 
