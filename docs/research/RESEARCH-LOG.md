@@ -10241,3 +10241,64 @@ the grid-tapping dependency. Constraints verified: `git diff --stat
 origin/main` shows the ledger, `scripts/w2-reopen-prominence-audit.py`,
 `docs/research/w2-reopen-prominence-audit.json`; pytest 366 passed /
 3 skipped; nothing under `evals/` or `src/` touched.
+
+## 2026-09-01 · RESET, step one (pulse) · agent/reset-step-one-pulse · local (owner-attended, evening) — PRE-REGISTRATION
+
+**Owner-attended, owner-directed reset.** The owner's words, verbatim,
+recorded as the session's charter: *"start over, toss out all
+assumptions."* The target is **the DEMO alone** — the machine should
+reach the same tempo, meter, structure and style the owner reaches by
+watching a teacher demonstrate. **Piano takes are out of the benchmark.**
+Step one is the PULSE only: its tempo, defined as the metric level that
+sits in **70–140 BPM**, with the other levels kept alongside it and never
+discarded (Standing Lesson 2 unchanged: the band names a level, it never
+folds a measurement). Meter, structure and style are later steps, in that
+order, and gate nothing in step one.
+
+Session plan, each act the owner's where it touches truth, grids,
+baseline or charter: (1) demote the 17 barre-6 takes to a reference-only
+slice, still reported; (2) relabel four tempo truths to the in-band
+level, each after the owner listens; (3) tap barre-6 demo grids with the
+owner; (4) re-bless at the owner's explicit direction; (5) goal-ladder
+rewrite for in-session ratification. One branch, one ledger entry,
+rulings quoted as his.
+
+### §1 pre-registration — the reference-slice demotion (EVAL-CHANGE)
+
+**Mechanism chosen (least invasive of three considered):** a tag-keyed
+filter mirroring W1.5's provisional machinery, keyed on the existing
+`clip_role: take` tag. Zero case files touched; rejected alternatives:
+flipping takes to `maturity: provisional` (falsifies their epistemic
+status — the owner DID verify them) and a new schema key (17 file edits
+for the same effect). This is harness + gate-test code, i.e. an
+**EVAL-CHANGE**, taken at explicit owner direction inside this reset and
+never bundled with any pipeline change (none exists today).
+
+Semantics, mirroring `maturity` exactly: a `reference` row is scored and
+reported in its own slice with its own n; it enters no headline
+aggregate, no ECE, no tempo-metrics block, no tag slice; `bless`
+withholds it from the pinned outcomes map under
+`outcomes_withheld_reference`; the tier-1 gate skips reference rows by
+the union of both sides (run + baseline), so a row entering or leaving
+the reference slice cannot gate on the run where it moved. Maturity and
+reference stay orthogonal keys: reference-and-provisional lands in the
+reference slice (demotion is the stronger exclusion), stated so nobody
+re-derives it.
+
+**Pre-registered predictions, written before any code:**
+
+- **P1 (byte-identity on scoring).** Per-case, per-field outcomes are
+  byte-identical on **all 52 tier-1 rows** before vs after the filter —
+  the change touches reporting and pinning, never scoring. tier0 and
+  stage1 outputs byte-identical.
+- **P2 (the split).** The tier-1 headline recomputes over exactly **35
+  rows** (26 rig/counting clips + 9 barre-6 demos); the reference slice
+  prints **n=17** with ids exactly the 17 `clip_role: take` cases.
+- **P3 (pinning, scored at step 4's re-bless).** `bless` prints
+  `pinned 35` and `withheld 17 reference`; the W1.5 tripwire, updated to
+  assert *gating = verified minus reference = pinned*, passes.
+- **P4 (gate).** pytest green after the gate-test update; a reference
+  row's outcome change fails no gate in either direction.
+
+Committed before implementation; results scored against these in the
+RESULTS section below.
