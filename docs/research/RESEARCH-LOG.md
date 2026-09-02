@@ -10423,3 +10423,64 @@ Status: **BLESSED and ratified 2026-09-01 (evening), owner-attended.**
 Constraints verified: branch `agent/reset-step-one-pulse` off main;
 every truth/grid/baseline/charter change owner-ruled in session; pytest
 373 passed / 3 skipped; merge to main only on the owner's word.
+
+## 2026-09-01 · SW-1 + PR-1 commissioned · agent/commission-sw1-pr1 · local (owner-attended, late evening)
+
+**The owner commissioned both Air diagnostics in session**, closing the
+"uncommissioned until batch review" mark the same evening it was
+written: *"ok cool. should we share the barre-6 to my macbook air and
+run it there?"* → media staged by his hand (*"i copied them over"*) and
+checksum-verified on the Air (**26 OK, 0 missing, 0 mismatched** against
+the grid pins) → *"do you want to give me a prompt for the air to do
+all of this?"* Both increments are REPORTED-ONLY; bundling into one Air
+session is owner-authorized (rule-6 exception). Model for the run:
+Opus-tier, owner-set.
+
+### PR-1 — the barre-6 prominence completion (W2-reopen's blocked half)
+
+Run the exact command from the 2026-09-02 W2-reopen entry
+(`scripts/w2-reopen-prominence-audit.py --only barre6`). Score P1-b
+honestly: it was pre-registered expecting all 26 grids tapped; only the
+**8 demo grids** are verified (2026-09-01 evening reset), the 17 take
+grids and ballonné's remain provisional — the verifiable population is
+the demo slice and the report must say so plainly. Attempt
+`--whistress`; a failed install is reported BLOCKED-by-name, never a
+null result. Deliverables: the results JSON + a dated RESULTS addendum.
+
+### SW-1 — the steady-window sweep: search space FROZEN at commissioning
+
+No variant may be added, removed, or re-parameterized after the first
+scoring run; late-added measurements are disclosed W2-reopen-style.
+
+- **Pulse sources (2):** `peakrate-media` (rung-2 extractor on the
+  clip's audio; clips whose media is absent or fails its checksum are
+  skipped BY NAME with per-source coverage reported — no silent caps) ·
+  `whisper-trace` (word onsets from the frozen trace; full coverage).
+- **Window lengths (3):** L ∈ {3 s, 5 s, 8 s}, slide step 0.5 s.
+- **Window pick (1 rule):** minimum within-window IOI CV, requiring ≥ 6
+  events; if no window qualifies, fall back to whole-clip and report
+  the fallback by name.
+- **Tempo in window (1 rule):** 60 / median IOI, projected into
+  [70, 140] by ×/÷{2, 3}; the chosen factor is reported per clip
+  (in-band projection stated, never silent — Standing Lesson 2).
+- **Controls:** whole-clip estimate per source. **Ceiling:** oracle
+  windows from the 9 demo cases' "Intended-tempo span" notes (rig
+  clips: oracle = whole clip); the oracle is a reported ceiling, never
+  a candidate.
+- **Population:** the 34-row step-one gating set.
+- **Metrics per variant:** step-one pass (committed pulse within ±8 %
+  of the in-band truth), Acc2@8%, between-levels count, and
+  **split-half stability** — the split is FIXED NOW as odd/even rows of
+  the case ids sorted lexically; a winner must win on both halves.
+- **Selection rule:** rank by stability first, then demo-slice pass
+  count, then total pass count. **The winner is NOT adopted** — the
+  deliverable is the comparison table
+  (`docs/research/sw1-steady-window-sweep.md` + JSON) and the
+  prediction scorecard.
+
+**Deferred loudly:** the movement-quality half of the owner's original
+steady-window idea (W7/W10 made movement a weak W5 vote; it returns
+only if audio regularity alone cannot find the window).
+
+Status: COMMISSIONED. The Air session executes; adoption decisions wait
+for the owner's batch review.
