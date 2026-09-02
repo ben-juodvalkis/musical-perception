@@ -10073,3 +10073,171 @@ are reported beside every p < 0.05 count.
   new script, this ledger entry, and a results JSON under
   `docs/research/`; nothing under `evals/` or `src/` changes; pytest
   stays green.
+
+## 2026-09-02 · rung M / W2-reopen (accent periodicity with genuine prominence) · claude/accent-periodicity-prominence-diagnostic-f522ca · cloud (owner-attended, owner-directed) — RESULTS
+
+**Headline: on the population it could reach, measuring real loudness
+and pitch at each beat finds no more bar-level accent than W2's
+timing-only channels did — 5 of 22 clips either way, like-for-like —
+and the medium-beat contrast that would separate 4/4 from 2/4 is not
+audibly louder on a single 4/4 clip once a null is applied. The
+primary population (barre-6) could not be scored here: its media is
+not in this container, and its grids are provisional, so the bar-lag
+question is not yet askable on it at all.** W2's negative result stands
+on the rig corpus; the owner's cue remains untested on the material it
+was described on.
+
+Artifacts: `scripts/w2-reopen-prominence-audit.py` (read-only, 32 s on
+the rig slice), `docs/research/w2-reopen-prominence-audit.json` (full
+per-clip, per-channel, per-lag numbers, seed 20260902).
+
+### Prediction scorecard, scored honestly
+
+| # | prediction | outcome |
+|---|---|---|
+| P1 | barre-6 combined bar-lag ≤ 8/26 on provisional grids | **NOT RUN** — media absent from this runner; every barre-6 grid skipped by name |
+| P2 | rig intensity bar-lag in 6..9 of 23 (old: 5) | **MISS** — 5/22, identical to the W2 channels on the same clips (degenerate row excluded, so 22 not 23) |
+| P3 | rig F0 bar-lag < intensity | **MISS** — tie, 5 vs 5 |
+| P4 | rig combined winners: lag 8 ≥ lag 4 | **HIT on the letter only** — 1 vs 1; the lag-8 dominance W2 found (6 of 13 winners) is gone in the prominence channels (see F2) |
+| P5 | matrix 0.90/0.93 reproduced; 4/4 clips with intensity margin ≥ 0.05 fewer than half | **MISS as pre-registered** — matrix reproduces exactly; margin ≥ 0.05 on 8/15, more than half. But 0/15 beat the shuffle null (added mid-run, disclosed below): the pre-registered 0.05 band was the wrong instrument, not evidence of a louder third beat |
+| P6 | WhiStress adds < 2 bar-lag clips | **BLOCKED** — code uncloneable here (GitHub 403 via proxy); adapter shipped untested |
+| P7 | containment | **HIT** — `git diff --stat origin/main`: ledger, one new script, one new JSON; nothing under `evals/` or `src/`; pytest 366 passed / 3 skipped |
+
+Two hits, three misses, one blocked, one not run. Both hits are the
+ones that predicted nothing would move.
+
+### Rig slice — like-for-like on the 23 verified grids carrying every channel
+
+`adr006` (no media here) and the trap clip (provisional grid, W2 rule)
+are outside this table; `rig-numbers-3-4-90-clean` is audited but
+excluded from bar-lag counts by name (W2's P6). The W2 channels on all
+25 verified grids: 14/25 any-lag, 6/24 bar-lag — August's picture.
+
+| channel | any sig lag (p<.05) | at p<.01 | sig AT the bar lag | at p<.01 | winning lags (2·3·4·6·8) |
+|---|---|---|---|---|---|
+| W2 (agogic+density+voicing) | 13/23 | 6 | 5/22 | 1 | 2·1·3·1·**6** |
+| intensity | 7/23 | 4 | 5/22 | 3 | 1·2·1·0·3 |
+| F0 | 8/23 | 5 | 5/22 | 3 | 3·0·2·1·2 |
+| combined prominence | 9/23 | 6 | 4/22 | 4 | **4**·0·1·3·1 |
+
+**F1 — loudness does not add bar-level accent on this corpus.** Same
+5/22 as timing, fewer clips with any periodicity at all (7 vs 13). The
+five intensity bar-lag hits: `rig-names-2-4-160-long` (lag 2, p<.01),
+`rig-names-3-4-88-waltz` (lag 3, p<.01), `rig-numbers-6-8-100-clean`
+(lag 3 = lag 6, p<.01), `rig-numbers-4-4-104-duple` and
+`rig-numbers-4-4-104-fourx8` (lag 4, p<.05 — inside the five-lags
+false-positive floor). The three at p<.01 are all non-4/4. Of the
+fifteen 4/4 clips, **none** has a p<.01 loudness periodicity at the bar.
+
+**F2 — the two channel families hear different levels.** Where a
+timing channel finds periodicity, it is at lag 8 (the count phrase; 6
+of W2's 13 winners); where loudness or pitch finds it, it is at lag 2
+(4 of the combined channel's 9 winners) or the triple bar. Read plainly:
+phrase-final lengthening (Standing Lesson 5) is a *timing* phenomenon,
+so the eight-count phrase shows up in IOIs; loudness alternates
+strong-weak beat to beat. Neither family lands on the 4/4 bar. Small n
+— nine winners — stated as an observation, not a finding.
+
+**F3 — the triple bar is audible in loudness; the 4/4 bar is not.** The
+waltz and the numbers-6/8 clip carry loudness periodicity at the bar at
+p<.01 with the largest contrasts in the table (1.54 and 2.02 z-units).
+The other two triple clips (`rig-names-6-8-100-clean`,
+`rig-names-3-4-90-clean`) carry nothing. On the 6/8 clip lag 3 and lag
+6 are equal (2.02 vs 1.98) — the accent-every-three is there and
+periodicity cannot say whether it is 3/4 or 6/8, which is the
+confusability matrix showing up in data.
+
+**F4 — empirical confusability: W2's Finding 2 survives real loudness.**
+Truth-template margin over its confusable sibling, 4/4 clips (n=15),
+each with a 400-draw shuffle null:
+
+| channel | margin ≥ 0.05 (W2's band) | beats the null (p<.05) | mean margin |
+|---|---|---|---|
+| W2 | 9/17 | 2/17 | +0.072 |
+| intensity | 8/15 | **0/15** | +0.061 |
+| F0 | 5/15 | 0/15 | +0.044 |
+| combined | 5/15 | 0/15 | +0.035 |
+
+The 6/8-over-3/4 margin is not significant on either 6/8 clip in any
+channel. The medium third beat of 4/4 is not louder, not higher, not
+either. The template matrix reproduces to two decimals (0.90 / 0.93),
+channel-independent by construction.
+
+### Barre-6 slice — what could and could not be measured
+
+**Prominence: NOT RUN.** All 26 grids point at
+`video/youtube/ballet barre 6/clips/`, absent from this runner; each
+skip is printed by name. The command for the machine that holds the
+class: `python scripts/w2-reopen-prominence-audit.py --only barre6
+--json docs/research/w2-reopen-prominence-audit-barre6.json`.
+
+**W2's timing channels DID run** (they need only the grid): on the 26
+provisional peakRate grids, **0/26** significant at the bar lag, 5/26 at
+any lag (2 at p<.01) — at the five-lags false-positive floor — and 0/18
+4/4 clips with a template margin above the null. This is not evidence
+about the teacher's accent; it is evidence that these grids are not at
+the beat, which the owner queue (item 5) already says. **Until three or
+four barre-6 grids are tapped, no channel can answer the owner's
+question on this class, because "lag 3 or 4 in grid units" is not the
+bar on a grid at 0.6×–2.4× the true beat count.**
+
+### Disclosed: one measurement added after the first run
+
+The first run counted 4/4 clips whose margin exceeded W2's 0.05
+abstention band (9/16 at that point) and the scorecard read MISS. A
+0.05 band is a decision threshold, not a test, so a shuffle null was
+added to the margin and the run repeated. The pre-registered criterion
+is scored as written (MISS); the null-tested count (0/15) is reported
+beside it. Reported because the addition was made *after* seeing a
+number that pointed the wrong way, which is exactly when an added
+measurement needs saying out loud. Also fixed between runs: the trap
+clip's provisional grid had slipped into the rig slice; it is now
+skipped by name as W2 skipped it.
+
+### What this does and does not establish
+
+Establishes, on the rig corpus: genuine loudness and pitch prominence
+carry no more bar-level periodicity than timing did, and none of the
+4/4-vs-2/4 contrast. W2's negative result was not an artifact of its
+amplitude-free channels *on that population*.
+
+Does **not** establish anything about the cue the owner described —
+a teacher speaking louder on the strong beat over a pianist — because
+that population was unreachable here twice over (media, then grids).
+Caveat carried from the pre-registration: on piano takes the intensity
+channel will hear the *pianist's* downbeat, which is a different cue
+and must be reported as such when that run happens.
+
+WhiStress: untested. The adapter (`--whistress`) calls the installed
+client through `perception/whistress.py`, aligns its word labels to the
+trace's Whisper words by sequence match, and reports any failure by
+name instead of filling the channel.
+
+### Recommendation to the owner
+
+1. **Tap three or four barre-6 grids first** (queue item 5's cheaper
+   first move) — F3 says the triple bar is where loudness shows, so the
+   3/4 takes are the cheapest place to look for the cue — then run the
+   barre-6 command above on those. The script reports provisional grids
+   in their own slice with the warning printed.
+2. On the class machine, where GitHub is reachable, install WhiStress
+   per `perception/whistress.py` and add `--whistress`; treat the first
+   run as a test of the adapter.
+3. No pipeline change follows from this session. Accent periodicity
+   stays one observation channel inside W5, as ruled 2026-08-24.
+
+Lesson (one paragraph, not a Standing Lesson): a prominence channel is
+not automatically more informative than a timing channel, and the
+cheap audit from W2's own lesson — measure whether the quantity is
+present before building the detector — was again worth more than the
+channel: thirty seconds of audio measurement settled that loudness does
+not carry the 4/4 bar on this corpus. Second half: a pre-registered
+threshold is only a prediction if it has a null behind it; the 0.05
+band produced a MISS that meant nothing either way.
+
+Status: PROPOSED, REPORTED-ONLY. For the owner's review: the negative
+result on the rig population; the BLOCKED barre-6 run with its command;
+the grid-tapping dependency. Constraints verified: `git diff --stat
+origin/main` shows the ledger, `scripts/w2-reopen-prominence-audit.py`,
+`docs/research/w2-reopen-prominence-audit.json`; pytest 366 passed /
+3 skipped; nothing under `evals/` or `src/` touched.
