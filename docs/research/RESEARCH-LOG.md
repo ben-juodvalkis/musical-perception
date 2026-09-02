@@ -9925,3 +9925,151 @@ against the marking — which sits in tension with ruling (1)'s "the demo
 is the source of truth". Worth settling before any of these gate.
 
 Not blessed, and cannot be: blessing stays blocked until W1.6 merges.
+
+## 2026-09-02 · rung M / W2-reopen (accent periodicity with genuine prominence) · claude/accent-periodicity-prominence-diagnostic-f522ca · cloud (owner-attended, owner-directed) — PRE-REGISTRATION
+
+**Owner-directed diagnostic, REPORTED-ONLY.** Not a workstream taken from
+the ranking; the owner commissioned it in session. Nothing under `src/`
+is touched, nothing is wired into `analyze.py`, no suite outcome can
+move (Standing Lesson 9: the replay path first, the bet second). No file
+under `evals/cases/`, `evals/traces/`, `evals/grids/`, or
+`evals/baseline.json` is created or modified. Branch name is the
+harness-assigned one for this session rather than `agent/w2-reopen-*`;
+it is branched from `main` at `08494a8`.
+
+**This section is committed before the diagnostic script exists**
+(charter rule 3); the results section is a second commit. `git log`
+on this branch shows the order.
+
+### Why W2 is reopened, and what it never measured
+
+W2 (2026-08-20) scored per-beat salience from three channels its own
+text calls amplitude-free — following-IOI, event density, voicing —
+because its only input was the committed events file, which carries
+times and nothing else. It therefore never tested the cue the owner
+reports using in class: **the teacher speaks louder on the strong
+beat.** And W2's corpus was 26 rig clips of the owner counting alone
+against a metronome, plus a handful of video demos — not a teacher over
+a pianist. The 26 barre-6 cases (verified 2026-09-01; real teacher, real
+pianist) are the material where that cue should live if it is real.
+
+### What is built
+
+`scripts/w2-reopen-prominence-audit.py` — a read-only diagnostic that
+keeps W2's method exactly (per-beat salience → on-minus-off periodicity
+at lags 2/3/4/6/8, best over phase, against a 400-draw phase-shuffle
+null; the template confusability matrix; the salience-clock template
+scores) and swaps the salience channels for genuine prominence measured
+on the audio at each grid beat:
+
+1. **intensity** — Praat/Parselmouth intensity (dB), maximum inside a
+   window from 30 ms before to 150 ms after the beat (the beat is
+   annotated at the vowel onset, so the syllable's loudness peak sits
+   just after it).
+2. **f0** — Praat F0 in semitones, median over voiced frames in the same
+   window; pitch floor 75 Hz, ceiling 450 Hz (the peakRate voiced-gate
+   settings already on every grid).
+3. **whistress** — WhiStress per-word stress, mapped from the trace's
+   Whisper words to the nearest word containing or adjoining each beat.
+   Optional (`--whistress`); the adapter calls the installed client and
+   is otherwise inert.
+
+Silent beats (grid `silent_beat` regions, reinstated into the beat
+sequence as W2 did) take the clip's minimum per-beat value in each
+channel: silence is the least prominent thing a beat can carry
+(Standing Lesson 6). Each channel is detrended by a local median over
+±8 beats in original index space (holes skipped — the W2 bug, not
+repeated), then z-scored per clip; the combined vector is the mean of
+the available channels at equal weight, as W2 combined its three. Free-
+time regions cut the sequence into segments; phase counts from each
+segment's first beat, as in W2.
+
+**Like-for-like baseline inside the same script:** the W2 channels are
+recomputed on the same clips (`--channels w2`, using the committed
+events file and `accent_meter.beat_salience`), so the old-versus-new
+comparison is on an identical clip set, not against the August table.
+Re-running the August audit today on the 25 verified grids that still
+exist (retired demos gone) gives: **15/25 with any significant lag,
+5/25 significant at the bar-level lag**, winning lags 2:4 · 3:1 · 4:4
+· 6:1 · 8:5. (The August script's "no significant lag" line prints 35
+because it subtracts from all 52 grids — a stale denominator; 10 is the
+real count. Reported, not fixed: that script is the W2 artifact.)
+
+Two things are declared before measurement:
+
+- **`rig-numbers-3-4-90-clean` is degenerate for the bar-lag question**
+  (W2's P6: bar length in grid-beat units is 1). It is audited but
+  excluded from every bar-lag count by name.
+- **The "bar-level lag" on a barre-6 grid is not the bar.** All 26
+  barre-6 grids are `provisional: true`, peakRate pre-annotated at
+  0.6×–2.4× the expected beat count and never tapped (owner queue item
+  5). Lag 3 or 4 in grid units on such a grid is some unknown multiple
+  of the true bar. The barre-6 numbers are therefore an audit of the
+  *provisional grids*, reported in their own slice, and the question
+  the owner asked can only be answered properly after those grids are
+  tapped. The script says so in its output.
+
+### Two blocked states, known before pre-registration
+
+- **The barre-6 media is not in this container.** The grids point at
+  `video/youtube/ballet barre 6/clips/*.mp4`, which is gitignored and
+  lives on the owner's machine; this runner has only `audio/rig/` (all
+  24 rig MP3s, checksum-verified against their grids) — the two
+  `adr006` counting clips are absent too (`audio/counting/`). So the
+  primary population **cannot be scored in this session.** The script
+  skips any grid whose media is missing or fails its `media_sha256`
+  check and prints the skip by name; the owner runs the same command on
+  the machine that holds the class. The pre-registered predictions for
+  barre-6 stand for that run.
+- **WhiStress cannot be installed here.** The inference code is only on
+  GitHub, which this runner's proxy refuses (HTTP 403); the Hugging Face
+  repo `slprl/WhiStress` carries the weights (`additional_decoder_block.pt`,
+  `classifier.pt`, `metadata.json`) and no code. Reimplementing the head
+  from the weights would be an unverified model, so the channel ships as
+  an adapter that is **untested in this session** and is reported as
+  BLOCKED-on-network, not as a null result.
+
+### Pre-registered predictions
+
+Denominators: the rig slice is every verified grid whose media is
+present (23 expected: 24 rig minus the degenerate 3/4-numbers clip for
+bar-lag counts, all 24 for any-lag counts); the barre-6 slice is 26.
+"Significant" means p < 0.05 against the 400-draw shuffle null; with five
+lags tested per clip and no correction, the false-positive floor for
+"any significant lag" is roughly one clip in five, so p < 0.01 counts
+are reported beside every p < 0.05 count.
+
+- **P1 (barre-6 bar-lag rate vs the old audit, the owner's question).**
+  On the provisional grids as they stand, the bar-lag significance rate
+  in the combined prominence salience will **not** exceed the old
+  audit's 5/25 (20 %) by more than the false-positive floor: predict
+  **≤ 8/26**. Reason: the grids are mis-scaled, so the lag being tested
+  is not the bar on most clips. **P1-b, deferred to verified grids:**
+  once tapped, predict **≥ 10/26** with intensity bar-lag significant
+  on more takes than demos — with the caveat, stated now, that on takes
+  the intensity channel hears the *piano's* downbeat accent, which is a
+  different cue from the one the owner described.
+- **P2 (rig, intensity channel).** Bar-lag significance rises modestly
+  over the W2 channels on the same clips: predict **between 6 and 9 of
+  23** (old: 5). The owner counting solo to a metronome does stress
+  "one", but the eight-count phrase is the stronger structure.
+- **P3 (rig, F0 channel).** Weaker than intensity: fewer clips with a
+  significant bar lag than the intensity channel has.
+- **P4 (rig, where the accent lives).** The count phrase still wins:
+  among combined-prominence winners, lag 8 ≥ lag 4. W2's Finding 1
+  survives the change of channel.
+- **P5 (confusability).** The template matrix is channel-independent
+  and reproduces to two decimals (2/4–4/4 0.90, 3/4–6/8 0.93) by
+  construction. Empirically, on the 4/4 rig clips the intensity-channel
+  margin of the 4/4 template over the 2/4 template is ≥ 0.05 (W2's
+  abstention band) on **fewer than half** of them — the medium third
+  beat is not audibly louder. The 3/4-vs-6/8 margin is reported on the
+  two 6/8 clips without a prediction (n = 2).
+- **P6 (WhiStress).** BLOCKED in this container, as above. If the owner
+  runs it: predict it adds fewer than two bar-lag-significant clips
+  over intensity alone on the rig slice, since stress labels on
+  counted numbers and step names are near-constant.
+- **P7 (containment).** `git diff --stat origin/main` shows only the
+  new script, this ledger entry, and a results JSON under
+  `docs/research/`; nothing under `evals/` or `src/` changes; pytest
+  stays green.
