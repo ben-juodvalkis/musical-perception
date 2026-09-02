@@ -11284,3 +11284,103 @@ against each trace's `media_sha256`; pytest 373 passed / 3 skipped.
 path; no outcome pinned; a rejection of the whole line costs the artifact
 and nothing else. Supersedes this session's earlier BLOCKED entry, which
 stands uncorrected in the record as the mistake it was.
+
+## 2026-09-02 · rung M / EB-1 (the estimator bake-off) · agent/estimator-bakeoff · local (owner-attended) — RESULTS
+
+**Pre-registration ordering:** Part 1 of
+[eb1-estimator-bakeoff.md](eb1-estimator-bakeoff.md), committed at
+`c86fb1b` **before `scripts/eb1-estimator-bakeoff.py` existed**. The
+harmonic/subharmonic resonance profile (Arm C) was added at the owner's
+request **also before any code was written** — his question, verbatim in
+substance: are we testing the sub-oscillations and harmonics. It is not a
+late addition.
+
+**Headline: the median of consecutive gaps is the single biggest defect
+in the tempo path. Replacing it, on exactly the same events, takes the
+gating set from 16 of 34 to 28 — past the blessed pipeline's 20 — and
+collapses between-levels rows from 21 to 7. Almost all of the gain is on
+the owner's own recordings (12 → 24 of 26); the eight demos move 4 → 5.
+And the regime diagnostic settles Review 6's open question: on 0 of 8
+demos is the beat the dominant periodicity, but this is NOT a
+missing-pulse corpus — the nonlinear oscillator finds nothing the linear
+methods miss and comes last.**
+
+Coverage: 34/34, 0 skipped, 0 checksum mismatches.
+
+### Arm A — identical peakRate events, only the arithmetic varies
+
+| estimator | pass /34 | demo /8 | rig /26 | between-levels | half-gap |
+|---|---|---|---|---|---|
+| `median-consec` *(ships today)* | 16 | 4 | 12 | **21** | 0.118 |
+| **`all-pairs`** | **28** | 4 | **24** | **7** | 0.118 |
+| **`comb`** | **28** | **5** | 23 | 8 | 0.235 |
+| `povel-essens` | 27 | **5** | 22 | 8 | 0.059 |
+| `hopf` | 19 | 2 | 17 | 20 | 0.059 |
+
+### Arm C — the regime, measured for the first time
+
+Dominant periodicity ÷ true beat, per demo: coupé-barre 2.00 · dégagé
+2.13 · frappé 2.10 · plié 2.50 · tendu 2.85 · fondu 0.54 ·
+**rond-de-jambe 0.35 · tendu-warmup 0.35**. The beat sits 7.6–29.4 dB
+below the dominant peak on every clip.
+
+Two regimes, neither of them syncopation: **clutter** (5 clips — the
+syllable rate dominates at 2.0–2.85× the beat, at a *non-integer* ratio,
+so no ×/÷{2,3} projection recovers the beat) and **bar-dominant sparse
+voicing** (rond-de-jambe, tendu-warmup — voiced 1-and-3 of a 3/4 bar, so
+the strongest periodicity is the bar at ⅓ the beat rate, where ×3 is
+exactly the right move and a level prior would supply it).
+
+### Arm B — off-the-shelf trackers on the demos, which postdate W3
+
+`librosa_plp` **5/8** · `essentia_re2013` 3/8 · `beat_this` 2/8 (and it
+**returned no usable beats at all on 5 of 8** — frappé, plié,
+rond-de-jambe, tendu, tendu-warmup; reported by name, not an install
+failure). **A general-purpose music beat tracker on raw audio equals the
+best thing we do on our own event stream.**
+
+### Scorecard — 4 hits, 1 partial, 2 falsified, 1 ambiguous
+
+E1 all-pairs fixes both sparse demos **PARTIAL** (rond-de-jambe
+107.7→95.7 passes; plié fails either way) · E2 comb beats control by ≥3
+**HIT by 4× the margin** (+12) · E3 hopf does not beat the best linear
+**HIT** (19 vs 28) · **E4 ≥6 of 8 demos carry the beat within 6 dB of the
+dominant peak — FALSIFIED, 0 of 8**, the strongest finding and it went
+the opposite way · E5 ≥5 of 8 dominant peak non-integer **HIT exactly at
+the threshold**, two clips on the ±5 % boundary, read as "about half"
+(Standing Lesson 7) · E6 no estimator passes both drift clips
+**FALSIFIED** — `povel-essens` does, and as pre-registered it is flagged:
+its frappé reading is 139.0 against a 135 label, and frappé's own taps
+*open* at 139 before running to 165, so it is matching the opening tempo
+· E7 an off-the-shelf tracker matches 4/8 **HIT** (`librosa_plp` 5/8) ·
+E8 best half-gap > 0.15 **AMBIGUOUS, disclosed** — the winners tie at
+28/34 and the pre-registration never said how to break a tie on "best";
+`comb` 0.235 hits, `all-pairs` 0.118 misses, both reported rather than
+picking the flattering one · E9 containment **HIT**.
+
+### Caveats limiting use
+
+**The Hopf arm is a 60-line reimplementation, not the authors' system** —
+published parameters unchanged, but a global-argmax readout, and two
+**disclosed** numerical fixes were needed to run at all (sample rate
+200→2000 Hz; |z| clamped below the 1/√ε singularity, after forward Euler
+overflowed). It validates on a clean isochronous train. E3 means "a
+faithful-parameter reimplementation found nothing here", **not**
+"nonlinear resonance is refuted". · The top three (28/28/27) are not
+separable at n=34. · `pass` and `between_levels` overlap at ±8 % and must
+not be added.
+
+### What follows
+
+1. **Adopt nothing yet** (commission). But unlike SW-1 this has a real
+   adoption candidate: replacing `calculate_tempo`'s median with an
+   all-pairs or comb period estimate is a **logic change under a
+   zero-regression gate**, needing its own pre-registration and an owner
+   re-bless.
+2. **The owner's prior table is better motivated by this, not less** —
+   Arm C shows exactly the two clips where ×3 is right and the five where
+   the dominant rate is a non-integer multiple of the beat.
+3. **Do not build the oscillator.** Measured; not our disease.
+
+Status: PROPOSED, REPORTED-ONLY. pytest 373 passed / 3 skipped; nothing
+under `src/` or `evals/`.

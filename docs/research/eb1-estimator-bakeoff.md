@@ -102,3 +102,143 @@ actually have — not an adoption.** Any winner is reported with its
 half-gap beside it and adopted by nobody.
 
 Late-added measurements, if any, are disclosed W2-reopen style.
+
+---
+
+## Part 2 — RESULTS (run 2026-09-02)
+
+**Headline: the median was the single biggest defect in the tempo path.
+Replacing it — with either all-pairs distances or a comb, on exactly the
+same events — takes the gating set from 16 of 34 to 28 of 34, past the
+blessed pipeline's 20, and collapses between-levels rows from 21 to 7.
+But almost all of that is the owner's own recordings (12 → 24 of 26). On
+the eight demos it moves 4 → 5. The demo is still unsolved, and the
+resonance profile says why: on none of the eight demos is the beat the
+dominant periodicity in the event stream. It is not a missing pulse — the
+nonlinear oscillator finds nothing the linear methods miss, and comes
+last. It is clutter, and on the sparse 3/4 clips it is the bar.**
+
+Artifacts: `scripts/eb1-estimator-bakeoff.py`,
+`scripts/eb1-arm-b-trackers.py`, `docs/research/eb1-estimator-bakeoff.json`,
+`docs/research/eb1-arm-b-trackers.json`. Coverage: **34/34 rows, 0 skipped,
+0 checksum mismatches.**
+
+### Arm A — five estimators, identical peakRate events
+
+| estimator | pass /34 | demo /8 | rig /26 | Acc2 | between-levels | odd | even | half-gap |
+|---|---|---|---|---|---|---|---|---|
+| `median-consec` *(control, ships today)* | 16 | 4 | 12 | 16 | **21** | 9 | 7 | 0.118 |
+| **`all-pairs`** | **28** | 4 | **24** | 29 | **7** | 15 | 13 | 0.118 |
+| **`comb`** | **28** | **5** | 23 | 28 | 8 | 16 | 12 | 0.235 |
+| `povel-essens` | 27 | **5** | 22 | 28 | 8 | 14 | 13 | **0.059** |
+| `hopf` | 19 | 2 | 17 | 19 | 20 | 10 | 9 | 0.059 |
+
+Blessed pipeline, same 34 rows: **20 pass, between-levels 10 of 33.**
+
+### Arm C — the regime diagnostic (the owner's question)
+
+Dominant periodicity in the event stream, as a ratio to the true beat:
+
+| demo | truth | dominant periodicity ÷ beat | reading |
+|---|---|---|---|
+| coupé-barre | 108 | **2.00** | syllable rate, exactly 2 per beat |
+| dégagé | 110 | 2.13 | syllable rate, non-integer |
+| frappé | 135 | 2.10 | syllable rate, non-integer |
+| plié | 120 | 2.50 | syllable rate, non-integer |
+| tendu | 102 | 2.85 | syllable rate, non-integer |
+| fondu | 86 | 0.54 | ≈ half the beat rate (2-beat group) |
+| rond-de-jambe | 96 | 0.35 | ≈ ⅓ the beat rate — **the 3/4 bar** |
+| tendu-warmup | 112 | 0.35 | ≈ ⅓ the beat rate — **the 3/4 bar** |
+
+**On 0 of 8 demos is the beat the strongest periodicity present.** The beat
+sits 7.6–29.4 dB below the dominant peak in the linear profile, and lower
+still in the nonlinear one.
+
+**This answers Review 6 §1's open question: we are not in a missing-pulse
+regime.** If we were, the Hopf bank would recover a pulse the linear
+methods cannot. It does the opposite — 19/34, worst of the five, 2/8 on
+demos. Two regimes are present instead, and they are different problems:
+
+- **clutter** (5 clips): the strongest rhythm is the syllable rate, at
+  2.0–2.85× the beat and *not a clean multiple*, so no ×/÷{2,3} projection
+  can recover the beat from it.
+- **bar-dominant sparse voicing** (rond-de-jambe, tendu-warmup): she voices
+  beats 1 and 3 of a 3/4 bar, so the strongest periodicity is the **bar**,
+  one third of the beat rate. Notably these are the two demos where a
+  ×3 projection is exactly the right move — and where a level prior
+  conditioned on the exercise would supply it.
+
+### Arm B — off-the-shelf trackers on the demos (never seen before: they postdate W3)
+
+| tracker | pass /8 | note |
+|---|---|---|
+| **`librosa_plp`** | **5/8** | raw audio, no knowledge of this project — matches our best own-stream estimator |
+| `essentia_re2013` | 3/8 | W3's raw-audio winner; loses here |
+| `beat_this` | 2/8 | **returned no usable beats at all on 5 of 8** (frappé, plié, rond-de-jambe, tendu, tendu-warmup) — reported by name, not an install failure |
+
+**`librosa_plp` on raw audio equals the best thing we do on our own event
+stream.** That is worth sitting with: a general-purpose music beat tracker,
+given the teacher's audio and nothing else, is level with the whole
+peakRate-plus-arithmetic path on the material the reset is aimed at.
+
+### Prediction scorecard — 4 hits, 1 partial, 2 falsified, 1 ambiguous
+
+| # | prediction | outcome |
+|---|---|---|
+| E1 | `all-pairs` beats `median-consec` on plié **and** rond-de-jambe | **PARTIAL** — rond-de-jambe fails→passes (107.7→95.7 vs truth 96); plié fails both ways (108.8→84.3 vs truth 120). 1 of 2 |
+| E2 | `comb` beats the control on the 34 by ≥ 3 rows | **HIT, by four times the margin** — +12 (16→28) |
+| E3 | `hopf` does not beat the best linear estimator | **HIT** — 19 vs 28, and last on the demo slice. See the caveat below before leaning on it |
+| E4 | ≥ 6 of 8 demos carry non-trivial linear energy at the beat (within 6 dB of the peak) | **FALSIFIED — 0 of 8.** The strongest single finding here, and it went the opposite way |
+| E5 | ≥ 5 of 8 demos: dominant peak at a non-integer ratio to the beat | **HIT at the threshold — exactly 5 of 8**, and two clips sit on the ±5 % boundary (0.35 vs ⅓). Read as "about half", not as a clean hit (Standing Lesson 7) |
+| E6 | no estimator passes both drift clips | **FALSIFIED** — `povel-essens` passes both. Flagged as pre-registered: its frappé reading is 139.0 against a label of 135, and frappé's own taps open at **139** before running to 165, so it is matching the *opening* tempo. Whether that is luck or the right answer is the open truth-side question |
+| E7 | ≥ 1 off-the-shelf tracker matches or beats our 4/8 on demos | **HIT** — `librosa_plp` 5/8 |
+| E8 | best estimator's half-gap > 0.15 | **AMBIGUOUS, disclosed** — the two winners tie at 28/34: `comb` gaps 0.235 (hit), `all-pairs` 0.118 (miss). The pre-registration did not say how to break a tie on "best". Reported both ways rather than picking the flattering one |
+| E9 | containment + pytest | **HIT** — see below |
+
+### Caveats that limit what this can be used for
+
+1. **The Hopf arm is a 60-line reimplementation, not the authors' system.**
+   Velasco & Large's published parameters are used unchanged (289
+   oscillators, 0.25–16 Hz, α=0, β₁=−1, β₂=−0.25, ε=1), but the readout is
+   a global argmax of steady-state amplitude, and the integrator needed two
+   numerical fixes to run at all (**disclosed:** sample rate raised 200 →
+   2000 Hz and |z| clamped below the 1/√ε singularity, after forward Euler
+   overflowed; parameters untouched). It validates on a clean isochronous
+   train. **E3 should be read as "a faithful-parameter reimplementation
+   found nothing here", not as "nonlinear resonance was refuted."**
+2. **`between_levels` and `pass` overlap** at the ±8 % tolerance, as
+   recorded on 2026-09-02 — the counts are not disjoint and must not be
+   added.
+3. **Five estimators against 34 rows.** The 16→28 jump is far too large to
+   be noise, but the ordering *among* the top three (28 / 28 / 27) is not
+   separable at this n, and the half-gaps range 0.059–0.235.
+
+### What this establishes
+
+- **The median of consecutive gaps is the defect**, and it costs 12 rows
+  against the identical event stream. Any adoption increment starts here.
+- **Two candidate replacements are indistinguishable at this corpus size**
+  (all-pairs 28, comb 28). Choosing between them needs more rows, not more
+  analysis.
+- **We are not in a missing-pulse regime**, so Review 6 §3's oscillator
+  machinery is not the priority, and its §8 ranking is confirmed in the
+  order it gave.
+- **The demo remains unsolved and is a different problem from the rig.**
+  Fixing the arithmetic doubled the rig slice and moved the demos by one
+  clip. The demo failure is that the teacher's syllable rate is louder than
+  her beat, at a non-integer ratio — which is exactly the case a prior over
+  plausible tempos for a known exercise is built to break.
+
+### Recommendation
+
+1. **Adopt nothing yet**, per the commission. But note that unlike SW-1,
+   this one has a candidate worth an adoption increment later: replacing
+   `calculate_tempo`'s median with an all-pairs or comb period estimate is
+   a **logic change under a zero-regression gate**, and it would need its
+   own pre-registration and an owner re-bless.
+2. **The prior table is now better motivated, not less.** Arm C shows two
+   demos whose dominant periodicity is the bar and five whose dominant
+   periodicity is the syllable rate at a non-integer ratio. A prior that
+   knows a rond de jambe is a waltz near 96 is precisely what turns those
+   into the right ×3.
+3. **Do not build the oscillator.** Measured, and it is not our disease.
