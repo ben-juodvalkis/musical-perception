@@ -1,0 +1,212 @@
+{
+ "blocked": {},
+ "tools": {
+  "beat_this": {
+   "barre6-coupe-barre-demo": {
+    "acc2": true,
+    "between_levels": false,
+    "bpm": 102.27,
+    "factor": 3.0,
+    "pass": true,
+    "raw": 34.09,
+    "truth": 108.0
+   },
+   "barre6-degage-demo": {
+    "acc2": true,
+    "between_levels": false,
+    "bpm": 111.11,
+    "factor": 1.0,
+    "pass": true,
+    "raw": 111.11,
+    "truth": 110.0
+   },
+   "barre6-fondu-demo": {
+    "acc2": false,
+    "between_levels": true,
+    "bpm": 93.75,
+    "factor": 1.0,
+    "pass": false,
+    "raw": 93.75,
+    "truth": 86.0
+   },
+   "barre6-frappe-demo": {
+    "bpm": null,
+    "pass": false,
+    "raw": null,
+    "truth": 135.0
+   },
+   "barre6-plie-demo": {
+    "bpm": null,
+    "pass": false,
+    "raw": null,
+    "truth": 120.0
+   },
+   "barre6-rond-de-jambe-demo": {
+    "bpm": null,
+    "pass": false,
+    "raw": null,
+    "truth": 96.0
+   },
+   "barre6-tendu-demo": {
+    "bpm": null,
+    "pass": false,
+    "raw": null,
+    "truth": 102.0
+   },
+   "barre6-tendu-warmup-demo": {
+    "bpm": null,
+    "pass": false,
+    "raw": null,
+    "truth": 112.0
+   }
+  },
+  "essentia_re2013": {
+   "barre6-coupe-barre-demo": {
+    "acc2": true,
+    "between_levels": false,
+    "bpm": 108.54,
+    "factor": 1.0,
+    "pass": true,
+    "raw": 108.54,
+    "truth": 108.0
+   },
+   "barre6-degage-demo": {
+    "acc2": true,
+    "between_levels": false,
+    "bpm": 114.34,
+    "factor": 1.0,
+    "pass": true,
+    "raw": 114.34,
+    "truth": 110.0
+   },
+   "barre6-fondu-demo": {
+    "acc2": true,
+    "between_levels": false,
+    "bpm": 90.45,
+    "factor": 1.0,
+    "pass": true,
+    "raw": 90.45,
+    "truth": 86.0
+   },
+   "barre6-frappe-demo": {
+    "acc2": true,
+    "between_levels": true,
+    "bpm": 71.77,
+    "factor": 0.5,
+    "pass": false,
+    "raw": 143.54,
+    "truth": 135.0
+   },
+   "barre6-plie-demo": {
+    "acc2": false,
+    "between_levels": true,
+    "bpm": 89.93,
+    "factor": 1.0,
+    "pass": false,
+    "raw": 89.93,
+    "truth": 120.0
+   },
+   "barre6-rond-de-jambe-demo": {
+    "acc2": false,
+    "between_levels": true,
+    "bpm": 103.69,
+    "factor": 1.0,
+    "pass": false,
+    "raw": 103.69,
+    "truth": 96.0
+   },
+   "barre6-tendu-demo": {
+    "acc2": false,
+    "between_levels": true,
+    "bpm": 91.19,
+    "factor": 1.0,
+    "pass": false,
+    "raw": 91.19,
+    "truth": 102.0
+   },
+   "barre6-tendu-warmup-demo": {
+    "acc2": false,
+    "between_levels": true,
+    "bpm": 90.0,
+    "factor": 1.0,
+    "pass": false,
+    "raw": 90.0,
+    "truth": 112.0
+   }
+  },
+  "librosa_plp": {
+   "barre6-coupe-barre-demo": {
+    "acc2": true,
+    "between_levels": false,
+    "bpm": 112.35,
+    "factor": 1.0,
+    "pass": true,
+    "raw": 112.35,
+    "truth": 108.0
+   },
+   "barre6-degage-demo": {
+    "acc2": true,
+    "between_levels": false,
+    "bpm": 112.35,
+    "factor": 1.0,
+    "pass": true,
+    "raw": 112.35,
+    "truth": 110.0
+   },
+   "barre6-fondu-demo": {
+    "acc2": true,
+    "between_levels": true,
+    "bpm": 92.29,
+    "factor": 0.5,
+    "pass": true,
+    "raw": 184.57,
+    "truth": 86.0
+   },
+   "barre6-frappe-demo": {
+    "acc2": true,
+    "between_levels": false,
+    "bpm": 136.0,
+    "factor": 1.0,
+    "pass": true,
+    "raw": 136.0,
+    "truth": 135.0
+   },
+   "barre6-plie-demo": {
+    "acc2": false,
+    "between_levels": true,
+    "bpm": 95.7,
+    "factor": 1.0,
+    "pass": false,
+    "raw": 95.7,
+    "truth": 120.0
+   },
+   "barre6-rond-de-jambe-demo": {
+    "acc2": false,
+    "between_levels": true,
+    "bpm": 86.13,
+    "factor": 1.0,
+    "pass": false,
+    "raw": 86.13,
+    "truth": 96.0
+   },
+   "barre6-tendu-demo": {
+    "acc2": true,
+    "between_levels": false,
+    "bpm": 103.36,
+    "factor": 1.0,
+    "pass": true,
+    "raw": 103.36,
+    "truth": 102.0
+   },
+   "barre6-tendu-warmup-demo": {
+    "acc2": false,
+    "between_levels": true,
+    "bpm": 80.75,
+    "factor": 0.5,
+    "pass": false,
+    "raw": 161.5,
+    "truth": 112.0
+   }
+  }
+ }
+}
