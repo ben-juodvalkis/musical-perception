@@ -51,8 +51,14 @@ Fresh cloud session on the top-tier model. Branch
 precondition (charter amendment 2):** first act is a cheap
 write-and-commit probe; a session that cannot write stops with its
 diagnostic. Environment: documents and frozen artifacts only; no media is
-needed or sought. `bash scripts/cloud-setup.sh` (no `--live`) is
-permitted for replaying frozen traces or a suite check; never required.
+needed or sought. **The session installs its own tooling:** right after
+the probe, run `bash scripts/cloud-setup.sh` (no `--live`) so frozen
+traces can be replayed and the suites run; if it fails, say so in the
+briefing and continue on documents alone — it is a convenience, never a
+precondition. The cloud environment carries **no setup script** (an
+environment-level setup script does not run inside the repository for a
+Routine-started session; observed twice on 2026-09-01/02, exit 127), so
+this step is the session's own.
 
 ### Phase 1 — the read (unattended, before the owner is engaged)
 
@@ -360,7 +366,8 @@ from a session starts its fresh session with no repository attached
 would have been missing too). Settings: repository
 `ben-juodvalkis/musical-perception`, branch `main`; environment
 *musical perception research*; the top-tier model; no schedule (fired by
-hand); push notification on. The prompt:
+hand); push notification on; **the environment's setup-script box left
+empty** (see *Session shape* above). The prompt:
 
 ```
 You are running the LATERAL REVIEW for the musical-perception research

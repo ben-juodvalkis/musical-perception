@@ -12,7 +12,9 @@ docs/research/lateral-review-protocol.md in full and follow it exactly;
 it is the source of truth. If it is missing, stop and say so.
 
 Then: branch agent/lateral-YYYY-MM-DD from origin/main and do the
-write-and-commit probe; the unattended read; the anomalies and the
+write-and-commit probe; install the tooling with
+`bash scripts/cloud-setup.sh` (continue without it if it fails); the
+unattended read; the anomalies and the
 assumption ledger; the outward scan (this machine has full internet and
 may have a browser tool — use them, and read the papers that matter in
 full); the ideas, the graveyard check and the ranked question pool; then
