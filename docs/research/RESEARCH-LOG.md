@@ -10765,3 +10765,30 @@ Status: PROPOSED, REPORTED-ONLY. Constraints: nothing under
 modified; pytest **373 passed / 3 skipped**;
 `git diff --stat origin/main` shows only `docs/research/` and
 `scripts/`. Adoption waits for the owner's batch review.
+
+## 2026-09-02 · rung M · agent/sw1-pr1-air · local (owner-attended, after the Air run) — PROPOSED AMENDMENT: the accent line is held
+
+**Owner-directed in session.** Reviewing tonight's two deliverables, the
+owner asked why meter was being worked at all when the ratified rung is
+the pulse. The record answers it two ways at once, and both are true:
+the CURRENT RUNG block says *"Step one is the PULSE only: its tempo"* and
+*"Meter, structure and style are steps two–four … gating nothing in step
+one"*; the same block also carries PR-1, which he commissioned the same
+evening as the blocked half of an earlier diagnostic, bundled by his word
+under a rule-6 exception. The rung was never meter. A finished meter
+diagnostic rode alongside it.
+
+His ruling: **hold the accent line.** PR-1 stays COMPLETE and its
+findings stand, but its own recommendation — tap the dégagé and frappé
+take grids, re-run, build the chunked WhiStress adapter — is **not
+taken** until the meter step is commissioned. Written into the charter's
+CURRENT RUNG block as a PROPOSED amendment (rule 9: agents propose,
+the owner ratifies).
+
+Agent note, recorded because it is the session's own error and not the
+owner's: the Air session's chat summary **led with the PR-1 meter
+findings and put the pulse sweep second**, which made a bundled
+diagnostic read as the night's main work. The ordering of a summary is
+not cosmetic when it is how the owner reads what the rung is.
+
+Status: PROPOSED, owner's to ratify at batch review.
