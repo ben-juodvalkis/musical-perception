@@ -11156,3 +11156,131 @@ thing that varies.
 
 Committed before the script exists; scored honestly in the RESULTS
 section below, hits and misses both.
+
+## 2026-09-02 · RESET, step one (pulse) · agent/step-one-blocked-20260902 · local (unattended) — RESULTS: AP-1, the all-pairs separator
+
+**Full memo:** [ap1-all-pairs-separator.md](ap1-all-pairs-separator.md);
+raw rows in `ap1-all-pairs-separator.json`; script
+`scripts/ap1-all-pairs-separator.py`.
+
+**Headline, and it is not the big number.** Replacing the median of
+consecutive gaps with an all-pairs harmonic sum — one function, identical
+event stream, identical band rule — takes the estimator-level pass rate
+from **16/34 to 29/34** and cuts median tempo error from **8.6 % to
+0.9 %**. But the win is on the 26 **rig** clips (12/26 → 24/26, zero
+losses), and step one's target is the **demos**, where it is 4/8 → 5/8
+with one luck-flagged pass and one genuine loss. The mechanism §3 named
+is real; it is not where the rung's remaining failure lives.
+
+| arm | pass | demo | rig | Acc2 | btwn | btwn-demo | odd | even | gap |
+|---|---|---|---|---|---|---|---|---|---|
+| A median-consecutive (CONTROL) | 16/34 | 4/8 | 12/26 | 16 | 21 | 5 | 9/17 | 7/17 | 0.118 |
+| **B1 all-pairs harmonic (PRIMARY)** | **29/34** | 5/8 | 24/26 | 30 | 6 | 4 | 16/17 | 13/17 | 0.176 |
+| B2 comb null-subtracted | 28/34 | 4/8 | 24/26 | 28 | 6 | 4 | 14/17 | 14/17 | 0.000 |
+
+**Control reproduces SW-1's published numbers exactly** (16/34 · 4/8 ·
+12/26 · Acc2 16 · between-levels 21) — pre-registered as the condition
+for the comparison to mean anything.
+
+### Scorecard: 3 of 7 landed
+
+| # | prediction | outcome |
+|---|---|---|
+| P1 | B1 demo ≥ 6/8 | **MISS** — 5/8 |
+| P2 | B1 rig ≥ 12/26 | **HIT** — 24/26 |
+| P3 | B1 total ≥ 20/34 | **HIT** — 29/34 |
+| P4 | btwn ≤ 14 total and ≤ 2 demo | **SPLIT** — 6 (hit) / 4 (miss) |
+| P5 | plié **and** rond de jambe both flip | **MISS** |
+| P6 | B2 ≤ B1 overall, ≥ B1 on sparse demos | **SPLIT** — 28≤29 (hit) / 0-of-2 vs 1-of-2 (miss) |
+| P7 | B2 degeneracy guard < 25 % at ceiling | **HIT** — 11.8 %, B2 interpretable |
+
+Scored strictly (a two-clause prediction with one clause failing is not a
+hit). The honest summary of the scorecard: **the direction was right and
+the location was wrong.** The pre-registration bet the fix would land on
+the demos; it landed on the rig clips.
+
+### Luck flag, declared rather than discovered later
+
+B1's rond-de-jambe pass is a **search-boundary artifact**. Exactly two of
+34 clips chose a period at the edge of the frozen search range, and they
+are the two sparsely-voiced demos: plié and rond de jambe both pinned
+τ = 0.20 s (the fast ceiling — no interior maximum was found at all) and
+both projected by ⅓ to exactly 100.0 BPM. Plié's truth is 120 and it
+fails; rond de jambe's is 96, so the same non-answer lands 4.2 % out and
+passes. One of the eight demo rows is a coin landing well.
+
+### Regressions and classifications
+
+One: **`barre6-tendu-warmup-demo`, genuine-trade.** A read 110.5 against
+a truth of 112 (a 1.4 % green); B1 reads 126.1 — 12.5 % high, not an
+octave relative. Nothing else regressed anywhere on the 34 rows.
+
+**This is the finding that matters more than the 29/34:** the handoff's
+§4 two-modes account **survives**. The two clips it called
+"reconstruction" (teacher voices beats 1 and 3 only; the beat can fall
+where nothing sounds) are exactly the two where all-pairs finds no period,
+and §4's own honest counterexample — tendu-warmup, sparsely voiced yet
+passing — is the clip this arm breaks. Period-fitting on the event train
+does not solve the sparse mode, and B2, the arm built to tolerate empty
+grid slots, does not solve it either (0 of 2). That is `posterior.py`'s
+problem shape (ADR-017), not an estimator's.
+
+### Two misses that belong to the projection, not the estimator
+
+- **frappé**: B1's raw is **143.88 against truth 135 — 6.6 % off, inside
+  tolerance** — but 2.8 % above the band ceiling, so factor 1.0 is refused
+  and ½ takes it to 71.94. A correct reading, halved by the hard band.
+- **`rig-numbers-4-4-80-triplet`** (→119.5 vs 80) and
+  **`adr006-8-counts-triple`** (→100.7 vs 68) both lock a level 1.5× from
+  truth, which the factor set {1, 2, ½, 3, ⅓} **cannot** correct: it
+  contains no 3/2. A three-against-two level confusion is uncorrectable by
+  construction.
+
+Both are Standing Lesson 2's territory. **Neither is fixed here** —
+choosing a fix after seeing which fix would have helped is not a
+prediction. They are written up as pre-registerable next tests (memo §8).
+
+### Confound checked rather than assumed
+
+The rig clips are counted against a metronome, so a periodicity method
+could have been finding the click. It was not: the case notes record
+*"metronome-locked at 120 in one earbud."* The metronome was never in the
+recording. The 12/26 → 24/26 is voice.
+
+### What this does NOT establish
+
+**Not the shipping path.** Arm A is peakRate + median + projection;
+`analyze()` commits through `normalize_tempo`, the posterior and
+arbitration. The blessed baseline's tempo **0.606 (20/34) is a different
+quantity from A's 16/34, and no number in this entry may be quoted as a
+baseline delta.** What adoption would actually move is unmeasured, and
+adoption is its own increment with a typed gate on the shipping path.
+Also not established: anything about meter, structure or style; and
+nothing here touches, approximates or substitutes for the owner's blind
+prior table, which still gates §7's ablation.
+
+**Lesson (durable):** The corpus has two populations and they fail for
+different reasons — when the owner counts, one syllable is one beat and
+the estimator was simply reading the wrong statistic (fixed here, 12→24);
+when the teacher demonstrates, the events are 2.6-per-beat *and*
+sometimes absent on the beat, and only the first half of that is an
+estimator problem. A 13-clip win on the wrong population is worth
+exactly as much as the rung says it is, which is why the demo column is
+reported first in the memo and the rig number never travels alone.
+Second lesson, procedural: this session's own first act was a BLOCKED
+note asserting there was nothing to do; the gate in the handoff was real
+but covered §7's ablation only, and reading it as covering the whole rung
+cost a deliverable. **An owner gate on one increment is not a gate on the
+rung** — check what the gate is actually attached to.
+
+**Constraints verified:** branch `agent/step-one-blocked-20260902`;
+`git diff --stat main` shows only `docs/research/` and `scripts/` (shown
+in transcript); no file under `evals/cases/`, `evals/traces/` or
+`evals/baseline.json` modified or deleted; `src/` untouched, so not an
+EVAL-CHANGE and no scorer code touched; media checksum-verified 34/34
+against each trace's `media_sha256`; pytest 373 passed / 3 skipped.
+
+**Status: PROPOSED, REPORTED-ONLY.** Nothing wired into any pipeline
+path; no outcome pinned; a rejection of the whole line costs the artifact
+and nothing else. Supersedes this session's earlier BLOCKED entry, which
+stands uncorrected in the record as the mistake it was.
