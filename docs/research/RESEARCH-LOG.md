@@ -10241,3 +10241,185 @@ the grid-tapping dependency. Constraints verified: `git diff --stat
 origin/main` shows the ledger, `scripts/w2-reopen-prominence-audit.py`,
 `docs/research/w2-reopen-prominence-audit.json`; pytest 366 passed /
 3 skipped; nothing under `evals/` or `src/` touched.
+
+## 2026-09-01 · RESET, step one (pulse) · agent/reset-step-one-pulse · local (owner-attended, evening) — PRE-REGISTRATION
+
+**Owner-attended, owner-directed reset.** The owner's words, verbatim,
+recorded as the session's charter: *"start over, toss out all
+assumptions."* The target is **the DEMO alone** — the machine should
+reach the same tempo, meter, structure and style the owner reaches by
+watching a teacher demonstrate. **Piano takes are out of the benchmark.**
+Step one is the PULSE only: its tempo, defined as the metric level that
+sits in **70–140 BPM**, with the other levels kept alongside it and never
+discarded (Standing Lesson 2 unchanged: the band names a level, it never
+folds a measurement). Meter, structure and style are later steps, in that
+order, and gate nothing in step one.
+
+Session plan, each act the owner's where it touches truth, grids,
+baseline or charter: (1) demote the 17 barre-6 takes to a reference-only
+slice, still reported; (2) relabel four tempo truths to the in-band
+level, each after the owner listens; (3) tap barre-6 demo grids with the
+owner; (4) re-bless at the owner's explicit direction; (5) goal-ladder
+rewrite for in-session ratification. One branch, one ledger entry,
+rulings quoted as his.
+
+### §1 pre-registration — the reference-slice demotion (EVAL-CHANGE)
+
+**Mechanism chosen (least invasive of three considered):** a tag-keyed
+filter mirroring W1.5's provisional machinery, keyed on the existing
+`clip_role: take` tag. Zero case files touched; rejected alternatives:
+flipping takes to `maturity: provisional` (falsifies their epistemic
+status — the owner DID verify them) and a new schema key (17 file edits
+for the same effect). This is harness + gate-test code, i.e. an
+**EVAL-CHANGE**, taken at explicit owner direction inside this reset and
+never bundled with any pipeline change (none exists today).
+
+Semantics, mirroring `maturity` exactly: a `reference` row is scored and
+reported in its own slice with its own n; it enters no headline
+aggregate, no ECE, no tempo-metrics block, no tag slice; `bless`
+withholds it from the pinned outcomes map under
+`outcomes_withheld_reference`; the tier-1 gate skips reference rows by
+the union of both sides (run + baseline), so a row entering or leaving
+the reference slice cannot gate on the run where it moved. Maturity and
+reference stay orthogonal keys: reference-and-provisional lands in the
+reference slice (demotion is the stronger exclusion), stated so nobody
+re-derives it.
+
+**Pre-registered predictions, written before any code:**
+
+- **P1 (byte-identity on scoring).** Per-case, per-field outcomes are
+  byte-identical on **all 52 tier-1 rows** before vs after the filter —
+  the change touches reporting and pinning, never scoring. tier0 and
+  stage1 outputs byte-identical.
+- **P2 (the split).** The tier-1 headline recomputes over exactly **35
+  rows** (26 rig/counting clips + 9 barre-6 demos); the reference slice
+  prints **n=17** with ids exactly the 17 `clip_role: take` cases.
+- **P3 (pinning, scored at step 4's re-bless).** `bless` prints
+  `pinned 35` and `withheld 17 reference`; the W1.5 tripwire, updated to
+  assert *gating = verified minus reference = pinned*, passes.
+- **P4 (gate).** pytest green after the gate-test update; a reference
+  row's outcome change fails no gate in either direction.
+
+Committed before implementation; results scored against these in the
+RESULTS section below.
+
+## 2026-09-01 · RESET, step one (pulse) · agent/reset-step-one-pulse · local (owner-attended, evening) — RESULTS
+
+**Headline: the benchmark now measures what the owner asked it to — the
+demo alone, at the pulse level a musician would tap — and every change
+tonight was a truth-side change ruled by his ear in session. No pipeline
+file was touched.** Gating set 52 → 34 rows (26 rig/counting + 8
+owner-tapped barre-6 demos); 17 piano takes demoted to a reported
+reference slice; one demo deferred to the meter step; three rig tempo
+truths relabeled in-band; eight demo grids tapped from scratch and
+verified; re-blessed at explicit owner direction; charter amended and
+ratified in session.
+
+### §1 scorecard (the reference-slice demotion, EVAL-CHANGE)
+
+| # | prediction | outcome |
+|---|---|---|
+| P1 | outcomes byte-identical on all 52 rows; tier0/stage1 identical | **HIT** — verified by artifact diff before any truth change |
+| P2 | headline over exactly 35 rows; reference slice n=17, exact take ids | **HIT** (35 became 34 only when the separate ballonné ruling landed later) |
+| P3 | bless prints pinned + withheld-reference; tripwire green | **HIT** — `tier1: pinned 34 outcomes, withheld 18 reference (reported, never gating)` |
+| P4 | pytest green; reference flips gate nothing either direction | **HIT** — 373 passed, 3 skipped |
+
+Mechanism as pre-registered: tag-keyed (`clip_role: take`) mirror of the
+W1.5 provisional machinery, plus `step_one: deferred` for the ballonné
+ruling. Zero case files edited for the demotion itself.
+
+### Owner rulings, quoted
+
+1. Plan, mechanism, pace: *"ok lets do them"*, *"i want to proceed all
+   the way through."*
+2. Rig relabels, each after listening in session: *"yes to all three"* —
+   `rig-numbers-4-4-60-halftempo` 60→120 (the intended tempo on its own
+   label card), `rig-names-2-4-160-long` 160→80,
+   `rig-names-4-4-63-adagio` 63→126. Old values and reasons recorded in
+   each case file's notes.
+3. Ballonné demo (3/4 counted at 160, bar ~53): offered
+   80-by-arithmetic / named-exception-at-160 / defer. **Chose defer**,
+   thinking it through out loud: *"hmm that's tricky. since it's 3/4
+   then the higher rung would be like 53. so not quite sure how to
+   handle that."* Label untouched at 160; case carries
+   `step_one: deferred` and sits in the reference slice until the meter
+   step.
+4. Grid scope: *"All eight tonight."* Annotation method: owner asked
+   *"deleting is really tedious. what about if i just add markers where
+   appropriate?"* — ruled fine: live-tap from scratch, recorded as the
+   `from_scratch` cohort (the ~20 ms anchored-vs-scratch offset never
+   touches P/R/F). Also asked *"do i only add markers for syllables
+   that are on pulses?"* — answered from the ratified convention: one
+   mark per felt beat, voiced-only, prep in, chatter out.
+5. Per-grid rulings while tapping: tendu-warmup taps are voiced-only
+   (teacher voices beats 1+3 of each 3/4 bar); the 39.86 s tap was a
+   double-tap (deleted); 32.95–36.68 s tagged `free_time`. Plié's four
+   identical 0.454 s intervals: *"it's short legs"* — kept. Tendu and
+   fondu flag resolutions (rubato + phrase-final lengthening; in-phrase
+   BPM within 4 % of label) presented in session, uncontested.
+6. Re-bless: *"Bless it."* Run by the agent at explicit owner direction
+   in an attended session (precedent: 2026-09-01 morning).
+
+### The eight grids (all owner-tapped, from scratch, verified)
+
+| grid | beats | grid-implied vs label | QC |
+|---|---|---|---|
+| tendu-warmup | 46 | voiced 1+3 pattern; short-leg mode 110.3 vs 112 | flags owner-resolved |
+| plié | 43 | voiced 1+3; short legs ruled real | flags owner-resolved |
+| tendu | 42 | in-phrase 101.8 vs 102 | rubato + lengthening |
+| dégagé | 61 | 110.25 vs 110 (+0.23 %) | **zero flags** |
+| rond-de-jambe | 74 | waltz 1+3 with rubato, beat 83–110 around 96 | flags owner-resolved |
+| fondu | 44 | in-phrase 82.7 vs 86 (−3.9 %) | flags owner-resolved |
+| frappé | 57 | 132.3 vs 135 (−2.0 %) — **passes**; doubled-count level confirmed as the felt tap | mild rubato |
+| coupé-barre | 52 | 110.25 vs 108 (+2.08 %) | **zero flags** |
+
+QC lesson worth keeping: on voiced-only marking grids the whole-grid
+median BPM check false-alarms structurally (bimodal long-short gaps);
+the honest readouts are the short-leg mode and the within-phrase BPM,
+both of which confirmed the labels tonight.
+
+### Before / after (re-bless at owner direction; no pipeline change)
+
+| field | before (n=52) | after (n=34) |
+|---|---|---|
+| tempo | 0.510 | 0.606 |
+| meter_triple | 0.333 | 0.424 |
+| counts | 0.359 | 0.480 |
+| Acc2@8% | 0.588 | 0.697 |
+| between-levels rows | 22 | 10 |
+
+Outcome flips vs the old baseline: exactly the three pre-registered
+relabel effects (halftempo tempo + meter wrong→correct at 120;
+160-long tempo correct→wrong at 80 — the machine reads the counted
+level, which is now precisely step one's target failure; adagio wrong
+at both labels). The headline rise is composition (the takes were the
+hardest slice: reference tempo 0.333, 12/18 between levels), not
+improvement, and is recorded as such.
+
+### stage1 finding (informational, gates nothing)
+
+Scored against the eight new owner grids, the whisper-word-start
+baseline collapses on demo material: per-demo pulse F 0.09–0.48
+(tendu-demo 0.091), verified-aggregate F 0.412 → 0.272 once demos
+enter. The demo — the reset's entire target — is exactly where the
+word channel goes blind. This is the step-one gap an acoustic/steady-
+window increment has to close.
+
+### Charter amendment (ratified in session)
+
+CURRENT RUNG → RESET STEP ONE with the pre-registered pass criterion
+(committed pulse within ±8 % of in-band truth, beside Acc2@8% and
+between-levels); steps two (meter), three (structure), four (style)
+listed unscoped; rules of engagement unchanged; W15 and W14-b marked
+superseded-pending-review (text retained; W15's completed unreviewed
+increment stays on `origin/agent/marathon` for batch review); owner
+queue item 5 updated (8 of 9 demo grids done); the stale
+"anything other than 30 pinned is a stop" line updated to 34. The
+steady-window idea is noted as step one's first candidate increment —
+owner said "run it" in conversation; per LR-style discipline it stays
+uncommissioned until his batch review.
+
+Status: **BLESSED and ratified 2026-09-01 (evening), owner-attended.**
+Constraints verified: branch `agent/reset-step-one-pulse` off main;
+every truth/grid/baseline/charter change owner-ruled in session; pytest
+373 passed / 3 skipped; merge to main only on the owner's word.

@@ -58,6 +58,24 @@ class Case:
         return self.maturity == PROVISIONAL
 
     @property
+    def reference(self) -> bool:
+        """True for rows the owner demoted out of the benchmark (reset,
+        2026-09-01): the demo is the case, so piano takes are a
+        reference-only slice — scored and reported with their own n,
+        entering no headline aggregate, no gate, and never pinned by
+        `bless`. Keyed on the existing `clip_role` tag so no case file
+        changed. A second key, `step_one: deferred`, marks rows the owner
+        deferred from step one by ruling (fast triple meters: no honest
+        metric level sits inside 70-140, so the case waits for the meter
+        step; its truth label is untouched). Orthogonal to `maturity`: a
+        row both provisional and reference lands in the reference slice
+        (demotion is the stronger exclusion)."""
+        return (
+            self.tags.get("clip_role") == "take"
+            or self.tags.get("step_one") == "deferred"
+        )
+
+    @property
     def accompaniment_only(self) -> bool:
         """True for takes that are accompaniment and nothing else (B5)."""
         return self.tags.get("accompanied") == ACCOMPANIMENT_ONLY

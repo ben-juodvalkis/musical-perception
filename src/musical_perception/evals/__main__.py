@@ -47,7 +47,29 @@ def _print_stage1(suite: str, summary: dict) -> None:
 # Defined in runner.py beside the pinning it guards (W1.6); re-exported
 # here because the CLI and its tests have imported it from this module
 # since W1.5.
-from musical_perception.evals.runner import suite_provisional_ids  # noqa: E402
+from musical_perception.evals.runner import (  # noqa: E402
+    suite_provisional_ids,
+    suite_reference_ids,
+)
+
+
+def _print_reference(suite: str, summary: dict, family_cell, tempo_metrics_line) -> None:
+    """Reset 2026-09-01: the reference slice — owner-demoted piano takes,
+    verified truth, out of the benchmark by ruling. Reported, never gating."""
+    ref = summary.get("reference")
+    if not ref:
+        return
+    print(f"  {suite:6s} -- reference slice, n={ref['n_cases']} cases: "
+          f"{', '.join(ref['case_ids'])}")
+    print(f"  {suite:6s}    (owner-demoted rows — piano takes and step-one "
+          f"deferrals: verified truth, out of the benchmark, gates nothing)")
+    for name, s in ref["fields"].items():
+        print(f"  {suite:6s}  R {name:20s} n={s['n']:3d} correct={s['correct']:3d} "
+              f"wrong={s['wrong']:3d} abstained={s['abstained']:3d} "
+              f"accuracy={s['accuracy']} truth_in_family={family_cell(s)}")
+    tm_line = tempo_metrics_line(ref)
+    if tm_line:
+        print(f"  {suite:6s}  R {tm_line}")
 
 
 def _print_provisional(suite: str, summary: dict, family_cell, tempo_metrics_line) -> None:
@@ -105,6 +127,7 @@ def _cmd_run(args) -> int:
             print(f"  {suite:6s} {tm_line}")
         _print_factored(suite, summary)
         _print_provisional(suite, summary, family_cell, tempo_metrics_line)
+        _print_reference(suite, summary, family_cell, tempo_metrics_line)
 
     baseline_path = root / BASELINE_NAME
     if baseline_path.is_file():
@@ -119,6 +142,8 @@ def _cmd_run(args) -> int:
                     provisional=(
                         suite_provisional_ids(report["suites"][suite])
                         | suite_provisional_ids(base_suite)
+                        | suite_reference_ids(report["suites"][suite])
+                        | suite_reference_ids(base_suite)
                     ),
                 )
         if changes:
@@ -158,9 +183,12 @@ def _cmd_bless(args) -> int:
     print(f"blessed {run_path.name} -> {root / BASELINE_NAME}")
     for suite, block in pinned["suites"].items():
         withheld = block.get("outcomes_withheld_provisional") or []
+        withheld_ref = block.get("outcomes_withheld_reference") or []
         print(f"  {suite}: pinned {len(block.get('outcomes') or {})} outcomes"
               + (f", withheld {len(withheld)} provisional (reported, never gating)"
-                 if withheld else ""))
+                 if withheld else "")
+              + (f", withheld {len(withheld_ref)} reference (reported, never gating)"
+                 if withheld_ref else ""))
     print(f"regenerated {BASELINE_MD}")
     return 0
 

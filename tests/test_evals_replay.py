@@ -42,12 +42,19 @@ def _baseline_provisional(baseline: dict, suite: str) -> set[str]:
     return suite_provisional_ids(baseline.get("suites", {}).get(suite))
 
 
+def _baseline_reference(baseline: dict, suite: str) -> set[str]:
+    from musical_perception.evals.__main__ import suite_reference_ids
+
+    return suite_reference_ids(baseline.get("suites", {}).get(suite))
+
+
 def test_tier1_outcomes_match_baseline_exactly():
     from musical_perception.evals.runner import (
         REBLESS_RECIPE,
         compare_outcomes,
         outcomes_map,
         provisional_ids,
+        reference_ids,
         run_tier1,
     )
 
@@ -55,7 +62,13 @@ def test_tier1_outcomes_match_baseline_exactly():
     current = outcomes_map(results)
     baseline = json.loads(_BASELINE.read_text())
     blessed = baseline["suites"]["tier1"]["outcomes"]
-    excluded = set(provisional_ids(results)) | _baseline_provisional(baseline, "tier1")
+    # Reference rows (owner-demoted takes, reset 2026-09-01) are skipped by
+    # the union of both sides, exactly like provisional rows: a row moving
+    # into or out of the reference slice cannot gate on the run it moved.
+    excluded = (
+        set(provisional_ids(results)) | _baseline_provisional(baseline, "tier1")
+        | set(reference_ids(results)) | _baseline_reference(baseline, "tier1")
+    )
     changes = compare_outcomes(current, blessed, provisional=excluded)
     assert not changes, "tier-1 outcomes changed vs baseline:\n  " + \
         "\n  ".join(changes) + "\n\n" + REBLESS_RECIPE

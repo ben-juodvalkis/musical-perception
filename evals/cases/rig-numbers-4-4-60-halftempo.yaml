@@ -12,7 +12,7 @@ tags:
   accompanied: false
   snr_band: high
 expect:
-  marking_bpm: 60
+  marking_bpm: 120
   meter: "4/4"
   subdivision: none
   counts: 8
@@ -33,3 +33,11 @@ notes: >-
   band-normalization step. Strong candidate for a banded-multiplier fix:
   don't double when raw confidence is already high and coverage is
   total, or widen/soften the band's lower edge.
+
+  RESET RELABEL (owner-attended, 2026-09-01 evening): marking_bpm was 60,
+  now 120. Step one defines the pulse as the metric level inside 70-140;
+  the metronome sat at 60 but the clip's own label card records the
+  intended tempo as 120 ("an exercise he'd run at 120, marked at half
+  speed" -- above). The owner listened to the clip in session and ruled
+  "yes" to 60 -> 120. The 60 level is not discarded: it remains one rung
+  of the reported family (Standing Lesson 2).

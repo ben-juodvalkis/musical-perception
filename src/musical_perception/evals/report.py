@@ -197,6 +197,29 @@ ECE: {prov['ece'] if prov['ece'] is not None else 'n/a'}
 &nbsp; errors: {', '.join(prov['errors']) or 'none'}</p>"""
 
 
+def _reference_section(suite: str, summary: dict) -> str:
+    """Reset 2026-09-01: owner-demoted piano takes — verified truth, out of
+    the benchmark by ruling, reported with their own n."""
+    ref = summary.get("reference")
+    if not ref:
+        return ""
+    tm_line = tempo_metrics_line(ref)
+    return f"""
+<h3>{suite} — reference slice ({ref['n_cases']} cases)</h3>
+<p><strong>Owner-demoted rows (piano takes, step-one deferrals) — verified
+truth, out of the benchmark, gates nothing, pooled into nothing
+above.</strong> Cases: {', '.join(ref['case_ids'])}</p>
+<table>
+<tr><th>field</th><th>n</th><th>correct</th><th>wrong</th><th>abstained</th>
+<th>accuracy</th><th>wilson 95%</th><th>credit</th><th>truth in family</th>
+<th>failure modes</th></tr>
+{_field_rows(ref)}
+</table>
+<p>{tm_line + '<br>' if tm_line else ''}
+ECE: {ref['ece'] if ref['ece'] is not None else 'n/a'}
+&nbsp; errors: {', '.join(ref['errors']) or 'none'}</p>"""
+
+
 def render_html(report: dict) -> str:
     sections = []
     for suite, data in report["suites"].items():
@@ -220,7 +243,7 @@ ECE: {summary['ece'] if summary['ece'] is not None else 'n/a'}
 <table>
 <tr><th>case</th><th>field</th><th>outcome</th><th>pred / exp</th><th>notes</th></tr>
 {_case_rows(data['cases'])}
-</table></details>{_provisional_section(suite, summary)}""")
+</table></details>{_provisional_section(suite, summary)}{_reference_section(suite, summary)}""")
     body = "\n".join(sections)
     return f"""<!doctype html><meta charset="utf-8">
 <title>eval run {report['created_at']}</title>
@@ -291,6 +314,7 @@ def render_markdown_baseline(report: dict) -> str:
             lines.append(f"Case errors: {', '.join(summary['errors'])}")
             lines.append("")
         lines += _provisional_markdown(suite, summary)
+        lines += _reference_markdown(suite, summary)
     return "\n".join(lines)
 
 
@@ -313,6 +337,39 @@ def _provisional_markdown(suite: str, summary: dict) -> list[str]:
         "|---|---|---|---|---|---|---|---|---|",
     ]
     for name, s in prov["fields"].items():
+        acc = s["accuracy"] if s["accuracy"] is not None else "—"
+        wil = s["accuracy_wilson95"] or "—"
+        modes = ", ".join(f"{k}×{v}" for k, v in s["failure_modes"].items()) or "—"
+        lines.append(
+            f"| {name} | {s['n']} | {s['correct']} | {s['wrong']} | "
+            f"{s['abstained']} | {acc} | {wil} | {family_cell(s)} | {modes} |"
+        )
+    lines.append("")
+    return lines
+
+
+def _reference_markdown(suite: str, summary: dict) -> list[str]:
+    """Reset 2026-09-01 slice for the published baseline — the demoted
+    piano takes, separate table, separate n."""
+    ref = summary.get("reference")
+    if not ref:
+        return []
+    lines = [
+        f"### {suite} — reference slice ({ref['n_cases']} cases)",
+        "",
+        "Rows demoted from the benchmark by owner ruling (reset",
+        "2026-09-01): piano takes — the demo is the case; a take is one",
+        "valid realization, kept as reference — and step-one deferrals",
+        "(fast triple meters, waiting on the meter step). Verified truth,",
+        "gates nothing, pooled into none of the numbers above.",
+        "",
+        f"Cases: {', '.join(ref['case_ids'])}",
+        "",
+        "| field | n | correct | wrong | abstained | accuracy | wilson 95% "
+        "| truth in family | failure modes |",
+        "|---|---|---|---|---|---|---|---|---|",
+    ]
+    for name, s in ref["fields"].items():
         acc = s["accuracy"] if s["accuracy"] is not None else "—"
         wil = s["accuracy_wilson95"] or "—"
         modes = ", ".join(f"{k}×{v}" for k, v in s["failure_modes"].items()) or "—"

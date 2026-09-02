@@ -293,8 +293,13 @@ def aggregate(
     a verified-only corpus produces byte-identical output to the pre-W1.5
     harness.
     """
-    verified = [c for c in case_results if not c.provisional]
-    provisional = [c for c in case_results if c.provisional]
+    # Reset 2026-09-01: reference rows (owner-demoted piano takes) leave
+    # the headline the same way provisional rows do, in their own slice.
+    # Demotion is the stronger exclusion: a row both provisional and
+    # reference lands in the reference slice.
+    reference = [c for c in case_results if c.reference]
+    verified = [c for c in case_results if not c.provisional and not c.reference]
+    provisional = [c for c in case_results if c.provisional and not c.reference]
 
     summary = _summarize_cases(verified, slice_keys)
     summary["provisional"] = (
@@ -303,6 +308,13 @@ def aggregate(
             **_summarize_cases(provisional, slice_keys),
         }
         if provisional else None
+    )
+    summary["reference"] = (
+        {
+            "case_ids": sorted(c.case_id for c in reference),
+            **_summarize_cases(reference, slice_keys),
+        }
+        if reference else None
     )
     return summary
 
