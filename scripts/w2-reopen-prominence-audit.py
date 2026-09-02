@@ -541,14 +541,13 @@ def main() -> int:
     line("P4", f"rig combined winners lag 8 >= lag 4: {w}",
          "NOT-RUN" if not summary.get("rig") else ("HIT" if w.get("8", 0) >= w.get("4", 0) else "MISS"))
     mm = get("rig", "intensity", "margin_44_over_24_ge_0.05")
-    ok5 = conf["2/4"]["4/4"] == round(conf["2/4"]["4/4"], 2) or True
     if mm:
         num, den = (int(x) for x in mm.split("/"))
         v5 = "HIT" if (round(conf["2/4"]["4/4"], 2) == 0.90 and round(conf["3/4"]["6/8"], 2) == 0.93 and num * 2 < den) else "MISS"
     else:
         v5 = "NOT-RUN"
     line("P5", f"template matrix 0.90/0.93 reproduced ({conf['2/4']['4/4']:.2f}/{conf['3/4']['6/8']:.2f}); "
-               f"4/4 rig clips with intensity margin >= {MARGIN} fewer than half: {mm}", v5 if ok5 else "MISS")
+               f"4/4 rig clips with intensity margin >= {MARGIN} fewer than half: {mm}", v5)
     ws_ran = any("whistress" in r["channels"] for r in rows)
     line("P6", "whistress channel", "RAN" if ws_ran else "BLOCKED (not installed / --whistress not given)")
     line("P7", "containment: verify with `git diff --stat origin/main`", "SEE-LEDGER")
