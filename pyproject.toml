@@ -44,6 +44,7 @@ all = [
 dev = [
     "pytest>=7.0",
     "pyyaml>=6.0",
+    "scipy>=1.10",  # precision/pulse.py and annotation/peakrate.py import scipy.signal
 ]
 
 [tool.setuptools.packages.find]
