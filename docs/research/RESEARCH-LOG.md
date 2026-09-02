@@ -10640,3 +10640,128 @@ survives on this population too.
 
 Status: PROPOSED, REPORTED-ONLY. Nothing under `src/` or `evals/` was
 touched.
+
+## 2026-09-02 · rung M / SW-1 (the steady-window sweep) · agent/sw1-pr1-air · local (Air, unattended) — RESULTS
+
+**Pre-registration ordering:** the full pre-registration is Part 1 of
+`docs/research/sw1-steady-window-sweep.md`, committed at `c0bae9e`
+**before `scripts/sw1-steady-window-sweep.py` existed**; `git log` on
+this branch shows the order. This entry is the RESULTS half. Search space
+exactly as frozen at commissioning: nothing added, removed or
+re-parameterized after the first scoring run.
+
+**Headline: reading one steady 5-second stretch of peakRate events instead
+of the whole clip gets the tempo right on 23 of the 34 gating rows against
+the shipping pipeline's 20 — but the entire gain is on the owner's rig
+clips (21 of 26 vs 12), and on the eight barre-6 demos, which is what step
+one is actually aimed at, every window variant ties or loses to simply
+reading the whole clip. The oracle built from the owner's own "I knew the
+tempo by here" spans came in BELOW the algorithm's windows. The stretch
+where a musician knows the tempo is not the stretch where the audio is
+most regular.**
+
+Coverage: **34/34 rows on both pulse sources, 0 skipped, 0 checksum
+mismatches** — every media file hashed against its trace's
+`media_sha256` before peakRate read it.
+
+### The table (full version, with per-clip windows, in the memo + JSON)
+
+| variant | pass /34 | demo /8 | rig /26 | between-lvl | half-gap |
+|---|---|---|---|---|---|
+| peakrate-media · 3 s | 19 | **4** | 15 | 19 | **0.059** |
+| peakrate-media · 5 s | **23** | 2 | **21** | 17 | **0.059** |
+| peakrate-media · 8 s | 18 | 3 | 15 | 18 | 0.235 |
+| peakrate-media · whole-clip CONTROL | 16 | **4** | 12 | 21 | 0.118 |
+| peakrate-media · ORACLE CEILING | 14 | 2 | 12 | 22 | 0.118 |
+| whisper-trace · 3 s | 18 | **4** | 14 | 18 | 0.353 |
+| whisper-trace · 5 s | 18 | 1 | 17 | 20 | 0.235 |
+| whisper-trace · 8 s | 15 | 3 | 12 | 19 | **0.059** |
+| whisper-trace · whole-clip CONTROL | 17 | **4** | 13 | 18 | 0.294 |
+| whisper-trace · ORACLE CEILING | 16 | 3 | 13 | 20 | 0.471 |
+
+Blessed baseline, same 34 rows: tempo 20 pass, Acc2@8% 0.697,
+between-levels 10 of 33 committed.
+
+### Selection rule applied, and what it exposed
+
+Stability → demo passes → total passes gives **`peakrate-media · 3 s`**
+(gap 0.059, demo 4/8, total 19/34). **NOT ADOPTED**, per commission —
+and the rule's own output is the argument for not adopting: the winner is
+**not** the variant with the most correct answers. `peakrate-media · 5 s`
+gets 4 more rows right and loses on an 8-row tie-break. Three variants tie
+on the stability gap, so the criterion ranked first barely discriminates
+at n = 34. Reported, not fixed: re-parameterizing the rule after seeing
+the numbers is precisely what the freeze forbids.
+
+### Scorecard: 2 hits, 6 falsified, 2 structural certainties
+
+S1 (no variant beats 0.606) **FALSIFIED** — 23/34 = 0.676 ·
+S2 (a window beats its control on demos by ≥2) **FALSIFIED — the one that
+mattered**; best demo window 4/8, identical to both controls ·
+S3 (peakRate > Whisper on demos at every L) **FALSIFIED** — two ties ·
+S4 (Whisper ≥ peakRate on rig) **FALSIFIED** — peakRate wins at every L ·
+S5 (source matters more than length) **FALSIFIED** — 4.0 vs 3.0 rows mean
+spread ·
+S6 (oracle ≥ best window + 2 on demos) **FALSIFIED IN THE OPPOSITE
+DIRECTION** ·
+S7 (winner half-gap > 0.15) **FALSIFIED** — 0.059 ·
+S8 (peakRate factor ≠ 1 on > ⅓) **HIT** — 17/12/13 of 34, the 5 s figure
+by one row ·
+S9 (`adr006-8-counts-triple` fails everywhere — truth 68.38, below the
+band) **HIT**, 10 of 10 variants ·
+S10 containment **HIT**.
+
+The two hits are the two predictions of a structural certainty. Everything
+the pre-registration was genuinely uncertain about, it got wrong.
+
+### Three findings
+
+**F1 — the win is real and it is entirely rig-side.** peakRate 5 s scores
+21/26 rig against the control's 12: choosing the most regular 5 seconds is
+worth **9 rows** on clips that are one steady thing throughout, where the
+window works as a noise filter (prep counts, codas, explanation removed).
+On the demo it is worth nothing (2/8 vs 4/8).
+
+**F2 — half the corpus still lands between metric levels** (17–22 of 34,
+every variant). The projection moves a number into 70–140; it does not
+decide which level it is. Standing Lesson 3, on schedule.
+**Disclosed, found after the run while checking why 23 + 17 > 34:**
+`pass` and `between_levels` are **not disjoint** as this repo defines
+them — pass is ±8 % as a ratio (|OE1| ≤ 0.111 octaves), between-levels
+starts at |OE2| > 0.08 *octaves* (≈ 5.7 %). Six of the 5 s variant's 17
+between-levels rows are also passes; the honest "between levels and wrong"
+count is **11**. This applies to the blessed baseline's "10 of 33" too.
+
+**F3 — the owner's own window is not the most regular window, and this is
+the result worth acting on.** The oracle, pre-registered as a ceiling, came
+in **below** every measured variant on the demo slice (2/8, 3/8 vs 4/8) and
+below the whole-clip control. Frappé's knowing-span reads 83.7 against a
+truth of 135; tendu-warmup's reads 92.5 against 112. He is reading the
+demonstration — how she marks the first count, the shape of the movement —
+not the evenness of her syllables. This retires, on evidence, the
+assumption underneath the whole idea: there was no audio-steady window he
+was reading. It is a vote for the movement half (deferred at commissioning
+per W7/W10) and for W13's information-timing line, not for tuning window
+lengths.
+
+**F4 (named, not measured further):** within peakRate the three lengths
+span 18–23 passes non-monotonically. Picking 5 s because it scored best
+would be fitting to 34 rows; a future adoption increment must defend the
+length, not inherit it.
+
+### Recommendation to the owner
+
+1. **Adopt nothing from this sweep.** The variant that wins the frozen rule
+   and the variant that wins the corpus are different variants. That
+   disagreement is an agent's to surface, not to break.
+2. The only large effect (F1) is rig-side noise filtering — worth least
+   where step one is aimed.
+3. **F3 is the finding.** The sweep's own ceiling says audio regularity is
+   not the cue.
+
+Status: PROPOSED, REPORTED-ONLY. Constraints: nothing under
+`src/musical_perception/` changed; no file under `evals/cases/`,
+`evals/grids/`, `evals/traces/` or `evals/baseline.json` created or
+modified; pytest **373 passed / 3 skipped**;
+`git diff --stat origin/main` shows only `docs/research/` and
+`scripts/`. Adoption waits for the owner's batch review.
