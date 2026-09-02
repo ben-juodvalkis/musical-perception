@@ -10896,3 +10896,83 @@ across the whole recording.
 **Standing target after this note:** the demo tempo failure is 2.6 events
 per beat plus a median that averages the syllable rate into the beat rate.
 Not timing, not window choice, not the annotation.
+
+## 2026-09-02 · rung M · agent/sw1-pr1-air · local (owner-attended) — the pulse handoff, and the owner action that gates the next increment
+
+**Owner-directed write-up of the session's discussion.** Full document:
+[pulse-next-step.md](pulse-next-step.md), which is the file a fresh
+thread reads instead of re-reading this ledger.
+
+**Headline of the discussion, in one line: nothing in the pipeline
+separates beats from syllables, and the domain knowledge that would do it
+is already sitting unused in every frozen trace.**
+
+### What the conversation established
+
+1. **There is no separation step.** `calculate_tempo` medians *consecutive*
+   gaps; `normalize_tempo` then picks a metric level by ×/÷{2,3}. The
+   second step is a level chooser that assumes the beat is already an
+   integer multiple of what was measured. Event-to-tap ratios across the
+   8 demos are 1.9 · 2.2 · 2.5 · 2.5 · 2.5 · 2.7 · 3.0 · 4.1 —
+   non-integer and varying inside a clip — which is why **all four demo
+   misses land 9–12 % off and none is a clean double or half**. Only
+   adjacent gaps are examined, discarding the all-pairs distances in which
+   the beat period survives the clutter (Standing Lesson 3's named
+   methods all use them).
+2. **Owner introspection, and it names two machines.** *"sometimes I hear
+   a rate, but sometimes it's more like some sporadic beats, and I have to
+   reconstruct the underlying pulse, like if it's really syncopated."*
+   Entrainment vs latent-grid reconstruction — and in the second, the beat
+   can fall where nothing sounds, which no period-fitting method can
+   place. The four failing demos split along exactly those modes: frappé
+   and fondu are non-stationary (frappé runs 139→132→**165** across one
+   clip), plié and rond-de-jambe are sparsely voiced (beats 1 and 3 of a
+   3/4 bar). Counterexample recorded: tendu-warmup is sparsely voiced and
+   passes anyway.
+3. **A Standing Lesson is under strain.** Lesson 6 ("silence is evidence";
+   a hypothesis predicting a strong beat where nothing was voiced pays for
+   it) read literally penalises the syncopated reading above. It needs to
+   be a cost that better explanation can outweigh, not a veto. **Flagged,
+   not amended** — the owner's to rule.
+4. **The unused channel.** Gemini's read is in every frozen trace and
+   wired to nothing. On the 8 demos: **exercise named right 6/8** at
+   0.9–1.0 confidence (misses are near-neighbours: coupé-barre→jeté,
+   dégagé→tendu); **meter right 6/8**; **its own tempo right 2/8** (200
+   against 108, 69 against 102, 68 against 96). So the play is not to ask
+   the model for tempo — it is to let the exercise label choose the prior
+   and let the acoustic measurement measure inside it. Rung 4 anticipated
+   this ("exercise-conditioned priors at level selection only") and it was
+   never built.
+5. **A truth-side question only the owner can answer**, raised and left
+   open: when the teacher's tempo moves 26 BPM inside one demo, what
+   should the accompanist commit to — the starting tempo, the settled one,
+   or the one at the moment he must begin? The single label on that case
+   is currently a summary of a moving target.
+
+### NEXT STEP is an owner action, and it gates the increment
+
+**The owner writes a blind prior table** — exercise type → plausible
+tempo range and usual meter, from professional knowledge, **before
+looking at what the corpus clips are labelled**. Template in
+`pulse-next-step.md` §6, with the two questions that go with it.
+
+**No agent may author this table or derive it from the corpus.** Taking
+"rond de jambe ≈ 96" from the one rond de jambe clip in the gating set is
+memorising the answer key. This is the whole reason the action is the
+owner's.
+
+Then, and only then, a REPORTED-ONLY pre-registered ablation (§7): the
+estimator alone · with the prior keyed off Gemini's own exercise guess,
+errors included · with the prior keyed off the true exercise as the
+control that separates "the prior helps" from "the labelling is good
+enough." Stated in advance: n = 8 demos, roughly one clip per exercise, so
+the result is indicative and never settled.
+
+### Do-not list carried into the next thread
+
+Do not chase the −69 ms offset (it cannot move a tempo number) · do not
+run another window sweep (SW-1 answered it) · do not take the accent
+line (held until step two) · do not cite SW-1's F3 (withdrawn) · do not
+author the prior table.
+
+Status: PROPOSED. pytest 373 passed / 3 skipped.
