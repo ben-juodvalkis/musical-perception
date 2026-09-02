@@ -1,0 +1,4 @@
+2.1100	5.1100	3s-window read 118.43 (x0.3333333333333333, truth 112)
+26.6100	31.6100	5s-window read 136.66 (x2.0, truth 112)
+17.6100	25.6100	8s-window read 100.48 (x1.0, truth 112)
+4.0000	40.0000	YOUR knowing-span read 92.52 (truth 112)

@@ -10484,3 +10484,495 @@ only if audio regularity alone cannot find the window).
 
 Status: COMMISSIONED. The Air session executes; adoption decisions wait
 for the owner's batch review.
+
+## 2026-09-02 · rung M / W2-reopen (PR-1: the barre-6 half) · agent/sw1-pr1-air · local (Air, unattended) — RESULTS ADDENDUM
+
+**Headline: the blocked half ran, on all 26 clips, and it is the first
+place in this line of work where measuring the teacher's loudness finds
+the bar. On the eight demo grids the owner tapped, loudness beats a
+shuffle null at the bar on `barre6-degage-demo` (p = 0.005) and the
+combined prominence channel does on dégagé and frappé (p ≈ 0.045 — at
+the false-positive floor); W2's timing-only channels find the bar on
+0 of those 8. On the 18 grids that are still peakRate guesses, every
+prominence channel finds the bar on 0 of 18, exactly as the
+pre-registration said it would. Two clips out of eight is not a
+detector, and the 4/4-versus-2/4 contrast is still absent — 0 of 5
+demo 4/4 clips beats the null on the template margin.**
+
+Deliverables: `docs/research/w2-reopen-prominence-audit-barre6.json`
+(the commissioned command, seed 20260902, 400-draw null) and
+`docs/research/w2-reopen-prominence-audit-barre6-whistress.json` (the
+`--whistress` run, below). Coverage: **26 of 26 barre-6 grids scored,
+0 skipped, 0 checksum mismatches** — every grid's `media_sha256`
+verified against the staged file before it was read.
+
+### Scoring P1-b honestly: the verifiable population is 8, not 26
+
+P1-b was written on 2026-09-02 expecting all 26 grids tapped. They are
+not. The 2026-09-01 evening reset tapped and verified **8 demo grids**;
+`barre6-ballonne-demo` and the 17 take grids remain `provisional:
+true` — peakRate pre-annotations at 0.6×–2.4× the true beat count. On a
+mis-scaled grid "lag 4" is not the bar, so those 18 rows cannot answer
+the question at all. They are reported as their own slice and excluded
+from every claim below.
+
+**P1-b as written is not scoreable at its own denominator**: ≥ 10 of 26
+requires 26 tapped grids, and 8 exist. Scored as a MISS on the letter,
+with the population it can actually be asked of reported beside it. Its
+second half — *intensity bar-lag significant on more takes than demos* —
+is **falsified in the available data** (0 takes vs 1 demo), but that
+comparison is confounded by grid maturity, not a clean test: the takes
+are still provisional. It becomes askable when take grids are tapped.
+
+### The three slices
+
+| slice | channel | any sig lag (p<.05) | at p<.01 | sig AT the bar lag | at p<.01 |
+|---|---|---|---|---|---|
+| **verified demos (n=8)** | W2 (timing) | 0/8 | 0 | **0/8** | 0 |
+| | intensity | 2/8 | 2 | **1/8** | **1** |
+| | f0 | 2/8 | 0 | **1/8** | 0 |
+| | combined | 4/8 | 0 | **2/8** | 0 |
+| **provisional (n=18)** | W2 (timing) | 4/18 | 2 | 0/18 | 0 |
+| | intensity | 2/18 | 0 | 0/18 | 0 |
+| | f0 | 2/18 | 1 | 0/18 | 0 |
+| | combined | 1/18 | 1 | 0/18 | 0 |
+| **all barre-6 (n=26)** | combined | 5/26 | 1 | 2/26 | 0 |
+
+Every bar-lag hit in the whole run, by name:
+
+| clip | channel | bar lag | on-minus-off (z) | p | grid |
+|---|---|---|---|---|---|
+| `barre6-degage-demo` | intensity | 4 | +0.735 | **0.005** | verified |
+| `barre6-degage-demo` | combined | 4 | +0.542 | 0.045 | verified |
+| `barre6-frappe-demo` | f0 | 4 | +0.778 | 0.030 | verified |
+| `barre6-frappe-demo` | combined | 4 | +0.550 | 0.045 | verified |
+
+Five lags are tested per clip with no correction, so the p<.05 floor is
+roughly one clip in five by chance: 2 of 8 is **at** that floor. Only
+the dégagé intensity hit clears p<.01, and it is one clip.
+
+### P1 and the scorecard
+
+| # | prediction | outcome |
+|---|---|---|
+| P1 | barre-6 combined bar-lag ≤ 8/26 on provisional grids | **HIT** — 2/26 (and 0/18 within the provisional slice itself) |
+| P1-b | ≥ 10/26 once tapped; intensity on more takes than demos | **MISS as written** — denominator does not exist (8 tapped, not 26); on the verifiable 8: intensity 1/8, combined 2/8; the takes-vs-demos half falsified but confounded by grid maturity |
+| P5 (barre-6 restatement) | 4/4 template margin over 2/4 | **holds** — on the 5 verified 4/4 demos, margin ≥ 0.05 on 2/5 (intensity) but **0/5 beat the shuffle null**; best p = 0.070 (frappé, f0). Across all 18 4/4 barre-6 rows: 0/18 (intensity), 1/18 (f0) |
+| P6 | WhiStress adds < 2 bar-lag clips over intensity | **RAN, and it adds 0 — but for a coverage reason, not an evidence reason** (below) |
+| P7 | containment | **HIT** — `git diff --stat origin/main` below; nothing under `evals/` or `src/`; pytest green |
+
+### P6 — WhiStress is no longer BLOCKED, and it is not usable as shipped
+
+The cloud runner could not reach GitHub; **this machine can**. WhiStress
+cloned, its weights downloaded from Hugging Face, and the adapter that
+shipped untested on 2026-09-02 ran on all 26 clips with **zero
+failures**. That closes the BLOCKED-on-network state by name.
+
+What it produced is another matter, and the number is the finding:
+**WhiStress labelled 427 of 2,770 beats (15 %)**, and its channel is
+*constant* — no contrast at all — on **10 of 26 clips**. The cause is
+not the adapter's word alignment, which matches almost perfectly where
+labels exist (e.g. `barre6-tendu-demo`: 19 of the 20 returned words
+aligned to the trace). The stock `WhiStressInferenceClient` simply
+returns only the first **16–27 words of each clip, covering the first
+≈ 6–8 seconds**, regardless of clip length (tendu-demo: 20 words to
+t = 8.2 s of a 50 s clip; plié-demo: 16 words to t = 6.5 s of 78 s;
+frappé-demo: 17 words to t = 8.0 s of 55 s). Its result — 0 of 26 at
+any lag — is therefore **not evidence about stress and the bar**; it is
+a report that the channel is 85 % empty. Testing P6 properly needs a
+chunked-inference adapter that walks the clip in windows. Parked, not
+attempted here (rule 6).
+
+Fidelity caveat, disclosed: WhiStress pins `torch==2.5.1`,
+`transformers==4.52.2`, `numpy==2.0.2`; installing those would have
+downgraded this repo's environment mid-session, so it was run against
+the installed `torch 2.8.0` / `transformers 4.57.6` from a clone outside
+the repository. It loaded and ran without error, but this is not the
+authors' pinned environment and its labels are not verified against
+their reference output.
+
+### Two script changes, disclosed
+
+`scripts/w2-reopen-prominence-audit.py` was written where the only media
+was rig MP3s, which `soundfile` reads directly. **Every barre-6 clip is
+an MP4, which `soundfile` refuses** ("Format not recognised"), so the
+commissioned command failed on its first call. Two changes, both plumbing
+and neither touching the measurement:
+
+1. `_load_media` routes video through `ffmpeg -vn -ac 1` to a temporary
+   WAV at the file's native rate before librosa reads it — the same
+   extraction `annotation/__main__.py:_load_audio` already uses. The same
+   samples reach parselmouth either way.
+2. The same extraction (at 16 kHz) is handed to WhiStress, which loads
+   the media itself; and the WhiStress client is now loaded **once per
+   process** instead of once per clip.
+
+No channel definition, window, detrend, null, seed or lag set changed.
+The W2 timing channel and the template matrix reproduce exactly
+(0.90 / 0.93; `barre6` W2 bar-lag 0/26 both before and after).
+
+### What this does and does not establish
+
+**Establishes:** on the material the owner described — a teacher over a
+pianist — measuring genuine loudness at each tapped beat finds bar-level
+periodicity where W2's timing-only channels found none (1–2 of 8 vs
+0 of 8). The cue is not absent. It is also not yet a detector: one clip
+at p<.01, two at the five-lag false-positive floor, n = 8.
+
+**Does not establish:** anything about the 17 takes, whose grids are
+peakRate guesses — the intensity channel there would in any case hear
+the *pianist's* downbeat, the caveat carried from the pre-registration.
+Nor anything about 4/4 versus 2/4: the medium third beat is still not
+louder, on any channel, on any demo (0/5 beat the null). W2's Finding 2
+survives on this population too.
+
+### Recommendation to the owner
+
+1. The cheapest next move is unchanged and is now better aimed: **tap
+   the take grids for dégagé and frappé** — the two clips where loudness
+   already finds the bar on the demo — and re-run this command. Two
+   grids turn a 2-of-8 observation into a testable claim about whether
+   the cue survives the piano.
+2. WhiStress needs a chunked adapter before it says anything. It is a
+   half-hour of work and it is not commissioned; it is parked here.
+3. No pipeline change follows. Accent periodicity remains one
+   observation channel inside W5, as ruled 2026-08-24.
+
+Status: PROPOSED, REPORTED-ONLY. Nothing under `src/` or `evals/` was
+touched.
+
+## 2026-09-02 · rung M / SW-1 (the steady-window sweep) · agent/sw1-pr1-air · local (Air, unattended) — RESULTS
+
+**Pre-registration ordering:** the full pre-registration is Part 1 of
+`docs/research/sw1-steady-window-sweep.md`, committed at `c0bae9e`
+**before `scripts/sw1-steady-window-sweep.py` existed**; `git log` on
+this branch shows the order. This entry is the RESULTS half. Search space
+exactly as frozen at commissioning: nothing added, removed or
+re-parameterized after the first scoring run.
+
+**Headline: reading one steady 5-second stretch of peakRate events instead
+of the whole clip gets the tempo right on 23 of the 34 gating rows against
+the shipping pipeline's 20 — but the entire gain is on the owner's rig
+clips (21 of 26 vs 12), and on the eight barre-6 demos, which is what step
+one is actually aimed at, every window variant ties or loses to simply
+reading the whole clip. The oracle built from the owner's own "I knew the
+tempo by here" spans came in BELOW the algorithm's windows. The stretch
+where a musician knows the tempo is not the stretch where the audio is
+most regular.**
+
+Coverage: **34/34 rows on both pulse sources, 0 skipped, 0 checksum
+mismatches** — every media file hashed against its trace's
+`media_sha256` before peakRate read it.
+
+### The table (full version, with per-clip windows, in the memo + JSON)
+
+| variant | pass /34 | demo /8 | rig /26 | between-lvl | half-gap |
+|---|---|---|---|---|---|
+| peakrate-media · 3 s | 19 | **4** | 15 | 19 | **0.059** |
+| peakrate-media · 5 s | **23** | 2 | **21** | 17 | **0.059** |
+| peakrate-media · 8 s | 18 | 3 | 15 | 18 | 0.235 |
+| peakrate-media · whole-clip CONTROL | 16 | **4** | 12 | 21 | 0.118 |
+| peakrate-media · ORACLE CEILING | 14 | 2 | 12 | 22 | 0.118 |
+| whisper-trace · 3 s | 18 | **4** | 14 | 18 | 0.353 |
+| whisper-trace · 5 s | 18 | 1 | 17 | 20 | 0.235 |
+| whisper-trace · 8 s | 15 | 3 | 12 | 19 | **0.059** |
+| whisper-trace · whole-clip CONTROL | 17 | **4** | 13 | 18 | 0.294 |
+| whisper-trace · ORACLE CEILING | 16 | 3 | 13 | 20 | 0.471 |
+
+Blessed baseline, same 34 rows: tempo 20 pass, Acc2@8% 0.697,
+between-levels 10 of 33 committed.
+
+### Selection rule applied, and what it exposed
+
+Stability → demo passes → total passes gives **`peakrate-media · 3 s`**
+(gap 0.059, demo 4/8, total 19/34). **NOT ADOPTED**, per commission —
+and the rule's own output is the argument for not adopting: the winner is
+**not** the variant with the most correct answers. `peakrate-media · 5 s`
+gets 4 more rows right and loses on an 8-row tie-break. Three variants tie
+on the stability gap, so the criterion ranked first barely discriminates
+at n = 34. Reported, not fixed: re-parameterizing the rule after seeing
+the numbers is precisely what the freeze forbids.
+
+### Scorecard: 2 hits, 6 falsified, 2 structural certainties
+
+S1 (no variant beats 0.606) **FALSIFIED** — 23/34 = 0.676 ·
+S2 (a window beats its control on demos by ≥2) **FALSIFIED — the one that
+mattered**; best demo window 4/8, identical to both controls ·
+S3 (peakRate > Whisper on demos at every L) **FALSIFIED** — two ties ·
+S4 (Whisper ≥ peakRate on rig) **FALSIFIED** — peakRate wins at every L ·
+S5 (source matters more than length) **FALSIFIED** — 4.0 vs 3.0 rows mean
+spread ·
+S6 (oracle ≥ best window + 2 on demos) **FALSIFIED IN THE OPPOSITE
+DIRECTION** ·
+S7 (winner half-gap > 0.15) **FALSIFIED** — 0.059 ·
+S8 (peakRate factor ≠ 1 on > ⅓) **HIT** — 17/12/13 of 34, the 5 s figure
+by one row ·
+S9 (`adr006-8-counts-triple` fails everywhere — truth 68.38, below the
+band) **HIT**, 10 of 10 variants ·
+S10 containment **HIT**.
+
+The two hits are the two predictions of a structural certainty. Everything
+the pre-registration was genuinely uncertain about, it got wrong.
+
+### Three findings
+
+**F1 — the win is real and it is entirely rig-side.** peakRate 5 s scores
+21/26 rig against the control's 12: choosing the most regular 5 seconds is
+worth **9 rows** on clips that are one steady thing throughout, where the
+window works as a noise filter (prep counts, codas, explanation removed).
+On the demo it is worth nothing (2/8 vs 4/8).
+
+**F2 — half the corpus still lands between metric levels** (17–22 of 34,
+every variant). The projection moves a number into 70–140; it does not
+decide which level it is. Standing Lesson 3, on schedule.
+**Disclosed, found after the run while checking why 23 + 17 > 34:**
+`pass` and `between_levels` are **not disjoint** as this repo defines
+them — pass is ±8 % as a ratio (|OE1| ≤ 0.111 octaves), between-levels
+starts at |OE2| > 0.08 *octaves* (≈ 5.7 %). Six of the 5 s variant's 17
+between-levels rows are also passes; the honest "between levels and wrong"
+count is **11**. This applies to the blessed baseline's "10 of 33" too.
+
+**F3 — the owner's own window is not the most regular window, and this is
+the result worth acting on.** The oracle, pre-registered as a ceiling, came
+in **below** every measured variant on the demo slice (2/8, 3/8 vs 4/8) and
+below the whole-clip control. Frappé's knowing-span reads 83.7 against a
+truth of 135; tendu-warmup's reads 92.5 against 112. He is reading the
+demonstration — how she marks the first count, the shape of the movement —
+not the evenness of her syllables. This retires, on evidence, the
+assumption underneath the whole idea: there was no audio-steady window he
+was reading. It is a vote for the movement half (deferred at commissioning
+per W7/W10) and for W13's information-timing line, not for tuning window
+lengths.
+
+**F4 (named, not measured further):** within peakRate the three lengths
+span 18–23 passes non-monotonically. Picking 5 s because it scored best
+would be fitting to 34 rows; a future adoption increment must defend the
+length, not inherit it.
+
+### Recommendation to the owner
+
+1. **Adopt nothing from this sweep.** The variant that wins the frozen rule
+   and the variant that wins the corpus are different variants. That
+   disagreement is an agent's to surface, not to break.
+2. The only large effect (F1) is rig-side noise filtering — worth least
+   where step one is aimed.
+3. **F3 is the finding.** The sweep's own ceiling says audio regularity is
+   not the cue.
+
+Status: PROPOSED, REPORTED-ONLY. Constraints: nothing under
+`src/musical_perception/` changed; no file under `evals/cases/`,
+`evals/grids/`, `evals/traces/` or `evals/baseline.json` created or
+modified; pytest **373 passed / 3 skipped**;
+`git diff --stat origin/main` shows only `docs/research/` and
+`scripts/`. Adoption waits for the owner's batch review.
+
+## 2026-09-02 · rung M · agent/sw1-pr1-air · local (owner-attended, after the Air run) — PROPOSED AMENDMENT: the accent line is held
+
+**Owner-directed in session.** Reviewing tonight's two deliverables, the
+owner asked why meter was being worked at all when the ratified rung is
+the pulse. The record answers it two ways at once, and both are true:
+the CURRENT RUNG block says *"Step one is the PULSE only: its tempo"* and
+*"Meter, structure and style are steps two–four … gating nothing in step
+one"*; the same block also carries PR-1, which he commissioned the same
+evening as the blocked half of an earlier diagnostic, bundled by his word
+under a rule-6 exception. The rung was never meter. A finished meter
+diagnostic rode alongside it.
+
+His ruling: **hold the accent line.** PR-1 stays COMPLETE and its
+findings stand, but its own recommendation — tap the dégagé and frappé
+take grids, re-run, build the chunked WhiStress adapter — is **not
+taken** until the meter step is commissioned. Written into the charter's
+CURRENT RUNG block as a PROPOSED amendment (rule 9: agents propose,
+the owner ratifies).
+
+Agent note, recorded because it is the session's own error and not the
+owner's: the Air session's chat summary **led with the PR-1 meter
+findings and put the pulse sweep second**, which made a bundled
+diagnostic read as the night's main work. The ordering of a summary is
+not cosmetic when it is how the owner reads what the rung is.
+
+Status: PROPOSED, owner's to ratify at batch review.
+
+## 2026-09-02 · rung M · agent/sw1-pr1-air · local (owner-attended, same evening) — CORRECTION to SW-1's F3
+
+**F3 as written is not supported by the evidence it cited, and this entry
+withdraws its conclusion.** SW-1 reported that the owner's
+"Intended-tempo span" notes produced worse tempo readings than the
+algorithm's picked windows (2/8 and 3/8 vs 4/8) and concluded that *"the
+stretch where a musician knows the tempo is not the stretch where the
+audio is most metrically regular."* The owner asked, in session, whether
+he did not already have entries recording which part of each exercise he
+reads the tempo from. He does — those spans are exactly what the oracle
+arm consumed — and the question exposed the defect: **the oracle arm ran
+his span through the same peakRate event stream and the same
+median-IOI rule as every other arm.** It was never a test of his spans.
+It was a third test of the arithmetic.
+
+### The clean test, run in session: his span, his taps, no detector
+
+| demo | his span | label | tempo from his taps | off by |
+|---|---|---|---|---|
+| coupé-barre | 3.8–34.0 s | 108 | 110.3 | +2.1 % |
+| dégagé | 5.2–22.4 s | 110 | 110.3 | +0.2 % |
+| fondu | 9.4–45.0 s | 86 | 88.2 | +2.6 % |
+| frappé | 3.0–29.2 s | 135 | 147.0 | +8.9 % |
+| tendu | 10.4–16.0 s | 102 | 110.2 | +8.1 % |
+| plié · rond-de-jambe · tendu-warmup | — | — | **not readable by this probe** | — |
+
+The last three are the voiced-1-and-3 grids, where beat gaps alternate
+long-short by construction; the probe's short-leg filter does not
+separate them and returns nonsense (plié 67.8 against a label of 120).
+**That is the probe's failure, not the owner's data**, and it is recorded
+that way. Of the five grids the probe can read, **three land within 3 %
+of the label** and the two that miss (frappé, tendu) are both clips whose
+taps show real within-clip tempo movement.
+
+**Conclusion, replacing F3:** the owner's stated knowing-spans are good.
+Read with his own beats they recover the label on the clips where a
+single number is meaningful at all. SW-1's oracle scored badly because it
+was fed a contaminated event stream, not because the spans are the wrong
+place to look. The sentence "the owner is not reading audio regularity"
+may still be true, but **SW-1 does not establish it and no session should
+cite F3 for it.**
+
+### What the same session's marker files show instead
+
+peakRate events exported per demo as Audacity label tracks
+(`docs/research/machine-hearing/`, owner-requested) and scored against
+the owner's taps:
+
+- **2.6× too many events** — 1,100 machine events against 419 taps
+  (1.9× on coupé-barre, 4.1× on plié). The extras are the syllables
+  between the beats.
+- **A systematic ~70 ms early bias.** Median signed offset of the nearest
+  machine event to a tap is **−69 ms** (IQR −131 to +20). Recall of the
+  owner's taps runs 24 % at ±50 ms, 53 % at ±100 ms, 77 % at ±150 ms,
+  93 % at ±200 ms; **a single fixed +69 ms shift lifts ±100 ms recall
+  from 53 % to 74 %.** The beats are in the stream. They are early and
+  outnumbered.
+
+So the demo failure is not "the machine cannot hear her." It is a
+detector that fires on every syllable and a median that averages the
+syllable rate together with the beat rate — Standing Lesson 3, with a
+calibration constant attached.
+
+Status: CORRECTION, PROPOSED. F3's conclusion is withdrawn; its
+measurements stand.
+
+## 2026-09-02 · rung M · agent/sw1-pr1-air · local (owner-attended) — NOTE: the −69 ms offset is tempo-irrelevant, do not chase it
+
+The same evening's correction entry recorded that peakRate fires a median
+**−69 ms** against the owner's from-scratch demo taps. The owner's
+response — *"I was probably a little sloppy in tapping so honestly 70
+milliseconds might be OK"* — is right, and stronger than he put it.
+
+**A constant offset cancels out of every inter-onset interval.** Shifting
+the owner's taps by 0 / 69 / 150 ms returns an identical tempo
+(`barre6-frappe-demo` 132.30 BPM at all three;
+`barre6-degage-demo` 110.25 at all three). The offset cannot move a
+step-one number. It will matter at the point where phase matters — where
+to place a note — and not before. **No session should build an offset
+correction for tempo's sake.**
+
+Two supporting observations, both recorded so they are not re-derived:
+
+1. **It is systematic, not scatter.** Per-clip median shifts span only
+   −7 to −95 ms (between-clip SD 29 ms), clustered on one side. That is
+   the expected acoustic-onset-vs-P-center difference (Standing Lesson 1's
+   territory), not a wobbling hand.
+2. **The beat-to-beat spread (MAD 40–109 ms per clip) is NOT evidence
+   about the owner's tapping and must not be cited as such.** It is
+   computed as distance to the *nearest* machine event, and at 2.6 events
+   per beat the nearest event is frequently a neighbouring syllable rather
+   than a mistimed copy of the beat. The statistic is measuring the
+   clutter, not the annotation. The two cannot be separated with the
+   present event stream.
+
+Counter-evidence on annotation quality, for the record: on the two demos
+where the teacher is metronomic (`coupe-barre`, `degage`) the owner's own
+taps yield 110.3 BPM in each third of the clip — flat to one decimal
+across the whole recording.
+
+**Standing target after this note:** the demo tempo failure is 2.6 events
+per beat plus a median that averages the syllable rate into the beat rate.
+Not timing, not window choice, not the annotation.
+
+## 2026-09-02 · rung M · agent/sw1-pr1-air · local (owner-attended) — the pulse handoff, and the owner action that gates the next increment
+
+**Owner-directed write-up of the session's discussion.** Full document:
+[pulse-next-step.md](pulse-next-step.md), which is the file a fresh
+thread reads instead of re-reading this ledger.
+
+**Headline of the discussion, in one line: nothing in the pipeline
+separates beats from syllables, and the domain knowledge that would do it
+is already sitting unused in every frozen trace.**
+
+### What the conversation established
+
+1. **There is no separation step.** `calculate_tempo` medians *consecutive*
+   gaps; `normalize_tempo` then picks a metric level by ×/÷{2,3}. The
+   second step is a level chooser that assumes the beat is already an
+   integer multiple of what was measured. Event-to-tap ratios across the
+   8 demos are 1.9 · 2.2 · 2.5 · 2.5 · 2.5 · 2.7 · 3.0 · 4.1 —
+   non-integer and varying inside a clip — which is why **all four demo
+   misses land 9–12 % off and none is a clean double or half**. Only
+   adjacent gaps are examined, discarding the all-pairs distances in which
+   the beat period survives the clutter (Standing Lesson 3's named
+   methods all use them).
+2. **Owner introspection, and it names two machines.** *"sometimes I hear
+   a rate, but sometimes it's more like some sporadic beats, and I have to
+   reconstruct the underlying pulse, like if it's really syncopated."*
+   Entrainment vs latent-grid reconstruction — and in the second, the beat
+   can fall where nothing sounds, which no period-fitting method can
+   place. The four failing demos split along exactly those modes: frappé
+   and fondu are non-stationary (frappé runs 139→132→**165** across one
+   clip), plié and rond-de-jambe are sparsely voiced (beats 1 and 3 of a
+   3/4 bar). Counterexample recorded: tendu-warmup is sparsely voiced and
+   passes anyway.
+3. **A Standing Lesson is under strain.** Lesson 6 ("silence is evidence";
+   a hypothesis predicting a strong beat where nothing was voiced pays for
+   it) read literally penalises the syncopated reading above. It needs to
+   be a cost that better explanation can outweigh, not a veto. **Flagged,
+   not amended** — the owner's to rule.
+4. **The unused channel.** Gemini's read is in every frozen trace and
+   wired to nothing. On the 8 demos: **exercise named right 6/8** at
+   0.9–1.0 confidence (misses are near-neighbours: coupé-barre→jeté,
+   dégagé→tendu); **meter right 6/8**; **its own tempo right 2/8** (200
+   against 108, 69 against 102, 68 against 96). So the play is not to ask
+   the model for tempo — it is to let the exercise label choose the prior
+   and let the acoustic measurement measure inside it. Rung 4 anticipated
+   this ("exercise-conditioned priors at level selection only") and it was
+   never built.
+5. **A truth-side question only the owner can answer**, raised and left
+   open: when the teacher's tempo moves 26 BPM inside one demo, what
+   should the accompanist commit to — the starting tempo, the settled one,
+   or the one at the moment he must begin? The single label on that case
+   is currently a summary of a moving target.
+
+### NEXT STEP is an owner action, and it gates the increment
+
+**The owner writes a blind prior table** — exercise type → plausible
+tempo range and usual meter, from professional knowledge, **before
+looking at what the corpus clips are labelled**. Template in
+`pulse-next-step.md` §6, with the two questions that go with it.
+
+**No agent may author this table or derive it from the corpus.** Taking
+"rond de jambe ≈ 96" from the one rond de jambe clip in the gating set is
+memorising the answer key. This is the whole reason the action is the
+owner's.
+
+Then, and only then, a REPORTED-ONLY pre-registered ablation (§7): the
+estimator alone · with the prior keyed off Gemini's own exercise guess,
+errors included · with the prior keyed off the true exercise as the
+control that separates "the prior helps" from "the labelling is good
+enough." Stated in advance: n = 8 demos, roughly one clip per exercise, so
+the result is indicative and never settled.
+
+### Do-not list carried into the next thread
+
+Do not chase the −69 ms offset (it cannot move a tempo number) · do not
+run another window sweep (SW-1 answered it) · do not take the accent
+line (held until step two) · do not cite SW-1's F3 (withdrawn) · do not
+author the prior table.
+
+Status: PROPOSED. pytest 373 passed / 3 skipped.

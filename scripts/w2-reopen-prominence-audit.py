@@ -141,11 +141,39 @@ def resolve_media(grid: dict) -> tuple[str | None, str]:
 # prominence features
 
 
-def audio_contours(path: str) -> dict:
+_VIDEO_SUFFIXES = {".mov", ".m4v", ".mp4", ".avi", ".mkv", ".webm"}
+
+
+def _load_media(path: str):
+    """Mono float samples at the file's native rate; video goes through ffmpeg.
+
+    Added 2026-09-02 (PR-1, the barre-6 run) and disclosed in that ledger
+    addendum: the session that wrote this script only ever saw rig MP3s, which
+    soundfile reads directly, and every barre-6 clip is an MP4 that soundfile
+    refuses ("Format not recognised"). The extraction mirrors
+    annotation/__main__.py:_load_audio; no measurement changes -- the same
+    samples reach parselmouth either way.
+    """
+    import subprocess
+    import tempfile
+
     import librosa
+
+    if os.path.splitext(path)[1].lower() in _VIDEO_SUFFIXES:
+        with tempfile.NamedTemporaryFile(suffix=".wav") as tmp:
+            subprocess.run(
+                ["ffmpeg", "-y", "-loglevel", "error", "-i", path,
+                 "-vn", "-ac", "1", tmp.name],
+                check=True,
+            )
+            return librosa.load(tmp.name, sr=None, mono=True)
+    return librosa.load(path, sr=None, mono=True)
+
+
+def audio_contours(path: str) -> dict:
     import parselmouth
 
-    y, sr = librosa.load(path, sr=None, mono=True)
+    y, sr = _load_media(path)
     snd = parselmouth.Sound(y.astype(np.float64), sampling_frequency=float(sr))
     pitch = snd.to_pitch(
         time_step=0.01, pitch_floor=PITCH_FLOOR_HZ, pitch_ceiling=PITCH_CEIL_HZ
@@ -177,6 +205,19 @@ def window_features(times, voiced, c: dict) -> dict[str, list[float]]:
     return {"intensity": inten, "f0": f0}
 
 
+_WHISTRESS_CLIENT = None
+
+
+def _whistress_client():
+    """Load the WhiStress client once per process (it was loading per clip)."""
+    global _WHISTRESS_CLIENT
+    if _WHISTRESS_CLIENT is None:
+        from musical_perception.perception import whistress as ws
+
+        _WHISTRESS_CLIENT = ws.load_model()
+    return _WHISTRESS_CLIENT
+
+
 def whistress_features(audio_path: str, trace_dir: str, times, voiced) -> list[float]:
     """Per-beat WhiStress stress label via the trace's Whisper words.
 
@@ -190,10 +231,25 @@ def whistress_features(audio_path: str, trace_dir: str, times, voiced) -> list[f
     from musical_perception.perception import whistress as ws
     from musical_perception.types import TimestampedWord
 
+    import contextlib
+    import subprocess
+    import tempfile
+
     words_json = json.load(open(os.path.join(trace_dir, "whisper.json")))["words"]
     words = [TimestampedWord(word=w["word"], start=w["start"], end=w["end"]) for w in words_json]
-    client = ws.load_model()
-    pairs = ws.predict_stress(client, audio_path, words)
+    client = _whistress_client()
+    # WhiStress reads the media itself through soundfile, which refuses MP4;
+    # hand it an ffmpeg-extracted WAV for video (2026-09-02, PR-1, disclosed).
+    with contextlib.ExitStack() as stack:
+        if os.path.splitext(audio_path)[1].lower() in _VIDEO_SUFFIXES:
+            tmp = stack.enter_context(tempfile.NamedTemporaryFile(suffix=".wav"))
+            subprocess.run(
+                ["ffmpeg", "-y", "-loglevel", "error", "-i", audio_path,
+                 "-vn", "-ac", "1", "-ar", "16000", tmp.name],
+                check=True,
+            )
+            audio_path = tmp.name
+        pairs = ws.predict_stress(client, audio_path, words)
     norm = lambda s: s.strip().lower().strip(".,!?;:")  # noqa: E731
     a = [norm(w.word) for w in words]
     b = [norm(p[0]) for p in pairs]

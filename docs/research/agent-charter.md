@@ -38,6 +38,17 @@
 > evening. The owner authorized bundling both REPORTED-ONLY diagnostics
 > into one Air session (rule-6 exception, owner's word; two ledger
 > deliverables, one branch).
+> **AMENDMENT PROPOSED 2026-09-02 (owner-directed in session; owner's to
+> ratify) — the accent line is HELD until step two.** PR-1 is complete
+> and its findings stand in the ledger, but **its follow-up
+> recommendation is not taken**: no session taps grids for, re-runs, or
+> extends the accent-periodicity / prominence work — including the
+> chunked-WhiStress adapter it parked — until the meter step is
+> commissioned. Rationale, the owner's: step one is the pulse, and a
+> finished meter diagnostic recommending more meter work is how a rung
+> quietly stops being the rung. W2 / W2-reopen / PR-1 stay COMPLETE;
+> accent periodicity remains one observation channel inside W5, as
+> ruled 2026-08-24, and is not an open workstream.
 
 ## OWNER QUEUE — read this out to Ben first (set 2026-09-01)
 
