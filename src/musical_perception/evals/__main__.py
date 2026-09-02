@@ -61,8 +61,8 @@ def _print_reference(suite: str, summary: dict, family_cell, tempo_metrics_line)
         return
     print(f"  {suite:6s} -- reference slice, n={ref['n_cases']} cases: "
           f"{', '.join(ref['case_ids'])}")
-    print(f"  {suite:6s}    (owner-demoted piano takes: verified truth, out of "
-          f"the benchmark, gates nothing)")
+    print(f"  {suite:6s}    (owner-demoted rows — piano takes and step-one "
+          f"deferrals: verified truth, out of the benchmark, gates nothing)")
     for name, s in ref["fields"].items():
         print(f"  {suite:6s}  R {name:20s} n={s['n']:3d} correct={s['correct']:3d} "
               f"wrong={s['wrong']:3d} abstained={s['abstained']:3d} "

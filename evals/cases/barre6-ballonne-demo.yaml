@@ -12,6 +12,7 @@ tags:
   clip_role: demo
   pianist_take: barre6-ballonne-take1
   played_bpm: 63
+  step_one: deferred
 expect:
   marking_bpm: 160
   meter: "3/4"
@@ -30,3 +31,14 @@ notes: >-
   start - a W15 declarative structure announcement. Demo puts the 3 above
   the beat (grouping); the take puts it below (triplet division). Marking
   bar maps to played beat
+
+  RESET RULING (owner-attended, 2026-09-01 evening): DEFERRED from step
+  one until the meter step; tempo truth UNCHANGED at 160. Step one
+  defines the pulse as the metric level inside 70-140, and this clip's
+  ladder (beat 160, bar ~53) has no honest rung in that band - the
+  in-band candidates 80 and ~107 are arithmetic, felt by nobody. The
+  owner listened in session, weighed 80-by-arithmetic / named-exception /
+  defer, chose defer, and noted the trickiness himself: "since it's 3/4
+  then the higher rung would be like 53." The case sits in the reference
+  slice (reported, never gating) until the meter step can name the felt
+  level of a fast triple.

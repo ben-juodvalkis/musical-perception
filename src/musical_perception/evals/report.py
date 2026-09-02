@@ -206,8 +206,9 @@ def _reference_section(suite: str, summary: dict) -> str:
     tm_line = tempo_metrics_line(ref)
     return f"""
 <h3>{suite} — reference slice ({ref['n_cases']} cases)</h3>
-<p><strong>Owner-demoted piano takes — verified truth, out of the benchmark,
-gates nothing, pooled into nothing above.</strong> Cases: {', '.join(ref['case_ids'])}</p>
+<p><strong>Owner-demoted rows (piano takes, step-one deferrals) — verified
+truth, out of the benchmark, gates nothing, pooled into nothing
+above.</strong> Cases: {', '.join(ref['case_ids'])}</p>
 <table>
 <tr><th>field</th><th>n</th><th>correct</th><th>wrong</th><th>abstained</th>
 <th>accuracy</th><th>wilson 95%</th><th>credit</th><th>truth in family</th>
@@ -356,10 +357,11 @@ def _reference_markdown(suite: str, summary: dict) -> list[str]:
     lines = [
         f"### {suite} — reference slice ({ref['n_cases']} cases)",
         "",
-        "Piano takes, demoted from the benchmark by owner ruling",
-        "(reset 2026-09-01): the demo is the case; a take is one valid",
-        "realization, kept as reference. Verified truth, gates nothing,",
-        "pooled into none of the numbers above.",
+        "Rows demoted from the benchmark by owner ruling (reset",
+        "2026-09-01): piano takes — the demo is the case; a take is one",
+        "valid realization, kept as reference — and step-one deferrals",
+        "(fast triple meters, waiting on the meter step). Verified truth,",
+        "gates nothing, pooled into none of the numbers above.",
         "",
         f"Cases: {', '.join(ref['case_ids'])}",
         "",

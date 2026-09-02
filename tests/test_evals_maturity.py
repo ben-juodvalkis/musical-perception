@@ -117,8 +117,10 @@ def test_the_gating_corpus_is_exactly_the_blessed_set():
 
     Reset 2026-09-01 (owner-attended, evening): the demo is the case, so
     the 17 piano takes are demoted to a reference slice that never gates
-    and is never pinned. The gating set is therefore *verified minus
-    reference*: 26 rig/counting clips + 9 barre-6 demos = 35.
+    and is never pinned, and the ballonne demo is deferred from step one
+    by owner ruling (fast triple meter: no honest level inside 70-140).
+    The gating set is therefore *verified minus reference*: 26
+    rig/counting clips + 8 barre-6 demos = 34.
     """
     from musical_perception.evals.cases import load_cases
 
@@ -128,7 +130,7 @@ def test_the_gating_corpus_is_exactly_the_blessed_set():
         json.loads((_REPO / "evals" / "baseline.json").read_text())
         ["suites"]["tier1"]["outcomes"]
     )
-    assert len(blessed) == 35
+    assert len(blessed) == 34
     assert gating == blessed
 
 
@@ -586,3 +588,19 @@ def test_reports_name_the_reference_slice_when_one_exists():
     md = render_markdown_baseline(report)
     assert "reference slice" in html and "t1" in html
     assert "reference slice" in md and "t1" in md
+
+
+@needs_yaml
+def test_step_one_deferred_tag_also_lands_in_the_reference_slice(tmp_path):
+    """Owner ruling (reset 2026-09-01): fast triple meters are deferred
+    from step one — `step_one: deferred` shelves the row like a take."""
+    from musical_perception.evals.cases import load_cases
+
+    body = yaml.safe_load(_case_yaml("d1"))
+    body["tags"]["clip_role"] = "demo"
+    body["tags"]["step_one"] = "deferred"
+    (tmp_path / "d1.yaml").write_text(yaml.safe_dump(body))
+    (tmp_path / "v1.yaml").write_text(_case_yaml("v1"))
+    by_id = {c.id: c for c in load_cases(tmp_path)}
+    assert by_id["d1"].reference is True
+    assert by_id["v1"].reference is False
