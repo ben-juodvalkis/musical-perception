@@ -12,7 +12,7 @@ tags:
   accompanied: false
   snr_band: high
 expect:
-  marking_bpm: 160
+  marking_bpm: 80
   meter: "2/4"
   subdivision: none
   counts: 64
@@ -32,3 +32,10 @@ notes: >-
   clean confirming instance for ADR-014's proposed candidate-family fix.
   Structure also undercounted (32 vs true 64), consistent with the halved
   tempo reading roughly halving the apparent phrase length too.
+
+  RESET RELABEL (owner-attended, 2026-09-01 evening): marking_bpm was
+  160, now 80. Step one defines the pulse as the metric level inside
+  70-140; 160 is the counted rate, 80 its in-band half. The owner
+  listened to the clip in session and ruled "yes" to 160 -> 80. The 160
+  level is not discarded: it remains one rung of the reported family
+  (Standing Lesson 2).

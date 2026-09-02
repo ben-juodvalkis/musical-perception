@@ -12,7 +12,7 @@ tags:
   accompanied: false
   snr_band: high
 expect:
-  marking_bpm: 63
+  marking_bpm: 126
   meter: "4/4"
   subdivision: none
   counts: 8
@@ -33,3 +33,10 @@ notes: >-
   entirely (0 sides reported, likely a related symptom). Distinct defect
   worth its own tag if a "sustained/legato delivery" corruption category
   gets added to the synthetic suite.
+
+  RESET RELABEL (owner-attended, 2026-09-01 evening): marking_bpm was 63,
+  now 126. Step one defines the pulse as the metric level inside 70-140;
+  63 is the counted adagio rate, 126 its in-band double. The owner
+  listened to the clip in session and ruled "yes" to 63 -> 126. The 63
+  level is not discarded: it remains one rung of the reported family
+  (Standing Lesson 2).
