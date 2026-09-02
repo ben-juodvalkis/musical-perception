@@ -384,10 +384,24 @@ scripts/ or tests/; never edits the charter; never enumerates the
 Barre 1 video directory; no live model calls; stop after 80 turns.
 ```
 
+## Running it on the owner's Mac instead
+
+The same session runs locally: open the repository in Claude Code (the
+Claude app's Code tab, or the CLI) and type `/lateral-review` — the
+command lives at `.claude/commands/lateral-review.md` and carries the
+prompt above plus a pull-main-first step. Local trade-offs: full internet
+and the browser tool, so papers can be read in full; no phone
+notification, because the owner is already at the machine; the model is
+whatever the app is set to; and **the owner's main machine holds the
+held-out and sealed material**, so the containment rules apply exactly as
+they do for any owner-attended session there (never enumerate the
+Barre 1 directory; never reason about sealed content).
+
 ## Owner controls
 
 - **Start one:** fire *Lateral review (on demand)* from the Routines
-  list. Nothing runs otherwise.
+  list, or type `/lateral-review` in Claude Code on the Mac. Nothing runs
+  otherwise.
 - **Model, notifications, on/off:** edit or pause the Routine there.
 - **Amend this protocol:** an ordinary owner-reviewed doc change; the
   Routine's prompt points here, so this document is the source of truth.
