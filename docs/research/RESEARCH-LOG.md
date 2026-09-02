@@ -10858,3 +10858,41 @@ calibration constant attached.
 
 Status: CORRECTION, PROPOSED. F3's conclusion is withdrawn; its
 measurements stand.
+
+## 2026-09-02 · rung M · agent/sw1-pr1-air · local (owner-attended) — NOTE: the −69 ms offset is tempo-irrelevant, do not chase it
+
+The same evening's correction entry recorded that peakRate fires a median
+**−69 ms** against the owner's from-scratch demo taps. The owner's
+response — *"I was probably a little sloppy in tapping so honestly 70
+milliseconds might be OK"* — is right, and stronger than he put it.
+
+**A constant offset cancels out of every inter-onset interval.** Shifting
+the owner's taps by 0 / 69 / 150 ms returns an identical tempo
+(`barre6-frappe-demo` 132.30 BPM at all three;
+`barre6-degage-demo` 110.25 at all three). The offset cannot move a
+step-one number. It will matter at the point where phase matters — where
+to place a note — and not before. **No session should build an offset
+correction for tempo's sake.**
+
+Two supporting observations, both recorded so they are not re-derived:
+
+1. **It is systematic, not scatter.** Per-clip median shifts span only
+   −7 to −95 ms (between-clip SD 29 ms), clustered on one side. That is
+   the expected acoustic-onset-vs-P-center difference (Standing Lesson 1's
+   territory), not a wobbling hand.
+2. **The beat-to-beat spread (MAD 40–109 ms per clip) is NOT evidence
+   about the owner's tapping and must not be cited as such.** It is
+   computed as distance to the *nearest* machine event, and at 2.6 events
+   per beat the nearest event is frequently a neighbouring syllable rather
+   than a mistimed copy of the beat. The statistic is measuring the
+   clutter, not the annotation. The two cannot be separated with the
+   present event stream.
+
+Counter-evidence on annotation quality, for the record: on the two demos
+where the teacher is metronomic (`coupe-barre`, `degage`) the owner's own
+taps yield 110.3 BPM in each third of the clip — flat to one decimal
+across the whole recording.
+
+**Standing target after this note:** the demo tempo failure is 2.6 events
+per beat plus a median that averages the syllable rate into the beat rate.
+Not timing, not window choice, not the annotation.

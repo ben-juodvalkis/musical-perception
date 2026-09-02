@@ -209,7 +209,9 @@ baseline's "10 of 33" too and is worth the owner's eye — it was not added to
 make a number look better, it was found while checking why 23 + 17 exceeded
 34.
 
-### F3 — the owner's own window is not the most regular window
+### F3 — *CONCLUSION WITHDRAWN 2026-09-02 (see the ledger correction of that date): the oracle arm ran the owner's span through the same contaminated event stream and median rule as every other arm, so it never tested the span. Read with his own taps, his spans recover the label within 3% on three of the five clips the probe can read. The measurements below stand; the conclusion does not.*
+
+### F3 (as originally written) — the owner's own window is not the most regular window
 
 The oracle was pre-registered as a ceiling. It came in **below** the
 measured variants on the demo slice (2/8 and 3/8 vs 4/8) and below the
