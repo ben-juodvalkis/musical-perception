@@ -11052,3 +11052,107 @@ parallel with it; (2) whether the boot sequence should name
 pulse-next-step.md §6, plus his two questions — what counts as "the
 tempo" when it moves within a clip, and whether the exercise name alone
 carries the prior).
+
+## 2026-09-02 · RESET, step one (pulse) · agent/step-one-blocked-20260902 · local (unattended) — PRE-REGISTRATION: the all-pairs separator (AP-1)
+
+**Scope declaration first, because this increment is taken against a line
+in the handoff.** `pulse-next-step.md` says *"Nothing else starts until
+that table exists."* The blocked note above this entry took that
+literally and delivered nothing. That was wrong on the rung's own terms:
+the gated thing is §7's **exercise-prior ablation**, which genuinely
+cannot start without the owner's table, whereas §3's diagnosis —
+*"only adjacent gaps are examined"* — names a defect the owner's table
+does not touch and §8's do-not list does not cover. This increment tests
+that one thing and nothing else. **REPORTED-ONLY**: no pipeline file, no
+eval file, no scorer touched; nothing is wired into `analyze()`; it pins
+no outcome, so if the owner rejects the whole line it costs the artifact
+and nothing more (precedent: W14, executed ahead of ratification on
+exactly that reasoning). Adoption would be a separate owner-reviewed
+increment. Nothing here authors, approximates or substitutes for the
+prior table.
+
+### The hypothesis, in one sentence
+
+`calculate_tempo` medians the gaps between **consecutive** events; on the
+demos peakRate fires 2.6 events per beat at a ratio that is non-integer
+and varies inside the clip, so every adjacent gap is corrupted and no
+×/÷{2,3} factor recovers the beat — but the beat-to-beat distance still
+exists in the set of **all pairwise** distances, which no current code
+looks at.
+
+### Arms (search space frozen here, before the script exists)
+
+Every arm consumes the **same** peakRate event stream (rung-2 extractor,
+`PeakRateParams()` defaults, media checksum-verified against each trace's
+`media_sha256`) and the **same** band projection (factors 1, 2, 0.5, 3,
+1/3, tried in that order, into [70,140]). The estimator is the only
+thing that varies.
+
+- **Arm A — CONTROL, already published.** Whole-clip median of
+  consecutive IOIs. SW-1's `peakrate-media · whole-clip CONTROL`:
+  **16/34 total, 4/8 demo, 12/26 rig, Acc2 16, between-levels 21.**
+  Re-run here and required to reproduce those numbers exactly; a
+  mismatch invalidates the comparison and is reported as such.
+- **Arm B1 — all-pairs, harmonic-summed (PRIMARY).** All positive
+  pairwise differences d = t_j − t_i with d ≤ 3.0 s; Gaussian kernel
+  density H(τ) on a 1 ms grid, σ = 0.040 s; harmonic sum
+  S(τ) = Σ_{k=1..4} H(kτ)/k evaluated over τ ∈ [0.20, 1.20] s
+  (50–300 BPM); τ̂ = argmax S; raw BPM = 60/τ̂.
+- **Arm B2 — comb / latent-grid score (SECONDARY, the second method
+  Standing Lesson 3 names).** For candidate period τ (200 log-spaced
+  points over the same range) and phase φ (20 points over [0, τ)), score
+  = mean over grid points of exp(−Δ²/2σ²), Δ = distance to the nearest
+  event, σ = 0.070 s, **minus the mean of the same score over 20
+  uniform-random event trains of the same n and span (seed 0)** — the
+  null subtraction exists to remove the built-in bias toward long
+  periods, which would otherwise make the arm degenerate.
+- B2 is also the arm that engages the §4 tension deliberately: scoring
+  grid points by proximity makes an unvoiced strong beat **cost**
+  something rather than be forbidden, which is the reading of Standing
+  Lesson 6 the handoff asked for and did not resolve.
+
+### Pre-registered predictions
+
+- **P1.** B1 beats A on the 8 demos: **B1 demo ≥ 6/8** (A = 4/8).
+  Reason: the demos are where events-per-beat is 2.6 and non-integer.
+- **P2.** B1 does not regress the rig half: **B1 rig ≥ 12/26**. Reason:
+  on the owner's own counting the ratio is 1.3, so adjacent gaps are
+  already nearly clean and there is little for all-pairs to add.
+- **P3.** **B1 total ≥ 20/34** (A = 16/34).
+- **P4.** Between-levels falls: **B1 total ≤ 14** (A = 21) and **B1
+  demo ≤ 2** (A = 5). Reason: if the estimator stops averaging the
+  syllable rate into the beat rate, its remaining misses should be clean
+  octave relatives rather than 9–17 % strays.
+- **P5 (the sharp one).** **`barre6-plie-demo` and
+  `barre6-rond-de-jambe-demo` both flip to pass under B1.** The handoff
+  classes these as "reconstruction" clips where no period-fitting method
+  can help because the teacher voices only beats 1 and 3. I predict
+  all-pairs helps anyway, because the beat-1→beat-3 distance is 2τ and is
+  present in the all-pairs set even though beat 2 is silent. If P5 fails
+  while P1 holds, the handoff's two-modes account is right and the fix is
+  partial; if P5 holds, "reconstruction needs latent-grid inference" is
+  too strong a claim for these two clips.
+- **P6.** B2 does not beat B1 overall (**B2 total ≤ B1 total**) but is
+  **≥ B1 on the two sparse demos**. Weak, stated as weak.
+- **P7 (degeneracy guard, not a result).** Fewer than 25 % of B2's chosen
+  raw periods sit within 5 % of the 1.20 s search ceiling. If violated,
+  the null subtraction failed and **B2 is reported as uninterpretable
+  rather than as a score.**
+
+### Stated in advance, so it cannot be discovered afterwards
+
+- **n = 8 demos.** A one- or two-clip demo change is inside noise at this
+  size. The rig half (n = 26) carries what statistical weight exists, and
+  P2 is deliberately a no-regression prediction, not a win.
+- **This is an estimator-level comparison on a frozen proxy, not the
+  shipping path.** Arm A is peakRate + median + projection, which is
+  *not* what `analyze()` commits (that runs through `normalize_tempo`,
+  the posterior and arbitration). The blessed baseline's tempo 0.606
+  (20/34) is the shipping number and is a different quantity from A's
+  16/34. No number in this increment may be quoted as a baseline delta.
+- Split-half stability is reported on the same odd/even ids SW-1 froze.
+- The band, the tolerance (±8 %), the gating set (34 rows) and the truth
+  labels are untouched.
+
+Committed before the script exists; scored honestly in the RESULTS
+section below, hits and misses both.
