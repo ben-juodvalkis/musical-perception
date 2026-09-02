@@ -359,3 +359,20 @@ is how the runner's permission failure was found.)*
 > Branch `agent/w11b-opaque-sidecars` is pushed with the pre-registration, results and charter update. **The bless block still stands** — W1.6 is written and waiting on a branch for you; until you merge it, `bless` will freeze agent-written answers as official.
 
 *Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
+
+## run 2026-09-02T01:00:09Z · main 06d3bf7
+
+- **outcome:** success, shell exit 0
+- **turns:** 50 · **duration:** 14.8 min · **cost:** $5.71
+
+**Agent's closing message:**
+
+> …Five of seven predictions landed, one missed, one I worded ambiguously and scored both ways rather than picking the flattering reading.
+> 
+> **One thing I'd like you to rule on.** This is now the third time in a row (the two accent experiments, and this) that a thirty-second look at the data settled a question that a full detector was budgeted for. I've proposed it as a standing rule: *check the corpus contains the evidence before building the detector.* Yours to accept or reject.
+> 
+> **Parked, not done:** the most common structural announcement in the whole class is the count-in — "seven and eight" — on 6 clips. It doesn't tell you the bar, but it does tell you the counting runs to eight, and it's checkable against labels we already have. I deliberately did *not* add it tonight, because inventing a rule after seeing which rule would have helped isn't a prediction any more.
+> 
+> Everything is on `agent/marathon` and pushed: 384 tests green (up 18), all eval suites report **no outcome changes vs baseline**, nothing under `evals/` or the pipeline source was touched. Ledger entry written with the full scorecard; the per-clip tables are in `docs/research/w15-stated-structure.md` if you want them.
+
+*Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
