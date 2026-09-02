@@ -195,6 +195,33 @@ peakRate-plus-arithmetic path on the material the reset is aimed at.
 | E8 | best estimator's half-gap > 0.15 | **AMBIGUOUS, disclosed** — the two winners tie at 28/34: `comb` gaps 0.235 (hit), `all-pairs` 0.118 (miss). The pre-registration did not say how to break a tie on "best". Reported both ways rather than picking the flattering one |
 | E9 | containment + pytest | **HIT** — see below |
 
+### CORRECTION, added 2026-09-02 after discovering AP-1
+
+An unattended session ran the same core experiment ~6 hours earlier
+(`agent/step-one-blocked-20260902`, AP-1). Two of its findings apply to
+this run and one changes a claim above:
+
+1. **frappé's failure belongs to the projection rule, not the estimator.**
+   `all-pairs` reads **143.95** against a truth of 135 — **6.6 % off,
+   inside tolerance** — but 143.95 is 2.8 % above the 140 band ceiling, so
+   factor 1.0 is refused and the next admissible factor halves it to 71.98.
+   `comb` (raw 283.39) and `povel-essens` (raw 69.51) are likewise inside
+   tolerance at some factor. **Three of four estimators had frappé
+   essentially right and the hard band threw it away.** The table above
+   scores them as misses, correctly per the frozen rule, but the diagnosis
+   in "what this establishes" was wrong to attribute frappé to the
+   estimator. This is Standing Lesson 2's territory — a prior applied as a
+   hard fold rather than at level selection — and it is untouched by any
+   front-end work.
+2. **Search-boundary artifacts are real and were not checked here.** AP-1
+   found two clips pinned at its fast edge. This run has **one**:
+   `barre6-tendu-demo` pins the *slow* edge (2.5 s → 72 BPM, fails).
+   Checked in response: **this run's rond-de-jambe pass is not a boundary
+   artifact** — raw period 1.88 s is interior and is almost exactly the
+   3/4 bar at 96 BPM (1.875 s), recovered by ×3. It passes for the reason
+   Arm C predicts. AP-1's own rond-de-jambe pass *was* a boundary artifact
+   at a different value (100.0), and it luck-flagged it correctly.
+
 ### Caveats that limit what this can be used for
 
 1. **The Hopf arm is a 60-line reimplementation, not the authors' system.**

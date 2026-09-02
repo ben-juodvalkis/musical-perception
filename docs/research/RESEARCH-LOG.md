@@ -11438,3 +11438,87 @@ The owner's blind prior table (§6) remains the standing next step and is
 better motivated by EB-1, not less.
 
 Status: PROPOSED, REPORTED-ONLY.
+
+## 2026-09-02 · rung M · agent/estimator-bakeoff · local (owner-attended) — DUPLICATION: EB-1 and AP-1 are the same experiment, run twice
+
+**This entry records an agent process failure, and then the one good
+thing that came of it.**
+
+### What happened
+
+An unattended session ran **AP-1, the all-pairs separator**
+(`agent/step-one-blocked-20260902`, committed 02:10) — the same core
+experiment as **EB-1's headline arm**, six hours before this attended
+session ran it. This session **did not check other agent branches for
+completed-but-unmerged work** before designing EB-1. The charter's boot
+sequence names exactly this failure and cites the precedent: *"a
+completed-but-unmerged workstream is invisible from main by construction
+— two sessions built W11 on the same night for exactly this reason."*
+It has now happened a second time, and the cause was the same: reading
+main's state and not the branch list.
+
+Compounding it: this session's branches were cut while the working copy
+sat on the nightly branch, so `agent/review-6-syncopation` and
+`agent/estimator-bakeoff` **descend from AP-1's commits**. Merging this
+session's work carries AP-1 with it. That is disclosed here rather than
+quietly folded into a merge commit.
+
+### The two runs agree, and that is worth something
+
+Two implementations written without knowledge of each other, on the same
+34 rows:
+
+| | control (median) | all-pairs | comb | demo slice |
+|---|---|---|---|---|
+| **AP-1** | 16/34 | **29/34** | 28/34 | 4/8 → 5/8 |
+| **EB-1** | 16/34 | **28/34** | 28/34 | 4/8 → 4–5/8 |
+
+Both controls reproduce **16/34 · 4/8 · 12/26 · between-levels 21**
+exactly. Both find the win is almost entirely rig-side (12 → 24 of 26)
+and that the demos barely move. **This is genuine replication of the
+session's biggest result — accidental, not designed, and it does not
+excuse the duplication.**
+
+### AP-1 is better than EB-1 in three places, and its findings are carried across
+
+1. **The band ceiling, not the estimator, loses frappé.** All-pairs reads
+   143.95 against a truth of 135 (6.6 %, inside tolerance); 143.95 sits
+   2.8 % above the 140 ceiling, so factor 1.0 is refused and it halves to
+   71.98. EB-1's memo is corrected accordingly.
+2. **Search-boundary artifacts.** AP-1 checked; EB-1 did not. Checked in
+   response: EB-1 has one (`barre6-tendu-demo`, slow edge). EB-1's
+   rond-de-jambe pass is **not** an artifact — raw period 1.88 s is
+   interior and is the 3/4 bar at 96 BPM (1.875 s), recovered by ×3,
+   exactly as EB-1's own Arm C predicts. AP-1's rond-de-jambe pass **was**
+   an artifact and it luck-flagged it correctly.
+3. **The metronome confound was checked, not assumed** — the rig
+   metronome was in one earbud, never in the room, so the 12 → 24 is the
+   voice.
+
+### EB-1 contributes what AP-1 does not
+
+The **regime diagnostic** (Arm C — dominant periodicity ÷ true beat per
+demo; 0 of 8 clips have the beat as the strongest periodicity; not a
+missing-pulse corpus), the **nonlinear-resonance arm** (Hopf, last at
+19/34), and **Arm B** (off-the-shelf trackers on the demos: `librosa_plp`
+5/8, `beat_this` returning no beats on 5 of 8).
+
+### Two projection-rule failures now named by both runs
+
+Neither is fixed by any front-end work, and both are pre-registerable:
+
+- the **140 ceiling** destroys correct readings 0–5 % above it (frappé);
+- the factor set {1, 2, ½, 3, ⅓} contains **no 3/2 or 2/3**, so a
+  three-against-two level confusion cannot be corrected by construction
+  (`rig-numbers-4-4-80-triplet`, `adr006-8-counts-triple`).
+
+### Process change proposed (owner's to ratify)
+
+The boot sequence's "read the ledger on the branch" instruction is not
+enough — it names one branch (`origin/agent/marathon`) and the runner now
+creates dated branches. **Proposed:** every session runs
+`git branch -r --sort=-committerdate | head` and reads the ledger diff of
+any agent branch newer than main **before** choosing or designing an
+increment.
+
+Status: PROPOSED. The duplication is recorded, not tidied away.
