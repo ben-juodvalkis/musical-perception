@@ -1,0 +1,4 @@
+28.8300	31.8300	3s-window read 91.39 (x0.5, truth 86)
+28.8300	33.8300	5s-window read 96.33 (x0.5, truth 86)
+23.8300	31.8300	8s-window read 87.59 (x0.5, truth 86)
+9.4000	45.0000	YOUR knowing-span read 96.33 (truth 86)

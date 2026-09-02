@@ -10792,3 +10792,69 @@ diagnostic read as the night's main work. The ordering of a summary is
 not cosmetic when it is how the owner reads what the rung is.
 
 Status: PROPOSED, owner's to ratify at batch review.
+
+## 2026-09-02 · rung M · agent/sw1-pr1-air · local (owner-attended, same evening) — CORRECTION to SW-1's F3
+
+**F3 as written is not supported by the evidence it cited, and this entry
+withdraws its conclusion.** SW-1 reported that the owner's
+"Intended-tempo span" notes produced worse tempo readings than the
+algorithm's picked windows (2/8 and 3/8 vs 4/8) and concluded that *"the
+stretch where a musician knows the tempo is not the stretch where the
+audio is most metrically regular."* The owner asked, in session, whether
+he did not already have entries recording which part of each exercise he
+reads the tempo from. He does — those spans are exactly what the oracle
+arm consumed — and the question exposed the defect: **the oracle arm ran
+his span through the same peakRate event stream and the same
+median-IOI rule as every other arm.** It was never a test of his spans.
+It was a third test of the arithmetic.
+
+### The clean test, run in session: his span, his taps, no detector
+
+| demo | his span | label | tempo from his taps | off by |
+|---|---|---|---|---|
+| coupé-barre | 3.8–34.0 s | 108 | 110.3 | +2.1 % |
+| dégagé | 5.2–22.4 s | 110 | 110.3 | +0.2 % |
+| fondu | 9.4–45.0 s | 86 | 88.2 | +2.6 % |
+| frappé | 3.0–29.2 s | 135 | 147.0 | +8.9 % |
+| tendu | 10.4–16.0 s | 102 | 110.2 | +8.1 % |
+| plié · rond-de-jambe · tendu-warmup | — | — | **not readable by this probe** | — |
+
+The last three are the voiced-1-and-3 grids, where beat gaps alternate
+long-short by construction; the probe's short-leg filter does not
+separate them and returns nonsense (plié 67.8 against a label of 120).
+**That is the probe's failure, not the owner's data**, and it is recorded
+that way. Of the five grids the probe can read, **three land within 3 %
+of the label** and the two that miss (frappé, tendu) are both clips whose
+taps show real within-clip tempo movement.
+
+**Conclusion, replacing F3:** the owner's stated knowing-spans are good.
+Read with his own beats they recover the label on the clips where a
+single number is meaningful at all. SW-1's oracle scored badly because it
+was fed a contaminated event stream, not because the spans are the wrong
+place to look. The sentence "the owner is not reading audio regularity"
+may still be true, but **SW-1 does not establish it and no session should
+cite F3 for it.**
+
+### What the same session's marker files show instead
+
+peakRate events exported per demo as Audacity label tracks
+(`docs/research/machine-hearing/`, owner-requested) and scored against
+the owner's taps:
+
+- **2.6× too many events** — 1,100 machine events against 419 taps
+  (1.9× on coupé-barre, 4.1× on plié). The extras are the syllables
+  between the beats.
+- **A systematic ~70 ms early bias.** Median signed offset of the nearest
+  machine event to a tap is **−69 ms** (IQR −131 to +20). Recall of the
+  owner's taps runs 24 % at ±50 ms, 53 % at ±100 ms, 77 % at ±150 ms,
+  93 % at ±200 ms; **a single fixed +69 ms shift lifts ±100 ms recall
+  from 53 % to 74 %.** The beats are in the stream. They are early and
+  outnumbered.
+
+So the demo failure is not "the machine cannot hear her." It is a
+detector that fires on every syllable and a median that averages the
+syllable rate together with the beat rate — Standing Lesson 3, with a
+calibration constant attached.
+
+Status: CORRECTION, PROPOSED. F3's conclusion is withdrawn; its
+measurements stand.

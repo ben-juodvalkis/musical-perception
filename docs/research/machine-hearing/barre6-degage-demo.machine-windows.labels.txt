@@ -1,0 +1,4 @@
+35.0700	38.0700	3s-window read 114.12 (x1.0, truth 110)
+34.0700	39.0700	5s-window read 114.12 (x1.0, truth 110)
+10.0700	18.0700	8s-window read 111.05 (x0.5, truth 110)
+5.2000	22.4000	YOUR knowing-span read 104.99 (truth 110)
