@@ -10976,3 +10976,79 @@ line (held until step two) · do not cite SW-1's F3 (withdrawn) · do not
 author the prior table.
 
 Status: PROPOSED. pytest 373 passed / 3 skipped.
+
+## 2026-09-02 · RESET, step one (pulse) · agent/step-one-blocked-20260902 · local (unattended)
+
+**Attempted:** Boot sequence, then the rung. Charter CURRENT RUNG block,
+Standing Lessons 1–10, the last five ledger entries (main carries the
+newest state; `origin/agent/marathon` is behind it since the 2026-09-02
+merge), and the handoff [pulse-next-step.md](pulse-next-step.md) read in
+full. **Step one's next increment is an owner action and this session
+does not have one to take.**
+
+**Pre-registered expectations:** n/a — no experiment run, by design.
+
+**Result: BLOCKED, one line.** The handoff's §6 gates the increment on
+the owner writing the blind exercise→prior table, and states it twice:
+*"The next step is an owner action … Nothing else starts until that table
+exists."* §7's ablation (arms A / B / C) cannot start without it, and no
+agent may author or corpus-derive the table. Every other step-one
+candidate this session could reach is on the §8 do-not list — the −69 ms
+offset (tempo-irrelevant), another window sweep (SW-1 answered it), the
+accent line (held to step two by the 2026-09-02 proposed amendment),
+SW-1's F3 (withdrawn). The one direction §3 names that is *not* on that
+list — all-pairs / harmonic-summing periodicity in place of the median of
+consecutive gaps — is **not taken here**: it is a new estimator line, it
+was not commissioned, and the owner has twice in 48 hours corrected
+sessions for widening a rung from inside it. It is parked as a proposal
+below, not started.
+
+**One observation surfaced, acted on by nobody.** `docs/vision/05-perception-strategy.md`
+§5.4 already contains an exercise-prior table with the columns §6 asks
+for — exercise, beat-BPM range, meter prior — plus a `counts↔bars` column
+that speaks directly to the metric-level question step one is stuck on
+(it marks rond de jambe and grand allegro as *1 count = 1 bar*).
+Containment, checked rather than assumed: it was committed 2026-07-17, at
+which point **zero files existed under `evals/cases/`** (`git ls-tree` at
+that commit), and the 8 barre-6 demos that make up the demo half of the
+gating set were not captured or labelled until 2026-09-01. It cannot have
+been fitted to the current answer key. The one honest exception: ADR-006,
+public at the time, named *"a tendu exercise in 3/4 at ~117 BPM"* — the
+table's tendu row reads 96–126, which contains it. That clip is retired
+and is not in the gating set.
+
+**It does not discharge §6 and must not be treated as though it does.**
+Its provenance is not stated anywhere; `docs/vision/12-collaborators.md`
+lists *"red-pen the exercise-prior table"* as an outstanding task for
+external experts, so on the repo's own account it is a draft, not the
+owner's professional knowledge. **No agent may adopt it as the prior.**
+What it does change is the shape of the owner's task: §6 asks him to fill
+18 blank rows; this makes it possible for him to instead red-pen or
+reject an existing draft, which is cheaper, provided he judges that
+looking at it first does not spoil the blindness §6 is protecting. That
+judgement is his, not this session's.
+
+**Regressions and classifications:** none — no code, no eval file, no
+pipeline path touched. `pytest` 373 passed / 3 skipped. `git diff --stat
+main` shows this ledger entry only.
+
+**Lesson (durable):** A rung that ends in an owner action ends for agents
+too, and the useful move in that state is not to find adjacent work but
+to make the owner's action cheaper. Checking whether the artifact he is
+being asked to author already exists in the repo — and dating it against
+the corpus to prove it could not have been fitted — cost one session and
+turned "write 18 rows" into "red-pen or reject 18 rows." Also recorded:
+*the vision suite is unindexed evidence.* Three step-one sessions have
+now converged on questions §5.4 had already framed; nothing in the boot
+sequence points a session at `docs/vision/`.
+
+**Parked, not started (owner's to rule):** (1) the all-pairs /
+harmonic-summing separator from §3, the one un-forbidden estimator
+direction, which does **not** depend on the prior table and could run in
+parallel with it; (2) whether the boot sequence should name
+`docs/vision/` alongside the charter and Standing Lessons.
+
+**Status: BLOCKED** (needs: the owner's blind prior table per
+pulse-next-step.md §6, plus his two questions — what counts as "the
+tempo" when it moves within a clip, and whether the exercise name alone
+carries the prior).
