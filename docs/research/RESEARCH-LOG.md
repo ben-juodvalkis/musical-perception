@@ -11522,3 +11522,71 @@ any agent branch newer than main **before** choosing or designing an
 increment.
 
 Status: PROPOSED. The duplication is recorded, not tidied away.
+
+## 2026-09-02 · RESET, step one (pulse) · agent/step-one-owner-gated-20260902 · local (unattended)
+
+**One line, which is the whole deliverable: step one is gated on an owner
+action, no agent-runnable increment exists, and this session took none.**
+
+**Attempted:** Boot sequence in full — charter CURRENT RUNG block,
+Standing Lessons 1–10, the last five ledger entries, `docs/evals/baseline.md`,
+and [pulse-next-step.md](pulse-next-step.md). Then the branch scan the
+2026-09-02 duplication entry proposed as a process change, run *before*
+designing anything rather than after: `git branch -r --sort=-committerdate`
+with `git rev-list --count main..<branch>` on each. Three branches are
+ahead of main and all three are accounted for — `agent/marathon` (W15,
+superseded-pending-review by the reset), `agent/lateral-2026-09-02` (the
+lateral review's prepared record; not a workstream), and
+`claude/pr-20-20260902-0053` (a one-line `scipy` dev-extra fix; the local
+venv already has it, `pytest` is green here). **Nothing completed and
+unmerged is a step-one increment.** The proposed process change worked
+as intended and is recorded as having been exercised once.
+
+**Pre-registered expectations:** n/a — no experiment run, by design.
+
+**Result: BLOCKED on the owner, for the second consecutive unattended
+session.** `pulse-next-step.md` §6 gates the increment on the owner's
+blind exercise→prior table; §7's three-arm ablation cannot start without
+it; no agent may author it or derive it from the corpus. Verified this
+session that no such table exists anywhere in the repo or on any branch.
+Every other reachable step-one direction is on the §8 do-not list — the
+−69 ms offset, another window sweep, the accent line (held to step two),
+SW-1's withdrawn F3, the oscillator, and re-running the bake-off. The one
+adoption candidate, §10's replacement of `calculate_tempo`'s median of
+consecutive gaps with an all-pairs or comb period estimate, is
+**explicitly uncommissioned**, is a logic change under a zero-regression
+gate, and moves scored outcomes — so it needs the owner's commissioning
+and a re-bless, not a session's initiative. It is **not taken here**,
+which is the same call the 2026-09-02 blocked note made and the opposite
+of what that session then did six hours later.
+
+**State verified, not assumed.** `pytest` 373 passed / 3 skipped.
+`python -m musical_perception.evals run --suite tier0,tier1` reproduces
+the reset bless exactly — tier1 tempo 0.606 (20/13/1), Acc2@8% 0.697,
+between-levels 10 of 33, reference slice withheld at n=18 — and prints
+**`no outcome changes vs baseline`**. tier0 tempo 25/25, meter 24/25.
+`git diff --stat main` shows this ledger entry and nothing else.
+
+**Regressions and classifications:** none — no code, no eval file, no
+pipeline path touched.
+
+**Lesson (durable, one paragraph):** The previous session's lesson — *a
+rung that ends in an owner action ends for agents too* — was written and
+then not followed by its own author, who took AP-1 an hour later and
+duplicated an attended session's headline experiment. The failure mode is
+not ignorance of the rule; it is that an idle loop feels like waste, and
+"parked, not started" is one turn away from "started." The honest cost of
+holding is one short session; the cost of not holding was, measured, a
+duplicated experiment and a merge that had to carry someone else's
+commits. **A second consecutive BLOCKED note is a signal about the
+owner's queue, not a failure of the loop**, and the loop should be
+willing to emit it without inventing adjacent work to fill the turn.
+
+**Status: BLOCKED** (needs, unchanged from the previous session: the
+owner's blind prior table per `pulse-next-step.md` §6, plus his two
+questions — what counts as "the tempo" when it moves inside a clip, and
+whether the exercise name alone carries the prior. Separately available
+for his ruling, and worth more than the table if he wants the loop
+running tonight: **commissioning §10's estimator replacement**, which
+does not depend on the table and is the largest measured lever on the
+gating set — 16→28 of 34 on the same events, between-levels 21→7.)
