@@ -11522,3 +11522,81 @@ any agent branch newer than main **before** choosing or designing an
 increment.
 
 Status: PROPOSED. The duplication is recorded, not tidied away.
+
+## 2026-09-03 · RESET, step one (pulse) · agent/sidecar-evidence-20260903 · local (unattended) — PRE-REGISTRATION: W11-c, pulse sidecars for the barre-6 traces (EVAL-CHANGE)
+
+**Scope declaration first.** This is an **EVAL-CHANGE, add-only**
+increment under the owner-ratified sidecar carve-out (charter rule 2:
+*"agent sessions may ADD new derived-evidence files inside existing trace
+directories (e.g. `pulse.json`) — never modifying any existing file, with
+the source media checksum-verified against the trace's stored hash and
+byte-identical suite output proven before merge"*). It is W11 applied to
+the material W11 predates. **No pipeline change is bundled** (rule 6); no
+scorer or harness code is touched; nothing is adopted, pinned or blessed.
+
+### Why this and not a fourth BLOCKED note
+
+Three consecutive unattended sessions emitted BLOCKED notes, correctly:
+`pulse-next-step.md` §6 gates the ablation on the owner's blind prior
+table, and §8's do-not list closes the offset, the window sweep, the
+accent line, SW-1's F3, the oscillator and the bake-off re-run. The
+fourth session (EA-1) measured §10's adoption candidate and returned a
+negative result whose closing paragraph names the un-forbidden direction:
+*"the pulse sidecars sitting unconsumed in every trace directory are the
+stream it should reach with."*
+
+**Checked before choosing, and it changes the picture:** the sidecars are
+not sitting unconsumed in *every* trace directory. **They do not exist
+for any barre-6 trace at all.** W11 froze 26 sidecars — every one of them
+a rig clip — on 2026-08-29; barre-6 was ingested 2026-09-01. Run today,
+`--suite stage1-peakrate` prints
+`ERROR barre6-<id>: FileNotFoundError: no pulse.json sidecar`
+on **26 of 26** barre-6 cases, **all 8 gating demos among them**. The
+acoustic pulse channel — the subject of step one — is not scoreable in the
+harness on the clips step one is about. Every diagnostic that has looked
+at it (SW-1, PR-1, AP-1, EB-1) re-derived the stream from gitignored
+media, four times, in four scripts.
+
+That is **Standing Lesson 9** exactly (*"whatever is replayable gets
+iterated; build the trace/replay path for a new channel before betting on
+the channel"*), and it is a prerequisite for the direction EA-1 named
+rather than that direction itself. It needs no owner action, is on no
+do-not list, moves no scored outcome, and is the operation the carve-out
+was ratified for.
+
+**What it is NOT.** It does not touch `estimate_rhythm`, does not feed
+the pulse stream into any committer, and does not discharge §6. The
+owner's blind prior table remains the standing next step for §7's
+ablation, unchanged.
+
+### The change, in one sentence
+
+Run `python -m musical_perception.evals record-pulse` so that the 26
+barre-6 trace directories gain a `pulse.json`, written by the existing
+recorder, each one refusing to write unless the local media hashes to the
+`media_sha256` its trace already pins.
+
+### Pre-registered predictions
+
+| # | prediction |
+|---|---|
+| P1 | All 26 barre-6 media files are present locally and hash-match their trace pins: `26 recorded, 26 already present, 0 skipped`. A mismatch would mean the media moved since the 2026-09-01 freeze. |
+| P2 | **Primary gate.** `tier0`, `tier1` and `stage1` print byte-identical per-row and aggregate output before and after, and the run prints `no outcome changes vs baseline`. Nothing consumes sidecars for any scored field. |
+| P3 | Add-only holds: `git status` shows 26 **new** files, all matching `evals/traces/barre6-*/pulse.json`; zero files under `evals/` modified or deleted; `evals/baseline.json` untouched. |
+| P4 | `pytest` stays 373 passed / 3 skipped. |
+| P5 | The 26 `stage1-peakrate` ERROR lines are replaced by 26 scored rows; the suite's verified-clip n goes 25 → 33 (the 8 owner-tapped demo grids join; `barre6-ballonne-demo` and the 17 takes score into the provisional slice). |
+| P6 | **Clutter, not sparsity, on the demos:** on the 8 gating demos the peakRate stream scores recall above precision, median (R − P) ≥ 0.10, and emits more events than the grid has beats on at least 6 of 8. |
+| P7 | **The freeze reproduces EB-1 from a different route:** median peakRate-events-per-owner-beat on the 8 demos falls in [1.8, 3.2], the band EB-1's Arm C measured live from media (2.0–2.85). |
+| P8 | peakRate beats Whisper word starts on the demo slice: macro F over the same 8 verified demo grids exceeds the word-start suite's **0.139**. *Stated risk:* both streams over-produce badly against these sparse grids (word starts already emit 94–180 events against 42–74 beats), so a precision collapse could sink F even with better recall. P8 is the one prediction here that can plausibly fail. |
+
+**Adoption rule, fixed now:** P2 and P3 are the gate. If either fails the
+sidecars are not committed and the entry stands as a negative result. P5–P8
+are REPORTED-ONLY measurements of what the frozen stream looks like; none
+of them can justify keeping the increment if P2 or P3 fail, and none of
+them gates anything downstream.
+
+**Constraints:** branch `agent/sidecar-evidence-20260903`; nothing under
+`src/`; no existing file under `evals/` modified or deleted; `evals bless`
+never run.
+
+**Status: PRE-REGISTERED**, committed before the recorder is run.
