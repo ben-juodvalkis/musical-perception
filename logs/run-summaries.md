@@ -397,3 +397,22 @@ is how the runner's permission failure was found.)*
 > Branch `agent/step-one-blocked-20260902` is pushed — pre-registration written before the code, results, the full memo, and the script. Tests green, 373 passed. No test case, no ground truth, no scorer, and no pipeline file was touched.
 
 *Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
+
+## run 2026-09-02T17:00:07Z · main fa3a1ad
+
+- **outcome:** success, shell exit 0
+- **turns:** 22 · **duration:** 2.9 min · **cost:** $1.84
+
+**Agent's closing message:**
+
+> …that's bigger than the prior table, and it doesn't depend on it.
+> 
+> The way the system currently reads tempo is: measure the gaps between neighbouring sounds and take the middle one. That's the single biggest defect found so far. Measure the distance between *every* pair of sounds instead — same recordings, same detected sounds, only the arithmetic changes — and it goes from **16 clips right to 28 out of 34**, past what the shipping pipeline manages. The "stuck between two speeds" failures drop from 21 clips to 7.
+> 
+> Almost all of that gain is on your own voice-and-metronome recordings (12 → 24 of 26). **The eight teacher demos barely move — 4 to 5.** So it's a real, large, measured win on one half of the set and close to nothing on the half you actually care about. Both an attended session and an unattended one found the same numbers independently, which is unusually good evidence for a result this size.
+> 
+> It changes scored answers, so it needs your go-ahead and a re-bless afterward. Say the word and it becomes the next session's work; otherwise the loop holds until the prior table exists.
+> 
+> Branch `agent/step-one-owner-gated-20260902` is pushed — one ledger entry, nothing else touched.
+
+*Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
