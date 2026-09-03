@@ -239,6 +239,18 @@ def analyze(
         gemini_result.counting_structure.subdivision_type
         if gemini_result.counting_structure else None
     )
+    # PP-1: the acoustic pulse stream, when the bundle can supply one.
+    # It enters as a bounded multiplicative prior on the tempo marginal,
+    # never as a fold (Standing Lesson 2). A bundle without a provider,
+    # or an extractor that fails, leaves the answer unchanged.
+    pulse_events = None
+    if bundle.pulse_events is not None:
+        try:
+            pulse_events = bundle.pulse_events(audio_path)
+        except Exception as exc:                                # noqa: BLE001
+            import warnings
+            warnings.warn(f"pulse extraction failed, continuing without it: {exc}")
+
     normalized_tempo = estimate_rhythm(
         words,
         markers,
@@ -246,6 +258,7 @@ def analyze(
         gemini_subdivision=gemini_subdivision,
         onset_tempo=onset_tempo,
         gemini_tempo=tempo,
+        pulse_events=pulse_events,
     )
 
     # Counts from evidence fusion (ADR-012): the estimator owns counts,

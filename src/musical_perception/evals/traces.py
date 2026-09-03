@@ -236,9 +236,23 @@ def replay_bundle(trace_dir: Path) -> tuple[PerceptionBundle, dict]:
                     detection_rate=float(data["detection_rate"]),
                 )
 
+    # PP-1 replay seam: the frozen acoustic pulse stream, when W11/W11-c
+    # recorded one for this clip. No sidecar -> no provider -> the rhythm
+    # core is bit-for-bit its pre-PP-1 self on that row.
+    pulse_events = None
+    pulse_path = trace_dir / "pulse.json"
+    if pulse_path.is_file():
+        _frozen_pulse = [
+            float(t) for t in json.loads(pulse_path.read_text())["events"]
+        ]
+
+        def pulse_events(audio_path: str):
+            return list(_frozen_pulse)
+
     bundle = PerceptionBundle(
         transcribe=transcribe,
         analyze_media=analyze_media,
         extract_landmarks=extract_landmarks,
+        pulse_events=pulse_events,
     )
     return bundle, meta

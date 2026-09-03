@@ -11916,3 +11916,154 @@ file under `evals/cases/`, `evals/traces/` or `evals/baseline.json`
 modified. `evals bless` never run.
 
 **Status: PRE-REGISTERED**, committed before the code exists.
+
+## 2026-09-03 · RESET, step one (pulse) · agent/step-one-pulse-prior-20260903 · local (unattended) — RESULTS: PP-1, the acoustic pulse as a tempo prior
+
+**Headline: the rung's own criterion moves for the first time since the
+reset — committed pulse 0.606 → 0.636, Acc2@8% 0.697 → 0.727,
+between-levels 10 → 9 of 33 — on exactly two outcome changes, both
+improvements, both on a barre-6 demo, with zero regressions anywhere.**
+8 of 8 pre-registered predictions hit. Nothing is blessed; the tier-1
+tripwire fires by design and only the owner can clear it.
+
+### Scorecard: 8 hits, 0 falsified
+
+| # | prediction | outcome |
+|---|---|---|
+| Q1 | **Primary:** tier1 committed tempo ≥ 21 of 34 | **HIT** — 21/34, **0.606 → 0.636** |
+| Q2 | Acc2@8% ≥ 0.697 | **HIT** — **0.697 → 0.727** (Acc1@8% 0.606 → 0.636; Acc1@4% 0.515 → 0.545; Acc2@4% 0.576 → 0.606) |
+| Q3 | between-levels < 10 of 33 | **HIT** — **10 → 9** |
+| Q4 | tier0 byte-identical | **HIT** — 25/25 tempo, 24/25 meter, unchanged |
+| Q5 | zero undiagnosed regressions, every flip classified | **HIT** — **there are no regressions to classify**; the complete change list is two rows, both `wrong -> correct` |
+| Q6 | demo slice does not regress | **HIT** — 3/8 → **4/8**; see the correction below |
+| Q7 | ECE does not worsen | **HIT** — **0.2145 → 0.1903** |
+| Q8 | the seam is inert when unfed | **HIT** — with all 52 sidecars hidden the suites print `no outcome changes vs baseline`, tempo 0.606, ECE 0.2145 exactly |
+
+**Correction to Q6's stated baseline, disclosed rather than quietly
+re-scored.** The pre-registration wrote *"≥ 4 of 8, baseline 4 of 8"*,
+taking the 4/8 from `pulse-next-step.md`. Read off `evals/baseline.json`
+directly, the blessed demo-slice tempo is **3 of 8**, not 4. Q6 holds
+against either number, but the prediction was written against a
+second-hand figure and that is worth recording: the handoff's 4/8 is its
+own arm's count, not the shipping path's.
+
+### Every outcome change, in full
+
+```
+outcome changes vs baseline:
+  barre6-coupe-barre-demo.meter_triple: wrong -> correct
+  barre6-coupe-barre-demo.tempo: wrong -> correct
+```
+
+That is the entire diff on 52 rows. `meter_triple` 14 → 15 of 34 comes
+along with it; `counts` and `sides` are untouched.
+
+### The 8 gating demos, per clip
+
+| clip | truth | committed | pulse all-pairs | before → after |
+|---|---|---|---|---|
+| `barre6-coupe-barre-demo` | 108.0 | 107.5 | **108.3** | wrong → **correct** |
+| `barre6-degage-demo` | 110.0 | 106.2 | 113.9 | correct → correct |
+| `barre6-fondu-demo` | 86.0 | 101.0 | 45.5 | wrong → wrong |
+| `barre6-frappe-demo` | 135.0 | 134.9 | 144.0 | correct → correct |
+| `barre6-plie-demo` | 120.0 | 124.9 | 42.2 | correct → correct |
+| `barre6-rond-de-jambe-demo` | 96.0 | 108.7 | 31.9 | wrong → wrong |
+| `barre6-tendu-demo` | 102.0 | 120.4 | *refused* | wrong → wrong |
+| `barre6-tendu-warmup-demo` | 112.0 | 123.4 | 42.2 | wrong → wrong |
+
+### Three findings, and the second is the one that should shape what comes next
+
+**1. The bound did the job it was designed for, and it is measurable.**
+On `plie` the pulse period reads **42.2 BPM** against a truth of 120 —
+the extractor is sitting on a slower level entirely. On `frappe` it reads
+144.0 against 135. In both cases the committed answer **stayed correct**.
+A hard fold, or an unbounded prior, would have dragged those rows off a
+right answer; the (1 − W) mixture floor means the prior can tilt the
+marginal and never veto a hypothesis. **Standing Lesson 2, obeyed and
+then verified rather than asserted.** The refusal path also fired for
+real: `barre6-tendu-demo` and `barre6-ballonne-demo` got no prior at all
+because all-pairs landed on a search boundary — the artifact AP-1 and
+EA-1 each caught and neither could refuse.
+
+**2. EB-1's rig-side win did not transfer, and that is now twice.** EB-1
+measured all-pairs lifting the rig clips 12 → 24 of 26 on its own
+projection path. Through this route **not one rig row moved.** EA-1 found
+the same thing by a different door (24 rig rows read materially
+differently, 0 committed rows moved). The consistent reading across three
+increments is that **the shipping committer is largely insensitive to
+what the tempo front-end says**, and the single row that did move moved
+because the pulse estimate was *already almost exactly right* (108.3 vs
+108.0). This is a one-row result dressed in a moving aggregate, and it
+should be read that way.
+
+**3. The gain is on the rung's own target, which is the one thing that
+makes it worth anything.** The rung is the demo, not the rig. Of the two
+changed outcomes, both are on a barre-6 demo, and the demo slice is where
+the reset says the benchmark lives. A rig-side gain would have been
+declined under this increment's own adoption rule; this is the other case.
+
+### What this does NOT establish
+
+- **n = 1.** One clip flipped. At 34 gating rows a single row is 3
+  percentage points, and ADR-015's knife-edge doctrine exists precisely
+  because rows near tolerance gate nothing. `coupe-barre` committed
+  **107.5 against a truth of 108.0** — that is not knife-edge (0.5%
+  inside an 8% tolerance), but the *aggregate movement* rests entirely on
+  it.
+- It does not show the prior helps in general; on 5 of the 8 demos the
+  pulse period is at the wrong metric level and the prior is, correctly,
+  doing nothing useful there.
+- It does not discharge `pulse-next-step.md` §6. **The owner's blind
+  prior table is still the standing next step**, and §7's exercise-keyed
+  ablation is a different and larger idea than this one.
+- It is not blessed and no agent may bless it.
+
+### Regressions and classifications
+
+**None.** The complete outcome diff is two rows, both `wrong -> correct`.
+There is no fake-green-lost, no genuine-trade and no knife-edge loss to
+classify, because nothing was lost. ADR-015's zero-regression gate for a
+logic change is met on its own terms.
+
+### The tier-1 tripwire fires, and that is the harness working
+
+`pytest` is **1 failed, 378 passed, 3 skipped**. The single failure is
+`test_tier1_outcomes_match_baseline_exactly`, which fails on **any**
+outcome change including improvements, and prints the two rows above with
+the instruction to re-bless. **`evals bless` was not run** (rule 1, rule
+8). Blessing is the owner's act and this increment needs one before it
+can be merged. Six new unit tests cover the estimator and the prior's
+bound (`tests/test_pulse_prior.py`); all pass.
+
+### Verification and constraints
+
+Branch `agent/step-one-pulse-prior-20260903`, cut from
+`agent/sidecar-evidence-20260903` because it consumes W11-c's sidecars —
+disclosed in the pre-registration, not folded into a merge.
+`git diff --stat main`: **33 files, 4,850 insertions, zero deletions** —
+26 added sidecars (W11-c), 5 source files, 1 new test file, the ledger
+and one doc. **No file under `evals/cases/`, `evals/traces/` or
+`evals/baseline.json` was modified or deleted**; every `evals/` path in
+the diff is an addition. The one file touched under
+`src/musical_perception/evals/` is `traces.py`, and only to hand the
+replay bundle a frozen-events provider: **no metric, no suite, no scoring
+rule is changed**, which Q8 proves by reproducing the baseline exactly
+with the seam unfed.
+
+**Lesson (durable, one paragraph):** Two sessions concluded the acoustic
+pulse could not reach the committed answer, and both were right about the
+door they tried. EA-1 changed what `calculate_tempo` measures and moved
+nothing, because the committer never reads it. PP-1 changed what the
+*posterior's tempo marginal* is multiplied by and moved the rung's number
+on the first attempt — small, on one clip, but on the rung's own target.
+**The difference was not a better estimator; it was finding where the
+answer is actually decided.** EA-1's negative result named that place in
+its closing paragraph and the increment that acted on it was one day
+later. A negative result that says *where not to push* is worth as much
+as this entry, and this entry is downstream of it.
+
+**Status: PROPOSED, needs an owner re-bless before it can merge.** The
+rung's reported quantities, which is what the reset asks for: committed
+pulse **0.636** within ±8% of the in-band truth (was 0.606), **Acc2@8%
+0.727** (was 0.697), **between-levels 9 of 33** (was 10). tier0 25/25 and
+24/25, unchanged. ECE 0.1903 (was 0.2145).

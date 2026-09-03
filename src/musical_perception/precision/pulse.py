@@ -161,3 +161,61 @@ def acoustic_pulse_events(
         else:
             kept.extend(float(t) for t in inside)
     return np.array(sorted(set(kept)))
+
+
+# --------------------------------------------------------------- PP-1
+# All-pairs period estimation over the pulse stream. Ported verbatim
+# from the EB-1 bake-off (scripts/eb1-estimator-bakeoff.py:89) so what
+# the pipeline consumes is what the diagnostic measured, not a
+# re-implementation. Inner-Metric-Analysis family (Standing Lesson 3:
+# levels vote, and all-pairs distances are where the beat period
+# survives clutter).
+
+ALL_PAIRS_PERIOD_LO = 0.20
+ALL_PAIRS_PERIOD_HI = 2.50
+ALL_PAIRS_N_PERIODS = 400
+ALL_PAIRS_MAX_SPAN = 3.0
+ALL_PAIRS_MAX_MULTIPLE = 8
+ALL_PAIRS_RESID = 0.15
+ALL_PAIRS_MIN_EVENTS = 6
+
+_ALL_PAIRS_PERIODS = np.geomspace(
+    ALL_PAIRS_PERIOD_LO, ALL_PAIRS_PERIOD_HI, ALL_PAIRS_N_PERIODS
+)
+
+
+def all_pairs_period(events) -> float | None:
+    """Period (seconds) best supported by ALL pairwise event distances.
+
+    Each candidate period scores the pairwise distances landing near an
+    integer multiple of it, weighted 1/sqrt(multiple) so long spans do
+    not win merely by being numerous.
+
+    Returns None when the stream is too sparse to support a reading, or
+    when the winner sits on either boundary of the search range — a
+    boundary hit is the search-range artifact AP-1 and EA-1 both caught
+    on sparse streams, and it is refused rather than reported.
+    """
+    ev = np.asarray(sorted(float(t) for t in events), dtype=float)
+    if ev.size < ALL_PAIRS_MIN_EVENTS:
+        return None
+    d = ev[None, :] - ev[:, None]
+    d = d[np.triu_indices_from(d, k=1)]
+    d = d[(d > ALL_PAIRS_PERIOD_LO * 0.5) & (d <= ALL_PAIRS_MAX_SPAN)]
+    if d.size < 5:
+        return None
+
+    best_i, best_s = -1, -1.0
+    for i, p in enumerate(_ALL_PAIRS_PERIODS):
+        k = d / p
+        m = np.round(k)
+        resid = np.abs(k - m)
+        ok = (m >= 1) & (m <= ALL_PAIRS_MAX_MULTIPLE) & (resid < ALL_PAIRS_RESID)
+        if not ok.any():
+            continue
+        s = float(np.sum((1.0 - resid[ok] / ALL_PAIRS_RESID) / np.sqrt(m[ok])))
+        if s > best_s:
+            best_i, best_s = i, s
+    if best_i <= 0 or best_i >= ALL_PAIRS_N_PERIODS - 1:
+        return None                       # nothing found, or a boundary artifact
+    return float(_ALL_PAIRS_PERIODS[best_i])
