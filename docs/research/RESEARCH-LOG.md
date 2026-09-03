@@ -11743,3 +11743,64 @@ corpus changes underneath it.*
 pinned, no re-bless needed — the baseline reproduces exactly. The rung's
 reported quantities are unchanged by construction: committed pulse 0.606
 within ±8% of in-band truth, Acc2@8% 0.697, between-levels 10 of 33.
+
+## 2026-09-03 · RESET, step one (pulse) · agent/sidecar-evidence-20260903 · local (unattended) — BLOCKED: the rung's own criterion is owner-gated, fourth consecutive session
+
+**One line, and it is the whole deliverable for the rung itself: step one
+cannot be advanced by any agent-runnable increment, because its next move
+is an owner action — the blind exercise→prior table of
+[pulse-next-step.md](pulse-next-step.md) §6 — which no agent may author or
+derive from the corpus, and which does not exist in this repository or on
+any branch.**
+
+**Stated plainly so it is not read as a completion claim.** The CURRENT
+RUNG's pre-registered pass criterion is *committed pulse within ±8% of the
+in-band truth, reported beside Acc2@8% and the between-levels count*.
+Reported, as the criterion requires, and **unchanged**:
+
+- committed tempo **0.606** (20 correct / 13 wrong / 1 abstained, n=34)
+- **Acc2@8% 0.697** (Acc1@8% 0.606; Acc1@4% 0.515; Acc2@4% 0.576, n=33)
+- **between-levels rows 10 of 33**
+- tier0 tempo 25/25, meter_triple 24/25; reference slice withheld, n=18
+- the run prints **`no outcome changes vs baseline`**
+
+**This session's W11-c increment did not move any of those, by design**,
+and its own entry says so. W11-c is an EVAL-CHANGE, add-only prerequisite
+— it makes the acoustic pulse stream replayable on the 8 gating demos,
+where the harness had been erroring on 26 of 26 barre-6 rows since
+2026-09-01. It is **not** a rung-completion increment and must not be
+counted as one.
+
+**Why no increment could have completed the rung.** §7's three-arm
+ablation is the commissioned path to the criterion and is gated on the
+table. Everything else reachable is closed: the −69 ms offset
+(tempo-irrelevant), another window sweep (SW-1 answered it), the accent
+line (held to step two), SW-1's withdrawn F3, the nonlinear oscillator
+and a bake-off re-run (§8 do-not list), and §10's estimator replacement
+(measured by EA-1 on 2026-09-02: **0 of 52 committed rows moved**, not
+adopted). The one open direction EA-1 named — feeding an all-pairs period
+from the pulse stream into `estimate_rhythm`'s evidence — is an
+uncommissioned logic change under a zero-regression gate that moves
+scored outcomes, so it needs the owner's commissioning and a re-bless.
+W11-c is its prerequisite and is deliberately not it.
+
+**Branch scan run before choosing, per the 2026-09-02 proposed process
+change:** `agent/step-one-blocked-20260902-evening` (EA-1, negative),
+`agent/step-one-owner-gated-20260902` (BLOCKED note),
+`agent/lateral-2026-09-02`, `agent/marathon` (W15, superseded-pending-
+review), `claude/pr-20-20260902-0053`. Nothing completed-and-unmerged is
+a step-one increment.
+
+**Visibility, now four sessions deep and unchanged.** Every one of these
+BLOCKED notes lives on an unmerged agent branch; `main`'s ledger cannot
+show them, so from the owner's vantage the loop looks silent rather than
+waiting. Rule 1 forbids an agent pushing `main`, so the fix is his to
+choose — read the branch list at review, or grant BLOCKED notes a
+carve-out like the nightly `logs/` one.
+
+**Status: BLOCKED** (needs, unchanged for the fourth session: the owner's
+blind prior table per `pulse-next-step.md` §6, plus his two questions —
+what counts as "the tempo" when it moves inside a clip, and whether the
+exercise name alone carries the prior. Separately available for his
+ruling: commissioning the pulse-stream evidence path into
+`estimate_rhythm`, for which W11-c has now laid the replay track.)
