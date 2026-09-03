@@ -11804,3 +11804,115 @@ what counts as "the tempo" when it moves inside a clip, and whether the
 exercise name alone carries the prior. Separately available for his
 ruling: commissioning the pulse-stream evidence path into
 `estimate_rhythm`, for which W11-c has now laid the replay track.)
+
+## 2026-09-03 · RESET, step one (pulse) · agent/step-one-pulse-prior-20260903 · local (unattended) — PRE-REGISTRATION: PP-1, the acoustic pulse as a tempo prior
+
+**Scope declaration first, and it is a disclosed deviation, not a
+commission.** `pulse-next-step.md` §6 makes the owner's blind prior table
+the standing next step, and the BLOCKED note committed one commit before
+this one says step one cannot be advanced by an agent. **This increment is
+taken anyway, under an explicit and repeated operator directive that the
+rung's own measurable criterion must be attempted rather than idled for a
+fourth session.** Recorded plainly, per rule 9, rather than dressed as
+commissioned work:
+
+- it is **PROPOSED**, on a branch, blessing nothing and pinning nothing;
+- if the owner rejects the line, the cost is this branch;
+- it does **not** author, infer, or stand in for the §6 prior table —
+  that table is about *exercise type → tempo range* and remains his;
+- **branch disclosure:** this branch is cut from
+  `agent/sidecar-evidence-20260903` (W11-c), not from `main`, because it
+  consumes the sidecars W11-c froze. It therefore carries W11-c's
+  commits. That is structural, not a bundling of two changes into one
+  claim: W11-c is EVAL-CHANGE and add-only, PP-1 is a pipeline change
+  under `src/`, and they are separately pre-registered, separately
+  scored, and separately adoptable.
+
+### Why this direction and not another
+
+EA-1 (2026-09-02) measured §10's adoption candidate and returned a sharp
+negative: replacing `calculate_tempo`'s median moved **0 of 52** committed
+rows, because *"on this corpus the committed tempo does not depend on
+`calculate_tempo`'s BPM at all … anything that wants to move the tempo
+answer has to reach `estimate_rhythm`'s evidence, and the pulse sidecars
+sitting unconsumed in every trace directory are the stream it should reach
+with."* W11-c, one entry above, made that stream exist for the 8 gating
+demos, where it did not before. This is that experiment. It is on no §8
+do-not list.
+
+### The change, in one sentence
+
+The frozen acoustic pulse stream supplies a **bounded multiplicative
+tempo prior** to `estimate_rhythm`'s tempo marginal — the all-pairs period
+of the peakRate events, applied at level selection, never as a fold
+(Standing Lesson 2).
+
+### Design, frozen a priori — no constant is tuned after any result
+
+1. **Estimator, ported verbatim from EB-1** (`scripts/eb1-estimator-bakeoff.py:89`,
+   `est_all_pairs`) so the thing being consumed is the thing that was
+   measured, not a re-implementation: pairwise distances in
+   (0.5·`PERIOD_LO`, 3.0 s]; candidate periods `geomspace(0.20, 2.50, 400)`;
+   multiples 1–8; residual < 0.15; score `Σ (1 − resid/0.15)/√multiple`.
+2. **Prior shape:** `w(bpm) ∝ (1 − W) + W·exp(−½(ln(bpm/bpm_pulse)/Σ)²)`
+   with **W = 0.5** and **Σ = 0.10** in log-BPM. Multiplied into the
+   lattice's final tempo marginal and renormalised **before** the
+   window-mass commitment. Bounded by construction: it can at most double
+   the relative weight of the favoured region and **can never zero any
+   hypothesis** — the failure mode Standing Lesson 2 exists to forbid.
+   No metric-level relatives are added: the lattice already votes over
+   levels (Lesson 3), and the prior's job is to say a real periodicity
+   exists there, not to choose the level for it.
+3. **Refusals, stated before running:** no prior is applied when the
+   sidecar has < 6 events, when all-pairs returns nothing, or when the
+   winning period lands on either **boundary of the search range** —
+   AP-1 and EA-1 both caught boundary artifacts on sparse streams and
+   both flagged them; this refuses them instead.
+4. **Seam:** `PerceptionBundle` gains an optional `pulse_events`
+   provider — the replay bundle reads `pulse.json`, the live bundle
+   computes it from audio with the same extractor. A bundle without one
+   leaves `estimate_rhythm` bit-for-bit unchanged.
+
+### The honest reason to doubt this before running it
+
+EB-1's Arm C measured that **0 of 8 demos** have the beat as their
+strongest periodicity, and all-pairs on the demos scored 4–5 of 8 against
+a control of 4 of 8 — i.e. **the win EB-1 found is almost entirely
+rig-side** (12 → 24 of 26). The rig clips are the owner's own voice
+against a metronome; the demos are the rung. So the most likely outcome is
+a rig-side gain, a flat demo slice, and a legitimate question about
+whether that is progress on step one at all. Worse is possible: if the
+all-pairs period lands on the bar rather than the beat, the prior pulls
+*away* from a correct answer, which is why W is capped at 0.5.
+
+### Pre-registered predictions
+
+| # | prediction |
+|---|---|
+| Q1 | **Primary — the rung's own criterion.** tier1 committed tempo > 0.606, i.e. ≥ 21 of 34. |
+| Q2 | Acc2@8% ≥ 0.697 (no loss of family-level correctness). |
+| Q3 | between-levels rows < 10 of 33 — the failure shape all-pairs is supposed to fix. |
+| Q4 | tier0 byte-identical (25/25 tempo, 24/25 meter): the synthetic sweep has no traces and therefore no sidecars, so it cannot move. |
+| Q5 | **ADR-015 logic-change gate:** zero *undiagnosed* regressions on the 34 gating rows; every flip classified fake-green-lost / genuine-trade / knife-edge. |
+| Q6 | The demo slice does **not** regress: ≥ 4 of 8, baseline 4 of 8. Stated as a floor, not a hope — see the doubt above. |
+| Q7 | ECE does not worsen. |
+| Q8 | With the prior disabled, every suite reproduces the baseline exactly — proving the seam is inert when unfed. |
+
+**Adoption rule, fixed now.** Q1 is the gate. If Q1 fails, the change is
+**not** proposed for adoption and this stands as a negative result with
+per-clip evidence (rule 5), the same disposition EA-1 took. If Q1 holds
+but Q6 fails — a rig-side win bought at the demos' expense — that is
+**also not adopted**, because the rung is the demo, and it is reported as
+such rather than as a headline. Nothing here is blessed by an agent under
+any outcome.
+
+**Constraints:** branch `agent/step-one-pulse-prior-20260903`; changes
+confined to `src/musical_perception/` (`bundle.py`, `analyze.py`,
+`precision/posterior.py`, `precision/pulse.py`) and
+`src/musical_perception/evals/traces.py` **for the replay seam only** —
+declared here because `evals/` is otherwise scorer territory: no metric,
+no suite, no scoring rule is touched, and Q8 proves the seam inert. No
+file under `evals/cases/`, `evals/traces/` or `evals/baseline.json`
+modified. `evals bless` never run.
+
+**Status: PRE-REGISTERED**, committed before the code exists.
