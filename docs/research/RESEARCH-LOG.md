@@ -11678,3 +11678,78 @@ exercise name alone carries the prior. The alternative lever, which does
 **not** depend on the table and is the largest measured one on the gating
 set: commissioning §10's estimator replacement, 16→28 of 34 on the same
 events, between-levels 21→7.)
+
+## 2026-09-02 · RESET, step one (pulse) · agent/step-one-blocked-20260902-evening · local (unattended, evening) — PRE-REGISTRATION: the estimator adoption (EA-1)
+
+**Scope declaration first, because this increment is taken against an
+uncommissioned candidate.** `pulse-next-step.md` §10 names replacing
+`calculate_tempo`'s median of consecutive gaps with an all-pairs period
+estimate as *"the one adoption candidate now on the table"*, states its
+requirements — *"its own pre-registration, its own increment, and an
+owner re-bless"* — and says **"It is not commissioned."** Two prior
+sessions declined it on that basis and emitted BLOCKED notes. This
+session takes it, under an explicit operator directive that the rung must
+advance rather than idle a third time, and discloses that rather than
+dressing it as commissioned. **What that means concretely:** this is a
+PROPOSED branch, nothing is blessed, no baseline is rewritten, and if the
+owner rejects the line the cost is this branch. The §7 prior-table
+ablation is **not** bundled with it (rule 6), and the owner's blind table
+remains the standing next step for that separate increment.
+
+**The thing being changed, in one sentence:** inside `calculate_tempo`,
+the beat period stops being the median of *consecutive* inter-event gaps
+and becomes the period best supported by *all pairwise* distances
+(Inner-Metric-Analysis family, EB-1's `all-pairs` arm), with everything
+else in that function — `intervals`, `regularity`, `confidence` — left
+computing exactly as today.
+
+**Why `regularity` and `confidence` are deliberately frozen.** Both feed
+arbitration gates (`interpret_meter` reads `gemini_tempo.regularity >=
+0.6` and `onset_tempo.confidence >= 0.3`), and W14-c's precedent is that
+routing quantities are preserved bit-for-bit so a change is attributable.
+The only routing that can move is via `bpm` itself, through the
+`70 <= bpm <= 140` band test in `marker_at_beat_level`. Stated in
+advance as a known consequence, not discovered afterwards: `confidence`
+therefore keeps describing the dispersion of the consecutive-interval
+stream, not the standard error of the new estimator. A confidence proper
+to all-pairs is a separate question and is **not** attempted here.
+
+### The honest reason to doubt this before running it
+
+EB-1 and AP-1 both measured on **peakRate acoustic events**, where the
+disease is clutter: 2.0–2.85 syllables per beat at a *non-integer* ratio
+(EB-1 Arm C). `calculate_tempo` does not see that stream. It sees
+**Gemini-classified beat markers**, which are at beat level by
+construction. The 12-row win may therefore be sitting on a stream the
+shipping path never touches — and both entries said so in their own
+"what this does NOT establish" sections. **This increment's most likely
+outcome is that the win does not transfer**, and that is worth measuring
+precisely because §10 would otherwise be adopted on an assumption.
+
+The other shipping arm, `detect_onset_tempo`, is **not** touched: it
+already grid-fits IOIs per section (ADR-015) rather than taking a bare
+median, so "replace the median" does not describe it. Named here so the
+scope is not read as wider than it is.
+
+### Pre-registered predictions
+
+| # | prediction |
+|---|---|
+| P1 | **Primary, zero-regression gate (ADR-015 logic change):** tier1 committed tempo ≥ 20/34 (baseline 0.606). |
+| P2 | **The transfer is small:** ≤ 2 tier1 tempo rows change in either direction — EB-1's +12 does not transfer, because the marker stream lacks the non-integer clutter all-pairs fixes. |
+| P3 | tier0 tempo stays 25/25 and tier0 meter_triple stays 24/25. |
+| P4 | between-levels rows stay within 10 ± 2 of 33. |
+| P5 | Acc2@8% ≥ 0.697. |
+| P6 | Every tier1 row whose committed answer changes is a row where the marker arm was selected by arbitration — no row changes through a path that does not read `calculate_tempo`'s bpm. Verified by instrumenting, not asserted. |
+| P7 | ≤ 1 of the 8 barre-6 demo rows changes. |
+
+**Adoption rule, fixed now:** if P1 fails the change is **not** proposed
+for adoption and the entry stands as a negative result with per-clip
+evidence (rule 5). If P1 holds but P2 also holds — the likely case — the
+honest headline is *"§10's lever does not exist on the shipping path"*,
+not a win. Regressions, if any, get classified fake-green-lost /
+genuine-trade / knife-edge before any recommendation.
+
+**Constraints:** branch `agent/step-one-blocked-20260902-evening`; only
+`src/musical_perception/precision/tempo.py` under `src/`; nothing under
+`evals/` (not an EVAL-CHANGE, no scorer code); never `bless`.
