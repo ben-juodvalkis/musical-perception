@@ -431,3 +431,22 @@ is how the runner's permission failure was found.)*
 > Branch `agent/step-one-blocked-20260902-evening` is pushed — pre-registration committed before any code, results with the 6-hits-1-falsified scorecard, a replayable script, and per-clip data. Nothing under `evals/` or `src/` is touched (verified, 0 files); `src/` is clean; tests 373 passed / 3 skipped; suites print "no outcome changes vs baseline."
 
 *Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
+
+## run 2026-09-03T09:00:08Z · main 9de1791
+
+- **outcome:** success, shell exit 0
+- **turns:** 86 · **duration:** 17.4 min · **cost:** $9.41
+
+**Agent's closing message:**
+
+> …e line:** the pulse number improved — 0.606 → 0.636, with Acc2@8% 0.697 → 0.727 and one fewer clip stranded between beat levels — nothing regressed, and the only thing left is your blessing, which no agent may do.
+> 
+> That one-line note is now the last entry in the ledger, so a session reading it sees the state immediately rather than having to read three long entries to find out.
+> 
+> **What you'd be blessing:** the machine now listens to the raw sound of the voice for its rhythm, not just to the words, and uses that as a capped nudge that can never overrule a correct answer. It fixed the coupé-barre demo. It's one clip, and I've said so plainly in the write-up rather than letting the aggregate flatter it.
+> 
+> **To clear it,** on `agent/step-one-pulse-prior-20260903`: review, then re-run and `bless`. The test that's currently red is the tripwire doing its job — it fires on *any* change to blessed results, and it's listing two improvements.
+> 
+> Two things I flagged that remain yours and aren't affected by this: the **blind prior table** (a different, bigger idea than what I built), and the fact that four sessions' worth of "waiting on Ben" notes have been landing on branches rather than `main`.
+
+*Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
