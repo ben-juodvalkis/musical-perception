@@ -87,3 +87,30 @@ The three `from_scratch` grids — `adr006-exercise-1-demo`,
 `adr010-grande-battement`, `frappe` — carry **0 of 94** exact
 coincidences. For any external magnitude claim, quote that cohort, per
 the standing rung-2 anchoring caveat.
+
+### Update 2026-09-03 (W11-c): the caveat now cuts both ways
+
+The barre-6 traces gained sidecars on 2026-09-03, and the two cohorts
+separated sharply.
+
+**The circular cohort grew from 2 clips to 19 and now prints a headline.**
+`aggregate_provisional: clips=19 P=1.0 R=0.999 F=1.0 async=0.0±0.0ms`.
+Those grids — the 17 barre-6 takes, `barre6-releve-finish-take1` and
+`barre6-ballonne-demo` — carry `annotator: peakrate-tap-assist/1` and
+were never owner-corrected, so their beats *are* this detector's output.
+**Never quote that aggregate.** A scorer-side fix (suppress or asterisk
+rows whose grid annotator is the extractor being scored) is proposed in
+the 2026-09-03 ledger entry and is not implemented here.
+
+**The honest cohort grew too, and it is now where the rung is scored.**
+The 8 owner-tapped barre-6 demo grids are `annotator: owner-live-tap/1`,
+`annotation_method: from_scratch`, and **1 of their 419 beats** falls
+within 1 ms of a frozen event. Together with the three original
+`from_scratch` grids the quotable cohort is **11 clips / 513 beats**.
+On the 8 demos the frozen stream scores macro **P 0.130 / R 0.347 /
+F 0.187** against **F 0.139** for Whisper word starts on the same grids,
+at a median **2.545 events per owner beat**.
+
+**One consequence for reading the suite:** `slice step_names` moved
+0.747 (n=11) → 0.374 (n=19) when the demos joined. That is coverage, not
+regression — no pre-existing row changed.

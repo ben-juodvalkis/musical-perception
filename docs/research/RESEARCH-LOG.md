@@ -11600,3 +11600,146 @@ them gates anything downstream.
 never run.
 
 **Status: PRE-REGISTERED**, committed before the recorder is run.
+
+## 2026-09-03 · RESET, step one (pulse) · agent/sidecar-evidence-20260903 · local (unattended) — RESULTS: W11-c, pulse sidecars for the barre-6 traces
+
+**Headline: the acoustic pulse stream is now replayable on the clips step
+one is about, and the first thing it says is that the demos' problem is
+clutter — 2.5 events per owner-tapped beat, median, with recall running
+22 points above precision on every one of the 8 gating demos.** 26
+sidecars added, 8/8 pre-registered predictions hit, zero scored outcomes
+moved, zero existing files under `evals/` touched.
+
+### Scorecard: 8 hits, 0 falsified
+
+| # | prediction | outcome |
+|---|---|---|
+| P1 | 26 recorded, 0 skipped, all checksums match | **HIT** — `26 recorded, 26 already present, 0 skipped` |
+| P2 | tier0/tier1/stage1 byte-identical; `no outcome changes vs baseline` | **HIT** — `diff` of the two full runs is empty; the line prints |
+| P3 | add-only: 26 new files, nothing modified or deleted under `evals/` | **HIT** — `git status --porcelain` shows 26 `??`, all `evals/traces/barre6-*/pulse.json`, nothing else |
+| P4 | pytest 373 passed / 3 skipped | **HIT** — identical |
+| P5 | 26 ERROR lines become scored rows; verified n 25 → 33 | **HIT** — zero ERROR lines remain |
+| P6 | R > P on the demos, median (R − P) ≥ 0.10, events > beats on ≥ 6 of 8 | **HIT** — median 0.219; events > beats on **8 of 8** |
+| P7 | median events-per-owner-beat in [1.8, 3.2] | **HIT** — 2.545 |
+| P8 | peakRate macro F on the 8 demo grids > word starts' 0.139 | **HIT** — 0.187, and better on 7 of 8 rows |
+
+P8 was flagged in advance as the one that could plausibly fail. It did
+not, but the margin is small and the absolute numbers are low: see below.
+
+### The 8 gating demos — the honest cohort, per clip
+
+| clip | events | owner beats | ratio | peakRate P / R / F | word-start F | ΔF |
+|---|---|---|---|---|---|---|
+| `barre6-coupe-barre-demo` | 98 | 52 | 1.88 | 0.102 / 0.192 / 0.133 | 0.172 | **−0.039** |
+| `barre6-degage-demo` | 133 | 61 | 2.18 | 0.075 / 0.164 / 0.103 | 0.080 | +0.023 |
+| `barre6-fondu-demo` | 112 | 44 | 2.55 | 0.170 / 0.432 / 0.244 | 0.159 | +0.085 |
+| `barre6-frappe-demo` | 145 | 57 | 2.54 | 0.124 / 0.316 / 0.178 | 0.130 | +0.048 |
+| `barre6-plie-demo` | 178 | 43 | 4.14 | 0.112 / 0.465 / 0.181 | 0.099 | +0.082 |
+| `barre6-rond-de-jambe-demo` | 185 | 74 | 2.50 | 0.211 / 0.527 / 0.301 | 0.211 | +0.090 |
+| `barre6-tendu-demo` | 124 | 42 | 2.95 | 0.097 / 0.286 / 0.145 | 0.091 | +0.054 |
+| `barre6-tendu-warmup-demo` | 124 | 46 | 2.70 | 0.145 / 0.391 / 0.212 | 0.171 | +0.041 |
+| **macro** | | | **2.545** (median) | **0.130 / 0.347 / 0.187** | **0.139** | **+0.048** |
+
+**One row loses:** `barre6-coupe-barre-demo`, −0.039 F. Classified
+**genuine-trade** — peakRate emits fewer events there than Whisper does
+(98 vs 99) but places them worse, and it is the clip whose event/beat
+ratio is lowest (1.88), i.e. the one where the extra-event advantage
+peakRate normally converts is smallest. It gates nothing (the whole suite
+is REPORTED-ONLY) and nothing is adopted on the strength of this table.
+
+### Three findings, in order of how much they should change what happens next
+
+**1. The freeze reproduces EB-1 from a different route, and that is the
+point of doing it.** Event-to-beat ratios from the committed sidecars,
+sorted: **1.88 · 2.18 · 2.50 · 2.54 · 2.55 · 2.70 · 2.95 · 4.14**. The
+handoff's §1, computed live from media by a separate script, published
+**1.9 · 2.2 · 2.5 · 2.5 · 2.5 · 2.7 · 3.0 · 4.1**. Seven of eight agree
+to the digit published; the eighth is 2.55 against 2.5. **The stream a
+future increment would consume is the same stream the diagnostics
+measured**, and it no longer needs the gitignored media to say so. Four
+scripts (SW-1, PR-1, AP-1, EB-1) each re-derived this; the fifth does
+not have to.
+
+**2. The demo grids are NOT circular, and the honest cohort just grew
+almost four-fold.** The standing anchoring caveat says peakRate scores
+against `anchored` grids are partly self-scoring, and directs external
+magnitude claims to the `from_scratch` cohort — which was **3 clips, 94
+beats**. The 8 owner-tapped demo grids are `annotator: owner-live-tap/1`,
+`annotation_method: from_scratch`, and **1 of their 419 beats** falls
+within 1 ms of a frozen event. The cohort is now **11 clips / 513
+beats**, and the 8 clips the rung actually scores are all inside it. The
+0.187-vs-0.139 comparison above is therefore quotable, which the rig-side
+numbers largely are not.
+
+**3. A tautology is now printing at n=19 and it must never be quoted.**
+`aggregate_provisional: clips=19 P=1.0 R=0.999 F=1.0 async=0.0±0.0ms`.
+Those 19 grids (the 17 takes, `barre6-releve-finish-take1`, and
+`barre6-ballonne-demo`) carry `annotator: peakrate-tap-assist/1` and were
+never owner-corrected: **their beats *are* this detector's output**, so
+the suite is scoring the stream against itself. The caveat was already
+documented at n=2; at n=19 with a headline `F=1.0` it is a trap for the
+next reader, and `docs/evals/pulse-sidecars.md` is updated in this commit
+to say so with the new numbers. **Proposed, not done** (rule 6): the
+suite should either suppress or asterisk rows whose grid annotator is the
+scored extractor. That is a scorer change and belongs in its own
+EVAL-CHANGE increment.
+
+### The totals hid one thing, and it points the wrong way if unread
+
+`slice step_names` in `stage1-peakrate` moves **0.747 (n=11) → 0.374
+(n=19)**. That is **not a regression** — no existing row changed by a
+thousandth (P2). Eight genuinely hard, genuinely un-circular demo rows
+joined a slice that previously held eleven rig clips recorded against a
+metronome in the owner's own voice. The slice mean fell because the
+corpus got honest, and any future session reading that number without
+this paragraph will misread it.
+
+### What this does NOT establish
+
+- It does not move a single scored field. tier1 tempo is **0.606
+  (20/13/1)**, Acc2@8% **0.697**, between-levels **10 of 33**, reference
+  slice withheld at n=18; tier0 **25/25** tempo, **24/25** meter — all
+  identical to the reset bless, before and after.
+- It does not feed the pulse stream to `estimate_rhythm` or to any
+  committer. Nothing consumes these files today, exactly as W11's own
+  sidecars are consumed by nothing.
+- It does not discharge `pulse-next-step.md` §6. **The owner's blind
+  prior table remains the standing next step**, and §7's ablation still
+  cannot start without it.
+- F ≈ 0.19 against owner beats is a poor score in absolute terms. The
+  finding is *why* it is poor — 2.5 events per beat, recall 0.35 against
+  precision 0.13 — not that the extractor is good.
+
+### Regressions and classifications
+
+One row, `barre6-coupe-barre-demo`, −0.039 F against word starts in a
+REPORTED-ONLY suite that gates nothing: **genuine-trade**. No gating
+regression exists to classify — P2 proves zero scored outcomes moved.
+
+### Constraints verified
+
+Branch `agent/sidecar-evidence-20260903`. `git diff --stat main` shows
+only `docs/` and the 26 added `evals/traces/barre6-*/pulse.json`. **No
+file under `evals/cases/`, `evals/traces/` or `evals/baseline.json` was
+modified or deleted** — every `evals/` path in the diff is an addition,
+per the sidecar carve-out. Nothing under `src/`, so no scorer or harness
+code was touched. `evals bless` never run. Byte-identical tier0/tier1/
+stage1 output proven by `diff` of two full runs with the sidecars present
+and absent.
+
+**Lesson (durable, one paragraph):** Three sessions read *"the pulse
+sidecars sitting unconsumed in every trace directory"* and reasoned about
+consuming them; none checked whether they existed for the clips the rung
+is scored on. They did not — W11 ran two days before the corpus that
+replaced its subject. The gap was one command away from visible
+(`--suite stage1-peakrate` had been printing 26 `FileNotFoundError` lines
+since 2026-09-01) and it sat behind a suite nobody ran because it gates
+nothing. **A REPORTED-ONLY suite is exactly where a hole hides**, and
+Standing Lesson 9's "build the replay path before betting on the channel"
+has a corollary this rung earned: *re-check the replay path after the
+corpus changes underneath it.*
+
+**Status: PROPOSED, EVAL-CHANGE, add-only.** Nothing adopted, nothing
+pinned, no re-bless needed — the baseline reproduces exactly. The rung's
+reported quantities are unchanged by construction: committed pulse 0.606
+within ±8% of in-band truth, Acc2@8% 0.697, between-levels 10 of 33.
