@@ -416,3 +416,18 @@ is how the runner's permission failure was found.)*
 > Branch `agent/step-one-owner-gated-20260902` is pushed — one ledger entry, nothing else touched.
 
 *Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
+
+## run 2026-09-03T01:00:05Z · main bc3021d
+
+- **outcome:** success, shell exit 0
+- **turns:** 62 · **duration:** 11.8 min · **cost:** $5.48
+
+**Agent's closing message:**
+
+> …ng the music better), in a scoring slice that doesn't count, while flipping a piano take the wrong way. Keeping it would be banking an unearned green. Scores are exactly where they were: 20 of 34 clips within 8% of your tempo, 0.697 on the "right speed or an octave off" measure, 10 clips landing between two metric levels.
+> 
+> **Two things still waiting on you.** The blind prior table — what tempo range and meter you'd expect for each exercise, written from what you know before looking at our labels. And separately, whether to commission the real version of the estimator work described above. Also worth knowing: the last two sessions' "we're blocked" notes were written to side branches that never reached `main`, so from where you look the loop has appeared silent rather than stuck. That's a delivery problem worth fixing at your end or ours.
+> 
+> Branch `agent/step-one-blocked-20260902-evening` is pushed — pre-registration committed before any code, results with the 6-hits-1-falsified scorecard, a replayable script, and per-clip data. Nothing under `evals/` or `src/` is touched (verified, 0 files); `src/` is clean; tests 373 passed / 3 skipped; suites print "no outcome changes vs baseline."
+
+*Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
