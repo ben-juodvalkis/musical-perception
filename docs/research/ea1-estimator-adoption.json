@@ -1,0 +1,463 @@
+{
+ "n_rows": 34,
+ "n_estimators_disagree": 24,
+ "n_marker_arm_reachable": 14,
+ "rows": [
+  {
+   "case": "adr006-8-counts-2x",
+   "reference": false,
+   "n_beat_markers": 16,
+   "median_bpm": 99.5,
+   "all_pairs_bpm": 99.1,
+   "ratio": 0.996,
+   "onset_at_beat_level": true
+  },
+  {
+   "case": "adr006-8-counts-triple",
+   "reference": false,
+   "n_beat_markers": 8,
+   "median_bpm": 66.2,
+   "all_pairs_bpm": 66.6,
+   "ratio": 1.006,
+   "onset_at_beat_level": false
+  },
+  {
+   "case": "barre6-ballonne-demo",
+   "reference": true,
+   "n_beat_markers": 30,
+   "median_bpm": 55.4,
+   "all_pairs_bpm": 55.6,
+   "ratio": 1.004,
+   "onset_at_beat_level": false
+  },
+  {
+   "case": "barre6-ballonne-take1",
+   "reference": true,
+   "n_beat_markers": 22,
+   "median_bpm": 61.2,
+   "all_pairs_bpm": 61.9,
+   "ratio": 1.011,
+   "onset_at_beat_level": true
+  },
+  {
+   "case": "barre6-ballonne-take2",
+   "reference": true,
+   "n_beat_markers": 36,
+   "median_bpm": 96.8,
+   "all_pairs_bpm": 91.3,
+   "ratio": 0.943,
+   "onset_at_beat_level": false
+  },
+  {
+   "case": "barre6-coupe-barre-demo",
+   "reference": false,
+   "n_beat_markers": 56,
+   "median_bpm": 115.2,
+   "all_pairs_bpm": 54.0,
+   "ratio": 0.469,
+   "onset_at_beat_level": false
+  },
+  {
+   "case": "barre6-coupe-barre-take1",
+   "reference": true,
+   "n_beat_markers": 26,
+   "median_bpm": 73.1,
+   "all_pairs_bpm": 64.3,
+   "ratio": 0.88,
+   "onset_at_beat_level": true
+  },
+  {
+   "case": "barre6-degage-demo",
+   "reference": false,
+   "n_beat_markers": 61,
+   "median_bpm": 110.9,
+   "all_pairs_bpm": 115.2,
+   "ratio": 1.039,
+   "onset_at_beat_level": false
+  },
+  {
+   "case": "barre6-degage-take1",
+   "reference": true,
+   "n_beat_markers": 39,
+   "median_bpm": 103.2,
+   "all_pairs_bpm": 123.0,
+   "ratio": 1.192,
+   "onset_at_beat_level": true
+  },
+  {
+   "case": "barre6-degage-take2",
+   "reference": true,
+   "n_beat_markers": 36,
+   "median_bpm": 119.8,
+   "all_pairs_bpm": 62.5,
+   "ratio": 0.522,
+   "onset_at_beat_level": false
+  },
+  {
+   "case": "barre6-fondu-demo",
+   "reference": false,
+   "n_beat_markers": 68,
+   "median_bpm": 157.5,
+   "all_pairs_bpm": 46.4,
+   "ratio": 0.295,
+   "onset_at_beat_level": true
+  },
+  {
+   "case": "barre6-fondu-take1",
+   "reference": true,
+   "n_beat_markers": 40,
+   "median_bpm": 130.2,
+   "all_pairs_bpm": 87.0,
+   "ratio": 0.668,
+   "onset_at_beat_level": false
+  },
+  {
+   "case": "barre6-fondu-take2",
+   "reference": true,
+   "n_beat_markers": 23,
+   "median_bpm": 142.7,
+   "all_pairs_bpm": 143.3,
+   "ratio": 1.004,
+   "onset_at_beat_level": false
+  },
+  {
+   "case": "barre6-frappe-demo",
+   "reference": false,
+   "n_beat_markers": 53,
+   "median_bpm": 98.3,
+   "all_pairs_bpm": 70.4,
+   "ratio": 0.716,
+   "onset_at_beat_level": false
+  },
+  {
+   "case": "barre6-frappe-take1",
+   "reference": true,
+   "n_beat_markers": 20,
+   "median_bpm": 78.8,
+   "all_pairs_bpm": 75.9,
+   "ratio": 0.963,
+   "onset_at_beat_level": true
+  },
+  {
+   "case": "barre6-frappe-take2",
+   "reference": true,
+   "n_beat_markers": 32,
+   "median_bpm": 119.8,
+   "all_pairs_bpm": 24.2,
+   "ratio": 0.202,
+   "onset_at_beat_level": true
+  },
+  {
+   "case": "barre6-plie-demo",
+   "reference": false,
+   "n_beat_markers": 97,
+   "median_bpm": 109.0,
+   "all_pairs_bpm": 24.0,
+   "ratio": 0.22,
+   "onset_at_beat_level": true
+  },
+  {
+   "case": "barre6-plie-take1",
+   "reference": true,
+   "n_beat_markers": 86,
+   "median_bpm": 149.6,
+   "all_pairs_bpm": 142.1,
+   "ratio": 0.95,
+   "onset_at_beat_level": false
+  },
+  {
+   "case": "barre6-plie-take2",
+   "reference": true,
+   "n_beat_markers": 13,
+   "median_bpm": 10.4,
+   "all_pairs_bpm": null,
+   "onset_at_beat_level": false
+  },
+  {
+   "case": "barre6-releve-finish-take1",
+   "reference": true,
+   "n_beat_markers": 8,
+   "median_bpm": 26.7,
+   "all_pairs_bpm": null,
+   "onset_at_beat_level": false
+  },
+  {
+   "case": "barre6-rond-de-jambe-demo",
+   "reference": false,
+   "n_beat_markers": 64,
+   "median_bpm": 56.6,
+   "all_pairs_bpm": 35.1,
+   "ratio": 0.62,
+   "onset_at_beat_level": true
+  },
+  {
+   "case": "barre6-rond-de-jambe-take1",
+   "reference": true,
+   "n_beat_markers": 30,
+   "median_bpm": 47.6,
+   "all_pairs_bpm": 28.4,
+   "ratio": 0.597,
+   "onset_at_beat_level": true
+  },
+  {
+   "case": "barre6-rond-de-jambe-take2",
+   "reference": true,
+   "n_beat_markers": 38,
+   "median_bpm": 46.8,
+   "all_pairs_bpm": 24.2,
+   "ratio": 0.517,
+   "onset_at_beat_level": false
+  },
+  {
+   "case": "barre6-tendu-demo",
+   "reference": false,
+   "n_beat_markers": 32,
+   "median_bpm": 50.8,
+   "all_pairs_bpm": 48.0,
+   "ratio": 0.945,
+   "onset_at_beat_level": false
+  },
+  {
+   "case": "barre6-tendu-take1",
+   "reference": true,
+   "n_beat_markers": 25,
+   "median_bpm": 52.5,
+   "all_pairs_bpm": 59.7,
+   "ratio": 1.137,
+   "onset_at_beat_level": true
+  },
+  {
+   "case": "barre6-tendu-take2",
+   "reference": true,
+   "n_beat_markers": 28,
+   "median_bpm": 63.8,
+   "all_pairs_bpm": 115.3,
+   "ratio": 1.807,
+   "onset_at_beat_level": true
+  },
+  {
+   "case": "barre6-tendu-warmup-demo",
+   "reference": false,
+   "n_beat_markers": 64,
+   "median_bpm": 110.9,
+   "all_pairs_bpm": 42.4,
+   "ratio": 0.382,
+   "onset_at_beat_level": true
+  },
+  {
+   "case": "barre6-tendu-warmup-take1",
+   "reference": true,
+   "n_beat_markers": 74,
+   "median_bpm": 71.3,
+   "all_pairs_bpm": 42.9,
+   "ratio": 0.602,
+   "onset_at_beat_level": false
+  },
+  {
+   "case": "rig-mixed-4-4-104-quantities",
+   "reference": false,
+   "n_beat_markers": 0,
+   "onset_at_beat_level": false
+  },
+  {
+   "case": "rig-names-2-4-120-clean",
+   "reference": false,
+   "n_beat_markers": 16,
+   "median_bpm": 62.4,
+   "all_pairs_bpm": 65.4,
+   "ratio": 1.048,
+   "onset_at_beat_level": true
+  },
+  {
+   "case": "rig-names-2-4-160-long",
+   "reference": false,
+   "n_beat_markers": 38,
+   "median_bpm": 149.6,
+   "all_pairs_bpm": 162.5,
+   "ratio": 1.086,
+   "onset_at_beat_level": false
+  },
+  {
+   "case": "rig-names-3-4-88-waltz",
+   "reference": false,
+   "n_beat_markers": 24,
+   "median_bpm": 90.6,
+   "all_pairs_bpm": 27.9,
+   "ratio": 0.308,
+   "onset_at_beat_level": true
+  },
+  {
+   "case": "rig-names-3-4-90-clean",
+   "reference": false,
+   "n_beat_markers": 18,
+   "median_bpm": 33.7,
+   "all_pairs_bpm": 32.3,
+   "ratio": 0.958,
+   "onset_at_beat_level": false
+  },
+  {
+   "case": "rig-names-4-4-100-quiet",
+   "reference": false,
+   "n_beat_markers": 3,
+   "median_bpm": 23.9,
+   "all_pairs_bpm": null,
+   "onset_at_beat_level": true
+  },
+  {
+   "case": "rig-names-4-4-104-clean",
+   "reference": false,
+   "n_beat_markers": 16,
+   "median_bpm": 61.1,
+   "all_pairs_bpm": 60.0,
+   "ratio": 0.982,
+   "onset_at_beat_level": true
+  },
+  {
+   "case": "rig-names-4-4-104-coda",
+   "reference": false,
+   "n_beat_markers": 16,
+   "median_bpm": 52.5,
+   "all_pairs_bpm": 51.4,
+   "ratio": 0.979,
+   "onset_at_beat_level": true
+  },
+  {
+   "case": "rig-names-4-4-104-explained",
+   "reference": false,
+   "n_beat_markers": 14,
+   "median_bpm": 52.4,
+   "all_pairs_bpm": 52.3,
+   "ratio": 0.998,
+   "onset_at_beat_level": true
+  },
+  {
+   "case": "rig-names-4-4-63-adagio",
+   "reference": false,
+   "n_beat_markers": 0,
+   "onset_at_beat_level": true
+  },
+  {
+   "case": "rig-names-4-4-96-allegro",
+   "reference": false,
+   "n_beat_markers": 16,
+   "median_bpm": 51.6,
+   "all_pairs_bpm": 49.4,
+   "ratio": 0.957,
+   "onset_at_beat_level": true
+  },
+  {
+   "case": "rig-names-6-8-100-clean",
+   "reference": false,
+   "n_beat_markers": 9,
+   "median_bpm": 34.6,
+   "all_pairs_bpm": 35.1,
+   "ratio": 1.014,
+   "onset_at_beat_level": false
+  },
+  {
+   "case": "rig-numbers-2-4-120-clean",
+   "reference": false,
+   "n_beat_markers": 24,
+   "median_bpm": 124.7,
+   "all_pairs_bpm": 117.8,
+   "ratio": 0.945,
+   "onset_at_beat_level": true
+  },
+  {
+   "case": "rig-numbers-3-4-90-clean",
+   "reference": false,
+   "n_beat_markers": 32,
+   "median_bpm": 90.8,
+   "all_pairs_bpm": 90.3,
+   "ratio": 0.994,
+   "onset_at_beat_level": false
+  },
+  {
+   "case": "rig-numbers-4-4-104-bothsides",
+   "reference": false,
+   "n_beat_markers": 56,
+   "median_bpm": 103.3,
+   "all_pairs_bpm": 104.3,
+   "ratio": 1.01,
+   "onset_at_beat_level": true
+  },
+  {
+   "case": "rig-numbers-4-4-104-clean",
+   "reference": false,
+   "n_beat_markers": 16,
+   "median_bpm": 99.8,
+   "all_pairs_bpm": 101.7,
+   "ratio": 1.019,
+   "onset_at_beat_level": true
+  },
+  {
+   "case": "rig-numbers-4-4-104-duple",
+   "reference": false,
+   "n_beat_markers": 16,
+   "median_bpm": 102.9,
+   "all_pairs_bpm": 103.0,
+   "ratio": 1.001,
+   "onset_at_beat_level": false
+  },
+  {
+   "case": "rig-numbers-4-4-104-explained",
+   "reference": false,
+   "n_beat_markers": 25,
+   "median_bpm": 101.4,
+   "all_pairs_bpm": 101.9,
+   "ratio": 1.005,
+   "onset_at_beat_level": true
+  },
+  {
+   "case": "rig-numbers-4-4-104-fourx8",
+   "reference": false,
+   "n_beat_markers": 24,
+   "median_bpm": 103.1,
+   "all_pairs_bpm": 104.4,
+   "ratio": 1.013,
+   "onset_at_beat_level": true
+  },
+  {
+   "case": "rig-numbers-4-4-104-prep",
+   "reference": false,
+   "n_beat_markers": 20,
+   "median_bpm": 102.9,
+   "all_pairs_bpm": 103.4,
+   "ratio": 1.005,
+   "onset_at_beat_level": true
+  },
+  {
+   "case": "rig-numbers-4-4-60-halftempo",
+   "reference": false,
+   "n_beat_markers": 16,
+   "median_bpm": 59.8,
+   "all_pairs_bpm": 60.3,
+   "ratio": 1.008,
+   "onset_at_beat_level": false
+  },
+  {
+   "case": "rig-numbers-4-4-80-triplet",
+   "reference": false,
+   "n_beat_markers": 16,
+   "median_bpm": 80.8,
+   "all_pairs_bpm": 81.2,
+   "ratio": 1.005,
+   "onset_at_beat_level": false
+  },
+  {
+   "case": "rig-numbers-6-8-100-clean",
+   "reference": false,
+   "n_beat_markers": 18,
+   "median_bpm": 96.3,
+   "all_pairs_bpm": 41.4,
+   "ratio": 0.43,
+   "onset_at_beat_level": true
+  },
+  {
+   "case": "rig-vocables-4-4-100-clean",
+   "reference": false,
+   "n_beat_markers": 0,
+   "onset_at_beat_level": false
+  }
+ ]
+}

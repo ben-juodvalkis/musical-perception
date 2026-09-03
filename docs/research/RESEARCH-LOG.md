@@ -11753,3 +11753,138 @@ genuine-trade / knife-edge before any recommendation.
 **Constraints:** branch `agent/step-one-blocked-20260902-evening`; only
 `src/musical_perception/precision/tempo.py` under `src/`; nothing under
 `evals/` (not an EVAL-CHANGE, no scorer code); never `bless`.
+
+## 2026-09-02 · RESET, step one (pulse) · agent/step-one-blocked-20260902-evening · local (unattended, evening) — RESULTS: EA-1, the estimator adoption
+
+**Artifacts:** `scripts/ea1-estimator-adoption.py` (self-contained, replays
+after the revert) + `docs/research/ea1-estimator-adoption.json` (per-row).
+
+**Headline: §10's lever does not exist where §10 says to pull it.**
+Replacing `calculate_tempo`'s median of consecutive gaps with EB-1's
+all-pairs estimator changes the marker-stream reading on **24 of the 34
+gating rows** — often by a factor of two to four — and moves the
+committed tempo on **0 of 52 rows**, not one of them, not even
+sub-threshold. tier1 tempo stays 0.606 (20/13/1), Acc2@8% stays 0.697,
+between-levels stays 10 of 33, tier0 stays 25/25 and 24/25. EB-1's +12
+rows cannot be bought this way. **Not adopted; the pipeline change is
+reverted and the baseline reproduces exactly.**
+
+### Scorecard: 6 hits, 1 falsified
+
+| # | prediction | outcome |
+|---|---|---|
+| P1 | tier1 committed tempo ≥ 20/34 | **HIT** — 20/34, identical |
+| P2 | ≤ 2 tempo rows change | **HIT, and stronger than predicted** — 0 of 52 |
+| P3 | tier0 25/25 tempo, 24/25 meter | **HIT** — both identical |
+| P4 | between-levels within 10 ± 2 | **HIT** — 10, identical |
+| P5 | Acc2@8% ≥ 0.697 | **HIT** — 0.697, identical |
+| P6 | every changed row is a marker-arm row | **FALSIFIED as stated** — see below |
+| P7 | ≤ 1 of 8 demo rows changes | **HIT** — 1 (`barre6-tendu-warmup-demo`) |
+
+P2 was written as a hedge against a hoped-for win. It landed at the
+floor: the transfer is not small, it is **zero on the committed tempo**.
+
+### The two estimators disagree loudly and it changes nothing
+
+Marker-stream BPM, median → all-pairs, on rows where they differ by >0.5 %
+(24 of 34; full table in the JSON):
+
+| clip | median | all-pairs | ratio |
+|---|---|---|---|
+| `barre6-plie-demo` | 109.0 | 24.0 | 0.220 |
+| `barre6-fondu-demo` | 157.5 | 46.4 | 0.295 |
+| `rig-names-3-4-88-waltz` | 90.6 | 27.9 | 0.308 |
+| `barre6-tendu-warmup-demo` | 110.9 | 42.4 | 0.382 |
+| `rig-numbers-6-8-100-clean` | 96.3 | 41.4 | 0.430 |
+| `barre6-coupe-barre-demo` | 115.2 | 54.0 | 0.469 |
+| `barre6-rond-de-jambe-demo` | 56.6 | 35.1 | 0.621 |
+| `barre6-frappe-demo` | 98.3 | 70.4 | 0.716 |
+
+**On the marker stream all-pairs runs slow, not right.** Where EB-1's
+peakRate events suffer *clutter* (2.0–2.85 events per beat), Gemini's beat
+markers are sparse and irregular, and a long period explains sparse events
+cheaply — so the fit walks up to the bar and beyond. `barre6-plie-demo`
+pinned 2.50 s exactly: the slow edge of the frozen search range, which is
+the same **search-boundary artifact AP-1 flagged** on its own sparse
+demos, recurring on a different stream. The 1/√multiple weight that breaks
+the subharmonic tie on a clean train is not enough here.
+
+### P6 falsified, and what it exposes
+
+P6 claimed a structural bound: only rows where the marker arm wins
+arbitration can change. No tempo row changed, so it cannot be scored on
+tempo — but **two rows did change, on meter**, and one of them,
+`barre6-tendu-warmup-demo`, has its onset arm already at beat level, so
+under `interpret_meter`'s band gate the marker arm would **not** have been
+selected. The committing path is `estimate_rhythm` (the ADR-017
+posterior), which consumes marker evidence outside that gate. The
+mental model in the pre-registration was `interpret_meter`'s, and
+`interpret_meter` is the fallback, not the committer. Recorded as a wrong
+prediction rather than quietly rewritten.
+
+The two meter changes, in full:
+
+| row | before → after | slice | verdict |
+|---|---|---|---|
+| `barre6-tendu-warmup-demo` | 4/4 → 3/4, grouping 4 → 3 | gating | wrong → **correct** (REPORTED-ONLY factored slice; gates nothing) |
+| `barre6-tendu-warmup-take1` | 4/4 → 3/4, grouping 4 → 3 | reference | correct → wrong (owner-demoted; gates nothing) |
+
+Committed tempo on both was **unchanged** (123.4 and 147.3), so this is a
+level-multiplier flip whose derived meter moved while its BPM did not —
+the **W9-b shape** named in the charter, now observed a second time.
+
+### Why it is not adopted, though the typed gate passes
+
+ADR-015's zero-regression gate for a logic change is **met**: zero gating
+regressions, zero tempo movement, one REPORTED-ONLY grouping row gained.
+Adoption is still declined, and the reason is house-style rather than
+gate arithmetic: the only thing the change buys on the gating set is one
+flip in a slice that gates nothing, by an **accidental mechanism** — a
+multiplier landing differently — not by measuring the beat better. It
+also costs a reference row the same way. Merging a more expensive
+estimator for an unearned green is what Standing Lesson 8's discipline
+exists to prevent. `src/` is reverted; `git status` shows it clean;
+`pytest` 373 passed / 3 skipped and the suites print **`no outcome
+changes vs baseline`** after the revert.
+
+### What would actually buy EB-1's +12, named but not started
+
+The all-pairs win lives on the **peakRate acoustic stream**, and the
+shipping committer never sees it. W11 froze `pulse.json` sidecars into
+every trace precisely so that stream is replayable, and **nothing
+consumes them** to this day. Feeding an all-pairs period from the pulse
+sidecars into `estimate_rhythm`'s evidence is the change that could carry
+EB-1's result onto the shipping path. It is **larger than §10 as written**,
+it is uncommissioned, and it is not started here. §10's own text should be
+corrected: it names the wrong function.
+
+**Regressions and classifications:** none on the gating set. One
+reference-slice grouping row (`barre6-tendu-warmup-take1`), classified
+**genuine-trade** and moot — the change is reverted, so no regression
+ships.
+
+**Lesson (durable, one paragraph):** A result measured on one event
+stream does not transfer to a different event stream just because the
+same word ("the estimator") names both. EB-1 and AP-1 both disclosed that
+their arms ran on peakRate events and not the shipping path; the handoff
+then wrote the adoption candidate as *"replace `calculate_tempo`'s
+median"*, naming a function that reads a completely different stream, and
+two sessions treated that as the obvious next step. Measuring it cost one
+session and returned a sharp fact worth more than the adoption would have
+been: **on this corpus the committed tempo does not depend on
+`calculate_tempo`'s BPM at all** — 24 rows read materially differently and
+52 committed identically. Anything that wants to move the tempo answer has
+to reach `estimate_rhythm`'s evidence, and the pulse sidecars sitting
+unconsumed in every trace directory are the stream it should reach with.
+
+**Constraints verified:** branch `agent/step-one-blocked-20260902-evening`;
+`git diff --stat main...HEAD` shows only `docs/research/` and `scripts/`;
+no file under `evals/cases/`, `evals/traces/` or `evals/baseline.json`
+modified or deleted; `src/` reverted and clean, so no scorer code touched
+and this is not an EVAL-CHANGE; `evals bless` never run.
+
+**Status: PROPOSED, negative result, nothing adopted.** The rung's
+reported quantities are unchanged by construction: committed pulse
+0.606 within ±8 % of in-band truth, Acc2@8 % 0.697, between-levels 10 of
+33. The owner's blind prior table (`pulse-next-step.md` §6) remains the
+standing next step for the §7 ablation, untouched by this increment.
