@@ -12067,3 +12067,7 @@ rung's reported quantities, which is what the reset asks for: committed
 pulse **0.636** within ±8% of the in-band truth (was 0.606), **Acc2@8%
 0.727** (was 0.697), **between-levels 9 of 33** (was 10). tier0 25/25 and
 24/25, unchanged. ECE 0.1903 (was 0.2145).
+
+## 2026-09-03 · RESET, step one (pulse) · agent/step-one-pulse-prior-20260903 · local (unattended) — AWAITING BLESSING
+
+Step one is now awaiting the owner's blessing: PP-1 improved the rung's own criterion (committed pulse 0.606 → 0.636, Acc2@8% 0.697 → 0.727, between-levels 10 → 9 of 33, zero regressions), the tier-1 tripwire fires on those two improvements as designed, and `bless` is the owner's act alone — that is the whole deliverable and no agent work remains on this rung.
