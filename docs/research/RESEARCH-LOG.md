@@ -12071,3 +12071,66 @@ pulse **0.636** within ±8% of the in-band truth (was 0.606), **Acc2@8%
 ## 2026-09-03 · RESET, step one (pulse) · agent/step-one-pulse-prior-20260903 · local (unattended) — AWAITING BLESSING
 
 Step one is now awaiting the owner's blessing: PP-1 improved the rung's own criterion (committed pulse 0.606 → 0.636, Acc2@8% 0.697 → 0.727, between-levels 10 → 9 of 33, zero regressions), the tier-1 tripwire fires on those two improvements as designed, and `bless` is the owner's act alone — that is the whole deliverable and no agent work remains on this rung.
+
+## 2026-09-03 · RESET, step one (pulse) · agent/step-one-awaiting-blessing-20260903 · local (unattended) — AWAITING BLESSING, independently verified
+
+**One line, and it is the whole deliverable: step one is awaiting the
+owner's blessing of PP-1 — no agent work remains on this rung, because
+the only thing that advances it now is `bless`, which is his act alone
+(rules 1 and 8).**
+
+This session re-ran PP-1's claims from a clean checkout rather than
+restating them. All four reproduce exactly:
+
+- `evals run --suite tier0,tier1` → tier1 tempo **21/34 = 0.636**,
+  **Acc2@8% 0.727** (Acc1@8% 0.636; Acc1@4% 0.545; Acc2@4% 0.606),
+  **between-levels 9 of 33**; tier0 tempo 25/25, meter_triple 24/25;
+  reference slice withheld, n=18.
+- The complete outcome diff vs baseline is still exactly two rows, both
+  improvements: `barre6-coupe-barre-demo.tempo` and
+  `.meter_triple`, each `wrong -> correct`. Zero regressions.
+- `pytest` → **1 failed, 378 passed, 3 skipped**; the single failure is
+  `test_tier1_outcomes_match_baseline_exactly`, the tripwire firing on
+  those two improvements as designed. `evals bless` was NOT run.
+- **Q8 re-verified independently** (PP-1 asserted it; this session
+  measured it): with all 52 `pulse.json` sidecars renamed out of the way,
+  tier1 prints `no outcome changes vs baseline` and returns tempo
+  **0.606**, Acc2@8% **0.697**, between-levels **10** — the blessed
+  numbers, bit for bit. The replay seam is genuinely inert when unfed, so
+  the gain is the prior and nothing else.
+
+**Constraints.** `git diff --stat main`: 35 files, 5,074 insertions.
+Every one of the 26 `evals/` paths is an **addition** (`git diff
+--name-status main -- evals/` is 26 × `A`, zero `M`, zero `D`); no file
+under `evals/cases/`, `evals/traces/` or `evals/baseline.json` was
+modified or deleted. The branch is cut from
+`agent/step-one-pulse-prior-20260903` so the owner reviews one branch,
+not two; it sits behind `main` by the nightly `logs/run-summaries.md`
+commits, which a merge carries forward untouched.
+
+**One process flag for the blessing desk, raised rather than left to be
+found.** `src/musical_perception/evals/traces.py` is modified, and the
+change landed in PP-1's *pipeline* commit (`d065566`), not in W11-c's
+EVAL-CHANGE commit. Rule 2 says harness code is not touched in a pipeline
+rung. The change itself is a 14-line replay seam that hands the bundle a
+frozen-events provider — no metric, no suite, no scoring rule — and the
+Q8 result above is the proof that it is inert. So the substance is clean
+and the bookkeeping is not; it is the owner's call whether that needs
+re-splitting before merge or a disclosed exception.
+
+**What is still owner-gated, unchanged for the fifth session:** the blind
+exercise→prior table (`pulse-next-step.md` §6) and its two questions.
+§7's ablation is gated on it, §10's estimator replacement is an
+uncommissioned logic change needing its own pre-registration and
+re-bless, and §8's do-not list closes the rest.
+
+Lesson (durable, one paragraph): A session that inherits a completed,
+unblessed increment has exactly one honest job — try to break the claims,
+not repeat them. Re-running the suites cost minutes and turned PP-1's
+strongest assertion (the seam is inert when unfed) from a claim into a
+measurement, and surfaced a rule-2 bookkeeping slip that the original
+entry's own constraint paragraph had reported as fine. Verification is
+cheap; restatement is worth nothing.
+
+Status: BLOCKED (needs: the owner's `bless` on PP-1, plus — separately
+and still — the blind prior table of `pulse-next-step.md` §6).
