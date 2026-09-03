@@ -11590,3 +11590,91 @@ for his ruling, and worth more than the table if he wants the loop
 running tonight: **commissioning §10's estimator replacement**, which
 does not depend on the table and is the largest measured lever on the
 gating set — 16→28 of 34 on the same events, between-levels 21→7.)
+
+## 2026-09-02 · RESET, step one (pulse) · agent/step-one-blocked-20260902-evening · local (unattended, evening)
+
+**One line, the whole deliverable: step one is still gated on an owner
+action, no agent-runnable increment exists, and this session took none —
+the third consecutive BLOCKED note.**
+
+**Branch disclosure, up front.** This branch is cut from
+`agent/step-one-owner-gated-20260902` (10:02 today), not from `main`, so
+it carries that session's two probe commits and its BLOCKED entry. That
+is deliberate and stated rather than folded into a merge: both entries
+report the same blocked state on the same rung, and appending to the same
+line of the ledger keeps it linear and avoids an append-append conflict
+in a file that is append-only by rule. Nothing else of that branch's is
+claimed as this session's work.
+
+**Attempted:** Boot sequence in full — charter CURRENT RUNG block,
+Standing Lessons 1–10, the last five ledger entries on `main` (which is
+newest since the 06:41 merge), `docs/evals/baseline.md`, and
+[pulse-next-step.md](pulse-next-step.md) including §6–§10. Then the
+branch scan the 2026-09-02 duplication entry proposed, run *before*
+choosing anything — second exercise of that process change:
+
+| branch | ahead of main | what it is |
+|---|---|---|
+| `agent/step-one-owner-gated-20260902` | 3 | this session's base — a BLOCKED note + probes |
+| `agent/marathon` | 2 | W15, superseded-pending-review by the reset |
+| `agent/lateral-2026-09-02` | 2 | the lateral review's prepared record; not a workstream |
+| `claude/pr-20-20260902-0053` | 1 | one-line `scipy` dev-extra fix; local venv already has it |
+
+Every other agent branch is 0 ahead. **Nothing completed and unmerged is
+a step-one increment.**
+
+**Pre-registered expectations:** n/a — no experiment run, by design.
+
+**Result: BLOCKED, unchanged.** Verified this session that no
+exercise→prior table exists in the repo or on any branch (`grep` over
+`docs/` and `scripts/` returns only the three ledger references to the
+owner action itself, plus the known `docs/vision/05-perception-strategy.md`
+§5.4 *draft*, which the 2026-09-02 blocked note already ruled does not
+discharge §6). §7's ablation cannot start; §10's estimator replacement is
+explicitly uncommissioned, is a logic change under a zero-regression gate,
+and moves scored outcomes; everything else reachable is on the §8 do-not
+list. Not taken here.
+
+**State verified, not assumed.** `pytest` 373 passed / 3 skipped.
+`python -m musical_perception.evals run --suite tier0,tier1` prints
+**`no outcome changes vs baseline`** — tier1 tempo 0.606 (20/13/1),
+Acc2@8% 0.697, between-levels 10 of 33, reference slice withheld at
+n=18; tier0 tempo 25/25, meter 24/25. `git diff --stat main...HEAD`
+(against the merge base) shows this ledger entry and the previous
+session's — 151 lines added, one file, nothing else. The two-dot
+`git diff --stat main` additionally shows 19 lines *removed* from
+`logs/run-summaries.md`: that is `main` being ahead by the 18:00 nightly
+summary commit `3cd4dc9`, which this branch's base predates, not a
+deletion by this session (`git log main --not HEAD -- logs/` names it).
+
+**Regressions and classifications:** none — no code, no eval file, no
+pipeline path touched.
+
+**One observation that is new, and it is about visibility, not the
+pipeline.** Both prior BLOCKED notes live on unmerged agent branches;
+`main`'s ledger ends at the 06:41 duplication entry. **The owner reading
+`main` cannot see that the loop is blocked — it looks silent.** The
+signal the previous session correctly identified ("a second consecutive
+BLOCKED note is a signal about the owner's queue") is being written to a
+place the owner does not read. Three sessions have now emitted it there.
+Flagged, not acted on: merging to `main` is forbidden by rule 1, so the
+fix is the owner's to choose — either he reads the branch list at review,
+or BLOCKED notes get a carve-out like the nightly `logs/` one.
+
+**Lesson (durable, one paragraph):** Holding is cheap and correct, but a
+hold is only useful if the person who can lift it can see it. Two
+sessions held honestly and wrote careful blocked notes onto branches that
+`main` never received; the loop's most recent visible act, from the
+owner's vantage, is a six-hour-old merge. The discipline that stops an
+idle session from inventing work (rule 6, and the previous session's own
+lesson) says nothing about where the resulting signal lands, and this is
+the third repetition before anyone noticed the delivery path was the
+problem rather than the message.
+
+**Status: BLOCKED** (needs, unchanged for the third session: the owner's
+blind prior table per `pulse-next-step.md` §6, plus his two questions —
+what counts as "the tempo" when it moves inside a clip, and whether the
+exercise name alone carries the prior. The alternative lever, which does
+**not** depend on the table and is the largest measured one on the gating
+set: commissioning §10's estimator replacement, 16→28 of 34 on the same
+events, between-levels 21→7.)
