@@ -12134,3 +12134,63 @@ cheap; restatement is worth nothing.
 
 Status: BLOCKED (needs: the owner's `bless` on PP-1, plus — separately
 and still — the blind prior table of `pulse-next-step.md` §6).
+
+## 2026-09-03 · RESET, step one (pulse) · agent/step-one-awaiting-blessing-20260903 · local (unattended) — AWAITING BLESSING (state re-verified; one new flag for the owner)
+
+**One line, and it is the whole deliverable: step one is still awaiting
+the owner's blessing of PP-1 — no agent work remains on this rung,
+because the only act that advances it is `bless`, which is his alone
+(rules 1 and 8).**
+
+This session did not re-run the suites; the session before it did, from a
+clean checkout, and nothing has changed since. What was re-verified is
+cheaper and is the part that could have changed:
+
+- `evals/baseline.json` on `main` is still at `34a1211` (2026-09-01,
+  "reset step one: re-bless at owner direction — tier1 pinned 34,
+  withheld 18 reference"). **No blessing has happened.**
+- The branch is unmerged into `main` (`git branch --merged main` does not
+  list it), and its `evals/baseline.json` is byte-identical to main's.
+- `git diff --stat main`: **35 files, 5,137 insertions, 38 deletions**.
+  The deletions are entirely `logs/run-summaries.md` — the branch sits
+  behind main by the nightly log commits, which a merge carries forward;
+  `git diff --numstat main` shows that file as the only path with a
+  non-zero deletion count. `git diff --name-status main -- evals/` is
+  **26 × `A`, zero `M`, zero `D`**: no file under `evals/cases/`,
+  `evals/traces/` or `evals/baseline.json` modified or deleted.
+- Appended to the existing branch rather than cutting a fifth one. Three
+  step-one branches already carry BLOCKED/AWAITING notes the owner cannot
+  see from `main`; adding another branch name makes that worse, and a
+  fast-forward ledger commit on the branch he is already asked to review
+  makes it slightly better.
+
+**New, and the reason this note is not purely a restatement — the
+scheduled meta-rung (W0) falls due today by the charter's own
+arithmetic, and no session has said so.** The last in-cadence W0 is
+2026-08-27; the two out-of-cadence ones (08-30, 08-31) explicitly do not
+reset the clock, so the next scheduled meta-rung is 2026-09-03. The
+charter names "the 2026-09-03 W0" three times as the destination for
+deferred owner decisions — W6-b's cost ceiling and its second model
+family. On a strict reading of "older than 7 days" the 08-27 entry is
+exactly 7 days old today, not older, so the trigger is at its edge rather
+than past it.
+
+**This session did not take W0, and that is a ruling, not an oversight.**
+The 2026-09-01 reset made step one the plan of record and marked the
+workstream ranking historical; whether W0 survives the reset as a live,
+agent-takeable workstream is not a question an agent may answer for
+itself (rule 9 — flag the conflict, never silently deviate). Flagged
+here for the owner's ruling; if he says W0 is live, it is a session's
+worth of work and nothing about it is blocked.
+
+**Nothing else on the rung moved or could move.** The BLOCKED note of
+earlier today enumerated the closed directions (the −69 ms offset, a
+second window sweep, the held accent line, the §8 do-not list, EA-1's
+measured-and-not-adopted estimator replacement) and the one open
+direction that needs commissioning (the pulse-stream evidence path into
+`estimate_rhythm`). That enumeration stands unchanged.
+
+**Status: AWAITING BLESSING / BLOCKED** (needs, unchanged: the owner's
+`bless` on PP-1; separately and still, the blind prior table of
+`pulse-next-step.md` §6 and his two questions; newly, a ruling on whether
+W0 is live under the reset).
