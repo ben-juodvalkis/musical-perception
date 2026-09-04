@@ -12194,3 +12194,7 @@ direction that needs commissioning (the pulse-stream evidence path into
 `bless` on PP-1; separately and still, the blind prior table of
 `pulse-next-step.md` §6 and his two questions; newly, a ruling on whether
 W0 is live under the reset).
+
+## 2026-09-03 · RESET, step one (pulse) · agent/step-one-awaiting-blessing-20260903 · local (unattended) — AWAITING BLESSING (the one-line note)
+
+Step one is awaiting the owner's blessing of PP-1 and no agent work remains on this rung; the entry above it is this session's supporting detail (state re-verified, constraints shown, W0's due date flagged), not a second deliverable. Status: AWAITING BLESSING.
