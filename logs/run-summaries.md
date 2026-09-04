@@ -469,3 +469,23 @@ is how the runner's permission failure was found.)*
 > Branch: `agent/step-one-awaiting-blessing-20260903` (it stacks on the PP-1 branch, so it's one branch to review, not two). Ledger entry appended and pushed; 26 files added under `evals/`, zero modified or deleted.
 
 *Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
+
+## run 2026-09-04T01:00:05Z · main 87f9712
+
+- **outcome:** success, shell exit 0
+- **turns:** 21 · **duration:** 3.6 min · **cost:** $1.93
+
+**Agent's closing message:**
+
+> …session's verification detail sitting above it as supporting material rather than as a second deliverable.
+> 
+> **Proof, all shown above:**
+> - Branch: `agent/step-one-awaiting-blessing-20260903` (the rung's own branch, appended to rather than forking a fifth one)
+> - `git diff --stat main`: 35 files, 5,201 insertions, 38 deletions — the deletions are entirely `logs/run-summaries.md`, where the branch trails main's nightly commits
+> - Everything under `evals/` is an addition: 26 × `A`, zero modified, zero deleted — no test case, no recording, no blessed scorecard touched
+> - The only scorer file touched is `traces.py`, from the already-declared eval-infrastructure seam, and the previous session measured that seam as inert when unfed
+> - Dated ledger entry appended and pushed
+> 
+> **Nothing about the answer changed.** Step one is done from the agent side and waiting on you to bless the new numbers — one Barre 6 demo now lands on the beat you'd tap where it previously didn't, nothing got worse, and the suite trips on that improvement by design until you clear it. The two things still on your plate, unchanged: bless it, and rule on whether the weekly review is still a live thing to run under the reset.
+
+*Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
