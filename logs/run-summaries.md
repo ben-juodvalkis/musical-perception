@@ -450,3 +450,22 @@ is how the runner's permission failure was found.)*
 > Two things I flagged that remain yours and aren't affected by this: the **blind prior table** (a different, bigger idea than what I built), and the fact that four sessions' worth of "waiting on Ben" notes have been landing on branches rather than `main`.
 
 *Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
+
+## run 2026-09-03T17:00:09Z · main 6f5bdbf
+
+- **outcome:** success, shell exit 0
+- **turns:** 21 · **duration:** 3.4 min · **cost:** $1.95
+
+**Agent's closing message:**
+
+> …sserted that with the pulse data hidden, the pipeline goes back to being its old self exactly. I measured it — hid all 52 pulse files, re-ran, got the old numbers back bit for bit. So the gain really is the new idea, not a side effect of the plumbing that shipped with it.
+> 
+> **One thing for you to rule on at blessing:** a harness file got edited in the wrong commit — it's in the pipeline change instead of the infrastructure one. The edit itself is fine (14 lines of plumbing, provably inert, per the test above); it's bookkeeping, not substance. Your call whether it needs re-splitting or just a note.
+> 
+> ## The ask, unchanged for five sessions
+> 
+> The **blind exercise→tempo table** in `docs/research/pulse-next-step.md` §6 — your professional guess at what tempo range each barre exercise usually runs at, written *before* looking at what our clips are labelled. No agent can write it or infer it without cheating. Everything else on step one is either done, closed, or gated behind it.
+> 
+> Branch: `agent/step-one-awaiting-blessing-20260903` (it stacks on the PP-1 branch, so it's one branch to review, not two). Ledger entry appended and pushed; 26 files added under `evals/`, zero modified or deleted.
+
+*Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
