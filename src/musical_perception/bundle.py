@@ -27,10 +27,15 @@ class PerceptionBundle:
         -> GeminiAnalysisResult
     extract_landmarks(video_path) -> LandmarkTimeSeries, or None when pose
         is unavailable (audio-only trace, missing deps).
+    pulse_events(audio_path) -> list[float], the rung-2 acoustic pulse
+        stream, or None when it is unavailable (no audio, no sidecar,
+        missing deps). Left None, the rhythm core behaves exactly as it
+        did before PP-1 — the seam is inert when unfed.
     """
     transcribe: Callable[[str], list[TimestampedWord]]
     analyze_media: Callable[..., GeminiAnalysisResult]
     extract_landmarks: Callable[[str], LandmarkTimeSeries] | None = None
+    pulse_events: Callable[[str], list[float]] | None = None
 
 
 def build_default_bundle(
@@ -61,8 +66,19 @@ def build_default_bundle(
         from musical_perception.perception.pose import extract_landmarks, load_model
         return extract_landmarks(load_model(), video_path)
 
+    def _pulse_events(audio_path: str):
+        from musical_perception.annotation.__main__ import _load_audio
+        from musical_perception.precision.pulse import (
+            AcousticPulseParams,
+            acoustic_pulse_events,
+        )
+        params = AcousticPulseParams()
+        y = _load_audio(audio_path, params.peakrate.sr)
+        return [float(t) for t in acoustic_pulse_events(y, params.peakrate.sr, params)]
+
     return PerceptionBundle(
         transcribe=_transcribe,
         analyze_media=_analyze_media,
         extract_landmarks=_extract_landmarks,
+        pulse_events=_pulse_events,
     )

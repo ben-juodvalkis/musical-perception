@@ -11522,3 +11522,997 @@ any agent branch newer than main **before** choosing or designing an
 increment.
 
 Status: PROPOSED. The duplication is recorded, not tidied away.
+
+## 2026-09-03 · RESET, step one (pulse) · agent/sidecar-evidence-20260903 · local (unattended) — PRE-REGISTRATION: W11-c, pulse sidecars for the barre-6 traces (EVAL-CHANGE)
+
+**Scope declaration first.** This is an **EVAL-CHANGE, add-only**
+increment under the owner-ratified sidecar carve-out (charter rule 2:
+*"agent sessions may ADD new derived-evidence files inside existing trace
+directories (e.g. `pulse.json`) — never modifying any existing file, with
+the source media checksum-verified against the trace's stored hash and
+byte-identical suite output proven before merge"*). It is W11 applied to
+the material W11 predates. **No pipeline change is bundled** (rule 6); no
+scorer or harness code is touched; nothing is adopted, pinned or blessed.
+
+### Why this and not a fourth BLOCKED note
+
+Three consecutive unattended sessions emitted BLOCKED notes, correctly:
+`pulse-next-step.md` §6 gates the ablation on the owner's blind prior
+table, and §8's do-not list closes the offset, the window sweep, the
+accent line, SW-1's F3, the oscillator and the bake-off re-run. The
+fourth session (EA-1) measured §10's adoption candidate and returned a
+negative result whose closing paragraph names the un-forbidden direction:
+*"the pulse sidecars sitting unconsumed in every trace directory are the
+stream it should reach with."*
+
+**Checked before choosing, and it changes the picture:** the sidecars are
+not sitting unconsumed in *every* trace directory. **They do not exist
+for any barre-6 trace at all.** W11 froze 26 sidecars — every one of them
+a rig clip — on 2026-08-29; barre-6 was ingested 2026-09-01. Run today,
+`--suite stage1-peakrate` prints
+`ERROR barre6-<id>: FileNotFoundError: no pulse.json sidecar`
+on **26 of 26** barre-6 cases, **all 8 gating demos among them**. The
+acoustic pulse channel — the subject of step one — is not scoreable in the
+harness on the clips step one is about. Every diagnostic that has looked
+at it (SW-1, PR-1, AP-1, EB-1) re-derived the stream from gitignored
+media, four times, in four scripts.
+
+That is **Standing Lesson 9** exactly (*"whatever is replayable gets
+iterated; build the trace/replay path for a new channel before betting on
+the channel"*), and it is a prerequisite for the direction EA-1 named
+rather than that direction itself. It needs no owner action, is on no
+do-not list, moves no scored outcome, and is the operation the carve-out
+was ratified for.
+
+**What it is NOT.** It does not touch `estimate_rhythm`, does not feed
+the pulse stream into any committer, and does not discharge §6. The
+owner's blind prior table remains the standing next step for §7's
+ablation, unchanged.
+
+### The change, in one sentence
+
+Run `python -m musical_perception.evals record-pulse` so that the 26
+barre-6 trace directories gain a `pulse.json`, written by the existing
+recorder, each one refusing to write unless the local media hashes to the
+`media_sha256` its trace already pins.
+
+### Pre-registered predictions
+
+| # | prediction |
+|---|---|
+| P1 | All 26 barre-6 media files are present locally and hash-match their trace pins: `26 recorded, 26 already present, 0 skipped`. A mismatch would mean the media moved since the 2026-09-01 freeze. |
+| P2 | **Primary gate.** `tier0`, `tier1` and `stage1` print byte-identical per-row and aggregate output before and after, and the run prints `no outcome changes vs baseline`. Nothing consumes sidecars for any scored field. |
+| P3 | Add-only holds: `git status` shows 26 **new** files, all matching `evals/traces/barre6-*/pulse.json`; zero files under `evals/` modified or deleted; `evals/baseline.json` untouched. |
+| P4 | `pytest` stays 373 passed / 3 skipped. |
+| P5 | The 26 `stage1-peakrate` ERROR lines are replaced by 26 scored rows; the suite's verified-clip n goes 25 → 33 (the 8 owner-tapped demo grids join; `barre6-ballonne-demo` and the 17 takes score into the provisional slice). |
+| P6 | **Clutter, not sparsity, on the demos:** on the 8 gating demos the peakRate stream scores recall above precision, median (R − P) ≥ 0.10, and emits more events than the grid has beats on at least 6 of 8. |
+| P7 | **The freeze reproduces EB-1 from a different route:** median peakRate-events-per-owner-beat on the 8 demos falls in [1.8, 3.2], the band EB-1's Arm C measured live from media (2.0–2.85). |
+| P8 | peakRate beats Whisper word starts on the demo slice: macro F over the same 8 verified demo grids exceeds the word-start suite's **0.139**. *Stated risk:* both streams over-produce badly against these sparse grids (word starts already emit 94–180 events against 42–74 beats), so a precision collapse could sink F even with better recall. P8 is the one prediction here that can plausibly fail. |
+
+**Adoption rule, fixed now:** P2 and P3 are the gate. If either fails the
+sidecars are not committed and the entry stands as a negative result. P5–P8
+are REPORTED-ONLY measurements of what the frozen stream looks like; none
+of them can justify keeping the increment if P2 or P3 fail, and none of
+them gates anything downstream.
+
+**Constraints:** branch `agent/sidecar-evidence-20260903`; nothing under
+`src/`; no existing file under `evals/` modified or deleted; `evals bless`
+never run.
+
+**Status: PRE-REGISTERED**, committed before the recorder is run.
+
+## 2026-09-03 · RESET, step one (pulse) · agent/sidecar-evidence-20260903 · local (unattended) — RESULTS: W11-c, pulse sidecars for the barre-6 traces
+
+**Headline: the acoustic pulse stream is now replayable on the clips step
+one is about, and the first thing it says is that the demos' problem is
+clutter — 2.5 events per owner-tapped beat, median, with recall running
+22 points above precision on every one of the 8 gating demos.** 26
+sidecars added, 8/8 pre-registered predictions hit, zero scored outcomes
+moved, zero existing files under `evals/` touched.
+
+### Scorecard: 8 hits, 0 falsified
+
+| # | prediction | outcome |
+|---|---|---|
+| P1 | 26 recorded, 0 skipped, all checksums match | **HIT** — `26 recorded, 26 already present, 0 skipped` |
+| P2 | tier0/tier1/stage1 byte-identical; `no outcome changes vs baseline` | **HIT** — `diff` of the two full runs is empty; the line prints |
+| P3 | add-only: 26 new files, nothing modified or deleted under `evals/` | **HIT** — `git status --porcelain` shows 26 `??`, all `evals/traces/barre6-*/pulse.json`, nothing else |
+| P4 | pytest 373 passed / 3 skipped | **HIT** — identical |
+| P5 | 26 ERROR lines become scored rows; verified n 25 → 33 | **HIT** — zero ERROR lines remain |
+| P6 | R > P on the demos, median (R − P) ≥ 0.10, events > beats on ≥ 6 of 8 | **HIT** — median 0.219; events > beats on **8 of 8** |
+| P7 | median events-per-owner-beat in [1.8, 3.2] | **HIT** — 2.545 |
+| P8 | peakRate macro F on the 8 demo grids > word starts' 0.139 | **HIT** — 0.187, and better on 7 of 8 rows |
+
+P8 was flagged in advance as the one that could plausibly fail. It did
+not, but the margin is small and the absolute numbers are low: see below.
+
+### The 8 gating demos — the honest cohort, per clip
+
+| clip | events | owner beats | ratio | peakRate P / R / F | word-start F | ΔF |
+|---|---|---|---|---|---|---|
+| `barre6-coupe-barre-demo` | 98 | 52 | 1.88 | 0.102 / 0.192 / 0.133 | 0.172 | **−0.039** |
+| `barre6-degage-demo` | 133 | 61 | 2.18 | 0.075 / 0.164 / 0.103 | 0.080 | +0.023 |
+| `barre6-fondu-demo` | 112 | 44 | 2.55 | 0.170 / 0.432 / 0.244 | 0.159 | +0.085 |
+| `barre6-frappe-demo` | 145 | 57 | 2.54 | 0.124 / 0.316 / 0.178 | 0.130 | +0.048 |
+| `barre6-plie-demo` | 178 | 43 | 4.14 | 0.112 / 0.465 / 0.181 | 0.099 | +0.082 |
+| `barre6-rond-de-jambe-demo` | 185 | 74 | 2.50 | 0.211 / 0.527 / 0.301 | 0.211 | +0.090 |
+| `barre6-tendu-demo` | 124 | 42 | 2.95 | 0.097 / 0.286 / 0.145 | 0.091 | +0.054 |
+| `barre6-tendu-warmup-demo` | 124 | 46 | 2.70 | 0.145 / 0.391 / 0.212 | 0.171 | +0.041 |
+| **macro** | | | **2.545** (median) | **0.130 / 0.347 / 0.187** | **0.139** | **+0.048** |
+
+**One row loses:** `barre6-coupe-barre-demo`, −0.039 F. Classified
+**genuine-trade** — peakRate emits fewer events there than Whisper does
+(98 vs 99) but places them worse, and it is the clip whose event/beat
+ratio is lowest (1.88), i.e. the one where the extra-event advantage
+peakRate normally converts is smallest. It gates nothing (the whole suite
+is REPORTED-ONLY) and nothing is adopted on the strength of this table.
+
+### Three findings, in order of how much they should change what happens next
+
+**1. The freeze reproduces EB-1 from a different route, and that is the
+point of doing it.** Event-to-beat ratios from the committed sidecars,
+sorted: **1.88 · 2.18 · 2.50 · 2.54 · 2.55 · 2.70 · 2.95 · 4.14**. The
+handoff's §1, computed live from media by a separate script, published
+**1.9 · 2.2 · 2.5 · 2.5 · 2.5 · 2.7 · 3.0 · 4.1**. Seven of eight agree
+to the digit published; the eighth is 2.55 against 2.5. **The stream a
+future increment would consume is the same stream the diagnostics
+measured**, and it no longer needs the gitignored media to say so. Four
+scripts (SW-1, PR-1, AP-1, EB-1) each re-derived this; the fifth does
+not have to.
+
+**2. The demo grids are NOT circular, and the honest cohort just grew
+almost four-fold.** The standing anchoring caveat says peakRate scores
+against `anchored` grids are partly self-scoring, and directs external
+magnitude claims to the `from_scratch` cohort — which was **3 clips, 94
+beats**. The 8 owner-tapped demo grids are `annotator: owner-live-tap/1`,
+`annotation_method: from_scratch`, and **1 of their 419 beats** falls
+within 1 ms of a frozen event. The cohort is now **11 clips / 513
+beats**, and the 8 clips the rung actually scores are all inside it. The
+0.187-vs-0.139 comparison above is therefore quotable, which the rig-side
+numbers largely are not.
+
+**3. A tautology is now printing at n=19 and it must never be quoted.**
+`aggregate_provisional: clips=19 P=1.0 R=0.999 F=1.0 async=0.0±0.0ms`.
+Those 19 grids (the 17 takes, `barre6-releve-finish-take1`, and
+`barre6-ballonne-demo`) carry `annotator: peakrate-tap-assist/1` and were
+never owner-corrected: **their beats *are* this detector's output**, so
+the suite is scoring the stream against itself. The caveat was already
+documented at n=2; at n=19 with a headline `F=1.0` it is a trap for the
+next reader, and `docs/evals/pulse-sidecars.md` is updated in this commit
+to say so with the new numbers. **Proposed, not done** (rule 6): the
+suite should either suppress or asterisk rows whose grid annotator is the
+scored extractor. That is a scorer change and belongs in its own
+EVAL-CHANGE increment.
+
+### The totals hid one thing, and it points the wrong way if unread
+
+`slice step_names` in `stage1-peakrate` moves **0.747 (n=11) → 0.374
+(n=19)**. That is **not a regression** — no existing row changed by a
+thousandth (P2). Eight genuinely hard, genuinely un-circular demo rows
+joined a slice that previously held eleven rig clips recorded against a
+metronome in the owner's own voice. The slice mean fell because the
+corpus got honest, and any future session reading that number without
+this paragraph will misread it.
+
+### What this does NOT establish
+
+- It does not move a single scored field. tier1 tempo is **0.606
+  (20/13/1)**, Acc2@8% **0.697**, between-levels **10 of 33**, reference
+  slice withheld at n=18; tier0 **25/25** tempo, **24/25** meter — all
+  identical to the reset bless, before and after.
+- It does not feed the pulse stream to `estimate_rhythm` or to any
+  committer. Nothing consumes these files today, exactly as W11's own
+  sidecars are consumed by nothing.
+- It does not discharge `pulse-next-step.md` §6. **The owner's blind
+  prior table remains the standing next step**, and §7's ablation still
+  cannot start without it.
+- F ≈ 0.19 against owner beats is a poor score in absolute terms. The
+  finding is *why* it is poor — 2.5 events per beat, recall 0.35 against
+  precision 0.13 — not that the extractor is good.
+
+### Regressions and classifications
+
+One row, `barre6-coupe-barre-demo`, −0.039 F against word starts in a
+REPORTED-ONLY suite that gates nothing: **genuine-trade**. No gating
+regression exists to classify — P2 proves zero scored outcomes moved.
+
+### Constraints verified
+
+Branch `agent/sidecar-evidence-20260903`. `git diff --stat main` shows
+only `docs/` and the 26 added `evals/traces/barre6-*/pulse.json`. **No
+file under `evals/cases/`, `evals/traces/` or `evals/baseline.json` was
+modified or deleted** — every `evals/` path in the diff is an addition,
+per the sidecar carve-out. Nothing under `src/`, so no scorer or harness
+code was touched. `evals bless` never run. Byte-identical tier0/tier1/
+stage1 output proven by `diff` of two full runs with the sidecars present
+and absent.
+
+**Lesson (durable, one paragraph):** Three sessions read *"the pulse
+sidecars sitting unconsumed in every trace directory"* and reasoned about
+consuming them; none checked whether they existed for the clips the rung
+is scored on. They did not — W11 ran two days before the corpus that
+replaced its subject. The gap was one command away from visible
+(`--suite stage1-peakrate` had been printing 26 `FileNotFoundError` lines
+since 2026-09-01) and it sat behind a suite nobody ran because it gates
+nothing. **A REPORTED-ONLY suite is exactly where a hole hides**, and
+Standing Lesson 9's "build the replay path before betting on the channel"
+has a corollary this rung earned: *re-check the replay path after the
+corpus changes underneath it.*
+
+**Status: PROPOSED, EVAL-CHANGE, add-only.** Nothing adopted, nothing
+pinned, no re-bless needed — the baseline reproduces exactly. The rung's
+reported quantities are unchanged by construction: committed pulse 0.606
+within ±8% of in-band truth, Acc2@8% 0.697, between-levels 10 of 33.
+
+## 2026-09-03 · RESET, step one (pulse) · agent/sidecar-evidence-20260903 · local (unattended) — BLOCKED: the rung's own criterion is owner-gated, fourth consecutive session
+
+**One line, and it is the whole deliverable for the rung itself: step one
+cannot be advanced by any agent-runnable increment, because its next move
+is an owner action — the blind exercise→prior table of
+[pulse-next-step.md](pulse-next-step.md) §6 — which no agent may author or
+derive from the corpus, and which does not exist in this repository or on
+any branch.**
+
+**Stated plainly so it is not read as a completion claim.** The CURRENT
+RUNG's pre-registered pass criterion is *committed pulse within ±8% of the
+in-band truth, reported beside Acc2@8% and the between-levels count*.
+Reported, as the criterion requires, and **unchanged**:
+
+- committed tempo **0.606** (20 correct / 13 wrong / 1 abstained, n=34)
+- **Acc2@8% 0.697** (Acc1@8% 0.606; Acc1@4% 0.515; Acc2@4% 0.576, n=33)
+- **between-levels rows 10 of 33**
+- tier0 tempo 25/25, meter_triple 24/25; reference slice withheld, n=18
+- the run prints **`no outcome changes vs baseline`**
+
+**This session's W11-c increment did not move any of those, by design**,
+and its own entry says so. W11-c is an EVAL-CHANGE, add-only prerequisite
+— it makes the acoustic pulse stream replayable on the 8 gating demos,
+where the harness had been erroring on 26 of 26 barre-6 rows since
+2026-09-01. It is **not** a rung-completion increment and must not be
+counted as one.
+
+**Why no increment could have completed the rung.** §7's three-arm
+ablation is the commissioned path to the criterion and is gated on the
+table. Everything else reachable is closed: the −69 ms offset
+(tempo-irrelevant), another window sweep (SW-1 answered it), the accent
+line (held to step two), SW-1's withdrawn F3, the nonlinear oscillator
+and a bake-off re-run (§8 do-not list), and §10's estimator replacement
+(measured by EA-1 on 2026-09-02: **0 of 52 committed rows moved**, not
+adopted). The one open direction EA-1 named — feeding an all-pairs period
+from the pulse stream into `estimate_rhythm`'s evidence — is an
+uncommissioned logic change under a zero-regression gate that moves
+scored outcomes, so it needs the owner's commissioning and a re-bless.
+W11-c is its prerequisite and is deliberately not it.
+
+**Branch scan run before choosing, per the 2026-09-02 proposed process
+change:** `agent/step-one-blocked-20260902-evening` (EA-1, negative),
+`agent/step-one-owner-gated-20260902` (BLOCKED note),
+`agent/lateral-2026-09-02`, `agent/marathon` (W15, superseded-pending-
+review), `claude/pr-20-20260902-0053`. Nothing completed-and-unmerged is
+a step-one increment.
+
+**Visibility, now four sessions deep and unchanged.** Every one of these
+BLOCKED notes lives on an unmerged agent branch; `main`'s ledger cannot
+show them, so from the owner's vantage the loop looks silent rather than
+waiting. Rule 1 forbids an agent pushing `main`, so the fix is his to
+choose — read the branch list at review, or grant BLOCKED notes a
+carve-out like the nightly `logs/` one.
+
+**Status: BLOCKED** (needs, unchanged for the fourth session: the owner's
+blind prior table per `pulse-next-step.md` §6, plus his two questions —
+what counts as "the tempo" when it moves inside a clip, and whether the
+exercise name alone carries the prior. Separately available for his
+ruling: commissioning the pulse-stream evidence path into
+`estimate_rhythm`, for which W11-c has now laid the replay track.)
+
+## 2026-09-03 · RESET, step one (pulse) · agent/step-one-pulse-prior-20260903 · local (unattended) — PRE-REGISTRATION: PP-1, the acoustic pulse as a tempo prior
+
+**Scope declaration first, and it is a disclosed deviation, not a
+commission.** `pulse-next-step.md` §6 makes the owner's blind prior table
+the standing next step, and the BLOCKED note committed one commit before
+this one says step one cannot be advanced by an agent. **This increment is
+taken anyway, under an explicit and repeated operator directive that the
+rung's own measurable criterion must be attempted rather than idled for a
+fourth session.** Recorded plainly, per rule 9, rather than dressed as
+commissioned work:
+
+- it is **PROPOSED**, on a branch, blessing nothing and pinning nothing;
+- if the owner rejects the line, the cost is this branch;
+- it does **not** author, infer, or stand in for the §6 prior table —
+  that table is about *exercise type → tempo range* and remains his;
+- **branch disclosure:** this branch is cut from
+  `agent/sidecar-evidence-20260903` (W11-c), not from `main`, because it
+  consumes the sidecars W11-c froze. It therefore carries W11-c's
+  commits. That is structural, not a bundling of two changes into one
+  claim: W11-c is EVAL-CHANGE and add-only, PP-1 is a pipeline change
+  under `src/`, and they are separately pre-registered, separately
+  scored, and separately adoptable.
+
+### Why this direction and not another
+
+EA-1 (2026-09-02) measured §10's adoption candidate and returned a sharp
+negative: replacing `calculate_tempo`'s median moved **0 of 52** committed
+rows, because *"on this corpus the committed tempo does not depend on
+`calculate_tempo`'s BPM at all … anything that wants to move the tempo
+answer has to reach `estimate_rhythm`'s evidence, and the pulse sidecars
+sitting unconsumed in every trace directory are the stream it should reach
+with."* W11-c, one entry above, made that stream exist for the 8 gating
+demos, where it did not before. This is that experiment. It is on no §8
+do-not list.
+
+### The change, in one sentence
+
+The frozen acoustic pulse stream supplies a **bounded multiplicative
+tempo prior** to `estimate_rhythm`'s tempo marginal — the all-pairs period
+of the peakRate events, applied at level selection, never as a fold
+(Standing Lesson 2).
+
+### Design, frozen a priori — no constant is tuned after any result
+
+1. **Estimator, ported verbatim from EB-1** (`scripts/eb1-estimator-bakeoff.py:89`,
+   `est_all_pairs`) so the thing being consumed is the thing that was
+   measured, not a re-implementation: pairwise distances in
+   (0.5·`PERIOD_LO`, 3.0 s]; candidate periods `geomspace(0.20, 2.50, 400)`;
+   multiples 1–8; residual < 0.15; score `Σ (1 − resid/0.15)/√multiple`.
+2. **Prior shape:** `w(bpm) ∝ (1 − W) + W·exp(−½(ln(bpm/bpm_pulse)/Σ)²)`
+   with **W = 0.5** and **Σ = 0.10** in log-BPM. Multiplied into the
+   lattice's final tempo marginal and renormalised **before** the
+   window-mass commitment. Bounded by construction: it can at most double
+   the relative weight of the favoured region and **can never zero any
+   hypothesis** — the failure mode Standing Lesson 2 exists to forbid.
+   No metric-level relatives are added: the lattice already votes over
+   levels (Lesson 3), and the prior's job is to say a real periodicity
+   exists there, not to choose the level for it.
+3. **Refusals, stated before running:** no prior is applied when the
+   sidecar has < 6 events, when all-pairs returns nothing, or when the
+   winning period lands on either **boundary of the search range** —
+   AP-1 and EA-1 both caught boundary artifacts on sparse streams and
+   both flagged them; this refuses them instead.
+4. **Seam:** `PerceptionBundle` gains an optional `pulse_events`
+   provider — the replay bundle reads `pulse.json`, the live bundle
+   computes it from audio with the same extractor. A bundle without one
+   leaves `estimate_rhythm` bit-for-bit unchanged.
+
+### The honest reason to doubt this before running it
+
+EB-1's Arm C measured that **0 of 8 demos** have the beat as their
+strongest periodicity, and all-pairs on the demos scored 4–5 of 8 against
+a control of 4 of 8 — i.e. **the win EB-1 found is almost entirely
+rig-side** (12 → 24 of 26). The rig clips are the owner's own voice
+against a metronome; the demos are the rung. So the most likely outcome is
+a rig-side gain, a flat demo slice, and a legitimate question about
+whether that is progress on step one at all. Worse is possible: if the
+all-pairs period lands on the bar rather than the beat, the prior pulls
+*away* from a correct answer, which is why W is capped at 0.5.
+
+### Pre-registered predictions
+
+| # | prediction |
+|---|---|
+| Q1 | **Primary — the rung's own criterion.** tier1 committed tempo > 0.606, i.e. ≥ 21 of 34. |
+| Q2 | Acc2@8% ≥ 0.697 (no loss of family-level correctness). |
+| Q3 | between-levels rows < 10 of 33 — the failure shape all-pairs is supposed to fix. |
+| Q4 | tier0 byte-identical (25/25 tempo, 24/25 meter): the synthetic sweep has no traces and therefore no sidecars, so it cannot move. |
+| Q5 | **ADR-015 logic-change gate:** zero *undiagnosed* regressions on the 34 gating rows; every flip classified fake-green-lost / genuine-trade / knife-edge. |
+| Q6 | The demo slice does **not** regress: ≥ 4 of 8, baseline 4 of 8. Stated as a floor, not a hope — see the doubt above. |
+| Q7 | ECE does not worsen. |
+| Q8 | With the prior disabled, every suite reproduces the baseline exactly — proving the seam is inert when unfed. |
+
+**Adoption rule, fixed now.** Q1 is the gate. If Q1 fails, the change is
+**not** proposed for adoption and this stands as a negative result with
+per-clip evidence (rule 5), the same disposition EA-1 took. If Q1 holds
+but Q6 fails — a rig-side win bought at the demos' expense — that is
+**also not adopted**, because the rung is the demo, and it is reported as
+such rather than as a headline. Nothing here is blessed by an agent under
+any outcome.
+
+**Constraints:** branch `agent/step-one-pulse-prior-20260903`; changes
+confined to `src/musical_perception/` (`bundle.py`, `analyze.py`,
+`precision/posterior.py`, `precision/pulse.py`) and
+`src/musical_perception/evals/traces.py` **for the replay seam only** —
+declared here because `evals/` is otherwise scorer territory: no metric,
+no suite, no scoring rule is touched, and Q8 proves the seam inert. No
+file under `evals/cases/`, `evals/traces/` or `evals/baseline.json`
+modified. `evals bless` never run.
+
+**Status: PRE-REGISTERED**, committed before the code exists.
+
+## 2026-09-03 · RESET, step one (pulse) · agent/step-one-pulse-prior-20260903 · local (unattended) — RESULTS: PP-1, the acoustic pulse as a tempo prior
+
+**Headline: the rung's own criterion moves for the first time since the
+reset — committed pulse 0.606 → 0.636, Acc2@8% 0.697 → 0.727,
+between-levels 10 → 9 of 33 — on exactly two outcome changes, both
+improvements, both on a barre-6 demo, with zero regressions anywhere.**
+8 of 8 pre-registered predictions hit. Nothing is blessed; the tier-1
+tripwire fires by design and only the owner can clear it.
+
+### Scorecard: 8 hits, 0 falsified
+
+| # | prediction | outcome |
+|---|---|---|
+| Q1 | **Primary:** tier1 committed tempo ≥ 21 of 34 | **HIT** — 21/34, **0.606 → 0.636** |
+| Q2 | Acc2@8% ≥ 0.697 | **HIT** — **0.697 → 0.727** (Acc1@8% 0.606 → 0.636; Acc1@4% 0.515 → 0.545; Acc2@4% 0.576 → 0.606) |
+| Q3 | between-levels < 10 of 33 | **HIT** — **10 → 9** |
+| Q4 | tier0 byte-identical | **HIT** — 25/25 tempo, 24/25 meter, unchanged |
+| Q5 | zero undiagnosed regressions, every flip classified | **HIT** — **there are no regressions to classify**; the complete change list is two rows, both `wrong -> correct` |
+| Q6 | demo slice does not regress | **HIT** — 3/8 → **4/8**; see the correction below |
+| Q7 | ECE does not worsen | **HIT** — **0.2145 → 0.1903** |
+| Q8 | the seam is inert when unfed | **HIT** — with all 52 sidecars hidden the suites print `no outcome changes vs baseline`, tempo 0.606, ECE 0.2145 exactly |
+
+**Correction to Q6's stated baseline, disclosed rather than quietly
+re-scored.** The pre-registration wrote *"≥ 4 of 8, baseline 4 of 8"*,
+taking the 4/8 from `pulse-next-step.md`. Read off `evals/baseline.json`
+directly, the blessed demo-slice tempo is **3 of 8**, not 4. Q6 holds
+against either number, but the prediction was written against a
+second-hand figure and that is worth recording: the handoff's 4/8 is its
+own arm's count, not the shipping path's.
+
+### Every outcome change, in full
+
+```
+outcome changes vs baseline:
+  barre6-coupe-barre-demo.meter_triple: wrong -> correct
+  barre6-coupe-barre-demo.tempo: wrong -> correct
+```
+
+That is the entire diff on 52 rows. `meter_triple` 14 → 15 of 34 comes
+along with it; `counts` and `sides` are untouched.
+
+### The 8 gating demos, per clip
+
+| clip | truth | committed | pulse all-pairs | before → after |
+|---|---|---|---|---|
+| `barre6-coupe-barre-demo` | 108.0 | 107.5 | **108.3** | wrong → **correct** |
+| `barre6-degage-demo` | 110.0 | 106.2 | 113.9 | correct → correct |
+| `barre6-fondu-demo` | 86.0 | 101.0 | 45.5 | wrong → wrong |
+| `barre6-frappe-demo` | 135.0 | 134.9 | 144.0 | correct → correct |
+| `barre6-plie-demo` | 120.0 | 124.9 | 42.2 | correct → correct |
+| `barre6-rond-de-jambe-demo` | 96.0 | 108.7 | 31.9 | wrong → wrong |
+| `barre6-tendu-demo` | 102.0 | 120.4 | *refused* | wrong → wrong |
+| `barre6-tendu-warmup-demo` | 112.0 | 123.4 | 42.2 | wrong → wrong |
+
+### Three findings, and the second is the one that should shape what comes next
+
+**1. The bound did the job it was designed for, and it is measurable.**
+On `plie` the pulse period reads **42.2 BPM** against a truth of 120 —
+the extractor is sitting on a slower level entirely. On `frappe` it reads
+144.0 against 135. In both cases the committed answer **stayed correct**.
+A hard fold, or an unbounded prior, would have dragged those rows off a
+right answer; the (1 − W) mixture floor means the prior can tilt the
+marginal and never veto a hypothesis. **Standing Lesson 2, obeyed and
+then verified rather than asserted.** The refusal path also fired for
+real: `barre6-tendu-demo` and `barre6-ballonne-demo` got no prior at all
+because all-pairs landed on a search boundary — the artifact AP-1 and
+EA-1 each caught and neither could refuse.
+
+**2. EB-1's rig-side win did not transfer, and that is now twice.** EB-1
+measured all-pairs lifting the rig clips 12 → 24 of 26 on its own
+projection path. Through this route **not one rig row moved.** EA-1 found
+the same thing by a different door (24 rig rows read materially
+differently, 0 committed rows moved). The consistent reading across three
+increments is that **the shipping committer is largely insensitive to
+what the tempo front-end says**, and the single row that did move moved
+because the pulse estimate was *already almost exactly right* (108.3 vs
+108.0). This is a one-row result dressed in a moving aggregate, and it
+should be read that way.
+
+**3. The gain is on the rung's own target, which is the one thing that
+makes it worth anything.** The rung is the demo, not the rig. Of the two
+changed outcomes, both are on a barre-6 demo, and the demo slice is where
+the reset says the benchmark lives. A rig-side gain would have been
+declined under this increment's own adoption rule; this is the other case.
+
+### What this does NOT establish
+
+- **n = 1.** One clip flipped. At 34 gating rows a single row is 3
+  percentage points, and ADR-015's knife-edge doctrine exists precisely
+  because rows near tolerance gate nothing. `coupe-barre` committed
+  **107.5 against a truth of 108.0** — that is not knife-edge (0.5%
+  inside an 8% tolerance), but the *aggregate movement* rests entirely on
+  it.
+- It does not show the prior helps in general; on 5 of the 8 demos the
+  pulse period is at the wrong metric level and the prior is, correctly,
+  doing nothing useful there.
+- It does not discharge `pulse-next-step.md` §6. **The owner's blind
+  prior table is still the standing next step**, and §7's exercise-keyed
+  ablation is a different and larger idea than this one.
+- It is not blessed and no agent may bless it.
+
+### Regressions and classifications
+
+**None.** The complete outcome diff is two rows, both `wrong -> correct`.
+There is no fake-green-lost, no genuine-trade and no knife-edge loss to
+classify, because nothing was lost. ADR-015's zero-regression gate for a
+logic change is met on its own terms.
+
+### The tier-1 tripwire fires, and that is the harness working
+
+`pytest` is **1 failed, 378 passed, 3 skipped**. The single failure is
+`test_tier1_outcomes_match_baseline_exactly`, which fails on **any**
+outcome change including improvements, and prints the two rows above with
+the instruction to re-bless. **`evals bless` was not run** (rule 1, rule
+8). Blessing is the owner's act and this increment needs one before it
+can be merged. Six new unit tests cover the estimator and the prior's
+bound (`tests/test_pulse_prior.py`); all pass.
+
+### Verification and constraints
+
+Branch `agent/step-one-pulse-prior-20260903`, cut from
+`agent/sidecar-evidence-20260903` because it consumes W11-c's sidecars —
+disclosed in the pre-registration, not folded into a merge.
+`git diff --stat main`: **33 files, 4,850 insertions, zero deletions** —
+26 added sidecars (W11-c), 5 source files, 1 new test file, the ledger
+and one doc. **No file under `evals/cases/`, `evals/traces/` or
+`evals/baseline.json` was modified or deleted**; every `evals/` path in
+the diff is an addition. The one file touched under
+`src/musical_perception/evals/` is `traces.py`, and only to hand the
+replay bundle a frozen-events provider: **no metric, no suite, no scoring
+rule is changed**, which Q8 proves by reproducing the baseline exactly
+with the seam unfed.
+
+**Lesson (durable, one paragraph):** Two sessions concluded the acoustic
+pulse could not reach the committed answer, and both were right about the
+door they tried. EA-1 changed what `calculate_tempo` measures and moved
+nothing, because the committer never reads it. PP-1 changed what the
+*posterior's tempo marginal* is multiplied by and moved the rung's number
+on the first attempt — small, on one clip, but on the rung's own target.
+**The difference was not a better estimator; it was finding where the
+answer is actually decided.** EA-1's negative result named that place in
+its closing paragraph and the increment that acted on it was one day
+later. A negative result that says *where not to push* is worth as much
+as this entry, and this entry is downstream of it.
+
+**Status: PROPOSED, needs an owner re-bless before it can merge.** The
+rung's reported quantities, which is what the reset asks for: committed
+pulse **0.636** within ±8% of the in-band truth (was 0.606), **Acc2@8%
+0.727** (was 0.697), **between-levels 9 of 33** (was 10). tier0 25/25 and
+24/25, unchanged. ECE 0.1903 (was 0.2145).
+
+## 2026-09-03 · RESET, step one (pulse) · agent/step-one-pulse-prior-20260903 · local (unattended) — AWAITING BLESSING
+
+Step one is now awaiting the owner's blessing: PP-1 improved the rung's own criterion (committed pulse 0.606 → 0.636, Acc2@8% 0.697 → 0.727, between-levels 10 → 9 of 33, zero regressions), the tier-1 tripwire fires on those two improvements as designed, and `bless` is the owner's act alone — that is the whole deliverable and no agent work remains on this rung.
+
+## 2026-09-03 · RESET, step one (pulse) · agent/step-one-awaiting-blessing-20260903 · local (unattended) — AWAITING BLESSING, independently verified
+
+**One line, and it is the whole deliverable: step one is awaiting the
+owner's blessing of PP-1 — no agent work remains on this rung, because
+the only thing that advances it now is `bless`, which is his act alone
+(rules 1 and 8).**
+
+This session re-ran PP-1's claims from a clean checkout rather than
+restating them. All four reproduce exactly:
+
+- `evals run --suite tier0,tier1` → tier1 tempo **21/34 = 0.636**,
+  **Acc2@8% 0.727** (Acc1@8% 0.636; Acc1@4% 0.545; Acc2@4% 0.606),
+  **between-levels 9 of 33**; tier0 tempo 25/25, meter_triple 24/25;
+  reference slice withheld, n=18.
+- The complete outcome diff vs baseline is still exactly two rows, both
+  improvements: `barre6-coupe-barre-demo.tempo` and
+  `.meter_triple`, each `wrong -> correct`. Zero regressions.
+- `pytest` → **1 failed, 378 passed, 3 skipped**; the single failure is
+  `test_tier1_outcomes_match_baseline_exactly`, the tripwire firing on
+  those two improvements as designed. `evals bless` was NOT run.
+- **Q8 re-verified independently** (PP-1 asserted it; this session
+  measured it): with all 52 `pulse.json` sidecars renamed out of the way,
+  tier1 prints `no outcome changes vs baseline` and returns tempo
+  **0.606**, Acc2@8% **0.697**, between-levels **10** — the blessed
+  numbers, bit for bit. The replay seam is genuinely inert when unfed, so
+  the gain is the prior and nothing else.
+
+**Constraints.** `git diff --stat main`: 35 files, 5,074 insertions.
+Every one of the 26 `evals/` paths is an **addition** (`git diff
+--name-status main -- evals/` is 26 × `A`, zero `M`, zero `D`); no file
+under `evals/cases/`, `evals/traces/` or `evals/baseline.json` was
+modified or deleted. The branch is cut from
+`agent/step-one-pulse-prior-20260903` so the owner reviews one branch,
+not two; it sits behind `main` by the nightly `logs/run-summaries.md`
+commits, which a merge carries forward untouched.
+
+**One process flag for the blessing desk, raised rather than left to be
+found.** `src/musical_perception/evals/traces.py` is modified, and the
+change landed in PP-1's *pipeline* commit (`d065566`), not in W11-c's
+EVAL-CHANGE commit. Rule 2 says harness code is not touched in a pipeline
+rung. The change itself is a 14-line replay seam that hands the bundle a
+frozen-events provider — no metric, no suite, no scoring rule — and the
+Q8 result above is the proof that it is inert. So the substance is clean
+and the bookkeeping is not; it is the owner's call whether that needs
+re-splitting before merge or a disclosed exception.
+
+**What is still owner-gated, unchanged for the fifth session:** the blind
+exercise→prior table (`pulse-next-step.md` §6) and its two questions.
+§7's ablation is gated on it, §10's estimator replacement is an
+uncommissioned logic change needing its own pre-registration and
+re-bless, and §8's do-not list closes the rest.
+
+Lesson (durable, one paragraph): A session that inherits a completed,
+unblessed increment has exactly one honest job — try to break the claims,
+not repeat them. Re-running the suites cost minutes and turned PP-1's
+strongest assertion (the seam is inert when unfed) from a claim into a
+measurement, and surfaced a rule-2 bookkeeping slip that the original
+entry's own constraint paragraph had reported as fine. Verification is
+cheap; restatement is worth nothing.
+
+Status: BLOCKED (needs: the owner's `bless` on PP-1, plus — separately
+and still — the blind prior table of `pulse-next-step.md` §6).
+
+## 2026-09-03 · RESET, step one (pulse) · agent/step-one-awaiting-blessing-20260903 · local (unattended) — AWAITING BLESSING (state re-verified; one new flag for the owner)
+
+**One line, and it is the whole deliverable: step one is still awaiting
+the owner's blessing of PP-1 — no agent work remains on this rung,
+because the only act that advances it is `bless`, which is his alone
+(rules 1 and 8).**
+
+This session did not re-run the suites; the session before it did, from a
+clean checkout, and nothing has changed since. What was re-verified is
+cheaper and is the part that could have changed:
+
+- `evals/baseline.json` on `main` is still at `34a1211` (2026-09-01,
+  "reset step one: re-bless at owner direction — tier1 pinned 34,
+  withheld 18 reference"). **No blessing has happened.**
+- The branch is unmerged into `main` (`git branch --merged main` does not
+  list it), and its `evals/baseline.json` is byte-identical to main's.
+- `git diff --stat main`: **35 files, 5,137 insertions, 38 deletions**.
+  The deletions are entirely `logs/run-summaries.md` — the branch sits
+  behind main by the nightly log commits, which a merge carries forward;
+  `git diff --numstat main` shows that file as the only path with a
+  non-zero deletion count. `git diff --name-status main -- evals/` is
+  **26 × `A`, zero `M`, zero `D`**: no file under `evals/cases/`,
+  `evals/traces/` or `evals/baseline.json` modified or deleted.
+- Appended to the existing branch rather than cutting a fifth one. Three
+  step-one branches already carry BLOCKED/AWAITING notes the owner cannot
+  see from `main`; adding another branch name makes that worse, and a
+  fast-forward ledger commit on the branch he is already asked to review
+  makes it slightly better.
+
+**New, and the reason this note is not purely a restatement — the
+scheduled meta-rung (W0) falls due today by the charter's own
+arithmetic, and no session has said so.** The last in-cadence W0 is
+2026-08-27; the two out-of-cadence ones (08-30, 08-31) explicitly do not
+reset the clock, so the next scheduled meta-rung is 2026-09-03. The
+charter names "the 2026-09-03 W0" three times as the destination for
+deferred owner decisions — W6-b's cost ceiling and its second model
+family. On a strict reading of "older than 7 days" the 08-27 entry is
+exactly 7 days old today, not older, so the trigger is at its edge rather
+than past it.
+
+**This session did not take W0, and that is a ruling, not an oversight.**
+The 2026-09-01 reset made step one the plan of record and marked the
+workstream ranking historical; whether W0 survives the reset as a live,
+agent-takeable workstream is not a question an agent may answer for
+itself (rule 9 — flag the conflict, never silently deviate). Flagged
+here for the owner's ruling; if he says W0 is live, it is a session's
+worth of work and nothing about it is blocked.
+
+**Nothing else on the rung moved or could move.** The BLOCKED note of
+earlier today enumerated the closed directions (the −69 ms offset, a
+second window sweep, the held accent line, the §8 do-not list, EA-1's
+measured-and-not-adopted estimator replacement) and the one open
+direction that needs commissioning (the pulse-stream evidence path into
+`estimate_rhythm`). That enumeration stands unchanged.
+
+**Status: AWAITING BLESSING / BLOCKED** (needs, unchanged: the owner's
+`bless` on PP-1; separately and still, the blind prior table of
+`pulse-next-step.md` §6 and his two questions; newly, a ruling on whether
+W0 is live under the reset).
+
+## 2026-09-03 · RESET, step one (pulse) · agent/step-one-awaiting-blessing-20260903 · local (unattended) — AWAITING BLESSING (the one-line note)
+
+Step one is awaiting the owner's blessing of PP-1 and no agent work remains on this rung; the entry above it is this session's supporting detail (state re-verified, constraints shown, W0's due date flagged), not a second deliverable. Status: AWAITING BLESSING.
+
+## 2026-09-04 · RESET, step one (pulse) · agent/step-one-awaiting-blessing-20260903 · local (unattended) — AWAITING BLESSING (the one-line note)
+
+Step one is still awaiting the owner's blessing of PP-1 and no agent work remains on this rung; re-verified cheaply rather than restated — `evals/baseline.json` on `main` is still at `34a1211` (2026-09-01), this branch is still unmerged, its `evals/baseline.json` is byte-identical to main's, and `git diff --stat main` is 35 files / 5,201 insertions / 58 deletions with `git diff --numstat main` showing `logs/run-summaries.md` as the only path carrying a deletion and `git diff --name-status main -- evals/` showing 26 × `A`, zero `M`, zero `D`. Sixth consecutive session in this state; the owner-side queue is unchanged (bless PP-1; the blind prior table of `pulse-next-step.md` §6; the standing ruling on whether W0 is live under the reset). Status: AWAITING BLESSING.
+
+## 2026-09-04 · RESET, step one (pulse) · agent/step-one-awaiting-blessing-20260903 · local (unattended) — AWAITING BLESSING (the one-line note)
+
+Step one is still awaiting the owner's blessing of PP-1 and no agent work remains on this rung, because the only act that advances it is `bless`, which is his alone (rules 1 and 8) — seventh consecutive session in this state, and re-verified rather than restated: `evals/baseline.json` on `main` is still at `34a1211` (2026-09-01), this branch is still unmerged, its `evals/baseline.json` is byte-identical to main's, the only commits on `main` since are the three automated nightly `logs/run-summaries.md` pushes, and `git diff --stat main` is 35 files / 5,205 insertions / 78 deletions with `git diff --numstat main` showing `logs/run-summaries.md` as the only path carrying a deletion and `git diff --name-status main -- evals/` showing 26 × `A`, zero `M`, zero `D`. PP-1's measured numbers are not re-run because nothing they depend on moved: `git diff 6f5bdbf..HEAD -- src/ tests/ evals/` is **empty**, so the 2026-09-03 clean-checkout verification (tempo 21/34 = 0.636, Acc2@8% 0.727, between-levels 9 of 33, tier0 25/25 and 24/25, the two-row improvement-only outcome diff, and the tripwire firing as designed) stands unchanged by construction rather than by assertion. One item on the owner-side queue changed state: the scheduled meta-rung's clock, flagged yesterday as **at** its edge (the 2026-08-27 W0 exactly 7 days old), is now **past** it at 8 days — the ruling asked for is unchanged and still his (whether W0 survives the 2026-09-01 reset as a live, agent-takeable workstream, rule 9), but it is no longer a borderline reading. Owner-side queue otherwise unchanged: bless PP-1; the blind exercise→prior table of `pulse-next-step.md` §6 and its two questions; the rule-2 bookkeeping call on `traces.py`'s replay seam landing in PP-1's pipeline commit. Status: AWAITING BLESSING.
+
+## 2026-09-04 · RESET, step one (pulse) · agent/step-one-awaiting-blessing-20260903 · local (unattended) — AWAITING BLESSING (the one-line note)
+
+Step one is still awaiting the owner's blessing of PP-1 and no agent work remains on this rung, because the only act that advances it is `bless`, which is his alone (rules 1 and 8) — **eighth** consecutive session in this state, and again verified rather than restated: `evals/baseline.json` on `main` is still at `34a1211` (2026-09-01), this branch is still unmerged into `main` (`git branch -r --merged origin/main` does not list it), its `evals/baseline.json` is byte-identical to main's (`git diff main -- evals/baseline.json` empty), the only five commits on `main` since the branch point are automated nightly `logs/run-summaries.md` pushes, and `git diff --stat main` is 35 files / 5,209 insertions / 93 deletions with `git diff --numstat main` showing `logs/run-summaries.md` as the **only** path carrying a deletion and `git diff --name-status main -- evals/` showing **26 × `A`, zero `M`, zero `D`**. PP-1's measured numbers are not re-run because nothing they depend on moved: `git diff 6f5bdbf..HEAD -- src/ tests/ evals/` is **empty**, so the 2026-09-03 clean-checkout verification (tier1 tempo 21/34 = 0.636, Acc2@8% 0.727, between-levels 9 of 33, tier0 25/25 and 24/25, a two-row improvement-only outcome diff, and the tripwire firing as designed) stands by construction rather than by assertion. **One owner-queue item was checked directly this session rather than assumed:** `docs/research/pulse-next-step.md` §6 — the blind exercise→prior table that gates §7's ablation — is still an **empty template** (last commit `c049de9`, 2026-09-02, i.e. it has not been touched since the ask was written), and its two questions are unanswered; that is a measurement of the gate, not a restatement of it. The scheduled meta-rung's clock is now **9 days** past its 2026-09-03 due date, and the ruling asked for is unchanged and still the owner's (whether W0 survives the 2026-09-01 reset as a live, agent-takeable workstream, rule 9). Owner-side queue otherwise unchanged: bless PP-1; the §6 table and its two questions; the rule-2 bookkeeping call on `traces.py`'s replay seam having landed in PP-1's pipeline commit. Status: AWAITING BLESSING.
+
+## 2026-09-05 · RESET, step one (pulse) · agent/step-one-awaiting-blessing-20260903 · local (unattended) — AWAITING BLESSING (the one-line note)
+
+Step one is still awaiting the owner's blessing of PP-1 and no agent work remains on this rung, because the only act that advances it is `bless`, which is his alone (rules 1 and 8) — **ninth** consecutive session in this state, and again verified rather than restated: `evals/baseline.json` on `main` is still at `34a1211` (2026-09-01, "tier1 pinned 34, withheld 18 reference"), this branch is still unmerged into `main` (`git branch -r --merged origin/main` does not list it), its `evals/baseline.json` is byte-identical to main's (`git diff origin/main -- evals/baseline.json` empty), the only six commits on `main` since the branch point are automated nightly `logs/run-summaries.md` pushes, and `git diff --stat main` is 35 files / 5,213 insertions / 108 deletions with `git diff --numstat main` showing `logs/run-summaries.md` as the **only** path carrying a deletion and `git diff --name-status main -- evals/` showing **26 × `A`, zero `M`, zero `D`**. PP-1's measured numbers are not re-run because nothing they depend on moved: `git diff 6f5bdbf..HEAD -- src/ tests/ evals/` is **empty**, so the 2026-09-03 clean-checkout verification (tier1 tempo 21/34 = 0.636, Acc2@8% 0.727, between-levels 9 of 33, tier0 25/25 and 24/25, a two-row improvement-only outcome diff, and the tripwire firing as designed) stands by construction rather than by assertion. The §6 gate was checked directly again, not assumed: `docs/research/pulse-next-step.md` §6 — the blind exercise→prior table — is still an **empty template**, last touched at `c049de9` (2026-09-02, the commit that wrote the ask), and its two questions are unanswered.
+
+**Correction to yesterday's note, made in the open (rule 7).** The eighth-session entry said the scheduled meta-rung's clock was "9 days past its 2026-09-03 due date." That conflated two counts. The correct arithmetic today: the last in-cadence W0 is **2026-08-27**, so the 7-day clause put the next one due **2026-09-03**; today is **9 days since that W0** and **2 days past the due date**. Yesterday it was 8 days since / 1 day past, not 9 past. The ruling asked for is unchanged and still the owner's — whether W0 survives the 2026-09-01 reset as a live, agent-takeable workstream (rule 9) — and the size of the overrun does not change it, but a number stated wrong in the ledger is worth more corrected than repeated.
+
+Owner-side queue otherwise unchanged: bless PP-1; the §6 exercise→prior table and its two questions; the rule-2 bookkeeping call on `traces.py`'s replay seam having landed in PP-1's pipeline commit (`d065566`) rather than in W11-c's EVAL-CHANGE commit. Status: AWAITING BLESSING.
+
+## 2026-09-05 · RESET, step one (pulse) · agent/step-one-awaiting-blessing-20260903 · local (unattended) — AWAITING BLESSING (the one-line note)
+
+Step one is still awaiting the owner's blessing of PP-1 and no agent work
+remains on this rung, because the only act that advances it is `bless`,
+which is his alone (rules 1 and 8) — **tenth** consecutive session in this
+state, second today, and again verified rather than restated:
+`evals/baseline.json` on `main` is still at `34a1211` (2026-09-01, "tier1
+pinned 34, withheld 18 reference"), this branch is still unmerged into
+`main` (`git branch -r --merged origin/main` does not list it), its
+`evals/baseline.json` is byte-identical to main's (`git diff origin/main
+-- evals/baseline.json` empty), the only seven commits on `main` since the
+branch point are automated nightly `logs/run-summaries.md` pushes, and
+`git diff --stat main` is 35 files / 5,221 insertions / 128 deletions with
+`git diff --numstat main` showing `logs/run-summaries.md` as the **only**
+path carrying a deletion and `git diff --name-status main -- evals/`
+showing **26 × `A`, zero `M`, zero `D`**. PP-1's measured numbers are not
+re-run because nothing they depend on moved: `git diff 6f5bdbf..HEAD --
+src/ tests/ evals/` is **empty**, so the 2026-09-03 clean-checkout
+verification (tier1 tempo 21/34 = 0.636, Acc2@8% 0.727, between-levels 9
+of 33, tier0 25/25 and 24/25, a two-row improvement-only outcome diff, and
+the tripwire firing as designed) stands by construction rather than by
+assertion. The §6 gate was checked directly again, not assumed:
+`docs/research/pulse-next-step.md` §6 — the blind exercise→prior table —
+is still an **empty template**, last touched at `c049de9` (2026-09-02, the
+commit that wrote the ask), and its two questions are unanswered. The W0
+arithmetic is unchanged from this morning's corrected count (same calendar
+day): 9 days since the 2026-08-27 in-cadence meta-rung, 2 days past its
+2026-09-03 due date.
+
+**New this session, and the reason this is not purely a restatement — the
+blessing desk was measured, not described.** Earlier notes said "three
+step-one branches carry notes the owner cannot see from `main`" without
+saying which, or what merging this one would and would not carry. Measured
+by ancestry (`git merge-base --is-ancestor`) and by ledger-heading
+set-difference:
+
+- **This branch already contains** `step-one-blocked-20260902`,
+  `step-one-owner-gated-20260902`'s successor line,
+  `sidecar-evidence-20260903` (W11-c), `step-one-pulse-prior-20260903`
+  (PP-1), `sw1-pr1-air` and `estimator-bakeoff` (EB-1). Reviewing one
+  branch reviews all of that; no separate merge is needed for any of them.
+- **Three artifacts are NOT on this branch and are reachable only from
+  their own:** EA-1, the estimator adoption — 3 ledger entries plus
+  `scripts/ea1-estimator-adoption.py` and its results JSON, on
+  `agent/step-one-blocked-20260902-evening`; W15, the stated-structure
+  channel — 2 entries plus `docs/research/w15-stated-structure.{md,json}`
+  and its script, on `agent/marathon`; and the lateral-review memo
+  `docs/research/lateral/2026-09-02.md`, on `agent/lateral-2026-09-02`
+  (its ledger entries *are* here, the memo the entries point at is not).
+  Two of the three are cited by name in this branch's own notes — EA-1's
+  "measured and not adopted" verdict is load-bearing in the closed-
+  directions enumeration — so the ledger a reviewer reads here references
+  evidence that reading here cannot reach.
+- The `step-one-owner-gated-20260902` branch's single entry is likewise
+  absent here.
+
+That is a report on the review queue, not a request to change it: merge
+order is the owner's call, and no session should tidy four branches into
+one on its own initiative (rule 6).
+
+Owner-side queue otherwise unchanged: bless PP-1; the §6 exercise→prior
+table and its two questions; the rule-2 bookkeeping call on `traces.py`'s
+replay seam having landed in PP-1's pipeline commit (`d065566`) rather
+than in W11-c's EVAL-CHANGE commit; the standing ruling on whether W0 is
+live under the reset. Status: AWAITING BLESSING.
+
+## 2026-09-05 · RESET, step one (pulse) · agent/step-one-awaiting-blessing-20260903 · owner-attended — BLESSED (owner-directed)
+
+**PP-1 is blessed. The eleven-session AWAITING BLESSING state is closed by
+the owner's act, in an attended session, with the agent operating the
+keyboard under explicit direction.** Recorded in the open per rules 1, 7
+and 8: rules 1 and 8 forbid an *agent* running `evals bless` because the
+judgement is the owner's, not because the keystroke is. The judgement was
+made by the owner in this session after being walked through the evidence
+below; the ruling, verbatim:
+
+> "bless it, then let's do the table"
+
+and, on the preceding turn, the question it answers: *"should i bless the
+PP-1?"* No agent decided this and none may; if the disposition is ever
+disputed, this entry is the record that it was owner-ruled, not
+self-blessed.
+
+**What was re-measured this session before blessing, independently of the
+PP-1 and verification entries rather than by citing them.** A clean
+worktree at `913ea2e`, suites re-run from the frozen traces:
+
+- tier1 committed tempo **21/34 = 0.636** (blessed baseline was 20/34 =
+  0.588; Acc1@8% 0.606 → 0.636), Acc2@8% **0.697 → 0.727**,
+  between-levels **10 → 9 of 33**, `meter_triple` 14 → 15 of 34.
+- tier0 **25/25 tempo, 24/25 meter** — unchanged, as Q4 predicted.
+- ECE **0.2145 → 0.1903**.
+- The complete outcome diff on 52 rows is **two lines, both
+  `wrong -> correct`, both `barre6-coupe-barre-demo`** (`tempo` and
+  `meter_triple`).
+- `pytest` before blessing: **1 failed, 378 passed, 3 skipped**, the one
+  failure being `test_tier1_outcomes_match_baseline_exactly` listing those
+  two improvements. After blessing: **379 passed, 3 skipped, 0 failed.**
+
+**A check neither PP-1 nor the 2026-09-03 verification ran, added here
+because it is the fitting test and it was missing.** The 18 owner-demoted
+reference rows — verified truth, outside the benchmark, gating nothing —
+are **bit-identical across the change**: `counts` 2/18, `meter_triple`
+4/18, `tempo` 6/18, Acc1@8% 0.333, Acc2@8% 0.389, between-levels 12,
+before and after. Nothing moved out there in either direction, so the
+benchmark gain carries no measurable out-of-benchmark cost and no
+signature of fitting. Across all 52 rows in the corpus, **exactly one clip
+changed.**
+
+**What is and is not established, stated at blessing so the number cannot
+become an anchor later.** The aggregate moved on **n = 1**. The clip
+flipped because the all-pairs pulse period landed at 108.3 against a truth
+of 108.0; on **five of the eight gating demos the pulse sits on the wrong
+metric level entirely** (42.2 vs 120, 45.5 vs 86, 31.9 vs 96, 42.2 vs 112,
+and a boundary refusal on `tendu`). **What the increment establishes is
+not that the prior is right — it is that the pulse can reach the tempo
+marginal without breaking anything**: the `(1 − W)` mixture floor took a
+42.2-BPM opinion against a 120-BPM truth on `plie` and the committed
+answer stayed correct, which is Standing Lesson 2 held under adversarial
+input and measured rather than argued. That, plus the proven-inert seam
+(Q8), is the durable content. `0.636` is one lucky clip on top of `0.606`
+and this entry says so at the moment of blessing rather than afterwards.
+
+**Rule-2 bookkeeping, ruled.** The 14-line replay seam in
+`src/musical_perception/evals/traces.py` landed in PP-1's pipeline commit
+`d065566` rather than in W11-c's EVAL-CHANGE commit. Re-checked at source:
+the deviation was **declared a priori** in the PP-1 pre-registration
+(`d802c22`, "Constraints" paragraph — file named, scope limited to the
+replay seam, inertness promised and then proven by Q8), so it is a
+disclosed deviation under rule 9, not a rule broken and found later. The
+owner's disposition: **noted as an exception, not re-split** — the
+substance is measured inert and re-splitting would rewrite a branch
+carrying eleven sessions of ledger history to re-file provably dead code.
+
+**Baseline now:** `evals/baseline.json` regenerated at `913ea2e`,
+2026-09-05T20:15:07Z — tier0 25 outcomes pinned, tier1 34 pinned with 18
+withheld reference rows reported and never gating, stage1 0 pinned.
+`docs/evals/baseline.md` regenerated with it.
+
+**Still owner-side and unchanged by this entry:** the blind exercise→tempo
+prior table at `pulse-next-step.md` §6 and its two questions (in progress
+in this same session); the ruling on whether W0 survives the 2026-09-01
+reset; and merge order for the stranded branches — EA-1
+(`step-one-blocked-20260902-evening`), W15 (`marathon`), the lateral memo
+(`lateral-2026-09-02`), and **`w11b-opaque-sidecars`, which the tenth
+session's branch inventory omitted** and which this session reads as
+likely dead: it adds `pulse.json` sidecars for retired Barre-1 trace
+directories that no longer exist on `main`, so merging it would resurrect
+them.
+
+**Status: BLESSED (owner-directed, attended).** Step one's measured
+criterion has moved for the first time since the reset.
+
+## 2026-09-05 · RESET, step one (pulse) · agent/step-one-awaiting-blessing-20260903 · owner-attended — §6 PRIOR TABLE ANSWERED, and two findings that outrank §7
+
+**The §6 blind prior table is filled.** Six sessions named it as the gate;
+it was answered in this attended session, dictated by the owner and typed
+by the agent into `pulse-next-step.md` §6. Nine of twelve rows carry
+ranges, three are declined (`rond de jambe en l'air` — "varies too much";
+`coupé-barre` and `tendu warm-up` — "I don't know"). Declines are data and
+no agent may fill them in later.
+
+**Blindness partially broken, by the agent, disclosed (rule 7).** Earlier
+in this same session the agent displayed the eight gating demos' truth
+tempos while presenting PP-1 for blessing, so eight of the twelve rows had
+one labelled example visible before the owner wrote them. Four rows were
+never exposed and are marked **(blind)** in §6. Measured afterwards, the
+exposure does not appear to have driven the answers: two of the six
+callable exposed rows have ranges that **exclude** the shown number
+(`degage` 85–105 against a shown 110; `fondu` "around 100" against a shown
+86). Recorded as a real weakening of the condition, not one that visibly
+bit.
+
+**Finding 1 — Q2 is a negative result on §7's shape, ruled by the owner.**
+Verbatim: *"exercise name is never enough. it always needs to be
+corraborated with the observation"*. An exercise-keyed prior applied on the
+**name alone** is therefore ruled out as a design at any strength,
+independent of what it might score; the label is admissible only as one
+input corroborated against what is heard or seen. The table's own numbers
+agree, measured over the nine callable rows: **26 of 36 exercise pairs
+(72%) have overlapping ranges**, **100 BPM falls inside 6 of 9 ranges**,
+and **only `petit battement` (130–150) fails to touch the crowded 85–125
+mass**. (An earlier draft of that paragraph asserted a stronger overlap
+from eyeballing; it was recomputed and corrected in place before commit.)
+§7's ablation must be re-specified as name-plus-observation before it is
+worth running.
+
+**Finding 2 — OPEN and owner-gated: the demo cases are graded against the
+marking tempo, and the case notes say they are not.** Measured against the
+artifact, not the docs. All nine barre-6 demo cases carry `marking_bpm`
+inside `expect:` and **no `performance_bpm` there at all**; the pianist's
+tempo sits in a `played_bpm` **tag**, which nothing reads.
+`Case.expected_bpm` resolves `expect["performance_bpm"] or
+expect["marking_bpm"]`, so every demo returns **the marking tempo**. Each
+demo's own `notes:` block asserts the opposite in prose — *"expected_bpm
+prefers performance_bpm, so this row grades against what was played, not
+against the marking."* The prose is false: the field name it depends on is
+not the field name that was written. The two candidate truths differ
+materially — `frappé` 135 vs 79 (0.59) and `ballonné` 160 vs 63 (0.39),
+neither a clean octave, so Acc2's family tolerance would not absorb them.
+
+**Why this outranks §7 rather than sitting in Backlog:** Q1's answer —
+*"usually the first clear tempo is the right one … especially if they are
+actually doing the movement fullout and not just marking"* — makes the
+full-out demonstration tempo the truth and **explicitly excludes the
+marking**, while the scorer reads a field named `marking_bpm`. Three
+readings are open, enumerated in §6.1: (a) the field is misnamed and holds
+the demonstration tempo, so scoring is right and the name and notes are
+wrong; (b) the field is accurate and the demo slice has been graded against
+the wrong quantity since ingestion; (c) the full-out tempo is a third
+quantity never recorded, and Q1 cannot be honoured without relabelling.
+**No agent may choose**: (b) and (c) change `evals/cases/` truth values,
+which rule 2 forbids and only owner verification can alter. Every
+demo-slice number in the ledger, PP-1's included, inherits the answer.
+
+**Note on PP-1's blessing, unchanged by this.** PP-1 was blessed earlier in
+this session against the corpus as it stands. Finding 2 does not retract
+it — the change moved one row from wrong to right under whatever truth
+convention is in force, and its zero-regression property is convention-
+independent — but if reading (b) or (c) is chosen, the demo slice will be
+rescored and the blessed numbers will move for reasons unrelated to PP-1.
+Flagged now so that movement is not later misread as PP-1 decaying.
+
+**Owner-side queue after this session:** rule on §6.1 (a/b/c) — now ranked
+first, ahead of §7; re-specify §7's ablation as name-plus-observation per
+Q2; the standing W0 ruling; merge order for the stranded branches (EA-1,
+W15, the lateral memo, and `w11b-opaque-sidecars`, which the tenth
+session's inventory omitted and which reads as dead — it adds sidecars for
+retired Barre-1 trace directories absent from `main`).
+
+**Status: §6 ANSWERED; §6.1 OPEN, owner-gated, ranked above §7.**
+
+## 2026-09-05 · RESET, step one (pulse) · agent/step-one-awaiting-blessing-20260903 · owner-attended — CORRECTION: §6.1's "Finding 2" was wrong; the ruling already existed
+
+**Correction in the open (rule 7), to the entry committed one commit
+earlier in this same session (`a87dfbf`).** That entry's "Finding 2"
+reported the demo cases' scoring as an open question with three candidate
+readings requiring an owner ruling. **It was not open. The owner had ruled
+it on 2026-09-01 and the agent had not read the ruling before raising it**,
+then put it to the owner as a live decision. The owner's response, and the
+correction it forced, are the substance of this entry.
+
+**The governing ruling, already in this ledger (2026-09-01):**
+
+> "The target is not 'what the pianist played' — the accompanist has
+> latitude, and a different valid realization is not an error. The target
+> is what the marking specifies."
+
+That entry also records the consequence the agent should have found: the
+removal of `performance_bpm` from the demo cases' graded block was the
+*implementation* of the ruling, `played_bpm` was deliberately kept as an
+unread tag because it is "what he played, not what was required," and the
+`answer_key` tag was renamed `pianist_take` in the same pass so the take
+would stop reading as correct. Restated by the owner on 2026-09-05:
+
+> "we are not supposed to use the pianist tempo … i have already gone
+> through each demo clip and recorded the tempo that should be played"
+
+**So `marking_bpm` is correctly named, correctly populated and correctly
+scored.** It holds the owner's own per-clip determination, made by watching
+each demo, of the tempo that should be played. Nothing in the scorer, the
+cases or the blessed baseline is wrong, and PP-1's blessing is unaffected —
+the earlier entry's warning that demo numbers might later move for
+non-PP-1 reasons is **withdrawn**, since no rescoring is required.
+
+**Root cause, recorded because it is a durable trap rather than a slip.**
+"Marking" is used in two senses in this project: *the teacher's marking of
+the combination* (setting/demonstrating it — the sense in `marking_bpm`)
+and *marking in the dancer's sense* (sketching rather than dancing
+full-out — the sense the owner's Q1 answer excludes). The agent read the
+second sense into the first and derived a contradiction from it. Q1 is
+guidance on **how to read a tempo off a clip**; it says nothing about
+**which recorded quantity is truth**. §6.1 now carries this and is marked
+CLOSED with a do-not-reopen.
+
+**Second lesson, on process rather than vocabulary.** The false sentence
+that seeded the error is real and still in the corpus: all nine demo
+`notes:` blocks assert *"expected_bpm prefers performance_bpm, so this row
+grades against what was played, not against the marking."* It was written
+before the ruling and never updated; the 2026-09-01 entry itself flagged it
+as an open question "worth settling before any of these gate," and it was
+not settled in the files. **The agent trusted case-file prose over the
+ledger and over the code, which is the exact failure the house rule against
+believing documentation over the artifact exists to prevent** — the code
+was measured correctly and then narrated wrongly because the stale prose
+was allowed to frame it.
+
+**The one genuine remaining defect, owner-gated by rule 2.** Those nine
+`notes:` blocks contradict both the ruling and the code, and the next
+reader will trust them — this session did. Correcting them touches files
+under `evals/cases/`, which rule 2 forbids to agents even for comment text,
+so it needs the owner's word. **No truth value, tag, or scored field would
+change**; the edit is confined to replacing one false sentence in nine
+`notes:` blocks. Recommended, not taken.
+
+**Status: §6.1 CLOSED. §6 remains ANSWERED. The owner-side queue loses one
+item (§6.1) and gains one (permission to correct nine `notes:` blocks).**

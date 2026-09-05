@@ -213,6 +213,7 @@ def estimate_rhythm(
     gemini_subdivision: str | None = None,
     onset_tempo: OnsetTempoResult | None = None,
     gemini_tempo: TempoResult | None = None,
+    pulse_events: list[float] | None = None,
 ) -> NormalizedTempo | None:
     """
     Bar-pointer posterior over the marking streams.
@@ -235,6 +236,12 @@ def estimate_rhythm(
     rather than by whichever one was sampled (Standing Lesson 4). Left
     None, the beliefs are built one-hot from `markers` and the answer
     is bit-for-bit the single-draw answer.
+
+    `pulse_events` (PP-1) is the rung-2 acoustic pulse stream. When
+    given, its all-pairs period tilts the tempo marginal by a bounded
+    multiplicative prior before the commitment — a prior at level
+    selection, never a fold (Standing Lesson 2). Left None, every
+    number below is bit-for-bit its pre-PP-1 value.
     """
     beliefs = (
         marker_beliefs if marker_beliefs is not None
@@ -279,6 +286,7 @@ def estimate_rhythm(
         beat_ev, word_ev, A_BEAT * beat_support
     )
     mass = np.exp(log_marginal - np.logaddexp.reduce(log_marginal))
+    mass, pulse_bpm = _apply_pulse_prior(bpm_axis, mass, pulse_events)
 
     # Commit to the tempo whose ±8% neighborhood holds the most mass —
     # the Bayes decision under the scorer's utility (an answer is right
@@ -313,6 +321,46 @@ def estimate_rhythm(
         alternates=alternates,
         grouping_levels=ladder,
     )
+
+
+PULSE_PRIOR_WEIGHT = 0.5      # mixture weight; the (1-W) floor is why
+PULSE_PRIOR_SIGMA = 0.10      # this prior can tilt but never veto
+
+
+def _apply_pulse_prior(
+    bpm_axis: np.ndarray,
+    mass: np.ndarray,
+    pulse_events: list[float] | None,
+) -> tuple[np.ndarray, float | None]:
+    """Tilt the tempo marginal toward the acoustic pulse's all-pairs period.
+
+    PP-1. The prior is a mixture — a uniform floor of (1 - W) plus a
+    log-normal bump of weight W at the measured period — so it can at
+    most double the relative weight of the favoured region and can
+    NEVER zero a hypothesis. That bound is the whole design: Standing
+    Lesson 2 is about a hard fold destroying correct out-of-band
+    measurements, and a prior that cannot reach zero cannot do that.
+
+    No metric-level relatives are added. The lattice already votes over
+    levels (Lesson 3); this only says a real periodicity was measured
+    there. Returns (possibly unchanged) mass and the pulse BPM, or None
+    when no prior was applied.
+    """
+    if not pulse_events:
+        return mass, None
+    from musical_perception.precision.pulse import all_pairs_period
+
+    period = all_pairs_period(pulse_events)
+    if period is None:                    # sparse, or a boundary artifact
+        return mass, None
+    pulse_bpm = 60.0 / period
+    z = (np.log(bpm_axis) - math.log(pulse_bpm)) / PULSE_PRIOR_SIGMA
+    prior = (1.0 - PULSE_PRIOR_WEIGHT) + PULSE_PRIOR_WEIGHT * np.exp(-0.5 * z * z)
+    tilted = mass * prior
+    total = tilted.sum()
+    if not np.isfinite(total) or total <= 0.0:
+        return mass, None
+    return tilted / total, pulse_bpm
 
 
 def _lattice_forward(

@@ -23,8 +23,14 @@ notes: >-
   piano take barre6-tendu-warmup-take1 is the answer key, not the input.
   marking_bpm 112 is the teacher's own marking tempo; performance_bpm 82
   is what the pianist played. Intended-tempo span within this demo:
-  4.0-40.0s. SCORING NOTE: expected_bpm prefers performance_bpm, so this
-  row grades against what was played, not against the marking. Owner
+  4.0-40.0s. SCORING NOTE (corrected 2026-09-05, owner-directed): this row grades
+  against marking_bpm, which holds the owner's own per-clip determination
+  of the tempo that SHOULD be played. performance_bpm was deliberately
+  removed from the demo cases' graded block per the owner ruling of
+  2026-09-01 - 'the target is not what the pianist played ... the target
+  is what the marking specifies'. played_bpm is retained as an unread tag
+  recording one valid realization. Do not reintroduce performance_bpm
+  here. Owner
   labels; typed by an agent and not read back, hence provisional. 8 sets
   of 8 bars of 3 (both sides). METER DIFFERS FROM THE TAKE (take: 82 in
   4/4) - not an error: measured, both clips carry a ~3s level (demo 2.95s,
