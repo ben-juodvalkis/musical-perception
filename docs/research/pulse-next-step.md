@@ -269,8 +269,11 @@ three conjunctive conditions, and each is separately detectable:
 3. **full-out, not marking** — the tempo is read from the demonstration
    proper, and marking is explicitly excluded.
 
-Condition 3 collides with how the demo cases are currently labelled — see
-§6.1 below, opened by this session's measurement.
+**Condition 3 does not bear on which field is truth.** This session first
+read it as a collision with `marking_bpm` and was wrong; "marking" means
+the teacher setting the combination there, and sketching-rather-than-
+dancing here. Q1 governs *how a tempo is read off a clip*, not *which
+recorded quantity the benchmark grades against* — see §6.1.
 
 ### Q2 — does the exercise name alone carry the prior
 
@@ -303,54 +306,63 @@ As a discriminator between exercises the table is close to uninformative;
 as a measurement of how little the exercise name carries by itself, it is
 decisive and independently confirms Q2.
 
-### §6.1 — OPEN, owner-gated: what the demo cases are actually graded against
+### §6.1 — CLOSED: the demo scoring is correct; nine case notes are stale
 
-Measured this session against the artifact rather than the notes, and it
-contradicts the notes. Every one of the nine barre-6 demo cases carries
-`marking_bpm` inside `expect:` and **no `performance_bpm` there at all**;
-the pianist's tempo is stored as a `played_bpm` **tag**. `Case.expected_bpm`
-resolves `expect["performance_bpm"] or expect["marking_bpm"]`, so for all
-nine demos it returns **the marking tempo**. Meanwhile each demo's own
-`notes:` block asserts the opposite in prose — *"expected_bpm prefers
-performance_bpm, so this row grades against what was played, not against
-the marking."* **The prose is false; the field name it depends on is not
-the field name that was written.**
+**Opened and closed in the same session (2026-09-05). Recorded in full
+because the agent's first reading was wrong and the wrong reading was
+briefly committed.**
 
-| demo | `marking_bpm` (scored) | `played_bpm` (tag, unused) | played/marking |
-|---|---|---|---|
-| ballonné | 160 | 63 | 0.39 |
-| coupé-barre | 108 | 120 | 1.11 |
-| dégagé | 110 | 121 | 1.10 |
-| fondu | 86 | 70 | 0.81 |
-| frappé | 135 | 79 | 0.59 |
-| plié | 120 | 116 | 0.97 |
-| rond de jambe | 96 | 95 | 0.99 |
-| tendu | 102 | 112 | 1.10 |
-| tendu warm-up | 112 | 82 | 0.73 |
+The agent measured that all nine barre-6 demo cases carry `marking_bpm`
+inside `expect:` and no `performance_bpm` there, while each case's `notes:`
+block asserts *"expected_bpm prefers performance_bpm, so this row grades
+against what was played, not against the marking."* The agent wrote this up
+as three open readings requiring an owner ruling. **That was wrong: the
+ruling already existed and the agent had not read it.**
 
-The gap is not cosmetic: on `frappé` and `ballonné` the two candidate
-truths differ by factors of 0.59 and 0.39 — neither a clean octave, so
-Acc2's metric-family tolerance would not absorb the difference either.
+**The standing ruling (owner, 2026-09-01 ledger entry), which governs:**
 
-**Why this is now urgent rather than merely untidy: Q1's condition 3 says
-the truth is the full-out tempo and explicitly not the marking, while the
-scorer is reading a field named `marking_bpm`.** Three readings are open
-and only the owner can choose:
+> "The target is not 'what the pianist played' — the accompanist has
+> latitude, and a different valid realization is not an error. The target
+> is what the marking specifies."
 
-- **(a) the field is misnamed** — `marking_bpm` in fact holds the
-  demonstration tempo, the scoring is right, and the notes and the field
-  name are both wrong;
-- **(b) the field is accurate and the scoring is wrong** — the demos are
-  being graded against a marking tempo that Q1 says is not the answer, and
-  every demo-slice number since ingestion inherits that;
-- **(c) neither field holds it** — the teacher's full-out demonstration
-  tempo is a third quantity that was never recorded, and Q1 cannot be
-  honoured without relabelling.
+and, restated by the owner on 2026-09-05 when the question was wrongly
+re-raised:
 
-**No agent may pick between these**, because (b) and (c) would change
-`evals/cases/` truth values, which rule 2 forbids and which only owner
-verification can alter. Ranked ahead of §7: the ablation below is scored
-on the demo slice, so it inherits whichever answer this gets.
+> "we are not supposed to use the pianist tempo … i have already gone
+> through each demo clip and recorded the tempo that should be played"
+
+So: `marking_bpm` holds **the owner's own per-clip determination of the
+tempo that should be played**, arrived at by watching each demo. It is
+correctly named, correctly populated, and correctly scored.
+`performance_bpm` was **deliberately removed** from the demo cases' graded
+block as the implementation of that ruling; `played_bpm` survives as an
+unread tag precisely because it is "what he played, not what was
+required," and the `answer_key` tag was renamed `pianist_take` in the same
+pass to stop the take reading as correct.
+
+**The terminology hazard that caused the error, recorded so it does not
+recur.** "Marking" carries two senses in this project and they collided:
+
+- **the teacher's marking of the combination** — setting/demonstrating it,
+  which is what `marking_bpm` refers to and what the benchmark grades
+  against;
+- **marking in the dancer's sense** — sketching a movement rather than
+  dancing it full-out, which is what the owner's Q1 answer excludes.
+
+Q1 is guidance on **how to read a tempo off a clip** (prefer the first
+clear, steady, full-out window). It is not a statement about **which field
+is truth**. Reading the second sense into the first manufactures a conflict
+that does not exist. Agents: do not re-open this.
+
+**The one real defect, and it is owner-gated only because of rule 2.** The
+`notes:` prose in all nine demo case files still states the pre-ruling
+behaviour and therefore contradicts both the ruling and the code. It is
+false text sitting in the corpus where the next reader will trust it — this
+session did. Correcting it means editing files under `evals/cases/`, which
+rule 2 forbids to agents even for a comment, so it needs the owner's word.
+**No truth value, tag, or scored field would change** — the edit is
+confined to the `notes:` block of nine files, replacing the false sentence
+with the ruling above.
 
 ---
 

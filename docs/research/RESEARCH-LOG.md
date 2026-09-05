@@ -12450,3 +12450,69 @@ session's inventory omitted and which reads as dead — it adds sidecars for
 retired Barre-1 trace directories absent from `main`).
 
 **Status: §6 ANSWERED; §6.1 OPEN, owner-gated, ranked above §7.**
+
+## 2026-09-05 · RESET, step one (pulse) · agent/step-one-awaiting-blessing-20260903 · owner-attended — CORRECTION: §6.1's "Finding 2" was wrong; the ruling already existed
+
+**Correction in the open (rule 7), to the entry committed one commit
+earlier in this same session (`a87dfbf`).** That entry's "Finding 2"
+reported the demo cases' scoring as an open question with three candidate
+readings requiring an owner ruling. **It was not open. The owner had ruled
+it on 2026-09-01 and the agent had not read the ruling before raising it**,
+then put it to the owner as a live decision. The owner's response, and the
+correction it forced, are the substance of this entry.
+
+**The governing ruling, already in this ledger (2026-09-01):**
+
+> "The target is not 'what the pianist played' — the accompanist has
+> latitude, and a different valid realization is not an error. The target
+> is what the marking specifies."
+
+That entry also records the consequence the agent should have found: the
+removal of `performance_bpm` from the demo cases' graded block was the
+*implementation* of the ruling, `played_bpm` was deliberately kept as an
+unread tag because it is "what he played, not what was required," and the
+`answer_key` tag was renamed `pianist_take` in the same pass so the take
+would stop reading as correct. Restated by the owner on 2026-09-05:
+
+> "we are not supposed to use the pianist tempo … i have already gone
+> through each demo clip and recorded the tempo that should be played"
+
+**So `marking_bpm` is correctly named, correctly populated and correctly
+scored.** It holds the owner's own per-clip determination, made by watching
+each demo, of the tempo that should be played. Nothing in the scorer, the
+cases or the blessed baseline is wrong, and PP-1's blessing is unaffected —
+the earlier entry's warning that demo numbers might later move for
+non-PP-1 reasons is **withdrawn**, since no rescoring is required.
+
+**Root cause, recorded because it is a durable trap rather than a slip.**
+"Marking" is used in two senses in this project: *the teacher's marking of
+the combination* (setting/demonstrating it — the sense in `marking_bpm`)
+and *marking in the dancer's sense* (sketching rather than dancing
+full-out — the sense the owner's Q1 answer excludes). The agent read the
+second sense into the first and derived a contradiction from it. Q1 is
+guidance on **how to read a tempo off a clip**; it says nothing about
+**which recorded quantity is truth**. §6.1 now carries this and is marked
+CLOSED with a do-not-reopen.
+
+**Second lesson, on process rather than vocabulary.** The false sentence
+that seeded the error is real and still in the corpus: all nine demo
+`notes:` blocks assert *"expected_bpm prefers performance_bpm, so this row
+grades against what was played, not against the marking."* It was written
+before the ruling and never updated; the 2026-09-01 entry itself flagged it
+as an open question "worth settling before any of these gate," and it was
+not settled in the files. **The agent trusted case-file prose over the
+ledger and over the code, which is the exact failure the house rule against
+believing documentation over the artifact exists to prevent** — the code
+was measured correctly and then narrated wrongly because the stale prose
+was allowed to frame it.
+
+**The one genuine remaining defect, owner-gated by rule 2.** Those nine
+`notes:` blocks contradict both the ruling and the code, and the next
+reader will trust them — this session did. Correcting them touches files
+under `evals/cases/`, which rule 2 forbids to agents even for comment text,
+so it needs the owner's word. **No truth value, tag, or scored field would
+change**; the edit is confined to replacing one false sentence in nine
+`notes:` blocks. Recommended, not taken.
+
+**Status: §6.1 CLOSED. §6 remains ANSWERED. The owner-side queue loses one
+item (§6.1) and gains one (permission to correct nine `notes:` blocks).**
