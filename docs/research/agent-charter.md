@@ -9,6 +9,64 @@
 
 > **CURRENT RUNG: RESET STEP ONE — pulse tempo from the demo
 > (owner-directed reset, 2026-09-01 evening, ratified in session).**
+>
+> **RULINGS OF 2026-09-05 (owner-attended session, in force now):**
+>
+> 1. **PP-1 IS BLESSED.** The baseline moved: tier1 committed tempo
+>    **21/34 = 0.636** (was 0.606), Acc2@8% **0.727** (was 0.697),
+>    between-levels **9 of 33** (was 10), ECE **0.1903** (was 0.2145),
+>    tier0 unchanged. The gain is **one clip** (`barre6-coupe-barre-demo`,
+>    tempo and meter both wrong → correct); the durable content is that
+>    the acoustic pulse can reach the tempo marginal **without breaking
+>    anything** — the bound survived a 42.2-BPM opinion against a 120-BPM
+>    truth on `plie` with the answer still correct. Do not quote 0.636 as
+>    if it were a general improvement.
+>
+> 2. **§6's blind prior table is ANSWERED** — see
+>    `pulse-next-step.md` §6. Nine of twelve rows carry ranges; three are
+>    declined and **no agent may fill them in**.
+>
+> 3. **Q2 RULES OUT the name-only prior.** The owner: *"exercise name is
+>    never enough. it always needs to be corraborated with the
+>    observation"*. **§7's ablation must be re-specified as
+>    name-plus-observation before it is worth running.** Measured
+>    corroboration over the nine callable rows: 26 of 36 exercise pairs
+>    overlap, 100 BPM sits inside 6 of 9, and only `petit battement`
+>    (130–150) clears the 85–125 mass.
+>
+> 4. **§6.1 IS CLOSED — do not reopen.** The demo cases grade against
+>    `marking_bpm`, which holds the owner's own per-clip determination of
+>    the tempo that SHOULD be played. `performance_bpm`'s absence from the
+>    demo `expect:` blocks is the *implementation* of the 2026-09-01
+>    ruling, not a bug. **Terminology trap:** "marking" means the teacher
+>    *setting the combination* in `marking_bpm`, and *sketching rather
+>    than dancing full-out* in the owner's Q1 answer. Reading the second
+>    into the first manufactures a contradiction; a session already lost
+>    time to it.
+>
+> 5. **W0 IS LIVE.** The owner's ruling, verbatim: *"yes the weekly review
+>    is live"*. The meta-rung **survived the 2026-09-01 reset** as a live,
+>    agent-takeable workstream on its unchanged 7-day cadence. The last
+>    in-cadence W0 is **2026-08-27**, so it was due **2026-09-03** and is
+>    now **past due** — by the W0 clause, **W0 outranks every other
+>    workstream and the next session takes it**, performing the weekly
+>    review (re-rank the workstreams, audit the BLOCKED queue, propose
+>    charter amendments as PROPOSED entries, write a plain-language
+>    summary for the owner) instead of a pipeline increment.
+>
+> 6. **The review queue is CLEARED.** `main` carries everything as of
+>    2026-09-05; 26 merged branches were deleted with SHAs recorded in the
+>    ledger. **`agent/w11b-opaque-sidecars` must never be merged** — it
+>    would revert this CURRENT RUNG block and resurrect 110 retired
+>    Barre-1 trace files. Its record is salvaged in the ledger.
+>
+> 7. **The rule departures of 2026-09-05 were single-session and
+>    owner-directed** — an agent ran `evals bless`, pushed `main`, edited
+>    `notes:` under `evals/cases/`, and deleted remote branches, each on
+>    the owner's explicit in-session instruction. **Rules 1, 2 and 8 are
+>    unchanged and still bind every unattended session.** The nightly
+>    runner's `logs/run-summaries.md` carve-out is untouched and remains
+>    its only permitted `main` push.
 > The owner's charge, his words: *"start over, toss out all
 > assumptions."* The target is the DEMO alone — reach the tempo, meter,
 > structure and style he reaches by watching a teacher demonstrate.

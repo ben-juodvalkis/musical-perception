@@ -13682,3 +13682,56 @@ claude/detect-eye-contact-tempo-1w7179 d61694e4075bba32ed56bb75fdc6dc513e48a13e
 claude/fable-model-research-n8kgkm 4ad2a70b587595dd867616c7692f47644125bea9
 claude/pr-20-20260902-0053 0dae125f8fb3a4cd142c588c209bda9953a81a8b
 ```
+
+## 2026-09-05 · housekeeping + charter · main · owner-attended — W0 RULED LIVE; branches deleted; session closed
+
+**W0 is live.** The owner's ruling, verbatim: *"yes the weekly review is
+live"*. The meta-rung **survived the 2026-09-01 reset** as a live,
+agent-takeable workstream on its unchanged 7-day cadence. This closes a
+question five consecutive unattended sessions had to leave open because
+rule 9 forbids an agent deciding it. Arithmetic, restated from this
+morning's correction: last in-cadence W0 **2026-08-27**, due
+**2026-09-03**, today **2026-09-05** — 9 days since, **2 days past due**.
+By the W0 clause it therefore **outranks every other workstream and the
+next session takes it**: re-rank the workstreams, audit the BLOCKED queue,
+propose charter amendments as PROPOSED entries, and write a plain-language
+summary for the owner, instead of a pipeline increment. Recorded in the
+charter's CURRENT RUNG block, not only here, so the next session reads it
+before choosing work.
+
+**Twenty-six branches deleted** (the owner said "the 27"; the count was
+26 — the extra line in the agent's listing was an `origin/HEAD` artifact,
+corrected rather than repeated). Every one was verified a true ancestor of
+`origin/main` first, and all SHAs were committed and **pushed to `main`
+before any deletion ran**, so each is restorable with
+`git push origin <sha>:refs/heads/<name>`. Fifteen stale local branches
+were also removed with `git branch -d`, which refuses anything unmerged;
+all fifteen were merged. `origin` now holds exactly two heads: `main` and
+`agent/w11b-opaque-sidecars`.
+
+**A near-miss worth recording rather than hiding.** The first deletion
+attempt passed a two-column file to `git push --delete`, so branch names
+*and* SHAs were both submitted as refs. Git rejected the entire push
+atomically — **nothing was deleted, no partial state** — and the remote
+was re-listed to confirm all 27 heads still stood before retrying with
+names only. The lesson is the atomicity, not the typo: a bulk ref deletion
+either lands whole or not at all, so verifying the remote after a failed
+delete is cheap and conclusive.
+
+**Charter updated** with seven rulings now in force: PP-1 blessed (with
+the explicit caution not to quote 0.636 as a general improvement); §6
+answered and its declined rows off-limits to agents; Q2's ruling that §7
+must be re-specified as name-plus-observation; §6.1 closed with the
+"marking" terminology trap written down; W0 live; the review queue cleared
+with W11-b marked never-merge; and the explicit statement that this
+session's four rule departures — `bless`, pushing `main`, editing
+`evals/cases/` notes, deleting remote branches — were **single-session and
+owner-directed**, leaving rules 1, 2 and 8 binding on every unattended
+session and the runner's `logs/run-summaries.md` carve-out untouched.
+
+**Final state:** `main` at HEAD, `pytest` **397 passed, 3 skipped**,
+suites print `no outcome changes vs baseline`, blessed baseline `913ea2e`
+at tier1 tempo 21/34 / Acc2@8% 0.727 / ECE 0.1903, zero `barre1`
+directories under `evals/traces/`.
+
+**Status: session closed. Next session takes W0.**
