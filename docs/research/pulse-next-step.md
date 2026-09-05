@@ -374,28 +374,146 @@ single rond de jambe clip in the gating set is memorising the answer key,
 not building a prior. The table had to come from professional knowledge,
 **written before looking at what our clips are labelled.**
 
-## 7. Then, and only then — the ablation
+## 7. The ablation, RE-SPECIFIED for name-plus-observation (2026-09-05)
 
-Once the table exists, the increment is a **REPORTED-ONLY ablation**,
-pre-registered before it runs:
+**Why this section was rewritten.** The original §7 keyed a tempo prior on
+the **exercise name alone** and asked whether it helped. The owner's Q2
+ruling closes that design before it runs: *"exercise name is never enough.
+it always needs to be corraborated with the observation"*. The old arms are
+preserved at the bottom for the record; they are **not** the increment to
+run.
 
-- **Arm A:** the current estimator alone. (Known: 20/34 shipping,
-  4/8 on demos; 16/34 for the bare median on the EB-1 event stream.)
-- **Arm B:** the same estimator, with the tempo prior conditioned on the
-  exercise label — using **Gemini's own guess, errors included, no
-  oracle**, so the 6-of-8 naming accuracy is part of the measured result.
-- **Arm C (the honest control):** the same prior keyed off the *true*
-  exercise, to separate "the prior helps" from "the labelling is good
-  enough."
+### 7.1 The reframe: the name does not supply a tempo, it picks a multiple
 
-Gate: if B beats A, the knowledge is doing work. If B ties A but C beats
-both, the prior is right and the exercise labelling is the bottleneck.
-Either is a publishable answer.
+Measured this session on the eight gating demos, from PP-1's own per-clip
+table. Where the acoustic pulse produced an estimate at all, compare it to
+the truth as a *ratio* rather than a difference:
 
-**Stated in advance: n is brutal.** Eight demos, roughly one clip per
-exercise. A blind table could look excellent by luck at this size. The
-result will be indicative, never settled, and the binding constraint on
-this whole benchmark remains owner-verified corpus growth.
+| demo | truth | pulse | truth/pulse | nearest integer |
+|---|---|---|---|---|
+| coupé-barre | 108 | 108.3 | 1.00 | ×1 (0.3% off) |
+| dégagé | 110 | 113.9 | 0.97 | ×1 (3.4%) |
+| frappé | 135 | 144.0 | 0.94 | ×1 (6.2%) |
+| fondu | 86 | 45.5 | 1.89 | ×2 (5.5%) |
+| plié | 120 | 42.2 | 2.84 | ×3 (5.2%) |
+| rond de jambe | 96 | 31.9 | 3.01 | ×3 (0.3%) |
+| tendu warm-up | 112 | 42.2 | 2.65 | ×3 (11.5%) ✗ |
+| tendu | 102 | *refused* | — | — |
+
+**On six of the seven clips where the pulse answered, it lands within 8% of
+an exact integer subdivision of the truth.** The pulse is not wrong on the
+five demos PP-1 described as "the wrong metric level" — it is *right about a
+periodicity* and wrong only about **which multiple of it is the beat**. That
+is a different and much more tractable problem, and it is the one the
+exercise name is actually equipped to help with: a name cannot tell you
+120.0, but it can tell you that 126 is a plausible plié beat and 42 is not.
+
+This is the mechanical content of "corroborated with the observation":
+**observation proposes the periodicity, the name selects among its
+multiples, and neither may overrule the other.**
+
+### 7.2 The hard-filter design is already falsified — do not build it
+
+The obvious implementation is to keep only those multiples that fall inside
+the owner's §6 band. **Measured, that fails**, and the reason matters:
+
+| demo | pulse | §6 band | multiples inside band | result |
+|---|---|---|---|---|
+| plié | 42.2 | 85–125 | none (×2=84.4, ×3=126.6 — **both miss by <2 BPM**) | MISS |
+| frappé | 144.0 | 120–140 | none (×1=144, misses by 4) | MISS |
+| dégagé | 113.9 | 85–105 | none | MISS |
+| fondu | 45.5 | ~100 ±8% | none (×2=91, misses by 1) | MISS |
+| rond de jambe | 31.9 | 85–120 | ×3 = 95.7 | **HIT** (truth 96) |
+
+**1 hit, 4 misses**, and three of the four misses are boundary misses of
+under 4 BPM. A hard band is a fold, and **Standing Lesson 2 forbids folds**
+— the same doctrine PP-1 obeyed by capping its prior so it could never zero
+a hypothesis. A band used as a filter is exactly the failure mode that
+doctrine exists to prevent, now demonstrated on this corpus rather than
+argued.
+
+**Worse, and this bounds the whole idea:** the owner's own bands do not
+always contain the owner's own labels. Of the six demos with both, **the
+truth falls outside the band on two** — `degage` (truth 110, band 85–105)
+and `fondu` (truth 86, band ~100). A hard band would **veto the correct
+answer on a third of the callable demos**. This is not an error in the
+table; it is a measurement of how much real classes spread around what a
+dance musician would predict, and it caps what any name-keyed prior can
+deliver.
+
+### 7.3 The increment to run — REPORTED-ONLY, pre-registered before code
+
+**Mechanism.** Extend PP-1's existing bounded-prior seam; do not build a new
+path. PP-1 already multiplies a log-normal bump into the lattice's tempo
+marginal with a mixture floor that can tilt but never veto. The change is
+**what the bump is centred on**:
+
+- **PP-1 today:** one bump at the raw all-pairs pulse period.
+- **This increment:** a bump at **each integer multiple** ×1…×4 (and ÷2, ÷3)
+  of that period, with each multiple's weight scaled by how well it agrees
+  with the §6 band for the exercise the pipeline *believes* it is seeing.
+- **Agreement is soft and must stay soft:** a multiple outside the band is
+  **down-weighted, never removed**. `W` stays capped as PP-1 capped it; the
+  mixture floor is non-negotiable. Any implementation that can drive a
+  hypothesis to zero is out of spec by §7.2.
+- **Declined rows are declined.** `rond de jambe en l'air`, `coupé-barre` and
+  `tendu warm-up` have no band. Those clips get the **uniform** treatment
+  over multiples — the increment must not invent a band, and an agent may
+  not fill the table in.
+
+**Arms.**
+
+- **Arm A — control:** PP-1 as blessed today. (Known: tier1 tempo 21/34,
+  Acc2@8% 0.727, demo slice 4/8.)
+- **Arm B — the real question:** multiples weighted by the §6 band keyed on
+  **Gemini's own exercise guess, errors included, no oracle.** Its naming
+  accuracy is part of the measured result, not assumed away.
+- **Arm C — the honest control:** the same, keyed on the **true** exercise,
+  separating "the prior helps" from "the labelling is good enough."
+- **Arm D — the observation-only control, new and required:** multiples
+  weighted **uniformly**, no band at all. **Without Arm D the increment
+  cannot tell "the name helped" from "considering multiples at all
+  helped"** — and §7.1 suggests multiples alone may carry most of it. If D
+  ≈ B, the name is decoration and Q2's ruling has been satisfied in the
+  most deflationary way available. That is a publishable answer.
+
+**Gate.** REPORTED-ONLY; nothing adopted in this increment. The comparison
+of interest is **B vs D first**, then B vs A, then C vs B.
+
+**What the running session must pre-register before writing code** —
+predictions for each arm on tier1 committed tempo, Acc2@8%, between-levels,
+the 8-demo slice, and ECE; plus the refusal behaviour on the three declined
+exercises and on `tendu`, where the pulse refuses outright and no amount of
+prior can help.
+
+**Disclosure, so the pre-registration is honest.** §7.1 and §7.2 were
+computed **before** this specification was written and are known to whoever
+pre-registers. Predictions must be made with these numbers on the table and
+must not be read off them: the integer-multiple finding (6 of 7) and the
+hard-filter failure (1 of 5) are facts about the *inputs*, not scores for
+any proposed mechanism, and nothing here has been tuned.
+
+### 7.4 Honest limits, unchanged and worth restating
+
+**n is brutal.** Eight demos, roughly one clip per exercise, three of them
+with no band at all and one where the pulse refuses — so Arm B has **four
+clips** on which the name can do anything. A result at this size is
+indicative and never settled. The binding constraint on this whole benchmark
+remains owner-verified corpus growth, not cleverness in the estimator.
+
+---
+
+*Superseded, kept for the record — the original name-only §7:*
+
+> **Arm A:** the current estimator alone. **Arm B:** the same estimator with
+> the tempo prior conditioned on the exercise label, using Gemini's own
+> guess. **Arm C:** the same prior keyed off the true exercise. Gate: if B
+> beats A the knowledge is doing work; if B ties A but C beats both, the
+> prior is right and the labelling is the bottleneck.
+
+**Closed by the owner's Q2 ruling, 2026-09-05.** The name alone is not a
+sufficient prior at any strength, so Arm B as originally written measures a
+design that has already been ruled out.
 
 ## 8. Things a fresh thread should NOT do
 
