@@ -509,3 +509,18 @@ is how the runner's permission failure was found.)*
 > Happy to walk you through what blessing involves, or to pull up the per-clip table for the eight demos, if either is useful.
 
 *Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
+
+## run 2026-09-04T17:00:07Z · main 1c3e315
+
+- **outcome:** success, shell exit 0
+- **turns:** 15 · **duration:** 2.2 min · **cost:** $1.60
+
+**Agent's closing message:**
+
+> …on 6), plus the two questions in it. Several follow-up experiments are stacked behind this one and can't start without it.
+> 3. **A ruling on whether the weekly review workstream is still alive.** When you reset the plan on September 1st, the old workstream list became historical. The weekly review was on that list. Yesterday's session flagged that its clock was exactly at the trigger; today it's a day past. An agent isn't allowed to decide for itself whether that survived your reset, so it needs a word from you either way. If you say it's live, it's a full session's work and nothing about it is blocked.
+> 4. **One bookkeeping call.** The tempo-hint change touched a small piece of the replay plumbing, and that landed in the wrong kind of commit under your own separation rule. The change itself was proven to do nothing on its own, so the substance is clean and only the paperwork is off. Your call whether it needs splitting before merging or just a noted exception.
+> 
+> Ledger entry appended and pushed. Constraints proven above: work only on the step-one branch, all 26 files under the test-case directory are additions with nothing modified or deleted, and this session changed no code at all.
+
+*Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
