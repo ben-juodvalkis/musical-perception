@@ -10242,6 +10242,325 @@ origin/main` shows the ledger, `scripts/w2-reopen-prominence-audit.py`,
 `docs/research/w2-reopen-prominence-audit.json`; pytest 366 passed /
 3 skipped; nothing under `evals/` or `src/` touched.
 
+## 2026-09-02 · rung M / W15 (the stated-structure channel) · agent/marathon · local (unattended) — PRE-REGISTRATION
+
+**Workstream selection.** Standing ranking (owner-ratified 2026-09-01,
+amended the same day): 1. W1.6 — **COMPLETE and merged** (`bless` now
+pins 30 / withholds provisional). 2. W11-b — **RETIRED** by the charter's
+own agent-side note: barre-1 was retired 2026-09-01, so the 22 traces the
+workstream was commissioned to sidecar no longer exist. 3. **W15 —
+RATIFIED 2026-09-01, commissioned, untaken. Taken tonight.** W0 is not
+due: the last meta-rung entry is 2026-08-31 and the scheduled one is
+2026-09-03. Writability probe (charter amendment 2, first act): marker
+written, committed and reverted on `agent/marathon` before any
+substantive work.
+
+**Pre-state, verified on this branch before anything else:** `pytest`
+**366 passed, 3 skipped**; `evals run --suite
+tier0,tier1,stage1,stage1-peakrate` → **`no outcome changes vs
+baseline`**; tier-1 committed accuracy tempo **0.510** (26/25/1,
+truth_in_family 9/25), meter_triple **0.333** (17/34/1), counts **0.359**
+(14/25/13); W12 factored slice meter_division **0.741**, meter_grouping
+**0.725**. n=52 cases, **all `verified`** (barre-6 promoted 2026-09-01;
+barre-1 and the four old video demos retired).
+
+### 0. Disclosures made before the predictions, not after
+
+1. **The pre-registered bar is stale and I am replacing it, in the
+   open.** W15's condition (2026-08-31 W0 §4) says the channel must beat
+   "the W0-2026-08-31 baseline of 1-of-3 naive agreement", and says to
+   report "beside the provisional barre1 rows in their own slice". Both
+   clauses refer to a corpus that no longer exists: two of that
+   baseline's three rows (`plies-demo`, `exercise-1-demo`) were retired
+   on 2026-09-01, the barre-1 rows are gone, and there is no provisional
+   slice left — every one of the 52 cases is owner-verified. The 1-of-3
+   number is therefore **not carried forward as a gate**; a naive
+   baseline is **re-derived on tonight's corpus** and scored beside the
+   channel, which is what 1-of-3 was for. Reported as a deviation, not
+   a re-interpretation.
+2. **I read the candidate contexts before writing these predictions.** A
+   read-only survey over the 52 frozen `whisper.json` files listed every
+   numeral not inside an ascending count run, with a ±4-token window.
+   The predictions below are informed by having seen the *shape* of the
+   material; **no scorer had been written and no agreement number
+   computed** when they were fixed. That ordering is the honest one for a
+   corpus this small — the alternative is predicting against a corpus I
+   have not looked at, which is guessing, not pre-registration — but it
+   makes P2/P6 cheap and they are marked as such.
+
+### 1. What is being built
+
+A read-only parser (`scripts/w15-stated-structure.py`) over the frozen
+transcripts. It generates candidates **only** from an enumerated frame
+list — a numeral plus a fixed syntactic frame — and then **types** each
+candidate. The typing is the deliverable; the frames are not.
+
+**Emitted claim:** `{case_id, t, frame, value, quantity, evidence_key}`
+with `quantity ∈ {beats_per_bar, bars, phrases, step_duration,
+repetitions, entry_point, unknown}`.
+
+**Deviation from the pre-registered vocabulary, declared here.** The
+condition names four types (`beats-per-bar | repetitions | bars |
+unknown`). The corpus forces two more, and forcing them into the four
+would be the mis-typing the workstream exists to prevent:
+- `step_duration` — "N counts <step>". Under the owner's ruling that **a
+  count is always a beat**, this states a step's length in beats. It is
+  not a bar length and not a repetition count.
+- `phrases` — "N eight(s)". A length in 8-count phrases: a grouping-ladder
+  rung (ADR-017), not a bar count. Calling it `bars` would multiply the
+  value by the wrong factor on every clip.
+- `entry_point` — "in/at N" with no unit: the pickup count to start on.
+  Not a quantity claim about structure at all.
+Results are additionally folded back to the pre-registered four so the
+condition is scored as written.
+
+**Typing rules (the disambiguation), fixed before running:**
+1. `time(s)` with a determiner (`this` / `last` / `each` / `same`) and no
+   numeral-plus-`more` is **not a claim** and generates no candidate.
+   "one more time" **is** a claim: `repetitions`, value 1.
+2. **`bar` homonym gate.** In a ballet class `bar`/`barre` is usually
+   furniture. A `bar(s)` token becomes a musical-bar candidate only with
+   an immediately preceding numeral; a preceding determiner plus a
+   spatial preposition in the left window rejects it.
+3. `N + count(s)` → `step_duration`, never `beats_per_bar`, per the
+   count-is-a-beat ruling.
+4. `N + eight(s)` → `phrases`, value N.
+5. `in`/`at` + N with no unit → `entry_point`.
+6. `N + more (+ unit)` → `repetitions`.
+7. `beats_per_bar` is emitted **only** by an explicit frame
+   (`N beats to/per a/the bar`, or a numeral adjacent to a meter word).
+8. Anything else numeral-bearing → `unknown` → **abstain**.
+
+**Naive baseline (the thing to beat), re-derived on tonight's corpus:**
+every candidate whose unit is `count(s)`, `bar(s)` or `eight(s)`, plus
+every bare `in/at N`, is read as "the spoken number is the bar grouping"
+and compared with the case's `meter` numerator. This is exactly the
+reading the 2026-08-31 sizing scored 1-of-3.
+
+**Scored REPORTED-ONLY.** Gates nothing, wired into no pipeline path
+(Standing Lesson 9). No file under `evals/` and no file under
+`src/musical_perception/` is touched.
+
+### 2. Predictions
+
+| # | prediction |
+|---|---|
+| P1 | The channel emits **zero** `beats_per_bar` claims across all 52 clips — this teacher never states a time signature, so the hypothesis "spoken structure is a second meter channel" fails at the source, not at the parser |
+| P2 | Candidate frames fire on **12–18** of 52 clips; at least 8 clips carry ≥1 typed non-`unknown` claim *(cheap: the survey showed the shape)* |
+| P3 | The re-derived naive "spoken number = bar grouping" reading agrees with the case's `meter` numerator on **≤ 4 of the clips where it fires**, a rate in **0.20–0.40** — i.e. it lands near the stale 1-of-3 rate without being reliable enough to consume |
+| P4 | Type precision of the disambiguated channel against a hand gold set of every generated candidate is **≥ 0.90**, with `unknown` abstention counted as neither right nor wrong |
+| P5 | The `bar` homonym gate rejects **≥ 1** candidate that the naive reading would have accepted |
+| P6 | `phrases` claims fire on **≥ 3** clips, and on **100%** of them the case's `counts` truth is divisible by 8 *(cheap: near-tautological on this corpus; stated so the one exception, if any, is visible)* |
+| P7 | Containment: `git diff --stat main` shows only the ledger, one script under `scripts/`, one doc under `docs/research/`, one test under `tests/`; `pytest` green; `evals run` still prints `no outcome changes vs baseline` |
+
+**Pre-registered verdict rule.** W15 is worth continuing **only** if the
+channel emits a correctly-typed claim that is informative about meter on
+**≥ 2 clips where tier-1 `meter_triple` is currently wrong**. Anything
+less is a negative result and W15 closes. Tonight's tier-1 has 34 wrong
+meter rows, so the opportunity is not the limit — the evidence is.
+
+**Expected outcome, stated plainly so it can be wrong:** P1 holds and the
+verdict rule fails. The teacher states step durations, phrase lengths and
+repetitions, never a time signature, so the channel's honest output is a
+*length* channel, not a meter channel. If that is what comes back, the
+useful residue is the typed length claims and the negative result about
+meter — not a pipeline change.
+
+Status: PRE-REGISTERED (REPORTED-ONLY). Results in the next entry.
+
+## 2026-09-02 · rung M / W15 (the stated-structure channel) · agent/marathon · local (unattended) — RESULTS
+
+**Headline: the teacher never says the meter out loud. Not once in 52
+clips. What he does announce — 24 times on 15 clips — is how long a step
+lasts, how many eight-count phrases a section runs, and how many more
+times to do it; the channel types those correctly 30 times out of 31
+audited, and reading any of them as a bar length is wrong 8 times in 11.
+W15 fails its own pre-registered verdict rule and closes as a meter
+channel.** The residue worth keeping is a tested, abstaining
+length-and-repetition channel and one design lesson about homonyms.
+
+Artifacts: `scripts/w15-stated-structure.py` (read-only, ~7 s over the 52
+frozen transcripts plus a tier-1 replay for the verdict rule),
+`docs/research/w15-stated-structure.md` (the memo, with the per-clip
+tables), `docs/research/w15-stated-structure.json` (every candidate,
+every rule firing, audit windows redacted per A5-30),
+`tests/test_w15_stated_structure.py` (18 tests pinning the typing rules,
+rejections included).
+
+### Prediction scorecard, scored honestly
+
+| # | prediction | outcome |
+|---|---|---|
+| P1 | zero `beats_per_bar` claims across 52 clips | **HIT** — 0 emitted, and 0 `bars` claims too. No sentence of that shape exists in the corpus |
+| P2 | frames fire on 12–18 clips; ≥8 clips carry a typed claim | **HIT on the clause that matters, MISS on the letter** — 15 clips carry a typed claim (≥8 ✓, and inside 12–18), but "candidate frames" was ambiguously worded by me: every numeral considered is a candidate, and those touch 29 clips. Scored both ways rather than picking the flattering reading |
+| P3 | naive "spoken number = bar grouping" agrees on ≤4 firing clips, rate 0.20–0.40 | **HIT** — 3 of 11 (0.273), identical first-claim and any-claim |
+| P4 | type precision ≥0.90 against a hand gold set | **HIT** — 30/31 = **0.968**, one disagreement, left unpatched |
+| P5 | the `bar` homonym gate rejects ≥1 candidate | **MISS**, and the miss is informative — see F2 |
+| P6 | `phrases` claims on ≥3 clips, 100% with `counts` divisible by 8 | **HIT** — 4 clips (48, 48, 96, 96), 4/4 divisible |
+| P7 | containment | **HIT** — `git diff --stat main`: ledger, one script, one memo, one JSON, one test; nothing under `evals/` or `src/`; pytest **384 passed / 3 skipped** (366 → 384, +18 W15); `evals run --suite tier0,tier1,stage1,stage1-peakrate` → **`no outcome changes vs baseline`** |
+
+Five hits, one hit-with-a-declared-wording-fault, one miss. **The
+pre-registered verdict rule FAILED** — see §Verdict.
+
+### Corpus pass
+
+52 clips, all owner-verified. **219 candidates, 195 abstentions, 24 typed
+claims on 15 clips**: `repetitions` 11 (9 clips), `step_duration` 6 (5),
+`phrases` 5 (4), `entry_point` 2 (2), `beats_per_bar` **0**, `bars` **0**.
+
+**F1 — the meter is never stated.** This is a fact about the material,
+not about the parser. There is no "N beats to the bar", no "it's in
+three-four", no "count it in six" anywhere in 52 transcripts. The H1
+hypothesis that a second meter channel is being thrown away is false at
+the source.
+
+**F2 — the `bar` homonym is a hazard for a *keyword*-anchored parser and
+a non-event for a *numeral*-anchored one.** `bar`/`barre` occurs **13
+times** and is furniture **13 times**. The gate therefore fired zero
+times (P5 MISS) — a numeral-anchored parser never proposes those
+candidates. Two of the 13 sit immediately before a numeral, so a `bar N`
+keyword pattern would have emitted two confident, entirely spurious bar
+lengths. The design choice made the gate unnecessary, which is a better
+outcome than the gate working.
+
+**F3 — what he announces is length, and it is consistent.** All five
+`phrases` claims land on clips whose `counts` truth is divisible by 8;
+all six `step_duration` claims are "N counts <step>". The eight-count
+phrase showing up in *speech* is the same rung W2 found in the *timing*
+channel at lag 8 — two independent channels, one grouping level, no bar
+in either.
+
+**F4 — the naive reading is systematically wrong, not noisily wrong.**
+3 of 11 (0.273). Both plié takes are 3/4 exercises where the teacher says
+the port de bras takes *four counts*: the number is right, the sentence
+is true, and the bar-length reading gives 4 against a truth of 3.
+`rig-mixed` is the same shape at 6-vs-4. It fails wherever a step's
+length differs from the bar, which is the normal case.
+
+**F5 — even the charitable reading tops out at 5 of 15.** Reading *any*
+typed claim's value as the bar grouping — the strongest form of the
+hypothesis, and one the channel cannot implement, because choosing which
+claims to read that way *is* the disambiguation — agrees on 5 of the 15
+firing clips (0.333). Three of the five are a 4 on a 4/4 clip: right
+number, wrong reason, commonest meter.
+
+### The stale bar, replaced in the open
+
+W15's condition told the channel to beat "the W0-2026-08-31 baseline of
+1-of-3 naive agreement" and to report beside "the provisional barre1
+rows". Both clauses name a corpus that no longer exists: two of that
+baseline's three rows were retired 2026-09-01, barre-1 is gone, and there
+is **no provisional slice left** — all 52 cases are owner-verified. The
+naive baseline was re-derived on tonight's corpus instead (0.273 on 11
+firing clips), which is what 1-of-3 was measuring. Declared in the
+pre-registration, before the numbers existed, not here.
+
+### Disclosed
+
+1. **I read the candidate contexts before writing the predictions** (a
+   read-only survey of every numeral outside an ascending count run).
+   Disclosed in the pre-registration §0.2. It makes P2 and P6 cheap and
+   they are marked so; no scorer existed and no agreement number had been
+   computed when the predictions were fixed.
+2. **The one type disagreement is left unpatched.** On
+   `barre6-rond-de-jambe-demo` the phrase "one more on one" yields a
+   correct `repetitions` claim and then a spurious `entry_point` claim on
+   the object of the first. Patching it after seeing it turns 0.968 into
+   a 1.000 that means nothing.
+3. **Three genuine announcements are abstained on**, all by rules working
+   as committed: `also eight` (the numeral *is* the unit; no frame covers
+   it), `one last time` on 2 clips (rule 1 treats `last` as a determiner),
+   and — the big one — **the count-in**. `seven and eight` opens a phrase
+   on **6 clips** and is the corpus's most frequent structural
+   announcement; it is not numeral-plus-frame, so no rule sees it. Parked
+   as a backlog item rather than added tonight, because adding a frame
+   after seeing which frame would have helped is not pre-registration.
+4. **One dead guard removed during implementation**, before any scoring:
+   a `last` branch inside rule 1 was unreachable (the surrounding test
+   already requires the next token to be `time`/`times`). Same class of
+   finding as the W2-reopen `ok5` guard.
+5. **Correction to the pre-registration's own wording.** It says the
+   writability probe was committed and reverted "on `agent/marathon`". It
+   was in fact committed and reverted on a short-lived branch cut from
+   `main` at the top of the session, which was then deleted when the work
+   moved onto `agent/marathon` (fast-forwarded to `main`, which already
+   contained every marathon commit). The probe did what it exists to do —
+   prove the checkout is writable before turns are burnt — but the branch
+   named in that sentence is wrong and the ledger is append-only, so the
+   correction lives here.
+
+### Verdict
+
+Pre-registered rule: continue only if the channel emits a correctly-typed
+claim informative about meter on **≥2 clips where tier-1 `meter_triple`
+is currently wrong**. Tier-1 has 34 wrong meter rows, so opportunity was
+not the constraint.
+
+- **Strict: 0 rows.** No meter-bearing claim is emitted anywhere.
+- **Charitable: 4 rows** where a typed claim's value happens to equal the
+  truth numerator on a currently-wrong clip. Three are `step_duration` or
+  `repetitions` coincidences on 4/4; the fourth is the `entry_point` 3 on
+  the 3/4 ballonné demo. The channel has no way to pick those four.
+
+**W15 closes as a meter channel.** Not a parser failure and not a
+corpus-size problem — the sentences do not exist.
+
+### Deviation from the pre-registered vocabulary, declared at
+pre-registration and carried here
+
+The condition named four types; the corpus forces `step_duration`,
+`phrases` and `entry_point`, and forcing them into the four is the exact
+mis-typing the workstream exists to prevent — folding `phrases` into
+`bars` reads "two eights" as two bars when it means sixteen counts, four
+bars in 4/4. The fold is computed and reported anyway (`by_folded`:
+bars 5, repetitions 11, unknown 8), so the condition is scored as
+written.
+
+### Backlog parked (charter rule 6)
+
+1. **The count-in frame** — `seven and eight` on 6 clips, plus `also
+   eight` and `one last time`. It reads the *phrase*, not the bar, which
+   is the rung this corpus actually carries, and it is testable against
+   the `counts` labels that already exist. Cheap; pre-register separately.
+2. **The 3/4 counting doublet** — in the 3/4 clips the teacher's
+   count-position callouts come in `two, three` doublets where the 4/4
+   clips carry `two, three, four`. A *counting* signal, not a declarative
+   one, so outside W15's scope; it points at the meter the declarative
+   channel does not. Worth a sizing pass before anyone builds it.
+3. **For W5:** the stated-structure evidence that exists is
+   grouping-rung evidence, which ADR-017's factored representation has a
+   place for. Sparse (15 of 52 clips) and weak; it should enter as a
+   low-weight observation on the grouping ladder, never as a meter vote.
+
+Lesson (durable, one paragraph): **before building a channel, check that
+the corpus contains the sentence the channel is meant to read.** W15 was
+ranked on the strength of a hypothesis about what teachers say; thirty
+seconds of grep over the frozen transcripts would have shown that this
+teacher states lengths and repetitions and never states a metre, and the
+whole workstream reduces to that observation plus a parser that abstains
+correctly. This is the third time the cheap-audit-first move has been
+worth more than the detector (W2, W2-reopen, now W15) and it is time it
+was a Standing Lesson rather than a repeated discovery. Second half, and
+the more useful half: **anchor a parser on the quantity, not on the
+keyword.** Anchoring on the numeral made the `bar`/`barre` homonym — 13
+occurrences, 13 of them furniture, two of them numeral-adjacent — a
+non-event, without the gate that was written to handle it.
+
+**Proposed Standing Lesson 11 (owner's to ratify):** *Check the corpus
+contains the evidence before building the detector.* Three workstreams
+(W2, W2-reopen, W15) have now been settled by a read-only audit that cost
+minutes against detectors that cost sessions. Size the quantity first;
+build only if it is there.
+
+Status: PROPOSED, REPORTED-ONLY. For the owner's review: the negative
+result on meter; the length-and-repetition residue; the three backlog
+items; the proposed Standing Lesson 11. Constraints verified:
+`git diff --stat main` shows only `docs/research/RESEARCH-LOG.md`,
+`docs/research/w15-stated-structure.md`,
+`docs/research/w15-stated-structure.json`,
+`scripts/w15-stated-structure.py`, `tests/test_w15_stated_structure.py`;
+nothing under `evals/` or `src/musical_perception/`; pytest 384 passed /
+3 skipped; suites print `no outcome changes vs baseline`.
 ## 2026-09-01 · RESET, step one (pulse) · agent/reset-step-one-pulse · local (owner-attended, evening) — PRE-REGISTRATION
 
 **Owner-attended, owner-directed reset.** The owner's words, verbatim,
