@@ -13,6 +13,12 @@ has start == end. Vocabulary (only the first two are required):
 
   fullout           REGION - teacher dancing it full-out, genuinely in tempo
   commit            POINT  - the moment you would commit to a tempo
+
+LIVE-TAP ALTERNATIVE (easier than selecting ranges while listening): drop POINT
+labels during playback with Cmd+M and name them `<label>-start` / `<label>-end`.
+Matching pairs are folded into regions on read, in time order, so
+`fullout-start` at 3.0s + `fullout-end` at 29.2s becomes one fullout region.
+An unmatched start or end is reported, never silently dropped.
   tempo=<bpm>       POINT or REGION - the tempo you would commit to
   marking           REGION - sketching the combination, not in tempo
   talking           REGION - explaining; no movement tempo to read

@@ -13,6 +13,12 @@ has start == end. Vocabulary (only the first two are required):
 
   fullout           REGION - teacher dancing it full-out, genuinely in tempo
   commit            POINT  - the moment you would commit to a tempo
+
+LIVE-TAP ALTERNATIVE (easier than selecting ranges while listening): drop POINT
+labels during playback with Cmd+M and name them `<label>-start` / `<label>-end`.
+Matching pairs are folded into regions on read, in time order, so
+`fullout-start` at 3.0s + `fullout-end` at 29.2s becomes one fullout region.
+An unmatched start or end is reported, never silently dropped.
   tempo=<bpm>       POINT or REGION - the tempo you would commit to
   marking           REGION - sketching the combination, not in tempo
   talking           REGION - explaining; no movement tempo to read
@@ -68,11 +74,41 @@ def read(clip: str) -> dict:
         if text.startswith("DELETE-ME"):
             continue
         rec = dict(start=start, end=end, text=text)
-        base = re.split(r"[=:]", text, 1)[0].strip().lower()
+        base = re.split(r"[=:]", text, maxsplit=1)[0].strip().lower()
+        for suffix in ("-start", "-end"):          # live-tap pair form is valid
+            if base.endswith(suffix):
+                base = base[: -len(suffix)]
+                break
         if base not in KNOWN and not text.lower().startswith(("tempo", "cue")):
             unknown.append(text)
         (points if abs(end - start) < 1e-6 else regions).append(rec)
+
+    # fold live-tapped `<label>-start` / `<label>-end` point pairs into regions
+    paired, leftover, opens = [], [], {}
+    for rec in sorted(points, key=lambda r: r["start"]):
+        low = rec["text"].strip().lower()
+        for suffix, is_open in (("-start", True), ("-end", False)):
+            if low.endswith(suffix):
+                base = low[: -len(suffix)]
+                if is_open:
+                    opens.setdefault(base, []).append(rec)
+                elif opens.get(base):
+                    o = opens[base].pop(0)
+                    paired.append(dict(start=o["start"], end=rec["start"],
+                                       text=base, from_pair=True))
+                else:
+                    leftover.append(rec)
+                break
+        else:
+            continue
+    unmatched = [r for v in opens.values() for r in v] + leftover
+    regions.extend(paired)
+    regions.sort(key=lambda r: r["start"])
+    points = [p_ for p_ in points
+              if not p_["text"].strip().lower().endswith(("-start", "-end"))]
+
     out = dict(clip=clip, regions=regions, points=points,
+               unmatched_pair_labels=[r["text"] for r in unmatched],
                unknown_labels=sorted(set(unknown)))
     dest = p.with_suffix(".json")
     dest.write_text(json.dumps(out, indent=1))
@@ -87,6 +123,11 @@ def read(clip: str) -> dict:
         print(f"  commit    at {t:.2f}s")
     else:
         print("  commit    NOT MARKED - the study needs one")
+    if paired:
+        print(f"  paired    {len(paired)} live-tapped start/end pair(s) folded into regions")
+    if unmatched:
+        print(f"  WARNING   {len(unmatched)} unmatched start/end label(s): "
+              f"{[r['text'] for r in unmatched]}")
     if unknown:
         print(f"  note: {len(unknown)} label(s) outside the vocabulary, kept as-is:")
         for u in unknown:
