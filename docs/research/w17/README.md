@@ -20,6 +20,10 @@ Matching pairs are folded into regions on read, in time order, so
 `fullout-start` at 3.0s + `fullout-end` at 29.2s becomes one fullout region.
 An unmatched start or end is reported, never silently dropped.
   tempo=<bpm>       POINT or REGION - the tempo you would commit to
+  countin           REGION - a spoken count-in ("seven... eight"). NOT full-out,
+                    but a genuine statement of tempo - added 2026-09-05 after the
+                    frappe pass showed every estimator locking on here, before any
+                    dancing. The original vocabulary had no word for it.
   marking           REGION - sketching the combination, not in tempo
   talking           REGION - explaining; no movement tempo to read
   cue=voice|feet|arm|breath|other   REGION - what you are reading tempo from

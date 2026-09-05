@@ -20,6 +20,10 @@ Matching pairs are folded into regions on read, in time order, so
 `fullout-start` at 3.0s + `fullout-end` at 29.2s becomes one fullout region.
 An unmatched start or end is reported, never silently dropped.
   tempo=<bpm>       POINT or REGION - the tempo you would commit to
+  countin           REGION - a spoken count-in ("seven... eight"). NOT full-out,
+                    but a genuine statement of tempo - added 2026-09-05 after the
+                    frappe pass showed every estimator locking on here, before any
+                    dancing. The original vocabulary had no word for it.
   marking           REGION - sketching the combination, not in tempo
   talking           REGION - explaining; no movement tempo to read
   cue=voice|feet|arm|breath|other   REGION - what you are reading tempo from
@@ -35,7 +39,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-KNOWN = {"fullout", "commit", "marking", "talking"}
+KNOWN = {"fullout", "commit", "marking", "talking", "countin"}
 
 
 def labels_path(clip: str) -> Path:
@@ -113,7 +117,7 @@ def read(clip: str) -> dict:
     dest = p.with_suffix(".json")
     dest.write_text(json.dumps(out, indent=1))
     print(f"{len(regions)} regions, {len(points)} points -> {dest}")
-    for kind in ("fullout", "marking", "talking"):
+    for kind in ("fullout", "countin", "marking", "talking"):
         got = [r for r in regions if r["text"].lower().startswith(kind)]
         if got:
             total = sum(r["end"] - r["start"] for r in got)

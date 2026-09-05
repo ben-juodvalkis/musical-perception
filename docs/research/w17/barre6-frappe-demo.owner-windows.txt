@@ -1,1 +1,3 @@
-0.000000	0.000000	DELETE-ME see docs/research/w17/README.md for the vocabulary
+3.210133	29.996074	fullout
+10.038217	10.038217	commit
+30.386355	35.043143	talking
