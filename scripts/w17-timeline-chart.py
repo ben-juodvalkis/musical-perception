@@ -23,6 +23,8 @@ OUT = ROOT / "docs" / "research" / "w17"
 STYLE = {  # technique -> (colour, linestyle)
     "pulse_allpairs": ("#0b6fa4", "-"),
     "pulse_median":   ("#4da6d9", "--"),
+    "markers_allpairs": ("#1a7f5a", "-"),
+    "markers_median": ("#57b894", "--"),
     "words_allpairs": ("#8a4fa8", "-"),
     "words_median":   ("#b98bd0", "--"),
     "librosa_dp":     ("#c65a11", "-"),

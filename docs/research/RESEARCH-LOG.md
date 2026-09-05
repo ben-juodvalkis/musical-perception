@@ -14018,3 +14018,65 @@ pass/fail.
 
 **Status: label-vs-taps CLOSED. W17 frappé pass complete. Next clip: plié
 (coverage 0.45, 3.6 usable seconds of 78) — owner deferred it, not today.**
+
+## 2026-09-05 · W17 follow-up · main · owner-attended — the word methods were a strawman; fixed, re-run, and the result relocates where the pipeline's value sits
+
+**The owner proposed dropping word-based methods from the toolset on the
+strength of W17's first pass. That pass was not a fair test and the proposal
+was declined on evidence, not preference.** W17's `words_*` techniques fed an
+estimator **all 127 Whisper tokens** on `barre6-frappe-demo` when **only 53
+are beats** (Gemini `marker_type == "beat"`; 72 are `none`, 2 are `and`) — 74
+tokens of talking presented as rhythmic evidence. The shipping path does not
+do this: it pairs Gemini's classification to Whisper timestamps by transcript
+index (`analyze._pair_markers_by_index`, ADR-010) and feeds only the 53.
+
+**Fix.** `markers_allpairs` / `markers_median` added, consuming the classified
+beat stream through the same index merge the shipping path uses. The
+unclassified `words_*` pair is kept and relabelled **strawman** so the
+comparison shows what classification buys.
+
+**Result 1 — classification helps, but not where it was assumed to.** Strict
+scoring (no octave forgiveness), share of frames within 8%, trailing window:
+`markers_allpairs` beats `words_allpairs` inside the full-out span (**63% vs
+53%**), and overall 35% vs 29%. Real, but modest.
+
+**Result 2 — and this is the finding: every marker-fed estimator collapses to
+HALF TIME during the marking, and the shipping pipeline does not.** Causal
+readings against a truth of 135:
+
+| technique | at the owner's commit (10.0s) | end of clip |
+|---|---|---|
+| markers_allpairs | 144.9 (7.3%) ok | **70.4 (47.9%)** |
+| words_allpairs | 144.0 (6.6%) ok | **70.4 (47.9%)** |
+| pulse_allpairs | 144.9 (7.3%) ok | 144.0 (6.6%) ok |
+| librosa_acf | 143.6 (6.3%) ok | 143.6 (6.3%) ok |
+| **shipping pipeline** | — | **134.9 (0.1%) ok** |
+
+`markers_allpairs` collapses at **41.5s — 6.5s into the owner's marking
+region (35.0–55.0s)**, confirmed by the owner's own account that "the last 20
+seconds are him marking it again." Every method is correct at the commit
+moment; the marker-fed ones are destroyed by material that arrives afterwards.
+
+**What that relocates.** The shipping path consumes the *same* marker stream
+that collapses here and returns **134.9 against 135**. So its accuracy is not
+coming from the words, nor from the classification — both are shared with the
+methods that fail. It is coming from the **arbitration layer on top**: the
+bar-pointer lattice, MAP metric-level selection, and the Standing-Lesson-2
+protections that stop a hypothesis being folded away. **The marker stream is a
+perfectly good input; a naive estimator on top of it is not.** Dropping word
+methods would have discarded a sound input because of a weak consumer — and
+would also have discarded the count-in, which this clip showed is the single
+most legible tempo cue in it.
+
+**RULING (owner-directed, declined on evidence): word-based methods stay.**
+
+**Method note carried forward.** The first version of this comparison used the
+octave-forgiving error measure and reported `words_allpairs` at **92% correct
+during the marking**. Strictly scored it is **0%** — a median of 70.0 BPM
+against a truth of 135, confidently half-speed for twenty seconds and fully
+credited. `Acc2` forgives exactly this. Any W17-style zone comparison must be
+reported **strict**, with octave-forgiving figures beside it and never instead
+of it.
+
+**Status: word methods FIXED and retained. The octave-collapse-during-marking
+finding is new and is the strongest argument yet for the arbitration layer.**

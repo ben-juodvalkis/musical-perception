@@ -48,10 +48,35 @@ def load_pulse_events(clip: str) -> np.ndarray:
 
 
 def load_word_starts(clip: str) -> np.ndarray:
+    """EVERY Whisper token, classified or not - the unfiltered stream."""
     p = ROOT / "evals" / "traces" / clip / "whisper.json"
     d = json.loads(p.read_text())
     words = d.get("words") or d.get("word_segments") or []
     out = [w["start"] for w in words if isinstance(w, dict) and w.get("start") is not None]
+    return np.asarray(sorted(out), dtype=float)
+
+
+def load_beat_markers(clip: str) -> np.ndarray:
+    """Only the tokens Gemini classified as BEATS, paired to Whisper
+    timestamps by transcript index - the same merge the shipping path uses
+    (`analyze._pair_markers_by_index`, ADR-010). This is the honest word
+    condition: feeding an estimator all 127 tokens when 53 are beats is a
+    strawman, and the first W17 pass did exactly that.
+    """
+    tp = ROOT / "evals" / "traces" / clip
+    words = json.loads((tp / "whisper.json").read_text())
+    words = words.get("words") or words.get("word_segments") or []
+    gem = json.loads((tp / "gemini.json").read_text())["raw_response"]["words"]
+    out = []
+    for gw in gem:
+        if gw.get("marker_type") != "beat":
+            continue
+        i = gw.get("index")
+        if i is None or not 0 <= i < len(words):
+            continue                      # hallucinated index - nothing to anchor
+        s = words[i].get("start")
+        if s is not None:
+            out.append(float(s))
     return np.asarray(sorted(out), dtype=float)
 
 
@@ -151,8 +176,12 @@ EVENT_TECHNIQUES = {
     "pulse_median":   ("peakRate events, median gap (historic shipping path)", est_median_ioi),
 }
 WORD_TECHNIQUES = {
-    "words_allpairs": ("Whisper word starts, all-pairs period", all_pairs_bpm),
-    "words_median":   ("Whisper word starts, median gap", est_median_ioi),
+    "words_allpairs": ("ALL Whisper tokens, all-pairs (unclassified - strawman)", all_pairs_bpm),
+    "words_median":   ("ALL Whisper tokens, median gap (unclassified - strawman)", est_median_ioi),
+}
+MARKER_TECHNIQUES = {
+    "markers_allpairs": ("Gemini beat markers, all-pairs (the shipping condition)", all_pairs_bpm),
+    "markers_median":   ("Gemini beat markers, median gap", est_median_ioi),
 }
 AUDIO_TECHNIQUES = {
     "librosa_dp":  ("librosa beat_track (dynamic programming)", est_librosa_dp),
@@ -173,6 +202,7 @@ def run(clip: str, step: float, trailing: float, out_dir: Path,
 
     pulse = load_pulse_events(clip)
     words = load_word_starts(clip)
+    markers = load_beat_markers(clip)
     grid = load_grid_beats(clip)
     y = sr = None
     if not skip_audio:
@@ -192,6 +222,10 @@ def run(clip: str, step: float, trailing: float, out_dir: Path,
                 ev = words[(words >= lo) & (words <= t)]
                 rows.append(dict(t=round(float(t), 3), mode=mode, technique=name,
                                  bpm=fn(ev), n=int(ev.size)))
+            for name, (_, fn) in MARKER_TECHNIQUES.items():
+                ev = markers[(markers >= lo) & (markers <= t)]
+                rows.append(dict(t=round(float(t), 3), mode=mode, technique=name,
+                                 bpm=fn(ev), n=int(ev.size)))
             if y is not None:
                 seg = y[int(lo * sr):int(t * sr)]
                 for name, (_, fn) in AUDIO_TECHNIQUES.items():
@@ -203,10 +237,10 @@ def run(clip: str, step: float, trailing: float, out_dir: Path,
 
     meta = dict(clip=clip, media=media, duration_s=duration, step_s=step,
                 trailing_s=trailing, n_pulse_events=int(pulse.size),
-                n_word_starts=int(words.size), n_grid_beats=int(grid.size),
+                n_word_starts=int(words.size), n_beat_markers=int(markers.size), n_grid_beats=int(grid.size),
                 audio_techniques=not skip_audio,
                 techniques={k: v[0] for d in (EVENT_TECHNIQUES, WORD_TECHNIQUES,
-                                              AUDIO_TECHNIQUES) for k, v in d.items()})
+                                              MARKER_TECHNIQUES, AUDIO_TECHNIQUES) for k, v in d.items()})
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / f"{clip}-timeline.json").write_text(
         json.dumps(dict(meta=meta, rows=rows), indent=1))
@@ -234,7 +268,7 @@ def main() -> None:
     print(f"clip {m['clip']}  {m['duration_s']:.1f}s  step {m['step_s']}s  "
           f"trailing {m['trailing_s']}s")
     print(f"  pulse events {m['n_pulse_events']}  word starts {m['n_word_starts']}  "
-          f"owner taps {m['n_grid_beats']}")
+          f"beat markers {m['n_beat_markers']}  owner taps {m['n_grid_beats']}")
     print(f"  {len(res['rows'])} rows -> {a.out}/{m['clip']}-timeline.{{json,csv}}")
 
 
