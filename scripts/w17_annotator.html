@@ -1,0 +1,124 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>W17 — mark the demo</title>
+<style>
+ :root{--bg:#14161a;--fg:#e9edf2;--dim:#8b95a3;--line:#2a2f38;
+       --fullout:#3fae6b;--marking:#d1604a;--talking:#6b7480;--commit:#e8c14a}
+ *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--fg);
+   font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+ .wrap{max-width:1120px;margin:0 auto;padding:16px 20px 40px}
+ h1{font-size:15px;font-weight:600;margin:0 0 2px} .sub{color:var(--dim);font-size:12.5px;margin-bottom:14px}
+ video{width:100%;background:#000;border-radius:8px;display:block}
+ .bar{height:46px;position:relative;background:#1b1f26;border:1px solid var(--line);
+      border-radius:6px;margin:12px 0 6px;overflow:hidden;cursor:pointer}
+ .seg{position:absolute;top:0;bottom:0;opacity:.55}
+ .pt{position:absolute;top:0;bottom:0;width:2px;background:var(--commit)}
+ .ph{position:absolute;top:0;bottom:0;width:2px;background:#fff;pointer-events:none}
+ .open{position:absolute;top:0;bottom:0;background:repeating-linear-gradient(45deg,
+       transparent,transparent 6px,rgba(255,255,255,.18) 6px,rgba(255,255,255,.18) 12px)}
+ .row{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
+ .keys{flex:1 1 340px} .list{flex:1 1 420px}
+ kbd{background:#222831;border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;
+     padding:1px 6px;font:12px ui-monospace,Menlo,monospace}
+ table{width:100%;border-collapse:collapse;font:12.5px ui-monospace,Menlo,monospace}
+ td,th{padding:3px 6px;border-bottom:1px solid var(--line);text-align:left}
+ th{color:var(--dim);font-weight:500}
+ button{background:#232a34;color:var(--fg);border:1px solid var(--line);border-radius:6px;
+        padding:6px 12px;font-size:13px;cursor:pointer} button:hover{background:#2c3542}
+ button.primary{background:#2f6f4f;border-color:#3a8a62} button.primary:hover{background:#38855e}
+ .t{font:600 26px ui-monospace,Menlo,monospace;letter-spacing:-.5px}
+ .status{margin-top:10px;font-size:12.5px;color:var(--dim);min-height:18px}
+ .sw{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px;vertical-align:baseline}
+ .del{color:#d1604a;cursor:pointer;border:0;background:0;padding:0 4px;font-size:13px}
+</style>
+<div class="wrap">
+ <h1>__CLIP__</h1>
+ <div class="sub">Mark where the teacher is genuinely dancing it <b>full-out</b>, and the moment you'd commit. Watching matters — that's why this plays the video.</div>
+ <video id="v" src="__VIDEO__" preload="auto"></video>
+ <div class="bar" id="bar"><div class="ph" id="ph"></div></div>
+ <div class="t" id="clock">0.000 s</div>
+
+ <div class="row" style="margin-top:14px">
+  <div class="keys">
+   <table>
+    <tr><th colspan="2">keys</th></tr>
+    <tr><td><kbd>space</kbd></td><td>play / pause</td></tr>
+    <tr><td><kbd>F</kbd></td><td><span class="sw" style="background:var(--fullout)"></span>full-out — press to open, again to close</td></tr>
+    <tr><td><kbd>K</kbd></td><td><span class="sw" style="background:var(--marking)"></span>marking (sketching it)</td></tr>
+    <tr><td><kbd>T</kbd></td><td><span class="sw" style="background:var(--talking)"></span>talking</td></tr>
+    <tr><td><kbd>C</kbd></td><td><span class="sw" style="background:var(--commit)"></span>commit — the moment you'd commit</td></tr>
+    <tr><td><kbd>←</kbd> <kbd>→</kbd></td><td>1s &nbsp;·&nbsp; with <kbd>shift</kbd> 5s</td></tr>
+    <tr><td><kbd>,</kbd> <kbd>.</kbd></td><td>nudge 1/10 s</td></tr>
+    <tr><td><kbd>1</kbd>…<kbd>4</kbd></td><td>speed 0.25× / 0.5× / 1× / 1.5×</td></tr>
+    <tr><td><kbd>⌫</kbd></td><td>delete last mark</td></tr>
+   </table>
+   <div style="margin-top:12px;display:flex;gap:8px">
+    <button class="primary" id="save">Save to repo</button>
+    <button id="clear">Clear all</button>
+   </div>
+   <div class="status" id="status"></div>
+  </div>
+  <div class="list">
+   <table><thead><tr><th>label</th><th>start</th><th>end</th><th></th></tr></thead>
+   <tbody id="rows"></tbody></table>
+  </div>
+ </div>
+</div>
+<script>
+const v=document.getElementById('v'), bar=document.getElementById('bar'), ph=document.getElementById('ph');
+const rows=document.getElementById('rows'), clock=document.getElementById('clock'), status=document.getElementById('status');
+const COL={fullout:'var(--fullout)',marking:'var(--marking)',talking:'var(--talking)'};
+let marks=[], open={};
+const dur=()=>v.duration||1, fx=t=>(t/dur()*100).toFixed(3)+'%';
+
+function draw(){
+ [...bar.querySelectorAll('.seg,.pt,.open')].forEach(e=>e.remove());
+ for(const m of marks){
+  const d=document.createElement('div');
+  if(m.end==null){d.className='pt';d.style.left=fx(m.start);}
+  else{d.className='seg';d.style.left=fx(m.start);d.style.width=fx(m.end-m.start);d.style.background=COL[m.label]||'#888';}
+  bar.appendChild(d);
+ }
+ for(const k in open){
+  const d=document.createElement('div');d.className='open';
+  d.style.left=fx(open[k]);d.style.width=fx(Math.max(0,v.currentTime-open[k]));
+  d.style.background=COL[k]||'#888';d.style.opacity=.35;bar.appendChild(d);
+ }
+ rows.innerHTML=marks.map((m,i)=>`<tr><td><span class="sw" style="background:${COL[m.label]||'var(--commit)'}"></span>${m.label}</td>`+
+  `<td>${m.start.toFixed(3)}</td><td>${m.end==null?'—':m.end.toFixed(3)}</td>`+
+  `<td><button class="del" data-i="${i}">✕</button></td></tr>`).join('');
+ const o=Object.keys(open); status.textContent = o.length? `open: ${o.join(', ')} — press the same key to close` : '';
+}
+rows.addEventListener('click',e=>{if(e.target.dataset.i!=null){marks.splice(+e.target.dataset.i,1);draw();}});
+function toggle(label){
+ const t=v.currentTime;
+ if(open[label]!=null){const s=open[label];delete open[label];
+   if(t>s+0.02) marks.push({label,start:s,end:t}); }
+ else open[label]=t;
+ marks.sort((a,b)=>a.start-b.start); draw();
+}
+addEventListener('keydown',e=>{
+ if(e.target.tagName==='INPUT')return;
+ const k=e.key.toLowerCase();
+ if(e.code==='Space'){e.preventDefault(); v.paused?v.play():v.pause(); return;}
+ if(k==='f'){toggle('fullout');e.preventDefault();return;}
+ if(k==='k'){toggle('marking');e.preventDefault();return;}
+ if(k==='t'){toggle('talking');e.preventDefault();return;}
+ if(k==='c'){marks.push({label:'commit',start:v.currentTime,end:null});marks.sort((a,b)=>a.start-b.start);draw();e.preventDefault();return;}
+ if(k==='arrowleft'){v.currentTime-=e.shiftKey?5:1;e.preventDefault();return;}
+ if(k==='arrowright'){v.currentTime+=e.shiftKey?5:1;e.preventDefault();return;}
+ if(k===','){v.currentTime-=0.1;e.preventDefault();return;}
+ if(k==='.'){v.currentTime+=0.1;e.preventDefault();return;}
+ if('1234'.includes(k)){v.playbackRate=[0.25,0.5,1,1.5][+k-1];status.textContent=`speed ${v.playbackRate}×`;e.preventDefault();return;}
+ if(k==='backspace'){marks.pop();draw();e.preventDefault();}
+});
+bar.addEventListener('click',e=>{const r=bar.getBoundingClientRect();v.currentTime=(e.clientX-r.left)/r.width*dur();});
+v.addEventListener('timeupdate',()=>{ph.style.left=fx(v.currentTime);clock.textContent=v.currentTime.toFixed(3)+' s';if(Object.keys(open).length)draw();});
+document.getElementById('clear').onclick=()=>{if(confirm('Delete every mark?')){marks=[];open={};draw();}};
+document.getElementById('save').onclick=async()=>{
+ const lines=marks.map(m=>`${m.start.toFixed(6)}\t${(m.end==null?m.start:m.end).toFixed(6)}\t${m.label}`).join('\n')+'\n';
+ const r=await fetch('/save',{method:'POST',headers:{'Content-Type':'text/plain'},body:lines});
+ status.textContent = r.ok ? `saved ${marks.length} mark(s) — ${await r.text()}` : 'SAVE FAILED: '+r.status;
+};
+v.addEventListener('loadedmetadata',draw);
+</script>

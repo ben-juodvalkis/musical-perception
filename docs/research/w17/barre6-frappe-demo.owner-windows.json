@@ -1,0 +1,24 @@
+{
+ "clip": "barre6-frappe-demo",
+ "regions": [
+  {
+   "start": 3.210133,
+   "end": 29.996074,
+   "text": "fullout"
+  },
+  {
+   "start": 30.386355,
+   "end": 35.043143,
+   "text": "talking"
+  }
+ ],
+ "points": [
+  {
+   "start": 10.038217,
+   "end": 10.038217,
+   "text": "commit"
+  }
+ ],
+ "unmatched_pair_labels": [],
+ "unknown_labels": []
+}

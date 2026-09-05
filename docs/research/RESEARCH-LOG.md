@@ -13810,3 +13810,211 @@ name can do anything at all.** Indicative, never settled. The binding
 constraint remains owner-verified corpus growth.
 
 **Status: §7 RE-SPECIFIED. Not commissioned — the next session takes W0.**
+
+## 2026-09-05 · W17 (granular single-clip timeline) · agent/w17-granular-timeline · owner-attended — HARNESS BUILT, awaiting the owner's annotation
+
+**Owner-proposed, owner-directed** — go through one demonstration and record
+exactly how and when the tempo becomes readable, including the windows where
+the teacher is genuinely dancing in tempo rather than marking, then compare
+that against every technique the project has. Clip chosen: **`barre6-frappe-demo`**
+(55.0s) — the only demo carrying both a recorded commit moment and a
+documented within-demo tempo change, so it exercises Q1 directly.
+
+**What this opens that nothing else does: the time axis.** Every score in this
+project collapses a clip to one number. The owner works from seconds of it —
+the demo cases' own prose records spans as narrow as **3.6s of a 78s clip**
+(plié 8.4–12.0s) — and the two have never been compared. Those spans exist in
+every demo's `notes:` block, three of them with an explicit *"owner knew the
+tempo by Xs"*, and **nothing in the codebase reads any of them** (verified:
+no match for the field anywhere in `src/` or `tests/`). W17 is the first
+increment to put machine and owner on the same clock.
+
+**Harness (`scripts/w17-tempo-timeline.py`).** Every 0.5s it asks each
+technique the same question in two modes: **causal** (everything from clip
+start to t — *when does it commit?*) and **trailing** (last 8s — *what is the
+tempo now?*, which is what can catch a tempo drifting inside one demo). Seven
+techniques: peakRate all-pairs and median-gap, Whisper word-start all-pairs
+and median-gap, and librosa `beat_track`, PLP and tempogram-ACF. The owner's
+hand-tapped grid is carried as a **reference curve only** and is never an
+input to any estimator. The all-pairs estimator is imported **verbatim** from
+`eb1-estimator-bakeoff.py` via a shim (`scripts/eb1_import.py`) so the thing
+being compared is the code that was measured, not a re-implementation.
+
+Run on the frappé demo: 1,760 rows in ~25s; every technique answers on
+≥106 of 110 frames from 1.0–2.5s onward, so coverage is not a limiting factor.
+The owner's existing beat grid is **partial** — 57 taps that do not span the
+full clip — so the reference curve has gaps, which bounds what the comparison
+can claim in those regions.
+
+**Annotation round-trip (`scripts/w17-owner-annotation.py`).** Emits an
+Audacity label template and reads the finished file back, on the owner's
+existing label workflow. Vocabulary: `fullout` and `commit` required;
+`marking`, `talking`, `tempo=<bpm>` and `cue=voice|feet|arm|breath` optional.
+**Unknown labels are preserved rather than rejected** — the vocabulary is a
+guess and the owner may need words it does not have.
+
+**Ordering constraint, and it is the point rather than a nicety.** The owner
+annotates **before** seeing any machine output. Earlier the same day this
+session spoiled the §6 blind prior table by displaying the demo truths while
+presenting PP-1; the same failure here would be worse, because "when could I
+first tell" is exactly what a chart of estimates would answer for him.
+Accordingly the timeline script **prints no tempo values at all**, and the
+generated `*-timeline.{json,csv,png}` are **git-ignored until the annotation
+exists** (`docs/research/w17/.gitignore` says why). The chart was rendered
+once to verify it draws correctly and then deleted; it regenerates in ~25s.
+
+**Not yet answerable, and deliberately not guessed:** when each technique
+commits relative to the owner; whether any commits inside his window rather
+than off the marking that precedes it; what each settles on when the tempo
+moves; and whether the owner's 3.0s commit on this clip is reachable by
+anything. Those are the study, and they wait on the annotation.
+
+**Constraints:** spec-and-tooling increment only. No pipeline file, case,
+trace, grid, baseline or scorer touched; `pytest` 397 passed, 3 skipped.
+Nothing proposed for adoption. Does not consume W0.
+
+**Status: HARNESS READY — BLOCKED on the owner's annotation pass.**
+
+## 2026-09-05 · W17 (granular single-clip timeline) · agent/w17-granular-timeline · owner-attended — RESULTS: the frappé pass
+
+**The owner annotated `barre6-frappe-demo` against the video, blind to every
+machine output, and the pass returned four findings — two of which correct
+this project's own documents and one of which questions how the rung is
+scored.** Owner marks: full-out **3.21–30.00s**, commit **10.04s**, talking
+30.39–35.04s.
+
+**1. The window annotation is reproducible; the commit time is not.** The
+owner's 2026-09-01 ingestion note recorded the intended-tempo span as
+3.0–29.2s. Marked again days later with no reference to that note, he gave
+**3.21–30.00s** — within 0.2s and 0.8s. That is strong evidence the
+full-out judgement is a stable instrument worth collecting at scale. His
+commit time did **not** reproduce (old note: "knew the tempo by 3.0s"; today:
+10.04s), most plausibly because the old figure recorded the window opening
+rather than an independent commit judgement. Today's is the first genuine
+commit datum in the corpus.
+
+**2. The machine commits ~8s before the owner, and it is not cheating — the
+annotation vocabulary was simply missing a channel.** Three techniques
+(`librosa_acf` 1.0s, `librosa_dp` 1.5s, `pulse_allpairs` 2.0s) settle before
+the full-out window even opens at 3.21s. The owner named the cause on sight:
+the **spoken count-in**. Measured: *"seven"* 1.35s → *"eight"* 2.29s = 0.94s
+per count = **127.7 BPM** read as counting in 2s, against a danced 132.3;
+and all-pairs on the **six acoustic onsets before 2.0s** already returns
+**141.2 BPM**. The tempo is *stated* before it is *danced*. `countin` has
+been added to the annotation vocabulary — its absence would have scored a
+legitimate early commit as committing on nothing.
+
+**3. The full-out window matters, and the pooled number hides it completely.**
+Trailing-window accuracy, inside vs outside the owner's span, share of frames
+within 8%: `librosa_dp` **91% → 41%**, `librosa_acf` 77% → 52% — the
+audio-listening methods are far better inside. But the event-counting methods
+go the other way: `pulse_allpairs` 75% → **89%**, `words_allpairs` 74% → 81%.
+Pooled it is 64% vs 59%, i.e. **nothing**. Two opposite effects cancel. The
+reading: outside the full-out span the teacher is talking and counting, which
+is clean discrete events and messy audio. **Without the owner's annotation
+this split was not observable**, and the pooled figure alone would have said
+the window does not matter.
+
+**4. THE ONE THAT SHOULD CHANGE SOMETHING — the pass verdict on this clip is
+decided by a 2% disagreement between two of the owner's own numbers.** The
+case label is `marking_bpm` **135**; the owner's own tap grid reads **132.3**
+(beat-cluster gaps, n=24, constant across regions). The three techniques that
+"pass" all land at **143.6–144.0**:
+
+| technique | final | vs label 135 | vs taps 132.3 |
+|---|---|---|---|
+| librosa_acf | 143.6 | +6.3% **PASS** | +8.5% **FAIL** |
+| librosa_dp | 143.6 | +6.3% **PASS** | +8.5% **FAIL** |
+| pulse_allpairs | 144.0 | +6.6% **PASS** | +8.8% **FAIL** |
+
+**All three sit on the same side — a systematic ~6–7% fast bias, not noise —
+and the ±8% tolerance is just wide enough to hide it.** Swap one owner-supplied
+reference for the other and every pass becomes a fail. This is not a scoring
+bug to fix unilaterally: which reference is correct is an owner ruling, and
+rule 2 puts case truth beyond agent reach. But the rung's headline number
+inherits it, and no previous increment has looked.
+
+**5. A self-correction, made in the open (rule 7).** This session first
+reported "no tempo drift, 132.3 throughout." That test filtered to
+beat-sized gaps (0.40–0.52s), which **excludes the fast run by construction**
+— circular. Re-measured without that filter there is a real, locatable
+2.3-second burst at 20.1–22.3s during the *petit battement* passage, seven
+gaps all 0.363s, at exactly 5:4 against the surrounding tempo. §6's
+parenthetical claim that "frappé runs 139 → 165 within one demo" is corrected
+there: it is not a drift, it is a brief faster passage, and the clip is weak
+evidence for §6's question 1. The owner's ruling is that the teacher genuinely
+speeds up; logged with the caveat that 25% exceeds the "a little bit" he
+described, leaving open that those taps track movement rather than pulse.
+
+**Also noted:** Whisper renders *petit battement* as "petit bap, ma" — the
+transcript is unreliable exactly where the interesting passage is.
+
+**Constraints:** no pipeline file, case, trace, grid, baseline or scorer
+modified. The owner's annotation and the `countin` vocabulary addition are
+new files. `pytest` unaffected by this entry.
+
+**Status: W17 frappé pass COMPLETE. Owner-side: rule on label-vs-taps (finding
+4). Next clip candidate: plié, 3.6 usable seconds of 78.**
+
+## 2026-09-05 · W17 follow-up · agent/w17-granular-timeline · owner-attended — RULING: grade against the label; and a correction to this session's own finding 4
+
+**Owner asked for the label-vs-taps question to be settled before anything
+else. Measured across every clip carrying both a label and a tap grid (52
+rows), the answer is that there is no corpus-wide disagreement, and the
+question as this session posed it was partly a measurement error of its own.**
+
+**The tap grids are a beat-LOCATION reference, not a tempo reference.**
+Coverage — taps observed divided by beats expected at the label tempo over the
+tapped span — separates them cleanly:
+
+| grid | coverage | tap BPM vs label |
+|---|---|---|
+| dégagé | 0.95 | **+0.2%** |
+| ballonné | 0.93 | +12.7% (the DEFERRED fast-triple case) |
+| frappé | 0.91 | **−2.0%** |
+| coupé-barre | 0.86 | **+2.1%** |
+| fondu | 0.76 | −14.5% |
+| tendu | 0.75 | −7.3% |
+| rond de jambe | 0.63 | −42.6% |
+| tendu warm-up | 0.62 | −35.0% |
+| plié | 0.45 | −46.8% |
+
+**Five of the nine demo grids are not beat-complete** — the sparse-voicing
+pattern already documented in §5 — so a naive tempo off them lands at a wrong
+metric level and cannot cross-check anything. **Where both references are
+valid, they agree to within about 2%**, which is ordinary noise between two
+hand methods. The rig grids (`annotation_method: anchored`) agree even better,
+at 0.995–1.016 of the label, the three exceptions being exactly the clips the
+owner deliberately relabelled to the in-band level (60→120, 160→80, 63→126)
+whose taps were never redone.
+
+**RULING (owner, 2026-09-05): grade against the label.** `marking_bpm` stands
+as truth; the grids remain a beat-location reference and are not promoted to a
+tempo cross-check. No case file changes.
+
+**Correction to finding 4 of this session's W17 RESULTS entry (rule 7).** That
+entry said "the pass verdict on this clip is decided by a 2% disagreement
+between two of the owner's own numbers." That is true of the **standalone
+techniques W17 compared**, which cluster at +6–7% and sit on the tolerance
+edge. It is **not** true of the shipping pipeline, and the entry conflated the
+two. Measured on the blessed baseline, the shipping path predicts
+`barre6-frappe-demo` at **134.9 against a truth of 135 — 0.1% error**, and
+`barre6-coupe-barre-demo` at 107.5 against 108. Across all 33 gating rows:
+**21 comfortably correct (<6% error), 11 comfortably wrong (>10%), and exactly
+1 knife-edge row** (`rig-names-4-4-104-clean`, failing at 9.8%). **The blessed
+scores are robust to annotation noise; the claim that they hang on a 2% gap
+was wrong and is withdrawn.**
+
+**What survives, in narrower and more useful form.** The estimators W17
+compared carry a **one-sided** error. On the three demos where all-pairs lands
+at the right metric level it reads high every time — coupé-barre +0.3%, dégagé
++3.5%, frappé +6.6% (mean +3.5%, n=3, all positive). n=3 cannot establish a
+calibrated offset and **nothing should be corrected for it**, but a one-sided
+error of that size against a ±8% tolerance means an adopted all-pairs prior
+could pass on this corpus while sitting two points from failing. Written into
+§7 as something the running session must predict in advance, and as a
+requirement to report **signed error and margin-to-threshold**, not only
+pass/fail.
+
+**Status: label-vs-taps CLOSED. W17 frappé pass complete. Next clip: plié
+(coverage 0.45, 3.6 usable seconds of 78) — owner deferred it, not today.**

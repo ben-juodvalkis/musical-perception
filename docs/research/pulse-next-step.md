@@ -151,7 +151,7 @@ The four failing demos split along exactly those two modes:
 
 | clip | why it fails | mode |
 |---|---|---|
-| frappé | tempo genuinely moves: 139 → 132 → **165** across the clip | entrainment, non-stationary |
+| frappé | ~~tempo genuinely moves: 139 → 132 → **165** across the clip~~ **CORRECTED 2026-09-05 (W17)** — measured against the owner's tap grid the clip sits at **132.3 BPM throughout** (beat-cluster gaps, n=24, constant by region). There is **one 2.3s faster run at 20.1–22.3s** during the *petit battement* passage — 7 gaps, all 0.363s — at **exactly 5:4** to the surrounding tempo (0.0% off 5:4; 2:1 off by 37%, 3:2 by 17%). Owner's ruling: the teacher speeds up there. Caveat logged: 25% is larger than the "a little bit" he described, so "those taps track the movement, not the pulse" is not excluded. **Not a drift, and not across the clip.** | brief non-stationarity, not entrainment |
 | fondu | moves 91 → 83 → 85 | entrainment, non-stationary |
 | plié | she voices only beats 1 and 3 of a 3/4 bar | reconstruction |
 | rond-de-jambe | same sparse voicing | reconstruction |
@@ -268,6 +268,16 @@ three conjunctive conditions, and each is separately detectable:
    not one or two isolated counts;
 3. **full-out, not marking** — the tempo is read from the demonstration
    proper, and marking is explicitly excluded.
+
+**A fourth channel the rule does not mention, found by the W17 frappé pass
+(2026-09-05): the spoken count-in.** On `barre6-frappe-demo` the teacher
+*states* the tempo — "seven… eight", 0.94s per count = **127.7 BPM** read as
+counting in 2s, against a danced 132.3 — **before any dancing**, and every
+estimator that commits early is reading it (all-pairs returns 141.2 BPM from
+the six acoustic onsets before 2.0s). A count-in is neither full-out nor
+marking, so condition 3 does not classify it. The annotation vocabulary gained
+`countin`; **whether a count-in is an admissible source of truth under Q1 is
+an open owner question.**
 
 **Condition 3 does not bear on which field is truth.** This session first
 read it as a collision with `marking_bpm` and was wrong; "marking" means
@@ -479,6 +489,18 @@ marginal with a mixture floor that can tilt but never veto. The change is
 
 **Gate.** REPORTED-ONLY; nothing adopted in this increment. The comparison
 of interest is **B vs D first**, then B vs A, then C vs B.
+
+**A bias to pre-register a prediction about (W17, 2026-09-05).** On the three
+demos where all-pairs lands at the right metric level it reads **high every
+time**: coupé-barre +0.3%, dégagé +3.5%, frappé +6.6% (mean +3.5%, n=3, all
+positive). n=3 is far too small to call it a calibrated offset and **nothing
+should be corrected for it** — but a one-sided error of that size against a
+±8% tolerance means an adopted all-pairs prior could pass on this corpus while
+sitting a couple of points from failing. The running session must state in
+advance what it expects the signed error to do, and report signed error and
+margin-to-threshold, not only pass/fail. Note this is a property of the
+*standalone estimator*, not of the shipping pipeline, which predicts frappé at
+134.9 against a truth of 135.
 
 **What the running session must pre-register before writing code** —
 predictions for each arm on tier1 committed tempo, Acc2@8%, between-levels,
