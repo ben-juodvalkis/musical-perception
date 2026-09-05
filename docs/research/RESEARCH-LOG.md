@@ -12284,3 +12284,90 @@ table and its two questions; the rule-2 bookkeeping call on `traces.py`'s
 replay seam having landed in PP-1's pipeline commit (`d065566`) rather
 than in W11-c's EVAL-CHANGE commit; the standing ruling on whether W0 is
 live under the reset. Status: AWAITING BLESSING.
+
+## 2026-09-05 · RESET, step one (pulse) · agent/step-one-awaiting-blessing-20260903 · owner-attended — BLESSED (owner-directed)
+
+**PP-1 is blessed. The eleven-session AWAITING BLESSING state is closed by
+the owner's act, in an attended session, with the agent operating the
+keyboard under explicit direction.** Recorded in the open per rules 1, 7
+and 8: rules 1 and 8 forbid an *agent* running `evals bless` because the
+judgement is the owner's, not because the keystroke is. The judgement was
+made by the owner in this session after being walked through the evidence
+below; the ruling, verbatim:
+
+> "bless it, then let's do the table"
+
+and, on the preceding turn, the question it answers: *"should i bless the
+PP-1?"* No agent decided this and none may; if the disposition is ever
+disputed, this entry is the record that it was owner-ruled, not
+self-blessed.
+
+**What was re-measured this session before blessing, independently of the
+PP-1 and verification entries rather than by citing them.** A clean
+worktree at `913ea2e`, suites re-run from the frozen traces:
+
+- tier1 committed tempo **21/34 = 0.636** (blessed baseline was 20/34 =
+  0.588; Acc1@8% 0.606 → 0.636), Acc2@8% **0.697 → 0.727**,
+  between-levels **10 → 9 of 33**, `meter_triple` 14 → 15 of 34.
+- tier0 **25/25 tempo, 24/25 meter** — unchanged, as Q4 predicted.
+- ECE **0.2145 → 0.1903**.
+- The complete outcome diff on 52 rows is **two lines, both
+  `wrong -> correct`, both `barre6-coupe-barre-demo`** (`tempo` and
+  `meter_triple`).
+- `pytest` before blessing: **1 failed, 378 passed, 3 skipped**, the one
+  failure being `test_tier1_outcomes_match_baseline_exactly` listing those
+  two improvements. After blessing: **379 passed, 3 skipped, 0 failed.**
+
+**A check neither PP-1 nor the 2026-09-03 verification ran, added here
+because it is the fitting test and it was missing.** The 18 owner-demoted
+reference rows — verified truth, outside the benchmark, gating nothing —
+are **bit-identical across the change**: `counts` 2/18, `meter_triple`
+4/18, `tempo` 6/18, Acc1@8% 0.333, Acc2@8% 0.389, between-levels 12,
+before and after. Nothing moved out there in either direction, so the
+benchmark gain carries no measurable out-of-benchmark cost and no
+signature of fitting. Across all 52 rows in the corpus, **exactly one clip
+changed.**
+
+**What is and is not established, stated at blessing so the number cannot
+become an anchor later.** The aggregate moved on **n = 1**. The clip
+flipped because the all-pairs pulse period landed at 108.3 against a truth
+of 108.0; on **five of the eight gating demos the pulse sits on the wrong
+metric level entirely** (42.2 vs 120, 45.5 vs 86, 31.9 vs 96, 42.2 vs 112,
+and a boundary refusal on `tendu`). **What the increment establishes is
+not that the prior is right — it is that the pulse can reach the tempo
+marginal without breaking anything**: the `(1 − W)` mixture floor took a
+42.2-BPM opinion against a 120-BPM truth on `plie` and the committed
+answer stayed correct, which is Standing Lesson 2 held under adversarial
+input and measured rather than argued. That, plus the proven-inert seam
+(Q8), is the durable content. `0.636` is one lucky clip on top of `0.606`
+and this entry says so at the moment of blessing rather than afterwards.
+
+**Rule-2 bookkeeping, ruled.** The 14-line replay seam in
+`src/musical_perception/evals/traces.py` landed in PP-1's pipeline commit
+`d065566` rather than in W11-c's EVAL-CHANGE commit. Re-checked at source:
+the deviation was **declared a priori** in the PP-1 pre-registration
+(`d802c22`, "Constraints" paragraph — file named, scope limited to the
+replay seam, inertness promised and then proven by Q8), so it is a
+disclosed deviation under rule 9, not a rule broken and found later. The
+owner's disposition: **noted as an exception, not re-split** — the
+substance is measured inert and re-splitting would rewrite a branch
+carrying eleven sessions of ledger history to re-file provably dead code.
+
+**Baseline now:** `evals/baseline.json` regenerated at `913ea2e`,
+2026-09-05T20:15:07Z — tier0 25 outcomes pinned, tier1 34 pinned with 18
+withheld reference rows reported and never gating, stage1 0 pinned.
+`docs/evals/baseline.md` regenerated with it.
+
+**Still owner-side and unchanged by this entry:** the blind exercise→tempo
+prior table at `pulse-next-step.md` §6 and its two questions (in progress
+in this same session); the ruling on whether W0 survives the 2026-09-01
+reset; and merge order for the stranded branches — EA-1
+(`step-one-blocked-20260902-evening`), W15 (`marathon`), the lateral memo
+(`lateral-2026-09-02`), and **`w11b-opaque-sidecars`, which the tenth
+session's branch inventory omitted** and which this session reads as
+likely dead: it adds `pulse.json` sidecars for retired Barre-1 trace
+directories that no longer exist on `main`, so merging it would resurrect
+them.
+
+**Status: BLESSED (owner-directed, attended).** Step one's measured
+criterion has moved for the first time since the reset.

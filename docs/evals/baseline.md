@@ -1,6 +1,6 @@
 # Eval Baseline
 
-Generated 2026-09-02T02:16:55+00:00 at git `145948f` by `python -m musical_perception.evals bless`. Do not edit by hand.
+Generated 2026-09-05T20:15:07+00:00 at git `913ea2e` by `python -m musical_perception.evals bless`. Do not edit by hand.
 
 Outcomes are **correct / wrong / abstained** — abstention is never
 counted as wrong (ADR-009). n is small; intervals are the honest part.
@@ -24,11 +24,11 @@ tempo n=25: Acc1 1.0@4% 1.0@8% · Acc2 1.0@4% 1.0@8% · OE1 median 0.0 · |OE2| 
 | field | n | correct | wrong | abstained | accuracy | wilson 95% | truth in family | failure modes |
 |---|---|---|---|---|---|---|---|---|
 | counts | 34 | 12 | 13 | 9 | 0.48 | [0.3, 0.665] | — | counts_wrong×13 |
-| meter_triple | 34 | 14 | 19 | 1 | 0.424 | [0.272, 0.592] | — | tempo_wrong×10, meter_wrong×8, equivalent_reading×1 |
+| meter_triple | 34 | 15 | 18 | 1 | 0.455 | [0.298, 0.62] | — | tempo_wrong×9, meter_wrong×8, equivalent_reading×1 |
 | sides | 1 | 1 | 0 | 0 | 1.0 | [0.207, 1.0] | — | — |
-| tempo | 34 | 20 | 13 | 1 | 0.606 | [0.437, 0.753] | 5/13 | tempo_error×10, metric_level_x2×2, metric_level_div2×1 |
+| tempo | 34 | 21 | 12 | 1 | 0.636 | [0.466, 0.778] | 4/12 | tempo_error×9, metric_level_x2×2, metric_level_div2×1 |
 
-tempo n=33: Acc1 0.515@4% 0.606@8% · Acc2 0.576@4% 0.697@8% · OE1 median -0.0043 · |OE2| median 0.0534 (max 0.4739) · between-levels rows 10
+tempo n=33: Acc1 0.545@4% 0.636@8% · Acc2 0.606@4% 0.727@8% · OE1 median -0.0054 · |OE2| median 0.0467 (max 0.3896) · between-levels rows 9
 
 ### tier1 — reference slice (18 cases)
 
