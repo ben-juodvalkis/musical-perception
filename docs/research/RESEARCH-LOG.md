@@ -13955,3 +13955,66 @@ new files. `pytest` unaffected by this entry.
 
 **Status: W17 frappé pass COMPLETE. Owner-side: rule on label-vs-taps (finding
 4). Next clip candidate: plié, 3.6 usable seconds of 78.**
+
+## 2026-09-05 · W17 follow-up · agent/w17-granular-timeline · owner-attended — RULING: grade against the label; and a correction to this session's own finding 4
+
+**Owner asked for the label-vs-taps question to be settled before anything
+else. Measured across every clip carrying both a label and a tap grid (52
+rows), the answer is that there is no corpus-wide disagreement, and the
+question as this session posed it was partly a measurement error of its own.**
+
+**The tap grids are a beat-LOCATION reference, not a tempo reference.**
+Coverage — taps observed divided by beats expected at the label tempo over the
+tapped span — separates them cleanly:
+
+| grid | coverage | tap BPM vs label |
+|---|---|---|
+| dégagé | 0.95 | **+0.2%** |
+| ballonné | 0.93 | +12.7% (the DEFERRED fast-triple case) |
+| frappé | 0.91 | **−2.0%** |
+| coupé-barre | 0.86 | **+2.1%** |
+| fondu | 0.76 | −14.5% |
+| tendu | 0.75 | −7.3% |
+| rond de jambe | 0.63 | −42.6% |
+| tendu warm-up | 0.62 | −35.0% |
+| plié | 0.45 | −46.8% |
+
+**Five of the nine demo grids are not beat-complete** — the sparse-voicing
+pattern already documented in §5 — so a naive tempo off them lands at a wrong
+metric level and cannot cross-check anything. **Where both references are
+valid, they agree to within about 2%**, which is ordinary noise between two
+hand methods. The rig grids (`annotation_method: anchored`) agree even better,
+at 0.995–1.016 of the label, the three exceptions being exactly the clips the
+owner deliberately relabelled to the in-band level (60→120, 160→80, 63→126)
+whose taps were never redone.
+
+**RULING (owner, 2026-09-05): grade against the label.** `marking_bpm` stands
+as truth; the grids remain a beat-location reference and are not promoted to a
+tempo cross-check. No case file changes.
+
+**Correction to finding 4 of this session's W17 RESULTS entry (rule 7).** That
+entry said "the pass verdict on this clip is decided by a 2% disagreement
+between two of the owner's own numbers." That is true of the **standalone
+techniques W17 compared**, which cluster at +6–7% and sit on the tolerance
+edge. It is **not** true of the shipping pipeline, and the entry conflated the
+two. Measured on the blessed baseline, the shipping path predicts
+`barre6-frappe-demo` at **134.9 against a truth of 135 — 0.1% error**, and
+`barre6-coupe-barre-demo` at 107.5 against 108. Across all 33 gating rows:
+**21 comfortably correct (<6% error), 11 comfortably wrong (>10%), and exactly
+1 knife-edge row** (`rig-names-4-4-104-clean`, failing at 9.8%). **The blessed
+scores are robust to annotation noise; the claim that they hang on a 2% gap
+was wrong and is withdrawn.**
+
+**What survives, in narrower and more useful form.** The estimators W17
+compared carry a **one-sided** error. On the three demos where all-pairs lands
+at the right metric level it reads high every time — coupé-barre +0.3%, dégagé
++3.5%, frappé +6.6% (mean +3.5%, n=3, all positive). n=3 cannot establish a
+calibrated offset and **nothing should be corrected for it**, but a one-sided
+error of that size against a ±8% tolerance means an adopted all-pairs prior
+could pass on this corpus while sitting two points from failing. Written into
+§7 as something the running session must predict in advance, and as a
+requirement to report **signed error and margin-to-threshold**, not only
+pass/fail.
+
+**Status: label-vs-taps CLOSED. W17 frappé pass complete. Next clip: plié
+(coverage 0.45, 3.6 usable seconds of 78) — owner deferred it, not today.**

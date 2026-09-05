@@ -490,6 +490,18 @@ marginal with a mixture floor that can tilt but never veto. The change is
 **Gate.** REPORTED-ONLY; nothing adopted in this increment. The comparison
 of interest is **B vs D first**, then B vs A, then C vs B.
 
+**A bias to pre-register a prediction about (W17, 2026-09-05).** On the three
+demos where all-pairs lands at the right metric level it reads **high every
+time**: coupé-barre +0.3%, dégagé +3.5%, frappé +6.6% (mean +3.5%, n=3, all
+positive). n=3 is far too small to call it a calibrated offset and **nothing
+should be corrected for it** — but a one-sided error of that size against a
+±8% tolerance means an adopted all-pairs prior could pass on this corpus while
+sitting a couple of points from failing. The running session must state in
+advance what it expects the signed error to do, and report signed error and
+margin-to-threshold, not only pass/fail. Note this is a property of the
+*standalone estimator*, not of the shipping pipeline, which predicts frappé at
+134.9 against a truth of 135.
+
 **What the running session must pre-register before writing code** —
 predictions for each arm on tier1 committed tempo, Acc2@8%, between-levels,
 the 8-demo slice, and ECE; plus the refusal behaviour on the three declined
