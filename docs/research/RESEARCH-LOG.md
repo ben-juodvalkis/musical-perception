@@ -13559,3 +13559,82 @@ string ban on a public directory name is unsatisfiable by the very
 document that explains why the ban exists.
 
 Status: PROPOSED (owner review; add-only, gates nothing, no re-bless needed).
+## 2026-09-05 · RESET, step one (pulse) · main · owner-attended — REVIEW QUEUE CLEARED (owner-directed)
+
+**The owner asked for the whole queue cleaned up in one attended pass.
+Done: six branches merged to `main`, one deliberately not merged with its
+record salvaged, nine case-file notes corrected, and `main` pushed
+directly.** Recorded in the open because two of those acts are ones agents
+are normally forbidden.
+
+**Rule departures, both owner-directed in session, both disclosed
+(rules 1, 2, 7, 9).** Rule 1 says never push `main`; rule 2 says never
+modify files under `evals/cases/`. Both were done here on the owner's
+explicit instruction — *"Can we do it all. I want to clean everything
+up."* — in an attended session, not by agent initiative. The carve-outs
+are single-session and do not generalise: the standing rules are unchanged
+and the nightly runner remains bound by them, its `logs/run-summaries.md`
+exception untouched.
+
+**Merged to `main`:** the blessed step-one branch (PP-1 + W11-c's 26
+sidecars + the §6 table + §6.1's correction + the case-note fix); EA-1
+(`step-one-blocked-20260902-evening`), which also carried
+`step-one-owner-gated-20260902`, making that merge a no-op; W15
+(`marathon`); both 2026-09-02 lateral memos; and the one-line `scipy` dev
+dependency, whose absence had been producing failing peakRate tests on any
+clean install.
+
+**Two lateral memos, both kept.** The runner's (395 lines) and the
+attended session's (441 lines) are **not** duplicates — neither is a
+superset, each carries findings the other lacks — so the runner's keeps
+the canonical `2026-09-02.md` and the attended one lands as
+`2026-09-02-attended.md`. Merging them into one document was not attempted
+and should not be by an agent.
+
+**`agent/w11b-opaque-sidecars` NOT merged, on measured grounds.** Any one
+of three would be sufficient: its charter file predates the 2026-09-01
+evening reset and **merging it would revert the CURRENT RUNG block**; it
+adds **110 `pulse.json` files into `evals/traces/barre1-*` directories
+that no longer exist on `main`**, resurrecting the retired Barre-1 corpus;
+and its sidecar tooling is **older** than the versions W11-c already put
+on `main`. Its three ledger entries are salvaged verbatim above under a
+SALVAGED RECORD heading. The branch is left for the owner to delete —
+**no agent deleted a remote branch in this session.**
+
+**The nine demo case notes, corrected under the rule-2 carve-out.** Each
+asserted *"expected_bpm prefers performance_bpm, so this row grades
+against what was played, not against the marking"* — false since the
+2026-09-01 ruling and never updated. Replaced with the ruling plus a
+do-not-reintroduce line. **Notes text only**: verified per file by parsing
+before and after, with every non-`notes` field compared equal and the
+`notes` differing only by the replaced sentence. Two corruptions were
+caught by that check during the edit and avoided — re-wrapping the folded
+scalar split `bar-of-3` across a line break (which YAML folds to
+`bar- of-3`), and a block regex that stopped at a blank line inside a
+`notes:` body. The final method splices the sentence and leaves every
+other byte untouched.
+
+**Ledger merge conflicts** were append-vs-append in every case and
+resolved by keeping **both** sides, incoming first so the older dated
+entries precede. Nothing was dropped, verified by heading counts across
+the merge. One 2026-09-02 entry now sits after four 2026-09-03 entries;
+left alone rather than risk moving large blocks, since every entry carries
+its own date and branch in its heading.
+
+**Post-merge validation on `main`, run and shown rather than asserted:**
+`pytest` **397 passed, 3 skipped** (up from 379 — W15 brought its own
+tests); suites print **`no outcome changes vs baseline`**; the blessed
+baseline is intact at `913ea2e`, tier1 tempo 21/34, Acc2@8% 0.727, ECE
+0.1903; tier0 25/25 and 24/25; and `evals/traces/` contains **zero**
+`barre1` directories, confirming the retired corpus did not return.
+
+**Still owner-side, and not touched by this session:** the ruling on
+whether **W0** (the weekly meta-rung) survives the 2026-09-01 reset as a
+live, agent-takeable workstream — an agent may not decide this (rule 9),
+and its clock is 2 days past due; deletion of the stale branches now
+merged or superseded; and **re-specifying §7's ablation as
+name-plus-observation**, which Q2's ruling makes mandatory before it is
+worth running.
+
+**Status: review queue CLEARED. `main` carries everything except W11-b,
+whose record is salvaged and whose branch is dead.**
