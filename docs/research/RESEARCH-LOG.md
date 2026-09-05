@@ -12371,3 +12371,82 @@ them.
 
 **Status: BLESSED (owner-directed, attended).** Step one's measured
 criterion has moved for the first time since the reset.
+
+## 2026-09-05 · RESET, step one (pulse) · agent/step-one-awaiting-blessing-20260903 · owner-attended — §6 PRIOR TABLE ANSWERED, and two findings that outrank §7
+
+**The §6 blind prior table is filled.** Six sessions named it as the gate;
+it was answered in this attended session, dictated by the owner and typed
+by the agent into `pulse-next-step.md` §6. Nine of twelve rows carry
+ranges, three are declined (`rond de jambe en l'air` — "varies too much";
+`coupé-barre` and `tendu warm-up` — "I don't know"). Declines are data and
+no agent may fill them in later.
+
+**Blindness partially broken, by the agent, disclosed (rule 7).** Earlier
+in this same session the agent displayed the eight gating demos' truth
+tempos while presenting PP-1 for blessing, so eight of the twelve rows had
+one labelled example visible before the owner wrote them. Four rows were
+never exposed and are marked **(blind)** in §6. Measured afterwards, the
+exposure does not appear to have driven the answers: two of the six
+callable exposed rows have ranges that **exclude** the shown number
+(`degage` 85–105 against a shown 110; `fondu` "around 100" against a shown
+86). Recorded as a real weakening of the condition, not one that visibly
+bit.
+
+**Finding 1 — Q2 is a negative result on §7's shape, ruled by the owner.**
+Verbatim: *"exercise name is never enough. it always needs to be
+corraborated with the observation"*. An exercise-keyed prior applied on the
+**name alone** is therefore ruled out as a design at any strength,
+independent of what it might score; the label is admissible only as one
+input corroborated against what is heard or seen. The table's own numbers
+agree, measured over the nine callable rows: **26 of 36 exercise pairs
+(72%) have overlapping ranges**, **100 BPM falls inside 6 of 9 ranges**,
+and **only `petit battement` (130–150) fails to touch the crowded 85–125
+mass**. (An earlier draft of that paragraph asserted a stronger overlap
+from eyeballing; it was recomputed and corrected in place before commit.)
+§7's ablation must be re-specified as name-plus-observation before it is
+worth running.
+
+**Finding 2 — OPEN and owner-gated: the demo cases are graded against the
+marking tempo, and the case notes say they are not.** Measured against the
+artifact, not the docs. All nine barre-6 demo cases carry `marking_bpm`
+inside `expect:` and **no `performance_bpm` there at all**; the pianist's
+tempo sits in a `played_bpm` **tag**, which nothing reads.
+`Case.expected_bpm` resolves `expect["performance_bpm"] or
+expect["marking_bpm"]`, so every demo returns **the marking tempo**. Each
+demo's own `notes:` block asserts the opposite in prose — *"expected_bpm
+prefers performance_bpm, so this row grades against what was played, not
+against the marking."* The prose is false: the field name it depends on is
+not the field name that was written. The two candidate truths differ
+materially — `frappé` 135 vs 79 (0.59) and `ballonné` 160 vs 63 (0.39),
+neither a clean octave, so Acc2's family tolerance would not absorb them.
+
+**Why this outranks §7 rather than sitting in Backlog:** Q1's answer —
+*"usually the first clear tempo is the right one … especially if they are
+actually doing the movement fullout and not just marking"* — makes the
+full-out demonstration tempo the truth and **explicitly excludes the
+marking**, while the scorer reads a field named `marking_bpm`. Three
+readings are open, enumerated in §6.1: (a) the field is misnamed and holds
+the demonstration tempo, so scoring is right and the name and notes are
+wrong; (b) the field is accurate and the demo slice has been graded against
+the wrong quantity since ingestion; (c) the full-out tempo is a third
+quantity never recorded, and Q1 cannot be honoured without relabelling.
+**No agent may choose**: (b) and (c) change `evals/cases/` truth values,
+which rule 2 forbids and only owner verification can alter. Every
+demo-slice number in the ledger, PP-1's included, inherits the answer.
+
+**Note on PP-1's blessing, unchanged by this.** PP-1 was blessed earlier in
+this session against the corpus as it stands. Finding 2 does not retract
+it — the change moved one row from wrong to right under whatever truth
+convention is in force, and its zero-regression property is convention-
+independent — but if reading (b) or (c) is chosen, the demo slice will be
+rescored and the blessed numbers will move for reasons unrelated to PP-1.
+Flagged now so that movement is not later misread as PP-1 decaying.
+
+**Owner-side queue after this session:** rule on §6.1 (a/b/c) — now ranked
+first, ahead of §7; re-specify §7's ablation as name-plus-observation per
+Q2; the standing W0 ruling; merge order for the stranded branches (EA-1,
+W15, the lateral memo, and `w11b-opaque-sidecars`, which the tenth
+session's inventory omitted and which reads as dead — it adds sidecars for
+retired Barre-1 trace directories absent from `main`).
+
+**Status: §6 ANSWERED; §6.1 OPEN, owner-gated, ranked above §7.**

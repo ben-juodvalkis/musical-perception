@@ -206,42 +206,161 @@ and only knowledge of the exercise supplies it. On the other five the
 dominant rate is a *non-integer* multiple of the beat, which no projection
 can fix and only a prior over plausible tempos can break.
 
-## 6. NEXT STEP — the owner writes the prior table (blind)
+## 6. THE OWNER'S PRIOR TABLE — filled 2026-09-05 (attended session)
 
-**This is an owner action. No agent may author this table, and no agent
-may derive it from the corpus.** Deriving "rond de jambe ≈ 96" from the
-single rond de jambe clip in the gating set is memorising the answer key,
-not building a prior. The table must come from professional knowledge,
-**written before looking at what our clips are labelled.**
+**Status: ANSWERED by the owner, 2026-09-05.** Written from professional
+knowledge in an owner-attended session, dictated by the owner and typed by
+the agent. The original ask and its blind condition are preserved below
+the table.
 
-Ranges, not points. Fill in what you know; leave blank what varies too
-much to call.
+**Blindness caveat, disclosed rather than assumed away (rule 7).** The
+blind condition was **partially broken before the table was written**, by
+the agent and not by the owner. Earlier in the same session, while
+presenting PP-1 for blessing, the agent displayed the per-clip truth
+tempos for all eight gating demos — `coupe-barre 108, degage 110,
+fondu 86, frappe 135, plie 120, rond-de-jambe 96, tendu 102,
+tendu-warmup 112`. Eight of the twelve rows below therefore had one
+labelled example each visible to the owner beforehand. Four rows were
+never exposed and are marked **(blind)**: rond de jambe en l'air, petit
+battement, adage/développé, grand battement.
+
+**Evidence the exposure did not drive the answers, measured after the
+fact.** Two of the six callable exposed rows have ranges that **exclude**
+the number the owner had seen — `degage` was given 85–105 against a shown
+110, and `fondu` "around 100" against a shown 86. A table fitted to the
+displayed key would contain them. The exposure is recorded as a real
+weakening of the blind condition, not as one that visibly bit.
 
 | exercise | typical tempo range (BPM, at the tapped beat) | usual meter | notes |
 |---|---|---|---|
-| plié | | | |
-| battement tendu | | | |
-| dégagé / jeté / glissé | | | |
-| rond de jambe à terre | | | |
-| fondu | | | |
-| frappé | | | |
-| rond de jambe en l'air | | | |
-| petit battement | | | |
-| adage / développé | | | |
-| grand battement | | | |
-| coupé-barre | | | |
-| tendu warm-up | | | |
+| plié | 85–125 | 3/4 | |
+| battement tendu | 73–120 | 4/4 or 3/4 | |
+| dégagé / jeté / glissé | 85–105 | 3/4 or 4/4 | |
+| rond de jambe à terre | 85–120 | 3/4 | |
+| fondu | ~100 | 4/4 (usually) | given as a point, not a range |
+| frappé | 120–140 | 4/4 usually, "but not always" | |
+| rond de jambe en l'air **(blind)** | — | — | **"varies too much"** — declined, and that is the answer |
+| petit battement **(blind)** | 130–150 | 4/4 | |
+| adage / développé **(blind)** | 85–125 | 3/4 | |
+| grand battement **(blind)** | 120–130 | 3/4 or 4/4 | |
+| coupé-barre | — | — | **"I don't know"** — declined |
+| tendu warm-up | — | — | **"I don't know"** — declined |
 
-Two questions to answer alongside it, both of which only a dance musician
-can:
+Three of twelve rows are declined: one as genuinely too variable to call
+(rond de jambe en l'air), two as outside the owner's confident knowledge
+(coupé-barre, tendu warm-up). Declines are data and are not to be filled
+in by an agent later.
 
-1. **What counts as "the tempo" when the teacher's tempo moves?** (frappé
-   runs 139 → 165 within one demo). Start, settle, or the moment the
-   accompanist must commit?
-2. **Does the exercise name alone carry the prior, or do you also need
-   what the movement is doing?** If a frappé can be either brisk 4/4 or a
-   slower 2/4 depending on the combination, the label alone will not
-   narrow it and the table should say so.
+### Q1 — what counts as "the tempo" when the teacher's tempo moves
+
+Owner's answer, verbatim:
+
+> "usually the first clear tempo is the right one, so once the teacher
+> does say 4 counts with full steady consistent speed, especially if they
+> are actually doing the movement fullout and not just marking."
+
+This is **not** "the tempo they start at." It is an operational rule with
+three conjunctive conditions, and each is separately detectable:
+
+1. **first** — earliest qualifying window wins; later drift does not
+   revise it;
+2. **clear and steady** — roughly four counts held at consistent speed,
+   not one or two isolated counts;
+3. **full-out, not marking** — the tempo is read from the demonstration
+   proper, and marking is explicitly excluded.
+
+Condition 3 collides with how the demo cases are currently labelled — see
+§6.1 below, opened by this session's measurement.
+
+### Q2 — does the exercise name alone carry the prior
+
+Owner's answer, verbatim:
+
+> "exercise name is never enough. it always needs to be corraborated with
+> the observation"
+
+**This is a negative result on the shape of §7's ablation as originally
+written, and it is the owner's own ruling, not an agent's inference.** The
+exercise label is not a sufficient prior at any strength; it is admissible
+only as one input to be corroborated against what is actually heard or
+seen in the clip. An exercise-keyed prior applied on the name alone is
+therefore ruled out as a design, independent of what it might score.
+
+The table's own numbers corroborate the ruling arithmetically (measured,
+not eyeballed — an earlier draft of this paragraph overstated it and is
+corrected here per rule 7). Across the **nine callable rows**:
+
+- **26 of the 36 exercise pairs (72%) have overlapping ranges** — for most
+  pairs the table cannot separate the two exercises at all;
+- **100 BPM falls inside 6 of the 9 ranges** (plié, tendu, dégagé, rond de
+  jambe à terre, fondu, adage) — a single tempo consistent with two thirds
+  of the barre;
+- **only `petit battement` (130–150) fails to touch the crowded 85–125
+  mass**, making it the one row that is genuinely discriminative on its
+  own.
+
+As a discriminator between exercises the table is close to uninformative;
+as a measurement of how little the exercise name carries by itself, it is
+decisive and independently confirms Q2.
+
+### §6.1 — OPEN, owner-gated: what the demo cases are actually graded against
+
+Measured this session against the artifact rather than the notes, and it
+contradicts the notes. Every one of the nine barre-6 demo cases carries
+`marking_bpm` inside `expect:` and **no `performance_bpm` there at all**;
+the pianist's tempo is stored as a `played_bpm` **tag**. `Case.expected_bpm`
+resolves `expect["performance_bpm"] or expect["marking_bpm"]`, so for all
+nine demos it returns **the marking tempo**. Meanwhile each demo's own
+`notes:` block asserts the opposite in prose — *"expected_bpm prefers
+performance_bpm, so this row grades against what was played, not against
+the marking."* **The prose is false; the field name it depends on is not
+the field name that was written.**
+
+| demo | `marking_bpm` (scored) | `played_bpm` (tag, unused) | played/marking |
+|---|---|---|---|
+| ballonné | 160 | 63 | 0.39 |
+| coupé-barre | 108 | 120 | 1.11 |
+| dégagé | 110 | 121 | 1.10 |
+| fondu | 86 | 70 | 0.81 |
+| frappé | 135 | 79 | 0.59 |
+| plié | 120 | 116 | 0.97 |
+| rond de jambe | 96 | 95 | 0.99 |
+| tendu | 102 | 112 | 1.10 |
+| tendu warm-up | 112 | 82 | 0.73 |
+
+The gap is not cosmetic: on `frappé` and `ballonné` the two candidate
+truths differ by factors of 0.59 and 0.39 — neither a clean octave, so
+Acc2's metric-family tolerance would not absorb the difference either.
+
+**Why this is now urgent rather than merely untidy: Q1's condition 3 says
+the truth is the full-out tempo and explicitly not the marking, while the
+scorer is reading a field named `marking_bpm`.** Three readings are open
+and only the owner can choose:
+
+- **(a) the field is misnamed** — `marking_bpm` in fact holds the
+  demonstration tempo, the scoring is right, and the notes and the field
+  name are both wrong;
+- **(b) the field is accurate and the scoring is wrong** — the demos are
+  being graded against a marking tempo that Q1 says is not the answer, and
+  every demo-slice number since ingestion inherits that;
+- **(c) neither field holds it** — the teacher's full-out demonstration
+  tempo is a third quantity that was never recorded, and Q1 cannot be
+  honoured without relabelling.
+
+**No agent may pick between these**, because (b) and (c) would change
+`evals/cases/` truth values, which rule 2 forbids and which only owner
+verification can alter. Ranked ahead of §7: the ablation below is scored
+on the demo slice, so it inherits whichever answer this gets.
+
+---
+
+*The original ask, preserved:*
+
+**This was an owner action. No agent may author this table, and no agent
+may derive it from the corpus.** Deriving "rond de jambe ≈ 96" from the
+single rond de jambe clip in the gating set is memorising the answer key,
+not building a prior. The table had to come from professional knowledge,
+**written before looking at what our clips are labelled.**
 
 ## 7. Then, and only then — the ablation
 
