@@ -1,0 +1,7 @@
+# Generated timeline artifacts are deliberately NOT committed until the owner's
+# annotation exists. They contain every technique's answer; committing them
+# before the annotation pass would put the answers in front of the annotator.
+# Regenerate in ~25s:  python scripts/w17-tempo-timeline.py --clip <clip>
+*-timeline.json
+*-timeline.csv
+*-timeline.png

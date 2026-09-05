@@ -13810,3 +13810,67 @@ name can do anything at all.** Indicative, never settled. The binding
 constraint remains owner-verified corpus growth.
 
 **Status: §7 RE-SPECIFIED. Not commissioned — the next session takes W0.**
+
+## 2026-09-05 · W17 (granular single-clip timeline) · agent/w17-granular-timeline · owner-attended — HARNESS BUILT, awaiting the owner's annotation
+
+**Owner-proposed, owner-directed** — go through one demonstration and record
+exactly how and when the tempo becomes readable, including the windows where
+the teacher is genuinely dancing in tempo rather than marking, then compare
+that against every technique the project has. Clip chosen: **`barre6-frappe-demo`**
+(55.0s) — the only demo carrying both a recorded commit moment and a
+documented within-demo tempo change, so it exercises Q1 directly.
+
+**What this opens that nothing else does: the time axis.** Every score in this
+project collapses a clip to one number. The owner works from seconds of it —
+the demo cases' own prose records spans as narrow as **3.6s of a 78s clip**
+(plié 8.4–12.0s) — and the two have never been compared. Those spans exist in
+every demo's `notes:` block, three of them with an explicit *"owner knew the
+tempo by Xs"*, and **nothing in the codebase reads any of them** (verified:
+no match for the field anywhere in `src/` or `tests/`). W17 is the first
+increment to put machine and owner on the same clock.
+
+**Harness (`scripts/w17-tempo-timeline.py`).** Every 0.5s it asks each
+technique the same question in two modes: **causal** (everything from clip
+start to t — *when does it commit?*) and **trailing** (last 8s — *what is the
+tempo now?*, which is what can catch a tempo drifting inside one demo). Seven
+techniques: peakRate all-pairs and median-gap, Whisper word-start all-pairs
+and median-gap, and librosa `beat_track`, PLP and tempogram-ACF. The owner's
+hand-tapped grid is carried as a **reference curve only** and is never an
+input to any estimator. The all-pairs estimator is imported **verbatim** from
+`eb1-estimator-bakeoff.py` via a shim (`scripts/eb1_import.py`) so the thing
+being compared is the code that was measured, not a re-implementation.
+
+Run on the frappé demo: 1,760 rows in ~25s; every technique answers on
+≥106 of 110 frames from 1.0–2.5s onward, so coverage is not a limiting factor.
+The owner's existing beat grid is **partial** — 57 taps that do not span the
+full clip — so the reference curve has gaps, which bounds what the comparison
+can claim in those regions.
+
+**Annotation round-trip (`scripts/w17-owner-annotation.py`).** Emits an
+Audacity label template and reads the finished file back, on the owner's
+existing label workflow. Vocabulary: `fullout` and `commit` required;
+`marking`, `talking`, `tempo=<bpm>` and `cue=voice|feet|arm|breath` optional.
+**Unknown labels are preserved rather than rejected** — the vocabulary is a
+guess and the owner may need words it does not have.
+
+**Ordering constraint, and it is the point rather than a nicety.** The owner
+annotates **before** seeing any machine output. Earlier the same day this
+session spoiled the §6 blind prior table by displaying the demo truths while
+presenting PP-1; the same failure here would be worse, because "when could I
+first tell" is exactly what a chart of estimates would answer for him.
+Accordingly the timeline script **prints no tempo values at all**, and the
+generated `*-timeline.{json,csv,png}` are **git-ignored until the annotation
+exists** (`docs/research/w17/.gitignore` says why). The chart was rendered
+once to verify it draws correctly and then deleted; it regenerates in ~25s.
+
+**Not yet answerable, and deliberately not guessed:** when each technique
+commits relative to the owner; whether any commits inside his window rather
+than off the marking that precedes it; what each settles on when the tempo
+moves; and whether the owner's 3.0s commit on this clip is reachable by
+anything. Those are the study, and they wait on the annotation.
+
+**Constraints:** spec-and-tooling increment only. No pipeline file, case,
+trace, grid, baseline or scorer touched; `pytest` 397 passed, 3 skipped.
+Nothing proposed for adoption. Does not consume W0.
+
+**Status: HARNESS READY — BLOCKED on the owner's annotation pass.**
