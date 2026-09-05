@@ -12218,3 +12218,69 @@ Step one is still awaiting the owner's blessing of PP-1 and no agent work remain
 **Correction to yesterday's note, made in the open (rule 7).** The eighth-session entry said the scheduled meta-rung's clock was "9 days past its 2026-09-03 due date." That conflated two counts. The correct arithmetic today: the last in-cadence W0 is **2026-08-27**, so the 7-day clause put the next one due **2026-09-03**; today is **9 days since that W0** and **2 days past the due date**. Yesterday it was 8 days since / 1 day past, not 9 past. The ruling asked for is unchanged and still the owner's — whether W0 survives the 2026-09-01 reset as a live, agent-takeable workstream (rule 9) — and the size of the overrun does not change it, but a number stated wrong in the ledger is worth more corrected than repeated.
 
 Owner-side queue otherwise unchanged: bless PP-1; the §6 exercise→prior table and its two questions; the rule-2 bookkeeping call on `traces.py`'s replay seam having landed in PP-1's pipeline commit (`d065566`) rather than in W11-c's EVAL-CHANGE commit. Status: AWAITING BLESSING.
+
+## 2026-09-05 · RESET, step one (pulse) · agent/step-one-awaiting-blessing-20260903 · local (unattended) — AWAITING BLESSING (the one-line note)
+
+Step one is still awaiting the owner's blessing of PP-1 and no agent work
+remains on this rung, because the only act that advances it is `bless`,
+which is his alone (rules 1 and 8) — **tenth** consecutive session in this
+state, second today, and again verified rather than restated:
+`evals/baseline.json` on `main` is still at `34a1211` (2026-09-01, "tier1
+pinned 34, withheld 18 reference"), this branch is still unmerged into
+`main` (`git branch -r --merged origin/main` does not list it), its
+`evals/baseline.json` is byte-identical to main's (`git diff origin/main
+-- evals/baseline.json` empty), the only seven commits on `main` since the
+branch point are automated nightly `logs/run-summaries.md` pushes, and
+`git diff --stat main` is 35 files / 5,221 insertions / 128 deletions with
+`git diff --numstat main` showing `logs/run-summaries.md` as the **only**
+path carrying a deletion and `git diff --name-status main -- evals/`
+showing **26 × `A`, zero `M`, zero `D`**. PP-1's measured numbers are not
+re-run because nothing they depend on moved: `git diff 6f5bdbf..HEAD --
+src/ tests/ evals/` is **empty**, so the 2026-09-03 clean-checkout
+verification (tier1 tempo 21/34 = 0.636, Acc2@8% 0.727, between-levels 9
+of 33, tier0 25/25 and 24/25, a two-row improvement-only outcome diff, and
+the tripwire firing as designed) stands by construction rather than by
+assertion. The §6 gate was checked directly again, not assumed:
+`docs/research/pulse-next-step.md` §6 — the blind exercise→prior table —
+is still an **empty template**, last touched at `c049de9` (2026-09-02, the
+commit that wrote the ask), and its two questions are unanswered. The W0
+arithmetic is unchanged from this morning's corrected count (same calendar
+day): 9 days since the 2026-08-27 in-cadence meta-rung, 2 days past its
+2026-09-03 due date.
+
+**New this session, and the reason this is not purely a restatement — the
+blessing desk was measured, not described.** Earlier notes said "three
+step-one branches carry notes the owner cannot see from `main`" without
+saying which, or what merging this one would and would not carry. Measured
+by ancestry (`git merge-base --is-ancestor`) and by ledger-heading
+set-difference:
+
+- **This branch already contains** `step-one-blocked-20260902`,
+  `step-one-owner-gated-20260902`'s successor line,
+  `sidecar-evidence-20260903` (W11-c), `step-one-pulse-prior-20260903`
+  (PP-1), `sw1-pr1-air` and `estimator-bakeoff` (EB-1). Reviewing one
+  branch reviews all of that; no separate merge is needed for any of them.
+- **Three artifacts are NOT on this branch and are reachable only from
+  their own:** EA-1, the estimator adoption — 3 ledger entries plus
+  `scripts/ea1-estimator-adoption.py` and its results JSON, on
+  `agent/step-one-blocked-20260902-evening`; W15, the stated-structure
+  channel — 2 entries plus `docs/research/w15-stated-structure.{md,json}`
+  and its script, on `agent/marathon`; and the lateral-review memo
+  `docs/research/lateral/2026-09-02.md`, on `agent/lateral-2026-09-02`
+  (its ledger entries *are* here, the memo the entries point at is not).
+  Two of the three are cited by name in this branch's own notes — EA-1's
+  "measured and not adopted" verdict is load-bearing in the closed-
+  directions enumeration — so the ledger a reviewer reads here references
+  evidence that reading here cannot reach.
+- The `step-one-owner-gated-20260902` branch's single entry is likewise
+  absent here.
+
+That is a report on the review queue, not a request to change it: merge
+order is the owner's call, and no session should tidy four branches into
+one on its own initiative (rule 6).
+
+Owner-side queue otherwise unchanged: bless PP-1; the §6 exercise→prior
+table and its two questions; the rule-2 bookkeeping call on `traces.py`'s
+replay seam having landed in PP-1's pipeline commit (`d065566`) rather
+than in W11-c's EVAL-CHANGE commit; the standing ruling on whether W0 is
+live under the reset. Status: AWAITING BLESSING.
