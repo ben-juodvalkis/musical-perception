@@ -13638,3 +13638,47 @@ worth running.
 
 **Status: review queue CLEARED. `main` carries everything except W11-b,
 whose record is salvaged and whose branch is dead.**
+
+## 2026-09-05 · housekeeping · main · owner-attended — 26 merged branches deleted (recovery record)
+
+**Owner-directed** — *"delete the 27"* (the count was 26; the
+twenty-seventh line in the agent's earlier listing was an `origin/HEAD`
+artifact, corrected here rather than repeated). Every branch below was
+verified a **true ancestor of `origin/main`** before deletion, so no
+commit was lost — each is reachable from `main` today. SHAs are recorded
+so any branch can be restored with
+`git push origin <sha>:refs/heads/<name>`.
+
+`agent/w11b-opaque-sidecars` was **NOT** deleted and **NOT** merged: it
+is the one branch whose content must not return (it would revert the
+2026-09-01 reset charter and resurrect 110 retired Barre-1 trace files).
+Its ledger entries are salvaged above. It is left standing deliberately.
+
+```
+agent/air-service-20260824 6b353f0a63370ee342c0970a296762c79c7bd820
+agent/air-service-20260828 1ae57e129a351de393f12441a44dfe3b242ef8b5
+agent/barre6-ingestion a2cb2f070f9bbe5566499cfff956ae95790b2016
+agent/batch-review-20260824 ce96a979093346f063051d56b361a60cc8f2cd79
+agent/commission-sw1-pr1 cec6406dee858c3c514cecdf9e51217e2af59ef7
+agent/estimator-bakeoff 541e8f17f6d4de07edc7f718c7f40d77bdda5bff
+agent/lateral-2026-09-02 715a86f7fe1d05a9eb9e26235ae306d1beeeb7e6
+agent/marathon 06d3bf792254b1c16f0ff985411fc9cc9a9c8a0c
+agent/reset-step-one-pulse 802ab82250232cb16fb9a1a431e00841b7d106b8
+agent/review-6-syncopation a96f66c79551af4953b1e5f20ebc5571620dfd77
+agent/rung-4-joint-posterior 57b46295e81e2b764468ed01e9a2aaabc5c836e4
+agent/sidecar-evidence-20260903 c3991fbe0f91fb2e8fe22233f146fa236ddec987
+agent/state-of-play f5ddcaf31dca0a5aa42dd8b8d8f4b44ddabbd802
+agent/step-one-awaiting-blessing-20260903 0766df9b8c9b74613773a715b95bfa13b0c16d95
+agent/step-one-blocked-20260902 6a011eaf024a0d446f9244965de7e1272a72c691
+agent/step-one-blocked-20260902-evening bc3021dae515eb2c5171e6ad2e205877c3c9699f
+agent/step-one-owner-gated-20260902 fa3a1ad31f6f9fc623153c4be821b408901030fb
+agent/step-one-pulse-prior-20260903 9de1791a6fdfbc66b6e042f5becf17ff9cf6ec78
+agent/sw1-pr1-air 50707e902a9d38e9139fc1fa2a10b94362fa1da3
+agent/w13-trace-20260830 3afb62a7e64f931aa277888ed4f01d7233eb9f3a
+agent/w14c-confidence-calibration e7bfe2c27aac9ccc5c07cd7841aa1fd16c16b085
+agent/w16-bless-provisional-leak a312e3ab439e65c42ced0901a2da55c1923d214a
+claude/accent-periodicity-prominence-diagnostic-f522ca 170315374ff16d60850655371b4a6a0de211c6cc
+claude/detect-eye-contact-tempo-1w7179 d61694e4075bba32ed56bb75fdc6dc513e48a13e
+claude/fable-model-research-n8kgkm 4ad2a70b587595dd867616c7692f47644125bea9
+claude/pr-20-20260902-0053 0dae125f8fb3a4cd142c588c209bda9953a81a8b
+```
