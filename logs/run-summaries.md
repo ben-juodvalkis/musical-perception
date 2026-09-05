@@ -524,3 +524,18 @@ is how the runner's permission failure was found.)*
 > Ledger entry appended and pushed. Constraints proven above: work only on the step-one branch, all 26 files under the test-case directory are additions with nothing modified or deleted, and this session changed no code at all.
 
 *Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
+
+## run 2026-09-05T01:00:07Z · main adb569e
+
+- **outcome:** success, shell exit 0
+- **turns:** 15 · **duration:** 2.3 min · **cost:** $1.47
+
+**Agent's closing message:**
+
+> …ounts as "the tempo" when the teacher speeds up mid-demo, and whether the exercise name alone carries the prior. No agent can write this without cheating off the answer key. Several experiments are stacked behind it.
+> 3. **A ruling on whether the weekly review still exists** under the reset you called on 1 September. Its clock is now 9 days past due. An agent isn't allowed to decide that for itself. If you say it's live, it's a full session's work and nothing about it is blocked.
+> 4. **One bookkeeping call.** The tempo-hint change touched a small piece of the replay plumbing, and that landed in the wrong kind of commit under your own separation rule. The change was proven to do nothing on its own, so the substance is clean and only the paperwork is off — your call whether to split it before merging or note it as an exception.
+> 
+> Constraints proven in this transcript: work only on the step-one branch; all 26 files under the test-case directory are additions with zero modified and zero deleted; the blessed baseline file is untouched; the only file showing deletions is the automated nightly log, which just means the branch trails main's overnight commits. Ledger entry appended and pushed.
+
+*Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
