@@ -13195,3 +13195,367 @@ change**; the edit is confined to replacing one false sentence in nine
 
 **Status: §6.1 CLOSED. §6 remains ANSWERED. The owner-side queue loses one
 item (§6.1) and gains one (permission to correct nine `notes:` blocks).**
+
+---
+
+# SALVAGED RECORD — W11-b (branch not merged)
+
+**Recovered 2026-09-05, owner-directed.** The three entries below were
+written on 2026-09-01 on `agent/w11b-opaque-sidecars` and never reached
+`main`. **That branch is deliberately NOT merged and should not be**, for
+three independently sufficient reasons measured this session:
+
+1. its `docs/research/agent-charter.md` predates the 2026-09-01 evening
+   reset and **merging it would revert the CURRENT RUNG block** — the
+   reset charter would be undone;
+2. it adds **110 `pulse.json` files into `evals/traces/barre1-*`
+   directories that no longer exist on `main`** (Barre 1 was retired),
+   resurrecting a retired corpus;
+3. its `evals/pulse_sidecar.py` and `evals/__main__.py` are **older than
+   the versions now on `main`** via W11-c, so merging would regress the
+   sidecar tooling.
+
+The *work record* is worth keeping even though the artifacts are not, so
+the entries are reproduced verbatim below and the branch is left for
+deletion at the owner's word. Anything they assert about Barre-1 trace
+files describes a corpus that has since been retired.
+
+## 2026-09-01 · rung M · main · local (owner-attended, continued: barre-1 containment finding; W11-b commissioned; owner queue set; all branches merged)
+
+Continuation of the same attended sitting as the batch review above.
+
+### 1. The barre-1 finding, and a correction the session made to itself
+
+Asked to unblock beat-grid verification, the session reported that the
+Barre-1 DEV media was unavailable. **That was wrong and was corrected in
+the same sitting.** The media is present on the owner's main machine —
+**34 video files, 1.1 GB**, under `video/youtube/Ballet Barre 1`, which
+is gitignored (`.gitignore:24`, zero tracked files). The earlier claim
+rested on a top-level entry count of 2; those two entries are
+directories. `offrepo:` was never a statement about availability.
+
+**The real blocker is a containment leak in the sidecar writer.**
+`record_pulse_sidecar` writes `"media": str(media_path)` into the
+committed sidecar — existing sidecars carry `video/youtube/Frappe.mov`.
+Recording the 8 DEV exercises the ordinary way commits their real
+filenames, and with the batch split 8 DEV / 4 held-out at the exercise
+level, **the held-out four are then named by complement.** The barre-1
+case files already refuse exactly this, in their own words: *"agent-
+authored repo text carries opaque ids only."*
+
+The session stopped at that boundary and flagged rather than proceeding.
+Nothing was written; `record-pulse --only barre1-A-s` was run only far
+enough to confirm the tooling already refuses (`SKIP … case pins no
+media`), which is the containment working as designed, not a gap.
+
+**Enumeration discipline held throughout:** the directory was never
+listed. Presence was established by counts and total size only, and the
+DEV-file location plan is a checksum match — hash the files, report only
+the 22 that match a trace's `media_sha256` pin, never print or retain a
+non-matching name. All 22 barre-1 traces carry such a pin (verified).
+
+### 2. The second correction: what barre-1 is actually worth
+
+The session had claimed grid verification would "convert 22 of 52 cases
+from gating nothing to real gating power." **Also overstated.** Measured:
+**19 of the 22 barre-1 cases carry `expect: {}` and 3 carry a single
+key.** Fully annotated, they buy `stage1` pulse coverage and nothing
+else — tempo, meter and counts cannot gate on cases that state no
+expected value. The exercise-level split traded that detail away
+deliberately, and re-deriving it would undo the trade.
+
+Both corrections are recorded rather than quietly folded into a revised
+recommendation, because in each case the first answer had already been
+given to the owner and acted on.
+
+### 3. Rulings
+
+- **W11-b COMMISSIONED**, EVAL-CHANGE, **ranked 1** for agent sessions.
+  Scope, gate and honest ceiling written into the charter, including the
+  instruction that it must not be reported as unlocking 22 cases'
+  gating power.
+- **Owner's own next-session priorities set** (charter OWNER QUEUE):
+  (1) capture a new batch with truth labels authored at capture time,
+  (2) assign SEALED before the first trace is frozen, (3) verify the 2
+  provisional grids. Item (1) is the answer to §2 — the corpus needs
+  cases whose labels were known at capture, not reconstructed after.
+- **All outstanding branches merged to `main`** by owner ruling.
+
+### 4. The OWNER QUEUE mechanism
+
+A new block sits **above the Mission section** of the charter, and boot
+step 1 now requires every session to surface it to the owner in plain
+language *before any status report, workstream selection, or tool call*.
+Rationale: the owner-only acts in it are the corpus's actual bottleneck,
+and the previous arrangement surfaced them only if a session happened to
+reason its way there. Agents may never mark these items done — only the
+owner retires them.
+
+### 5. Merge
+
+`agent/air-service-20260828` was the only unmerged history in the repo:
+the 2026-08-28 entry recording the launchd burst arming, its
+byte-identical plist backup, and the revert procedure — **which the
+charter cites for the revert path, so until now that reference
+dangled.** Merged as `f1ff787`. The `RESEARCH-LOG.md` conflict (the
+branch predated every increment since 08-28) was resolved by keeping
+both sides, with the air-service entry placed **before** the W11
+pre-registration whose run it kicked off. Ledger entry count after
+merge: **82**, none lost.
+
+
+## 2026-09-01 · rung M / W11-b (opaque pulse sidecars for the Barre-1 DEV clips) · agent/w11b-opaque-sidecars · local (unattended) — PRE-REGISTRATION
+
+**EVAL-CHANGE.** No pipeline code is touched; the deliverable is the
+sidecar writer's media reference plus 22 add-only `pulse.json` files.
+
+### 0. Why this workstream, and why now
+
+Boot sequence: charter read in full, OWNER QUEUE surfaced to the owner in
+plain language before any workstream selection, Standing Lessons 1–10 and
+the ledger tails on both `origin/agent/marathon` and
+`origin/agent/w16-bless-provisional-leak` read.
+
+**W1.6 is ranked 1 but is not takeable:** it carries a RESULTS entry on
+`origin/agent/w16-bless-provisional-leak` (commit `37b2489`), which makes
+it COMPLETE-pending-review under boot step 2 — "any workstream carrying a
+RESULTS entry on the branch is not taken again". That branch's own charter
+edit already says so and re-ranks **W11-b to 1**. This session takes
+W11-b.
+
+Writability probe: `d1d6909` (write) / `9de45a3` (revert), first act of
+the session, per the 2026-08-24 amendment.
+
+### 1. The containment problem, restated precisely
+
+`record_pulse_sidecar` writes `"media": str(media_path)` into the
+committed sidecar. The Barre-1 batch is split 8 DEV / 4 held-out **at the
+exercise level**, and DEV and held-out media share one directory on the
+owner's machine, so a sidecar naming the 8 DEV exercises names the
+held-out 4 by complement. The barre-1 case files already refuse this in
+their own words ("agent-authored repo text carries opaque ids only").
+
+**The finding that makes the fix small.** Before writing any code this
+session measured what the sidecar's `media` field actually contains
+across the corpus:
+
+```
+sidecar media == trace meta media: 30 same, 0 differ, 22 traces without sidecar
+```
+
+All 30 existing sidecars already carry exactly the string their trace's
+`meta.json` carries. The field was never independent evidence — it is a
+copy of the trace's own reference, arrived at accidentally because the
+recorder was always handed the path the trace named. And the barre-1
+traces already pin an **opaque** reference: `"media": "offrepo:barre1-A-s"`,
+frozen 2026-08-22 and long committed.
+
+So the fix is not "invent an opaque id". It is **make the copy explicit**:
+the sidecar records the reference its trace records, and can therefore
+never name a file the trace did not already name. Opacity for barre-1
+falls out of a pin that is already in the repository.
+
+### 2. Locating the media without listing the directory
+
+The enumeration ban is absolute and permanent (charter, "Containment is
+not agent-auditable"). Lookup is therefore **content-addressed**: hash
+every regular file under a supplied media root, keep only those whose
+digest matches a trace's committed `media_sha256`, and discard every
+non-matching path on the spot — never returned, never stored, never
+printed, never placed in an error message. All 22 barre-1 traces carry a
+`media_sha256` pin (verified 2026-09-01).
+
+Two consequences accepted deliberately:
+
+- **Error messages from the recording loop are type-only when a media
+  root is in use.** A `CalledProcessError` from ffmpeg embeds the command
+  line, and the command line is a filename. Diagnostics that could name
+  media are withheld rather than redacted, because redaction that misses
+  once is worse than no diagnostic (rule 7's redaction-by-default posture).
+- Presence of the media was established this session by **counts and size
+  only** — 28 files, 919 MB, 23 of them `.mp4` — never by a listing.
+  (The 2026-09-01 attended session recorded 34 files / 1.1 GB for the same
+  directory; the discrepancy is noted, not investigated, since
+  investigating it means looking at names.)
+
+### 3. Predictions (scored honestly in the RESULTS entry)
+
+- **P1 — the mirror is byte-identical on the existing corpus.**
+  Re-recording an existing sidecar with `--force` reproduces its `media`
+  field exactly; no existing `pulse.json` changes. Confidence: high (30/30
+  already agree by measurement, above).
+- **P2 — all 22 barre-1 traces resolve by checksum.** The directory holds
+  23 `.mp4` against 22 wanted digests, so the margin is one file. Predict
+  22/22. If fewer resolve, the RESULTS entry reports **the count only**,
+  never which ids failed against which names.
+- **P3 — the 22 new sidecars carry `offrepo:barre1-<id>` and no
+  filesystem path.**
+- **P4 — zero real paths in the diff.** `git diff main` contains no
+  occurrence of `Ballet Barre 1`, no `.mp4`, and no `video/youtube/`
+  string outside the four pre-existing video traces' own untouched files.
+- **P5 — byte-identical outcomes on every existing suite.** tier0, tier1,
+  stage1 and stage1-peakrate produce identical output before and after.
+  Reason: stage1 scores only clips with beat grids and the barre-1 clips
+  have none — the before-run already prints `missing grids (22)` naming
+  exactly these 22. Nothing else consumes sidecars yet.
+- **P6 — add-only under `evals/`.** `git diff --stat main` shows 22 files
+  created under `evals/traces/*/pulse.json` and **zero** modified files
+  under `evals/cases/`, `evals/traces/`, or `evals/baseline.json`.
+- **P7 — pytest green**, including a new test asserting the writer records
+  the trace's reference rather than the supplied path.
+
+### 4. What this is worth, stated before running it
+
+19 of the 22 barre-1 cases carry `expect: {}` and 3 carry a single key.
+These sidecars buy **`stage1` pulse coverage only**, and only once the
+owner taps beat grids for the clips — which is why P5 predicts *no*
+change to any current number. This increment **cannot** buy
+tempo/meter/counts gating and must not be reported as unlocking 22 cases'
+gating power (charter, at commission). It is Standing Lesson 9 work: the
+replay path before the channel.
+
+Status: PRE-REGISTRATION (implementation follows in this session).
+
+## 2026-09-01 · rung M / W11-b (opaque pulse sidecars for the Barre-1 DEV clips) · agent/w11b-opaque-sidecars · local (unattended) — RESULTS
+
+**EVAL-CHANGE. Status: PROPOSED — 6 of 7 predictions landed; the one that
+missed was the pre-registration's own wording, not the property.**
+
+Attempted: give the sidecar writer an opaque media reference so the 22
+Barre-1 DEV clips can carry frozen acoustic pulse streams without naming
+the held-out four by complement; then freeze those 22 sidecars.
+
+### 1. Result
+
+22 of 22 barre-1 traces now carry a `pulse.json`; every existing suite
+produces identical output; nothing else changed.
+
+```
+  media root: 22/22 off-repo clips matched by checksum (filenames withheld)
+  recorded barre1-A-s: 254 events
+  recorded barre1-B-d: 117 events
+  ...
+22 recorded, 30 already present, 0 skipped
+exit=0
+```
+
+Event counts, in trace order: 254, 117, 98, 108, 114, 120, 129, 176, 227,
+300, 141, 136, 177, 81, 92, 95, 120, 130, 129, 119, 133, 155.
+
+### 2. Prediction scorecard — 6/7
+
+| # | Prediction | Landed | Evidence |
+|---|---|---|---|
+| P1 | mirror is byte-identical on the existing corpus | **yes** | two existing sidecars re-recorded with `--force` into a temp copy: `media` reproduced exactly, **all non-volatile fields identical**, event counts 16→16 and 18→18. Only `recorded_at` / `git_sha` differ, volatile by construction. No file under `evals/traces/` was modified. |
+| P2 | all 22 resolve by checksum | **yes** | `22/22 off-repo clips matched by checksum`, 0 skipped, stderr empty (0 lines) |
+| P3 | new sidecars carry `offrepo:<case-id>` and no path | **yes** | all 22 assert-checked: `media == "offrepo:"+case-id == meta.json media`, and `media_sha256 == meta.json media_sha256` |
+| P4 | zero real paths in the diff | **as worded, NO** | see §3 |
+| P5 | byte-identical suite output | **yes** | tier0+tier1+stage1+stage1-peakrate before vs after: identical apart from the run-artifact filename (timestamp+sha). Scored output md5 `f28e02fc9115ed549354f98139e5ad3a` both sides; run JSONs equal excluding `run_id`/`created_at`/`git_sha`/`timestamp` |
+| P6 | add-only under `evals/` | **yes** | `git diff --name-status main -- evals/` is all `A`; zero non-`A` entries; `evals/baseline.json` untouched |
+| P7 | pytest green incl. a new writer test | **yes** | 363 passed, 3 skipped (was 359+3; +4 new tests). W1.5's gating-corpus tripwire still passes. |
+
+### 3. P4 missed, and the miss is instructive
+
+P4 said the diff would contain "no occurrence of `Ballet Barre 1`, no
+`.mp4`, and no `video/youtube/`". It contains all three — **including
+inside P4's own sentence.** The prediction was written as a string ban
+when the property it was standing in for is *"no barre-1 media file is
+named"*. A string ban on the public directory name is unsatisfiable by
+any document that explains the containment rule, this ledger entry
+included.
+
+Scored honestly: **P4 as worded did not land.** All eleven hits were
+inspected individually and every one is benign — the public directory
+name in prose and in the documented `--media-root` example; `.mp4` in
+prose and in two test fixtures (`dev-take.mp4`, `held-out-exercise.mp4`,
+both invented); and one real filename, `video/youtube/Frappe.mov`, which
+is a pre-existing video trace named in committed sidecars since W11.
+
+The property was then tested directly, which is what P4 should have said:
+
+```
+media files under the root: 23
+whose full name appears in the diff: 0
+whose stem appears in the diff:      0
+```
+
+and over all files, not just media: **0 of 28 filenames appear in the
+diff.** One *stem* coincides — a seven-letter alphanumeric word that is
+the stem of a `.md` note file in that directory and also an ordinary
+English word appearing in a sentence of the new documentation about CLI
+output. It carries no information about any exercise. The check that
+found it holds every filename in memory for a moment and prints only
+counts; nothing derived from a name left the process, and the one hit was
+inspected with the stem redacted.
+
+**Lesson for future pre-registrations: predict the property, then choose
+the test — not the other way round.** A grep-shaped prediction is easy to
+score and easy to get wrong.
+
+### 4. What changed in the code
+
+- `record_pulse_sidecar` writes **the trace's own `media` reference**,
+  read from `meta.json`, instead of `str(media_path)`. Checksum equality
+  already proves the two are the same bytes, so the copy loses nothing
+  and buys an invariant: *a sidecar can never name a file its trace did
+  not already name.* The barre-1 traces have pinned
+  `"media": "offrepo:<case-id>"` since ingestion on 2026-08-22, so their
+  sidecars inherited opacity from a decision already in the repository.
+  **This was a two-line change because of a measurement taken first:**
+  all 30 existing sidecars already carried exactly their trace's string
+  (30 same / 0 differ), so the field was never independent evidence.
+- `resolve_media_by_checksum(root, wanted)` — content-addressed lookup.
+  Every regular file under the root is hashed; a file whose digest is not
+  wanted is discarded on the spot, never returned, stored, logged, or put
+  in an exception message. Listing that directory is permanently
+  forbidden, and content addressing is the only search that cannot leak,
+  because it never has to say what it rejected.
+- `record-pulse --media-root DIR` wires it up for cases that pin no
+  media. While a media root is in use, failures are reported **by
+  exception type only** — an ffmpeg `CalledProcessError` embeds its
+  command line and the command line is a filename. Withheld, not
+  redacted: a redaction that misses once is worse than no diagnostic.
+- Four new tests, including one asserting the writer records the trace's
+  reference and that a deliberately incriminating supplied filename
+  appears nowhere in the payload.
+- `docs/evals/pulse-sidecars.md` documents both.
+
+### 5. Regressions and classifications
+
+**None.** No outcome changed on any suite; no existing file under
+`evals/` was modified; `evals/baseline.json` untouched; no pipeline code
+touched (the change is confined to `evals/pulse_sidecar.py`,
+`evals/__main__.py`, tests and docs).
+
+### 6. What this is worth — unchanged from the commission
+
+19 of the 22 barre-1 cases carry `expect: {}` and 3 carry a single key.
+These sidecars buy **`stage1` pulse coverage only**, and only once the
+owner taps beat grids for those clips — which is exactly why P5 predicted
+and got *no change to any number*. The suite still prints
+`missing grids (22)` naming these 22, and will until the owner annotates.
+**This increment does not unlock 22 cases' gating power and must not be
+reported as doing so.** It is Standing Lesson 9 work: the replay path
+exists before the channel is bet on.
+
+### 7. Note on the media inventory
+
+The 2026-09-01 attended session recorded 34 files / 1.1 GB under that
+directory. This session measured **28 files / 919 MB, 23 of them `.mp4`**,
+by counts and size only. The discrepancy is recorded and **not
+investigated**, because investigating it means looking at names. It did
+not affect the result: all 22 wanted digests were found.
+
+Lesson (durable, one paragraph): The containment fix was two lines
+because the session measured the field before redesigning it — the
+sidecar's `media` value already equalled its trace's on all 30 existing
+files, so "record an opaque id" collapsed into "copy the reference the
+trace already committed", and the opacity came from a 2026-08-22
+ingestion decision rather than from anything invented tonight. The
+general form: before adding a mechanism to make a value safe, check
+whether that value is already a copy of a safe one. Second lesson, from
+P4: pre-register the *property*, not the grep that approximates it — a
+string ban on a public directory name is unsatisfiable by the very
+document that explains why the ban exists.
+
+Status: PROPOSED (owner review; add-only, gates nothing, no re-bless needed).
