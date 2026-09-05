@@ -13735,3 +13735,78 @@ at tier1 tempo 21/34 / Acc2@8% 0.727 / ECE 0.1903, zero `barre1`
 directories under `evals/traces/`.
 
 **Status: session closed. Next session takes W0.**
+
+## 2026-09-05 · RESET, step one (pulse) · agent/spec7-name-plus-observation · owner-attended — §7 RE-SPECIFIED (spec only, no pipeline change)
+
+**Owner-directed** — *"go ahead and respec §7 for name-plus-observation"*.
+This is a **specification increment**: no pipeline file, case, trace,
+baseline or scorer was touched, and nothing is proposed for adoption. It
+does **not** consume W0, which remains the next session's work per today's
+ruling.
+
+**Q2 closed the old §7 and the reframe that replaces it is measured, not
+asserted.** The original §7 keyed a tempo prior on the exercise name alone;
+the owner ruled the name is never sufficient. Rather than weaken that arm,
+the diagnostic asked what the name *could* do, and the answer changes the
+shape of the problem: comparing PP-1's frozen per-clip pulse estimates to
+the verified truths **as ratios**, **6 of the 7 demos where the pulse
+answered land within 8% of an exact integer subdivision** (×1: coupé-barre
+0.3%, dégagé 3.4%, frappé 6.2%; ×2: fondu 5.5%; ×3: plié 5.2%, rond de
+jambe 0.3%; only tendu-warmup misses at 11.5%, and tendu refused). **The
+pulse is not at "the wrong metric level" in the sense of being wrong — it
+hears a real periodicity and mis-chooses the multiple.** PP-1's own results
+entry described these rows as the prior "correctly doing nothing useful";
+that reading was too pessimistic, and the correction is recorded here rather
+than left standing. So the name's job is not to supply a tempo — no name
+predicts 120.0 — but to **select among multiples of an observed period**,
+which is the mechanical content of "corroborated with the observation."
+
+**The obvious implementation is falsified before anyone builds it.** Keeping
+only multiples inside the §6 band scores **1 hit / 4 miss**, and three of
+the four misses are boundary misses under 4 BPM (plié's ×2 misses the band
+floor by **0.6 BPM**, fondu's ×2 by 1.0, frappé's ×1 by 4.0). A hard band is
+a **fold**, and Standing Lesson 2 forbids folds — the identical failure mode
+PP-1 avoided by capping its prior so it can never zero a hypothesis. Now
+demonstrated on this corpus instead of argued from doctrine.
+
+**A harder bound, and it is on the table's own numbers.** The owner's bands
+do not always contain the owner's own labels: of the six demos carrying
+both, **the truth falls outside the band on two** — `degage` (truth 110,
+band 85–105) and `fondu` (truth 86, band ~100). A hard band would veto the
+correct answer on a third of the callable demos. Not an error in the table:
+a measurement of how far real classes spread from what a dance musician
+predicts, and a ceiling on any name-keyed prior.
+
+**The specified increment** extends PP-1's existing bounded seam rather than
+building a path: a bump at each integer multiple ×1–×4 (and ÷2, ÷3) of the
+observed period, each **soft-weighted** by agreement with the §6 band for
+the exercise the pipeline believes it sees; a multiple outside the band is
+down-weighted, **never removed**; the mixture floor is non-negotiable and
+any implementation able to drive a hypothesis to zero is out of spec. The
+three declined exercises get uniform treatment — **no agent may invent a
+band for them.**
+
+**Four arms, and the fourth is the one the old spec lacked.** A = PP-1 as
+blessed. B = multiples weighted by the band on Gemini's own exercise guess,
+errors included. C = the same keyed on the true exercise. **D = multiples
+weighted uniformly, no band at all** — without D the increment cannot
+separate "the name helped" from "considering multiples at all helped", and
+§7.1 suggests multiples alone may carry most of the effect. **B vs D is the
+comparison of interest, ahead of B vs A.** If D ≈ B the name is decoration
+and Q2 is satisfied in its most deflationary form, which is a publishable
+answer.
+
+**Disclosure so the pre-registration stays honest.** §7.1 and §7.2 were
+computed **before** the specification was written and are known to whoever
+pre-registers. They are facts about the *inputs* — frozen pulse estimates,
+owner bands, verified labels — not scores for any proposed mechanism, and
+nothing was tuned. Predictions must be made with these numbers visible and
+must not be read off them. Reproducible at
+`scripts/spec7-multiple-diagnostic.py`.
+
+**n restated, because the reframe does not fix it.** Eight demos; three
+carry no band and one has no pulse, so **Arm B has four clips on which the
+name can do anything at all.** Indicative, never settled. The binding
+constraint remains owner-verified corpus growth.
+
+**Status: §7 RE-SPECIFIED. Not commissioned — the next session takes W0.**
