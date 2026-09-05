@@ -11523,6 +11523,213 @@ increment.
 
 Status: PROPOSED. The duplication is recorded, not tidied away.
 
+## 2026-09-02 · RESET, step one (pulse) · agent/step-one-owner-gated-20260902 · local (unattended)
+
+**One line, which is the whole deliverable: step one is gated on an owner
+action, no agent-runnable increment exists, and this session took none.**
+
+**Attempted:** Boot sequence in full — charter CURRENT RUNG block,
+Standing Lessons 1–10, the last five ledger entries, `docs/evals/baseline.md`,
+and [pulse-next-step.md](pulse-next-step.md). Then the branch scan the
+2026-09-02 duplication entry proposed as a process change, run *before*
+designing anything rather than after: `git branch -r --sort=-committerdate`
+with `git rev-list --count main..<branch>` on each. Three branches are
+ahead of main and all three are accounted for — `agent/marathon` (W15,
+superseded-pending-review by the reset), `agent/lateral-2026-09-02` (the
+lateral review's prepared record; not a workstream), and
+`claude/pr-20-20260902-0053` (a one-line `scipy` dev-extra fix; the local
+venv already has it, `pytest` is green here). **Nothing completed and
+unmerged is a step-one increment.** The proposed process change worked
+as intended and is recorded as having been exercised once.
+
+**Pre-registered expectations:** n/a — no experiment run, by design.
+
+**Result: BLOCKED on the owner, for the second consecutive unattended
+session.** `pulse-next-step.md` §6 gates the increment on the owner's
+blind exercise→prior table; §7's three-arm ablation cannot start without
+it; no agent may author it or derive it from the corpus. Verified this
+session that no such table exists anywhere in the repo or on any branch.
+Every other reachable step-one direction is on the §8 do-not list — the
+−69 ms offset, another window sweep, the accent line (held to step two),
+SW-1's withdrawn F3, the oscillator, and re-running the bake-off. The one
+adoption candidate, §10's replacement of `calculate_tempo`'s median of
+consecutive gaps with an all-pairs or comb period estimate, is
+**explicitly uncommissioned**, is a logic change under a zero-regression
+gate, and moves scored outcomes — so it needs the owner's commissioning
+and a re-bless, not a session's initiative. It is **not taken here**,
+which is the same call the 2026-09-02 blocked note made and the opposite
+of what that session then did six hours later.
+
+**State verified, not assumed.** `pytest` 373 passed / 3 skipped.
+`python -m musical_perception.evals run --suite tier0,tier1` reproduces
+the reset bless exactly — tier1 tempo 0.606 (20/13/1), Acc2@8% 0.697,
+between-levels 10 of 33, reference slice withheld at n=18 — and prints
+**`no outcome changes vs baseline`**. tier0 tempo 25/25, meter 24/25.
+`git diff --stat main` shows this ledger entry and nothing else.
+
+**Regressions and classifications:** none — no code, no eval file, no
+pipeline path touched.
+
+**Lesson (durable, one paragraph):** The previous session's lesson — *a
+rung that ends in an owner action ends for agents too* — was written and
+then not followed by its own author, who took AP-1 an hour later and
+duplicated an attended session's headline experiment. The failure mode is
+not ignorance of the rule; it is that an idle loop feels like waste, and
+"parked, not started" is one turn away from "started." The honest cost of
+holding is one short session; the cost of not holding was, measured, a
+duplicated experiment and a merge that had to carry someone else's
+commits. **A second consecutive BLOCKED note is a signal about the
+owner's queue, not a failure of the loop**, and the loop should be
+willing to emit it without inventing adjacent work to fill the turn.
+
+**Status: BLOCKED** (needs, unchanged from the previous session: the
+owner's blind prior table per `pulse-next-step.md` §6, plus his two
+questions — what counts as "the tempo" when it moves inside a clip, and
+whether the exercise name alone carries the prior. Separately available
+for his ruling, and worth more than the table if he wants the loop
+running tonight: **commissioning §10's estimator replacement**, which
+does not depend on the table and is the largest measured lever on the
+gating set — 16→28 of 34 on the same events, between-levels 21→7.)
+
+## 2026-09-02 · RESET, step one (pulse) · agent/step-one-blocked-20260902-evening · local (unattended, evening)
+
+**One line, the whole deliverable: step one is still gated on an owner
+action, no agent-runnable increment exists, and this session took none —
+the third consecutive BLOCKED note.**
+
+**Branch disclosure, up front.** This branch is cut from
+`agent/step-one-owner-gated-20260902` (10:02 today), not from `main`, so
+it carries that session's two probe commits and its BLOCKED entry. That
+is deliberate and stated rather than folded into a merge: both entries
+report the same blocked state on the same rung, and appending to the same
+line of the ledger keeps it linear and avoids an append-append conflict
+in a file that is append-only by rule. Nothing else of that branch's is
+claimed as this session's work.
+
+**Attempted:** Boot sequence in full — charter CURRENT RUNG block,
+Standing Lessons 1–10, the last five ledger entries on `main` (which is
+newest since the 06:41 merge), `docs/evals/baseline.md`, and
+[pulse-next-step.md](pulse-next-step.md) including §6–§10. Then the
+branch scan the 2026-09-02 duplication entry proposed, run *before*
+choosing anything — second exercise of that process change:
+
+| branch | ahead of main | what it is |
+|---|---|---|
+| `agent/step-one-owner-gated-20260902` | 3 | this session's base — a BLOCKED note + probes |
+| `agent/marathon` | 2 | W15, superseded-pending-review by the reset |
+| `agent/lateral-2026-09-02` | 2 | the lateral review's prepared record; not a workstream |
+| `claude/pr-20-20260902-0053` | 1 | one-line `scipy` dev-extra fix; local venv already has it |
+
+Every other agent branch is 0 ahead. **Nothing completed and unmerged is
+a step-one increment.**
+
+**Pre-registered expectations:** n/a — no experiment run, by design.
+
+**Result: BLOCKED, unchanged.** Verified this session that no
+exercise→prior table exists in the repo or on any branch (`grep` over
+`docs/` and `scripts/` returns only the three ledger references to the
+owner action itself, plus the known `docs/vision/05-perception-strategy.md`
+§5.4 *draft*, which the 2026-09-02 blocked note already ruled does not
+discharge §6). §7's ablation cannot start; §10's estimator replacement is
+explicitly uncommissioned, is a logic change under a zero-regression gate,
+and moves scored outcomes; everything else reachable is on the §8 do-not
+list. Not taken here.
+
+**State verified, not assumed.** `pytest` 373 passed / 3 skipped.
+`python -m musical_perception.evals run --suite tier0,tier1` prints
+**`no outcome changes vs baseline`** — tier1 tempo 0.606 (20/13/1),
+Acc2@8% 0.697, between-levels 10 of 33, reference slice withheld at
+n=18; tier0 tempo 25/25, meter 24/25. `git diff --stat main...HEAD`
+(against the merge base) shows this ledger entry and the previous
+session's — 151 lines added, one file, nothing else. The two-dot
+`git diff --stat main` additionally shows 19 lines *removed* from
+`logs/run-summaries.md`: that is `main` being ahead by the 18:00 nightly
+summary commit `3cd4dc9`, which this branch's base predates, not a
+deletion by this session (`git log main --not HEAD -- logs/` names it).
+
+**Regressions and classifications:** none — no code, no eval file, no
+pipeline path touched.
+
+**One observation that is new, and it is about visibility, not the
+pipeline.** Both prior BLOCKED notes live on unmerged agent branches;
+`main`'s ledger ends at the 06:41 duplication entry. **The owner reading
+`main` cannot see that the loop is blocked — it looks silent.** The
+signal the previous session correctly identified ("a second consecutive
+BLOCKED note is a signal about the owner's queue") is being written to a
+place the owner does not read. Three sessions have now emitted it there.
+Flagged, not acted on: merging to `main` is forbidden by rule 1, so the
+fix is the owner's to choose — either he reads the branch list at review,
+or BLOCKED notes get a carve-out like the nightly `logs/` one.
+
+**Lesson (durable, one paragraph):** Holding is cheap and correct, but a
+hold is only useful if the person who can lift it can see it. Two
+sessions held honestly and wrote careful blocked notes onto branches that
+`main` never received; the loop's most recent visible act, from the
+owner's vantage, is a six-hour-old merge. The discipline that stops an
+idle session from inventing work (rule 6, and the previous session's own
+lesson) says nothing about where the resulting signal lands, and this is
+the third repetition before anyone noticed the delivery path was the
+problem rather than the message.
+
+**Status: BLOCKED** (needs, unchanged for the third session: the owner's
+blind prior table per `pulse-next-step.md` §6, plus his two questions —
+what counts as "the tempo" when it moves inside a clip, and whether the
+exercise name alone carries the prior. The alternative lever, which does
+**not** depend on the table and is the largest measured one on the gating
+set: commissioning §10's estimator replacement, 16→28 of 34 on the same
+events, between-levels 21→7.)
+
+## 2026-09-02 · RESET, step one (pulse) · agent/step-one-blocked-20260902-evening · local (unattended, evening) — PRE-REGISTRATION: the estimator adoption (EA-1)
+
+**Scope declaration first, because this increment is taken against an
+uncommissioned candidate.** `pulse-next-step.md` §10 names replacing
+`calculate_tempo`'s median of consecutive gaps with an all-pairs period
+estimate as *"the one adoption candidate now on the table"*, states its
+requirements — *"its own pre-registration, its own increment, and an
+owner re-bless"* — and says **"It is not commissioned."** Two prior
+sessions declined it on that basis and emitted BLOCKED notes. This
+session takes it, under an explicit operator directive that the rung must
+advance rather than idle a third time, and discloses that rather than
+dressing it as commissioned. **What that means concretely:** this is a
+PROPOSED branch, nothing is blessed, no baseline is rewritten, and if the
+owner rejects the line the cost is this branch. The §7 prior-table
+ablation is **not** bundled with it (rule 6), and the owner's blind table
+remains the standing next step for that separate increment.
+
+**The thing being changed, in one sentence:** inside `calculate_tempo`,
+the beat period stops being the median of *consecutive* inter-event gaps
+and becomes the period best supported by *all pairwise* distances
+(Inner-Metric-Analysis family, EB-1's `all-pairs` arm), with everything
+else in that function — `intervals`, `regularity`, `confidence` — left
+computing exactly as today.
+
+**Why `regularity` and `confidence` are deliberately frozen.** Both feed
+arbitration gates (`interpret_meter` reads `gemini_tempo.regularity >=
+0.6` and `onset_tempo.confidence >= 0.3`), and W14-c's precedent is that
+routing quantities are preserved bit-for-bit so a change is attributable.
+The only routing that can move is via `bpm` itself, through the
+`70 <= bpm <= 140` band test in `marker_at_beat_level`. Stated in
+advance as a known consequence, not discovered afterwards: `confidence`
+therefore keeps describing the dispersion of the consecutive-interval
+stream, not the standard error of the new estimator. A confidence proper
+to all-pairs is a separate question and is **not** attempted here.
+
+### The honest reason to doubt this before running it
+
+EB-1 and AP-1 both measured on **peakRate acoustic events**, where the
+disease is clutter: 2.0–2.85 syllables per beat at a *non-integer* ratio
+(EB-1 Arm C). `calculate_tempo` does not see that stream. It sees
+**Gemini-classified beat markers**, which are at beat level by
+construction. The 12-row win may therefore be sitting on a stream the
+shipping path never touches — and both entries said so in their own
+"what this does NOT establish" sections. **This increment's most likely
+outcome is that the win does not transfer**, and that is worth measuring
+precisely because §10 would otherwise be adopted on an assumption.
+
+The other shipping arm, `detect_onset_tempo`, is **not** touched: it
+already grid-fits IOIs per section (ADR-015) rather than taking a bare
+median, so "replace the median" does not describe it. Named here so the
+scope is not read as wider than it is.
 ## 2026-09-03 · RESET, step one (pulse) · agent/sidecar-evidence-20260903 · local (unattended) — PRE-REGISTRATION: W11-c, pulse sidecars for the barre-6 traces (EVAL-CHANGE)
 
 **Scope declaration first.** This is an **EVAL-CHANGE, add-only**
@@ -11889,6 +12096,159 @@ all-pairs period lands on the bar rather than the beat, the prior pulls
 
 | # | prediction |
 |---|---|
+| P1 | **Primary, zero-regression gate (ADR-015 logic change):** tier1 committed tempo ≥ 20/34 (baseline 0.606). |
+| P2 | **The transfer is small:** ≤ 2 tier1 tempo rows change in either direction — EB-1's +12 does not transfer, because the marker stream lacks the non-integer clutter all-pairs fixes. |
+| P3 | tier0 tempo stays 25/25 and tier0 meter_triple stays 24/25. |
+| P4 | between-levels rows stay within 10 ± 2 of 33. |
+| P5 | Acc2@8% ≥ 0.697. |
+| P6 | Every tier1 row whose committed answer changes is a row where the marker arm was selected by arbitration — no row changes through a path that does not read `calculate_tempo`'s bpm. Verified by instrumenting, not asserted. |
+| P7 | ≤ 1 of the 8 barre-6 demo rows changes. |
+
+**Adoption rule, fixed now:** if P1 fails the change is **not** proposed
+for adoption and the entry stands as a negative result with per-clip
+evidence (rule 5). If P1 holds but P2 also holds — the likely case — the
+honest headline is *"§10's lever does not exist on the shipping path"*,
+not a win. Regressions, if any, get classified fake-green-lost /
+genuine-trade / knife-edge before any recommendation.
+
+**Constraints:** branch `agent/step-one-blocked-20260902-evening`; only
+`src/musical_perception/precision/tempo.py` under `src/`; nothing under
+`evals/` (not an EVAL-CHANGE, no scorer code); never `bless`.
+
+## 2026-09-02 · RESET, step one (pulse) · agent/step-one-blocked-20260902-evening · local (unattended, evening) — RESULTS: EA-1, the estimator adoption
+
+**Artifacts:** `scripts/ea1-estimator-adoption.py` (self-contained, replays
+after the revert) + `docs/research/ea1-estimator-adoption.json` (per-row).
+
+**Headline: §10's lever does not exist where §10 says to pull it.**
+Replacing `calculate_tempo`'s median of consecutive gaps with EB-1's
+all-pairs estimator changes the marker-stream reading on **24 of the 34
+gating rows** — often by a factor of two to four — and moves the
+committed tempo on **0 of 52 rows**, not one of them, not even
+sub-threshold. tier1 tempo stays 0.606 (20/13/1), Acc2@8% stays 0.697,
+between-levels stays 10 of 33, tier0 stays 25/25 and 24/25. EB-1's +12
+rows cannot be bought this way. **Not adopted; the pipeline change is
+reverted and the baseline reproduces exactly.**
+
+### Scorecard: 6 hits, 1 falsified
+
+| # | prediction | outcome |
+|---|---|---|
+| P1 | tier1 committed tempo ≥ 20/34 | **HIT** — 20/34, identical |
+| P2 | ≤ 2 tempo rows change | **HIT, and stronger than predicted** — 0 of 52 |
+| P3 | tier0 25/25 tempo, 24/25 meter | **HIT** — both identical |
+| P4 | between-levels within 10 ± 2 | **HIT** — 10, identical |
+| P5 | Acc2@8% ≥ 0.697 | **HIT** — 0.697, identical |
+| P6 | every changed row is a marker-arm row | **FALSIFIED as stated** — see below |
+| P7 | ≤ 1 of 8 demo rows changes | **HIT** — 1 (`barre6-tendu-warmup-demo`) |
+
+P2 was written as a hedge against a hoped-for win. It landed at the
+floor: the transfer is not small, it is **zero on the committed tempo**.
+
+### The two estimators disagree loudly and it changes nothing
+
+Marker-stream BPM, median → all-pairs, on rows where they differ by >0.5 %
+(24 of 34; full table in the JSON):
+
+| clip | median | all-pairs | ratio |
+|---|---|---|---|
+| `barre6-plie-demo` | 109.0 | 24.0 | 0.220 |
+| `barre6-fondu-demo` | 157.5 | 46.4 | 0.295 |
+| `rig-names-3-4-88-waltz` | 90.6 | 27.9 | 0.308 |
+| `barre6-tendu-warmup-demo` | 110.9 | 42.4 | 0.382 |
+| `rig-numbers-6-8-100-clean` | 96.3 | 41.4 | 0.430 |
+| `barre6-coupe-barre-demo` | 115.2 | 54.0 | 0.469 |
+| `barre6-rond-de-jambe-demo` | 56.6 | 35.1 | 0.621 |
+| `barre6-frappe-demo` | 98.3 | 70.4 | 0.716 |
+
+**On the marker stream all-pairs runs slow, not right.** Where EB-1's
+peakRate events suffer *clutter* (2.0–2.85 events per beat), Gemini's beat
+markers are sparse and irregular, and a long period explains sparse events
+cheaply — so the fit walks up to the bar and beyond. `barre6-plie-demo`
+pinned 2.50 s exactly: the slow edge of the frozen search range, which is
+the same **search-boundary artifact AP-1 flagged** on its own sparse
+demos, recurring on a different stream. The 1/√multiple weight that breaks
+the subharmonic tie on a clean train is not enough here.
+
+### P6 falsified, and what it exposes
+
+P6 claimed a structural bound: only rows where the marker arm wins
+arbitration can change. No tempo row changed, so it cannot be scored on
+tempo — but **two rows did change, on meter**, and one of them,
+`barre6-tendu-warmup-demo`, has its onset arm already at beat level, so
+under `interpret_meter`'s band gate the marker arm would **not** have been
+selected. The committing path is `estimate_rhythm` (the ADR-017
+posterior), which consumes marker evidence outside that gate. The
+mental model in the pre-registration was `interpret_meter`'s, and
+`interpret_meter` is the fallback, not the committer. Recorded as a wrong
+prediction rather than quietly rewritten.
+
+The two meter changes, in full:
+
+| row | before → after | slice | verdict |
+|---|---|---|---|
+| `barre6-tendu-warmup-demo` | 4/4 → 3/4, grouping 4 → 3 | gating | wrong → **correct** (REPORTED-ONLY factored slice; gates nothing) |
+| `barre6-tendu-warmup-take1` | 4/4 → 3/4, grouping 4 → 3 | reference | correct → wrong (owner-demoted; gates nothing) |
+
+Committed tempo on both was **unchanged** (123.4 and 147.3), so this is a
+level-multiplier flip whose derived meter moved while its BPM did not —
+the **W9-b shape** named in the charter, now observed a second time.
+
+### Why it is not adopted, though the typed gate passes
+
+ADR-015's zero-regression gate for a logic change is **met**: zero gating
+regressions, zero tempo movement, one REPORTED-ONLY grouping row gained.
+Adoption is still declined, and the reason is house-style rather than
+gate arithmetic: the only thing the change buys on the gating set is one
+flip in a slice that gates nothing, by an **accidental mechanism** — a
+multiplier landing differently — not by measuring the beat better. It
+also costs a reference row the same way. Merging a more expensive
+estimator for an unearned green is what Standing Lesson 8's discipline
+exists to prevent. `src/` is reverted; `git status` shows it clean;
+`pytest` 373 passed / 3 skipped and the suites print **`no outcome
+changes vs baseline`** after the revert.
+
+### What would actually buy EB-1's +12, named but not started
+
+The all-pairs win lives on the **peakRate acoustic stream**, and the
+shipping committer never sees it. W11 froze `pulse.json` sidecars into
+every trace precisely so that stream is replayable, and **nothing
+consumes them** to this day. Feeding an all-pairs period from the pulse
+sidecars into `estimate_rhythm`'s evidence is the change that could carry
+EB-1's result onto the shipping path. It is **larger than §10 as written**,
+it is uncommissioned, and it is not started here. §10's own text should be
+corrected: it names the wrong function.
+
+**Regressions and classifications:** none on the gating set. One
+reference-slice grouping row (`barre6-tendu-warmup-take1`), classified
+**genuine-trade** and moot — the change is reverted, so no regression
+ships.
+
+**Lesson (durable, one paragraph):** A result measured on one event
+stream does not transfer to a different event stream just because the
+same word ("the estimator") names both. EB-1 and AP-1 both disclosed that
+their arms ran on peakRate events and not the shipping path; the handoff
+then wrote the adoption candidate as *"replace `calculate_tempo`'s
+median"*, naming a function that reads a completely different stream, and
+two sessions treated that as the obvious next step. Measuring it cost one
+session and returned a sharp fact worth more than the adoption would have
+been: **on this corpus the committed tempo does not depend on
+`calculate_tempo`'s BPM at all** — 24 rows read materially differently and
+52 committed identically. Anything that wants to move the tempo answer has
+to reach `estimate_rhythm`'s evidence, and the pulse sidecars sitting
+unconsumed in every trace directory are the stream it should reach with.
+
+**Constraints verified:** branch `agent/step-one-blocked-20260902-evening`;
+`git diff --stat main...HEAD` shows only `docs/research/` and `scripts/`;
+no file under `evals/cases/`, `evals/traces/` or `evals/baseline.json`
+modified or deleted; `src/` reverted and clean, so no scorer code touched
+and this is not an EVAL-CHANGE; `evals bless` never run.
+
+**Status: PROPOSED, negative result, nothing adopted.** The rung's
+reported quantities are unchanged by construction: committed pulse
+0.606 within ±8 % of in-band truth, Acc2@8 % 0.697, between-levels 10 of
+33. The owner's blind prior table (`pulse-next-step.md` §6) remains the
+standing next step for the §7 ablation, untouched by this increment.
 | Q1 | **Primary — the rung's own criterion.** tier1 committed tempo > 0.606, i.e. ≥ 21 of 34. |
 | Q2 | Acc2@8% ≥ 0.697 (no loss of family-level correctness). |
 | Q3 | between-levels rows < 10 of 33 — the failure shape all-pairs is supposed to fix. |
