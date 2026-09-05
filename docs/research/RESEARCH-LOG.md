@@ -13874,3 +13874,84 @@ trace, grid, baseline or scorer touched; `pytest` 397 passed, 3 skipped.
 Nothing proposed for adoption. Does not consume W0.
 
 **Status: HARNESS READY — BLOCKED on the owner's annotation pass.**
+
+## 2026-09-05 · W17 (granular single-clip timeline) · agent/w17-granular-timeline · owner-attended — RESULTS: the frappé pass
+
+**The owner annotated `barre6-frappe-demo` against the video, blind to every
+machine output, and the pass returned four findings — two of which correct
+this project's own documents and one of which questions how the rung is
+scored.** Owner marks: full-out **3.21–30.00s**, commit **10.04s**, talking
+30.39–35.04s.
+
+**1. The window annotation is reproducible; the commit time is not.** The
+owner's 2026-09-01 ingestion note recorded the intended-tempo span as
+3.0–29.2s. Marked again days later with no reference to that note, he gave
+**3.21–30.00s** — within 0.2s and 0.8s. That is strong evidence the
+full-out judgement is a stable instrument worth collecting at scale. His
+commit time did **not** reproduce (old note: "knew the tempo by 3.0s"; today:
+10.04s), most plausibly because the old figure recorded the window opening
+rather than an independent commit judgement. Today's is the first genuine
+commit datum in the corpus.
+
+**2. The machine commits ~8s before the owner, and it is not cheating — the
+annotation vocabulary was simply missing a channel.** Three techniques
+(`librosa_acf` 1.0s, `librosa_dp` 1.5s, `pulse_allpairs` 2.0s) settle before
+the full-out window even opens at 3.21s. The owner named the cause on sight:
+the **spoken count-in**. Measured: *"seven"* 1.35s → *"eight"* 2.29s = 0.94s
+per count = **127.7 BPM** read as counting in 2s, against a danced 132.3;
+and all-pairs on the **six acoustic onsets before 2.0s** already returns
+**141.2 BPM**. The tempo is *stated* before it is *danced*. `countin` has
+been added to the annotation vocabulary — its absence would have scored a
+legitimate early commit as committing on nothing.
+
+**3. The full-out window matters, and the pooled number hides it completely.**
+Trailing-window accuracy, inside vs outside the owner's span, share of frames
+within 8%: `librosa_dp` **91% → 41%**, `librosa_acf` 77% → 52% — the
+audio-listening methods are far better inside. But the event-counting methods
+go the other way: `pulse_allpairs` 75% → **89%**, `words_allpairs` 74% → 81%.
+Pooled it is 64% vs 59%, i.e. **nothing**. Two opposite effects cancel. The
+reading: outside the full-out span the teacher is talking and counting, which
+is clean discrete events and messy audio. **Without the owner's annotation
+this split was not observable**, and the pooled figure alone would have said
+the window does not matter.
+
+**4. THE ONE THAT SHOULD CHANGE SOMETHING — the pass verdict on this clip is
+decided by a 2% disagreement between two of the owner's own numbers.** The
+case label is `marking_bpm` **135**; the owner's own tap grid reads **132.3**
+(beat-cluster gaps, n=24, constant across regions). The three techniques that
+"pass" all land at **143.6–144.0**:
+
+| technique | final | vs label 135 | vs taps 132.3 |
+|---|---|---|---|
+| librosa_acf | 143.6 | +6.3% **PASS** | +8.5% **FAIL** |
+| librosa_dp | 143.6 | +6.3% **PASS** | +8.5% **FAIL** |
+| pulse_allpairs | 144.0 | +6.6% **PASS** | +8.8% **FAIL** |
+
+**All three sit on the same side — a systematic ~6–7% fast bias, not noise —
+and the ±8% tolerance is just wide enough to hide it.** Swap one owner-supplied
+reference for the other and every pass becomes a fail. This is not a scoring
+bug to fix unilaterally: which reference is correct is an owner ruling, and
+rule 2 puts case truth beyond agent reach. But the rung's headline number
+inherits it, and no previous increment has looked.
+
+**5. A self-correction, made in the open (rule 7).** This session first
+reported "no tempo drift, 132.3 throughout." That test filtered to
+beat-sized gaps (0.40–0.52s), which **excludes the fast run by construction**
+— circular. Re-measured without that filter there is a real, locatable
+2.3-second burst at 20.1–22.3s during the *petit battement* passage, seven
+gaps all 0.363s, at exactly 5:4 against the surrounding tempo. §6's
+parenthetical claim that "frappé runs 139 → 165 within one demo" is corrected
+there: it is not a drift, it is a brief faster passage, and the clip is weak
+evidence for §6's question 1. The owner's ruling is that the teacher genuinely
+speeds up; logged with the caveat that 25% exceeds the "a little bit" he
+described, leaving open that those taps track movement rather than pulse.
+
+**Also noted:** Whisper renders *petit battement* as "petit bap, ma" — the
+transcript is unreliable exactly where the interesting passage is.
+
+**Constraints:** no pipeline file, case, trace, grid, baseline or scorer
+modified. The owner's annotation and the `countin` vocabulary addition are
+new files. `pytest` unaffected by this entry.
+
+**Status: W17 frappé pass COMPLETE. Owner-side: rule on label-vs-taps (finding
+4). Next clip candidate: plié, 3.6 usable seconds of 78.**
