@@ -14080,3 +14080,161 @@ of it.
 
 **Status: word methods FIXED and retained. The octave-collapse-during-marking
 finding is new and is the strongest argument yet for the arbitration layer.**
+
+## 2026-09-05 · rung M / W0 (the meta-rung, IN CADENCE — first since 2026-08-27) · agent/w0-20260905 · local (unattended)
+
+**This is the weekly review the owner ruled live this morning, taken by the
+next session as that ruling directed. No pipeline work, per the meta-rung's
+own definition. Deliverables: state of record measured rather than asserted,
+a BLOCKED-queue audit with the exact unblocking act named per item, a
+re-ranking of what an agent session may take under the reset, seven PROPOSED
+amendments, and a plain-language summary delivered to the owner in chat.**
+
+### 0. State of record, measured this session
+
+- `pytest` **397 passed, 3 skipped**.
+- `evals run --suite tier0,tier1,stage1` prints **`no outcome changes vs
+  baseline`**; blessed baseline `913ea2e` intact.
+- tier0: tempo **25/25**, meter_triple **24/25**.
+- tier1 (34 gating rows): tempo **21/34 = 0.636**, Acc2@8% **0.727**
+  (Acc1@8% 0.636), OE1 median −0.0054, |OE2| median 0.0467,
+  **between-levels 9 of 33**; meter_triple 15/34; counts 12/34 (9
+  abstained). Reference slice n=18 withheld from all of it.
+- stage1 verified aggregate F 0.272 over 33 clips, asynchrony −13.1 ms;
+  provisional aggregate F 0.457 over 19. Gates nothing, unchanged.
+- Corpus: **52 cases, zero provisional** (34 gating + 18 reference);
+  **52 grids, 19 provisional** — the 17 takes (reference slice), the
+  DEFERRED `barre6-ballonne-demo`, and the trap clip
+  `rig-mixed-4-4-104-quantities` (un-annotatable by design). So **33 of the
+  34 gating rows carry an owner-verified grid** and the exception is the one
+  that cannot have one.
+- `git ls-remote --heads origin` returns exactly **two** heads, `main` and
+  `agent/w11b-opaque-sidecars`, confirming the 2026-09-05 deletion pass
+  landed as recorded. The **29 remote-tracking refs in this checkout are
+  stale local artifacts** of that deletion, not remote state; `git remote
+  prune origin` fixes it and touches nothing on the remote. A session that
+  audits branch state from `git branch -r` will otherwise report a review
+  queue that does not exist — this one nearly did.
+
+### 1. The clock
+
+Last in-cadence W0 **2026-08-27**; due **2026-09-03**; run **2026-09-05**,
+two days late. The lateness has a recorded cause, not a lapse: five
+consecutive sessions could not decide whether W0 survived the 2026-09-01
+reset, rule 9 forbade them deciding it, and the owner ruled it live this
+morning. The two out-of-cadence W0s (08-30, 08-31) did not reset the clock
+and neither does this entry's lateness: **next W0 due 2026-09-12.**
+
+### 2. BLOCKED-queue audit — every open item with the act that unblocks it
+
+| item | state | the single act that unblocks it | owner-only? |
+|---|---|---|---|
+| **§7-ABL** (the four-arm multiples ablation, `pulse-next-step.md` §7.3) | specified 2026-09-05, **not commissioned** | the owner's "run it" — or amendment A2-05 below | yes, as rules stand |
+| **W6-b** (N≥5 Gemini draws) | BLOCKED since 2026-08-30 | two decisions: a cost ceiling, and the second model family. **Deferred to "the 2026-09-03 W0", which is this one** — they are now in front of the owner, nine days after they were parked | yes |
+| **W5 continuation** (pulse-fed joint posterior) | OPEN | nothing: it is **agent-forbidden, not agent-blocked**. Scheduled sessions must never take it | yes |
+| **W13(a)** (expert information-timing trace) | commissioned 2026-08-30, never run as specified | an owner-led session — but see A5-05: **W17 is a W13(a)-shaped session that already happened**, on a stronger protocol | yes |
+| **W8** (RETIRED sweep) | BLOCKED | W5's continuation plus the tier-0 driver EVAL-CHANGE; dormant under the reset regardless | no, but unreachable |
+| **W14-d** (prefix-time calibration slice) | PROPOSED 2026-09-01, unruled | a ruling. Agent-runnable the moment it exists | yes to commission |
+| **structure schema block** | PROPOSED, agent-runnable | a ruling on whether step-three work may run while step one is open (A3-05) | yes |
+| **owner-queue item 2** (assign SEALED before the next batch's first trace) | standing, nothing pending | nothing until new capture exists — but the ordering is unrecoverable if missed | yes |
+| **W11-b** | **RETIRED**, branch must never be merged | nothing. See A1-05: it is still ranked first in the charter's ranking block | — |
+| **W15, W14-b** | superseded-pending-review | W15's code and verdict are **on `main`** since the 2026-09-05 merge; A6-05 proposes closing it. W14-b stays parked under the reset | yes |
+
+**Nothing in this table is blocked on agent throughput.** Every unblocking
+act is an owner ruling or an owner-attended session. That is the same finding
+the four consecutive BLOCKED notes of 09-02/09-03 reported, and clearing the
+review queue did not change it.
+
+### 3. Re-ranking for agent sessions under the reset
+
+The charter's standing ranking is **pre-reset** and ranks workstreams the
+reset supersedes. Proposed ranking for an unattended session, in force from
+the next one:
+
+1. **§7-ABL** — the only agent-runnable increment that is *on the CURRENT
+   RUNG*, REPORTED-ONLY, pins no outcome, and is specified down to its arms,
+   its gate and its required pre-registrations. Blocked only on
+   commissioning.
+2. **W14-d** — EVAL-CHANGE, agent-runnable, removes a proven blind spot
+   (W14-c's defect was invisible to every existing suite because the harness
+   scores whole clips only). Off-rung under the reset; ranked here because it
+   is the highest-value thing an agent can do without owner time.
+3. **structure schema block** — EVAL-CHANGE, REPORTED-ONLY, agent-runnable,
+   but step-three work. Ranked as the **fallback** when 1 and 2 are gated,
+   not as the next increment (the owner queue currently calls it that).
+4. **W17 machine half** — runnable, but worthless without the owner's blind
+   annotation; the annotation is the instrument. Owner-side.
+5. Everything else: owner-only, forbidden, or dormant, per §2.
+
+### 4. PROPOSED amendments (owner's to ratify; nothing here is applied)
+
+- **A1-05 — strike W11-b from the ranking.** Charter line 170 retires it and
+  CURRENT RUNG ruling 6 forbids merging its branch, but lines 833 and 853
+  still read *"ranked 1 for agent sessions"*. Until W0 was ruled live, ruling
+  5 pointed the next session here and masked it; **the session after this one
+  reads the ranking block and finds a retired workstream at the top.** Fix:
+  mark it RETIRED in the ranking list itself.
+- **A2-05 — REPORTED-ONLY increments on the current rung are agent-takeable
+  when the spec is already written and owner-reviewed.** Precedent: W14 was
+  executed ahead of ratification on 2026-08-31 and declared not slipped in,
+  on the grounds that a REPORTED-ONLY increment pinning no outcome costs only
+  the artifact if rejected. §7-ABL is exactly that shape and its spec is the
+  owner's own reframe. Without this, step one advances only in attended
+  sessions and the unattended loop writes BLOCKED notes. **Rule the other way
+  and that is a legitimate answer** — it means the loop's honest output while
+  step one is open is a queue note, and the burst schedule should be read in
+  that light.
+- **A3-05 — rule on step-three work while step one is open.** The owner queue
+  names the `structure:` schema as "the next agent increment"; the reset says
+  the target is the pulse and steps two–four are unscoped. Both are current
+  text. Either de-rank it below step-one work (this review's recommendation)
+  or make it the standing fallback for gated sessions.
+- **A4-05 — add W17 to the charter.** The granular single-clip timeline was
+  proposed, run and ruled on entirely on 2026-09-05 and appears nowhere in
+  the charter, so no future session can find it. It has produced: the
+  reproducible full-out window annotation, the count-in channel, the
+  strict-vs-forgiving scoring finding, and the ruling that word methods stay.
+  Next clip named by the owner: plié.
+- **A5-05 — fold W13(a) into W17.** W13(a) asked for an owner-led trace of
+  what the professional accompanist actually uses. W17 delivered that on
+  `barre6-frappe-demo` with a stronger protocol than W13(a) specified: the
+  owner annotated **blind to every machine output**, against the video, and
+  the annotation reproduced days later to within 0.2 s / 0.8 s. Keeping both
+  open invites a session to re-run the weaker one.
+- **A6-05 — close W15 as COMPLETE-negative.** Its supersession mark says it
+  "waits for batch review"; the 2026-09-05 attended session merged it to
+  `main` with its tests, and its verdict (the teacher never states the meter,
+  0 of 52) is recorded. The mark is now the only thing keeping it open.
+- **A7-05 — Standing Lesson 11, proposed and earned by W17:** *octave-
+  forgiving scores hide half-time collapse; report strict first, forgiving
+  beside it, never instead of it.* Evidence: `words_allpairs` scored **92%
+  correct during the marking region** under the octave-forgiving measure and
+  **0% strict** — a median of 70.0 BPM against a truth of 135, confidently
+  half-speed for twenty seconds and fully credited. `Acc2` forgives exactly
+  this, and `Acc2@8% 0.727` is a headline number of the current rung. The
+  lesson does not say Acc2 is wrong; it says Acc2 alone cannot be the report.
+
+### 5. Two things this review declines to do
+
+**It does not re-open the visibility question with a new proposal.** The
+09-03 note asked for a `logs/`-style carve-out so BLOCKED notes reach `main`.
+The owner cleared the queue by hand instead, which solves the backlog but not
+the mechanism — the next unattended BLOCKED note will again be invisible from
+`main`. Restated here as a standing fact, not a fresh amendment: **rule 1 is
+the owner's to relax and this review does not ask again.**
+
+**It does not touch the charter file.** Amendments are proposals; rule 9 puts
+charter changes in front of the owner. Nothing under `evals/`, no pipeline
+file, no scorer code was modified — proven by `git diff --stat main` below.
+
+### 6. Constraints
+
+Branch `agent/w0-20260905`. `git diff --stat main` shows this ledger entry
+and nothing else. No file under `evals/cases/`, `evals/traces/`,
+`evals/baseline.json`, or `src/musical_perception/evals/` touched. `main` not
+pushed. `bless` not run.
+
+**Status: W0 COMPLETE for the 2026-09-03 cadence slot (run two days late,
+cause recorded). Seven amendments PROPOSED. Next W0 due 2026-09-12. Ranked 1
+for the next agent session: §7-ABL if commissioned or A2-05 ratified,
+otherwise W14-d if ruled, otherwise a BLOCKED note — and NOT W11-b.**
