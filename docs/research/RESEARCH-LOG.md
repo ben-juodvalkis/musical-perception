@@ -14316,3 +14316,73 @@ not run. No pipeline file modified.
 session is unchanged from W0's finding: **§7-ABL if commissioned or A2-05
 ratified, otherwise W14-d if ruled, otherwise this note again — and NOT
 W11-b.** Next W0 due **2026-09-12**.
+
+## 2026-09-06 · RESET, step one (pulse) · agent/step-one-owner-gated-20260906-evening · local (unattended) — OWNER-GATED (the one-line note, second of the day)
+
+**Step one is owner-gated and this session does not advance it**, for the
+same reason the 2026-09-05 W0 recorded and the earlier note of today
+repeated: every act that could move the rung's criterion is an owner ruling.
+This note re-measures rather than re-asserts, and adds one fact the earlier
+notes could not carry.
+
+**Measured this session, not quoted:** `pytest` **397 passed, 3 skipped**;
+`evals run --suite tier0,tier1,stage1` prints **`no outcome changes vs
+baseline`**. tier0 tempo **25/25**, meter_triple 24/25. tier1 (34 gating
+rows) tempo **21/34 = 0.636**, Acc2@8% **0.727** (Acc1@8% 0.636), OE1 median
+−0.0054, |OE2| median 0.0467, **between-levels 9 of 33**; meter_triple 15/34;
+counts 12/34 (9 abstained); factored slice division 20/26, grouping 27/34
+(REPORTED-ONLY). stage1 verified aggregate F 0.272 over 33 clips, asynchrony
+−13.1 ms. Identical to W0's measurement one day ago — the blessed PP-1 state
+is stable, and nothing has drifted under it.
+
+**The gate, verified in this session's transcript rather than inherited:**
+
+- `git log --since=2026-09-05 -- docs/research/agent-charter.md` returns one
+  commit, `672a7d9` (the owner's 2026-09-05 rulings). **No ruling has landed
+  since**, so A2-05 is unratified and A3-05 unanswered.
+- `docs/research/pulse-next-step.md:586` still reads **"It is not
+  commissioned."** §7-ABL — the one agent-runnable increment *on* the rung —
+  is therefore untakeable without the owner's "run it".
+- **A1-05 re-verified and still open.** The charter's ranking block continues
+  to put a RETIRED workstream first: line 832–833 *"Ranked 1 for the next
+  agent session is therefore W11-b"*, and lines 853–855 *"ranked 1 for /
+  agent sessions"*. A grep for `ranked 1 for agent` finds nothing because the
+  phrase is split across a line break — worth recording, since that is how a
+  future session checking this quickly would wrongly conclude A1-05 was
+  already fixed. It is not.
+
+**The one new fact, and it is about the loop rather than the pipeline.** With
+this entry, the unattended loop has produced **seven consecutive gated or
+blocked notes** (09-02 ×3, 09-03, 09-04 ×3 as awaiting-blessing, then 09-05
+and 09-06 ×2 as owner-gated), broken only by owner-attended sessions and by
+W0 itself. **Two of them are today.** The 2026-09-05 review queue clearing
+changed the *visibility* of that backlog and not its cause: W0 §2 measured
+that **nothing in the BLOCKED queue is blocked on agent throughput**, and one
+day of further running has produced exactly the confirmation that predicts.
+This is offered as evidence for reading the burst schedule, not as a fresh
+amendment — W0 §5 already declined to re-ask, and repeating the ask would
+inflate the queue it is describing.
+
+**Branch lineage, so one review discharges all three.** This branch descends
+from `agent/step-one-owner-gated-20260906`, which descends from
+`agent/w0-20260905`, with `main` merged in. `git ls-remote --heads origin`
+returns four heads: `main`, `agent/w0-20260905`,
+`agent/step-one-owner-gated-20260906`, and `agent/w11b-opaque-sidecars` (which
+**must never be merged**, CURRENT RUNG ruling 6). This checkout additionally
+carried **27 stale remote-tracking refs** from the 2026-09-05 deletion pass;
+`git remote prune origin` cleared them, touching nothing on the remote. W0 §0
+flagged this trap and this session hit it — a branch audit run before the
+prune would have reported a review queue of 27 branches that does not exist.
+
+**Constraints.** Branch `agent/step-one-owner-gated-20260906-evening`.
+`git diff --stat main` shows **`docs/research/RESEARCH-LOG.md` and nothing
+else**. `git diff --name-status main -- evals/ src/musical_perception/evals/`
+is **empty** — zero files under `evals/cases/`, `evals/traces/`,
+`evals/baseline.json`, or the scorer touched, added or removed. No pipeline
+file modified. `main` not pushed. `bless` not run. Writability probe passed as
+this session's first act (commit + remove, per the 2026-08-24 precondition).
+
+**Status: BLOCKED (needs an owner ruling).** Ranked 1 for the next agent
+session, unchanged: **§7-ABL if commissioned or A2-05 ratified, otherwise
+W14-d if ruled, otherwise this note again — and NOT W11-b.** Next W0 due
+**2026-09-12**.
