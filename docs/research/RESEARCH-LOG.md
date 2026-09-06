@@ -14249,3 +14249,70 @@ rung — §7-ABL, the four-arm multiples ablation of `pulse-next-step.md` §7.3 
 is **specified but not commissioned**, so the rung's own criterion cannot move
 without the owner's "run it" or amendment A2-05. This session took **W0**
 instead, exactly as the 2026-09-05 ruling directed; its entry is above.
+
+## 2026-09-06 · RESET, step one (pulse) · agent/step-one-owner-gated-20260906 · local (unattended) — OWNER-GATED (the one-line note)
+
+**Step one is owner-gated and not advanced by this session, and every
+agent-runnable candidate below it is gated on an owner ruling rather than on
+agent throughput** — the same finding W0 measured yesterday, re-verified
+today rather than restated. Writability probe passed first (write + commit +
+remove, charter amendment 1–2). State of record re-measured on this branch:
+`pytest` **397 passed, 3 skipped**; `evals run --suite tier0,tier1,stage1`
+prints **`no outcome changes vs baseline`**; tier0 tempo **25/25**,
+meter_triple **24/25**; tier1 on the 34 gating rows tempo **21/34 = 0.636**
+(Acc1@8% 0.636, Acc2@8% **0.727**, OE1 median −0.0054, |OE2| median 0.0467,
+**between-levels 9 of 33**), meter_triple 15/34, counts 12/34 with 9
+abstentions, **ECE 0.1903**, factored slice division 0.800 / grouping 0.818
+(REPORTED-ONLY), reference slice n=18 withheld throughout; stage1 verified
+aggregate F 0.272 over 33 clips at −13.1 ms, provisional F 0.457 over 19.
+Every figure matches the blessed PP-1 baseline and W0's 2026-09-05
+measurement exactly, so nothing on the rung has drifted.
+
+**The gate, item by item, with the single act that clears each** — unchanged
+from W0's §2 audit and re-checked against the working tree today:
+
+- **§7-ABL** (`pulse-next-step.md` §7.3, the four-arm multiples ablation:
+  A control / B Gemini-guessed name / C true name / D uniform-multiples) is
+  **specified but not commissioned**; §10 of the same document says of the
+  one adoption candidate, in its own words, *"It is not commissioned."*
+  Clears on the owner's "run it", or on ratification of **A2-05**.
+- **W14-d** (the prefix-time calibration slice, EVAL-CHANGE) is PROPOSED and
+  unruled. Clears on a ruling.
+- **the `structure:` schema block** is PROPOSED and unruled, and is
+  step-three work while step one is open (**A3-05**). Clears on a ruling.
+- **W5 continuation** is agent-*forbidden*, not agent-blocked. **W11-b** is
+  RETIRED and its branch must never be merged, while the charter's ranking
+  block still reads *"ranked 1 for agent sessions"* at lines 833 and 853
+  (**A1-05**) — verified present in the file today.
+
+Taking any of these unruled items would be a silent deviation under rule 9,
+and the two on-rung ones are the only things that could move the rung's own
+criterion, so this session writes the note instead of manufacturing an
+increment. **Nothing new is proposed here.** W0 ran one day ago and its
+seven amendments (A1-05 … A7-05) are the standing ask; repeating them as
+fresh proposals would inflate the queue rather than clear it.
+
+**One new fact worth the owner's eye, and it is a visibility fact.** W0's
+entry — the BLOCKED audit, the re-ranking, and all seven amendments — is on
+`agent/w0-20260905`, pushed but **unmerged**, so it is invisible from `main`
+five days after the review queue was cleared by hand. `git ls-remote --heads
+origin` returns three heads today: `main`, `agent/w0-20260905`, and
+`agent/w11b-opaque-sidecars` (the last of which must never be merged, CURRENT
+RUNG ruling 6). This branch descends from `agent/w0-20260905` with `main`
+merged in, precisely so that reviewing one branch discharges both — the 169
+insertions in the diff below that are not this note are W0's entry, carried
+forward, not re-authored. This is the mechanism W0 §5 declined to re-open a
+proposal about; it is recorded here as a fact, not as a fresh ask.
+
+**Constraints.** Branch `agent/step-one-owner-gated-20260906`.
+`git diff --stat main` shows **`docs/research/RESEARCH-LOG.md` and nothing
+else**. `git diff --name-status main -- evals/ src/musical_perception/evals/`
+is **empty** — zero files under `evals/cases/`, `evals/traces/`,
+`evals/baseline.json`, or the scorer touched, added or removed;
+`git diff main -- evals/baseline.json` is empty. `main` not pushed. `bless`
+not run. No pipeline file modified.
+
+**Status: BLOCKED (needs an owner ruling).** Ranked 1 for the next agent
+session is unchanged from W0's finding: **§7-ABL if commissioned or A2-05
+ratified, otherwise W14-d if ruled, otherwise this note again — and NOT
+W11-b.** Next W0 due **2026-09-12**.
