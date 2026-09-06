@@ -593,3 +593,22 @@ is how the runner's permission failure was found.)*
 > The weekly review itself is the substantive work of the session, summarized in my previous message: your queue is five items, the sharpest being that the charter's priority list would have sent the next unattended session onto retired barre-1 work, plus the finding that our forgiving accuracy measure credits a method that was confidently half-speed for twenty seconds.
 
 *Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
+
+## run 2026-09-06T09:00:08Z · main a82dbcd
+
+- **outcome:** success, shell exit 0
+- **turns:** 27 · **duration:** 4.2 min · **cost:** $2.46
+
+**Agent's closing message:**
+
+> … better.
+> 
+> ## One thing worth 30 seconds of your attention
+> 
+> **Yesterday's weekly review is sitting on a branch you can't see from `main`.** You cleared the review queue by hand on Thursday, and a day later a new unmerged branch appeared with the entire BLOCKED audit and all seven proposals on it. I've built today's branch on top of it, so **reviewing one branch (`agent/step-one-owner-gated-20260906`) gets you both**. Left alone, this will keep happening — unattended sessions can't push to `main`, so their findings pile up out of sight.
+> 
+> **The single sentence that unblocks the most:** say "run it" on the multiples experiment. It's reported-only, it can't change any scored result, and it answers whether the exercise name buys anything at all — including the deflating possibility that just *considering multiples* is doing all the work and the name is decoration.
+> 
+> **Constraints verified:** branch `agent/step-one-owner-gated-20260906`, pushed. `git diff --stat main` = one file, the ledger, 236 added lines (169 of which are yesterday's review carried forward). Zero files under `evals/cases/`, `evals/traces/`, `evals/baseline.json` or the scorer touched. `main` not pushed, `bless` not run.
+
+*Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
