@@ -578,3 +578,18 @@ is how the runner's permission failure was found.)*
 > Ledger note appended and pushed to `agent/step-one-awaiting-blessing-20260903`. My session touched exactly one file — the ledger. Nothing under the test-case, frozen-recording, or official-scores directories was modified (26 additions, zero modifications, zero deletions against main).
 
 *Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
+
+## run 2026-09-06T01:00:08Z · main 3bb6db3
+
+- **outcome:** success, shell exit 0
+- **turns:** 38 · **duration:** 6.3 min · **cost:** $3.31
+
+**Agent's closing message:**
+
+> Both deliverables are now on `agent/w0-20260905`, and the only file changed against `main` is the ledger (169 insertions, nothing else touched — no test cases, recordings, scores, or scorer code).
+> 
+> **Where step one stands, plainly:** it's waiting on you, not on an agent. The pulse work you blessed this morning is still exactly where you left it — right on 21 of 34 clips — and the one remaining experiment that an agent could run on its own (the §7 test, four versions compared) is written up but not yet given the go-ahead. That's now recorded as its own one-line ledger note so the rung's status is visible on its own, not buried inside the weekly review.
+> 
+> The weekly review itself is the substantive work of the session, summarized in my previous message: your queue is five items, the sharpest being that the charter's priority list would have sent the next unattended session onto retired barre-1 work, plus the finding that our forgiving accuracy measure credits a method that was confidently half-speed for twenty seconds.
+
+*Raw transcript is gitignored at `logs/agent-nightly.log` on the runner.*
