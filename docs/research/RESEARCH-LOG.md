@@ -14238,3 +14238,14 @@ pushed. `bless` not run.
 cause recorded). Seven amendments PROPOSED. Next W0 due 2026-09-12. Ranked 1
 for the next agent session: §7-ABL if commissioned or A2-05 ratified,
 otherwise W14-d if ruled, otherwise a BLOCKED note — and NOT W11-b.**
+
+## 2026-09-05 · RESET, step one (pulse) · agent/w0-20260905 · local (unattended) — OWNER-GATED (the one-line note)
+
+**Step one is owner-gated and not advanced by this session:** PP-1 is blessed
+(tier1 tempo 21/34 = 0.636, Acc2@8% 0.727, between-levels 9/33, tier0 25/25 —
+re-measured today, suites print `no outcome changes vs baseline`), §6's prior
+table is answered, and the single remaining agent-runnable increment on the
+rung — §7-ABL, the four-arm multiples ablation of `pulse-next-step.md` §7.3 —
+is **specified but not commissioned**, so the rung's own criterion cannot move
+without the owner's "run it" or amendment A2-05. This session took **W0**
+instead, exactly as the 2026-09-05 ruling directed; its entry is above.
